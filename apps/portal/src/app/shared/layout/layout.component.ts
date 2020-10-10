@@ -9,7 +9,7 @@ import { SpinnerService } from '../../core/services/spinner.service';
 import { AuthGuard } from '../../../../src/app/core/guards/auth.guard';
 
 @Component({
-    selector: 'app-layout',
+    selector: 'mixcore-layout',
     templateUrl: './layout.component.html',
     styleUrls: ['./layout.component.css']
 })
