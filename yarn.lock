@@ -128,6 +128,15 @@
   dependencies:
     tslib "^2.0.0"
 
+"@angular/cdk@^10.2.4":
+  version "10.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-10.2.4.tgz#656095648af005e7fa02c4cc68865be4bf59fc10"
+  integrity sha512-Ccm/iRb6zELWwMem6qTnFCalMVX/aS17hhN65efpNKrH3ovhyQSPWtF4p9IaEJ3rZpfXqXMPBneJ9ZXAA/iKog==
+  dependencies:
+    tslib "^2.0.0"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@~10.1.3":
   version "10.1.6"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-10.1.6.tgz#5ab85b39bee8575e9b88bb654b297c12debe13f9"
@@ -194,6 +203,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@angular/flex-layout@^10.0.0-beta.32":
+  version "10.0.0-beta.32"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-10.0.0-beta.32.tgz#a797ebd6f3689c71a63e99aa62f2b9cb933f5e2d"
+  integrity sha512-JvuY4dUoy5jyCTIrFiq7n30Znakh1pD3nbg0h0hs2r3t1OiDQb0ZSI1wcumosG/vYHsuJQTuNhbfaIZzA1x8nA==
+  dependencies:
+    tslib "^2.0.0"
+
 "@angular/forms@^10.1.0":
   version "10.1.5"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-10.1.5.tgz#2cde5e119c6f1fe9d7afceb034b6a62e231223d9"
@@ -205,6 +221,20 @@
   version "10.1.5"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-10.1.5.tgz#bf5658075f7114364e2f266f2d0cc61d93d955a1"
   integrity sha512-D3y97MciUx8txpwkRnMPOhPI1fyPJCGL0JwNOO0jq1qNKMzwRRetaacKUkv1apCZWU7r2PuL2GlJM6tIX5Ml3Q==
+
+"@angular/material-moment-adapter@^10.2.4":
+  version "10.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/material-moment-adapter/-/material-moment-adapter-10.2.4.tgz#8cce7c2d02bca8513814709e85d9fe31aacdc806"
+  integrity sha512-rQhmCmYJQKXxY79ju+N+e3F2rnt2mcDrZ6I8gSGqozit1luZoa56YV4OR00kEFDf1S7UJJtJF0hdF5dhQ9A03g==
+  dependencies:
+    tslib "^2.0.0"
+
+"@angular/material@^10.2.4":
+  version "10.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-10.2.4.tgz#9a3e4958ed72ae77c1638075efe5bff5158b2ba4"
+  integrity sha512-m5pRzCZQlpb7BZrc+LV+eeMU9M76obWVbNy8or6gvBPa6awfbwOz8uBryIvVngdkhoIieqAu1iV4bG7b7Xp3sg==
+  dependencies:
+    tslib "^2.0.0"
 
 "@angular/platform-browser-dynamic@^10.1.0":
   version "10.1.5"
@@ -6598,6 +6628,11 @@ jsprim@^1.2.2:
     json-schema "0.2.3"
     verror "1.10.0"
 
+jwt-decode@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jwt-decode/-/jwt-decode-2.2.0.tgz#7d86bd56679f58ce6a84704a657dd392bba81a79"
+  integrity sha1-fYa9VmefWM5qhHBKZX3TkruoGnk=
+
 karma-source-map-support@1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/karma-source-map-support/-/karma-source-map-support-1.4.0.tgz#58526ceccf7e8730e56effd97a4de8d712ac0d6b"
@@ -7335,6 +7370,14 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
+ngx-logger@^4.1.9:
+  version "4.1.9"
+  resolved "https://registry.yarnpkg.com/ngx-logger/-/ngx-logger-4.1.9.tgz#35b782c805343b9c8496e97a155b910086bec4bc"
+  integrity sha512-hEJDtWWi+1OSCM7Syz4J8GyFhkf+f0HBbvnMniAMRp9x9gRdtj+Q0cesXdxVV4JJmIhxJQM88NNVRR0cOtPeHQ==
+  dependencies:
+    tslib "^1.9.0"
+    vlq "^1.0.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
@@ -7956,7 +7999,7 @@ parse5-htmlparser2-tree-adapter@6.0.1:
   dependencies:
     parse5 "^6.0.1"
 
-parse5@5.1.1:
+parse5@5.1.1, parse5@^5.0.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
   integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
@@ -10768,6 +10811,11 @@ verror@1.10.0:
     assert-plus "^1.0.0"
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
+
+vlq@^1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/vlq/-/vlq-1.0.1.tgz#c003f6e7c0b4c1edd623fd6ee50bbc0d6a1de468"
+  integrity sha512-gQpnTgkubC6hQgdIcRdYGDSDc+SaujOdyesZQMv6JlfQee/9Mp0Qhnys6WxDWvQnL5WZdT7o2Ul187aSt0Rq+w==
 
 vm-browserify@^1.0.1:
   version "1.1.2"

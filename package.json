@@ -30,15 +30,22 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^10.1.0",
+    "@angular/cdk": "^10.2.4",
     "@angular/common": "^10.1.0",
     "@angular/compiler": "^10.1.0",
     "@angular/core": "^10.1.0",
+    "@angular/flex-layout": "^10.0.0-beta.32",
     "@angular/forms": "^10.1.0",
+    "@angular/material": "^10.2.4",
+    "@angular/material-moment-adapter": "^10.2.4",
     "@angular/platform-browser": "^10.1.0",
     "@angular/platform-browser-dynamic": "^10.1.0",
     "@angular/router": "^10.1.0",
     "@nrwl/angular": "10.3.0",
+    "jwt-decode": "^2.2.0",
+    "ngx-logger": "^4.1.9",
     "rxjs": "~6.5.5",
+    "rxjs-compat": "^6.6.3",
     "zone.js": "^0.10.2"
   },
   "devDependencies": {
@@ -47,12 +54,14 @@
     "@angular/compiler-cli": "^10.1.0",
     "@angular/language-service": "^10.1.0",
     "@nrwl/cli": "10.3.0",
+    "@nrwl/cypress": "10.3.0",
     "@nrwl/jest": "10.3.0",
-    "@nrwl/nx-cloud": "latest",
+    "@nrwl/nx-cloud": "^10.1.6",
     "@nrwl/workspace": "10.3.0",
     "@types/jest": "26.0.8",
     "@types/node": "~8.9.4",
     "codelyzer": "~5.0.1",
+    "cypress": "^4.1.0",
     "dotenv": "6.2.0",
     "eslint": "7.10.0",
     "jest": "26.2.2",
@@ -61,8 +70,6 @@
     "ts-jest": "26.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~6.0.0",
-    "typescript": "~4.0.3",
-    "cypress": "^4.1.0",
-    "@nrwl/cypress": "10.3.0"
+    "typescript": "~4.0.3"
   }
 }

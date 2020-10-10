@@ -21,8 +21,14 @@
             "polyfills": "apps/portal/src/polyfills.ts",
             "tsConfig": "apps/portal/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/portal/src/favicon.ico", "apps/portal/src/assets"],
-            "styles": ["apps/portal/src/styles.scss"],
+            "assets": [
+              "apps/portal/src/favicon.ico",
+              "apps/portal/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "apps/portal/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,7 +87,10 @@
               "apps/portal/tsconfig.spec.json",
               "apps/portal/tsconfig.editor.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/portal/**/*"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/portal/**/*"
+            ]
           }
         },
         "test": {
@@ -114,15 +123,21 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/portal-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/portal-e2e/**/*"]
+            "tsConfig": [
+              "apps/portal-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/portal-e2e/**/*"
+            ]
           }
         }
       }
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nrwl/angular",
+    "analytics": "05e1943b-9a6e-4c0a-a937-92d9a32e7806"
   },
   "schematics": {
     "@nrwl/workspace": {
