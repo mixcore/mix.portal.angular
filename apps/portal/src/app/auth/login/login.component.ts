@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.titleService.setTitle('angular-material-template - Login');
+        this.titleService.setTitle('Mixcore CMS - Login');
         this.authenticationService.logout();
         this.createForm();
     }

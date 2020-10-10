@@ -26,7 +26,7 @@ export class PasswordResetComponent implements OnInit {
     private notificationService: NotificationService,
     private titleService: Title) {
 
-    this.titleService.setTitle('angular-material-template - Password Reset');
+    this.titleService.setTitle('Mixcore CMS - Password Reset');
     this.hideNewPassword = true;
     this.hideNewPasswordConfirm = true;
   }

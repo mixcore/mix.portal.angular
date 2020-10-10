@@ -18,7 +18,7 @@ export class UserListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.titleService.setTitle('angular-material-template - Users');
+    this.titleService.setTitle('Mixcore CMS - Users');
     this.logger.log('Users loaded');
   }
 }

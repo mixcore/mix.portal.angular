@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   constructor(private titleService: Title) { }
 
   ngOnInit() {
-    this.titleService.setTitle('angular-material-template - Profile');
+    this.titleService.setTitle('Mixcore CMS - Profile');
   }
 
 }
