@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '../../../../node_modules/@angular/platform-browser';
 
 @Component({
-  selector: 'app-profile',
+  selector: 'mixcore-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })

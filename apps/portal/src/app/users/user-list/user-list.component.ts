@@ -5,7 +5,7 @@ import { NotificationService } from '../../core/services/notification.service';
 import { NGXLogger } from 'ngx-logger';
 
 @Component({
-  selector: 'app-user-list',
+  selector: 'mixcore-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.css']
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-about-home',
+  selector: 'mixcore-about-home',
   templateUrl: './about-home.component.html',
   styleUrls: ['./about-home.component.css']
 })

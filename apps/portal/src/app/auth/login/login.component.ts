@@ -9,7 +9,7 @@ import { AuthenticationService } from '../../core/services/auth.service';
 import { NotificationService } from '../../core/services/notification.service';
 
 @Component({
-    selector: 'app-login',
+    selector: 'mixcore-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })

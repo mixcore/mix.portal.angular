@@ -7,7 +7,7 @@ import { AuthenticationService } from './../../core/services/auth.service';
 import { SpinnerService } from './../../core/services/spinner.service';
 
 @Component({
-  selector: 'app-change-password',
+  selector: 'mixcore-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })

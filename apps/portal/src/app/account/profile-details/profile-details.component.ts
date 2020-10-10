@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../core/services/auth.service';
 
 @Component({
-  selector: 'app-profile-details',
+  selector: 'mixcore-profile-details',
   templateUrl: './profile-details.component.html',
   styleUrls: ['./profile-details.component.css']
 })

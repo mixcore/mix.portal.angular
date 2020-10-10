@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-typography',
+  selector: 'mixcore-typography',
   templateUrl: './typography.component.html',
   styleUrls: ['./typography.component.css']
 })

@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { AuthGuard } from './core/guards/auth.guard';
 
+// import {DashboardModule} from '../app/dashboard/dashboard.module'
+
 const appRoutes: Routes = [
     {
         path: 'auth',

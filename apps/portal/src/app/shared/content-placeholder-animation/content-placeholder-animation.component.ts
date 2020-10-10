@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-content-placeholder-animation',
+  selector: 'mixcore-content-placeholder-animation',
   templateUrl: './content-placeholder-animation.component.html',
   styleUrls: ['./content-placeholder-animation.component.css']
 })

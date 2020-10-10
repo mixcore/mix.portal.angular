@@ -7,7 +7,7 @@ import { NotificationService } from '../../core/services/notification.service';
 import { AuthenticationService } from '../../core/services/auth.service';
 
 @Component({
-  selector: 'app-password-reset',
+  selector: 'mixcore-password-reset',
   templateUrl: './password-reset.component.html',
   styleUrls: ['./password-reset.component.css']
 })
