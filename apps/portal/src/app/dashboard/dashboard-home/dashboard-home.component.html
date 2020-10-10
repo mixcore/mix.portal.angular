@@ -8,9 +8,10 @@
     </div>
 
     <div class="container" fxLayout="row" fxLayoutAlign="center none">
-      <div fxFlex="50%" class="text-center no-records animate">
-        <mat-icon>dashboard</mat-icon>
-        <p>This is the dashboard.</p>
+      <div fxFlex="100%" class="text-center no-records animate">
+        <div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+          <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+        </div>
       </div>
       <mat-icon> </mat-icon>
     </div>
