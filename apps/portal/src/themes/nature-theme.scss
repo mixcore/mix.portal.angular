@@ -1,0 +1,9 @@
+$mixcore-nature-primary: mat-palette($mat-brown, 700, 300, 900);
+$mixcore-nature-accent: mat-palette($mat-deep-purple, 300);
+$mixcore-nature-warn: mat-palette($mat-red, 600);
+
+$mixcore-nature-theme: mat-light-theme(
+  $mixcore-nature-primary,
+  $mixcore-nature-accent,
+  $mixcore-nature-warn
+);

@@ -1,0 +1,19 @@
+@import '~@angular/material/theming';
+
+@mixin mixcore-stock-market-container-component-theme($theme) {
+  $warn: map-get($theme, warn);
+
+  mixcore-stock-market {
+    mat-card {
+      .negative {
+        color: mat-color($warn);
+      }
+    }
+
+    .error-state {
+      fa-icon {
+        color: mat-color($warn);
+      }
+    }
+  }
+}

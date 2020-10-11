@@ -1,71 +1,53 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
-import { AuthGuard } from './core/guards/auth.guard';
-
-// import {DashboardModule} from '../app/dashboard/dashboard.module'
-// import {AuthModule} from '../app/auth/auth.module'
-
-const appRoutes: Routes = [
-    {
-        path: 'auth',
-        // loadChildren: './auth/auth.module#AuthModule'
-        loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
-    },
-    {
-        path: 'dashboard',
-        // loadChildren: './dashboard/dashboard.module#DashboardModule',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'customers',
-        // loadChildren: './customers/customers.module#CustomersModule',
-        loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'users',
-        // loadChildren: './users/users.module#UsersModule',
-        loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'account',
-        // loadChildren: './account/account.module#AccountModule',
-        loadChildren: () => import('./account/account.module').then(m => m.AccountModule),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'icons',
-        // loadChildren: './icons/icons.module#IconsModule',
-        loadChildren: () => import('./icons/icons.module').then(m => m.IconsModule),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'typography',
-        // loadChildren: './typography/typography.module#TypographyModule',
-        loadChildren: () => import('./typography/typography.module').then(m => m.TypographyModule),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: 'about',
-        // loadChildren: './about/about.module#AboutModule',
-        loadChildren: () => import('./about/about.module').then(m => m.AboutModule),
-        canActivate: [AuthGuard]
-    },
-    {
-        path: '**',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-    }
+const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'about',
+    pathMatch: 'full'
+  },
+  {
+    path: 'about',
+    loadChildren: () =>
+      import('./features/about/about.module').then((m) => m.AboutModule)
+  },
+  {
+    path: 'feature-list',
+    loadChildren: () =>
+      import('./features/feature-list/feature-list.module').then(
+        (m) => m.FeatureListModule
+      )
+  },
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('./features/settings/settings.module').then(
+        (m) => m.SettingsModule
+      )
+  },
+  // {
+  //   path: 'examples',
+  //   loadChildren: () =>
+  //     import('./features/examples/examples.module').then(
+  //       (m) => m.ExamplesModule
+  //     )
+  // },
+  {
+    path: '**',
+    redirectTo: 'about'
+  }
 ];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot(appRoutes)
-    ],
-    exports: [RouterModule],
-    providers: []
+  // useHash supports github.io demo page, remove in your app
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      scrollPositionRestoration: 'enabled',
+      preloadingStrategy: PreloadAllModules
+    })
+  ],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

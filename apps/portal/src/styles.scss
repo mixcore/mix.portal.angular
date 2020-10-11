@@ -1,4 +1,58 @@
-/* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@import 'styles-variables';
+
+@import '~bootstrap/scss/bootstrap-reboot';
+@import '~bootstrap/scss/bootstrap-grid';
+@import 'styles-reset';
+
+@import '~@angular/material/theming';
+
+@include mat-core();
+
+@import './themes/default-theme';
+@import './themes/light-theme';
+@import './themes/black-theme';
+@import './themes/nature-theme';
+
+@import 'styles-reset.scss-theme';
+@import './app/app/app.component.scss-theme';
+@import './app/shared/big-input/big-input/big-input.component.scss-theme';
+@import './app/features/about/about/about.component.scss-theme';
+@import './app/features/examples/notifications/components/notifications.component.scss-theme';
+@import './app/features/examples/todos/components/todos-container.component.scss-theme';
+@import './app/features/examples/stock-market/components/stock-market-container.component.scss-theme';
+@import './app/features/examples/theming/parent/parent.component.scss-theme';
+@import './app/features/examples/theming/child/child.component.scss-theme';
+@import './app/features/examples/examples/examples.component.scss-theme';
+
+@mixin custom-components-theme($theme) {
+  @include mixcore-styles-reset-theme($theme);
+  @include mixcore-app-component-theme($theme);
+  @include mixcore-about-component-theme($theme);
+  @include mixcore-big-input-component-theme($theme);
+  @include mixcore-notifications-component-theme($theme);
+  @include mixcore-todos-container-component-theme($theme);
+  @include mixcore-stock-market-container-component-theme($theme);
+  @include mixcore-parent-component-theme($theme);
+  @include mixcore-child-component-theme($theme);
+  @include mixcore-examples-component-theme($theme);
+}
+
+.default-theme {
+  @include angular-material-theme($mixcore-theme);
+  @include custom-components-theme($mixcore-theme);
+}
+
+.light-theme {
+  @include angular-material-theme($mixcore-light-theme);
+  @include custom-components-theme($mixcore-light-theme);
+}
+
+.black-theme {
+  @include angular-material-theme($mixcore-black-theme);
+  @include custom-components-theme($mixcore-black-theme);
+}
+
+.nature-theme {
+  @include angular-material-theme($mixcore-nature-theme);
+  @include custom-components-theme($mixcore-nature-theme);
+}

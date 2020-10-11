@@ -1,0 +1,9 @@
+$mixcore-black-primary: mat-palette($mat-grey, 700, 300, 900);
+$mixcore-black-accent: mat-palette($mat-blue-grey, 400);
+$mixcore-black-warn: mat-palette($mat-red, 500);
+
+$mixcore-black-theme: mat-dark-theme(
+  $mixcore-black-primary,
+  $mixcore-black-accent,
+  $mixcore-black-warn
+);
