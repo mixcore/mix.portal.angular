@@ -22,5 +22,11 @@ import { UIShellModule, IconModule } from 'carbon-components-angular';
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor(protected iconService: IconService) {}
+  constructor(protected iconService: IconService) {
+    iconService.registerAll([
+      Notification16,
+      UserAvatar16,
+      AppSwitcher16
+    ]);
+  }
 }
