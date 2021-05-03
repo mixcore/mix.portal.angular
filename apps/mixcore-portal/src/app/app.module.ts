@@ -10,15 +10,19 @@ import UserAvatar16 from '@carbon/icons/es/user--avatar/16';
 import AppSwitcher16 from '@carbon/icons/es/app-switcher/16';
 
 // carbon-components-angular default imports
-import { UIShellModule, IconModule } from 'carbon-components-angular';
-
+import { UIShellModule, IconModule, IconService } from 'carbon-components-angular';
+import { PostService } from './services/post-service';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
+    UIShellModule,
+    IconModule,
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
   ],
-  providers: [],
+  providers: [
+    PostService
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {
