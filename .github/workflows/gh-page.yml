@@ -38,4 +38,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add .
           # git commit -m "[GH Action] Auto publish to Github Page" -a
-          git diff --quiet && git diff --staged --quiet || (git commit -m "[GH Action] Auto publish to Github Page"; git push origin main)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "[GH Action] Auto publish to Github Page"; git push origin master)
