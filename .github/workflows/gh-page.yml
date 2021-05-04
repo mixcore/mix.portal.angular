@@ -21,10 +21,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build, and test
+      - name: npm install, build
         run: |
           npm i
           npm run build
+        env:
+          CI: true
+      - name: copy files to docs folder
+        run: |
           cp -a ${GITHUB_WORKSPACE}/dist/apps/mixcore-portal/. ${GITHUB_WORKSPACE}/docs/
         env:
           CI: true
