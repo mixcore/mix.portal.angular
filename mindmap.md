@@ -1,115 +1,109 @@
 # Mixcore Platform
-## Install
-## Auth (JWT)
+## Install App
+## Security App
 - Signin
 - Signup
-## Portal
-- Mixcore Portal App
-    - Dashboard
-        - Mixcore news
-        - Releases
-        - Contributors
-        - Donations
-    - Apps
-        - All
-        - Active
-        - Inactive
+## Portal App
+- Dashboard
+    - Mixcore news
+    - Releases
+    - Contributors
+    - Donations
+- Modes (angular modules)
+    - CMS mode
+        - Dashboard
+            - Site info
+            - Users info
+            - Blog info
+        - [ Blog ]
+        - Pages
+            - Management
+        - Modules
+            - Management
+        - [ Database ]
+        - [ Assets ]
+        - [ Users ]
+        - [ Theme ]
+        - Settings
+    - Blog mode
+        - Dashboard
+            - Blog status
+            - Top 10 
+                - Latest posts
+                - Most comments
+                - Most read
+            - Users info
+        - Posts
+            - Management
+        - Categories: mixDb
+            - Management
+        - Tags: mixDb
+            - Management
+        - Settings
+    - eCommerce mode
+        - Dashboard
+        - Products
+            - Management
+        - Categories: mixDb
+            - Management
+        - Tags: mixDb
+            - Management
+    - Assets mode
+        - Medias
+            - FileExporer (medias)
+        - Files
+            - FileExporer (files)
+    - Users mode
+        - Staff
+            - Management
+        - Members
+            - Management
+        - Newsletters
+            - Management
+        - Roles
+        - Permission
+        - Settings
+    - Theme mode
+        - Management
+        - Viewer
+        - Builder
+        - Editor (Monaco)
+        - [ Store ]
+        - Settings
+    - Database mode
+        - Management
+    - Store mode
+        - Store Auth
+        - Search
+        - Filter
+        - Categories
+        - Tags
+        - Product
+            - Detail
+            - Purchase
+            - Install
+            - Rating
+        - Settings
     - Settings
-- CMS App
-    - Dashboard
-        - Site info
-        - Users info
-        - Blog info
-    - [ Blog App ]
-    - Pages
-        - Management
-    - Modules
-        - Management
-    - [ Database App ]
-    - [ Assets App ]
-    - [ Users App ]
-    - [ Theme App ]
-    - Settings
-- Blog App
-    - Dashboard
-        - Blog status
-        - Top 10 
-            - Latest posts
-            - Most comments
-            - Most read
-        - Users info
-    - Posts
-        - Management
-    - Categories: mixDb
-        - Management
-    - Tags: mixDb
-        - Management
-    - Settings
-- eCommerce
-    - Dashboard
-    - Products
-        - Management
-    - Categories: mixDb
-        - Management
-    - Tags: mixDb
-        - Management
-- Assets App
-    - Medias
-        - FileExporer (medias)
-    - Files
-        - FileExporer (files)
-- Users App
-    - Staff
-        - Management
-    - Members
-        - Management
-    - Newsletters
-        - Management
-    - Roles
-    - Permission
-    - Settings
-- Theme App
-    - Management
-    - Viewer
-    - Builder
-    - Editor (Monaco)
-    - [ Store App ]
-    - Settings
-- Database App
-    - Management
-- Store App
-    - Store Auth
-    - Search
-    - Filter
-    - Categories
-    - Tags
-    - Product
-        - Detail
-        - Purchase
-        - Install
-        - Rating
-    - Settings
-- ..
-
-# Shared Terms & Definitions
-- Listing
-    - Drafts
-    - Scheduled
-    - Published
-    - Deleted
-    - Search
-    - Filter
-- Management
-    - Create
-    - Update
+- Shared
     - Listing
-    - Preview (optional)
-- FileExporer
-    - Upload
-    - Listing
-    - Viewer (img)
-    - Editor (TBD)
-- Settings
-    - App Settings
-    - Configurations
-        - Management
+        - Drafts
+        - Scheduled
+        - Published
+        - Deleted
+        - Search
+        - Filter
+    - Management
+        - Create
+        - Update
+        - Listing
+        - Preview (optional)
+    - FileExporer
+        - Upload
+        - Listing
+        - Viewer (img)
+        - Editor (TBD)
+    - Settings
+        - App Settings
+        - Configurations
+            - Management
