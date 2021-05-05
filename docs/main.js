@@ -12,11 +12,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MixAxios", function() { return MixAxios; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "vDqi");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var ts_localstorage__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ts-localstorage */ "ifZh");
-/* harmony import */ var ts_localstorage__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(ts_localstorage__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../constants/local-storage-keys */ "Xg1i");
-/* harmony import */ var _helpers_mix_helper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/mix-helper */ "4DQa");
-
+/* harmony import */ var _constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../constants/local-storage-keys */ "Xg1i");
+/* harmony import */ var _helpers_mix_helper__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/mix-helper */ "4DQa");
 
 
 
@@ -30,19 +27,19 @@ class MixAxios {
             if (this.instance.defaults.withCredentials) {
                 let token = this.getCredentialToken();
                 if (token)
-                    config.headers.common[_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_2__["AUTHORIZATION"]] = token;
+                    config.headers.common[_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_1__["CONF_AUTHORIZATION"]] = token;
             }
             return config;
         };
         this._handleResponse = ({ data }) => data;
         this._handleError = (error) => Promise.reject(error);
-        let config = conf || Object(_helpers_mix_helper__WEBPACK_IMPORTED_MODULE_3__["getDefaultAxiosConfiguration"])();
+        let config = conf || Object(_helpers_mix_helper__WEBPACK_IMPORTED_MODULE_2__["getDefaultAxiosConfiguration"])();
         this.instance = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create(config);
         this._initializeResponseInterceptor();
     }
     getCredentialToken() {
-        let token = ts_localstorage__WEBPACK_IMPORTED_MODULE_1__["LocalStorage"].getItem(_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_2__["AUTHORIZATION"]);
-        return token ? `Bearer ${ts_localstorage__WEBPACK_IMPORTED_MODULE_1__["LocalStorage"].getItem(_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_2__["AUTHORIZATION"])}` : '';
+        let token = localStorage.getItem(_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_1__["CONF_AUTHORIZATION"]);
+        return token ? `Bearer ${localStorage.getItem(_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_1__["CONF_AUTHORIZATION"])}` : '';
     }
 }
 
@@ -73,8 +70,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayDirection", function() { return DisplayDirection; });
 var DisplayDirection;
 (function (DisplayDirection) {
-    DisplayDirection[DisplayDirection["Asc"] = 0] = "Asc";
-    DisplayDirection[DisplayDirection["Desc"] = 1] = "Desc";
+    DisplayDirection["Asc"] = "Asc";
+    DisplayDirection["Desc"] = "Desc";
 })(DisplayDirection || (DisplayDirection = {}));
 
 
@@ -342,6 +339,36 @@ class Api extends _mix_axios__WEBPACK_IMPORTED_MODULE_0__["MixAxios"] {
 
 /***/ }),
 
+/***/ "59Sv":
+/*!**************************************************************!*\
+  !*** ./libs/mix-lib/lib/services/portal/mix-post-service.js ***!
+  \**************************************************************/
+/*! exports provided: PostService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostService", function() { return PostService; });
+/* harmony import */ var _enums_mix_enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../enums/mix-enums */ "WCie");
+/* harmony import */ var _base_mix_rest_portal_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../base/mix-rest-portal-service */ "qRFY");
+
+
+class PostService extends _base_mix_rest_portal_service__WEBPACK_IMPORTED_MODULE_1__["MixRestPortalService"] {
+    constructor() {
+        super(_enums_mix_enums__WEBPACK_IMPORTED_MODULE_0__["MixModelType"].Post);
+    }
+    // override base getSingleModel if need.
+    getSingleModel(id) {
+        let queries = {
+            kw: 'test',
+        };
+        return super.getSingleModel(id, queries);
+    }
+}
+
+
+/***/ }),
+
 /***/ "D2X7":
 /*!***************************************************!*\
   !*** ./apps/mixcore-portal/src/app/app.module.ts ***!
@@ -360,7 +387,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _carbon_icons_es_user_avatar_16__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @carbon/icons/es/user--avatar/16 */ "ui3M");
 /* harmony import */ var _carbon_icons_es_app_switcher_16__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @carbon/icons/es/app-switcher/16 */ "piQA");
 /* harmony import */ var carbon_components_angular__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! carbon-components-angular */ "+uup");
-/* harmony import */ var _services_post_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./services/post-service */ "WP3X");
+/* harmony import */ var _mix_lib__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @mix-lib */ "s/rk");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ "8Y7J");
 
 
@@ -388,7 +415,7 @@ class AppModule {
 AppModule.ɵfac = function AppModule_Factory(t) { return new (t || AppModule)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](carbon_components_angular__WEBPACK_IMPORTED_MODULE_7__["IconService"])); };
 AppModule.ɵmod = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineNgModule"]({ type: AppModule, bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_1__["AppComponent"]] });
 AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector"]({ providers: [
-        _services_post_service__WEBPACK_IMPORTED_MODULE_8__["PostService"]
+        _mix_lib__WEBPACK_IMPORTED_MODULE_8__["PostService"]
     ], imports: [[
             carbon_components_angular__WEBPACK_IMPORTED_MODULE_7__["UIShellModule"],
             carbon_components_angular__WEBPACK_IMPORTED_MODULE_7__["IconModule"],
@@ -402,30 +429,34 @@ AppModule.ɵinj = _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjector
 
 /***/ }),
 
-/***/ "GJAC":
-/*!*******************************************************!*\
-  !*** ./libs/mix-lib/lib/services/mix-rest-service.js ***!
-  \*******************************************************/
+/***/ "NAFB":
+/*!************************************************************!*\
+  !*** ./libs/mix-lib/lib/services/base/mix-rest-service.js ***!
+  \************************************************************/
 /*! exports provided: MixRestService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MixRestService", function() { return MixRestService; });
-/* harmony import */ var _infrastructure_axios_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../infrastructure/axios/api */ "4VKA");
+/* harmony import */ var _infrastructure_axios_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../infrastructure/axios/api */ "4VKA");
 
 class MixRestService extends _infrastructure_axios_api__WEBPACK_IMPORTED_MODULE_0__["Api"] {
     constructor(appUrl, modelName, viewName, specificulture, config) {
         super(config);
         this.instance.defaults.baseURL = appUrl;
-        this.modelUrl = `${modelName}/${viewName}`;
-        if (specificulture) {
-            this.modelUrl = `${specificulture}/${modelName}/${viewName}`;
-        }
+        this.modelName = modelName;
+        this.viewName = viewName;
+        this.specificulture = specificulture;
+    }
+    get modelUrl() {
+        return this.specificulture
+            ? `/api/v1/rest/${this.specificulture}/${this.modelName}/${this.viewName}`
+            : `/api/v1/rest/${this.modelName}/${this.viewName}`;
     }
     getSingleModel(id, queries) {
         this.instance.defaults.params = queries;
-        return this.get(`${this.modelUrl}/${id}`);
+        return this.get(`${id}`);
     }
     getDefaultModel(queries) {
         this.instance.defaults.params = queries;
@@ -457,6 +488,12 @@ class MixRestService extends _infrastructure_axios_api__WEBPACK_IMPORTED_MODULE_
     }
     clearCache(id) {
         return this.get(`${this.modelUrl}/remove-cache/${id}`);
+    }
+    setAppUrl(appUrl) {
+        this.instance.defaults.baseURL = appUrl;
+    }
+    setLanguage(specificulture) {
+        this.specificulture = specificulture;
     }
 }
 
@@ -523,39 +560,39 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
 
 /***/ }),
 
-/***/ "WP3X":
-/*!**************************************************************!*\
-  !*** ./apps/mixcore-portal/src/app/services/post-service.ts ***!
-  \**************************************************************/
-/*! exports provided: PostService */
+/***/ "WCie":
+/*!*********************************************!*\
+  !*** ./libs/mix-lib/lib/enums/mix-enums.js ***!
+  \*********************************************/
+/*! exports provided: DisplayDirection, MixModelType, MixContentStatus */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PostService", function() { return PostService; });
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "8Y7J");
-/* harmony import */ var _mix_lib__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @mix-lib */ "s/rk");
-/* harmony import */ var _enums_model_type_enums__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../enums/model-type.enums */ "oMvG");
-
-
-
-[_angular_core__WEBPACK_IMPORTED_MODULE_0__["Injectable"]];
-class PostService extends _mix_lib__WEBPACK_IMPORTED_MODULE_1__["MixRestService"] {
-    constructor() {
-        let appUrl = 'https://store.mixcore.org/api/v1/rest/';
-        let viewName = 'mvc';
-        let specificulture = 'en-us';
-        var conf = Object(_mix_lib__WEBPACK_IMPORTED_MODULE_1__["getDefaultAxiosConfiguration"])();
-        conf.withCredentials = false;
-        super(appUrl, _enums_model_type_enums__WEBPACK_IMPORTED_MODULE_2__["MixModelType"].Post, viewName, specificulture, conf);
-    }
-    getSingleModel(id) {
-        let queries = {
-            kw: 'test'
-        };
-        return super.getSingleModel(id, queries);
-    }
-}
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DisplayDirection", function() { return DisplayDirection; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MixModelType", function() { return MixModelType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MixContentStatus", function() { return MixContentStatus; });
+var DisplayDirection;
+(function (DisplayDirection) {
+    DisplayDirection["Asc"] = "Asc";
+    DisplayDirection["Desc"] = "Desc";
+})(DisplayDirection || (DisplayDirection = {}));
+var MixModelType;
+(function (MixModelType) {
+    MixModelType["Page"] = "page";
+    MixModelType["Post"] = "post";
+    MixModelType["Module"] = "module";
+    MixModelType["Database"] = "mix-database";
+    MixModelType["DatabaseData"] = "mix-database-data";
+})(MixModelType || (MixModelType = {}));
+var MixContentStatus;
+(function (MixContentStatus) {
+    MixContentStatus[MixContentStatus["Deleted"] = 0] = "Deleted";
+    MixContentStatus[MixContentStatus["Preview"] = 1] = "Preview";
+    MixContentStatus[MixContentStatus["Published"] = 2] = "Published";
+    MixContentStatus[MixContentStatus["Draft"] = 3] = "Draft";
+    MixContentStatus[MixContentStatus["Schedule"] = 4] = "Schedule";
+})(MixContentStatus || (MixContentStatus = {}));
 
 
 /***/ }),
@@ -564,13 +601,17 @@ class PostService extends _mix_lib__WEBPACK_IMPORTED_MODULE_1__["MixRestService"
 /*!**********************************************************!*\
   !*** ./libs/mix-lib/lib/constants/local-storage-keys.js ***!
   \**********************************************************/
-/*! exports provided: AUTHORIZATION */
+/*! exports provided: CONF_AUTHORIZATION, CONF_APP_URL, CONF_CURRENT_CULTURE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AUTHORIZATION", function() { return AUTHORIZATION; });
-const AUTHORIZATION = 'Authorization';
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONF_AUTHORIZATION", function() { return CONF_AUTHORIZATION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONF_APP_URL", function() { return CONF_APP_URL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CONF_CURRENT_CULTURE", function() { return CONF_CURRENT_CULTURE; });
+const CONF_AUTHORIZATION = 'Authorization';
+const CONF_APP_URL = 'App_Url';
+const CONF_CURRENT_CULTURE = 'Current_Culture';
 
 
 /***/ }),
@@ -654,28 +695,6 @@ class UserInfo {
 
 /***/ }),
 
-/***/ "oMvG":
-/*!***************************************************************!*\
-  !*** ./apps/mixcore-portal/src/app/enums/model-type.enums.ts ***!
-  \***************************************************************/
-/*! exports provided: MixModelType */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MixModelType", function() { return MixModelType; });
-var MixModelType;
-(function (MixModelType) {
-    MixModelType["Page"] = "page";
-    MixModelType["Post"] = "post";
-    MixModelType["Module"] = "module";
-    MixModelType["Database"] = "mix-database";
-    MixModelType["DatabaseData"] = "mix-database-data";
-})(MixModelType || (MixModelType = {}));
-
-
-/***/ }),
-
 /***/ "qAyI":
 /*!****************************************************************!*\
   !*** ./apps/mixcore-portal/src/app/header/header.component.ts ***!
@@ -686,9 +705,11 @@ var MixModelType;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HeaderComponent", function() { return HeaderComponent; });
-/* harmony import */ var _services_post_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/post-service */ "WP3X");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "8Y7J");
-/* harmony import */ var carbon_components_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! carbon-components-angular */ "+uup");
+/* harmony import */ var _mix_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @mix-lib */ "s/rk");
+/* harmony import */ var libs_mix_lib_lib_enums_display_direction_enum__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! libs/mix-lib/lib/enums/display-direction.enum */ "1gb7");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "8Y7J");
+/* harmony import */ var carbon_components_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! carbon-components-angular */ "+uup");
+
 
 
 
@@ -702,39 +723,71 @@ class HeaderComponent {
             keyword: null,
             pageIndex: 0,
             pageSize: 10,
+            direction: libs_mix_lib_lib_enums_display_direction_enum__WEBPACK_IMPORTED_MODULE_1__["DisplayDirection"].Asc,
         };
-        console.log('sadfa', this.srv.modelUrl);
+        this.srv.setAppUrl('https://store.mixcore.org');
+        this.srv.setLanguage('en-us');
         this.srv
-            .getSingleModel(1)
+            .getListModel(params)
             .then((resp) => console.log(resp.createdDateTime));
     }
 }
-HeaderComponent.ɵfac = function HeaderComponent_Factory(t) { return new (t || HeaderComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_post_service__WEBPACK_IMPORTED_MODULE_0__["PostService"])); };
-HeaderComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({ type: HeaderComponent, selectors: [["app-header"]], decls: 11, vars: 0, consts: [["name", "Carbon Tutorial Angular"], ["ariaLabel", "Carbon Tutorial Angular"], ["href", "/repos"], ["title", "action"], ["ibmIcon", "notification", "size", "20"], ["ibmIcon", "user--avatar", "size", "20"], ["ibmIcon", "app-switcher", "size", "20"]], template: function HeaderComponent_Template(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "ibm-header", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "ibm-header-navigation", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](2, "ibm-header-item", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Repositories");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "ibm-header-global");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "ibm-header-action", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnamespaceSVG"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](6, "svg", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnamespaceHTML"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "ibm-header-action", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnamespaceSVG"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](8, "svg", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnamespaceHTML"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "ibm-header-action", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnamespaceSVG"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](10, "svg", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    } }, directives: [carbon_components_angular__WEBPACK_IMPORTED_MODULE_2__["Header"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_2__["HeaderNavigation"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_2__["HeaderItem"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_2__["HeaderGlobal"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_2__["HeaderAction"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_2__["IconDirective"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJoZWFkZXIuY29tcG9uZW50LnNjc3MifQ== */"] });
+HeaderComponent.ɵfac = function HeaderComponent_Factory(t) { return new (t || HeaderComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_mix_lib__WEBPACK_IMPORTED_MODULE_0__["PostService"])); };
+HeaderComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: HeaderComponent, selectors: [["app-header"]], decls: 11, vars: 0, consts: [["name", "Carbon Tutorial Angular"], ["ariaLabel", "Carbon Tutorial Angular"], ["href", "/repos"], ["title", "action"], ["ibmIcon", "notification", "size", "20"], ["ibmIcon", "user--avatar", "size", "20"], ["ibmIcon", "app-switcher", "size", "20"]], template: function HeaderComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "ibm-header", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](1, "ibm-header-navigation", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](2, "ibm-header-item", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "Repositories");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "ibm-header-global");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](5, "ibm-header-action", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnamespaceSVG"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](6, "svg", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnamespaceHTML"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "ibm-header-action", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnamespaceSVG"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](8, "svg", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnamespaceHTML"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](9, "ibm-header-action", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnamespaceSVG"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](10, "svg", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+    } }, directives: [carbon_components_angular__WEBPACK_IMPORTED_MODULE_3__["Header"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_3__["HeaderNavigation"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_3__["HeaderItem"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_3__["HeaderGlobal"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_3__["HeaderAction"], carbon_components_angular__WEBPACK_IMPORTED_MODULE_3__["IconDirective"]], styles: ["\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJoZWFkZXIuY29tcG9uZW50LnNjc3MifQ== */"] });
+
+
+/***/ }),
+
+/***/ "qRFY":
+/*!*******************************************************************!*\
+  !*** ./libs/mix-lib/lib/services/base/mix-rest-portal-service.js ***!
+  \*******************************************************************/
+/*! exports provided: MixRestPortalService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MixRestPortalService", function() { return MixRestPortalService; });
+/* harmony import */ var _constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../constants/local-storage-keys */ "Xg1i");
+/* harmony import */ var _helpers_mix_helper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/mix-helper */ "4DQa");
+/* harmony import */ var _mix_rest_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./mix-rest-service */ "NAFB");
+
+
+
+class MixRestPortalService extends _mix_rest_service__WEBPACK_IMPORTED_MODULE_2__["MixRestService"] {
+    constructor(modelName) {
+        let appUrl = localStorage.getItem(_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_0__["CONF_APP_URL"]) || window.location.origin; //'https://store.mixcore.org/api/v1/rest/';
+        let specificulture = localStorage.getItem(_constants_local_storage_keys__WEBPACK_IMPORTED_MODULE_0__["CONF_CURRENT_CULTURE"]);
+        let viewName = 'mvc';
+        var conf = Object(_helpers_mix_helper__WEBPACK_IMPORTED_MODULE_1__["getDefaultAxiosConfiguration"])();
+        conf.withCredentials = false;
+        super(appUrl, modelName, viewName, specificulture, conf);
+    }
+}
 
 
 /***/ }),
@@ -743,7 +796,7 @@ HeaderComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineCo
 /*!*******************************!*\
   !*** ./libs/mix-lib/index.js ***!
   \*******************************/
-/*! exports provided: SearchFilter, LoginModel, Token, UserInfo, MixAuthenticationService, userApi, MixRestService, getDefaultAxiosConfiguration */
+/*! exports provided: SearchFilter, LoginModel, Token, UserInfo, MixAuthenticationService, userApi, MixRestService, MixRestPortalService, getDefaultAxiosConfiguration, DisplayDirection, MixModelType, MixContentStatus, PostService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -763,11 +816,27 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "userApi", function() { return _lib_services_mix_authentication_service__WEBPACK_IMPORTED_MODULE_2__["userApi"]; });
 
-/* harmony import */ var _lib_services_mix_rest_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/services/mix-rest-service */ "GJAC");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MixRestService", function() { return _lib_services_mix_rest_service__WEBPACK_IMPORTED_MODULE_3__["MixRestService"]; });
+/* harmony import */ var _lib_services_base_mix_rest_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lib/services/base/mix-rest-service */ "NAFB");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MixRestService", function() { return _lib_services_base_mix_rest_service__WEBPACK_IMPORTED_MODULE_3__["MixRestService"]; });
 
-/* harmony import */ var _lib_helpers_mix_helper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./lib/helpers/mix-helper */ "4DQa");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getDefaultAxiosConfiguration", function() { return _lib_helpers_mix_helper__WEBPACK_IMPORTED_MODULE_4__["getDefaultAxiosConfiguration"]; });
+/* harmony import */ var _lib_services_base_mix_rest_portal_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./lib/services/base/mix-rest-portal-service */ "qRFY");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MixRestPortalService", function() { return _lib_services_base_mix_rest_portal_service__WEBPACK_IMPORTED_MODULE_4__["MixRestPortalService"]; });
+
+/* harmony import */ var _lib_helpers_mix_helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lib/helpers/mix-helper */ "4DQa");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "getDefaultAxiosConfiguration", function() { return _lib_helpers_mix_helper__WEBPACK_IMPORTED_MODULE_5__["getDefaultAxiosConfiguration"]; });
+
+/* harmony import */ var _lib_enums_mix_enums__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./lib/enums/mix-enums */ "WCie");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "DisplayDirection", function() { return _lib_enums_mix_enums__WEBPACK_IMPORTED_MODULE_6__["DisplayDirection"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MixModelType", function() { return _lib_enums_mix_enums__WEBPACK_IMPORTED_MODULE_6__["MixModelType"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "MixContentStatus", function() { return _lib_enums_mix_enums__WEBPACK_IMPORTED_MODULE_6__["MixContentStatus"]; });
+
+/* harmony import */ var _lib_services_portal_mix_post_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lib/services/portal/mix-post-service */ "59Sv");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "PostService", function() { return _lib_services_portal_mix_post_service__WEBPACK_IMPORTED_MODULE_7__["PostService"]; });
+
+
+
 
 
 
@@ -788,13 +857,13 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SearchFilter", function() { return SearchFilter; });
-/* harmony import */ var _enums_display_direction_enum__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../enums/display-direction.enum */ "1gb7");
+/* harmony import */ var _enums_mix_enums__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../enums/mix-enums */ "WCie");
 
 class SearchFilter {
     constructor() {
         this.pageIndex = 0;
         this.page = 1;
-        this.direction = _enums_display_direction_enum__WEBPACK_IMPORTED_MODULE_0__["DisplayDirection"].Asc;
+        this.direction = _enums_mix_enums__WEBPACK_IMPORTED_MODULE_0__["DisplayDirection"].Asc;
     }
 }
 
