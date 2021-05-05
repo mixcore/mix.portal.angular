@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Inject, Injectable, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -11,7 +11,8 @@ import AppSwitcher16 from '@carbon/icons/es/app-switcher/16';
 
 // carbon-components-angular default imports
 import { UIShellModule, IconModule, IconService } from 'carbon-components-angular';
-import { PostService } from './services/post-service';
+import { MixRestPortalService, MixRestService, PostService } from '@mix-lib';
+import { MixPostMvc } from './models/mix-posts/mix-post-mvc';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [

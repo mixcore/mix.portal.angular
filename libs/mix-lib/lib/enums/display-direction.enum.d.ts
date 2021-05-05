@@ -1,4 +1,4 @@
 export declare enum DisplayDirection {
-    Asc = 0,
-    Desc = 1
+    Asc = "Asc",
+    Desc = "Desc"
 }

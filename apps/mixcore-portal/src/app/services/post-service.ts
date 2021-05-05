@@ -10,9 +10,11 @@ export class PostService extends MixRestService<MixPostMvc> {
     let specificulture = 'en-us';
     var conf = getDefaultAxiosConfiguration();
     conf.withCredentials = false;
-    super(appUrl, MixModelType.Post, viewName, specificulture, conf);
+    super(appUrl, MixModelType.Page, viewName, specificulture, conf);
   }
-  public getSingleModel(id: any){
+
+  // override base getSingleModel if need.
+  public getSingleModel(id: any): Promise<MixPostMvc>{
     let queries = {
       kw: 'test'
     };

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService } from '../services/post-service';
-import { SearchFilter } from '@mix-lib';
+import { PostService, SearchFilter } from '@mix-lib';
+import { DisplayDirection } from 'libs/mix-lib/lib/enums/display-direction.enum';
 
 @Component({
   selector: 'app-header',
@@ -15,10 +15,12 @@ export class HeaderComponent implements OnInit {
       keyword: null,
       pageIndex: 0,
       pageSize: 10,
+      direction: DisplayDirection.Asc,
     };
-    console.log('sadfa', this.srv.modelUrl);
+    this.srv.setAppUrl('https://store.mixcore.org');
+    this.srv.setLanguage('en-us');
     this.srv
-      .getSingleModel(1)
+      .getListModel(params)
       .then((resp) => console.log(resp.createdDateTime));
   }
 }

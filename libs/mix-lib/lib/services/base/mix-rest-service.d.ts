@@ -1,9 +1,12 @@
 import { AxiosRequestConfig } from 'axios';
-import { Api } from '../infrastructure/axios/api';
-import { SearchFilter } from '../infrastructure/dtos/search-filter';
+import { Api } from '../../infrastructure/axios/api';
+import { SearchFilter } from '../../infrastructure/dtos/search-filter';
 export declare class MixRestService<T> extends Api {
-    modelUrl: string;
-    constructor(appUrl: string, modelName: string, viewName: string, specificulture?: string, config?: AxiosRequestConfig);
+    modelName: string;
+    viewName: string;
+    specificulture?: string | null;
+    get modelUrl(): string;
+    constructor(appUrl: string, modelName: string, viewName: string, specificulture?: string | null, config?: AxiosRequestConfig);
     getSingleModel(id: any, queries?: any): Promise<T>;
     getDefaultModel(queries?: any): Promise<T>;
     getListModel(queries?: SearchFilter): Promise<T>;
@@ -14,4 +17,6 @@ export declare class MixRestService<T> extends Api {
     duplicateModel(id: any, queries?: any): Promise<T>;
     exportListModel(queries?: any): Promise<T>;
     clearCache(id?: any): Promise<T>;
+    setAppUrl(appUrl: string): void;
+    setLanguage(specificulture: string): void;
 }
