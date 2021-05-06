@@ -1,6 +1,5 @@
-import { MixPostMvc } from '../../view-models/mix-post-mvc';
+import { MixPostPortal } from '../../view-models/portal/mix-post-portal';
 import { MixRestPortalService } from '../base/mix-rest-portal-service';
-export declare class PostService extends MixRestPortalService<MixPostMvc> {
+export declare class PostService extends MixRestPortalService<MixPostPortal> {
     constructor();
-    getSingleModel(id: any): Promise<MixPostMvc>;
 }

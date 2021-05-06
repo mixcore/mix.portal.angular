@@ -7,6 +7,52 @@
       "sourceRoot": "apps/mixcore-portal/src",
       "prefix": "mixcore",
       "architect": {
+        "build:prod": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/mixcore-portal-1",
+            "index": "apps/mixcore-portal/src/index.html",
+            "main": "apps/mixcore-portal/src/main.ts",
+            "polyfills": "apps/mixcore-portal/src/polyfills.ts",
+            "tsConfig": "apps/mixcore-portal/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "apps/mixcore-portal/src/favicon.ico",
+              "apps/mixcore-portal/src/assets"
+            ],
+            "styles": ["apps/mixcore-portal/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/mixcore-portal/src/environments/environment.ts",
+                  "with": "apps/mixcore-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {

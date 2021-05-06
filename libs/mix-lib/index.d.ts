@@ -6,3 +6,6 @@ export * from './lib/services/base/mix-rest-portal-service';
 export * from './lib/helpers/mix-helper';
 export * from './lib/enums/mix-enums';
 export * from './lib/services/portal/mix-post-service';
+export { cryptoService } from './lib/services/crypto-service';
+export { mixSettingService } from './lib/services/mix-setting-service';
+export { LocalStorageKeys } from './lib/constants/local-storage-keys';

@@ -1,4 +1,4 @@
-import { Inject, Injectable, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -10,9 +10,12 @@ import UserAvatar16 from '@carbon/icons/es/user--avatar/16';
 import AppSwitcher16 from '@carbon/icons/es/app-switcher/16';
 
 // carbon-components-angular default imports
-import { UIShellModule, IconModule, IconService } from 'carbon-components-angular';
-import { MixRestPortalService, MixRestService, PostService } from '@mix-lib';
-import { MixPostMvc } from './models/mix-posts/mix-post-mvc';
+import {
+  UIShellModule,
+  IconModule,
+  IconService,
+} from 'carbon-components-angular';
+import { PostService } from '@mix-lib';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -21,17 +24,11 @@ import { MixPostMvc } from './models/mix-posts/mix-post-mvc';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
   ],
-  providers: [
-    PostService
-  ],
+  providers: [PostService],
   bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(protected iconService: IconService) {
-    iconService.registerAll([
-      Notification16,
-      UserAvatar16,
-      AppSwitcher16
-    ]);
+    iconService.registerAll([Notification16, UserAvatar16, AppSwitcher16]);
   }
 }

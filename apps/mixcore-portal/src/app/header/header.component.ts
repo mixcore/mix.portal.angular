@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { PostService, SearchFilter } from '@mix-lib';
+import {
+  LocalStorageKeys,
+  mixSettingService,
+  PostService,
+  SearchFilter,
+} from '@mix-lib';
 import { DisplayDirection } from 'libs/mix-lib/lib/enums/display-direction.enum';
 
 @Component({
@@ -17,10 +22,14 @@ export class HeaderComponent implements OnInit {
       pageSize: 10,
       direction: DisplayDirection.Asc,
     };
-    this.srv.setAppUrl('https://store.mixcore.org');
+    localStorage.setItem(
+      LocalStorageKeys.CONF_APP_URL,
+      'https://store.mixcore.org/api/v1'
+    );
     this.srv.setLanguage('en-us');
     this.srv
       .getListModel(params)
       .then((resp) => console.log(resp.createdDateTime));
+    mixSettingService.getAllSettings('en-us');
   }
 }

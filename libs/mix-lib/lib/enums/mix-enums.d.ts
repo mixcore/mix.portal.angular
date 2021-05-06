@@ -10,9 +10,63 @@ export declare enum MixModelType {
     DatabaseData = "mix-database-data"
 }
 export declare enum MixContentStatus {
-    Deleted = 0,
-    Preview = 1,
-    Published = 2,
-    Draft = 3,
-    Schedule = 4
+    Deleted = "Deleted",
+    Preview = "Preview",
+    Published = "Published",
+    Draft = "Draft",
+    Schedule = "Schedule"
+}
+export declare enum MixDataType {
+    DateTime = "DateTime",
+    Date = "Date",
+    Time = "Time",
+    Duration = "Duration",
+    PhoneNumber = "PhoneNumber",
+    Double = "Double",
+    Text = "Text",
+    Html = "Html",
+    MultilineText = "MultilineText",
+    EmailAddress = "EmailAddress",
+    Password = "Password",
+    Url = "Url",
+    ImageUrl = "ImageUrl",
+    CreditCard = "CreditCard",
+    PostalCode = "PostalCode",
+    Upload = "Upload",
+    Color = "Color",
+    Boolean = "Boolean",
+    Icon = "PhoneNumber",
+    VideoYoutube = "VideoYoutube",
+    TuiEditor = "TuiEditor",
+    Integer = "Integer",
+    Reference = "Reference",
+    QRCode = "QRCode"
+}
+export declare enum MixMenuItemType {
+    Page = "Page",
+    Module = "Module",
+    Post = "Post",
+    Database = "Database",
+    Uri = "Uri"
+}
+export declare enum MixModuleType {
+    Content = "Content",
+    Data = "Data",
+    ListPost = "ListPost"
+}
+export declare enum MixPageType {
+    System = "System",
+    Home = "Home",
+    Article = "Article",
+    ListPost = "ListPost"
+}
+export declare enum MixTemplateFolderType {
+    Layouts = "Layouts",
+    Pages = "Pages",
+    Modules = "Modules",
+    Forms = "Forms",
+    Edms = "Edms",
+    Posts = "Posts",
+    Widgets = "Widgets",
+    Masters = "Masters"
 }

@@ -17,6 +17,5 @@ export declare class MixRestService<T> extends Api {
     duplicateModel(id: any, queries?: any): Promise<T>;
     exportListModel(queries?: any): Promise<T>;
     clearCache(id?: any): Promise<T>;
-    setAppUrl(appUrl: string): void;
     setLanguage(specificulture: string): void;
 }
