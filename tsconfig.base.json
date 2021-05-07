@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-        "@mix-lib": [ "./libs/mix-lib"]
+      "@mix-lib": ["../mix.lib.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

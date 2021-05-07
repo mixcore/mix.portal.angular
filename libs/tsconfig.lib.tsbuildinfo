@@ -97,7 +97,7 @@
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/lib/infrastructure/axios/mix-axios.ts": {
-        "version": "b27ab3b3a9a1c4ed9d5d1c434ffe93c93c1d37667d86b6d2cf956452e93f73db",
+        "version": "935c5432556538c53bd6bde4a4f5549e4a69af59b98a341c4da886079a1d0647",
         "signature": "8b83501828fe97e2bbf17700c40a47b21d60928bb22b5396df5f5857b6292cad",
         "affectsGlobalScope": false
       },
@@ -147,13 +147,18 @@
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/lib/services/mix-setting-service.ts": {
-        "version": "7fdf506cef208e8af46cb207bddf72045c4cc76856618bdbab69187e25949c7d",
+        "version": "daa08bc6fd9b06225e555bcfe6aa0731e14c5800680795f8ef51b215fd975edb",
         "signature": "c0aafa09311b0b4a46ebad3943d5fd110d36e613d89557a3b36c334f737fe363",
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/index.ts": {
         "version": "1b13b38cb2803b96d3ebaa73389b5403636aeaeb65546b1cd6af9971f1772467",
         "signature": "574760f5b614056fd6bb8cafe4784702aea266f76a8139dae68d08bf1bae60a7",
+        "affectsGlobalScope": false
+      },
+      "../../mix.lib.ts/src/public_api.ts": {
+        "version": "e867e00711b211669304137592ba42382802a8c2618da4f7971f66907a78c029",
+        "signature": "beaa2c5675a9340909682883b2c6b896483ef6bf9d7acc47807d09b1f0a8dfe7",
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/lib/constants/constants.ts": {
@@ -164,6 +169,11 @@
       "../../mix.lib.ts/src/lib/interfaces/igetparams.ts": {
         "version": "b45033cbb6e3741a7dfe6d54461aabb712c3412dabfa21ae50ee542fd30c060e",
         "signature": "9bddfb71e413e6cb8bf4bb4761c60d9259ef56ff7b50a08036d535f89a17d069",
+        "affectsGlobalScope": false
+      },
+      "../../mix.lib.ts/src/lib/services/portal/mix-page-service.ts": {
+        "version": "55ed3d1db508bc4daef5468b71f4bc412465423f95b57a68181a8aa5d1a21c86",
+        "signature": "13f44bd4b9e74a33797595459bbac74e3e2e2269c126a8ce5bc3ac09d7158a19",
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/lib/view-models/mix-post-mvc.ts": {
@@ -206,6 +216,7 @@
         "../../mix.lib.ts/node_modules/@types",
         "../../mix.lib.ts/src/types"
       ],
+      "watch": true,
       "project": "../../mix.lib.ts/tsconfig.lib.json",
       "configFilePath": "../../mix.lib.ts/tsconfig.lib.json"
     },
@@ -262,10 +273,18 @@
         "../../mix.lib.ts/src/lib/infrastructure/axios/api.ts",
         "../../mix.lib.ts/src/lib/models/setting.models.ts"
       ],
+      "../../mix.lib.ts/src/lib/services/portal/mix-page-service.ts": [
+        "../../mix.lib.ts/src/lib/enums/mix-enums.ts",
+        "../../mix.lib.ts/src/lib/services/base/mix-rest-portal-service.ts",
+        "../../mix.lib.ts/src/lib/view-models/portal/mix-post-portal.ts"
+      ],
       "../../mix.lib.ts/src/lib/services/portal/mix-post-service.ts": [
         "../../mix.lib.ts/src/lib/enums/mix-enums.ts",
         "../../mix.lib.ts/src/lib/services/base/mix-rest-portal-service.ts",
         "../../mix.lib.ts/src/lib/view-models/portal/mix-post-portal.ts"
+      ],
+      "../../mix.lib.ts/src/public_api.ts": [
+        "../../mix.lib.ts/src/index.ts"
       ]
     },
     "exportedModulesMap": {
@@ -311,9 +330,16 @@
       "../../mix.lib.ts/src/lib/services/mix-setting-service.ts": [
         "../../mix.lib.ts/src/lib/models/setting.models.ts"
       ],
+      "../../mix.lib.ts/src/lib/services/portal/mix-page-service.ts": [
+        "../../mix.lib.ts/src/lib/services/base/mix-rest-portal-service.ts",
+        "../../mix.lib.ts/src/lib/view-models/portal/mix-post-portal.ts"
+      ],
       "../../mix.lib.ts/src/lib/services/portal/mix-post-service.ts": [
         "../../mix.lib.ts/src/lib/services/base/mix-rest-portal-service.ts",
         "../../mix.lib.ts/src/lib/view-models/portal/mix-post-portal.ts"
+      ],
+      "../../mix.lib.ts/src/public_api.ts": [
+        "../../mix.lib.ts/src/index.ts"
       ]
     },
     "semanticDiagnosticsPerFile": [
@@ -348,9 +374,11 @@
       "../../mix.lib.ts/src/lib/services/crypto-service.ts",
       "../../mix.lib.ts/src/lib/services/mix-authentication-service.ts",
       "../../mix.lib.ts/src/lib/services/mix-setting-service.ts",
+      "../../mix.lib.ts/src/lib/services/portal/mix-page-service.ts",
       "../../mix.lib.ts/src/lib/services/portal/mix-post-service.ts",
       "../../mix.lib.ts/src/lib/view-models/mix-post-mvc.ts",
       "../../mix.lib.ts/src/lib/view-models/portal/mix-post-portal.ts",
+      "../../mix.lib.ts/src/public_api.ts",
       "../../mix.lib.ts/src/types/example.d.ts"
     ]
   },
