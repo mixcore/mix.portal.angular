@@ -147,7 +147,7 @@
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/lib/services/mix-setting-service.ts": {
-        "version": "a61bb3e9967abb5e0fd6e7b67bf968a6031a6686dafe5fa4fa09964ed49d6cc1",
+        "version": "f3c08d66e36b0a44a03e1dea752d0a019b59c5d896c69190ce6074f4e3668450",
         "signature": "c0aafa09311b0b4a46ebad3943d5fd110d36e613d89557a3b36c334f737fe363",
         "affectsGlobalScope": false
       },
