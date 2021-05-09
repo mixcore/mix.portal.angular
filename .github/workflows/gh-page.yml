@@ -1,0 +1,41 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI Github Page
+
+# Controls when the action will run. 
+on: [push]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build
+        run: |
+          npm i
+          npm run build
+        env:
+          CI: true
+      - name: copy files to docs folder
+        run: |
+          cp -a ${GITHUB_WORKSPACE}/dist/apps/mixcore-portal/. ${GITHUB_WORKSPACE}/docs/
+        env:
+          CI: true
+      - name: Commit files
+        run: |
+          git config --local user.email "i.love.to.smile.around@gmail.com"
+          git config --local user.name "GitHub Action"
+          git add .
+          # git commit -m "[GH Action] Auto publish to Github Page" -a
+          git diff --quiet && git diff --staged --quiet || (git commit -m "[GH Action] Auto publish to Github Page"; git push origin master)
