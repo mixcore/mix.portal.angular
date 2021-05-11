@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
-
 import Notification16 from '@carbon/icons/es/notification/16';
 import UserAvatar16 from '@carbon/icons/es/user--avatar/16';
 import AppSwitcher16 from '@carbon/icons/es/app-switcher/16';
@@ -22,10 +21,13 @@ import { PostRepository } from '@mix-lib';
     UIShellModule,
     IconModule,
     BrowserModule,
+    UIShellModule,
+    IconModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
   ],
   providers: [PostRepository],
   bootstrap: [AppComponent],
+  exports: [HeaderComponent],
 })
 export class AppModule {
   constructor(protected iconService: IconService) {
