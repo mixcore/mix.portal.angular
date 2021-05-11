@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  cryptoService,
+  DisplayDirection,
   LocalStorageKeys,
   mixSettingService,
-  PostService,
+  PostRepository,
   SearchFilter,
 } from '@mix-lib';
-import { DisplayDirection } from 'libs/mix-lib/lib/enums/display-direction.enum';
+import { MixPostPortal } from '../../../../../../mix.lib.ts/build/main/lib/view-models/portal/mix-post-portal';
 
 @Component({
   selector: 'app-header',
@@ -13,23 +15,46 @@ import { DisplayDirection } from 'libs/mix-lib/lib/enums/display-direction.enum'
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor(public srv: PostService) {}
+  constructor(public postRepo: PostRepository) {}
 
   ngOnInit(): void {
-    let params: SearchFilter = {
+    // Init Mix Params
+    localStorage.setItem(
+      LocalStorageKeys.CONF_APP_URL,
+      'https://store.mixcore.org/api/v1'
+    );
+    localStorage.setItem(LocalStorageKeys.CONF_CURRENT_CULTURE, 'en-us');
+    mixSettingService.getAllSettings('en-us');
+
+    // Demo Post Repository
+    const params: SearchFilter = {
       keyword: null,
       pageIndex: 0,
       pageSize: 10,
       direction: DisplayDirection.Asc,
     };
-    localStorage.setItem(
-      LocalStorageKeys.CONF_APP_URL,
-      'https://store.mixcore.org/api/v1'
+    this.postRepo.getListModel(params).then((resp) => {
+      console.log(resp);
+    });
+
+    this.postRepo.getSingleModel(1).then((resp) => {
+      if (resp) {
+        const p = resp as MixPostPortal;
+
+        console.log(p);
+      }
+    });
+
+    // Demo crypto service
+    console.log(
+      cryptoService.encryptAES(
+        'test 123',
+        'MFBud2srMG1IYWRBakZ6dmFMR0RTQT09LG14UDBYc0ZHUGZRc29pYmVJODFyWUZ2OGVZWWdJRFJ0U28wL1phV0FEeGs9'
+      ),
+      cryptoService.decryptAES(
+        'U2FsdGVkX1/fxVSws7TaVP7G7okuWQrsh7Htyf7zGp8=',
+        'MFBud2srMG1IYWRBakZ6dmFMR0RTQT09LG14UDBYc0ZHUGZRc29pYmVJODFyWUZ2OGVZWWdJRFJ0U28wL1phV0FEeGs9'
+      )
     );
-    this.srv.setLanguage('en-us');
-    this.srv
-      .getListModel(params)
-      .then((resp) => console.log(resp.createdDateTime));
-    mixSettingService.getAllSettings('en-us');
   }
 }

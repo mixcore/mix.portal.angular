@@ -15,7 +15,7 @@ import {
   IconModule,
   IconService,
 } from 'carbon-components-angular';
-import { PostService } from '@mix-lib';
+import { PostRepository } from '@mix-lib';
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
   imports: [
@@ -24,7 +24,7 @@ import { PostService } from '@mix-lib';
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),
   ],
-  providers: [PostService],
+  providers: [PostRepository],
   bootstrap: [AppComponent],
 })
 export class AppModule {

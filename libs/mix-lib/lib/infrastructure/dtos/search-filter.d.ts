@@ -5,7 +5,7 @@ export declare class SearchFilter {
     toDate?: Date;
     status?: MixContentStatus;
     keyword?: string;
-    query?: object;
+    query?: never;
     pageIndex: number;
     page?: number;
     pageSize?: number;
