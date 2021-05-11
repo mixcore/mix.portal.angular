@@ -1,11 +1,11 @@
 export declare class GlobalSetting {
-  domain?: string;
-  apiEncryptKey?: string;
-  defaultLanguage?: string;
-  lastUpdateConfiguration: Date;
+    domain?: string;
+    apiEncryptKey?: string;
+    defaultLanguage?: string;
+    lastUpdateConfiguration: Date;
 }
 export declare class AllSettingsResponse {
-  globalSettings?: GlobalSetting;
-  localizeSettings?: never;
-  translator?: never;
+    globalSettings?: GlobalSetting;
+    localizeSettings?: never;
+    translator?: never;
 }
