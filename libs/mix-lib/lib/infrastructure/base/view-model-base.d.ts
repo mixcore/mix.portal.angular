@@ -1,8 +1,8 @@
 import { MixModelType } from '../../enums/mix-enums';
-import { MixRestPortalRepository } from './mix-rest-portal-repository';
+import { MixPortalRepository } from './mix-portal-repository';
 export declare abstract class ViewModelBase<T> {
     id: string | number;
-    repository: MixRestPortalRepository<T>;
+    repository: MixPortalRepository<T>;
     /**
      *
      */

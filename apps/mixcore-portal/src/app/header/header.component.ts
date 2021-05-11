@@ -41,7 +41,8 @@ export class HeaderComponent implements OnInit {
     this.postRepo.getSingleModel(1).then((resp) => {
       if (resp) {
         // Declare viewmodel from model
-        let p = new MixPostPortalViewModel(resp);
+        let p: MixPostPortalViewModel = null;
+        p = new MixPostPortalViewModel(resp);
 
         // Binding or update data in view then call update to save model
         p.title = 'test';
