@@ -13,7 +13,10 @@
     "lib": ["es2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "paths": {
+      "@mix-lib": ["./libs/mix-lib"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

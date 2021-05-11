@@ -176,19 +176,14 @@
         "signature": "9bddfb71e413e6cb8bf4bb4761c60d9259ef56ff7b50a08036d535f89a17d069",
         "affectsGlobalScope": false
       },
-      "../../mix.lib.ts/src/lib/repositories/portal/mix-page-repository.ts": {
-        "version": "ebb15ad6670bac4b6e22715a1582b8d7e7376de7a8a681645fc7981f62289075",
-        "signature": "6c8469c3cd7827fbe6d531858fe9f0a216e44d5be8112a37c92a8833783aac74",
-        "affectsGlobalScope": false
-      },
       "../../mix.lib.ts/src/lib/view-models/mix-post-mvc.ts": {
         "version": "c9d23c05fdcfb41611d660f2767f0f3d245aa0976844380fc05a468c243e97b3",
         "signature": "dac8ca74db50caacb3c2e8495ebe640f243d85783b005a21a29036b449417123",
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/lib/view-models/portal/mix-post-portal-view-model.ts": {
-        "version": "3f77e44249ac3e5e34d4202f6ab68a4ff6cdeacd9ba47ce6fee833a06f726007",
-        "signature": "cd6fd41ffdb2d44c1ef94164409328f5e83adac81ec8a23ec368ade790fbe7ab",
+        "version": "fb65a6769e9e01c827d10eaf67d22d2c8ec61073d7f22e9220b80270167383f6",
+        "signature": "f74c067fad53354fc4d92a7e33633c8c5a4b336ac91cab1862f5c9fba10ce23a",
         "affectsGlobalScope": false
       },
       "../../mix.lib.ts/src/types/example.d.ts": {
@@ -282,11 +277,6 @@
         "../../mix.lib.ts/src/lib/enums/mix-enums.ts",
         "../../mix.lib.ts/src/lib/infrastructure/base/mix-rest-portal-repository.ts"
       ],
-      "../../mix.lib.ts/src/lib/repositories/portal/mix-page-repository.ts": [
-        "../../mix.lib.ts/src/lib/enums/mix-enums.ts",
-        "../../mix.lib.ts/src/lib/infrastructure/base/mix-rest-portal-repository.ts",
-        "../../mix.lib.ts/src/lib/models/portal/mix-post-portal-model.ts"
-      ],
       "../../mix.lib.ts/src/lib/repositories/portal/mix-post-repository.ts": [
         "../../mix.lib.ts/src/lib/enums/mix-enums.ts",
         "../../mix.lib.ts/src/lib/infrastructure/base/mix-rest-portal-repository.ts",
@@ -354,10 +344,6 @@
         "../../mix.lib.ts/src/lib/enums/mix-enums.ts",
         "../../mix.lib.ts/src/lib/infrastructure/base/mix-rest-portal-repository.ts"
       ],
-      "../../mix.lib.ts/src/lib/repositories/portal/mix-page-repository.ts": [
-        "../../mix.lib.ts/src/lib/infrastructure/base/mix-rest-portal-repository.ts",
-        "../../mix.lib.ts/src/lib/models/portal/mix-post-portal-model.ts"
-      ],
       "../../mix.lib.ts/src/lib/repositories/portal/mix-post-repository.ts": [
         "../../mix.lib.ts/src/lib/infrastructure/base/mix-rest-portal-repository.ts",
         "../../mix.lib.ts/src/lib/models/portal/mix-post-portal-model.ts"
@@ -409,7 +395,6 @@
       "../../mix.lib.ts/src/lib/models/auth.models.ts",
       "../../mix.lib.ts/src/lib/models/portal/mix-post-portal-model.ts",
       "../../mix.lib.ts/src/lib/models/setting.models.ts",
-      "../../mix.lib.ts/src/lib/repositories/portal/mix-page-repository.ts",
       "../../mix.lib.ts/src/lib/repositories/portal/mix-post-repository.ts",
       "../../mix.lib.ts/src/lib/services/crypto-service.ts",
       "../../mix.lib.ts/src/lib/services/mix-authentication-service.ts",

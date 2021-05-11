@@ -43,6 +43,7 @@
     "@nrwl/angular": "12.0.1",
     "carbon-components": "^10.32.1",
     "carbon-components-angular": "^4.48.1",
+    "crypto-js": "^4.0.0",
     "rxjs": "~6.6.3",
     "ts-localstorage": "^1.1.0",
     "tslib": "^2.0.0",

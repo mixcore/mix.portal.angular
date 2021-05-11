@@ -12,10 +12,5 @@
     {
       "path": "./tsconfig.editor.json"
     }
-  ],
-  "compilerOptions": {
-    "paths": {
-      "@mix-lib":["../../../mix.lib.ts/src"]
-    }
-  }
+  ]
 }
