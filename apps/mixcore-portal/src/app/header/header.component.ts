@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import {
   cryptoService,
+  MixPostPortalViewModel,
   DisplayDirection,
   LocalStorageKeys,
   mixSettingService,
   PostRepository,
   SearchFilter,
 } from '@mix-lib';
-import { MixPostPortal } from '../../../../../../mix.lib.ts/build/main/lib/view-models/portal/mix-post-portal';
 
 @Component({
   selector: 'app-header',
@@ -16,36 +16,42 @@ import { MixPostPortal } from '../../../../../../mix.lib.ts/build/main/lib/view-
 })
 export class HeaderComponent implements OnInit {
   constructor(public postRepo: PostRepository) {}
+  params: SearchFilter = {
+    keyword: null,
+    pageIndex: 0,
+    pageSize: 10,
+    direction: DisplayDirection.Asc,
+  };
 
   ngOnInit(): void {
-    // Init Mix Params
-    localStorage.setItem(
-      LocalStorageKeys.CONF_APP_URL,
-      'https://store.mixcore.org/api/v1'
-    );
-    localStorage.setItem(LocalStorageKeys.CONF_CURRENT_CULTURE, 'en-us');
-    mixSettingService.getAllSettings('en-us');
+    this.initParams();
 
-    // Demo Post Repository
-    const params: SearchFilter = {
-      keyword: null,
-      pageIndex: 0,
-      pageSize: 10,
-      direction: DisplayDirection.Asc,
-    };
-    this.postRepo.getListModel(params).then((resp) => {
+    this.demoCrypto();
+
+    this.demoPattern();
+  }
+
+  demoPattern() {
+    console.log('Demo Post Repository');
+
+    this.postRepo.getListModel(this.params).then((resp) => {
       console.log(resp);
     });
 
     this.postRepo.getSingleModel(1).then((resp) => {
       if (resp) {
-        const p = resp as MixPostPortal;
+        // Declare viewmodel from model
+        let p = new MixPostPortalViewModel(resp);
 
+        // Binding or update data in view then call update to save model
+        p.title = 'test';
+        p.update();
         console.log(p);
       }
     });
-
-    // Demo crypto service
+  }
+  demoCrypto() {
+    console.log('Demo crypto service');
     console.log(
       cryptoService.encryptAES(
         'test 123',
@@ -56,5 +62,14 @@ export class HeaderComponent implements OnInit {
         'MFBud2srMG1IYWRBakZ6dmFMR0RTQT09LG14UDBYc0ZHUGZRc29pYmVJODFyWUZ2OGVZWWdJRFJ0U28wL1phV0FEeGs9'
       )
     );
+  }
+  initParams() {
+    console.log('Init Mix Params');
+    localStorage.setItem(
+      LocalStorageKeys.CONF_APP_URL,
+      'https://store.mixcore.org/api/v1'
+    );
+    localStorage.setItem(LocalStorageKeys.CONF_CURRENT_CULTURE, 'en-us');
+    mixSettingService.getAllSettings('en-us');
   }
 }

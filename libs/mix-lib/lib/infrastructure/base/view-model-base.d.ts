@@ -6,7 +6,7 @@ export declare abstract class ViewModelBase<T> {
     /**
      *
      */
-    constructor(modelType: MixModelType);
+    constructor(modelType: MixModelType, model?: T);
     create(): Promise<T>;
     update(): Promise<T>;
     delete(id: string | number): Promise<T>;
