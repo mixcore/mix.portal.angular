@@ -1,0 +1,22 @@
+<div class="app-sidebar" [ngClass]="{ '--expanded': expanded }">
+  <!-- Collapse sidebar button -->
+  <div class="app-sidebar__collapse-button" (click)="onCollapseSidebar()">
+    <i class="mi mi-ChromeBackToWindowContrast"></i>
+  </div>
+  <!-- End of collapse sidebar button -->
+
+  <div class="app-sidebar__header">
+    <div class="app-sidebar__header--logo"></div>
+  </div>
+
+  <!-- Sidebar item rendering -->
+  <div *ngFor="let itm of items; let i = index" (click)="activeItem(i)">
+    <mix-collapse-button
+      [item]="itm"
+      [active]="activeItemIndex === i"
+      [miniSize]="!expanded"
+    >
+    </mix-collapse-button>
+  </div>
+  <!-- End of sidebar item rendering -->
+</div>

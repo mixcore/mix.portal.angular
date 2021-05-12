@@ -1,0 +1,13 @@
+.bx--overflow-menu {
+  &__icon {
+    fill: white;
+  }
+
+  &:focus {
+    border: unset;
+  }
+
+  &:hover {
+    background-color: unset;
+  }
+}

@@ -1,2 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~carbon-components/scss/globals/scss/styles';
+@import './app/styles/core/variable.scss';
+@import './app/styles/core/mixin.scss';
+@import './app/styles/override-carbon/overflow-menu.scss';

@@ -10,10 +10,6 @@
       ],
       "parserOptions": { "project": ["apps/mixcore-portal/tsconfig.*?.json"] },
       "rules": {
-        "@angular-eslint/directive-selector": [
-          "error",
-          { "type": "attribute", "prefix": "mixcore", "style": "camelCase" }
-        ]
       }
     },
     {

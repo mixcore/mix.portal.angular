@@ -1,0 +1,18 @@
+<div class="collapse-button">
+    <div class="collapse-button__main" (click)="onCollapseClick()" [ngClass]="{ '--active': active }">
+        <i class="{{ item.icon }} -icon"></i>
+        <span class="collapse-button__main--title">{{ item.title }}</span>
+
+        <div *ngIf="item.actions?.length > 0" class="collapse-button__collapse-action"
+            [ngClass]="{ '-expanded': expanded }">
+            <i class="fa fa-play"></i>
+        </div>
+    </div>
+
+    <div #childcontainer *ngIf="item.actions" class="collapse-button__child-container">
+        <div #action *ngFor="let act of item.actions" class="collapse-button__action" (click)="act.action()">
+            <i class="{{ act.icon }} -icon"></i>
+            <span class="collapse-button__action--title">{{ act.title }}</span>
+        </div>
+    </div>
+</div>

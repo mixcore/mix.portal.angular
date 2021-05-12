@@ -1,0 +1,14 @@
+.portal-cms {
+  &__master-layout {
+    display: flex;
+  }
+
+  &__left-side {
+    height: 100vh;
+  }
+
+  &__right-side {
+    height: 100vh;
+    padding: 40px;
+  }
+}

@@ -1,0 +1,62 @@
+@import '../../../styles/core/mixin.scss';
+
+mix-collapse-button {
+  width: 100%;
+}
+
+.collapse-button {
+  overflow: hidden;
+
+  & .-icon {
+    margin-right: 15px;
+  }
+
+  &__main {
+    @include flex-vertical-center;
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    color: white;
+    overflow: hidden;
+
+    &:hover,
+    &.--active {
+      color: var(--collapse-button-text-active-color);
+      border-left: 3px solid var(--collapse-button-text-active-color);
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  &__action {
+    @include flex-vertical-center;
+    width: 100%;
+    padding: 10px 10px 10px 40px;
+    cursor: pointer;
+    color: white;
+    overflow: hidden;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+
+  &__collapse-action {
+    @include flex-all-center;
+    margin-left: auto;
+    transition: transform 0.1s ease-in;
+
+    &.-expanded {
+      transform: rotate(90deg);
+    }
+
+    > i {
+      font-size: 10px;
+    }
+  }
+
+  &__child-container {
+    transition: height 0.2s ease-in-out;
+    height: 0px;
+    font-size: 11px;
+  }
+}
