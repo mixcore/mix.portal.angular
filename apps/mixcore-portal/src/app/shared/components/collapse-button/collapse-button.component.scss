@@ -6,24 +6,46 @@ mix-collapse-button {
 
 .collapse-button {
   overflow: hidden;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+  &.--miniSize {
+    box-shadow: none;
+  }
 
   & .-icon {
-    margin-right: 15px;
+    min-width: 30px;
+    transition: font-size 0.5s ease-in-out;
+
+    &.--miniSize {
+      font-size: 20px;
+    }
+  }
+
+  &__main--title {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+
+    &.--miniSize {
+      opacity: 0;
+    }
   }
 
   &__main {
     @include flex-vertical-center;
     width: 100%;
-    padding: 10px;
+    padding: 5px;
+    box-sizing: border-box;
     cursor: pointer;
-    color: white;
     overflow: hidden;
+    font-family: 'Source Sans Pro', sans-serif;
 
     &:hover,
     &.--active {
-      color: var(--collapse-button-text-active-color);
       border-left: 3px solid var(--collapse-button-text-active-color);
-      background-color: rgba(0, 0, 0, 0.5);
     }
   }
 
@@ -31,9 +53,10 @@ mix-collapse-button {
     @include flex-vertical-center;
     width: 100%;
     padding: 10px 10px 10px 40px;
+    box-sizing: border-box;
     cursor: pointer;
-    color: white;
     overflow: hidden;
+    font-family: 'Source Sans Pro', sans-serif;
 
     &:hover {
       background-color: rgba(0, 0, 0, 0.1);

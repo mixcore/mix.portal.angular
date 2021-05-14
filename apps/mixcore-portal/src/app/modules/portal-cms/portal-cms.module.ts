@@ -1,4 +1,3 @@
-import { BreadcrumbModule } from 'carbon-components-angular';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { PORTAL_CMS_ROUTES } from './portal-cms.routing';
@@ -12,7 +11,6 @@ import { SharedModule } from '../../shared/shared.module';
   imports: [
     CommonModule,
     RouterModule.forChild(PORTAL_CMS_ROUTES),
-    BreadcrumbModule,
     SharedModule,
   ],
   exports: [RouterModule],

@@ -65,7 +65,7 @@
               "apps/mixcore-portal/src/favicon.ico",
               "apps/mixcore-portal/src/assets"
             ],
-            "styles": ["apps/mixcore-portal/src/styles.scss"],
+            "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/mixcore-portal/src/styles.scss"],
             "scripts": []
           },
           "configurations": {

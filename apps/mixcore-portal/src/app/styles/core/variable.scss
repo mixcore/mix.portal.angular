@@ -1,12 +1,15 @@
 :root {
   // main-logo
-  --mix-logo-color: #ffd452;
+  --mix-logo-color: #40e0d0;
+
+  // header
+  --header-bg-color: #f0f2f5;
 
   // sidebar-component
-  --sidebar-bg-color: rgb(29, 28, 29);
+  --sidebar-bg-color: #f0f2f5;
   --sidebar-text-color: #fff;
-  --sidebar-bg-active-color: #ffd452;
+  --sidebar-bg-active-color: #40e0d0;
 
   // sidebar-menu-item
-  --collapse-button-text-active-color: #ffd452;
+  --collapse-button-text-active-color: #40e0d0;
 }

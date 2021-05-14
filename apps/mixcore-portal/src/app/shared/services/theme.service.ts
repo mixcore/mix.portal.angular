@@ -7,4 +7,6 @@ export class ThemeServices {
   constructor() {
     //
   }
+
+  public changeTheme(themeId: string): void {}
 }

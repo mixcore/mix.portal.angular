@@ -59,9 +59,15 @@ export class CollapseButtonComponent implements AfterViewInit {
   }
 
   public onCollapseClick(): void {
+    if (this.item.actions?.length === 1) {
+      this.item.actions[0].action();
+      return;
+    }
+
     if (this.miniSize) {
       return;
     }
+
     this.expanded = !this.expanded;
   }
 

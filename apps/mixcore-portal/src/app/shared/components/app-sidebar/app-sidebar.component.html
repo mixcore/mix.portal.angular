@@ -1,22 +1,42 @@
 <div class="app-sidebar" [ngClass]="{ '--expanded': expanded }">
-  <!-- Collapse sidebar button -->
-  <div class="app-sidebar__collapse-button" (click)="onCollapseSidebar()">
-    <i class="mi mi-ChromeBackToWindowContrast"></i>
+  <div
+    class="app-sidebar__collapse-button"
+    *ngIf="!expanded"
+    (click)="onCollapseSidebar()"
+  >
+    <i class="fas fa-exchange-alt"></i>
   </div>
-  <!-- End of collapse sidebar button -->
 
   <div class="app-sidebar__header">
     <div class="app-sidebar__header--logo"></div>
   </div>
 
+  <div class="app-sidebar__toolbar" [ngClass]="{ '--miniSize': !expanded }">
+    <i
+      class="fas fa-align-left"
+      [matTooltip]="'Collapse all menu'"
+      (click)="onCollapseAllMenuItem()"
+    ></i>
+    <i
+      class="fas fa-compress-alt"
+      [matTooltip]="'Use mini side bar'"
+      (click)="onCollapseSidebar()"
+    ></i>
+  </div>
   <!-- Sidebar item rendering -->
-  <div *ngFor="let itm of items; let i = index" (click)="activeItem(i)">
-    <mix-collapse-button
-      [item]="itm"
-      [active]="activeItemIndex === i"
-      [miniSize]="!expanded"
+  <div class="app-sidebar__body">
+    <div
+      class="app-sidebar__item"
+      [ngClass]="{ '--miniSize': !expanded }"
+      *ngFor="let itm of items; let i = index"
+      (click)="activeItem(i)"
     >
-    </mix-collapse-button>
+      <mix-collapse-button
+        [item]="itm"
+        [active]="activeItemIndex === i"
+        [miniSize]="!expanded"
+      ></mix-collapse-button>
+    </div>
   </div>
   <!-- End of sidebar item rendering -->
 </div>
