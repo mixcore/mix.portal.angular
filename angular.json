@@ -15,7 +15,6 @@
             "main": "apps/mixcore-portal/src/main.ts",
             "polyfills": "apps/mixcore-portal/src/polyfills.ts",
             "tsConfig": "apps/mixcore-portal/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/mixcore-portal/src/favicon.ico",
               "apps/mixcore-portal/src/assets"
@@ -23,7 +22,13 @@
             "styles": [
               "apps/mixcore-portal/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -60,13 +65,18 @@
             "main": "apps/mixcore-portal/src/main.ts",
             "polyfills": "apps/mixcore-portal/src/polyfills.ts",
             "tsConfig": "apps/mixcore-portal/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "apps/mixcore-portal/src/favicon.ico",
               "apps/mixcore-portal/src/assets"
             ],
             "styles": ["./node_modules/@angular/material/prebuilt-themes/indigo-pink.css", "apps/mixcore-portal/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
