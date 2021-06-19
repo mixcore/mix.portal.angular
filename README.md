@@ -1,12 +1,12 @@
 
 
-# Mixcore
+# MixPortal
 
 This project was generated using [Nx](https://nx.dev).
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-🔎 **Powerful, Extensible Dev Tools**
+🔎 **Smart, Extensible Build Framework**
 
 ## Quick Start & Documentation
 
@@ -53,7 +53,7 @@ Run `ng g @nrwl/angular:lib my-lib` to generate a library.
 
 > You can also use any of the plugins above to generate libraries as well.
 
-Libraries are shareable across libraries and applications. They can be imported from `@mixcore/mylib`.
+Libraries are shareable across libraries and applications. They can be imported from `@mix-portal/mylib`.
 
 ## Development server
 
@@ -94,7 +94,7 @@ Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
 
 ## ☁ Nx Cloud
 
-### Computation Memoization in the Cloud
+### Distributed Computation Caching & Distributed Task Execution
 
 <p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
 

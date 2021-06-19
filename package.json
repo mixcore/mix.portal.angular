@@ -1,5 +1,5 @@
 {
-  "name": "mixcore",
+  "name": "mix-portal",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
@@ -7,7 +7,6 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "nx": "nx",
     "start": "ng serve",
-    "build:prod": "ng build:prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
@@ -26,58 +25,80 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "commit": "git-cz"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "12.0.0",
-    "@angular/cdk": "^11.2.12",
-    "@angular/common": "12.0.0",
-    "@angular/compiler": "12.0.0",
-    "@angular/core": "12.0.0",
-    "@angular/forms": "12.0.0",
-    "@angular/material": "^11.2.12",
-    "@angular/platform-browser": "12.0.0",
-    "@angular/platform-browser-dynamic": "12.0.0",
-    "@angular/router": "12.0.0",
-    "@nodelib/fs.stat": "^2.0.4",
-    "@nrwl/angular": "12.3.3",
-    "crypto-js": "^4.0.0",
-    "rxjs": "~6.6.3",
-    "ts-localstorage": "^1.1.0",
+    "@angular/animations": "^12.0.0",
+    "@angular/common": "^12.0.0",
+    "@angular/compiler": "^12.0.0",
+    "@angular/core": "^12.0.0",
+    "@angular/forms": "^12.0.0",
+    "@angular/platform-browser": "^12.0.0",
+    "@angular/platform-browser-dynamic": "^12.0.0",
+    "@angular/router": "^12.0.0",
+    "@nrwl/angular": "12.4.0",
+    "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "0.11.4"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "12.0.0",
-    "@angular-eslint/eslint-plugin": "12.0.0",
-    "@angular-eslint/eslint-plugin-template": "12.0.0",
-    "@angular-eslint/template-parser": "12.0.0",
-    "@angular/cli": "12.0.0",
-    "@angular/compiler-cli": "12.0.0",
-    "@angular/language-service": "12.0.0",
-    "@nrwl/cli": "12.3.3",
-    "@nrwl/cypress": "12.3.3",
-    "@nrwl/eslint-plugin-nx": "12.3.3",
-    "@nrwl/jest": "12.3.3",
-    "@nrwl/linter": "12.3.3",
-    "@nrwl/tao": "12.3.3",
-    "@nrwl/workspace": "12.3.3",
-    "@thunder-tools/prettier-plugin-formatter": "^1.1.1",
-    "@types/jest": "^26.0.8",
+    "@angular-devkit/build-angular": "^12.0.0",
+    "@angular-eslint/eslint-plugin": "~12.0.0",
+    "@angular-eslint/eslint-plugin-template": "~12.0.0",
+    "@angular-eslint/template-parser": "~12.0.0",
+    "@angular/cli": "^12.0.0",
+    "@angular/compiler-cli": "^12.0.0",
+    "@angular/language-service": "^12.0.0",
+    "@nrwl/cli": "12.4.0",
+    "@nrwl/cypress": "12.4.0",
+    "@nrwl/eslint-plugin-nx": "12.4.0",
+    "@nrwl/jest": "12.4.0",
+    "@nrwl/linter": "12.4.0",
+    "@nrwl/nx-cloud": "latest",
+    "@nrwl/tao": "12.4.0",
+    "@nrwl/workspace": "12.4.0",
+    "@types/jest": "26.0.8",
     "@types/node": "14.14.33",
     "@typescript-eslint/eslint-plugin": "4.19.0",
     "@typescript-eslint/parser": "4.19.0",
-    "cypress": "^6.0.1",
+    "commitizen": "4.2.4",
+    "cz-customizable": "6.3.0",
+    "cypress": "^7.3.0",
     "dotenv": "8.2.0",
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
-    "jest": "^26.2.2",
-    "jest-preset-angular": "8.4.0",
+    "jest": "27.0.3",
+    "jest-preset-angular": "9.0.3",
     "prettier": "2.2.1",
-    "ts-jest": "26.5.5",
+    "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
-    "typescript": "4.2.4"
+    "typescript": "~4.2.4"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./cz-config.js"
+    }
+  },
+  "importSort": {
+    ".js,.jsx,.ts,.tsx": {
+      "parser": "typescript",
+      "style": "eslint"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,json,md,scss}": [
+      "pretty-quick --staged",
+      "git add -f"
+    ],
+    "*.html": [
+      "node ./scripts/html-formatter.js --staged",
+      "git add -f"
+    ]
   }
 }

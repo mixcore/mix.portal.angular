@@ -1,21 +1,40 @@
 {
-  "npmScope": "mixcore",
-  "affected": { "defaultBase": "master" },
+  "npmScope": "mix-portal",
+  "affected": {
+    "defaultBase": "master"
+  },
   "implicitDependencies": {
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     ".eslintrc.json": "*"
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": { "cacheableOperations": ["build", "lint", "test", "e2e"] }
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ],
+        "accessToken": "YWE2NmYzMTItNjM2Yy00Y2I5LTliZGMtODgwNjRlYWUxOWYyfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
     }
   },
   "projects": {
-    "mixcore-portal": { "tags": [] },
-    "mixcore-portal-e2e": {
+    "mix-portal": {
+      "tags": []
+    },
+    "mix-portal-e2e": {
       "tags": [],
-      "implicitDependencies": ["mixcore-portal"]
+      "implicitDependencies": [
+        "mix-portal"
+      ]
     }
   }
 }

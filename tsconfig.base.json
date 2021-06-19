@@ -14,9 +14,7 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@mix-lib": ["./libs/mix-lib"]
-    }
+    "paths": {}
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,3 +1,3 @@
 module.exports = {
-  projects: ['<rootDir>/apps/mixcore-portal'],
+  projects: ['<rootDir>/apps/mix-portal'],
 };
