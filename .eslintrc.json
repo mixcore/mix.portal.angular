@@ -23,7 +23,10 @@
     },
     {
       "files": ["*.ts", "*.tsx"],
-      "extends": ["plugin:@nrwl/nx/typescript"],
+      "extends": [
+        "plugin:@nrwl/nx/typescript",
+        "plugin:@eztool/recommended-strict-typescript"
+      ],
       "rules": {}
     },
     {

@@ -1,18 +1,14 @@
 {
   "recommendations": [
-    // Formatters
     "esbenp.prettier-vscode",
     "HookyQR.beautify",
     "mrmlnc.vscode-attrs-sorter",
     "dbaeumer.vscode-eslint",
-    // Intellisense extensions
     "christian-kohler.npm-intellisense",
     "christian-kohler.path-intellisense",
     "mrmlnc.vscode-scss",
-    // Recommended extensions
     "alefragnani.bookmarks",
     "eamodio.gitlens",
-    // Angular extensions
     "angular.ng-template",
     "nrwl.angular-console",
     "firsttris.vscode-jest-runner"

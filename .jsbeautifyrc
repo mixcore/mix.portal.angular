@@ -1,0 +1,7 @@
+{
+  "indent_size": 2,
+  "eol": "\r\n",
+  "wrap_attributes": "force-aligned",
+  "end_with_newline": false,
+  "wrap_line_length": 140
+}

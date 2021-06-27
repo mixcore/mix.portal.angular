@@ -14,12 +14,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "YWE2NmYzMTItNjM2Yy00Y2I5LTliZGMtODgwNjRlYWUxOWYyfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -30,11 +25,17 @@
     "mix-portal": {
       "tags": []
     },
-    "mix-portal-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "mix-portal"
-      ]
+    "ng-cms-dashboard": {
+      "tags": []
+    },
+    "ng-cms-init": {
+      "tags": []
+    },
+    "ng-cms-portal": {
+      "tags": []
+    },
+    "ng-webshell": {
+      "tags": []
     }
   }
 }

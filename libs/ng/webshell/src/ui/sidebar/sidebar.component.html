@@ -1,0 +1,44 @@
+<div class="sidebar">
+  <div class="sidebar__collapse-btn"
+       [ngClass]="{'--isExpanded':  isExpanded}"
+       (click)="toggle()">
+    <i nz-icon
+       [nzType]="'double-right'"></i>
+  </div>
+  <ul class="sidebar__body"
+      nz-menu
+      nzMode="inline"
+      [nzInlineCollapsed]="!isExpanded"
+      [ngClass]="{'--isExpanded':  isExpanded}">
+    <ng-container *ngTemplateOutlet="menuTemplate; context: { menuItems: menuItems, level: 0 }"></ng-container>
+
+    <ng-template #menuTemplate
+                 let-menus="menuItems"
+                 let-level="level">
+      <ng-container *ngFor="let menu of menus">
+        <li *ngIf="!menu.children"
+            nz-menu-item
+            (click)="handleClick(menu)"
+            [nzPaddingLeft]="level * 50"
+            [nzDisabled]="menu.disabled"
+            [routerLink]="menu.routerLink">
+          <i nz-icon
+             [nzType]="menu.icon"
+             *ngIf="menu.icon"></i>
+          <span>{{ menu.title }}</span>
+        </li>
+
+        <li *ngIf="menu.children"
+            nz-submenu
+            [nzPaddingLeft]="level * 50"
+            [nzTitle]="menu.title"
+            [nzIcon]="menu.icon">
+          <ul>
+            <ng-container *ngTemplateOutlet="menuTemplate; context: { menuItems: menu.children, level: level + 1 }"></ng-container>
+          </ul>
+        </li>
+      </ng-container>
+    </ng-template>
+  </ul>
+
+</div>

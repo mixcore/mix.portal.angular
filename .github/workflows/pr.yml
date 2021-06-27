@@ -1,0 +1,60 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: pr
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  stable:
+    name: Pull request validation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository and sub-modules
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          fetch-depth: 0
+          token: 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
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: |
+            ${{ steps.yarn-cache-dir-path.outputs.dir }}
+            **\node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install yarn dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+        run: yarn install
+
+      - name: Validate git branch
+        run: node ./scripts/git-branch-lint.js "${{ github.head_ref }}"
+
+      - name: Validate pull request title
+        run: node ./scripts/git-commit-lint.js "${{ github.event.pull_request.title }}"
+
+      - name: Lint affected projects
+        run: yarn affected:lint --base=origin/master --head=HEAD
+
+      - name: Build affected single-spa projects
+        run: yarn affected:build:single-spa --prod --base=origin/master --head=HEAD
+
+      - name: Test affected projects
+        run: yarn affected:test --base=origin/master --head=HEAD

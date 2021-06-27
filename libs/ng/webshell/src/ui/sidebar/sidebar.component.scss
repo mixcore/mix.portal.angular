@@ -1,0 +1,51 @@
+.sidebar {
+  position: relative;
+  width: fit-content;
+  height: 100%;
+  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+
+  &__body {
+    position: relative;
+    height: 100%;
+
+    &.--isExpanded {
+      width: 240px;
+    }
+  }
+
+  &__collapse-btn {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 49%;
+    right: -13px;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+
+    &:hover {
+      color: #1890ff;
+    }
+
+    &.--isExpanded {
+      transform: rotate(180deg);
+    }
+  }
+
+  &__menu-title {
+    font-weight: bold;
+  }
+
+  &__menu-icon {
+    &.--isExpanded {
+      margin-right: 20px;
+    }
+  }
+}
