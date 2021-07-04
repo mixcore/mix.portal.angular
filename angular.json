@@ -16,6 +16,7 @@
             "main": "apps/mix-portal/src/main.ts",
             "polyfills": "apps/mix-portal/src/polyfills.ts",
             "tsConfig": "apps/mix-portal/tsconfig.app.json",
+            "aot": true,
             "assets": ["apps/mix-portal/src/favicon.ico", "apps/mix-portal/src/assets"],
             "styles": [
               "apps/mix-portal/src/styles.scss",
@@ -26,25 +27,25 @@
           },
           "configurations": {
             "production": {
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "apps/mix-portal/src/environments/environment.ts",
-                  "with": "apps/mix-portal/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
+              ]
             },
             "development": {
               "buildOptimizer": false,
