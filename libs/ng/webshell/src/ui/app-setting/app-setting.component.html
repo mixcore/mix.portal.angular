@@ -1,0 +1,19 @@
+<div class="app-setting">
+  <nz-tabset>
+    <nz-tab [nzTitle]="'appSetting.language' | transloco">
+      <div class="app-setting__language">
+        <label>{{'appSetting.languageSelectLabel' | transloco }}:</label>
+
+        <nz-select [ngModel]="activeLanguage"
+                   (ngModelChange)="onLanguageChange($event)">
+          <nz-option *ngFor="let lang of availableLanguage"
+                     [nzValue]="lang.id"
+                     [nzLabel]="lang.label"></nz-option>
+        </nz-select>
+      </div>
+    </nz-tab>
+    <nz-tab [nzTitle]="'appSetting.theme' | transloco">
+      Content of Tab Pane 2
+    </nz-tab>
+  </nz-tabset>
+</div>

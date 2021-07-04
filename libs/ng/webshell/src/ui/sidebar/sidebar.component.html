@@ -7,10 +7,13 @@
   </div>
   <ul class="sidebar__body"
       nz-menu
-      nzMode="inline"
+      nzTheme="dark"
+      [nzMode]="'vertical'"
       [nzInlineCollapsed]="!isExpanded"
       [ngClass]="{'--isExpanded':  isExpanded}">
-    <ng-container *ngTemplateOutlet="menuTemplate; context: { menuItems: menuItems, level: 0 }"></ng-container>
+    <ng-container *ngIf="(store.menuItems$ | async) as menuItems">
+      <ng-container *ngTemplateOutlet="menuTemplate; context: { menuItems: menuItems, level: 0 }"></ng-container>
+    </ng-container>
 
     <ng-template #menuTemplate
                  let-menus="menuItems"
@@ -19,19 +22,17 @@
         <li *ngIf="!menu.children"
             nz-menu-item
             (click)="handleClick(menu)"
-            [nzPaddingLeft]="level * 50"
             [nzDisabled]="menu.disabled"
             [routerLink]="menu.routerLink">
           <i nz-icon
              [nzType]="menu.icon"
              *ngIf="menu.icon"></i>
-          <span>{{ menu.title }}</span>
+          <span>{{ menu.title | transloco}}</span>
         </li>
 
         <li *ngIf="menu.children"
             nz-submenu
-            [nzPaddingLeft]="level * 50"
-            [nzTitle]="menu.title"
+            [nzTitle]="menu.title | transloco"
             [nzIcon]="menu.icon">
           <ul>
             <ng-container *ngTemplateOutlet="menuTemplate; context: { menuItems: menu.children, level: level + 1 }"></ng-container>
@@ -40,5 +41,4 @@
       </ng-container>
     </ng-template>
   </ul>
-
 </div>

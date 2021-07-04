@@ -17,7 +17,11 @@
             "polyfills": "apps/mix-portal/src/polyfills.ts",
             "tsConfig": "apps/mix-portal/tsconfig.app.json",
             "assets": ["apps/mix-portal/src/favicon.ico", "apps/mix-portal/src/assets"],
-            "styles": ["apps/mix-portal/src/styles.scss", "node_modules/ng-zorro-antd/ng-zorro-antd.min.css"],
+            "styles": [
+              "apps/mix-portal/src/styles.scss",
+              "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
+              "apps/mix-portal/src/styles/themes/default.less"
+            ],
             "scripts": []
           },
           "configurations": {

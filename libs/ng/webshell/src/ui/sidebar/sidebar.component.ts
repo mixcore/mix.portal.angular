@@ -1,4 +1,6 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+
+import { SideBarStore } from './sidebar.store';
 
 export interface ISidebarMenuItem {
   title?: string;
@@ -13,13 +15,17 @@ export interface ISidebarMenuItem {
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [SideBarStore]
 })
 export class HulkSidebarComponent {
-  @Input() public menuItems: ISidebarMenuItem[] = [];
   @Output() public expandedChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public isExpanded: boolean = true;
+
+  constructor(public store: SideBarStore) {
+    //
+  }
 
   public toggle(): void {
     this.isExpanded = !this.isExpanded;

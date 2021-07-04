@@ -1,6 +1,23 @@
+$header-height: 70px;
+
 .main-app-layout {
   height: 100vh;
   overflow: hidden;
   display: flex;
   background-color: #eeeeee;
+
+  &__right-side {
+    width: 100%;
+
+    &--header {
+      margin-bottom: 10px;
+      height: $header-height;
+    }
+
+    &--main-workspace {
+      height: calc(100vh - $header-height);
+      padding: 20px;
+      box-sizing: border-box;
+    }
+  }
 }

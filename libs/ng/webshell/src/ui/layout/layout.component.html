@@ -1,8 +1,17 @@
 <div class="main-app-layout">
+  <!-- side bar/ -->
   <div class="main-app-layout__left-side">
-    <sidebar [menuItems]="sideBarMenuItems"></sidebar>
+    <sidebar></sidebar>
   </div>
+
+  <!-- right side -->
   <div class="main-app-layout__right-side">
-    <app-header></app-header>
+    <div class="main-app-layout__right-side--header">
+      <app-header></app-header>
+    </div>
+
+    <div class="main-app-layout__right-side--main-workspace">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

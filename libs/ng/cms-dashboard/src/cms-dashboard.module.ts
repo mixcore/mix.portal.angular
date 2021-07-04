@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { DashboardNewsComponent } from './pages/dashboard-news/dashboard-news.component';
 import { MainDashboardComponent } from './pages/main-dashboard/main-dashboard.component';
 import { NgModule } from '@angular/core';
+import { TranslocoModule } from '@ngneat/transloco';
 
 const ROUTE: Route[] = [
   {
@@ -12,12 +13,15 @@ const ROUTE: Route[] = [
   },
   {
     path: 'news',
-    component: DashboardNewsComponent
+    component: DashboardNewsComponent,
+    data: {
+      breadcrumb: 'News'
+    }
   }
 ];
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(ROUTE)],
+  imports: [CommonModule, RouterModule.forChild(ROUTE), TranslocoModule],
   declarations: [MainDashboardComponent, DashboardNewsComponent]
 })
 export class CmsDashboardModule {}

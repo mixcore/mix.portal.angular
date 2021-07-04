@@ -1,14 +1,27 @@
 <div class="app-header">
+  <!-- Icon + Breadcrumb -->
   <div class="app-header__main">
-    <div style="font-weight: 700; font-size: 30px;">MIXCORE</div>
-    <nz-breadcrumb [nzAutoGenerate]="true">
+    <img class="app-header__main--icon"
+         src="assets/icons/mixcore-logo-red-2.svg">
+
+    <nz-breadcrumb class="app-header__main--breadcrumb "
+                   [nzAutoGenerate]="true">
       <nz-breadcrumb-item>
         <a [routerLink]="['/']"> <i nz-icon
              nzType="home"></i></a>
       </nz-breadcrumb-item>
     </nz-breadcrumb>
   </div>
-  <div class="app-header__toolbar">
 
+  <!-- Toolbar -->
+  <div class="app-header__toolbar">
+    <nz-avatar class="app-header__toolbar--setting"
+               (click)="openAppSetting()"
+               nzIcon="setting"
+               style="background-color:#001529;"></nz-avatar>
+
+    <nz-avatar class="app-header__toolbar--avatar"
+               nzIcon="user"
+               style="background-color:#87d068;"></nz-avatar>
   </div>
 </div>

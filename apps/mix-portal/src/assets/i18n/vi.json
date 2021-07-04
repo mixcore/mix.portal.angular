@@ -1,0 +1,21 @@
+{
+  "dashboard": {
+    "welcome": "Chào mừng"
+  },
+  "sidebar": {
+    "dashboard": "Tổng quan",
+    "document": "Tài liệu",
+    "navigation": "Liên kết",
+    "gettingStarted": "Bắt đầu",
+    "api": "Api",
+    "createNew": "Tạo mới",
+    "list": "Danh sách",
+    "aboutUs": "Về chúng tôi"
+  },
+  "appSetting": {
+    "headerLabel": "Cài đặt Portal Webapp",
+    "languageSelectLabel": "Chọn ngôn ngữ:",
+    "language": "Ngôn ngữ",
+    "theme": "Giao diện"
+  }
+}
