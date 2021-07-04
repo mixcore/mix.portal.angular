@@ -1,23 +1,12 @@
 {
-  "extends": [
-    "../../../.eslintrc.json"
-  ],
-  "ignorePatterns": [
-    "!**/*"
-  ],
+  "extends": ["../../../.eslintrc.json"],
+  "ignorePatterns": ["!**/*"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
-      "extends": [
-        "plugin:@eztool/recommended-strict-angular",
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ],
+      "files": ["*.ts"],
+      "extends": ["plugin:@eztool/recommended-strict-angular", "plugin:@angular-eslint/template/process-inline-templates"],
       "parserOptions": {
-        "project": [
-          "libs/ng/cms-init/tsconfig.*?.json"
-        ]
+        "project": ["libs/ng/cms-init/tsconfig.*?.json"]
       },
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -37,12 +26,8 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@eztool/recommended-strict-angular-template"
-      ],
+      "files": ["*.html"],
+      "extends": ["plugin:@eztool/recommended-strict-angular-template"],
       "rules": {}
     }
   ]
