@@ -15,11 +15,8 @@ jobs:
     name: Build master branch
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository and sub-modules
+      - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          submodules: recursive
-          token: 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
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -49,9 +46,6 @@ jobs:
 
       - name: Build all projects
         run: yarn build:all --prod
-
-      - name: Build single-spa projects
-        run: yarn build:single-spa:all --prod
 
       - name: Test all projects
         run: yarn test:all

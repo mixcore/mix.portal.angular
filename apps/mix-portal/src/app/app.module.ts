@@ -8,10 +8,10 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NgModule } from '@angular/core';
 import { PortalWebShellModule } from '@mix-portal/ng/webshell';
 
-const antDesignIcons = AllIcons as {
+const antDesignIcons: { [key: string]: IconDefinition } = AllIcons as {
   [key: string]: IconDefinition;
 };
-const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key]);
+const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: string) => antDesignIcons[key]);
 
 @NgModule({
   declarations: [AppComponent],
