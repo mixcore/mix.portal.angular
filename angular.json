@@ -9,7 +9,9 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": ["{options.outputPath}"],
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
             "outputPath": "dist/apps/mix-portal",
             "index": "apps/mix-portal/src/index.html",
@@ -17,7 +19,10 @@
             "polyfills": "apps/mix-portal/src/polyfills.ts",
             "tsConfig": "apps/mix-portal/tsconfig.app.json",
             "aot": true,
-            "assets": ["apps/mix-portal/src/favicon.ico", "apps/mix-portal/src/assets"],
+            "assets": [
+              "apps/mix-portal/src/favicon.ico",
+              "apps/mix-portal/src/assets"
+            ],
             "styles": [
               "apps/mix-portal/src/styles.scss",
               "node_modules/ng-zorro-antd/ng-zorro-antd.min.css",
@@ -79,12 +84,17 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/mix-portal/src/**/*.ts", "apps/mix-portal/src/**/*.html"]
+            "lintFilePatterns": [
+              "apps/mix-portal/src/**/*.ts",
+              "apps/mix-portal/src/**/*.html"
+            ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/mix-portal"],
+          "outputs": [
+            "coverage/apps/mix-portal"
+          ],
           "options": {
             "jestConfig": "apps/mix-portal/jest.config.js",
             "passWithNoTests": true
@@ -100,7 +110,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ng/cms-dashboard"],
+          "outputs": [
+            "coverage/libs/ng/cms-dashboard"
+          ],
           "options": {
             "jestConfig": "libs/ng/cms-dashboard/jest.config.js",
             "passWithNoTests": true
@@ -109,7 +121,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ng/cms-dashboard/src/**/*.ts", "libs/ng/cms-dashboard/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ng/cms-dashboard/src/**/*.ts",
+              "libs/ng/cms-dashboard/src/**/*.html"
+            ]
           }
         }
       }
@@ -122,7 +137,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ng/cms-init"],
+          "outputs": [
+            "coverage/libs/ng/cms-init"
+          ],
           "options": {
             "jestConfig": "libs/ng/cms-init/jest.config.js",
             "passWithNoTests": true
@@ -131,7 +148,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ng/cms-init/src/**/*.ts", "libs/ng/cms-init/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ng/cms-init/src/**/*.ts",
+              "libs/ng/cms-init/src/**/*.html"
+            ]
           }
         }
       }
@@ -144,7 +164,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ng/cms-portal"],
+          "outputs": [
+            "coverage/libs/ng/cms-portal"
+          ],
           "options": {
             "jestConfig": "libs/ng/cms-portal/jest.config.js",
             "passWithNoTests": true
@@ -153,7 +175,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ng/cms-portal/src/**/*.ts", "libs/ng/cms-portal/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ng/cms-portal/src/**/*.ts",
+              "libs/ng/cms-portal/src/**/*.html"
+            ]
           }
         }
       }
@@ -166,7 +191,9 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/ng/webshell"],
+          "outputs": [
+            "coverage/libs/ng/webshell"
+          ],
           "options": {
             "jestConfig": "libs/ng/webshell/jest.config.js",
             "passWithNoTests": true
@@ -175,7 +202,10 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/ng/webshell/src/**/*.ts", "libs/ng/webshell/src/**/*.html"]
+            "lintFilePatterns": [
+              "libs/ng/webshell/src/**/*.ts",
+              "libs/ng/webshell/src/**/*.html"
+            ]
           }
         }
       }

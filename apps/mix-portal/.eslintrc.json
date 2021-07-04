@@ -1,16 +1,49 @@
 {
-  "extends": ["../../.eslintrc.json"],
-  "ignorePatterns": ["!**/*"],
+  "extends": [
+    "../../.eslintrc.json"
+  ],
+  "ignorePatterns": [
+    "!**/*"
+  ],
   "overrides": [
     {
-      "files": ["*.ts"],
-      "extends": ["plugin:@eztool/recommended-strict-angular", "plugin:@angular-eslint/template/process-inline-templates"],
-      "parserOptions": { "project": ["apps/mix-portal/tsconfig.*?.json"] },
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@eztool/recommended-strict-angular",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "parserOptions": {
+        "project": [
+          "apps/mix-portal/tsconfig.*?.json"
+        ]
+      },
       "rules": {
-        "@angular-eslint/directive-selector": ["error", { "type": "attribute", "style": "camelCase" }],
-        "@angular-eslint/component-selector": ["error", { "type": "element", "style": "kebab-case" }]
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "style": "kebab-case"
+          }
+        ]
       }
     },
-    { "files": ["*.html"], "extends": ["plugin:@eztool/recommended-strict-angular-template"], "rules": {} }
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@eztool/recommended-strict-angular-template"
+      ],
+      "rules": {}
+    }
   ]
 }
