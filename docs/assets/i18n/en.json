@@ -1,0 +1,21 @@
+{
+  "dashboard": {
+    "welcome": "Welcome"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "document": "Document",
+    "navigation": "Navigation",
+    "gettingStarted": "Getting started",
+    "api": "Api",
+    "createNew": "Create new",
+    "list": "List",
+    "aboutUs": "About us"
+  },
+  "appSetting": {
+    "headerLabel": "Portal WebApp Setting",
+    "languageSelectLabel": "Select a language:",
+    "language": "Language",
+    "theme": "Theme"
+  }
+}

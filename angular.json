@@ -11,7 +11,7 @@
           "builder": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/mix-portal",
+            "outputPath": "docs",
             "index": "apps/mix-portal/src/index.html",
             "main": "apps/mix-portal/src/main.ts",
             "polyfills": "apps/mix-portal/src/polyfills.ts",
