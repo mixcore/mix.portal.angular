@@ -45,7 +45,7 @@ jobs:
         run: yarn lint:all
 
       - name: Build all projects
-        run: yarn build:all --prod
+        run: yarn build:mix-portal
 
       - name: Test all projects
         run: yarn test:all

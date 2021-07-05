@@ -8,7 +8,7 @@
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "nx": "nx",
     "start": "ng serve",
-    "build:mix-portal": "nx run mix-portal:build:production",
+    "build:mix-portal": "nx run mix-portal:build:production --baseHref=https://angular-io.portal.mixcore.org/",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
