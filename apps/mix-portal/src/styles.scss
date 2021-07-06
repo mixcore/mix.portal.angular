@@ -1,2 +1,8 @@
 @import '../src/styles/override/ant-menu-item.scss';
 @import '../src/styles/override/ant-modal.scss';
+
+.pie-label {
+  font-size: 15px !important;
+  fill: #001529;
+  font-weight: 600;
+}

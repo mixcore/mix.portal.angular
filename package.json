@@ -46,6 +46,7 @@
     "@ngneat/transloco": "^2.22.0",
     "@ngrx/component-store": "^12.2.0",
     "@nrwl/angular": "12.4.0",
+    "@swimlane/ngx-charts": "^18.0.1",
     "lodash-es": "4.17.4",
     "ng-zorro-antd": "^11.4.2",
     "rxjs": "6.6.0",

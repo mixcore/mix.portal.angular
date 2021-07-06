@@ -1,1 +1,80 @@
-<h3> {{ 'dashboard.welcome' | transloco }}</h3>
+<div class="main-dashboard">
+  <div nz-row
+       [nzGutter]="[20, 30]">
+    <div nz-col
+         nzMd="14">
+      <div class="main-dashboard__widget --center">
+        <div class="main-dashboard__widget--title --left">
+          {{'dashboard.statisticLabel' | transloco}}
+        </div>
+
+        <ngx-charts-pie-chart [results]="data"
+                              [maxLabelLength]="20"
+                              [scheme]="colorScheme"
+                              [gradient]="gradient"
+                              [labelFormatting]="chartLabelFormat"
+                              [legendPosition]="legendPosition"
+                              [labels]="showLabels"
+                              [doughnut]="isDoughnut"></ngx-charts-pie-chart>
+      </div>
+
+    </div>
+    <div nz-col
+         nzMd="10">
+      <div class="main-dashboard__widget">
+        <div class="main-dashboard__widget--title --right">
+          {{'dashboard.changeLogsLabel' | transloco}}
+        </div>
+
+        <div class="main-dashboard__widget--body">
+          <nz-tabset>
+            <nz-tab [nzTitle]="'Mixcore'">
+              <nz-empty [nzNotFoundContent]="contentTpl">
+                <ng-template #contentTpl>
+                  <span> {{ 'common.nodata' | transloco }} </span>
+                </ng-template>
+              </nz-empty>
+            </nz-tab>
+            <nz-tab [nzTitle]="'dashboard.yourWebsiteLabel' | transloco">
+              <nz-empty [nzNotFoundContent]="contentTpl">
+                <ng-template #contentTpl>
+                  <span> {{ 'common.nodata' | transloco }} </span>
+                </ng-template>
+              </nz-empty>
+            </nz-tab>
+          </nz-tabset>
+        </div>
+      </div>
+    </div>
+
+    <div nz-col
+         nzMd="16">
+      <div class="main-dashboard__widget --center">
+        <div class="main-dashboard__widget--title --left">
+          {{'dashboard.blogNewsLabel' | transloco}}
+        </div>
+
+        <nz-empty [nzNotFoundContent]="contentTpl">
+          <ng-template #contentTpl>
+            <span> {{ 'common.nodata' | transloco }} </span>
+          </ng-template>
+        </nz-empty>
+      </div>
+    </div>
+
+    <div nz-col
+         nzMd="8">
+      <div class="main-dashboard__widget --center">
+        <div class="main-dashboard__widget--title --left">
+          {{'dashboard.contributors' | transloco}}
+        </div>
+
+        <nz-empty [nzNotFoundContent]="contentTpl">
+          <ng-template #contentTpl>
+            <span> {{ 'common.nodata' | transloco }} </span>
+          </ng-template>
+        </nz-empty>
+      </div>
+    </div>
+  </div>
+</div>
