@@ -1,6 +1,11 @@
 {
   "dashboard": {
-    "welcome": "Welcome"
+    "welcome": "Welcome",
+    "changeLogsLabel": "Change Logs/Releases Note",
+    "statisticLabel": "Statistic",
+    "yourWebsiteLabel": "Your website",
+    "blogNewsLabel": "Blog & New",
+    "contributors": "Contributors & Sponsor"
   },
   "sidebar": {
     "dashboard": "Dashboard",
@@ -17,5 +22,8 @@
     "languageSelectLabel": "Select a language:",
     "language": "Language",
     "theme": "Theme"
+  },
+  "common": {
+    "nodata": "No data found"
   }
 }
