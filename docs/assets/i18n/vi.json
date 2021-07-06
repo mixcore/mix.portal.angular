@@ -1,6 +1,11 @@
 {
   "dashboard": {
-    "welcome": "Chào mừng"
+    "welcome": "Chào mừng",
+    "changeLogsLabel": "Cập nhật thay đổi",
+    "statisticLabel": "Số liệu",
+    "yourWebsiteLabel": "Web của bạn",
+    "blogNewsLabel": "Blog & Tin tức",
+    "contributors": "Thành viên & tài trợ"
   },
   "sidebar": {
     "dashboard": "Tổng quan",
@@ -17,5 +22,8 @@
     "languageSelectLabel": "Chọn ngôn ngữ:",
     "language": "Ngôn ngữ",
     "theme": "Giao diện"
+  },
+  "common": {
+    "nodata": "Chưa có dữ liệu"
   }
 }
