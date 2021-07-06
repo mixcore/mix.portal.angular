@@ -5,7 +5,6 @@
   "scripts": {
     "ng": "nx",
     "preinstall": "node ./scripts/preinstall.js",
-    "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "nx": "nx",
     "start": "ng serve",
     "build:mix-portal": "nx run mix-portal:build:production --baseHref=https://angular.portal.mixcore.org/",
