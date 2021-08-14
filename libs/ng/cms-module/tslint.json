@@ -1,0 +1,7 @@
+{
+  "extends": "../tslint.json",
+  "rules": {
+    "directive-selector": [true, "attribute", "mixPortal", "camelCase"],
+    "component-selector": [true, "element", "mix-portal", "kebab-case"]
+  }
+}

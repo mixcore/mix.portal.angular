@@ -31,7 +31,16 @@
     "ng-cms-init": {
       "tags": []
     },
+    "ng-cms-module": {
+      "tags": []
+    },
+    "ng-cms-page": {
+      "tags": []
+    },
     "ng-cms-portal": {
+      "tags": []
+    },
+    "ng-cms-post": {
       "tags": []
     },
     "ng-webshell": {

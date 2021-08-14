@@ -136,6 +136,50 @@
         }
       }
     },
+    "ng-cms-module": {
+      "projectType": "library",
+      "root": "libs/ng/cms-module",
+      "sourceRoot": "libs/ng/cms-module/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-module/src/**/*.ts", "libs/ng/cms-module/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-module"],
+          "options": {
+            "jestConfig": "libs/ng/cms-module/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ng-cms-page": {
+      "projectType": "library",
+      "root": "libs/ng/cms-page",
+      "sourceRoot": "libs/ng/cms-page/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-page/src/**/*.ts", "libs/ng/cms-page/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-page"],
+          "options": {
+            "jestConfig": "libs/ng/cms-page/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "ng-cms-portal": {
       "projectType": "library",
       "root": "libs/ng/cms-portal",
@@ -154,6 +198,28 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/ng/cms-portal/src/**/*.ts", "libs/ng/cms-portal/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "ng-cms-post": {
+      "projectType": "library",
+      "root": "libs/ng/cms-post",
+      "sourceRoot": "libs/ng/cms-post/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-post/src/**/*.ts", "libs/ng/cms-post/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-post"],
+          "options": {
+            "jestConfig": "libs/ng/cms-post/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

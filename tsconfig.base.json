@@ -17,7 +17,10 @@
     "paths": {
       "@mix-portal/ng/cms-dashboard": ["libs/ng/cms-dashboard/src/index.ts"],
       "@mix-portal/ng/cms-init": ["libs/ng/cms-init/src/index.ts"],
+      "@mix-portal/ng/cms-module": ["libs/ng/cms-module/src/index.ts"],
+      "@mix-portal/ng/cms-page": ["libs/ng/cms-page/src/index.ts"],
       "@mix-portal/ng/cms-portal": ["libs/ng/cms-portal/src/index.ts"],
+      "@mix-portal/ng/cms-post": ["libs/ng/cms-post/src/index.ts"],
       "@mix-portal/ng/webshell": ["libs/ng/webshell/src/index.ts"]
     }
   },
