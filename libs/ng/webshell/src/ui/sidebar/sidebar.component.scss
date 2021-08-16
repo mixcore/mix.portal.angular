@@ -11,16 +11,19 @@
     background: white;
 
     &.--mini-size {
-      padding: 0px;
+      padding: 10px 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 
   &__header-logo {
     width: 165px;
+  }
 
-    &.--mini-size {
-      width: 0px;
-    }
+  &__header-mini-logo {
+    width: 45px;
   }
 
   &__body {

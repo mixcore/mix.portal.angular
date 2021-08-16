@@ -1,9 +1,15 @@
 <div class="sidebar">
   <div class="sidebar__header"
        [ngClass]="{'--mini-size': !isExpanded}">
-    <img class="sidebar__header-logo"
-         [ngClass]="{'--mini-size': !isExpanded}"
-         src="assets/icons/mixcore-logo-red-2.svg">
+    <img class="sidebar__header-mini-logo"
+         *ngIf="!isExpanded; else fullSizeLogo"
+         src="assets/icons/mix-mini-logo.png">
+
+    <ng-template #fullSizeLogo>
+      <img class="sidebar__header-logo"
+           src="assets/icons/mixcore-logo-red-2.svg">
+    </ng-template>
+
   </div>
 
   <div class="sidebar__collapse-btn"
