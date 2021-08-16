@@ -30,6 +30,13 @@ const ROUTE: Route[] = [
         }
       },
       {
+        path: 'navigation',
+        loadChildren: async () => (await import('@mix-portal/ng/cms-navigation')).CmsNavigationModule,
+        data: {
+          breadcrumb: 'Navigation'
+        }
+      },
+      {
         path: 'page',
         loadChildren: async () => (await import('@mix-portal/ng/cms-page')).CmsPageModule,
         data: {

@@ -158,6 +158,28 @@
         }
       }
     },
+    "ng-cms-navigation": {
+      "projectType": "library",
+      "root": "libs/ng/cms-navigation",
+      "sourceRoot": "libs/ng/cms-navigation/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-navigation/src/**/*.ts", "libs/ng/cms-navigation/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-navigation"],
+          "options": {
+            "jestConfig": "libs/ng/cms-navigation/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "ng-cms-page": {
       "projectType": "library",
       "root": "libs/ng/cms-page",

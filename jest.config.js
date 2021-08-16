@@ -8,6 +8,7 @@ module.exports = {
     '<rootDir>/libs/ng/cms-post',
     '<rootDir>/libs/ng/cms-page',
     '<rootDir>/libs/ng/cms-module',
-    '<rootDir>/libs/ng/shared'
+    '<rootDir>/libs/ng/shared',
+    '<rootDir>/libs/ng/cms-navigation'
   ]
 };

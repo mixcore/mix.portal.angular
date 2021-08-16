@@ -31,6 +31,19 @@ export const SMC_SIDEBAR_MENU_ITEMS: ISidebarMenuItem[] = [
     ]
   },
   {
+    title: 'navigation',
+    routerLink: ['navigation'],
+    icon: 'audit',
+    children: [
+      {
+        title: 'createNew'
+      },
+      {
+        title: 'list'
+      }
+    ]
+  },
+  {
     title: 'page',
     icon: 'cluster',
     routerLink: ['page'],
