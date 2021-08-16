@@ -4,6 +4,25 @@
   height: 100%;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 
+  &__header {
+    width: 100%;
+    padding: 20px 10px 30px 10px;
+    box-sizing: border-box;
+    background: white;
+
+    &.--mini-size {
+      padding: 0px;
+    }
+  }
+
+  &__header-logo {
+    width: 165px;
+
+    &.--mini-size {
+      width: 0px;
+    }
+  }
+
   &__body {
     position: relative;
     height: 100%;

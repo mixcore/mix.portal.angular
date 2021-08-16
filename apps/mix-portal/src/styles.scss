@@ -1,8 +1,19 @@
 @import '../src/styles/override/ant-menu-item.scss';
 @import '../src/styles/override/ant-modal.scss';
+@import '../src/styles/core/utilities.scss';
 
 .pie-label {
   font-size: 15px !important;
   fill: #001529;
   font-weight: 600;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+:root {
+  --main-widget-box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+  --main-widget-padding: 15px;
+  --main-widget-background-color: #fff;
 }

@@ -1,19 +1,15 @@
 .app-header {
   width: 100%;
-  padding: 15px 20px;
+  padding: 10px;
   box-sizing: border-box;
   height: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   &__main {
-    &--icon {
-      width: 200px;
-    }
-
     &--breadcrumb {
       margin-left: 15px;
-      margin-top: 10px;
     }
   }
 

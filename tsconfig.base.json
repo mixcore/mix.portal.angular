@@ -21,6 +21,7 @@
       "@mix-portal/ng/cms-page": ["libs/ng/cms-page/src/index.ts"],
       "@mix-portal/ng/cms-portal": ["libs/ng/cms-portal/src/index.ts"],
       "@mix-portal/ng/cms-post": ["libs/ng/cms-post/src/index.ts"],
+      "@mix-portal/ng/shared": ["libs/ng/shared/src/index.ts"],
       "@mix-portal/ng/webshell": ["libs/ng/webshell/src/index.ts"]
     }
   },

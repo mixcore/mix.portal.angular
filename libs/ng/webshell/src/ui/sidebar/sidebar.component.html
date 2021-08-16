@@ -1,4 +1,11 @@
 <div class="sidebar">
+  <div class="sidebar__header"
+       [ngClass]="{'--mini-size': !isExpanded}">
+    <img class="sidebar__header-logo"
+         [ngClass]="{'--mini-size': !isExpanded}"
+         src="assets/icons/mixcore-logo-red-2.svg">
+  </div>
+
   <div class="sidebar__collapse-btn"
        [ngClass]="{'--isExpanded':  isExpanded}"
        (click)="toggle()">
@@ -7,7 +14,6 @@
   </div>
   <ul class="sidebar__body"
       nz-menu
-      nzTheme="dark"
       [nzMode]="'vertical'"
       [nzInlineCollapsed]="!isExpanded"
       [ngClass]="{'--isExpanded':  isExpanded}">

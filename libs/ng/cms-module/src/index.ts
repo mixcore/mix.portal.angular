@@ -1,1 +1,1 @@
-export * from './lib/ng-cms-module.module';
+export * from './cms-module.module';

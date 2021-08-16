@@ -40,7 +40,7 @@ export class TranslocoHttpLoader implements TranslocoLoader {
       provide: TRANSLOCO_CONFIG,
       useValue: translocoConfig({
         availableLangs: AVAILABLE_LANGS,
-        defaultLang: getI18nextLng(['en', 'vi'], 'vi'),
+        defaultLang: getI18nextLng(['en', 'vi'], 'en'),
         reRenderOnLangChange: true,
         prodMode: true
       })

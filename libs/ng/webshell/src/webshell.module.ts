@@ -30,10 +30,24 @@ const ROUTE: Route[] = [
         }
       },
       {
-        path: 'portal',
-        loadChildren: async () => (await import('@mix-portal/ng/cms-portal')).NgCmsPortalModule,
+        path: 'page',
+        loadChildren: async () => (await import('@mix-portal/ng/cms-page')).CmsPageModule,
         data: {
-          breadcrumb: 'Portal'
+          breadcrumb: 'Pages'
+        }
+      },
+      {
+        path: 'post',
+        loadChildren: async () => (await import('@mix-portal/ng/cms-post')).CmsPostModule,
+        data: {
+          breadcrumb: 'Posts'
+        }
+      },
+      {
+        path: 'module',
+        loadChildren: async () => (await import('@mix-portal/ng/cms-module')).CmsModuleModule,
+        data: {
+          breadcrumb: 'Modules'
         }
       },
       {

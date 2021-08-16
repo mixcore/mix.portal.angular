@@ -13,7 +13,7 @@ export const baseHrefProvider: Provider = { provide: APP_BASE_HREF, useValue: ''
 export const authTokenProvider: Provider = {
   provide: AUTH_TOKEN_CALLBACK,
   useFactory: () => () => {
-    const oidc: string | null = localStorage.getItem('hulk:oidc:user');
+    const oidc: string | null = localStorage.getItem('');
 
     if (!oidc) {
       return '';
@@ -30,19 +30,19 @@ export const errorHandlingProvider: Provider = {
   useFactory: (modal: NzModalService) => (response: HttpErrorResponse) => {
     switch (response.status) {
       case HttpStatusCode.Unauthorized:
-        modal.error({ nzTitle: 'Lỗi', nzContent: 'Unauthorized' });
+        modal.error({ nzTitle: 'Error', nzContent: 'Unauthorized' });
         break;
       case HttpStatusCode.Forbidden:
-        modal.error({ nzTitle: 'Lỗi', nzContent: 'Forbidden' });
+        modal.error({ nzTitle: 'Error', nzContent: 'Forbidden' });
         break;
       case HttpStatusCode.BadRequest:
-        modal.error({ nzTitle: 'Lỗi', nzContent: 'BadRequest' });
+        modal.error({ nzTitle: 'Error', nzContent: 'Bad Request' });
         break;
       case HttpStatusCode.BadGateway:
-        modal.error({ nzTitle: 'Lỗi', nzContent: 'BadGateway' });
+        modal.error({ nzTitle: 'Error', nzContent: 'Bad Gateway' });
         break;
       case HttpStatusCode.NotFound:
-        modal.error({ nzTitle: 'Lỗi', nzContent: 'NotFound' });
+        modal.error({ nzTitle: 'Error', nzContent: 'Not Found' });
         break;
       default:
         break;

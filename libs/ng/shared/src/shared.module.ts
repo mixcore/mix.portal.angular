@@ -4,4 +4,4 @@ import { NgModule } from '@angular/core';
 @NgModule({
   imports: [CommonModule]
 })
-export class NgCmsModuleModule {}
+export class SharedModule {}

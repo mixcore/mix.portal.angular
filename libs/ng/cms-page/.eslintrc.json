@@ -18,7 +18,6 @@
           "error",
           {
             "type": "element",
-            "prefix": "mix-portal",
             "style": "kebab-case"
           }
         ]

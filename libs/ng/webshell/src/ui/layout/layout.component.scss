@@ -10,13 +10,12 @@ $header-height: 70px;
     width: 100%;
 
     &--header {
-      margin-bottom: 10px;
       height: $header-height;
     }
 
     &--main-workspace {
       height: calc(100vh - $header-height);
-      padding: 20px;
+      padding: 0px 20px;
       box-sizing: border-box;
     }
   }

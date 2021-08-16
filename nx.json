@@ -43,6 +43,9 @@
     "ng-cms-post": {
       "tags": []
     },
+    "ng-shared": {
+      "tags": []
+    },
     "ng-webshell": {
       "tags": []
     }

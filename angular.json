@@ -224,6 +224,28 @@
         }
       }
     },
+    "ng-shared": {
+      "projectType": "library",
+      "root": "libs/ng/shared",
+      "sourceRoot": "libs/ng/shared/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/shared/src/**/*.ts", "libs/ng/shared/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/shared"],
+          "options": {
+            "jestConfig": "libs/ng/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "ng-webshell": {
       "projectType": "library",
       "root": "libs/ng/webshell",

@@ -15,10 +15,9 @@ module.exports = {
   ],
 
   scopes: [
-    ...Object.keys(workspaceScopes).map(project => ({ name: project, value: project })),
     {
-      name: 'repo',
-      description: 'anything related to managing the repo itself'
+      name: 'mix-portal',
+      description: 'mixcore portal'
     },
     { name: 'release', description: 'anything related to release process' }
   ],

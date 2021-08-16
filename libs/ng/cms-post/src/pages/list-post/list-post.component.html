@@ -1,0 +1,50 @@
+<div class="list-post">
+
+  <div class="list-post__header"
+       nz-row
+       [nzJustify]="'space-between'"
+       [nzAlign]="'bottom'">
+    <div nz-col
+         [nzMd]="18">
+      <div class="list-post__header-title">
+        <h2> {{'common.list' | transloco: { type: 'Post' } }} </h2>
+        <span> {{'common.filterGuideline' | transloco: { type: 'Post' } }} </span>
+      </div>
+    </div>
+
+    <div nz-col
+         [nzMd]="6">
+      <div class="list-post__header-action">
+        <button class="full-width "
+                nz-button
+                [nzType]="'primary'">
+          {{'common.createNew' | transloco: { type: 'Post' } }}
+        </button>
+        <button class="filter-btn"
+                nz-button>
+          Filter
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-post__content"
+       nz-row
+       [nzJustify]="'space-between'">
+    <!-- List -->
+    <div nz-col
+         [nzMd]="18">
+      <div class="list-post__main">
+        <post-list></post-list>
+      </div>
+    </div>
+
+    <!-- Filter -->
+    <div nz-col
+         [nzMd]="6">
+      <div class="list-post__filter">
+        <post-list-filter></post-list-filter>
+      </div>
+    </div>
+  </div>
+</div>

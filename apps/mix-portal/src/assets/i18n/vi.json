@@ -11,6 +11,7 @@
     "dashboard": "Tổng quan",
     "document": "Tài liệu",
     "navigation": "Liên kết",
+    "post": "Bài viết",
     "gettingStarted": "Bắt đầu",
     "api": "Api",
     "createNew": "Tạo mới",
@@ -24,6 +25,9 @@
     "theme": "Giao diện"
   },
   "common": {
-    "nodata": "Chưa có dữ liệu"
+    "nodata": "Chưa có dữ liệu",
+    "createNew": "Tạo Mới {{type}}",
+    "list": "Danh sách {{type}}",
+    "filterGuideline": "Sử dụng bộ lọc bên phải để tìm kiếm {{type}} của bạn"
   }
 }

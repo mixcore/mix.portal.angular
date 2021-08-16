@@ -20,12 +20,9 @@ export interface ISidebarMenuItem {
 })
 export class HulkSidebarComponent {
   @Output() public expandedChanged: EventEmitter<boolean> = new EventEmitter<boolean>();
-
   public isExpanded: boolean = true;
 
-  constructor(public store: SideBarStore) {
-    //
-  }
+  constructor(public store: SideBarStore) {}
 
   public toggle(): void {
     this.isExpanded = !this.isExpanded;
