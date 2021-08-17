@@ -81,6 +81,19 @@ export const SMC_SIDEBAR_MENU_ITEMS: ISidebarMenuItem[] = [
         title: 'list'
       }
     ]
+  },
+  {
+    title: 'database',
+    icon: 'cluster',
+    routerLink: ['database'],
+    children: [
+      {
+        title: 'createNew'
+      },
+      {
+        title: 'list'
+      }
+    ]
   }
 ];
 

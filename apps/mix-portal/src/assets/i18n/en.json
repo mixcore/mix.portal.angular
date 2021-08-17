@@ -15,6 +15,7 @@
     "post": "Posts",
     "module": "Modules",
     "page": "Pages",
+    "database": "Databases",
     "api": "Api",
     "createNew": "Create new",
     "list": "List",

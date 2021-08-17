@@ -58,6 +58,13 @@ const ROUTE: Route[] = [
         }
       },
       {
+        path: 'database',
+        loadChildren: async () => (await import('@mix-portal/ng/cms-database')).CmsDatabaseModule,
+        data: {
+          breadcrumb: 'Databases'
+        }
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/dashboard'
