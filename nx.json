@@ -25,7 +25,16 @@
     "mix-portal": {
       "tags": []
     },
+    "ng-cms-category": {
+      "tags": []
+    },
     "ng-cms-dashboard": {
+      "tags": []
+    },
+    "ng-cms-database": {
+      "tags": []
+    },
+    "ng-cms-file": {
       "tags": []
     },
     "ng-cms-init": {
@@ -44,6 +53,15 @@
       "tags": []
     },
     "ng-cms-post": {
+      "tags": []
+    },
+    "ng-cms-tag": {
+      "tags": []
+    },
+    "ng-cms-theme": {
+      "tags": []
+    },
+    "ng-cms-user": {
       "tags": []
     },
     "ng-shared": {

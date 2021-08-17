@@ -92,6 +92,28 @@
         }
       }
     },
+    "ng-cms-category": {
+      "projectType": "library",
+      "root": "libs/ng/cms-category",
+      "sourceRoot": "libs/ng/cms-category/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-category/src/**/*.ts", "libs/ng/cms-category/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-category"],
+          "options": {
+            "jestConfig": "libs/ng/cms-category/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "ng-cms-dashboard": {
       "projectType": "library",
       "root": "libs/ng/cms-dashboard",
@@ -110,6 +132,50 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/ng/cms-dashboard/src/**/*.ts", "libs/ng/cms-dashboard/src/**/*.html"]
+          }
+        }
+      }
+    },
+    "ng-cms-database": {
+      "projectType": "library",
+      "root": "libs/ng/cms-database",
+      "sourceRoot": "libs/ng/cms-database/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-database/src/**/*.ts", "libs/ng/cms-database/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-database"],
+          "options": {
+            "jestConfig": "libs/ng/cms-database/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ng-cms-file": {
+      "projectType": "library",
+      "root": "libs/ng/cms-file",
+      "sourceRoot": "libs/ng/cms-file/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-file/src/**/*.ts", "libs/ng/cms-file/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-file"],
+          "options": {
+            "jestConfig": "libs/ng/cms-file/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
@@ -241,6 +307,72 @@
           "outputs": ["coverage/libs/ng/cms-post"],
           "options": {
             "jestConfig": "libs/ng/cms-post/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ng-cms-tag": {
+      "projectType": "library",
+      "root": "libs/ng/cms-tag",
+      "sourceRoot": "libs/ng/cms-tag/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-tag/src/**/*.ts", "libs/ng/cms-tag/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-tag"],
+          "options": {
+            "jestConfig": "libs/ng/cms-tag/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ng-cms-theme": {
+      "projectType": "library",
+      "root": "libs/ng/cms-theme",
+      "sourceRoot": "libs/ng/cms-theme/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-theme/src/**/*.ts", "libs/ng/cms-theme/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-theme"],
+          "options": {
+            "jestConfig": "libs/ng/cms-theme/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ng-cms-user": {
+      "projectType": "library",
+      "root": "libs/ng/cms-user",
+      "sourceRoot": "libs/ng/cms-user/src",
+      "prefix": "mix-portal",
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/ng/cms-user/src/**/*.ts", "libs/ng/cms-user/src/**/*.html"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ng/cms-user"],
+          "options": {
+            "jestConfig": "libs/ng/cms-user/jest.config.js",
             "passWithNoTests": true
           }
         }
