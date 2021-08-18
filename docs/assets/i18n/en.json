@@ -12,6 +12,10 @@
     "document": "Document",
     "navigation": "Navigation",
     "gettingStarted": "Getting started",
+    "post": "Posts",
+    "module": "Modules",
+    "page": "Pages",
+    "database": "Databases",
     "api": "Api",
     "createNew": "Create new",
     "list": "List",
@@ -24,6 +28,9 @@
     "theme": "Theme"
   },
   "common": {
-    "nodata": "No data found"
+    "nodata": "No data found",
+    "createNew": "Create New {{type}}",
+    "list": "{{type}} List",
+    "filterGuideline": "Use the filter side bar on the right to filter and search your {{type}}."
   }
 }

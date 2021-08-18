@@ -2,8 +2,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
-import { LegendPosition } from '@swimlane/ngx-charts';
-
 @Component({
   selector: 'main-dashboard',
   templateUrl: './main-dashboard.component.html',
@@ -16,7 +14,6 @@ export class MainDashboardComponent {
   public showLegend: boolean = true;
   public showLabels: boolean = true;
   public isDoughnut: boolean = true;
-  public legendPosition: LegendPosition = LegendPosition.Below;
 
   public colorScheme: { domain: string[] } = {
     domain: ['#f06', '#52c41a', '#faad14', '#f5222d', '#AAAAAA']
