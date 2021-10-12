@@ -60,7 +60,6 @@
     "@angular/cli": "12.1.4",
     "@angular/compiler-cli": "12.1.0",
     "@angular/language-service": "12.1.0",
-    "@eztool/prettier-plugin-formatter": "1.0.1",
     "@nrwl/angular": "12.7.2",
     "@nrwl/cli": "12.7.2",
     "@nrwl/cypress": "12.7.2",
