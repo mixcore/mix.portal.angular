@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { PostRepository } from '@mix-lib';
 
 @Component({
   selector: 'list-post',

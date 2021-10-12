@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@mix-lib": ["libs/mix.lib.ts/src"],
       "@mix-portal/ng/cms-category": ["libs/ng/cms-category/src/index.ts"],
       "@mix-portal/ng/cms-dashboard": ["libs/ng/cms-dashboard/src/index.ts"],
       "@mix-portal/ng/cms-database": ["libs/ng/cms-database/src/index.ts"],
@@ -32,5 +33,6 @@
       "@mix-portal/ng/webshell": ["libs/ng/webshell/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "allowSyntheticDefaultImports": true
 }
