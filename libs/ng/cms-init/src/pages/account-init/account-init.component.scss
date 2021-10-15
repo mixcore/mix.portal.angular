@@ -1,0 +1,31 @@
+.account-init {
+  width: 100%;
+  padding: 50px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__content {
+    width: 500px;
+  }
+
+  &__action {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__mix-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__form {
+    padding: 20px;
+  }
+}

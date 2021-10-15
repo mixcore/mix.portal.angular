@@ -25,6 +25,9 @@
     "mix-portal": {
       "tags": []
     },
+    "ng-cms-api": {
+      "tags": []
+    },
     "ng-cms-category": {
       "tags": []
     },

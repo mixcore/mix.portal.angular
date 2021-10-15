@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@mix-portal/ng/cms-api": ["libs/ng/cms-api/src/index.ts"],
       "@mix-portal/ng/cms-category": ["libs/ng/cms-category/src/index.ts"],
       "@mix-portal/ng/cms-dashboard": ["libs/ng/cms-dashboard/src/index.ts"],
       "@mix-portal/ng/cms-database": ["libs/ng/cms-database/src/index.ts"],

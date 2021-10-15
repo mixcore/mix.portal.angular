@@ -7,16 +7,19 @@ import { IconDefinition } from '@ant-design/icons-angular';
 import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { NgModule } from '@angular/core';
 import { PortalWebShellModule } from '@mix-portal/ng/webshell';
+import { environment } from '../environments/environment';
+import { getAppConfigProvider } from '@mix-portal/ng/shared';
 
 const antDesignIcons: { [key: string]: IconDefinition } = AllIcons as {
   [key: string]: IconDefinition;
 };
+
 const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: string) => antDesignIcons[key]);
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, BrowserAnimationsModule, PortalWebShellModule],
-  providers: [{ provide: NZ_ICONS, useValue: icons }],
+  providers: [{ provide: NZ_ICONS, useValue: icons }, getAppConfigProvider(environment)],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
