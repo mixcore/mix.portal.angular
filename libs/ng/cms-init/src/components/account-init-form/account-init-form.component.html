@@ -1,0 +1,64 @@
+<div class="account-init-form"
+     nz-form
+     *ngIf="initAccountForm"
+     [formGroup]="initAccountForm">
+  <div class="account-init-form__account-info">
+    <div class="account-init-form__subtitle"> Account Configuration </div>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Your Administrator Username</nz-form-label>
+      <nz-form-control [nzSpan]="24"
+                       nzErrorTip="Please input your username">
+        <input nz-input
+               formControlName="userName"
+               placeholder="administrator">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Your Email</nz-form-label>
+      <nz-form-control [nzSpan]="24"
+                       [nzErrorTip]="emailErrorTpl">
+        <input nz-input
+               formControlName="email"
+               placeholder="mixcore@gmail.com">
+        <ng-template #emailErrorTpl
+                     let-control>
+          <ng-container *ngIf="control.hasError('required')">Please input your Email!</ng-container>
+          <ng-container *ngIf="control.hasError('email')">
+            Email not valid
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Password</nz-form-label>
+      <nz-form-control [nzSpan]="24"
+                       nzErrorTip="Please input your password">
+        <input nz-input
+               type="password"
+               formControlName="password"
+               (ngModelChange)="updateConfirmValidator()"
+               placeholder="Password">
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24">Confirm Password</nz-form-label>
+      <nz-form-control [nzSpan]="24"
+                       [nzErrorTip]="confirmPassErrorTpl">
+        <input nz-input
+               type="password"
+               formControlName="confirmPassword"
+               placeholder="Confirm Password">
+        <ng-template #confirmPassErrorTpl
+                     let-control>
+          <ng-container *ngIf="control.hasError('required')">Please confirm your password!</ng-container>
+          <ng-container *ngIf="control.hasError('confirm')">
+            Two passwords that you enter is inconsistent!
+          </ng-container>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+</div>

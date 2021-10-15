@@ -15,6 +15,7 @@ module.exports = {
     '<rootDir>/libs/ng/cms-file',
     '<rootDir>/libs/ng/cms-tag',
     '<rootDir>/libs/ng/cms-user',
-    '<rootDir>/libs/ng/cms-theme'
+    '<rootDir>/libs/ng/cms-theme',
+    '<rootDir>/libs/ng/cms-api'
   ]
 };

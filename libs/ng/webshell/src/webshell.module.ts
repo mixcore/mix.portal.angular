@@ -3,9 +3,12 @@ import { authTokenProvider, baseHrefProvider, errorHandlingProvider, nzDefaultLa
 
 import { AppHeaderComponent } from './ui/header/app-header.component';
 import { AppSettingModule } from './ui/app-setting/app-setting.module';
+import { CmsApiModule } from '@mix-portal/ng/cms-api';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HulkSidebarComponent } from './ui/sidebar/sidebar.component';
+import { InitGuard } from './guards/init-guards';
+import { LayoutBlankComponent } from './ui/layout-blank/layout-blank.component';
 import { LayoutComponent } from './ui/layout/layout.component';
 import { NgModule } from '@angular/core';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -15,12 +18,14 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { PortalGuard } from './guards/app-guards';
 import { TranslocoRootModule } from './translation-root.module';
 
 const ROUTE: Route[] = [
   {
     path: '',
     component: LayoutComponent,
+    canActivate: [PortalGuard],
     children: [
       {
         path: 'dashboard',
@@ -63,11 +68,17 @@ const ROUTE: Route[] = [
         data: {
           breadcrumb: 'Databases'
         }
-      },
+      }
+    ]
+  },
+  {
+    path: 'init',
+    component: LayoutBlankComponent,
+    canActivate: [InitGuard],
+    children: [
       {
         path: '',
-        pathMatch: 'full',
-        redirectTo: '/dashboard'
+        loadChildren: async () => (await import('@mix-portal/ng/cms-init')).CmsInitModule
       }
     ]
   }
@@ -88,10 +99,11 @@ const ROUTE: Route[] = [
     TranslocoRootModule,
     NzTabsModule,
     NzModalModule,
-    AppSettingModule
+    AppSettingModule,
+    CmsApiModule
   ],
-  declarations: [LayoutComponent, HulkSidebarComponent, AppHeaderComponent],
-  providers: [baseHrefProvider, authTokenProvider, errorHandlingProvider, spinnerProvider, nzDefaultLangProvider],
+  declarations: [LayoutComponent, LayoutBlankComponent, HulkSidebarComponent, AppHeaderComponent],
+  providers: [baseHrefProvider, authTokenProvider, errorHandlingProvider, spinnerProvider, nzDefaultLangProvider, PortalGuard, InitGuard],
   exports: [RouterModule]
 })
 export class PortalWebShellModule {}

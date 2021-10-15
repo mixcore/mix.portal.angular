@@ -1,7 +1,7 @@
-import { DEFAULT_INTERCEPTORS, InterceptorRegistry } from './interceptor-registry';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
+import { DEFAULT_INTERCEPTORS, InterceptorRegistry } from './interceptor.registry';
 
 // Interceptors
 export const CORE_INTERCEPTOR_KEYS: string = 'Core-Interceptor-Keys';

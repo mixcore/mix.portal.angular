@@ -1,0 +1,27 @@
+ <div class="site-init app-background">
+   <div class="site-init__logo">
+     <img width="150"
+          src="assets/icons/mixcore-logo-red-2.svg">
+   </div>
+
+   <div class="site-init__content app-widget">
+     <div class="site-init__mix-info">
+       <img width="150"
+            src="assets/icons/mix-info.svg">
+       <h1>Welcome to Mixcore</h1>
+       <span>Let start your dream together!</span>
+     </div>
+
+     <div class="site-init__form">
+       <site-init-form #siteForm></site-init-form>
+     </div>
+
+     <div class="site-init__action">
+       <button nz-button
+               nzType="primary"
+               (click)="submitSite()">
+         Submit
+       </button>
+     </div>
+   </div>
+ </div>
