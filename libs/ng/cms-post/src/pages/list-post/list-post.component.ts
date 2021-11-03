@@ -53,19 +53,17 @@ export class ListPostComponent implements OnInit {
     });
   }
   demoCrypto() {
-    console.log('Demo crypto service');
-    console.log(
-      cryptoService.encryptAES('test 123', 'MFBud2srMG1IYWRBakZ6dmFMR0RTQT09LG14UDBYc0ZHUGZRc29pYmVJODFyWUZ2OGVZWWdJRFJ0U28wL1phV0FEeGs9'),
-      cryptoService.decryptAES(
-        'U2FsdGVkX1/fxVSws7TaVP7G7okuWQrsh7Htyf7zGp8=',
-        'MFBud2srMG1IYWRBakZ6dmFMR0RTQT09LG14UDBYc0ZHUGZRc29pYmVJODFyWUZ2OGVZWWdJRFJ0U28wL1phV0FEeGs9'
-      )
-    );
+    let text = 'Demo crypto service';
+    let key = 'MFBud2srMG1IYWRBakZ6dmFMR0RTQT09LG14UDBYc0ZHUGZRc29pYmVJODFyWUZ2OGVZWWdJRFJ0U28wL1phV0FEeGs9';
+    console.log('text:' + text);
+    let encrypted = cryptoService.encryptAES(text, key);
+    console.warn(encrypted);
+    console.error('result: ', cryptoService.decryptAES(encrypted, key));
   }
   initParams() {
     console.log('Init Mix Params');
-    localStorage.setItem(LocalStorageKeys.CONF_APP_URL, 'https://store.mixcore.org/api/v1');
+    localStorage.setItem(LocalStorageKeys.CONF_APP_URL, 'https://localhost:5010/api/v2');
     localStorage.setItem(LocalStorageKeys.CONF_CURRENT_CULTURE, 'en-us');
-    mixSettingService.getAllSettings('en-us');
+    mixSettingService.getAllSettings();
   }
 }
