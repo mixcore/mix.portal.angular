@@ -12,7 +12,7 @@ import { map } from 'rxjs/operators';
 })
 export class SharedApiService extends BaseBackendService {
   protected get apiUrl(): string {
-    return `${this.appConfig.apiBaseEndpoint}/shared`;
+    return `${this.appConfig.apiBaseEndpoint}/rest/shared`;
   }
 
   constructor(public http: HttpClient, @Inject(APP_CONFIG) public appConfig: IPortalAppConfig) {
