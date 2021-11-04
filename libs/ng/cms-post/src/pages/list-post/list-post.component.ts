@@ -41,14 +41,14 @@ export class ListPostComponent implements OnInit {
 
     this.postRepo.getSingleModel(1).then(resp => {
       if (resp) {
-        // Declare viewmodel from model
-        let p: MixPostPortalViewModel;
-        p = new MixPostPortalViewModel(resp);
+        // // Declare viewmodel from model
+        // let p: MixPostPortalViewModel;
+        // p = new MixPostPortalViewModel(resp);
 
-        // Binding or update data in view then call update to save model
+        // // Binding or update data in view then call update to save model
         // p.title = 'test';
         // p.update();
-        // console.log(p);
+        console.log(resp);
       }
     });
   }
