@@ -28,17 +28,13 @@ export class ListPostComponent implements OnInit {
   constructor(public postRepo: PostRepository) {}
   ngOnInit(): void {
     this.initParams();
-
+    mixSettingService.getAllSettings();
     this.demoCrypto();
 
     this.demoPattern();
   }
 
   demoPattern() {
-    this.postRepo.getListModel(this.params).then(resp => {
-      this.data = resp;
-    });
-
     this.postRepo.getSingleModel(1).then(resp => {
       if (resp) {
         // // Declare viewmodel from model
@@ -61,9 +57,7 @@ export class ListPostComponent implements OnInit {
     console.error('result: ', cryptoService.decryptAES(encrypted, key));
   }
   initParams() {
-    console.log('Init Mix Params');
-    localStorage.setItem(LocalStorageKeys.CONF_APP_URL, 'https://localhost:5010/api/v2');
-    localStorage.setItem(LocalStorageKeys.CONF_CURRENT_CULTURE, 'en-us');
-    mixSettingService.getAllSettings();
+    this.postRepo.setBaseURL('https://localhost:5010/api/v2/rest/mix-portal');
+    this.postRepo.setLanguage('en-us');
   }
 }

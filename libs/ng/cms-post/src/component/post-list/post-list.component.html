@@ -1,5 +1,5 @@
 <div class="post-list app-widget">
-  <nz-table #basicTable>
+  <nz-table>
     <thead>
       <tr>
         <th>Post</th>
@@ -10,8 +10,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let data of basicTable.data">
-        <td>''</td>
+      <tr *ngFor="let data of posts.items">
+        <td>{{data.title}}</td>
         <td>''</td>
         <td>''</td>
         <td>
