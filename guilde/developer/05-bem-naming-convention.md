@@ -1,3 +1,0 @@
-# STYLING - BEM NAMING CONVENTION
-
-Updating...

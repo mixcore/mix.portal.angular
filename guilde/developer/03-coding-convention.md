@@ -1,3 +1,0 @@
-# ANGULAR CODING CONVENTIONS
-
-Updating...

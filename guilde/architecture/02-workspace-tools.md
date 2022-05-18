@@ -1,3 +1,0 @@
-# NX WORKSPACE TOOLS
-
-Updating...

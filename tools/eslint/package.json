@@ -1,7 +1,0 @@
-{
-  "name": "@eztool/eslint-plugin",
-  "version": "1.0.0",
-  "description": "Recommended strict rules for Typescript and Angular",
-  "license": "MIT",
-  "main": "./index.js"
-}
