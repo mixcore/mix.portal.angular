@@ -1,0 +1,61 @@
+.header-menu {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  min-height: 70px;
+  border-bottom: 1px solid var(--tui-base-03);
+  align-items: center;
+  padding: 0 24px;
+  justify-content: flex-end;
+
+  &__user-info {
+    padding: 1rem 1rem 0rem 1rem;
+    display: flex;
+    width: 200px;
+    align-items: center;
+
+    > tui-avatar {
+      margin-right: 15px;
+    }
+
+    > .title {
+      > span {
+        margin-right: 5px;
+      }
+
+      > strong {
+        display: inline-block;
+      }
+
+      > strong:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  &__avatar {
+    cursor: pointer;
+  }
+
+  &__separator {
+    display: block;
+    content: '';
+    height: 0.5px;
+    width: calc(100% - 20px);
+    background-color: var(--tui-base-04);
+    margin: 1rem 10px;
+  }
+
+  &__item {
+    > button[tuiLink] {
+      color: var(--tui-text-01);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+
+      > tui-svg {
+        margin-right: 2rem !important;
+      }
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.mix-form {
+  &__header {
+    font: var(--tui-font-heading-5);
+    margin-top: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__row {
+    width: 100%;
+    margin-bottom: 1.25rem;
+  }
+
+  &__main-label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+    font-weight: bold;
+  }
+
+  &__toolbar-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    > button {
+      margin-left: 15px;
+    }
+  }
+
+  &__toolbar-left {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+
+    > button {
+      margin-right: 15px;
+    }
+  }
+}

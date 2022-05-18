@@ -1,0 +1,34 @@
+<div class="sidebar-menu"
+     [ngClass]="{'--expanded': isExpanded}">
+  <div *ngIf="isExpanded"
+       class="sidebar-menu__header">
+    <img class="sidebar-menu__logo"
+         src="assets/images/mixcore-logo-red-2.svg">
+  </div>
+
+  <div class="sidebar-menu__main-navigation">
+    <tui-tree *ngFor="let item of data.children"
+              [childrenHandler]="handler"
+              [content]="content"
+              [map]="treeMap"
+              [tuiTreeController]="false"
+              [value]="item"></tui-tree>
+  </div>
+
+  <div class="sidebar-menu__collapse-icon"
+       (click)="toggleMenu()">
+    <tui-svg [src]="collapseIcon"></tui-svg>
+  </div>
+</div>
+
+
+<ng-template #content
+             let-item>
+  <tui-svg *ngIf="item.icon"
+           class="sidebar-menu__menu-item-icon"
+           [ngClass]="{'--collapsed': !isExpanded}"
+           [src]="item.icon"
+           (click)="menuItemIconClick(item)"></tui-svg>
+  <span class="sidebar-menu__menu-item-title"
+        [ngClass]="{'--collapsed': !isExpanded}"> {{item.text}} </span>
+</ng-template>

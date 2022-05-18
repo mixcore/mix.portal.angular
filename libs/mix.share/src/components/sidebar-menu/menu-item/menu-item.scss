@@ -1,0 +1,48 @@
+.mix-menu-item {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.5rem;
+  border-radius: var(--tui-radius-xs);
+
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    left: -0.75rem;
+    z-index: -1;
+  }
+
+  &:before {
+    width: 1rem;
+    border-bottom: 0.5px dashed var(--tui-base-04);
+  }
+
+  &:after {
+    top: -1rem;
+    bottom: 1rem;
+    border-left: 0.5px dashed var(--tui-base-04);
+  }
+
+  &._expandable {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__expand-icon {
+    cursor: pointer;
+    position: relative;
+    background: inherit;
+    transition: all 0.2s ease-in;
+
+    &.--expanded {
+      transform: rotateZ(-90deg);
+    }
+  }
+}
+
+:host-context(tui-tree:last-child > tui-tree-item > [polymorpheus-outlet]) {
+  position: relative;
+}

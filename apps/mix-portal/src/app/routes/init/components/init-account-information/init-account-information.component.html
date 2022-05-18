@@ -1,0 +1,66 @@
+<div class="init-account-information mix-form"
+     [formGroup]="accountForm"
+     (keyup.enter)="submitForm()">
+  <h3 class="mix-form__header">Step 2: Account Info</h3>
+
+  <div class="mix-form__main-label">Administrator account</div>
+
+  <div class="mix-form__row">
+    <label [label]="'Username:'"
+           tuiLabel>
+      <tui-input [tuiTextfieldLabelOutside]="true"
+                 tuiTextfieldSize="m"
+                 formControlName="userName">
+        <input tuiTextfield>
+      </tui-input>
+      <tui-field-error formControlName="userName"></tui-field-error>
+    </label>
+  </div>
+
+  <div class="mix-form__row">
+    <label [label]="'Email:'"
+           tuiLabel>
+      <tui-input [tuiTextfieldLabelOutside]="true"
+                 tuiTextfieldSize="m"
+                 formControlName="email">
+
+        <input tuiTextfield>
+      </tui-input>
+      <tui-field-error formControlName="email"></tui-field-error>
+    </label>
+
+  </div>
+
+  <div class="mix-form__row">
+    <label [label]="'Password:'"
+           tuiLabel>
+      <tui-input [tuiTextfieldLabelOutside]="true"
+                 tuiTextfieldSize="m"
+                 formControlName="password">
+        <input type="password"
+               tuiTextfield>
+      </tui-input>
+      <tui-field-error formControlName="password"></tui-field-error>
+    </label>
+  </div>
+
+  <div class="mix-form__row">
+    <label [label]="'Confirm Password:'"
+           tuiLabel>
+      <tui-input [tuiTextfieldLabelOutside]="true"
+                 tuiTextfieldSize="m"
+                 formControlName="confirmPassword">
+        <input type="password"
+               tuiTextfield>
+      </tui-input>
+      <tui-field-error formControlName="confirmPassword"></tui-field-error>
+    </label>
+  </div>
+
+  <div class="mix-form__toolbar-right">
+    <button [pseudo]="true"
+            tuiLink>Previous step</button>
+    <button (click)="submitForm()"
+            tuiButton>Next Step</button>
+  </div>
+</div>

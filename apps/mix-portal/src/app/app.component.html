@@ -1,0 +1,20 @@
+<tui-root>
+  <div *ngIf="!isLoading; else loading"
+       class="main-page">
+    <router-outlet></router-outlet>
+  </div>
+
+  <ng-container ngProjectAs="tuiOverContent"> </ng-container>
+  <ng-container ngProjectAs="tuiOverDialogs"> </ng-container>
+  <ng-container ngProjectAs="tuiOverAlerts"> </ng-container>
+  <ng-container ngProjectAs="tuiOverPortals"> </ng-container>
+  <ng-container ngProjectAs="tuiOverHints"> </ng-container>
+</tui-root>
+
+
+<ng-template #loading>
+  <div class="wrapper loading-box">
+    <img src="assets/images/loading.svg"
+         width="80px">
+  </div>
+</ng-template>

@@ -1,0 +1,28 @@
+<div class="init-themes mix-form">
+  <h3 class="mix-form__header">Step 3: Choose your themes</h3>
+
+  <div class="init-themes__theme-card">
+    <div class="init-themes__theme-card-title"> Default </div>
+    <button tuiButton
+            size="s"
+            appearance="primary"> View</button>
+  </div>
+
+  <div class="mix-form__toolbar-left">
+    <button [pseudo]="true"
+            tuiLink>Browse theme</button>
+    or
+    <button [pseudo]="true"
+            tuiLink>Import your theme</button>
+  </div>
+
+  <div class="mix-form__toolbar-right init-themes__submit">
+    <button [disabled]="loading"
+            [pseudo]="true"
+            tuiLink>Back</button>
+    <button [disabled]="loading"
+            [showLoader]="loading"
+            (click)="submitTheme()"
+            tuiButton>Submit</button>
+  </div>
+</div>

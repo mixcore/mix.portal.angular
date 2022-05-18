@@ -1,0 +1,37 @@
+.init-page {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.init-page-container {
+  display: flex;
+  background-color: var(--tui-base-01);
+
+  &__form {
+    width: 500px;
+    padding: 20px;
+  }
+
+  &__banner {
+    padding: 20px;
+    width: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+
+    > img {
+      width: 350px;
+      height: auto;
+    }
+  }
+
+  &__step {
+    padding-top: 50px;
+  }
+}
