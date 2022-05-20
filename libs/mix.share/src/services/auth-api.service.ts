@@ -21,7 +21,7 @@ export class AuthApiService extends BaseApiService {
       tap((data: IAuthorizationData) => {
         const tokenInfo = JSON.parse(cryptoService.decryptAES(data.message, data.aesKey)) as TokenInfo;
 
-        if (tokenInfo && tokenInfo.info) this.user$.next(tokenInfo.info.user);
+        if (tokenInfo && tokenInfo.info) this.user$.next(tokenInfo.info);
         localStorage.setItem(LocalStorageKeys.ACCESS_TOKEN, tokenInfo.accessToken);
         localStorage.setItem(LocalStorageKeys.REFRESH_TOKEN, tokenInfo.refreshToken);
         localStorage.setItem(LocalStorageKeys.TOKEN_TYPE, tokenInfo.tokenType);

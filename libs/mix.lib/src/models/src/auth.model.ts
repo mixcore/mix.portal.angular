@@ -22,7 +22,34 @@ export class TokenInfo {
 
 export class UserInfo {
   public additionalData: never | undefined;
-  public user!: User;
+  public joinDate!: Date;
+  public isActived = false;
+  public lastModified!: Date;
+  public modifiedBy?: string;
+  public registerType?: string;
+  public avatar?: string;
+  public nickName?: string;
+  public firstName?: string;
+  public lastName?: string;
+  public gender?: string;
+  public countryId?: number;
+  public culture?: Culture;
+  public dob?: string;
+  public roles?: string[];
+  public claims?: string[];
+  public logins?: string[];
+  public id!: string;
+  public userName!: string;
+  public normalizedUserName?: string;
+  public email!: string;
+  public normalizedEmail?: string;
+  public emailConfirmed = false;
+  public passwordHash!: string;
+  public securityStamp!: string;
+  public concurrencyStamp!: string;
+  public phoneNumber?: string;
+  public phoneNumberConfirmed = false;
+  public twoFactorEnabled = false;
 }
 
 export class User {

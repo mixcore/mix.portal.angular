@@ -3,9 +3,9 @@ export class ShareApiDictionary {
 
   public getGlobalSettingsEndpoint = `/shared/get-global-settings`;
 
-  public signInEndpoint = `/mix-account/login`;
+  public signInEndpoint = `/mix-account/user/login`;
 
-  public getAccountProfileEndpoint = `/mix-account/my-profile`;
+  public getAccountProfileEndpoint = `/mix-account/user/my-profile`;
 
   public getSharedSettingEndpoint = `/shared/get-shared-settings/en-US`;
 

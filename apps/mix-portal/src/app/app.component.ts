@@ -30,7 +30,7 @@ export class AppComponent {
   private initAuthorization(): void {
     this.auth.fetchUserInfo().subscribe({
       next: res => {
-        this.auth.user$.next(res.user);
+        this.auth.user$.next(res);
         this.isLoading = false;
       },
       error: () => {
