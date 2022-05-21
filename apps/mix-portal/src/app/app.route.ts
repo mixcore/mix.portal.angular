@@ -1,7 +1,5 @@
 import { Route } from '@angular/router';
 
-import { PortalLayoutComponent } from './routes/portal/portal.component';
-
 export const app_routes: Route[] = [
   {
     path: 'init',
@@ -13,8 +11,8 @@ export const app_routes: Route[] = [
   },
   {
     path: 'portal',
-    component: PortalLayoutComponent,
-    loadChildren: () => import('./routes/portal/portal.module').then(m => m.PortalModule)
+    loadComponent: () => import('./routes/portal/portal.layout').then(m => m.PortalLayoutComponent),
+    loadChildren: () => import('./routes/portal/portal.routes').then(m => m.PORTAL_ROUTES)
   },
   {
     path: '**',

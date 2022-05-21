@@ -6,7 +6,12 @@
   border-bottom: 1px solid var(--tui-base-03);
   align-items: center;
   padding: 0 24px;
-  justify-content: flex-end;
+  justify-content: space-between;
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 500;
+  }
 
   &__user-info {
     padding: 1rem 1rem 0rem 1rem;
@@ -34,6 +39,7 @@
   }
 
   &__avatar {
+    margin-left: auto;
     cursor: pointer;
   }
 

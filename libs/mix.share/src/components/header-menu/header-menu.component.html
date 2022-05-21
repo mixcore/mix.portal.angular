@@ -1,7 +1,12 @@
 <div class="header-menu">
-  <tui-hosted-dropdown [content]="profileTemplate">
-    <tui-avatar class="header-menu__avatar"
-                [rounded]="true"
+  <div *ngIf="headerService.title$ | async as title"
+       class="header-menu__title">
+    {{ title }}
+  </div>
+
+  <tui-hosted-dropdown class="header-menu__avatar"
+                       [content]="profileTemplate">
+    <tui-avatar [rounded]="true"
                 text="Admin"
                 size="m"></tui-avatar>
     <ng-template #profileTemplate

@@ -1,7 +1,15 @@
 <div class="dashboard-page">
-  <mix-widget>
+  <mix-widget class="dashboard-page__hello">
     <p class="tui-island__category">{{ currentDay}}, {{ currentDate }}</p>
     <h2 class="mix-widget__title">Hi, Phong Cao</h2>
-  </mix-widget>
 
+    <ng-container *ngIf="portalInfo$ | async as portalInfo">
+      <tui-badge [status]="'success'"
+                 value="{{ portalInfo.totalPage + ' Page'}}"></tui-badge>
+      <tui-badge [status]="'success'"
+                 value="{{ portalInfo.totalPost + ' Post'}}"></tui-badge>
+      <tui-badge [status]="'success'"
+                 value="{{ portalInfo.totalModule + ' Module'}}"></tui-badge>
+    </ng-container>
+  </mix-widget>
 </div>

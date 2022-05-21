@@ -1,1 +1,6 @@
-@import "styles/utitlies.scss";
+@import 'styles/utitlies.scss';
+
+tui-badge {
+  height: 50px !important;
+  width: 100px;
+}

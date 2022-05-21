@@ -22,7 +22,6 @@ import {
   TuiTagModule
 } from '@taiga-ui/kit';
 
-import { HeaderMenuComponent } from './components/header-menu/header-menu.component';
 import { MixWidgetComponent } from './components/mix-widget/mix-widget.component';
 
 const TaiGa_CommonModule = [
@@ -55,7 +54,7 @@ const TaiGa_CommonModule = [
 
 @NgModule({
   imports: [CommonModule, ...TaiGa_CommonModule],
-  declarations: [HeaderMenuComponent, MixWidgetComponent],
-  exports: [HeaderMenuComponent, MixWidgetComponent, ...TaiGa_CommonModule]
+  declarations: [MixWidgetComponent],
+  exports: [MixWidgetComponent, ...TaiGa_CommonModule]
 })
 export class ShareModule {}

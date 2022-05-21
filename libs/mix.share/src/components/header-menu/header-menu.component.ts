@@ -1,19 +1,25 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthApiService } from '../../services';
+import { ShareModule } from '../../share.module';
 import { ModalService } from '../modal/modal.service';
+import { HeaderMenuService } from './header-menu.service';
 
 @Component({
   selector: 'mix-header-menu',
   templateUrl: './header-menu.component.html',
-  styleUrls: ['./header-menu.component.scss']
+  styleUrls: ['./header-menu.component.scss'],
+  standalone: true,
+  imports: [CommonModule, ShareModule]
 })
 export class HeaderMenuComponent {
   public user$ = this.authService.user$;
 
   constructor(
     public authService: AuthApiService,
+    public headerService: HeaderMenuService,
     private route: Router,
     @Inject(ModalService) private readonly modalService: ModalService
   ) {}

@@ -1,2 +1,11 @@
 .dashboard-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__hello {
+    tui-badge {
+      margin: 5px;
+    }
+  }
 }
