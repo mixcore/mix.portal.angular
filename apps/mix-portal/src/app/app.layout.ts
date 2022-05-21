@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { InitStep } from '@mix-spa/mix.lib';
 import { AuthApiService, TenancyApiService } from '@mix-spa/mix.share';
 import { TuiRootModule } from '@taiga-ui/core';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'mix-spa-root',
@@ -54,8 +55,14 @@ import { TuiRootModule } from '@taiga-ui/core';
 export class AppComponent {
   public isLoading = true;
 
-  constructor(private tenantApi: TenancyApiService, private route: Router, private auth: AuthApiService) {
+  constructor(
+    private tenantApi: TenancyApiService,
+    private route: Router,
+    private auth: AuthApiService,
+    private activeRoute: ActivatedRoute
+  ) {
     this.checkSystem();
+    this.setupHeader();
   }
 
   private checkSystem(): void {
@@ -79,6 +86,12 @@ export class AppComponent {
       error: () => {
         this.isLoading = false;
       }
+    });
+  }
+
+  private setupHeader(): void {
+    this.route.events.pipe(filter(evt => evt instanceof NavigationEnd)).subscribe(v => {
+      console.log(this.activeRoute.snapshot);
     });
   }
 }

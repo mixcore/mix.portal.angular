@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { EMPTY_ARRAY, TuiHandler } from '@taiga-ui/cdk';
 import { TUI_TREE_CONTENT } from '@taiga-ui/kit';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
@@ -9,6 +10,7 @@ import { SidebarMenuService } from './sidebar-menu.service';
 interface TreeNode {
   readonly text: string;
   readonly icon?: string;
+  readonly action?: () => void;
   readonly children?: readonly TreeNode[];
 }
 
@@ -28,11 +30,14 @@ export class SidebarMenuComponent {
   public isExpanded = true;
   public treeMap = new Map<TreeNode, boolean>();
   public data: TreeNode = {
-    text: 'DashBoard',
+    text: 'Mix Menu Item',
     children: [
       {
         text: 'DashBoard',
         icon: 'tuiIconStructureLarge',
+        action: () => {
+          this.route.navigateByUrl('/portal/dashboard');
+        },
         children: [
           {
             text: 'News',
@@ -40,16 +45,25 @@ export class SidebarMenuComponent {
           }
         ]
       },
-      { text: 'Posts', icon: 'tuiIconAddRowLarge' },
+      {
+        text: 'Posts',
+        icon: 'tuiIconAddRowLarge',
+        action: () => {
+          this.route.navigateByUrl('/portal/list-post');
+        }
+      },
       {
         text: 'Pages',
         icon: 'tuiIconFileLarge',
-        children: [{ text: 'Create Page' }, { text: 'List Page' }]
+        children: [{ text: 'Create Page' }, { text: 'List Page' }],
+        action: () => {
+          //
+        }
       }
     ]
   };
 
-  constructor(public sidebarService: SidebarMenuService) {
+  constructor(public sidebarService: SidebarMenuService, public route: Router) {
     this.sidebarService.isExpanded$.subscribe(ok => (this.isExpanded = ok));
   }
 

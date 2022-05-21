@@ -6,11 +6,17 @@ import { ListPostComponent } from './list-post/list-post.component';
 export const PORTAL_ROUTES: Route[] = [
   {
     path: 'dashboard',
-    component: DashBoardComponent
+    component: DashBoardComponent,
+    data: {
+      title: 'Dashboard'
+    }
   },
   {
     path: 'list-post',
-    component: ListPostComponent
+    component: ListPostComponent,
+    data: {
+      title: 'Post list'
+    }
   },
   {
     path: '',

@@ -19,4 +19,8 @@ export class DashBoardComponent {
   constructor(public dashboardApi: DashboardApiService, public headerService: HeaderMenuService) {
     this.headerService.setTitle('Dashboard');
   }
+
+  public ngOnDestroy() {
+    this.headerService.setTitle('');
+  }
 }

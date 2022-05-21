@@ -30,5 +30,6 @@
            [src]="item.icon"
            (click)="menuItemIconClick(item)"></tui-svg>
   <span class="sidebar-menu__menu-item-title"
-        [ngClass]="{'--collapsed': !isExpanded}"> {{item.text}} </span>
+        [ngClass]="{'--collapsed': !isExpanded}"
+        (click)="item.action && item.action()"> {{item.text}} </span>
 </ng-template>

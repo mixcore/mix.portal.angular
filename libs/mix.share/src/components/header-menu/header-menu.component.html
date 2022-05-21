@@ -4,33 +4,42 @@
     {{ title }}
   </div>
 
-  <tui-hosted-dropdown class="header-menu__avatar"
-                       [content]="profileTemplate">
-    <tui-avatar [rounded]="true"
-                text="Admin"
-                size="m"></tui-avatar>
-    <ng-template #profileTemplate
-                 let-activeZone>
-      <div *ngIf="user$ | async as user"
-           class="header-menu__user-info">
-        <tui-avatar class="header-menu__avatar"
-                    [avatarUrl]="user.avatar || null"
-                    [rounded]="true"
-                    [text]="user.userName"
-                    size="l"></tui-avatar>
-        <div class="title">
-          <span>Hi</span> <strong>{{ user.userName }}</strong>
-          <button [pseudo]="true"
-                  tuiLink>View your profile</button>
+  <div class="header-menu__right-menu">
+    <tui-input class="header-menu__search"
+               tuiTextfieldSize="m">
+      Search
+      <input type="text"
+             tuiTextfield>
+    </tui-input>
+
+    <tui-hosted-dropdown class="header-menu__avatar"
+                         [content]="profileTemplate">
+      <tui-avatar [rounded]="true"
+                  text="Admin"
+                  size="m"></tui-avatar>
+      <ng-template #profileTemplate
+                   let-activeZone>
+        <div *ngIf="user$ | async as user"
+             class="header-menu__user-info">
+          <tui-avatar class="header-menu__avatar"
+                      [avatarUrl]="user.avatar || null"
+                      [rounded]="true"
+                      [text]="user.userName"
+                      size="l"></tui-avatar>
+          <div class="title">
+            <span>Hi</span> <strong>{{ user.userName }}</strong>
+            <button [pseudo]="true"
+                    tuiLink>View your profile</button>
+          </div>
         </div>
-      </div>
-      <div class="header-menu__separator"></div>
-      <p class="header-menu__item tui-space_vertical-4 tui-space_horizontal-4">
-        <button (click)="logout()"
-                tuiLink
-                icon="tuiIconLogoutLarge"
-                iconAlign="right">Logout</button>
-      </p>
-    </ng-template>
-  </tui-hosted-dropdown>
+        <div class="header-menu__separator"></div>
+        <p class="header-menu__item tui-space_vertical-4 tui-space_horizontal-4">
+          <button (click)="logout()"
+                  tuiLink
+                  icon="tuiIconLogoutLarge"
+                  iconAlign="right">Logout</button>
+        </p>
+      </ng-template>
+    </tui-hosted-dropdown>
+  </div>
 </div>

@@ -8,6 +8,19 @@
   padding: 0 24px;
   justify-content: space-between;
 
+  &__left-menu {
+    //
+  }
+
+  &__right-menu {
+    margin-left: auto;
+    display: flex;
+  }
+
+  &__search {
+    width: 250px;
+  }
+
   &__title {
     font-size: 1.75rem;
     font-weight: 500;
@@ -39,7 +52,7 @@
   }
 
   &__avatar {
-    margin-left: auto;
+    margin-left: 15px;
     cursor: pointer;
   }
 
