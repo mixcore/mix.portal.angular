@@ -1,0 +1,57 @@
+<div class="theme-import">
+  <tui-tabs [(activeItemIndex)]="activeItemIndex">
+    <button (click)="activeItemIndex = 0"
+            tuiTab>
+      From Mix Store
+    </button>
+    <button (click)="activeItemIndex = 1"
+            tuiTab>
+      Upload
+    </button>
+  </tui-tabs>
+
+  <div *ngIf="themeListVm$ | async as result"
+       class="theme-import__container">
+    <ng-container *ngIf="activeItemIndex === 0">
+      <ng-container *ngIf="result.items.length; else noTheme">
+        <div class="row">
+          <div *ngFor="let item of result.items"
+               class="col-md-3 col-sm-12">
+            <div class="theme-card">
+              <div class="theme-card__thumbnail">
+                <img src="{{item.imageUrl}}">
+              </div>
+              <div class="theme-card__author"> {{ item.createdBy || 'Administrator'}} </div>
+              <div class="theme-card__title"> {{ item.title}} </div>
+              <div class="theme-card__description"> {{ item.excerpt }}</div>
+              <button class="theme-card__show-detail-btn"
+                      tuiButton
+                      size="s">View</button>
+              <button class="theme-card__choose-btn"
+                      [disabled]="!!currentSelectedTheme && currentSelectedTheme.id === item.id"
+                      (click)="selectTheme(item)"
+                      tuiButton
+                      size="s">Select</button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #noTheme> There is no theme in MixCore Store now.</ng-template>
+    </ng-container>
+
+    <ng-container *ngIf="activeItemIndex === 1">
+      Upload
+    </ng-container>
+  </div>
+
+  <div class="theme-import__footer">
+    <button (click)="onCancelClick()"
+            tuiButton
+            appearance="secondary">Cancel</button>
+
+    <button [disabled]="!currentSelectedTheme"
+            (click)="onUseThemeClick()"
+            tuiButton>Use Theme</button>
+  </div>
+</div>

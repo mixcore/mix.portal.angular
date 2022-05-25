@@ -3,8 +3,8 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { AuthInterceptor, BASE_URL, MixModalModule } from '@mix-spa/mix.share';
-import { TuiAlertModule } from '@taiga-ui/core';
+import { AuthInterceptor, BASE_URL, GET_THEME_URL, MixModalModule } from '@mix-spa/mix.share';
+import { TuiAlertModule, TuiDialogModule } from '@taiga-ui/core';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
 import { AppComponent } from './app/app.layout';
@@ -22,6 +22,10 @@ bootstrapApplication(AppComponent, {
       useValue: environment.baseUrl
     },
     {
+      provide: GET_THEME_URL,
+      useValue: environment.getThemeUrl
+    },
+    {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
@@ -34,6 +38,13 @@ bootstrapApplication(AppComponent, {
         confirm: 'Password confirm incorrect'
       }
     },
-    importProvidersFrom(RouterModule.forRoot(app_routes), BrowserAnimationsModule, HttpClientModule, TuiAlertModule, MixModalModule)
+    importProvidersFrom(
+      RouterModule.forRoot(app_routes),
+      BrowserAnimationsModule,
+      HttpClientModule,
+      TuiAlertModule,
+      TuiDialogModule,
+      MixModalModule
+    )
   ]
 }).catch(err => console.error(err));

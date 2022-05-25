@@ -1,16 +1,14 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { DashboardApiService, HeaderMenuService, ShareModule } from '@mix-spa/mix.share';
-import { TuiBadgeModule } from '@taiga-ui/kit';
+import { Component, OnDestroy } from '@angular/core';
+import { DashboardApiService, HeaderMenuService, MixWidgetComponent, ShareModule } from '@mix-spa/mix.share';
 
 @Component({
   selector: 'mix-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [CommonModule, ShareModule, TuiBadgeModule]
+  imports: [ShareModule, MixWidgetComponent]
 })
-export class DashBoardComponent {
+export class DashBoardComponent implements OnDestroy {
   public weekday = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   public currentDay = this.weekday[new Date().getDay()];
   public currentDate = new Date().toLocaleDateString();

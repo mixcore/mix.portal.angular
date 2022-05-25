@@ -2,14 +2,16 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalSettings } from '@mix-spa/mix.lib';
-import { AuthApiService, FormUtils, ShareApiService } from '@mix-spa/mix.share';
+import { AuthApiService, FormUtils, ShareApiService, ShareModule } from '@mix-spa/mix.share';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'mix-spa-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  standalone: true,
+  imports: [ShareModule]
 })
 export class LoginComponent {
   public loading = false;

@@ -10,10 +10,8 @@
 
   <div class="mix-form__toolbar-left">
     <button [pseudo]="true"
+            (click)="showDialog(importTheme)"
             tuiLink>Browse theme</button>
-    or
-    <button [pseudo]="true"
-            tuiLink>Import your theme</button>
   </div>
 
   <div class="mix-form__toolbar-right init-themes__submit">
@@ -26,3 +24,9 @@
             tuiButton>Submit</button>
   </div>
 </div>
+
+
+<ng-template #importTheme
+             let-observer>
+  <mix-theme-import (cancel)="observer.complete()"></mix-theme-import>
+</ng-template>

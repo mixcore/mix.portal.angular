@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { TuiActiveZoneModule, TuiLetModule } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
@@ -12,17 +13,21 @@ import {
 } from '@taiga-ui/core';
 import {
   TuiAvatarModule,
+  TuiBadgeModule,
   TuiCheckboxLabeledModule,
+  TuiComboBoxModule,
   TuiDataListWrapperModule,
   TuiFieldErrorModule,
   TuiInputModule,
   TuiIslandModule,
   TuiMarkerIconModule,
   TuiSelectModule,
+  TuiStepperModule,
+  TuiStringifyContentPipeModule,
+  TuiStringifyPipeModule,
+  TuiTabsModule,
   TuiTagModule
 } from '@taiga-ui/kit';
-
-import { MixWidgetComponent } from './components/mix-widget/mix-widget.component';
 
 const TaiGa_CommonModule = [
   TuiInputModule,
@@ -49,12 +54,19 @@ const TaiGa_CommonModule = [
   TuiTextfieldControllerModule,
   TuiLabelModule,
   TuiFieldErrorModule,
-  TuiTagModule
+  TuiTagModule,
+  TuiStepperModule,
+  TuiStringifyPipeModule,
+  TuiComboBoxModule,
+  TuiStringifyContentPipeModule,
+  TuiBadgeModule,
+  ReactiveFormsModule,
+  TuiTabsModule
 ];
 
 @NgModule({
   imports: [CommonModule, ...TaiGa_CommonModule],
-  declarations: [MixWidgetComponent],
-  exports: [MixWidgetComponent, ...TaiGa_CommonModule]
+  declarations: [],
+  exports: [CommonModule, ...TaiGa_CommonModule]
 })
 export class ShareModule {}

@@ -1,12 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Culture, Database, InitTenantModel, SUPPORTED_DATABASE } from '@mix-spa/mix.lib';
-import { FormUtils, ShareApiService } from '@mix-spa/mix.share';
+import { FormUtils, ShareApiService, ShareModule } from '@mix-spa/mix.share';
 
 @Component({
   selector: 'init-site-information',
   templateUrl: './init-site-information.component.html',
-  styleUrls: ['./init-site-information.component.scss']
+  styleUrls: ['./init-site-information.component.scss'],
+  standalone: true,
+  imports: [ShareModule]
 })
 export class InitSiteInformationComponent implements OnInit {
   public step: 'general' | 'database' = 'general';

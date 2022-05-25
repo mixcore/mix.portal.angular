@@ -2,12 +2,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountModel } from '@mix-spa/mix.lib';
-import { FormUtils } from '@mix-spa/mix.share';
+import { FormUtils, ShareModule } from '@mix-spa/mix.share';
 
 @Component({
   selector: 'init-account-information',
   templateUrl: './init-account-information.component.html',
-  styleUrls: ['./init-account-information.component.scss']
+  styleUrls: ['./init-account-information.component.scss'],
+  standalone: true,
+  imports: [ShareModule]
 })
 export class InitAccountInformationComponent {
   @Output() public accountSubmit: EventEmitter<AccountModel> = new EventEmitter();

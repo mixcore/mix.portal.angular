@@ -4,6 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'mix-widget',
   templateUrl: './mix-widget.component.html',
   styleUrls: ['./mix-widget.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: true
 })
 export class MixWidgetComponent {}

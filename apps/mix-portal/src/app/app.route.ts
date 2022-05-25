@@ -3,11 +3,11 @@ import { Route } from '@angular/router';
 export const app_routes: Route[] = [
   {
     path: 'init',
-    loadChildren: () => import('./routes/init/init.module').then(m => m.InitModule)
+    loadChildren: () => import('./routes/init/init.routes').then(m => m.ROUTES)
   },
   {
     path: 'auth',
-    loadChildren: () => import('./routes/auth/auth.module').then(m => m.AuthModule)
+    loadChildren: () => import('./routes/auth/auth.routes').then(m => m.ROUTES)
   },
   {
     path: 'portal',

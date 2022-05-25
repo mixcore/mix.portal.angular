@@ -25,6 +25,7 @@
     "@taiga-ui/core": "^2.45.0",
     "@taiga-ui/icons": "^2.45.0",
     "@taiga-ui/kit": "^2.45.0",
+    "@tinkoff/ng-polymorpheus": "^3.1.12",
     "colors": "^1.4.0",
     "crypto-js": "^4.1.1",
     "dompurify": "2.3.8",
