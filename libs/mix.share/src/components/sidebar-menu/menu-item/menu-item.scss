@@ -10,19 +10,19 @@
   &:after {
     content: '';
     position: absolute;
-    left: -0.75rem;
+    left: -5px;
     z-index: -1;
   }
 
   &:before {
-    width: 1rem;
-    border-bottom: 0.5px dashed var(--tui-base-04);
+    width: 7px;
+    border-bottom: 0.5px dashed #ff0066;
   }
 
   &:after {
-    top: -1rem;
-    bottom: 1rem;
-    border-left: 0.5px dashed var(--tui-base-04);
+    top: -5px;
+    bottom: 20px;
+    border-left: 0.5px dashed #ff0066;
   }
 
   &._expandable {

@@ -16,6 +16,7 @@
   </div>
 
   <div class="sidebar-menu__collapse-icon"
+       [ngClass]="{'--collapsed': !isExpanded}"
        (click)="toggleMenu()">
     <tui-svg [src]="collapseIcon"></tui-svg>
   </div>
@@ -29,7 +30,7 @@
            [ngClass]="{'--collapsed': !isExpanded}"
            [src]="item.icon"
            (click)="menuItemIconClick(item)"></tui-svg>
-  <span class="sidebar-menu__menu-item-title"
-        [ngClass]="{'--collapsed': !isExpanded}"
+  <span *ngIf="isExpanded"
+        class="sidebar-menu__menu-item-title"
         (click)="item.action && item.action()"> {{item.text}} </span>
 </ng-template>

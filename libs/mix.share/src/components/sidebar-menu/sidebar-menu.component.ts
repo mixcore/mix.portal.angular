@@ -84,8 +84,6 @@ export class SidebarMenuComponent {
     }
 
     this.sidebarService.isExpanded$.next(true);
-    setTimeout(() => {
-      this.treeMap.set(node, !this.treeMap.get(node));
-    }, 300);
+    this.treeMap.set(node, !this.treeMap.get(node));
   }
 }
