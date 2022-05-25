@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { cryptoService, IAuthorizationData, LocalStorageKeys, LoginModel, MixApiDict, TokenInfo, User, UserInfo } from '@mix-spa/mix.lib';
+import { cryptoService, LocalStorageKeys, LoginModel, MixApiDict, TokenInfo, User, UserInfo } from '@mix-spa/mix.lib';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 import { BaseApiService } from '../bases/base-api.service';
@@ -15,12 +15,10 @@ export class AuthApiService extends BaseApiService {
     if (callback) callback();
   }
 
-  public login(loginData: LoginModel, apiEncryptKey: string): Observable<IAuthorizationData> {
+  public login(loginData: LoginModel, apiEncryptKey: string): Observable<TokenInfo> {
     const encrypted = cryptoService.encryptAES(JSON.stringify(loginData), apiEncryptKey);
-    return this.post<{ message: string }, IAuthorizationData>(MixApiDict.ShareApi.signInEndpoint, { message: encrypted }).pipe(
-      tap((data: IAuthorizationData) => {
-        const tokenInfo = JSON.parse(cryptoService.decryptAES(data.message, data.aesKey)) as TokenInfo;
-
+    return this.post<{ message: string }, TokenInfo>(MixApiDict.ShareApi.signInEndpoint, { message: encrypted }).pipe(
+      tap((tokenInfo: TokenInfo) => {
         if (tokenInfo && tokenInfo.info) this.user$.next(tokenInfo.info);
         localStorage.setItem(LocalStorageKeys.ACCESS_TOKEN, tokenInfo.accessToken);
         localStorage.setItem(LocalStorageKeys.REFRESH_TOKEN, tokenInfo.refreshToken);
