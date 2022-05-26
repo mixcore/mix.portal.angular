@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiActiveZoneModule, TuiLetModule } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
   TuiDataListModule,
+  TuiErrorModule,
   TuiHostedDropdownModule,
   TuiLabelModule,
   TuiLinkModule,
@@ -28,6 +29,8 @@ import {
   TuiTabsModule,
   TuiTagModule
 } from '@taiga-ui/kit';
+
+const Angular_CommonModule = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const TaiGa_CommonModule = [
   TuiInputModule,
@@ -60,13 +63,13 @@ const TaiGa_CommonModule = [
   TuiComboBoxModule,
   TuiStringifyContentPipeModule,
   TuiBadgeModule,
-  ReactiveFormsModule,
-  TuiTabsModule
+  TuiTabsModule,
+  TuiErrorModule
 ];
 
 @NgModule({
-  imports: [CommonModule, ...TaiGa_CommonModule],
+  imports: [...TaiGa_CommonModule, ...Angular_CommonModule],
   declarations: [],
-  exports: [CommonModule, ...TaiGa_CommonModule]
+  exports: [...TaiGa_CommonModule, ...Angular_CommonModule]
 })
 export class ShareModule {}

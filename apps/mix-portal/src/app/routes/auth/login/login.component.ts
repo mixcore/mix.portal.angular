@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalSettings } from '@mix-spa/mix.lib';
 import { AuthApiService, FormUtils, ShareApiService, ShareModule } from '@mix-spa/mix.share';
+import { TuiValidationError } from '@taiga-ui/cdk';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 import { switchMap } from 'rxjs';
 
@@ -15,6 +16,8 @@ import { switchMap } from 'rxjs';
 })
 export class LoginComponent {
   public loading = false;
+  public loginError = new TuiValidationError('Failed to login, please re-check your Username or Password');
+  public showError = false;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +34,7 @@ export class LoginComponent {
   });
 
   public submitForm(): void {
+    this.showError = false;
     if (FormUtils.validateForm(this.signinForm)) {
       this.loading = true;
       this.shareSetting
@@ -51,6 +55,7 @@ export class LoginComponent {
 
   public handleLoginError(): void {
     this.loading = false;
+    this.showError = true;
     this.alertService.open('Error when login, please try again!', { status: TuiNotification.Error }).subscribe();
   }
 }

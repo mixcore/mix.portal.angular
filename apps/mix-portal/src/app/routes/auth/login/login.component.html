@@ -30,12 +30,18 @@
       </label>
     </div>
 
+
+
     <div class="mix-form__row">
       <tui-checkbox-labeled formControlName="rememberPassword">
         Remember password
       </tui-checkbox-labeled>
     </div>
 
+    <div *ngIf="showError"
+         class="mix-form__row">
+      <tui-error [error]="loginError"></tui-error>
+    </div>
 
     <div class="mix-form__row login-form__submit">
       <button [disabled]="loading"
