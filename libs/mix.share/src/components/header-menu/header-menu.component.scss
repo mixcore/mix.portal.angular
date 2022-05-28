@@ -2,15 +2,11 @@
   width: 100%;
   box-sizing: border-box;
   display: flex;
-  min-height: 70px;
+  height: var(--mix-header-height);
   border-bottom: 1px solid var(--tui-base-03);
   align-items: center;
   padding: 0 24px;
   justify-content: space-between;
-
-  &__left-menu {
-    //
-  }
 
   &__right-menu {
     margin-left: auto;
@@ -22,7 +18,7 @@
   }
 
   &__title {
-    font-size: 1.75rem;
+    font-size: 16px;
     font-weight: 500;
   }
 

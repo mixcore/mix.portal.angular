@@ -1,0 +1,31 @@
+<div *ngIf="menuItems"
+     class="side-menu">
+  <div class="side-menu__level-1">
+    <div class="side-menu__level-1-logo">
+      <img src="/assets/images/mixcore-mini-logo.svg">
+    </div>
+
+    <ng-container *ngFor="let item of menuItems">
+      <div class="side-menu__level-1-icon"
+           (click)="itemSelect(item)">
+        <i-tabler name="{{item.icon}}"></i-tabler>
+      </div>
+    </ng-container>
+  </div>
+
+  <div *ngIf="currentSelectedItem"
+       class="side-menu__level-2">
+    <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
+
+    <div class="side-menu__level-2-content">
+      <ng-container *ngFor="let menu of currentSelectedItem.detail">
+        <div class="side-menu__detail-item">
+          <i-tabler name="{{menu.icon}}"></i-tabler>
+          <div>
+            {{ menu.title }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

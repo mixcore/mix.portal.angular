@@ -1,0 +1,72 @@
+.side-menu {
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+
+  &__level-1 {
+    height: 100%;
+    padding: 14px 5px 5px 5px;
+    border-right: 1px solid var(--tui-base-04);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  &__level-1-logo {
+    margin-bottom: 15px;
+  }
+
+  &__level-1-icon {
+    margin-bottom: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 12px;
+
+    &:hover {
+      background-color: rgba(244, 87, 37, 0.12);
+    }
+  }
+
+  &__level-2 {
+    border-right: 1px solid var(--tui-base-04);
+    height: 100%;
+    width: 200px;
+  }
+
+  &__level-2-title {
+    height: var(--mix-header-height);
+    padding: 14px 32px 5px 32px;
+    border-bottom: 1px solid var(--tui-base-04);
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__level-2-content {
+    padding: 14px 22px 5px 22px;
+  }
+
+  &__detail-item {
+    cursor: pointer;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+
+    > i-tabler {
+      margin-right: 15px;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      background-color: rgba(244, 87, 37, 0.12);
+      border-radius: 12px;
+    }
+  }
+}

@@ -11,7 +11,8 @@ import {
   TuiLabelModule,
   TuiLinkModule,
   TuiSvgModule,
-  TuiTextfieldControllerModule
+  TuiTextfieldControllerModule,
+  TuiTooltipModule
 } from '@taiga-ui/core';
 import {
   TuiAvatarModule,
@@ -31,6 +32,17 @@ import {
   TuiTabsModule,
   TuiTagModule
 } from '@taiga-ui/kit';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import { IconAd2, IconBrandGithub, IconListNumbers, IconPlus, IconSmartHome, IconVectorTriangle } from 'angular-tabler-icons/icons';
+
+const icons = {
+  IconBrandGithub,
+  IconVectorTriangle,
+  IconSmartHome,
+  IconPlus,
+  IconListNumbers,
+  IconAd2
+};
 
 const Angular_CommonModule = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -68,12 +80,13 @@ const TaiGa_CommonModule = [
   TuiTabsModule,
   TuiErrorModule,
   TuiProgressModule,
-  TuiDialogModule
+  TuiDialogModule,
+  TuiTooltipModule
 ];
 
 @NgModule({
-  imports: [...TaiGa_CommonModule, ...Angular_CommonModule],
+  imports: [...TaiGa_CommonModule, ...Angular_CommonModule, TablerIconsModule.pick(icons)],
   declarations: [],
-  exports: [...TaiGa_CommonModule, ...Angular_CommonModule]
+  exports: [...TaiGa_CommonModule, ...Angular_CommonModule, TablerIconsModule]
 })
 export class ShareModule {}

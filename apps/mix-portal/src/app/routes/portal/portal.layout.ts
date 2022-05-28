@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HeaderMenuComponent, ShareModule, SidebarMenuModule } from '@mix-spa/mix.share';
+import { HeaderMenuComponent, MixToolbarMenu, ShareModule, SideMenuComponent } from '@mix-spa/mix.share';
 
 @Component({
   selector: 'mix-portal-layout',
   template: `<div class="cms-portal-container">
-    <mix-sidebar-menu></mix-sidebar-menu>
+    <mix-side-menu [menuItems]="menuItems"></mix-side-menu>
     <div class="cms-portal-container__workspace">
       <mix-header-menu></mix-header-menu>
       <div class="cms-portal-container__main-workspace">
@@ -34,8 +34,65 @@ import { HeaderMenuComponent, ShareModule, SidebarMenuModule } from '@mix-spa/mi
     `
   ],
   standalone: true,
-  imports: [HeaderMenuComponent, RouterModule, ShareModule, ReactiveFormsModule, SidebarMenuModule]
+  imports: [HeaderMenuComponent, RouterModule, ShareModule, ReactiveFormsModule, SideMenuComponent]
 })
 export class PortalLayoutComponent {
-  //
+  public menuItems: MixToolbarMenu[] = [
+    {
+      id: 1,
+      title: 'Dashboard',
+      icon: 'smart-home',
+      detail: [
+        {
+          title: 'Statistical',
+          icon: 'list-numbers',
+          action: () => console.log(123)
+        },
+        {
+          title: 'News',
+          icon: 'list-numbers',
+          action: () => console.log(123)
+        }
+      ]
+    },
+    {
+      id: 2,
+      title: 'Tenant',
+      icon: 'vector-triangle',
+      detail: [
+        {
+          title: 'Create new',
+          icon: 'plus',
+          action: () => console.log(123)
+        },
+        {
+          title: 'List tenant',
+          icon: 'list-numbers',
+          action: () => console.log(123)
+        },
+        {
+          title: 'List domain',
+          icon: 'list-numbers',
+          action: () => console.log(123)
+        }
+      ]
+    },
+    {
+      id: 3,
+      title: 'Post',
+      icon: 'ad-2',
+      detail: [
+        {
+          title: 'Create new',
+          icon: 'plus',
+          action: () => console.log(123)
+        },
+        {
+          title: 'List posts',
+          icon: 'list-numbers',
+          action: () => console.log(123)
+        }
+      ]
+    }
+  ];
 }

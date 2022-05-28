@@ -6,7 +6,7 @@
 
   <div class="header-menu__right-menu">
     <tui-input class="header-menu__search"
-               tuiTextfieldSize="m">
+               tuiTextfieldSize="s">
       Search
       <input type="text"
              tuiTextfield>
@@ -16,7 +16,7 @@
                          [content]="profileTemplate">
       <tui-avatar [rounded]="true"
                   text="Admin"
-                  size="m"></tui-avatar>
+                  size="s"></tui-avatar>
       <ng-template #profileTemplate
                    let-activeZone>
         <div *ngIf="user$ | async as user"
