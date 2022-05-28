@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
 
 import { ShareModule } from '../../share.module';
@@ -21,7 +22,13 @@ export interface MenuItem {
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss'],
   standalone: true,
-  imports: [ShareModule]
+  imports: [ShareModule],
+  animations: [
+    trigger('enterAnimation', [
+      transition(':enter', [style({ width: 0, opacity: 0 }), animate('200ms', style({ width: '200px', opacity: 1 }))]),
+      transition(':leave', [style({ width: '200px', opacity: 1 }), animate('200ms', style({ width: 0, opacity: 0 }))])
+    ])
+  ]
 })
 export class SideMenuComponent {
   @Input() public showMenuLevel2 = false;

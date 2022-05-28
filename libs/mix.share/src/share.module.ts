@@ -33,7 +33,15 @@ import {
   TuiTagModule
 } from '@taiga-ui/kit';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { IconAd2, IconBrandGithub, IconListNumbers, IconPlus, IconSmartHome, IconVectorTriangle } from 'angular-tabler-icons/icons';
+import {
+  IconAd2,
+  IconArrowBarLeft,
+  IconBrandGithub,
+  IconListNumbers,
+  IconPlus,
+  IconSmartHome,
+  IconVectorTriangle
+} from 'angular-tabler-icons/icons';
 
 const icons = {
   IconBrandGithub,
@@ -41,7 +49,8 @@ const icons = {
   IconSmartHome,
   IconPlus,
   IconListNumbers,
-  IconAd2
+  IconAd2,
+  IconArrowBarLeft
 };
 
 const Angular_CommonModule = [CommonModule, FormsModule, ReactiveFormsModule];
