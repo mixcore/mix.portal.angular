@@ -81,10 +81,10 @@ export class AppComponent {
     this.auth.fetchUserInfo().subscribe({
       next: res => {
         this.auth.user$.next(res);
-        this.isLoading = false;
+        setTimeout(() => (this.isLoading = false), 1500);
       },
       error: () => {
-        this.isLoading = false;
+        setTimeout(() => (this.isLoading = false), 1500);
       }
     });
   }
