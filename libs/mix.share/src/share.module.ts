@@ -7,6 +7,7 @@ import {
   TuiDataListModule,
   TuiDialogModule,
   TuiErrorModule,
+  TuiHintModule,
   TuiHostedDropdownModule,
   TuiLabelModule,
   TuiLinkModule,
@@ -90,7 +91,8 @@ const TaiGa_CommonModule = [
   TuiErrorModule,
   TuiProgressModule,
   TuiDialogModule,
-  TuiTooltipModule
+  TuiTooltipModule,
+  TuiHintModule
 ];
 
 @NgModule({

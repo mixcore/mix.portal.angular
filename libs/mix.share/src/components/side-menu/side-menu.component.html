@@ -8,7 +8,18 @@
     <ng-container *ngFor="let item of menuItems">
       <div class="side-menu__level-1-icon"
            (click)="itemSelect(item)">
-        <i-tabler name="{{item.icon}}"></i-tabler>
+        <i-tabler name="{{item.icon}}"
+                  [tuiHint]="tooltip"
+                  [tuiHintHideDelay]="0"
+                  [tuiHintMode]="'onDark'"
+                  [tuiHintShowDelay]="200"
+                  tuiHintDirection="right"></i-tabler>
+
+        <ng-template #tooltip>
+          <div>
+            {{ item.title }}
+          </div>
+        </ng-template>
       </div>
     </ng-container>
   </div>
