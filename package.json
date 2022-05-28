@@ -21,6 +21,7 @@
     "@angular/router": "v14.0.0-rc.1 ",
     "@microsoft/signalr": "^6.0.5",
     "@nrwl/angular": "14.1.7",
+    "@tabler/icons": "^1.68.0",
     "@taiga-ui/cdk": "^2.45.0",
     "@taiga-ui/core": "^2.45.0",
     "@taiga-ui/icons": "^2.45.0",

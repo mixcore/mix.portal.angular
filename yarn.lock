@@ -2439,6 +2439,11 @@
     "@swc/core-win32-ia32-msvc" "1.2.179"
     "@swc/core-win32-x64-msvc" "1.2.179"
 
+"@tabler/icons@^1.68.0":
+  version "1.68.0"
+  resolved "https://registry.yarnpkg.com/@tabler/icons/-/icons-1.68.0.tgz#047bd88966cc24ef957b3c429a13bb82cca95561"
+  integrity sha512-UseBEEhv7r+Drl3iZih7rkwqkfJJZscjd5ZvK1WdIIulQsBa+qE8WBDGdAO0RtjkCclEK88z9kC0s5wiVPIvkw==
+
 "@taiga-ui/cdk@^2.45.0":
   version "2.45.0"
   resolved "https://registry.yarnpkg.com/@taiga-ui/cdk/-/cdk-2.45.0.tgz#757e1a76349b5ee79c2ab9e9e270834a42c983da"
