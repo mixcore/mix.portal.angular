@@ -44,7 +44,7 @@
              let-observer>
   <div class="init-progress-dialog">
     <div class="init-progress-dialog__title">
-      <h4>Please wait while we install your site</h4>
+      <h4>{{ progressMessage }}</h4>
     </div>
 
     <progress [max]="100"
@@ -57,7 +57,7 @@
       </label>
       <label tuiLabel
              label="Install theme">
-        {{ themeData ? themeData.title : 'Blank theme' }}
+        {{ themeData ? ('Download ' + themeData.title ): 'Blank theme' }}
         <span *ngIf="(initApplicationStep === 1 || initApplicationStep === 2) && themeData">
           {{ downloadProgress }}%
         </span>

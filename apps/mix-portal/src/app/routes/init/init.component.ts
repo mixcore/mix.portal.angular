@@ -27,7 +27,8 @@ export class InitComponent {
   public initProgress = 0;
   public downloadProgress = 0;
 
-  public initApplicationStep: 0 | 1 | 2 = 0;
+  public initApplicationStep: 1 | 2 = 1;
+  public progressMessage = 'Please wait while we install your site &#9787;';
 
   constructor(
     public tenancyApi: TenancyApiService,
@@ -62,7 +63,10 @@ export class InitComponent {
       accountData: this.accountData
     };
 
-    this.initProgress = 15;
+    setTimeout(() => {
+      if (this.initProgress <= 30) this.initProgress = 15;
+    }, 1500);
+
     this.tenancyApi
       .initFullTenant(data)
       .pipe(
@@ -82,7 +86,11 @@ export class InitComponent {
       )
       .subscribe(() => {
         this.initApplicationStep = 2;
-        this.alertService.open('Create your tenant successfully', { label: 'Success' }).subscribe();
+        this.progressMessage = 'Congratulation! Successfully init your site';
+        setTimeout(() => {
+          this.route.navigateByUrl('portal');
+          this.alertService.open('Create your tenant successfully', { label: 'Success' }).subscribe();
+        }, 2000);
       });
   }
 }
