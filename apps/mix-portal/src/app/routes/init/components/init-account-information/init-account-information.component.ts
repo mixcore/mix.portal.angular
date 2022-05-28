@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/member-ordering */
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountModel } from '@mix-spa/mix.lib';
 import { FormUtils, ShareModule } from '@mix-spa/mix.share';
@@ -12,6 +12,7 @@ import { FormUtils, ShareModule } from '@mix-spa/mix.share';
   imports: [ShareModule]
 })
 export class InitAccountInformationComponent {
+  @Input() public loading = false;
   @Output() public accountSubmit: EventEmitter<AccountModel> = new EventEmitter();
 
   constructor(private fb: FormBuilder) {}

@@ -58,9 +58,12 @@
   </div>
 
   <div class="mix-form__toolbar-right">
-    <button [pseudo]="true"
+    <button [disabled]="loading"
+            [pseudo]="true"
             tuiLink>Previous step</button>
-    <button (click)="submitForm()"
+    <button [disabled]="loading"
+            [showLoader]="loading"
+            (click)="submitForm()"
             tuiButton>Next Step</button>
   </div>
 </div>

@@ -35,3 +35,63 @@
     padding-top: 50px;
   }
 }
+
+.init-progress-dialog {
+  width: 500px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  tui-progress-segmented {
+    width: 100%;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+
+    h4 {
+      font-family: monospace;
+      overflow: hidden;
+      border-right: 0.15em solid orange;
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: 0.1em;
+      animation: typing 3.5s steps(30, end), blink-caret 0.5s step-end infinite;
+    }
+  }
+
+  &__description {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    & > *:first-child {
+      text-align: left;
+    }
+
+    & > *:last-child {
+      text-align: right;
+    }
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: orange;
+  }
+}

@@ -1,8 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { AccountModel, InitTenantModel } from '@mix-spa/mix.lib';
-import { ShareModule, TenancyApiService } from '@mix-spa/mix.share';
+import { AccountModel, InitTenantModel, ThemeModel } from '@mix-spa/mix.lib';
+import { ModalService, ShareModule, SignalEventType, TenancyApiService, ThemeSignalService } from '@mix-spa/mix.share';
 import { TuiAlertService } from '@taiga-ui/core';
+import { of, switchMap, tap } from 'rxjs';
 
 import { InitAccountInformationComponent } from './components/init-account-information/init-account-information.component';
 import { InitSiteInformationComponent } from './components/init-site-information/init-site-information.component';
@@ -18,13 +19,22 @@ import { InitThemesComponent } from './components/init-themes/init-themes.compon
 export class InitComponent {
   public tenantData!: InitTenantModel;
   public accountData!: AccountModel;
+  public themeData!: ThemeModel | null;
+
   public step = 0;
   public loading = false;
+  public showProgress = false;
+  public initProgress = 0;
+  public downloadProgress = 0;
+
+  public initApplicationStep: 0 | 1 | 2 = 0;
 
   constructor(
     public tenancyApi: TenancyApiService,
-    private route: Router,
-    @Inject(TuiAlertService) private readonly alertService: TuiAlertService
+    public route: Router,
+    public themeSignal: ThemeSignalService,
+    @Inject(TuiAlertService) private readonly alertService: TuiAlertService,
+    @Inject(ModalService) private readonly modalService: ModalService
   ) {}
 
   public siteSubmit(value: InitTenantModel): void {
@@ -37,17 +47,42 @@ export class InitComponent {
     this.step = 2;
   }
 
-  public themeSubmit(): void {
-    this.loading = true;
+  public themeSubmit(value: ThemeModel | null): void {
+    this.themeData = value;
+    const message = value ? `Choose ${value.title} is your default theme ?` : 'Init site with a blank theme ?';
+    this.modalService.confirm(message).subscribe(ok => {
+      if (ok) this.initApplication();
+    });
+  }
+
+  public initApplication(): void {
+    this.showProgress = true;
+    const data = {
+      tenantData: this.tenantData,
+      accountData: this.accountData
+    };
+
+    this.initProgress = 15;
     this.tenancyApi
-      .initFullTenant({
-        tenantData: this.tenantData,
-        accountData: this.accountData
-      })
+      .initFullTenant(data)
+      .pipe(
+        tap(() => {
+          this.initProgress = this.themeData ? 30 : 100;
+          this.initApplicationStep = 1;
+        }),
+        switchMap(() => {
+          if (this.themeData) {
+            this.themeSignal.getMessage<number>(SignalEventType.THEME_DOWNLOAD).subscribe(v => {
+              this.downloadProgress = v.data;
+              this.initProgress = 30 + v.data;
+            });
+          }
+          return this.themeData ? this.tenancyApi.installTheme(this.themeData.additionalData) : of(null);
+        })
+      )
       .subscribe(() => {
-        this.loading = false;
-        this.alertService.open('Create tenant successfully', { label: 'Success' }).subscribe();
-        this.route.navigateByUrl('/auth/login');
+        this.initApplicationStep = 2;
+        this.alertService.open('Create your tenant successfully', { label: 'Success' }).subscribe();
       });
   }
 }

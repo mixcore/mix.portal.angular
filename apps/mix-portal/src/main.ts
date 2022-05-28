@@ -3,7 +3,7 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { AuthInterceptor, BASE_URL, GET_THEME_URL, MixModalModule } from '@mix-spa/mix.share';
+import { AuthInterceptor, BASE_URL, DOMAIN_URL, GET_THEME_URL, MixModalModule } from '@mix-spa/mix.share';
 import { TuiAlertModule, TuiDialogModule } from '@taiga-ui/core';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
@@ -20,6 +20,10 @@ bootstrapApplication(AppComponent, {
     {
       provide: BASE_URL,
       useValue: environment.baseUrl
+    },
+    {
+      provide: DOMAIN_URL,
+      useValue: environment.domainUrl
     },
     {
       provide: GET_THEME_URL,

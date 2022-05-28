@@ -3,6 +3,7 @@ import { ThemeModel } from '@mix-spa/mix.lib';
 
 import { ThemeApiService } from '../../services';
 import { ShareModule } from '../../share.module';
+import { DOMAIN_URL } from '../../token/base-url.token';
 import { ModalService } from '../modal/modal.service';
 
 @Component({
@@ -21,7 +22,11 @@ export class ThemeImportComponent {
   @Output() public cancel: EventEmitter<void> = new EventEmitter();
   @Output() public themeSelect: EventEmitter<ThemeModel> = new EventEmitter();
 
-  constructor(public themeApiService: ThemeApiService, @Inject(ModalService) private readonly modalService: ModalService) {}
+  constructor(
+    public themeApiService: ThemeApiService,
+    @Inject(ModalService) private readonly modalService: ModalService,
+    @Inject(DOMAIN_URL) public domain: string
+  ) {}
 
   public selectTheme(value: ThemeModel): void {
     this.currentSelectedTheme = value;
@@ -38,14 +43,9 @@ export class ThemeImportComponent {
   }
 
   public onUseThemeClick(): void {
-    if (!this.currentSelectedTheme) {
-      return;
-    }
+    if (!this.currentSelectedTheme) return;
 
-    this.modalService.confirm(`Choose "${this.currentSelectedTheme.title}" as your default theme?`).subscribe(ok => {
-      if (ok) {
-        //
-      }
-    });
+    this.themeSelect.emit(this.currentSelectedTheme);
+    this.cancel.emit();
   }
 }

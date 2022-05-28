@@ -1,11 +1,14 @@
 <div class="init-themes mix-form">
   <h3 class="mix-form__header">Step 3: Choose your themes</h3>
 
-  <div class="init-themes__theme-card">
-    <div class="init-themes__theme-card-title"> Default </div>
-    <button tuiButton
-            size="s"
-            appearance="primary"> View</button>
+  <div class="mix-form__row">
+    <div class="init-themes__theme-card">
+      <div class="init-themes__theme-card-title"> {{ currentSelectedTheme ? currentSelectedTheme.title : 'Blank' }} </div>
+      <button *ngIf="currentSelectedTheme"
+              tuiButton
+              size="s"
+              appearance="primary"> View </button>
+    </div>
   </div>
 
   <div class="mix-form__toolbar-left">
@@ -28,5 +31,6 @@
 
 <ng-template #importTheme
              let-observer>
-  <mix-theme-import (cancel)="observer.complete()"></mix-theme-import>
+  <mix-theme-import (cancel)="observer.complete()"
+                    (themeSelect)="onThemeChoose($event)"></mix-theme-import>
 </ng-template>

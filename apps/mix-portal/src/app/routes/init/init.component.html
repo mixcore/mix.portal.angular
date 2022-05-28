@@ -15,12 +15,13 @@
       </ng-container>
 
       <ng-container *ngIf="step === 1">
-        <init-account-information (accountSubmit)="accountSubmit($event)"></init-account-information>
+        <init-account-information [loading]="loading"
+                                  (accountSubmit)="accountSubmit($event)"></init-account-information>
       </ng-container>
 
       <ng-container *ngIf="step === 2">
         <mix-init-themes [loading]="loading"
-                         (themeSubmit)="themeSubmit()"></mix-init-themes>
+                         (themeSubmit)="themeSubmit($event)"></mix-init-themes>
       </ng-container>
     </div>
 
@@ -37,3 +38,30 @@
     </div>
   </div>
 </div>
+
+<ng-template [(tuiDialog)]="showProgress"
+             [tuiDialogOptions]="$any({ closeable: false, dismissible: false })"
+             let-observer>
+  <div class="init-progress-dialog">
+    <div class="init-progress-dialog__title">
+      <h4>Please wait while we install your site</h4>
+    </div>
+
+    <progress [max]="100"
+              [value]="initProgress"
+              tuiProgressBar></progress>
+    <div class="init-progress-dialog__description tui-space_top-2">
+      <label tuiLabel
+             label="Init tenant">
+        Init tenant
+      </label>
+      <label tuiLabel
+             label="Install theme">
+        {{ themeData ? themeData.title : 'Blank theme' }}
+        <span *ngIf="(initApplicationStep === 1 || initApplicationStep === 2) && themeData">
+          {{ downloadProgress }}%
+        </span>
+      </label>
+    </div>
+  </div>
+</ng-template>

@@ -5,6 +5,7 @@ import { TuiActiveZoneModule, TuiLetModule } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
   TuiDataListModule,
+  TuiDialogModule,
   TuiErrorModule,
   TuiHostedDropdownModule,
   TuiLabelModule,
@@ -22,6 +23,7 @@ import {
   TuiInputModule,
   TuiIslandModule,
   TuiMarkerIconModule,
+  TuiProgressModule,
   TuiSelectModule,
   TuiStepperModule,
   TuiStringifyContentPipeModule,
@@ -64,7 +66,9 @@ const TaiGa_CommonModule = [
   TuiStringifyContentPipeModule,
   TuiBadgeModule,
   TuiTabsModule,
-  TuiErrorModule
+  TuiErrorModule,
+  TuiProgressModule,
+  TuiDialogModule
 ];
 
 @NgModule({

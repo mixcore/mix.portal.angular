@@ -16,7 +16,7 @@
       <ng-container *ngIf="result.items.length; else noTheme">
         <div class="row">
           <div *ngFor="let item of result.items"
-               class="col-md-3 col-sm-12">
+               class="col-12 col-sm-6 col-md-4">
             <div class="theme-card">
               <div class="theme-card__thumbnail">
                 <img src="{{item.imageUrl}}">
@@ -52,6 +52,6 @@
 
     <button [disabled]="!currentSelectedTheme"
             (click)="onUseThemeClick()"
-            tuiButton>Use Theme</button>
+            tuiButton>{{ 'Use '+ currentSelectedTheme?.title }}</button>
   </div>
 </div>
