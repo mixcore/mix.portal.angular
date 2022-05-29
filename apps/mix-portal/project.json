@@ -5,9 +5,7 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/mix-portal",
         "index": "apps/mix-portal/src/index.html",
@@ -36,8 +34,8 @@
           "budgets": [
             {
               "type": "initial",
-              "maximumWarning": "500kb",
-              "maximumError": "1mb"
+              "maximumWarning": "5mb",
+              "maximumError": "5mb"
             },
             {
               "type": "anyComponentStyle",
@@ -85,17 +83,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": [
-          "apps/mix-portal/**/*.ts",
-          "apps/mix-portal/**/*.html"
-        ]
+        "lintFilePatterns": ["apps/mix-portal/**/*.ts", "apps/mix-portal/**/*.html"]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/mix-portal"
-      ],
+      "outputs": ["coverage/apps/mix-portal"],
       "options": {
         "jestConfig": "apps/mix-portal/jest.config.ts",
         "passWithNoTests": true
