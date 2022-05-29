@@ -1,10 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { InitStep } from '@mix-spa/mix.lib';
 import { AuthApiService, TenancyApiService } from '@mix-spa/mix.share';
 import { TuiRootModule } from '@taiga-ui/core';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'mix-spa-root',
@@ -62,7 +61,6 @@ export class AppComponent {
     private activeRoute: ActivatedRoute
   ) {
     this.checkSystem();
-    this.setupHeader();
   }
 
   private checkSystem(): void {
@@ -81,17 +79,11 @@ export class AppComponent {
     this.auth.fetchUserInfo().subscribe({
       next: res => {
         this.auth.user$.next(res);
-        setTimeout(() => (this.isLoading = false), 1500);
+        setTimeout(() => (this.isLoading = false), 0);
       },
       error: () => {
-        setTimeout(() => (this.isLoading = false), 1500);
+        setTimeout(() => (this.isLoading = false), 0);
       }
-    });
-  }
-
-  private setupHeader(): void {
-    this.route.events.pipe(filter(evt => evt instanceof NavigationEnd)).subscribe(v => {
-      console.log(this.activeRoute.snapshot);
     });
   }
 }

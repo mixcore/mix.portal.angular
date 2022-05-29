@@ -58,6 +58,7 @@
     display: flex;
     align-items: center;
     font-size: 12px;
+    transition: background 0.8s;
 
     > i-tabler {
       margin-right: 15px;
@@ -68,6 +69,12 @@
     &:hover {
       background-color: rgba(244, 87, 37, 0.12);
       border-radius: 12px;
+    }
+
+    &:active {
+      background-color: rgba(244, 87, 37, 0.2);
+      background-size: 100%;
+      transition: background 0s;
     }
   }
 

@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -12,7 +11,7 @@ import { HeaderMenuService } from './header-menu.service';
   templateUrl: './header-menu.component.html',
   styleUrls: ['./header-menu.component.scss'],
   standalone: true,
-  imports: [CommonModule, ShareModule]
+  imports: [ShareModule]
 })
 export class HeaderMenuComponent {
   public user$ = this.authService.user$;

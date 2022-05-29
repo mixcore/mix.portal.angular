@@ -7,6 +7,22 @@ tui-badge {
 
 tui-dialog {
   width: unset !important;
+  border: unset !important;
+}
+
+tui-editor {
+  .t-scrollbar {
+    border-top: unset !important;
+  }
+
+  .t-tools-wrapper {
+    flex-flow: wrap !important;
+    position: relative !important;
+  }
+
+  .t-toolbar-wrapper {
+    position: relative !important;
+  }
 }
 
 :root {

@@ -1,0 +1,67 @@
+<div class="creation-dialog">
+  <div class="creation-dialog__header">
+    <h4>Create new: </h4>
+    <tui-select [(ngModel)]="type"
+                [tuiTextfieldLabelOutside]="true"
+                tuiTextfieldSize="m">
+      <input tuiTextfield
+             placeholder="Choose your type">
+      <tui-data-list-wrapper *tuiDataList
+                             [items]="items"></tui-data-list-wrapper>
+    </tui-select>
+  </div>
+
+  <div class="creation-dialog__content">
+    <div class="mix-form"
+         [formGroup]="form">
+      <div class="mix-form__row">
+        <label [label]="'Title:'"
+               tuiLabel>
+          <tui-input [tuiTextfieldLabelOutside]="true"
+                     tuiTextfieldSize="m"
+                     formControlName="title">
+            <input type="text"
+                   tuiTextfield>
+          </tui-input>
+          <tui-field-error formControlName="title"></tui-field-error>
+        </label>
+      </div>
+
+      <div class="mix-form__row">
+        <label [label]="'Excerpt:'"
+               tuiLabel>
+          <tui-text-area [tuiTextfieldLabelOutside]="true"
+                         tuiTextfieldSize="m"
+                         formControlName="excerpt"></tui-text-area>
+        </label>
+      </div>
+
+      <div class="mix-form__row">
+        <label [label]="'Description:'"
+               tuiLabel>
+          <tui-editor *ngIf="initialize"
+                      class="editor"
+                      [tuiTextfieldLabelOutside]="true"
+                      new
+                      formControlName="description">
+          </tui-editor>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <div class="creation-dialog__footer">
+    <div class="option">
+      <tui-checkbox-labeled [(ngModel)]="goToPostAfterCreate">
+        Go to {{ type }} after create.
+      </tui-checkbox-labeled>
+      <tui-checkbox-labeled [(ngModel)]="closeDialogAfterCreate"
+                            [disabled]="goToPostAfterCreate">
+        Close dialog after create.
+      </tui-checkbox-labeled>
+    </div>
+    <button [disabled]="loading"
+            (click)="submitForm()"
+            tuiButton> Create </button>
+  </div>
+</div>

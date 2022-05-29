@@ -38,4 +38,10 @@ export class SideMenuComponent {
   public itemSelect(item: MixToolbarMenu): void {
     this.currentSelectedItem = item;
   }
+
+  public itemClick(item: MenuItem): void {
+    if (item.action) {
+      return item.action();
+    }
+  }
 }

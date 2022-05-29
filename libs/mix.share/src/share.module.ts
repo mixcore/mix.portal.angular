@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TuiEditorModule, TuiEditorNewModule } from '@taiga-ui/addon-editor';
 import { TuiActiveZoneModule, TuiLetModule } from '@taiga-ui/cdk';
 import {
   TuiButtonModule,
   TuiDataListModule,
   TuiDialogModule,
   TuiErrorModule,
+  TuiGroupModule,
   TuiHintModule,
   TuiHostedDropdownModule,
   TuiLabelModule,
@@ -26,12 +28,14 @@ import {
   TuiIslandModule,
   TuiMarkerIconModule,
   TuiProgressModule,
+  TuiRadioBlockModule,
   TuiSelectModule,
   TuiStepperModule,
   TuiStringifyContentPipeModule,
   TuiStringifyPipeModule,
   TuiTabsModule,
-  TuiTagModule
+  TuiTagModule,
+  TuiTextAreaModule
 } from '@taiga-ui/kit';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import {
@@ -75,6 +79,7 @@ const TaiGa_CommonModule = [
   TuiLabelModule,
   TuiIslandModule,
   TuiInputModule,
+  TuiTextAreaModule,
   TuiLinkModule,
   TuiButtonModule,
   TuiCheckboxLabeledModule,
@@ -92,7 +97,11 @@ const TaiGa_CommonModule = [
   TuiProgressModule,
   TuiDialogModule,
   TuiTooltipModule,
-  TuiHintModule
+  TuiHintModule,
+  TuiRadioBlockModule,
+  TuiGroupModule,
+  TuiEditorModule,
+  TuiEditorNewModule
 ];
 
 @NgModule({

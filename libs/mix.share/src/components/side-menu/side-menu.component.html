@@ -31,7 +31,8 @@
 
     <div class="side-menu__level-2-content">
       <ng-container *ngFor="let menu of currentSelectedItem.detail">
-        <div class="side-menu__detail-item">
+        <div class="side-menu__detail-item"
+             (click)="itemClick(menu)">
           <i-tabler name="{{menu.icon}}"></i-tabler>
           <div>
             {{ menu.title }}

@@ -1,6 +1,5 @@
 import { MixContentStatus } from '../../enums';
 import { AuditModel } from '../base/audit-model';
-
 import { Culture } from './cultute.model';
 
 export class MixPostPortalModel extends AuditModel<number> {

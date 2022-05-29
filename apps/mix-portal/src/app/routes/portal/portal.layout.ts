@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { Component, Inject, Injector } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HeaderMenuComponent, MixToolbarMenu, ShareModule, SideMenuComponent } from '@mix-spa/mix.share';
+import { CreationDialogComponent, HeaderMenuComponent, MixToolbarMenu, ShareModule, SideMenuComponent } from '@mix-spa/mix.share';
+import { TuiDialogService } from '@taiga-ui/core';
+import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'mix-portal-layout',
@@ -34,7 +36,7 @@ import { HeaderMenuComponent, MixToolbarMenu, ShareModule, SideMenuComponent } f
     `
   ],
   standalone: true,
-  imports: [HeaderMenuComponent, RouterModule, ShareModule, ReactiveFormsModule, SideMenuComponent]
+  imports: [HeaderMenuComponent, RouterModule, ShareModule, SideMenuComponent]
 })
 export class PortalLayoutComponent {
   public menuItems: MixToolbarMenu[] = [
@@ -85,7 +87,7 @@ export class PortalLayoutComponent {
         {
           title: 'Create new',
           icon: 'plus',
-          action: () => console.log(123)
+          action: () => this.creatNew('Post')
         },
         {
           title: 'List posts',
@@ -95,4 +97,17 @@ export class PortalLayoutComponent {
       ]
     }
   ];
+
+  constructor(
+    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
+    @Inject(Injector) private readonly injector: Injector
+  ) {}
+
+  public creatNew(type: 'Post' | 'Module' | 'Page'): void {
+    const dialog = this.dialogService.open(new PolymorpheusComponent(CreationDialogComponent, this.injector), {
+      data: type
+    });
+
+    dialog.pipe(take(1)).subscribe();
+  }
 }

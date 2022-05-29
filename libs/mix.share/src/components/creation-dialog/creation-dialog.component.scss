@@ -1,0 +1,39 @@
+.creation-dialog {
+  width: 60vw;
+  max-width: 800px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--tui-base-04);
+
+    > h4 {
+      width: 130px;
+    }
+
+    > tui-select {
+      margin-left: 10px;
+      width: 100%;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+
+    tui-checkbox-labeled {
+      margin: 12px 0px;
+    }
+  }
+
+  .editor {
+    max-height: 200px;
+  }
+}
