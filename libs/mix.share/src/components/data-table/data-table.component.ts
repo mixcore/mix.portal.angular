@@ -41,6 +41,7 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   @Input() public searchable = true;
   @Input() public reOrderable = true;
   @Input() public dataIndexKey = 'id';
+  @Input() public searchColumns = 'title';
 
   @Output() public pageChange: EventEmitter<number> = new EventEmitter();
   @Output() public pageSizeChange: EventEmitter<number> = new EventEmitter();
@@ -154,7 +155,9 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     return this.fetchDataFn({
       keyword: searchText,
       pageIndex: page,
-      pageSize: pageSize
+      pageSize: pageSize,
+      searchColumns: this.searchColumns,
+      searchMethod: 'Ct'
     });
   }
 
