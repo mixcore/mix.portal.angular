@@ -1,5 +1,5 @@
 import { Component, Inject, Injector } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CreationDialogComponent, HeaderMenuComponent, MixToolbarMenu, ShareModule, SideMenuComponent } from '@mix-spa/mix.share';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
@@ -92,7 +92,7 @@ export class PortalLayoutComponent {
         {
           title: 'List posts',
           icon: 'list-numbers',
-          action: () => console.log(123)
+          action: () => this.navigate('/portal/list-post')
         }
       ]
     }
@@ -100,7 +100,8 @@ export class PortalLayoutComponent {
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
-    @Inject(Injector) private readonly injector: Injector
+    @Inject(Injector) private readonly injector: Injector,
+    private router: Router
   ) {}
 
   public creatNew(type: 'Post' | 'Module' | 'Page'): void {
@@ -109,5 +110,9 @@ export class PortalLayoutComponent {
     });
 
     dialog.pipe(take(1)).subscribe();
+  }
+
+  public navigate(url: string): void {
+    this.router.navigateByUrl(url);
   }
 }

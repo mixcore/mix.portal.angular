@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MixPostPortalModel } from '@mix-spa/mix.lib';
 import { TuiAlertService, TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
@@ -18,7 +18,7 @@ export type MixCreationType = 'Post' | 'Page' | 'Module';
   standalone: true,
   imports: [ShareModule]
 })
-export class CreationDialogComponent implements OnInit {
+export class CreationDialogComponent {
   @Input() public type: MixCreationType = 'Post';
   public items: MixCreationType[] = ['Post', 'Page', 'Module'];
   public form: FormGroup = new FormGroup({
@@ -41,10 +41,7 @@ export class CreationDialogComponent implements OnInit {
     this.type = context.data;
   }
 
-  public ngOnInit(): void {
-    this.initialize = true;
-    // setTimeout(() => (this.initialize = true), 200);
-  }
+  // public ngOnInit(): void {}
 
   public submitForm(): void {
     if (!FormUtils.validateForm(this.form)) return;

@@ -6,6 +6,7 @@ export * from './components/modal';
 export * from './components/side-menu';
 export * from './components/sidebar-menu';
 export * from './components/theme-import';
+export * from './components/workspace-dynamic-layout';
 
 // Else
 export * from './interceptor/auth.interceptor';

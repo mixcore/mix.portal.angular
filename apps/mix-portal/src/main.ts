@@ -4,7 +4,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor, BASE_URL, DOMAIN_URL, GET_THEME_URL, MixModalModule } from '@mix-spa/mix.share';
-import { defaultEditorExtensions, TUI_EDITOR_EXTENSIONS } from '@taiga-ui/addon-editor';
+import { defaultEditorExtensions, tiptapEditorStyles, TUI_EDITOR_EXTENSIONS, TUI_EDITOR_STYLES } from '@taiga-ui/addon-editor';
 import { TuiAlertModule, TuiDialogModule } from '@taiga-ui/core';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
@@ -38,6 +38,10 @@ bootstrapApplication(AppComponent, {
     {
       provide: TUI_EDITOR_EXTENSIONS,
       useValue: defaultEditorExtensions
+    },
+    {
+      provide: TUI_EDITOR_STYLES,
+      useValue: tiptapEditorStyles
     },
     {
       provide: TUI_VALIDATION_ERRORS,
