@@ -1,7 +1,7 @@
 import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[wemeColumnHeader]'
+  selector: '[mixColumnHeader]'
 })
 export class TableHeaderDirective {
   constructor(public template: TemplateRef<unknown>) {}

@@ -187,6 +187,15 @@
   dependencies:
     tslib "^2.3.0"
 
+"@angular/cdk@v14.0.0-rc.1 ":
+  version "14.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-14.0.0-rc.1.tgz#ba890761f3af2a7a7e0f513db5b9ec03eae4a158"
+  integrity sha512-5g+vVnhq8rxodmNfEBwFqa3aQyv2XrABjWY5JnYfRO40o1orfXCdBgiesp7/lB5a2EK40RSWG2KDLif89kbNVQ==
+  dependencies:
+    tslib "^2.3.0"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@v14.0.0-rc.1 ":
   version "14.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-14.0.0-rc.1.tgz#fc84d87dedd9beeef82a5f67d0f6d031d3508a9c"
@@ -2468,6 +2477,13 @@
     "@tiptap/extension-text-style" "2.0.0-beta.23"
     "@tiptap/extension-underline" "2.0.0-beta.22"
     "@tiptap/starter-kit" "2.0.0-beta.154"
+    tslib "^1.10.0"
+
+"@taiga-ui/addon-table@^2.46.0":
+  version "2.46.0"
+  resolved "https://registry.yarnpkg.com/@taiga-ui/addon-table/-/addon-table-2.46.0.tgz#4eda625e2b367838578d7e7492129759518d9d6d"
+  integrity sha512-4aiQHaDs99/L2Vp5pjJz5w9Hs37/LkxOF87cfENEVc4tDICsZhG0Ayqxe0RuKv3LfNms5NPpn2OocSEF1+bEGA==
+  dependencies:
     tslib "^1.10.0"
 
 "@taiga-ui/cdk@^2.45.0":
@@ -9201,6 +9217,11 @@ parse5@6.0.1, parse5@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.1.tgz#e1a1c085c569b3dc08321184f19a39cc27f7c30b"
   integrity sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==
+
+parse5@^5.0.0:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
+  integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
 
 parseurl@~1.3.2, parseurl@~1.3.3:
   version "1.3.3"

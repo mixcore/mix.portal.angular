@@ -5,46 +5,46 @@ import {
   ContentChildren,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   QueryList,
   ViewEncapsulation
 } from '@angular/core';
+import { PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
 import { TUI_ARROW, TuiArrowComponent } from '@taiga-ui/kit';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { BehaviorSubject, catchError, combineLatest, debounceTime, Observable, of, startWith, Subject, switchMap, tap } from 'rxjs';
 
-import { BaseComponent } from '../../_core/components/base.component';
-import { IGetWithPaginationRequest, IGetWithPaginationResult } from '../../_core/services/base-api.service';
 import { TableColumnDirective } from './directives/column.directive';
 
 @Component({
-  selector: 'weme-data-table',
+  selector: 'mix-data-table',
   templateUrl: './data-table.component.html',
   styleUrls: ['./data-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class WemeDataTableComponent<T> extends BaseComponent implements AfterContentInit {
+export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   public currentSelectedItem: T[] = [];
   public cacheItems: T[] = [];
-  public isAllSelected: boolean = false;
+  public isAllSelected = false;
 
   // Required fetchDataFn to enable self control
-  @Input() public selfControl: boolean = true;
-  @Input() public fetchDataFn!: (filter: IGetWithPaginationRequest) => Observable<IGetWithPaginationResult<T>>;
+  @Input() public selfControl = true;
+  @Input() public fetchDataFn!: (filter: PaginationRequestModel) => Observable<PaginationResultModel<T>>;
 
-  @Input() public data$!: Observable<IGetWithPaginationResult<T>>;
+  @Input() public data$!: Observable<PaginationResultModel<T>>;
   @Input() public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
-  @Input() public search: string = '';
-  @Input() public searchPlaceholder: string = 'Search';
-  @Input() public totalRows: number = 0;
-  @Input() public searchable: boolean = true;
-  @Input() public reOrderable: boolean = true;
-  @Input() public dataIndexKey: string = 'id';
+  @Input() public search = '';
+  @Input() public searchPlaceholder = 'Search';
+  @Input() public totalRows = 0;
+  @Input() public searchable = true;
+  @Input() public reOrderable = true;
+  @Input() public dataIndexKey = 'id';
 
   @Output() public pageChange: EventEmitter<number> = new EventEmitter();
   @Output() public pageSizeChange: EventEmitter<number> = new EventEmitter();
-  @Output() public tableQueryChange: EventEmitter<IGetWithPaginationRequest> = new EventEmitter();
+  @Output() public tableQueryChange: EventEmitter<PaginationRequestModel> = new EventEmitter();
   @Output() public itemsSelectedChange: EventEmitter<T[]> = new EventEmitter();
 
   @ContentChildren(TableColumnDirective)
@@ -63,10 +63,13 @@ export class WemeDataTableComponent<T> extends BaseComponent implements AfterCon
   public readonly page$: Subject<number> = new Subject();
   public readonly direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<-1 | 1>(1);
   public readonly reload$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public readonly emptyData: IGetWithPaginationResult<T> = {
+  public readonly emptyData: PaginationResultModel<T> = {
     items: [],
-    totalCount: 0,
-    pageSize: 0
+    pagingData: {
+      pageIndex: 0,
+      pageSize: 25,
+      totalItems: 0
+    }
   };
 
   public request$: Observable<[string, 1 | -1, number, number, boolean]> = combineLatest([
@@ -77,15 +80,15 @@ export class WemeDataTableComponent<T> extends BaseComponent implements AfterCon
     this.reload$
   ]);
 
-  public override onInit(): void {
+  public ngOnInit(): void {
     if (this.selfControl) {
       this._setupSelfControl();
     } else {
       this.request$.subscribe((query: [string, 1 | -1, number, number, boolean]) => {
         this.tableQueryChange.emit({
-          searchText: query[0],
-          skipCount: query[2] * query[3],
-          maxResultCount: query[3]
+          keyword: query[0],
+          pageIndex: query[3],
+          pageSize: query[2]
         });
       });
     }
@@ -147,11 +150,11 @@ export class WemeDataTableComponent<T> extends BaseComponent implements AfterCon
     this.reload$.next(!this.reload$.getValue());
   }
 
-  private _processSelfFetchData(searchText: string, page: number, pageSize: number): Observable<IGetWithPaginationResult<T>> {
+  private _processSelfFetchData(searchText: string, page: number, pageSize: number): Observable<PaginationResultModel<T>> {
     return this.fetchDataFn({
-      searchText: searchText,
-      skipCount: page * pageSize,
-      maxResultCount: pageSize
+      keyword: searchText,
+      pageIndex: page,
+      pageSize: pageSize
     });
   }
 
@@ -171,7 +174,7 @@ export class WemeDataTableComponent<T> extends BaseComponent implements AfterCon
     this.data$ = this.request$.pipe(
       tap(() => this._showLoading()),
       switchMap((query: [string, 1 | -1, number, number, boolean]) => this._processSelfFetchData(query[0], query[2], query[3])),
-      tap((res: IGetWithPaginationResult<T>) => {
+      tap((res: PaginationResultModel<T>) => {
         this._hideLoading();
         this.cacheItems = res.items;
       }),

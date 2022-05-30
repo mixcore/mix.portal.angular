@@ -5,14 +5,14 @@ import { TableCellDirective } from './cell.directive';
 import { TableHeaderDirective } from './header.directive';
 
 @Directive({
-  selector: '[wemeTableColumn]'
+  selector: '[mixTableColumn]'
 })
 export class TableColumnDirective {
-  @Input() public header: string = '';
-  @Input() public key: string = '';
-  @Input() public sortable: boolean = true;
+  @Input() public header = '';
+  @Input() public key = '';
+  @Input() public sortable = true;
   @Input() public columnType: ColumnType = 'DATA';
-  @Input() public showHeader: boolean = true;
+  @Input() public showHeader = true;
   @Input() public width: string | undefined;
 
   @ContentChild(TableCellDirective, { static: true }) public tplCell?: TableCellDirective;

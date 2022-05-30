@@ -6,14 +6,13 @@ import { TuiLetModule } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiHostedDropdownModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiCheckboxModule, TuiInputCountModule, TuiInputModule, TuiPaginationModule } from '@taiga-ui/kit';
 
-import { RelativeTimeSpanModule } from '../../_core/pipes/relative-timepsan.pipe';
-import { WemeDataTableComponent } from './data-table.component';
+import { MixDataTableComponent } from './data-table.component';
 import { TableCellDirective } from './directives/cell.directive';
 import { TableColumnDirective } from './directives/column.directive';
 import { TableHeaderDirective } from './directives/header.directive';
 
 @NgModule({
-  declarations: [WemeDataTableComponent, TableHeaderDirective, TableCellDirective, TableColumnDirective],
+  declarations: [MixDataTableComponent, TableHeaderDirective, TableCellDirective, TableColumnDirective],
   imports: [
     CommonModule,
     FormsModule,
@@ -29,9 +28,8 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiLetModule,
     TuiLoaderModule,
     TuiCheckboxModule,
-    TuiPaginationModule,
-    RelativeTimeSpanModule
+    TuiPaginationModule
   ],
-  exports: [WemeDataTableComponent, TableHeaderDirective, TableCellDirective, TableColumnDirective]
+  exports: [MixDataTableComponent, TableHeaderDirective, TableCellDirective, TableColumnDirective]
 })
-export class WemeDataTableModule {}
+export class MixDataTableModule {}

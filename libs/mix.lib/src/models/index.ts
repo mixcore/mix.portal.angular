@@ -1,6 +1,7 @@
 // Base
 export * from './base/audit-model';
-export * from './base/pagination-model';
+export * from './base/pagination-request.model';
+export * from './base/pagination-result.model';
 
 // Feature
 export * from './src/account.model';

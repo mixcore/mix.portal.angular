@@ -1,5 +1,18 @@
 <mix-workspace-dynamic-layout>
-  <ng-template header>
-    ABC
-  </ng-template>
+  <div header>
+  </div>
+
+  <div main-workspace>
+    <mix-data-table [fetchDataFn]="fetchPostFn">
+      <div [header]="'Id'"
+           mixTableColumn
+           key="id"></div>
+      <div [header]="'Post Title'"
+           mixTableColumn
+           key="title"></div>
+      <div [header]="'Status'"
+           mixTableColumn
+           key="status"></div>
+    </mix-data-table>
+  </div>
 </mix-workspace-dynamic-layout>

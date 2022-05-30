@@ -1,6 +1,6 @@
-<div class="weme-data-table">
+<div class="mix-data-table">
   <p *ngIf="reOrderable || searchable"
-     class="weme-data-table__filters"
+     class="mix-data-table__filters"
      tuiTextfieldSize="m">
     <tui-input *ngIf="searchable"
                class="input"
@@ -27,7 +27,7 @@
   <tui-loader [overlay]="true"
               [showLoader]="!!(loading$ | async)">
     <table *tuiLet="data$ | async as data"
-           class="weme-data-table__main-table"
+           class="mix-data-table__main-table"
            [columns]="tableColumns"
            tuiTable>
       <thead>
@@ -55,14 +55,14 @@
                 </ng-container>
 
                 <ng-container *ngIf="!col.tplHeader">
-                  {{ col.header?.toUpperCase() }}
+                  {{ col.header }}
                 </ng-container>
               </th>
             </ng-container>
 
             <ng-container *ngIf="col.columnType === 'CHECKBOX'">
               <th *tuiHead="col.key"
-                  class="weme-data-table__checkbox"
+                  class="mix-data-table__checkbox"
                   [sorter]="null"
                   tuiTh>
                 <div class="wrapper">
@@ -83,7 +83,7 @@
           <ng-container *ngFor="let col of columns">
             <ng-container *ngIf="col.columnType !== 'CHECKBOX'">
               <td *tuiCell="col.key"
-                  class="weme-data-table__td"
+                  class="mix-data-table__td"
                   [ngClass]="{'--action': col.columnType === 'ACTION',
                               '--date': col.columnType === 'DATE'}"
                   [ngStyle]="{'width': col.width}"
@@ -92,7 +92,7 @@
                   <ng-container *ngTemplateOutlet="col.tplCell.template; context: { $implicit: item }"></ng-container>
                 </ng-container>
                 <ng-container *ngIf="!col.tplCell && col.columnType === 'DATE'">
-                  {{ $any(item)[col.key] ?? 'N/A' | relativeTimeSpan }}
+                  {{ $any(item)[col.key] ?? 'N/A' }}
                 </ng-container>
 
                 <ng-container *ngIf="!col.tplCell && col.columnType !== 'DATE'">
@@ -103,8 +103,8 @@
 
             <ng-container *ngIf="col.columnType === 'CHECKBOX'">
               <td *tuiCell="col.key"
-                  class="weme-data-table__td
-                         weme-data-table__checkbox"
+                  class="mix-data-table__td
+                         mix-data-table__checkbox"
                   tuiTd>
                 <tui-checkbox [ngModel]="isItemSelected(item)"
                               (ngModelChange)="onItemSelected($event, item)"></tui-checkbox>
@@ -114,8 +114,8 @@
         </tr>
       </tbody>
 
-      <tfoot *ngIf="data">
-        <tr class="weme-data-table__paging">
+      <!-- <tfoot *ngIf="data">
+        <tr class="mix-data-table__paging">
           <td [colSpan]="columns.length">
             <tui-pagination class="tui-space_top-2"
                             [length]="getNavigationLength(data.totalCount,data.pageSize)"
@@ -123,7 +123,7 @@
             </tui-pagination>
           </td>
         </tr>
-      </tfoot>
+      </tfoot> -->
     </table>
   </tui-loader>
 </div>
