@@ -1,5 +1,11 @@
 # mix.portal.angular
 
+## Build & Run
+```bash
+yarn start
+yarn build
+```
+
 ## License
 
 Mixcore CMS is licensed under the **[MIT](https://github.com/mixcore/mix.core/blob/master/LICENSE)**
