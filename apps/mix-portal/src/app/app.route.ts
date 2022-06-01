@@ -11,6 +11,9 @@ export const app_routes: Route[] = [
   },
   {
     path: 'portal',
+    data: {
+      title: 'Portal'
+    },
     loadComponent: () => import('./routes/portal/portal.layout').then(m => m.PortalLayoutComponent),
     loadChildren: () => import('./routes/portal/portal.routes').then(m => m.PORTAL_ROUTES)
   },

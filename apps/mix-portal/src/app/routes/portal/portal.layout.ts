@@ -48,12 +48,7 @@ export class PortalLayoutComponent {
         {
           title: 'Statistical',
           icon: 'list-numbers',
-          action: () => console.log(123)
-        },
-        {
-          title: 'News',
-          icon: 'list-numbers',
-          action: () => console.log(123)
+          action: () => this.navigate('/portal/dashboard')
         }
       ]
     },

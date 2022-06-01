@@ -21,7 +21,12 @@
 
   &__td {
     border: none !important;
-    border-bottom: 0.25px solid var(--tui-base-04) !important;
+    border-bottom: 0.25px solid var(--tui-base-03) !important;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    }
 
     &.--action {
       width: 10%;
@@ -30,10 +35,18 @@
 
   &__checkbox {
     width: 50px;
+    position: relative;
 
     > .wrapper {
       display: flex;
       justify-content: center;
+    }
+
+    tui-checkbox {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 

@@ -1,5 +1,15 @@
 @import 'styles/utitlies.scss';
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
 tui-badge {
   height: 50px !important;
   width: 100px;
@@ -10,20 +20,9 @@ tui-dialog {
   border: unset !important;
 }
 
-// tui-editor {
-//   .t-scrollbar {
-//     border-top: unset !important;
-//   }
-
-//   .t-tools-wrapper {
-//     flex-flow: wrap !important;
-//     position: relative !important;
-//   }
-
-//   .t-toolbar-wrapper {
-//     position: relative !important;
-//   }
-// }
+a[tuiLink] {
+  color: var(--tui-base-09);
+}
 
 :root {
   --mix-header-height: 47px;

@@ -1,10 +1,11 @@
 <mix-workspace-dynamic-layout>
-  <div header>
-  </div>
-
   <div main-workspace>
-    <mix-data-table [fetchDataFn]="fetchPostFn">
-      <div [header]="'Id'"
+    <mix-data-table [fetchDataFn]="fetchPostFn"
+                    [searchPlaceholder]="'Type your post name'">
+      <div [columnType]="'CHECKBOX'"
+           mixTableColumn></div>
+      <div [header]="'#'"
+           [width]="'70px'"
            mixTableColumn
            key="id"></div>
       <div [header]="'Post Title'"

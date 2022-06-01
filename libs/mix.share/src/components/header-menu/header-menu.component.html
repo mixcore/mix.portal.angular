@@ -1,7 +1,14 @@
 <div class="header-menu">
-  <div *ngIf="headerService.title$ | async as title"
-       class="header-menu__title">
-    {{ title }}
+  <div class="header-menu__title">
+    <tui-breadcrumbs [size]="'l'">
+      <ng-container *ngFor="let item of breadcrumb">
+        <a *tuiBreadcrumb
+           [routerLink]="item.routerLink"
+           tuiLink>
+          {{ item.caption }}
+        </a>
+      </ng-container>
+    </tui-breadcrumbs>
   </div>
 
   <div class="header-menu__right-menu">

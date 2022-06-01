@@ -29,10 +29,8 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   public cacheItems: T[] = [];
   public isAllSelected = false;
 
-  // Required fetchDataFn to enable self control
   @Input() public selfControl = true;
   @Input() public fetchDataFn!: (filter: PaginationRequestModel) => Observable<PaginationResultModel<T>>;
-
   @Input() public data$!: Observable<PaginationResultModel<T>>;
   @Input() public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   @Input() public search = '';

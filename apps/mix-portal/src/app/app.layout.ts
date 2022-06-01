@@ -44,7 +44,7 @@ import { TuiRootModule } from '@taiga-ui/core';
       .main-page {
         width: 100vw;
         height: 100vh;
-        overflow: auto;
+        overflow: hidden;
       }
     `
   ],
@@ -66,8 +66,9 @@ export class AppComponent {
   private checkSystem(): void {
     this.tenantApi.getInitStatus().subscribe((res: InitStep) => {
       if (res === InitStep.Blank) {
-        this.route.navigateByUrl('/init');
-        this.isLoading = false;
+        this.route.navigateByUrl('/init').then(() => {
+          this.isLoading = false;
+        });
         return;
       } else {
         this.initAuthorization();
