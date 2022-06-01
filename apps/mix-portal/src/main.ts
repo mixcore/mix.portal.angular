@@ -53,8 +53,8 @@ bootstrapApplication(AppComponent, {
       }
     },
     importProvidersFrom(
-      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
       RouterModule.forRoot(app_routes),
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerWhenStable:30000' }),
       BrowserAnimationsModule,
       HttpClientModule,
       TuiAlertModule,
