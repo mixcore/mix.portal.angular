@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthInterceptor, BASE_URL, DOMAIN_URL, GET_THEME_URL, MixModalModule } from '@mix-spa/mix.share';
 import { defaultEditorExtensions, tiptapEditorStyles, TUI_EDITOR_EXTENSIONS, TUI_EDITOR_STYLES } from '@taiga-ui/addon-editor';
-import { TuiAlertModule, TuiDialogModule } from '@taiga-ui/core';
+import { TUI_ANIMATIONS_DURATION, TuiAlertModule, TuiDialogModule } from '@taiga-ui/core';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
 
 import { AppComponent } from './app/app.layout';
@@ -51,6 +51,10 @@ bootstrapApplication(AppComponent, {
         email: 'Pleas enter a valid email',
         confirm: 'Password confirm incorrect'
       }
+    },
+    {
+      provide: TUI_ANIMATIONS_DURATION,
+      useValue: 100
     },
     importProvidersFrom(
       RouterModule.forRoot(app_routes),

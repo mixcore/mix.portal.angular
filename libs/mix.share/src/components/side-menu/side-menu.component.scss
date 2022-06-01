@@ -12,7 +12,8 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #d6dcea;
+    background: rgb(214, 220, 234);
+    background: linear-gradient(300deg, rgba(214, 220, 234, 1) 41%, rgba(148, 207, 233, 1) 100%);
   }
 
   &__level-1-logo {
@@ -46,10 +47,12 @@
 
   &__level-2-title {
     height: var(--mix-header-height);
-    padding: 14px 22px 5px 22px;
     border-bottom: 1px solid var(--tui-base-04);
     font-size: 16px;
     font-weight: 500;
+    padding: 0 0 0 22px;
+    display: flex;
+    align-items: center;
   }
 
   &__level-2-content {
@@ -58,7 +61,7 @@
 
   &__detail-item {
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 8px;
     padding: 10px;
     width: 100%;
     display: flex;
@@ -73,12 +76,11 @@
     }
 
     &:hover {
-      background-color: rgba(244, 87, 37, 0.12);
-      border-radius: 12px;
+      background-color: #e8f0f7;
     }
 
     &:active {
-      background-color: rgba(244, 87, 37, 0.2);
+      background-color: #e8f0f7;
       background-size: 100%;
       transition: background 0s;
     }
@@ -88,16 +90,22 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    bottom: 5px;
-    left: 5px;
+    bottom: 8px;
+    right: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
     border-radius: 12px;
+    background-color: #e8f0f7;
+  }
 
-    &:hover {
-      background-color: rgba(244, 87, 37, 0.12);
-    }
+  .separator {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 100%;
+    background: var(--tui-base-04);
+    margin: 15px 0;
   }
 }

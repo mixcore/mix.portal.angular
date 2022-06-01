@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -28,7 +29,8 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiLetModule,
     TuiLoaderModule,
     TuiCheckboxModule,
-    TuiPaginationModule
+    TuiPaginationModule,
+    DragDropModule
   ],
   exports: [MixDataTableComponent, TableHeaderDirective, TableCellDirective, TableColumnDirective]
 })

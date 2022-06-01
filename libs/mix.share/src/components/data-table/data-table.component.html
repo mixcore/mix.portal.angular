@@ -6,7 +6,8 @@
                class="input"
                [ngModel]="search"
                [tuiTextfieldCleaner]="true"
-               (ngModelChange)="searchText$.next($event)">
+               (ngModelChange)="searchText$.next($event)"
+               icon="tuiIconSearchLarge">
       {{ searchPlaceholder }}
     </tui-input>
 
@@ -79,8 +80,10 @@
 
       <tbody *ngIf="data"
              [data]="data.items"
+             cdkDropList
              tuiTbody>
         <tr *tuiRow="let item of data.items"
+            cdkDrag
             tuiTr>
           <ng-container *ngFor="let col of columns">
             <ng-container *ngIf="col.columnType !== 'CHECKBOX'">
