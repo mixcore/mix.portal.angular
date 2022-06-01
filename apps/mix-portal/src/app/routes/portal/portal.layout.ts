@@ -101,7 +101,7 @@ export class PortalLayoutComponent {
     }
   ];
 
-  @HostListener('window:keydown.control.q', ['$event'])
+  @HostListener('window:keydown.f2', ['$event'])
   showSearch() {
     this.toggleUniversalSearch();
   }
