@@ -1,21 +1,20 @@
-import { Component, Inject, Injector } from '@angular/core';
+import { Component, HostListener, Inject, Injector } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { CreationDialogComponent, HeaderMenuComponent, MixToolbarMenu, ShareModule, SideMenuComponent } from '@mix-spa/mix.share';
+import {
+  CreationDialogComponent,
+  HeaderMenuComponent,
+  MixToolbarMenu,
+  ShareModule,
+  SideMenuComponent,
+  UniversalSearchComponent
+} from '@mix-spa/mix.share';
 import { TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
 import { take } from 'rxjs';
 
 @Component({
   selector: 'mix-portal-layout',
-  template: `<div class="cms-portal-container">
-    <mix-side-menu [menuItems]="menuItems"></mix-side-menu>
-    <div class="cms-portal-container__workspace">
-      <mix-header-menu></mix-header-menu>
-      <div class="cms-portal-container__main-workspace">
-        <router-outlet></router-outlet>
-      </div>
-    </div>
-  </div> `,
+  templateUrl: './portal.layout.html',
   styles: [
     `
       .cms-portal-container {
@@ -29,17 +28,26 @@ import { take } from 'rxjs';
 
         &__main-workspace {
           width: 100%;
-          padding: 10px;
           box-sizing: border-box;
         }
       }
     `
   ],
   standalone: true,
-  imports: [HeaderMenuComponent, RouterModule, ShareModule, SideMenuComponent]
+  imports: [HeaderMenuComponent, RouterModule, ShareModule, SideMenuComponent, UniversalSearchComponent]
 })
 export class PortalLayoutComponent {
+  public isShowUniversalSearch = false;
+
   public menuItems: MixToolbarMenu[] = [
+    {
+      id: 0,
+      title: 'Universal Search',
+      icon: 'search',
+      hideDetail: true,
+      action: () => this.toggleUniversalSearch(),
+      detail: []
+    },
     {
       id: 1,
       title: 'Dashboard',
@@ -93,6 +101,11 @@ export class PortalLayoutComponent {
     }
   ];
 
+  @HostListener('window:keydown.control.q', ['$event'])
+  showSearch() {
+    this.toggleUniversalSearch();
+  }
+
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector,
@@ -109,5 +122,9 @@ export class PortalLayoutComponent {
 
   public navigate(url: string): void {
     this.router.navigateByUrl(url);
+  }
+
+  public toggleUniversalSearch(): void {
+    this.isShowUniversalSearch = !this.isShowUniversalSearch;
   }
 }

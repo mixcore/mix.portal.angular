@@ -1,8 +1,11 @@
-@import 'styles/utitlies.scss';
+@import 'styles/utilities.scss';
+@import 'styles/overwrite.scss';
 
 html,
 body {
   height: 100%;
+  font-family: var(--font-family);
+  // background-color: #eff4f8;
 }
 
 body {
@@ -10,20 +13,8 @@ body {
   padding: 0 !important;
 }
 
-tui-badge {
-  height: 50px !important;
-  width: 100px;
-}
-
-tui-dialog {
-  width: unset !important;
-  border: unset !important;
-}
-
-a[tuiLink] {
-  color: var(--tui-base-09);
-}
-
 :root {
   --mix-header-height: 47px;
+  --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
 }

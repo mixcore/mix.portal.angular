@@ -1,6 +1,7 @@
 // Region Component
-export * from './components/creation-dialog';
 export * from './components/data-table';
+export * from './components/dialogs/creation-dialog';
+export * from './components/dialogs/universal-search-dialog';
 export * from './components/header-menu';
 export * from './components/mix-widget';
 export * from './components/modal';

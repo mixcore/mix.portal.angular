@@ -3,6 +3,7 @@ import { enableProdMode, importProvidersFrom } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
 import { AuthInterceptor, BASE_URL, DOMAIN_URL, GET_THEME_URL, MixModalModule } from '@mix-spa/mix.share';
 import { defaultEditorExtensions, tiptapEditorStyles, TUI_EDITOR_EXTENSIONS, TUI_EDITOR_STYLES } from '@taiga-ui/addon-editor';
 import { TuiAlertModule, TuiDialogModule } from '@taiga-ui/core';
@@ -52,6 +53,7 @@ bootstrapApplication(AppComponent, {
       }
     },
     importProvidersFrom(
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
       RouterModule.forRoot(app_routes),
       BrowserAnimationsModule,
       HttpClientModule,

@@ -10,7 +10,9 @@
     border-right: 1px solid var(--tui-base-04);
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: column;
+    background-color: #d6dcea;
   }
 
   &__level-1-logo {
@@ -25,10 +27,14 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    border-radius: 12px;
+    border-radius: 8px;
 
     &:hover {
-      background-color: rgba(244, 87, 37, 0.12);
+      background-color: #e8f0f7;
+    }
+
+    &.--active {
+      background-color: #e8f0f7;
     }
   }
 

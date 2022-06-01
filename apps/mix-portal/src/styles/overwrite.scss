@@ -1,0 +1,30 @@
+thead th:first-child {
+  border-top-left-radius: 10px;
+}
+thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+tui-badge {
+  height: 50px !important;
+  width: 100px;
+}
+
+tui-dialog {
+  width: unset !important;
+  border: unset !important;
+}
+
+.overlay {
+  height: 100vh;
+  pointer-events: none;
+  touch-action: none;
+  opacity: 0;
+  letter-spacing: normal;
+  transition: unset !important;
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+a[tuiLink] {
+  color: var(--tui-base-09);
+}

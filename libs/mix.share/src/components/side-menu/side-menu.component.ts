@@ -7,6 +7,8 @@ export interface MixToolbarMenu {
   id: number;
   title: string;
   icon: string;
+  hideDetail?: boolean;
+  action?: () => void;
   detail: MenuItem[];
 }
 
@@ -36,6 +38,9 @@ export class SideMenuComponent {
   public currentSelectedItem: MixToolbarMenu | undefined;
 
   public itemSelect(item: MixToolbarMenu): void {
+    if (item.action) item.action();
+    if (item.hideDetail) return;
+
     this.currentSelectedItem = item;
   }
 

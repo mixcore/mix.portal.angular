@@ -44,6 +44,7 @@ import {
   IconBrandGithub,
   IconListNumbers,
   IconPlus,
+  IconSearch,
   IconSmartHome,
   IconVectorTriangle
 } from 'angular-tabler-icons/icons';
@@ -55,7 +56,8 @@ const icons = {
   IconPlus,
   IconListNumbers,
   IconAd2,
-  IconArrowBarLeft
+  IconArrowBarLeft,
+  IconSearch
 };
 
 const Angular_CommonModule = [CommonModule, FormsModule, ReactiveFormsModule];
@@ -105,8 +107,8 @@ const TaiGa_CommonModule = [
 ];
 
 @NgModule({
-  imports: [...TaiGa_CommonModule, ...Angular_CommonModule, TablerIconsModule.pick(icons)],
+  imports: [...Angular_CommonModule, ...TaiGa_CommonModule, TablerIconsModule.pick(icons)],
   declarations: [],
-  exports: [...TaiGa_CommonModule, ...Angular_CommonModule, TablerIconsModule]
+  exports: [...Angular_CommonModule, ...TaiGa_CommonModule, TablerIconsModule]
 })
 export class ShareModule {}

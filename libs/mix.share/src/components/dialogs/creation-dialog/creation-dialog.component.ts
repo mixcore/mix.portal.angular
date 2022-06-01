@@ -5,9 +5,9 @@ import { TuiAlertService, TuiDialogContext, TuiDialogService } from '@taiga-ui/c
 import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
 import { switchMap } from 'rxjs';
 
-import { MixPostApiService } from '../../services';
-import { ShareModule } from '../../share.module';
-import { FormUtils } from '../../utils';
+import { MixPostApiService } from '../../../services';
+import { ShareModule } from '../../../share.module';
+import { FormUtils } from '../../../utils';
 
 export type MixCreationType = 'Post' | 'Page' | 'Module';
 

@@ -278,17 +278,33 @@
   dependencies:
     tslib "^2.3.0"
 
-"@angular/platform-browser@v14.0.0-rc.1 ":
+"@angular/platform-browser@v14.0.0-rc.1":
   version "14.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-14.0.0-rc.1.tgz#2f79a2ebe56832a95f0bcb5f82ce9814fc0371da"
   integrity sha512-a0d2ek7us5th9OSE7carSVi+Gbv90JB3tO2oNGcC6TF1n1TQIw/vivNXTnTFqDgPVUvbQ3mGnY2UO/8j4cArKg==
   dependencies:
     tslib "^2.3.0"
 
+"@angular/pwa@v14.0.0-rc.1":
+  version "14.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@angular/pwa/-/pwa-14.0.0-rc.1.tgz#c5672aa8800eed7d2ce25f4c7e9fb5824f1ea594"
+  integrity sha512-7MoCk0iuMRJdhr/m8PSbl9Cfghyk705CpbS9zBeSkcLWFOGX6FhCa2OYLALsXhRKwa/HyHXESwLmXdmNuB+ZaQ==
+  dependencies:
+    "@angular-devkit/schematics" "14.0.0-rc.1"
+    "@schematics/angular" "14.0.0-rc.1"
+    parse5-html-rewriting-stream "6.0.1"
+
 "@angular/router@v14.0.0-rc.1 ":
   version "14.0.0-rc.1"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-14.0.0-rc.1.tgz#e0d296f7903ee85b62fc79696b0e0b2803f24178"
   integrity sha512-OqJlpJlzlThk83FjkX12KgDi1h7IHdvFoHLWt7orRM9VcO3JXLHfocK7Y/3DS2NQveS9vZTj8YUGWZDmKiH7jA==
+  dependencies:
+    tslib "^2.3.0"
+
+"@angular/service-worker@^13.3.11":
+  version "13.3.11"
+  resolved "https://registry.yarnpkg.com/@angular/service-worker/-/service-worker-13.3.11.tgz#fe61c4a58aa9a6159c129dc49d9b5dac3377976f"
+  integrity sha512-8y1sGjxCpZ9M/1KnVTsnaGQyXxcGqbaavzMQEINGCLV+5bQXaEa6JHDGftzSgiEPVT0qzgkFkkm2YFzhm0kM3Q==
   dependencies:
     tslib "^2.3.0"
 
