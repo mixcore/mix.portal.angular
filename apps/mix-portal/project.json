@@ -21,7 +21,7 @@
             "input": "node_modules/@taiga-ui/icons/src",
             "output": "assets/taiga-ui/icons"
           },
-          "apps/portal/src/manifest.webmanifest"
+          "apps/mix-portal/src/manifest.webmanifest"
         ],
         "styles": [
           "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
@@ -30,7 +30,7 @@
         ],
         "scripts": [],
         "serviceWorker": true,
-        "ngswConfigPath": "apps/portal/ngsw-config.json"
+        "ngswConfigPath": "apps/mix-portal/ngsw-config.json"
       },
       "configurations": {
         "production": {
