@@ -67,7 +67,7 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     pagingData: {
       pageIndex: 0,
       pageSize: 25,
-      totalItems: 0
+      total: 0
     }
   };
 

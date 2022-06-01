@@ -1,3 +1,41 @@
 mix-data-table {
   width: 100%;
 }
+
+.list-post {
+  &__header {
+    background-color: #f0f4f9;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+
+    .separator {
+      content: '';
+      display: block;
+      height: 60%;
+      width: 1px;
+      background-color: var(--tui-base-04);
+      margin: 0 15px 0 25px;
+    }
+  }
+
+  &__toolbar-item {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 1;
+    transition: all 0.2s ease-in;
+    border-radius: 8px;
+    padding: 8px 18px;
+
+    &:hover {
+      background-color: #fff;
+    }
+
+    &.--disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+  }
+}

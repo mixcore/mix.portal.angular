@@ -60,28 +60,28 @@ export class PortalLayoutComponent {
         }
       ]
     },
-    {
-      id: 2,
-      title: 'Tenant',
-      icon: 'vector-triangle',
-      detail: [
-        {
-          title: 'Create new',
-          icon: 'plus',
-          action: () => console.log(123)
-        },
-        {
-          title: 'List tenant',
-          icon: 'list-numbers',
-          action: () => console.log(123)
-        },
-        {
-          title: 'List domain',
-          icon: 'list-numbers',
-          action: () => console.log(123)
-        }
-      ]
-    },
+    // {
+    //   id: 2,
+    //   title: 'Tenant',
+    //   icon: 'vector-triangle',
+    //   detail: [
+    //     {
+    //       title: 'Create new',
+    //       icon: 'plus',
+    //       action: () => console.log(123)
+    //     },
+    //     {
+    //       title: 'List tenant',
+    //       icon: 'list-numbers',
+    //       action: () => console.log(123)
+    //     },
+    //     {
+    //       title: 'List domain',
+    //       icon: 'list-numbers',
+    //       action: () => console.log(123)
+    //     }
+    //   ]
+    // },
     {
       id: 3,
       title: 'Post',

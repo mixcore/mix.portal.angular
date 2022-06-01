@@ -1,7 +1,57 @@
 <mix-workspace-dynamic-layout>
+  <div class="list-post__header"
+       header>
+    <div>{{ postCount }} Posts Available</div>
+    <div class="separator"></div>
+
+    <div class="list-post__toolbar-item">
+      <i-tabler name="plus"></i-tabler> New
+    </div>
+
+    <div class="list-post__toolbar-item"
+         [ngClass]="{'--disabled': currentSelectedItems.length <= 0}"
+         [tuiHint]="tooltip"
+         [tuiHintHideDelay]="0"
+         [tuiHintMode]="'onDark'"
+         [tuiHintShowDelay]="50"
+         tuiHintDirection="bottom-middle">
+      <i-tabler name="trash"></i-tabler>
+      <ng-template #tooltip>
+        <span>Delete</span>
+      </ng-template>
+    </div>
+
+    <div class="list-post__toolbar-item"
+         [ngClass]="{'--disabled': currentSelectedItems.length !== 1}"
+         [tuiHint]="tooltip1"
+         [tuiHintHideDelay]="0"
+         [tuiHintMode]="'onDark'"
+         [tuiHintShowDelay]="50"
+         tuiHintDirection="bottom-middle">
+      <i-tabler name="writing"></i-tabler>
+      <ng-template #tooltip1>
+        <span>Re-name</span>
+      </ng-template>
+    </div>
+
+    <div class="list-post__toolbar-item"
+         [ngClass]="{'--disabled': currentSelectedItems.length !==  1}"
+         [tuiHint]="tooltip2"
+         [tuiHintHideDelay]="0"
+         [tuiHintMode]="'onDark'"
+         [tuiHintShowDelay]="50"
+         tuiHintDirection="bottom-middle">
+      <i-tabler name="copy"></i-tabler>
+      <ng-template #tooltip2>
+        <span>Duplicate</span>
+      </ng-template>
+    </div>
+  </div>
+
   <div main-workspace>
     <mix-data-table [fetchDataFn]="fetchPostFn"
-                    [searchPlaceholder]="'Type your post name'">
+                    [searchPlaceholder]="'Type your post name'"
+                    (itemsSelectedChange)="itemSelectedChange($event)">
       <div [columnType]="'CHECKBOX'"
            mixTableColumn></div>
       <div [header]="'#'"

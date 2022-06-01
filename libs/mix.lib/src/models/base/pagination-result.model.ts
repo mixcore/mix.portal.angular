@@ -2,7 +2,7 @@ export class PaginationModel {
   public pageIndex = 0;
   public page?: number;
   public pageSize?: number;
-  public totalItems?: number;
+  public total?: number;
   public totalPage?: number;
 }
 

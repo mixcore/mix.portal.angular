@@ -42,11 +42,14 @@ import {
   IconAd2,
   IconArrowBarLeft,
   IconBrandGithub,
+  IconCopy,
   IconListNumbers,
   IconPlus,
   IconSearch,
   IconSmartHome,
-  IconVectorTriangle
+  IconTrash,
+  IconVectorTriangle,
+  IconWriting
 } from 'angular-tabler-icons/icons';
 
 const icons = {
@@ -57,7 +60,10 @@ const icons = {
   IconListNumbers,
   IconAd2,
   IconArrowBarLeft,
-  IconSearch
+  IconSearch,
+  IconTrash,
+  IconCopy,
+  IconWriting
 };
 
 const Angular_CommonModule = [CommonModule, FormsModule, ReactiveFormsModule];
