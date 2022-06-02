@@ -23,7 +23,11 @@ import { take } from 'rxjs';
         display: flex;
 
         &__workspace {
+          margin-top: 10px;
+          margin-left: 10px;
           width: 100%;
+          border-radius: 20px;
+          box-shadow: rgb(0 0 0 / 16%) 0px 1px 4px;
         }
 
         &__main-workspace {
@@ -121,6 +125,11 @@ export class PortalLayoutComponent {
   @HostListener('window:keydown.f2', ['$event'])
   showSearch() {
     this.toggleUniversalSearch();
+  }
+
+  @HostListener('window:keydown.f3', ['$event'])
+  new() {
+    this.creatNew('Post');
   }
 
   constructor(
