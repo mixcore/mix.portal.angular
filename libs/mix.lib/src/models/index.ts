@@ -10,6 +10,7 @@ export * from './src/cultute.model';
 export * from './src/dashboard-info.model';
 export * from './src/init-tenant.model';
 export * from './src/mix-content-default.model';
+export * from './src/mix-page.model';
 export * from './src/mix-post.model';
 export * from './src/setting.model';
 export * from './src/theme.model';

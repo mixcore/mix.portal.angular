@@ -1,14 +1,14 @@
 <mix-workspace-dynamic-layout>
-  <div class="list-post__header"
+  <div class="list-page__header"
        header>
-    <div>{{ postCount }} Posts Available</div>
+    <div>{{ pageCount }} Page Available</div>
     <div class="separator"></div>
 
     <mix-toolbar [selectedItem]="currentSelectedItems"></mix-toolbar>
   </div>
 
   <div main-workspace>
-    <mix-data-table [fetchDataFn]="fetchPostFn"
+    <mix-data-table [fetchDataFn]="fetchPageFn"
                     [searchPlaceholder]="'Type your post name'"
                     (itemsSelectedChange)="itemSelectedChange($event)">
       <div [columnType]="'CHECKBOX'"

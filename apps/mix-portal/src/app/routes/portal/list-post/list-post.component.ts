@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MixPostPortalModel, PaginationRequestModel } from '@mix-spa/mix.lib';
-import { HeaderMenuService, MixDataTableModule, MixPostApiService, ShareModule, WorkspaceDynamicComponent } from '@mix-spa/mix.share';
+import { MixDataTableModule, MixPostApiService, MixToolbarComponent, ShareModule, WorkspaceDynamicComponent } from '@mix-spa/mix.share';
 import { tap } from 'rxjs';
 
 @Component({
@@ -8,18 +8,16 @@ import { tap } from 'rxjs';
   templateUrl: './list-post.component.html',
   styleUrls: ['./list-post.component.scss'],
   standalone: true,
-  imports: [ShareModule, WorkspaceDynamicComponent, MixDataTableModule]
+  imports: [ShareModule, WorkspaceDynamicComponent, MixDataTableModule, MixToolbarComponent]
 })
 export class ListPostComponent {
   public postCount = 0;
   public currentSelectedItems: MixPostPortalModel[] = [];
 
-  constructor(public postApiService: MixPostApiService, private headerService: HeaderMenuService) {
-    this.headerService.setTitle('Available Posts');
-  }
+  constructor(public postApiService: MixPostApiService) {}
 
   public fetchPostFn = (request: PaginationRequestModel) =>
-    this.postApiService.getPost(request).pipe(
+    this.postApiService.getPosts(request).pipe(
       tap(result => {
         this.postCount = result.pagingData.total || 0;
       })

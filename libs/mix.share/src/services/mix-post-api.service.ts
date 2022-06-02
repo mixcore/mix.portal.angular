@@ -14,7 +14,7 @@ export class MixPostApiService extends BaseApiService {
     return this.post<MixPostPortalModel, void>(MixApiDict.PostApi.savePostEndpoint, data);
   }
 
-  public getPost(request: PaginationRequestModel): Observable<PaginationResultModel<MixPostPortalModel>> {
+  public getPosts(request: PaginationRequestModel): Observable<PaginationResultModel<MixPostPortalModel>> {
     return this.get<PaginationResultModel<MixPostPortalModel>>(MixApiDict.PostApi.getPostEndpoint, <IHttpParamObject>request);
   }
 }

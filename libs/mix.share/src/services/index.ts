@@ -6,4 +6,5 @@ export { TenancyApiService } from './tenancy-api.service';
 export { ThemeApiService } from './theme-api.service';
 
 // Main content
+export { MixPageApiService } from './mix-page-api.service';
 export { MixPostApiService } from './mix-post-api.service';

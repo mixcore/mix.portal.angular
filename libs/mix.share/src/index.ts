@@ -3,6 +3,7 @@ export * from './components/data-table';
 export * from './components/dialogs/creation-dialog';
 export * from './components/dialogs/universal-search-dialog';
 export * from './components/header-menu';
+export * from './components/mix-toolbar';
 export * from './components/mix-widget';
 export * from './components/modal';
 export * from './components/side-menu';

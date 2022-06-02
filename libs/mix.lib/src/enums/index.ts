@@ -2,26 +2,30 @@ export * from './init-status.enum';
 
 export enum MixViewModelTypes {
   Portal = 'portal',
-  Mvc = 'mvc',
+  Mvc = 'mvc'
 }
+
 export enum DisplayDirection {
   Asc = 'Asc',
-  Desc = 'Desc',
+  Desc = 'Desc'
 }
+
 export enum MixModelType {
   Page = 'mix-page-content',
   Post = 'mix-post-content',
   Module = 'module',
   Database = 'mix-database',
-  DatabaseData = 'mix-database-data',
+  DatabaseData = 'mix-database-data'
 }
+
 export enum MixContentStatus {
   Deleted = 'Deleted',
   Preview = 'Preview',
   Published = 'Published',
   Draft = 'Draft',
-  Schedule = 'Schedule',
+  Schedule = 'Schedule'
 }
+
 export enum MixDataType {
   DateTime = 'DateTime',
   Date = 'Date',
@@ -46,26 +50,30 @@ export enum MixDataType {
   TuiEditor = 'TuiEditor',
   Integer = 'Integer',
   Reference = 'Reference',
-  QRCode = 'QRCode',
+  QRCode = 'QRCode'
 }
+
 export enum MixMenuItemType {
   Page = 'Page',
   Module = 'Module',
   Post = 'Post',
   Database = 'Database',
-  Uri = 'Uri',
+  Uri = 'Uri'
 }
+
 export enum MixModuleType {
   Content = 'Content',
   Data = 'Data',
-  ListPost = 'ListPost',
+  ListPost = 'ListPost'
 }
+
 export enum MixPageType {
   System = 'System',
   Home = 'Home',
   Article = 'Article',
-  ListPost = 'ListPost',
+  ListPost = 'ListPost'
 }
+
 export enum MixTemplateFolderType {
   Layouts = 'Layouts',
   Pages = 'Pages',
@@ -74,5 +82,5 @@ export enum MixTemplateFolderType {
   Edms = 'Edms',
   Posts = 'Posts',
   Widgets = 'Widgets',
-  Masters = 'Masters',
+  Masters = 'Masters'
 }

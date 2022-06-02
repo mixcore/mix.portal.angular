@@ -2,7 +2,7 @@ import { IEntityBase } from '../base/entity-base.model';
 import { IMixPolymopheusContent } from '../base/mix-polymopheus-conent.model';
 import { ISeoBase } from '../base/seo-base.model';
 
-export interface MixPostPortalModel extends IMixPolymopheusContent, IEntityBase<number>, ISeoBase {
+export interface MixPagePortalModel extends IMixPolymopheusContent, IEntityBase<number>, ISeoBase {
   template?: string;
   excerpt?: string;
   content?: string;

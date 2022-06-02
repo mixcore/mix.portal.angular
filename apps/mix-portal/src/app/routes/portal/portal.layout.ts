@@ -42,7 +42,7 @@ export class PortalLayoutComponent {
   public menuItems: MixToolbarMenu[] = [
     {
       id: 0,
-      title: 'Universal Search',
+      title: 'Universal Search (F2)',
       icon: 'search',
       hideDetail: true,
       action: () => this.toggleUniversalSearch(),
@@ -84,6 +84,23 @@ export class PortalLayoutComponent {
     // },
     {
       id: 3,
+      title: 'Page',
+      icon: 'address-book',
+      detail: [
+        {
+          title: 'Create new',
+          icon: 'plus',
+          action: () => this.creatNew('Page')
+        },
+        {
+          title: 'List pages',
+          icon: 'list-numbers',
+          action: () => this.navigate('/portal/list-page')
+        }
+      ]
+    },
+    {
+      id: 4,
       title: 'Post',
       icon: 'ad-2',
       detail: [
