@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { MixApiDict, MixPagePortalModel, PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
 import { Observable } from 'rxjs';
 
-import { BaseApiService, IHttpParamObject } from '../bases/base-api.service';
+import { BaseApiService, IHttpParamObject } from '../../bases/base-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class MixPageApiService extends BaseApiService {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { cryptoService, LocalStorageKeys, LoginModel, MixApiDict, TokenInfo, User, UserInfo } from '@mix-spa/mix.lib';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
-import { BaseApiService } from '../bases/base-api.service';
+import { BaseApiService } from '../../bases/base-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthApiService extends BaseApiService {

@@ -3,7 +3,7 @@ import { Culture, GlobalSettings, IGetAllCultureResult, MixApiDict } from '@mix-
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { BaseApiService } from '../bases/base-api.service';
+import { BaseApiService } from '../../bases/base-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class ShareApiService extends BaseApiService {

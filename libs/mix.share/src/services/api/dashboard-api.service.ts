@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { DashboardInformation, MixApiDict } from '@mix-spa/mix.lib';
 import { Observable } from 'rxjs';
 
-import { BaseApiService } from '../bases';
+import { BaseApiService } from '../../bases';
 
 @Injectable({ providedIn: 'root' })
 export class DashboardApiService extends BaseApiService {

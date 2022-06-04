@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IInitFullTenantRequest, InitStep, MixApiDict, ThemeAdditionalData } from '@mix-spa/mix.lib';
 import { Observable } from 'rxjs';
 
-import { BaseApiService } from '../bases/base-api.service';
+import { BaseApiService } from '../../bases/base-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class TenancyApiService extends BaseApiService {
