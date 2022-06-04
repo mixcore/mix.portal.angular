@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { InitStep } from '@mix-spa/mix.lib';
-import { AuthApiService, TenancyApiService } from '@mix-spa/mix.share';
+import { AuthApiService, TabControlService, TenancyApiService } from '@mix-spa/mix.share';
 import { TuiRootModule } from '@taiga-ui/core';
 
 @Component({
@@ -58,9 +58,10 @@ export class AppComponent {
     private tenantApi: TenancyApiService,
     private route: Router,
     private auth: AuthApiService,
-    private activeRoute: ActivatedRoute
+    private tabControl: TabControlService
   ) {
     this.checkSystem();
+    this.tabControl.init();
   }
 
   private checkSystem(): void {

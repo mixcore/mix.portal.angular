@@ -6,6 +6,8 @@ import {
   MixToolbarMenu,
   ShareModule,
   SideMenuComponent,
+  TabControlDialogComponent,
+  TabControlService,
   UniversalSearchComponent
 } from '@mix-spa/mix.share';
 import { TuiDialogService } from '@taiga-ui/core';
@@ -15,30 +17,13 @@ import { take } from 'rxjs';
 @Component({
   selector: 'mix-portal-layout',
   templateUrl: './portal.layout.html',
-  styles: [
-    `
-      .cms-portal-container {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-
-        &__workspace {
-          width: 100%;
-          box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-        }
-
-        &__main-workspace {
-          width: 100%;
-          box-sizing: border-box;
-        }
-      }
-    `
-  ],
+  styleUrls: ['./portal.layout.scss'],
   standalone: true,
-  imports: [HeaderMenuComponent, RouterModule, ShareModule, SideMenuComponent, UniversalSearchComponent]
+  imports: [HeaderMenuComponent, RouterModule, ShareModule, SideMenuComponent, UniversalSearchComponent, TabControlDialogComponent]
 })
 export class PortalLayoutComponent {
   public isShowUniversalSearch = false;
+  public isShowTab = false;
 
   public menuItems: MixToolbarMenu[] = [
     {
@@ -132,19 +117,20 @@ export class PortalLayoutComponent {
   @HostListener('window:keydown.alt.z', ['$event'])
   tab(e: KeyboardEvent) {
     e.preventDefault();
-    console.log('enable tab');
+    this.toggleTabControl(true);
   }
 
   @HostListener('window:keyup.alt', ['$event'])
   tabAlt(e: KeyboardEvent) {
     e.preventDefault();
-    console.log('closeable tab');
+    this.toggleTabControl(false);
   }
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector,
-    private router: Router
+    private router: Router,
+    private tabControl: TabControlService
   ) {}
 
   public creatNew(type: 'Post' | 'Module' | 'Page'): void {
@@ -161,5 +147,13 @@ export class PortalLayoutComponent {
 
   public toggleUniversalSearch(): void {
     this.isShowUniversalSearch = !this.isShowUniversalSearch;
+  }
+
+  public toggleTabControl(show: boolean): void {
+    if (this.isShowTab && show) {
+      this.tabControl.nextTab();
+    }
+
+    this.isShowTab = show;
   }
 }

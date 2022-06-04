@@ -1,0 +1,15 @@
+.cms-portal-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  &__workspace {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  }
+
+  &__main-workspace {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

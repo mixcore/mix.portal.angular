@@ -1,0 +1,16 @@
+.tab-control {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    min-width: 400px;
+    margin: 5px;
+    padding: 15px;
+    border-radius: 10px;
+
+    &.--active {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+  }
+}

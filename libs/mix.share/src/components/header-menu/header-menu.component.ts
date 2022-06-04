@@ -63,7 +63,7 @@ export class HeaderMenuComponent {
     if (children.length === 0) return breadcrumbs;
 
     for (const child of children) {
-      if (child.outlet === PRIMARY_OUTLET) {
+      if (child.outlet === PRIMARY_OUTLET && !!child.snapshot) {
         const routeUrl: string = child.snapshot.url
           .map(segment => segment.path)
           .filter(path => path)

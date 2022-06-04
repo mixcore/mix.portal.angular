@@ -1,4 +1,5 @@
 // Region Component
+export * from './components';
 export * from './components/data-table';
 export * from './components/dialogs/creation-dialog';
 export * from './components/dialogs/universal-search-dialog';
