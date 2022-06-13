@@ -4,6 +4,7 @@ import {
   IconArrowBarLeft,
   IconBrandGithub,
   IconCirclePlus,
+  IconComponents,
   IconCopy,
   IconListNumbers,
   IconPlus,
@@ -31,5 +32,6 @@ export const ICONS = {
   IconCirclePlus,
   IconAddressBook,
   IconSettings,
-  IconTools
+  IconTools,
+  IconComponents
 };

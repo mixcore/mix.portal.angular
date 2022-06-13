@@ -46,28 +46,6 @@ export class PortalLayoutComponent {
         }
       ]
     },
-    // {
-    //   id: 2,
-    //   title: 'Tenant',
-    //   icon: 'vector-triangle',
-    //   detail: [
-    //     {
-    //       title: 'Create new',
-    //       icon: 'plus',
-    //       action: () => console.log(123)
-    //     },
-    //     {
-    //       title: 'List tenant',
-    //       icon: 'list-numbers',
-    //       action: () => console.log(123)
-    //     },
-    //     {
-    //       title: 'List domain',
-    //       icon: 'list-numbers',
-    //       action: () => console.log(123)
-    //     }
-    //   ]
-    // },
     {
       id: 3,
       title: 'Page',
@@ -76,7 +54,7 @@ export class PortalLayoutComponent {
         {
           title: 'Create new',
           icon: 'plus',
-          action: () => this.creatNew('Page')
+          action: () => this.createNew('Page')
         },
         {
           title: 'List pages',
@@ -93,12 +71,29 @@ export class PortalLayoutComponent {
         {
           title: 'Create new',
           icon: 'plus',
-          action: () => this.creatNew('Post')
+          action: () => this.createNew('Post')
         },
         {
           title: 'List posts',
           icon: 'list-numbers',
           action: () => this.navigate('/portal/list-post')
+        }
+      ]
+    },
+    {
+      id: 5,
+      title: 'Module',
+      icon: 'components',
+      detail: [
+        {
+          title: 'Create new',
+          icon: 'plus',
+          action: () => this.createNew('Post')
+        },
+        {
+          title: 'List module',
+          icon: 'components',
+          action: () => this.navigate('/portal/list-module')
         }
       ]
     }
@@ -111,7 +106,7 @@ export class PortalLayoutComponent {
 
   @HostListener('window:keydown.f3', ['$event'])
   new() {
-    this.creatNew('Post');
+    this.createNew('Post');
   }
 
   @HostListener('window:keydown.alt.z', ['$event'])
@@ -133,7 +128,7 @@ export class PortalLayoutComponent {
     private tabControl: TabControlService
   ) {}
 
-  public creatNew(type: 'Post' | 'Module' | 'Page'): void {
+  public createNew(type: 'Post' | 'Module' | 'Page'): void {
     const dialog = this.dialogService.open(new PolymorpheusComponent(CreationDialogComponent, this.injector), {
       data: type
     });
