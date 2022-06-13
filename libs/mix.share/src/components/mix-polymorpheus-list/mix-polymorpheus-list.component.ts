@@ -6,6 +6,7 @@ import { MixPageApiService } from '../../services/api/mix-page-api.service';
 import { MixPostApiService } from '../../services/api/mix-post-api.service';
 import { ShareModule } from '../../share.module';
 import { MixDataTableModule } from '../data-table/data-table.module';
+import { MixStatusIndicatorComponent } from '../mix-status-indicator';
 import { MixToolbarComponent } from '../mix-toolbar/mix-toolbar.component';
 import { WorkspaceDynamicComponent } from '../workspace-dynamic-layout';
 
@@ -16,7 +17,7 @@ export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
   templateUrl: './mix-polymorpheus-list.component.html',
   styleUrls: ['./mix-polymorpheus-list.component.scss'],
   standalone: true,
-  imports: [ShareModule, WorkspaceDynamicComponent, MixDataTableModule, MixToolbarComponent]
+  imports: [ShareModule, WorkspaceDynamicComponent, MixDataTableModule, MixToolbarComponent, MixStatusIndicatorComponent]
 })
 export class MixPolymorphousListComponent implements OnInit {
   @Input() public listType: MixContentType = MixContentType.Page;

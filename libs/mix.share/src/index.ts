@@ -1,10 +1,11 @@
 // Region Component
-export * from './components';
 export * from './components/data-table';
 export * from './components/dialogs/creation-dialog';
+export * from './components/dialogs/tab-control';
 export * from './components/dialogs/universal-search-dialog';
 export * from './components/header-menu';
 export * from './components/mix-polymorpheus-list';
+export * from './components/mix-status-indicator';
 export * from './components/mix-toolbar';
 export * from './components/mix-widget';
 export * from './components/modal';

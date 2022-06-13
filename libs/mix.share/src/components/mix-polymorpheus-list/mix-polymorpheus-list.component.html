@@ -22,7 +22,12 @@
            key="title"></div>
       <div [header]="'Status'"
            mixTableColumn
-           key="status"></div>
+           key="status">
+        <ng-template let-data
+                     mixColumnCell>
+          <mix-status-indicator [status]="data.status"></mix-status-indicator>
+        </ng-template>
+      </div>
     </mix-data-table>
   </div>
 </mix-workspace-dynamic-layout>
