@@ -37,7 +37,8 @@
             background-color: var(--tui-primary-hover);
         }
         &.--active {
-            background-color: --tui-primary-active;
+            background-color: var(--tui-primary-active);
+            color: var(--tui-text-01-night);
         }
     }
     &__level-2 {
@@ -49,21 +50,21 @@
         border-bottom: 1px solid var(--tui-base-04);
         font-size: 16px;
         font-weight: 500;
-        padding: 0 0 0 22px;
+        padding: 0 0 0 16px;
         display: flex;
         align-items: center;
     }
     &__level-2-content {
-        padding: 14px 12px 5px 12px;
+        padding: 14px 8px 5px 8px;
     }
     &__detail-item {
         cursor: pointer;
         border-radius: 8px;
-        padding: 10px;
+        padding: 8px;
         width: 100%;
         display: flex;
         align-items: center;
-        font-size: 12px;
+        font-size: 14px;
         transition: background 0.8s;
         >i-tabler {
             margin-right: 15px;
