@@ -30,6 +30,18 @@
       > button {
         width: 100%;
       }
+
+      background: url(/assets/images/backgrounds/curved.jpg);
+      background-size: cover;
+      background-position: 50%;
+      .login-form-logo {
+        width: 200px;
+        height: 50px;
+        margin-bottom: 25px;
+        background-color: var(--tui-primary);
+        -webkit-mask: url(/assets/images/mixcore-logo-red-2.svg) no-repeat 50% 50%;
+        mask: url(/assets/images/mixcore-logo-red-2.svg) no-repeat 50% 50%;
+      }
     }
   }
 }

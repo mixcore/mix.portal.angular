@@ -2,6 +2,15 @@
     --primary-color-hue: 220;
     --primary-color-saturation: 50%;
     --primary-color-brightness: 50%;
+    --primary-hover-color-hue: var(--primary-color-hue);
+    --primary-hover-color-saturation: 50%;
+    --primary-hover-color-brightness: 70%;
+    --primary-active-color-hue: var(--primary-color-hue);
+    --primary-active-color-saturation: 50%;
+    --primary-active-color-brightness: 30%;
+    --secondary-color-hue: var(--primary-color-hue);
+    --secondary-color-saturation: 50%;
+    --secondary-color-brightness: 50%;
     // Deprecated
     --tui-heading-font: 'Manrope', @font-fallback;
     --tui-text-font: 'Manrope', @font-fallback;
@@ -48,8 +57,8 @@
     --tui-base-08: #333; // dark interface icons
     --tui-base-09: #000; // icons on inverted background
     --tui-primary: hsla( var(--primary-color-hue, 211), var(--primary-color-saturation, 100%), var(--primary-color-brightness, 50%), 1); // primary buttons, background
-    --tui-primary-hover: #6c86e2; // primary buttons hover
-    --tui-primary-active: #314692; // primary buttons pressed
+    --tui-primary-hover: hsla( var(--primary-hover-color-hue, 211), var(--primary-hover-color-saturation, 100%), var(--primary-hover-color-brightness, 70%), 1); //#6c86e2; // primary buttons hover
+    --tui-primary-active: hsla( var(--primary-active-color-hue, 211), var(--primary-active-color-saturation, 100%), var(--primary-active-color-brightness, 70%), 1); //#314692; // primary buttons pressed
     --tui-primary-text: #fff; // text on primary background
     --tui-secondary: #ebefff; // inputs and secondary buttons
     --tui-secondary-hover: #dfe3f3; // inputs and secondary buttons hover
