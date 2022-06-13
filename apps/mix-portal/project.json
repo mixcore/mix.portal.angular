@@ -54,6 +54,20 @@
           ],
           "outputHashing": "all"
         },
+        "ssl": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true,
+          "fileReplacements": [
+            {
+              "replace": "apps/mix-portal/src/environments/environment.ts",
+              "with": "apps/mix-portal/src/environments/environment.ssl.ts"
+            }
+          ]
+        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,
@@ -73,6 +87,9 @@
         },
         "development": {
           "browserTarget": "mix-portal:build:development"
+        },
+        "ssl": {
+          "browserTarget": "mix-portal:build:ssl"
         }
       },
       "defaultConfiguration": "development"

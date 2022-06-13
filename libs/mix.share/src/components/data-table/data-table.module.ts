@@ -7,6 +7,7 @@ import { TuiLetModule } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiHostedDropdownModule, TuiLoaderModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiCheckboxModule, TuiInputCountModule, TuiInputModule, TuiPaginationModule } from '@taiga-ui/kit';
 
+import { RelativeTimeSpanPipe } from '../../pipes';
 import { MixDataTableComponent } from './data-table.component';
 import { TableCellDirective } from './directives/cell.directive';
 import { TableColumnDirective } from './directives/column.directive';
@@ -30,6 +31,7 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiLoaderModule,
     TuiCheckboxModule,
     TuiPaginationModule,
+    RelativeTimeSpanPipe,
     DragDropModule
   ],
   exports: [MixDataTableComponent, TableHeaderDirective, TableCellDirective, TableColumnDirective]
