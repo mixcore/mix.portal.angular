@@ -6,19 +6,19 @@
     --tui-heading-font: 'Manrope', @font-fallback;
     --tui-text-font: 'Manrope', @font-fallback;
     // Fonts
-    --tui-font-heading: var(--tui-heading-font);
-    --tui-font-heading-1: bold 3.125rem/3.5rem var(--tui-font-heading);
-    --tui-font-heading-2: bold 2.75rem/3rem var(--tui-font-heading);
-    --tui-font-heading-3: bold 2.25rem/2.5rem var(--tui-font-heading);
-    --tui-font-heading-4: bold 1.75rem/2rem var(--tui-font-heading);
-    --tui-font-heading-5: bold 1.5rem/1.75rem var(--tui-font-heading);
-    --tui-font-heading-6: bold 1.25rem/1.5rem var(--tui-font-heading);
-    --tui-font-text: var(--tui-text-font);
-    --tui-font-text-xl: normal 1.1875rem/1.75rem var(--tui-font-text);
-    --tui-font-text-l: normal 1.0625rem/1.5rem var(--tui-font-text);
-    --tui-font-text-m: normal 0.9375rem/1.5rem var(--tui-font-text);
-    --tui-font-text-s: normal 0.8125rem/1.25rem var(--tui-font-text);
-    --tui-font-text-xs: normal 0.6875rem/1rem var(--tui-font-text);
+    // --tui-font-heading: var(--tui-heading-font);
+    // --tui-font-heading-1: bold 3.125rem/3.5rem var(--tui-font-heading);
+    // --tui-font-heading-2: bold 2.75rem/3rem var(--tui-font-heading);
+    // --tui-font-heading-3: bold 2.25rem/2.5rem var(--tui-font-heading);
+    // --tui-font-heading-4: bold 1.75rem/2rem var(--tui-font-heading);
+    // --tui-font-heading-5: bold 1.5rem/1.75rem var(--tui-font-heading);
+    // --tui-font-heading-6: bold 1.25rem/1.5rem var(--tui-font-heading);
+    // --tui-font-text: var(--tui-text-font);
+    // --tui-font-text-xl: normal 1.1875rem/1.75rem var(--tui-font-text);
+    // --tui-font-text-l: normal 1.0625rem/1.5rem var(--tui-font-text);
+    // --tui-font-text-m: normal 0.9375rem/1.5rem var(--tui-font-text);
+    // --tui-font-text-s: normal 0.8125rem/1.25rem var(--tui-font-text);
+    // --tui-font-text-xs: normal 0.6875rem/1rem var(--tui-font-text);
     // Sizes
     --tui-radius-xs: 0.25rem;
     --tui-radius-s: 0.5rem;
@@ -146,6 +146,32 @@
     --tui-support-21: #a0c5df;
     // Deprecated This color does not exist in our palette TODO delete it v3.0
     --tui-support-22: #3c7ba8;
+}
+
+.mask {
+    position: absolute;
+    background-size: cover;
+    background-position: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.blur {
+    box-shadow: inset 0 0 2px #fefefed1;
+    -webkit-backdrop-filter: saturate(200%) blur(30px);
+    backdrop-filter: saturate(200%) blur(30px);
+    background-color: hsla(0, 0%, 100%, 0.8) !important;
+}
+
+.bg-gradient-info {
+    background-image: linear-gradient(310deg, var(--tui-primary), var(--tui-secondary));
+}
+
+.opacity-8 {
+    opacity: 0.8 !important;
 }
 
 body {

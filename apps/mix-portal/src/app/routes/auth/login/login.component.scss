@@ -34,29 +34,3 @@
         }
     }
 }
-
-.mask {
-    position: absolute;
-    background-size: cover;
-    background-position: 50%;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.8;
-}
-
-.blur {
-    box-shadow: inset 0 0 2px #fefefed1;
-    -webkit-backdrop-filter: saturate(200%) blur(30px);
-    backdrop-filter: saturate(200%) blur(30px);
-    background-color: hsla(0, 0%, 100%, 0.8) !important;
-}
-
-.bg-gradient-info {
-    background-image: linear-gradient(310deg, var(--tui-primary), var(--tui-secondary));
-}
-
-.opacity-8 {
-    opacity: 0.8 !important;
-}
