@@ -1,109 +1,96 @@
 .side-menu {
-  height: 100%;
-  box-sizing: border-box;
-  display: flex;
-  position: relative;
-
-  &__level-1 {
     height: 100%;
-    padding: 14px 5px 5px 5px;
-    border-right: 1px solid var(--tui-base-04);
+    box-sizing: border-box;
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    background: rgb(214, 220, 234);
-    background: linear-gradient(300deg, rgba(214, 220, 234, 1) 41%, rgba(148, 207, 233, 1) 100%);
-  }
-
-  &__level-1-logo {
-    margin-bottom: 15px;
-  }
-
-  &__level-1-icon {
-    margin-bottom: 5px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 8px;
-
-    &:hover {
-      background-color: #e8f0f7;
+    position: relative;
+    &__level-1 {
+        height: 100%;
+        padding: 14px 5px 5px 5px;
+        border-right: 1px solid var(--tui-base-04);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        // Temporary remove background for now
+        // background: rgb(214, 220, 234);
+        // background: linear-gradient(300deg, rgba(214, 220, 234, 1) 41%, rgba(148, 207, 233, 1) 100%);
     }
-
-    &.--active {
-      background-color: #e8f0f7;
+    &__level-1-logo {
+        margin-bottom: 15px;
     }
-  }
-
-  &__level-2 {
-    height: 100%;
-    width: 200px;
-  }
-
-  &__level-2-title {
-    height: var(--mix-header-height);
-    border-bottom: 1px solid var(--tui-base-04);
-    font-size: 16px;
-    font-weight: 500;
-    padding: 0 0 0 22px;
-    display: flex;
-    align-items: center;
-  }
-
-  &__level-2-content {
-    padding: 14px 12px 5px 12px;
-  }
-
-  &__detail-item {
-    cursor: pointer;
-    border-radius: 8px;
-    padding: 10px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    font-size: 12px;
-    transition: background 0.8s;
-
-    > i-tabler {
-      margin-right: 15px;
-      width: 18px;
-      height: 18px;
+    &__level-1-icon {
+        margin-bottom: 5px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 8px;
+        &:hover {
+            background-color: var(--mix-primary-hover);
+        }
+        &.--active {
+            background-color: --mix-primary-active;
+        }
     }
-
-    &:hover {
-      background-color: #e8f0f7;
+    &__level-2 {
+        height: 100%;
+        width: 200px;
     }
-
-    &:active {
-      background-color: #e8f0f7;
-      background-size: 100%;
-      transition: background 0s;
+    &__level-2-title {
+        height: var(--mix-header-height);
+        border-bottom: 1px solid var(--tui-base-04);
+        font-size: 16px;
+        font-weight: 500;
+        padding: 0 0 0 22px;
+        display: flex;
+        align-items: center;
     }
-  }
-
-  &__collapse-icon {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    bottom: 8px;
-    right: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    border-radius: 12px;
-    background-color: #e8f0f7;
-  }
-
-  .separator {
-    content: '';
-    display: block;
-    height: 1px;
-    width: 100%;
-    background: var(--tui-base-04);
-    margin: 15px 0;
-  }
+    &__level-2-content {
+        padding: 14px 12px 5px 12px;
+    }
+    &__detail-item {
+        cursor: pointer;
+        border-radius: 8px;
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        transition: background 0.8s;
+        >i-tabler {
+            margin-right: 15px;
+            width: 18px;
+            height: 18px;
+        }
+        &:hover {
+            background-color: var(--mix-primary-hover);
+        }
+        &:active {
+            background-color: #e8f0f7;
+            background-size: 100%;
+            transition: background 0s;
+        }
+    }
+    &__collapse-icon {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        bottom: 8px;
+        right: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        border-radius: 12px;
+        background-color: #e8f0f7;
+    }
+    .separator {
+        content: '';
+        display: block;
+        height: 1px;
+        width: 100%;
+        background: var(--tui-base-04);
+        margin: 15px 0;
+    }
 }
