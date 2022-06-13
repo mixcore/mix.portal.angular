@@ -1,0 +1,28 @@
+<mix-workspace-dynamic-layout>
+  <div class="polymorphous-list__header"
+       header>
+    <div>{{ pageCount }} Page Available</div>
+    <div class="separator"></div>
+
+    <mix-toolbar [selectedItem]="currentSelectedItems"></mix-toolbar>
+  </div>
+
+  <div main-workspace>
+    <mix-data-table [fetchDataFn]="fetchDataFn"
+                    [searchPlaceholder]="'Type your post name'"
+                    (itemsSelectedChange)="itemSelectedChange($event)">
+      <div [columnType]="'CHECKBOX'"
+           mixTableColumn></div>
+      <div [header]="'#'"
+           [width]="'70px'"
+           mixTableColumn
+           key="id"></div>
+      <div [header]="'Post Title'"
+           mixTableColumn
+           key="title"></div>
+      <div [header]="'Status'"
+           mixTableColumn
+           key="status"></div>
+    </mix-data-table>
+  </div>
+</mix-workspace-dynamic-layout>

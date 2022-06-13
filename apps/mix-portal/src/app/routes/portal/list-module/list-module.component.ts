@@ -3,12 +3,12 @@ import { MixContentType } from '@mix-spa/mix.lib';
 import { MixPolymorphousListComponent, ShareModule } from '@mix-spa/mix.share';
 
 @Component({
-  selector: 'mix-list-post',
-  templateUrl: './list-post.component.html',
-  styleUrls: ['./list-post.component.scss'],
+  selector: 'mix-list-module',
+  templateUrl: './list-module.component.html',
+  styleUrls: ['./list-module.component.scss'],
   standalone: true,
   imports: [ShareModule, MixPolymorphousListComponent]
 })
-export class ListPostComponent {
-  public type: MixContentType = MixContentType.Page;
+export class ListModuleComponent {
+  public type: MixContentType = MixContentType.Module;
 }

@@ -38,37 +38,8 @@ import {
   TuiTextAreaModule
 } from '@taiga-ui/kit';
 import { TablerIconsModule } from 'angular-tabler-icons';
-import {
-  IconAd2,
-  IconAddressBook,
-  IconArrowBarLeft,
-  IconBrandGithub,
-  IconCirclePlus,
-  IconCopy,
-  IconListNumbers,
-  IconPlus,
-  IconSearch,
-  IconSmartHome,
-  IconTrash,
-  IconVectorTriangle,
-  IconWriting
-} from 'angular-tabler-icons/icons';
 
-const icons = {
-  IconBrandGithub,
-  IconVectorTriangle,
-  IconSmartHome,
-  IconPlus,
-  IconListNumbers,
-  IconAd2,
-  IconArrowBarLeft,
-  IconSearch,
-  IconTrash,
-  IconCopy,
-  IconWriting,
-  IconCirclePlus,
-  IconAddressBook
-};
+import { ICONS } from './icons.module';
 
 const Angular_CommonModule = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -117,7 +88,7 @@ const TaiGa_CommonModule = [
 ];
 
 @NgModule({
-  imports: [...Angular_CommonModule, ...TaiGa_CommonModule, TablerIconsModule.pick(icons)],
+  imports: [...Angular_CommonModule, ...TaiGa_CommonModule, TablerIconsModule.pick(ICONS)],
   declarations: [],
   exports: [...Angular_CommonModule, ...TaiGa_CommonModule, TablerIconsModule]
 })

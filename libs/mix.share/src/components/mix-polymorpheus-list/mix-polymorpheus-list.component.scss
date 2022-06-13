@@ -1,0 +1,22 @@
+mix-data-table {
+  width: 100%;
+}
+
+.polymorphous-list {
+  &__header {
+    background-color: #f0f4f9;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+
+    .separator {
+      content: '';
+      display: block;
+      height: 60%;
+      width: 1px;
+      background-color: var(--tui-base-04);
+      margin: 0 15px 0 25px;
+    }
+  }
+}
