@@ -1,7 +1,7 @@
 <mix-workspace-dynamic-layout>
   <div class="polymorphous-list__header"
        header>
-    <div>{{ pageCount }} Page Available</div>
+    <div>{{ pageCount }} {{ contentConfig[listType].header }}</div>
     <div class="separator"></div>
 
     <mix-toolbar [selectedItem]="currentSelectedItems"></mix-toolbar>
@@ -9,7 +9,7 @@
 
   <div main-workspace>
     <mix-data-table [fetchDataFn]="fetchDataFn"
-                    [searchPlaceholder]="'Type your post name'"
+                    [searchPlaceholder]="contentConfig[listType].searchPlaceholder"
                     (itemsSelectedChange)="itemSelectedChange($event)">
       <div [columnType]="'CHECKBOX'"
            mixTableColumn></div>
@@ -17,7 +17,7 @@
            [width]="'70px'"
            mixTableColumn
            key="id"></div>
-      <div [header]="'Post Title'"
+      <div [header]="'Title'"
            mixTableColumn
            key="title"></div>
       <div [header]="'Status'"

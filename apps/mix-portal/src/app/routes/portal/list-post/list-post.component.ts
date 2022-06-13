@@ -10,5 +10,5 @@ import { MixPolymorphousListComponent, ShareModule } from '@mix-spa/mix.share';
   imports: [ShareModule, MixPolymorphousListComponent]
 })
 export class ListPostComponent {
-  public type: MixContentType = MixContentType.Page;
+  public type: MixContentType = MixContentType.Post;
 }

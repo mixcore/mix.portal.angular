@@ -23,6 +23,12 @@ export class MixPolymorphousListComponent implements OnInit {
   @Input() public listType: MixContentType = MixContentType.Page;
   @Input() public request!: (query: PaginationRequestModel) => Observable<PaginationResultModel<PolymorphousListResult>>;
 
+  public readonly contentConfig: Record<MixContentType, { header: string; searchPlaceholder: string }> = {
+    Page: { header: 'Page Available', searchPlaceholder: 'Type your page name...' },
+    Post: { header: 'Post Available', searchPlaceholder: 'Type your post name...' },
+    Module: { header: 'Module Available', searchPlaceholder: 'Type your module name...' }
+  };
+
   public pageCount = 0;
   public currentSelectedItems: PolymorphousListResult[] = [];
 
