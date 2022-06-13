@@ -27,8 +27,8 @@ export interface MenuItem {
   imports: [ShareModule],
   animations: [
     trigger('enterAnimation', [
-      transition(':enter', [style({ width: 0, opacity: 0 }), animate('200ms', style({ width: '200px', opacity: 1 }))]),
-      transition(':leave', [style({ width: '200px', opacity: 1 }), animate('200ms', style({ width: 0, opacity: 0 }))])
+      transition(':enter', [style({ width: 0, opacity: 0 }), animate('120ms', style({ width: '200px', opacity: 1 }))]),
+      transition(':leave', [style({ width: '200px', opacity: 1 }), animate('120ms', style({ width: 0, opacity: 0 }))])
     ])
   ]
 })
