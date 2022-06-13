@@ -1,37 +1,23 @@
 <mix-workspace-dynamic-layout>
-  <div class="polymorphous-list__header"
-       header>
-    <div>{{ pageCount }} {{ contentConfig[listType].header }}</div>
-    <div class="separator"></div>
+    <div class="polymorphous-list__header" header>
+        <div>{{ pageCount }} {{ contentConfig[listType].header }}</div>
+        <div class="separator"></div>
 
-    <mix-toolbar [selectedItem]="currentSelectedItems"></mix-toolbar>
-  </div>
+        <mix-toolbar [selectedItem]="currentSelectedItems"></mix-toolbar>
+    </div>
 
-  <div main-workspace>
-    <mix-data-table [fetchDataFn]="fetchDataFn"
-                    [searchPlaceholder]="contentConfig[listType].searchPlaceholder"
-                    (itemsSelectedChange)="itemSelectedChange($event)">
-      <div [columnType]="'CHECKBOX'"
-           mixTableColumn></div>
-      <div [header]="'#'"
-           [width]="'70px'"
-           mixTableColumn
-           key="id"></div>
-      <div [header]="'Title'"
-           mixTableColumn
-           key="title"></div>
-      <div [header]="'Last Updated'"
-           key="createdDateTime"
-           mixTableColumn>
-      </div>
-      <div [header]="'Status'"
-           mixTableColumn
-           key="status">
-        <ng-template let-data
-                     mixColumnCell>
-          <mix-status-indicator [status]="data.status"></mix-status-indicator>
-        </ng-template>
-      </div>
-    </mix-data-table>
-  </div>
+    <div main-workspace>
+        <mix-data-table [fetchDataFn]="fetchDataFn" [searchPlaceholder]="contentConfig[listType].searchPlaceholder" (itemsSelectedChange)="itemSelectedChange($event)">
+            <div [columnType]="'CHECKBOX'" mixTableColumn></div>
+            <div [header]="'#'" [width]="'70px'" mixTableColumn key="id"></div>
+            <div [header]="'Title'" mixTableColumn key="title"></div>
+            <div [header]="'Last Updated'" key="createdDateTime" mixTableColumn>
+            </div>
+            <div [header]="'Status'" mixTableColumn key="status">
+                <ng-template let-data mixColumnCell>
+                    <mix-status-indicator [status]="data.status"></mix-status-indicator>
+                </ng-template>
+            </div>
+        </mix-data-table>
+    </div>
 </mix-workspace-dynamic-layout>

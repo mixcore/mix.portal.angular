@@ -157,6 +157,29 @@
     --tui-support-22: #3c7ba8;
 }
 
+body {
+    background-color: #f8f9fa;
+    font-size: var(--tui-font-text-m);
+}
+
+thead th:first-child {
+    border-top-left-radius: 10px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+tui-badge {
+    height: 50px !important;
+    width: 100px;
+}
+
+tui-dialog {
+    width: unset !important;
+    border: unset !important;
+}
+
 .mask {
     position: absolute;
     background-size: cover;
@@ -181,28 +204,6 @@
 
 .opacity-8 {
     opacity: 0.8 !important;
-}
-
-body {
-    background-color: #f8f9fa;
-}
-
-thead th:first-child {
-    border-top-left-radius: 10px;
-}
-
-thead th:last-child {
-    border-top-right-radius: 10px;
-}
-
-tui-badge {
-    height: 50px !important;
-    width: 100px;
-}
-
-tui-dialog {
-    width: unset !important;
-    border: unset !important;
 }
 
 .overlay {
