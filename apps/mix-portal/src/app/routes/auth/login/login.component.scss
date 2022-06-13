@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     // background-image: linear-gradient(to right, #8360c3, #2ebf91);
-    background: url(../../../../assets/images/backgrounds/curved.jpg);
+    background: url(/assets/images/backgrounds/curved.jpg);
     background-size: cover;
     background-position: 50%;
     .login-form-logo {
@@ -13,8 +13,8 @@
         height: 50px;
         margin-bottom: 25px;
         background-color: var(--tui-primary);
-        -webkit-mask: url(../../../../assets/images/mixcore-logo-red-2.svg) no-repeat 50% 50%;
-        mask: url(../../../../assets/images/mixcore-logo-red-2.svg) no-repeat 50% 50%;
+        -webkit-mask: url(/assets/images/mixcore-logo-red-2.svg) no-repeat 50% 50%;
+        mask: url(/assets/images/mixcore-logo-red-2.svg) no-repeat 50% 50%;
     }
     .login-form {
         border-radius: 20px;

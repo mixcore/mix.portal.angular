@@ -1,67 +1,56 @@
-<div *ngIf="menuItems"
-     class="side-menu">
-  <div class="side-menu__level-1">
-    <div class="side-menu__level-1-logo">
-      <img src="/assets/images/mixcore-mini-logo.svg">
+<div *ngIf="menuItems" class="side-menu">
+    <div class="side-menu__level-1">
+        <div class="side-menu__level-1-logo">
+            <!-- <img src="/assets/images/mixcore-mini-logo.svg"> -->
+
+            <div class="login-form-logo-square"></div>
+        </div>
+
+        <ng-container *ngFor="let item of menuItems">
+            <div class="side-menu__level-1-icon" [ngClass]="{'--active': currentSelectedItem?.id === item?.id}" [tuiHint]="tooltip" [tuiHintHideDelay]="0" [tuiHintMode]="'onDark'" [tuiHintShowDelay]="200" (click)="itemSelect(item)" tuiHintDirection="right">
+                <i-tabler name="{{item.icon}}"></i-tabler>
+
+                <ng-template #tooltip>
+                    <div>
+                        {{ item.title }}
+                    </div>
+                </ng-template>
+            </div>
+        </ng-container>
     </div>
 
-    <ng-container *ngFor="let item of menuItems">
-      <div class="side-menu__level-1-icon"
-           [ngClass]="{'--active': currentSelectedItem?.id === item?.id}"
-           [tuiHint]="tooltip"
-           [tuiHintHideDelay]="0"
-           [tuiHintMode]="'onDark'"
-           [tuiHintShowDelay]="200"
-           (click)="itemSelect(item)"
-           tuiHintDirection="right">
-        <i-tabler name="{{item.icon}}"></i-tabler>
+    <div *ngIf="currentSelectedItem" class="side-menu__level-2" [@enterAnimation]>
+        <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
 
-        <ng-template #tooltip>
-          <div>
-            {{ item.title }}
-          </div>
-        </ng-template>
-      </div>
-    </ng-container>
-  </div>
+        <div class="side-menu__level-2-content">
+            <ng-container *ngFor="let menu of currentSelectedItem.detail">
+                <div class="side-menu__detail-item" (click)="itemClick(menu)">
+                    <i-tabler name="{{menu.icon}}"></i-tabler>
+                    <div>
+                        {{ menu.title }}
+                    </div>
+                </div>
+            </ng-container>
 
-  <div *ngIf="currentSelectedItem"
-       class="side-menu__level-2"
-       [@enterAnimation]>
-    <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
+            <div class="separator"></div>
 
-    <div class="side-menu__level-2-content">
-      <ng-container *ngFor="let menu of currentSelectedItem.detail">
-        <div class="side-menu__detail-item"
-             (click)="itemClick(menu)">
-          <i-tabler name="{{menu.icon}}"></i-tabler>
-          <div>
-            {{ menu.title }}
-          </div>
+            <div class="side-menu__detail-item">
+                <i-tabler name="tools"></i-tabler>
+                <div>
+                    Configuration
+                </div>
+            </div>
+
+            <div class="side-menu__detail-item">
+                <i-tabler name="settings"></i-tabler>
+                <div>
+                    Settings
+                </div>
+            </div>
         </div>
-      </ng-container>
-
-      <div class="separator"></div>
-
-      <div class="side-menu__detail-item">
-        <i-tabler name="tools"></i-tabler>
-        <div>
-          Configuration
-        </div>
-      </div>
-
-      <div class="side-menu__detail-item">
-        <i-tabler name="settings"></i-tabler>
-        <div>
-          Settings
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div *ngIf="currentSelectedItem"
-       class="side-menu__collapse-icon"
-       (click)="currentSelectedItem = undefined">
-    <i-tabler name="arrow-bar-left"></i-tabler>
-  </div>
+    <div *ngIf="currentSelectedItem" class="side-menu__collapse-icon" (click)="currentSelectedItem = undefined">
+        <i-tabler name="arrow-bar-left"></i-tabler>
+    </div>
 </div>

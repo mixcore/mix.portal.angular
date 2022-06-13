@@ -5,7 +5,7 @@
     position: relative;
     &__level-1 {
         height: 100%;
-        padding: 14px 5px 5px 5px;
+        padding: 5px 5px 5px 5px;
         border-right: 1px solid var(--tui-base-04);
         display: flex;
         align-items: center;
@@ -16,6 +16,13 @@
     }
     &__level-1-logo {
         margin-bottom: 15px;
+        .login-form-logo-square {
+            width: 40px;
+            height: 35px;
+            background-color: var(--tui-primary);
+            -webkit-mask: url(/assets/images/mixcore-logo-red-square.svg) no-repeat 50% 50%;
+            mask: url(/assets/images/mixcore-logo-red-square.svg) no-repeat 50% 50%;
+        }
     }
     &__level-1-icon {
         margin-bottom: 5px;
@@ -27,10 +34,10 @@
         cursor: pointer;
         border-radius: 8px;
         &:hover {
-            background-color: var(--mix-primary-hover);
+            background-color: var(--tui-primary-hover);
         }
         &.--active {
-            background-color: --mix-primary-active;
+            background-color: --tui-primary-active;
         }
     }
     &__level-2 {
@@ -64,7 +71,7 @@
             height: 18px;
         }
         &:hover {
-            background-color: var(--mix-primary-hover);
+            background-color: var(--tui-primary-hover);
         }
         &:active {
             background-color: #e8f0f7;
