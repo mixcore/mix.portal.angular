@@ -48,35 +48,35 @@ export class PortalLayoutComponent {
     },
     {
       id: 3,
-      title: 'Page',
-      icon: 'address-book',
+      title: 'Post',
+      icon: 'news',
       detail: [
         {
-          title: 'Create new',
+          title: 'Create New',
           icon: 'plus',
-          action: () => this.createNew('Page')
+          action: () => this.createNew('Post')
         },
         {
-          title: 'List pages',
+          title: 'List Posts',
           icon: 'list-numbers',
-          action: () => this.navigate('/portal/list-page')
+          action: () => this.navigate('/portal/list-post')
         }
       ]
     },
     {
       id: 4,
-      title: 'Post',
-      icon: 'ad-2',
+      title: 'Page',
+      icon: 'file-horizontal',
       detail: [
         {
-          title: 'Create new',
+          title: 'Create New',
           icon: 'plus',
-          action: () => this.createNew('Post')
+          action: () => this.createNew('Page')
         },
         {
-          title: 'List posts',
+          title: 'List Pages',
           icon: 'list-numbers',
-          action: () => this.navigate('/portal/list-post')
+          action: () => this.navigate('/portal/list-page')
         }
       ]
     },
@@ -86,13 +86,115 @@ export class PortalLayoutComponent {
       icon: 'components',
       detail: [
         {
-          title: 'Create new',
+          title: 'Create New',
           icon: 'plus',
           action: () => this.createNew('Post')
         },
         {
-          title: 'List module',
+          title: 'List Module',
           icon: 'components',
+          action: () => this.navigate('/portal/list-module')
+        }
+      ]
+    },
+    {
+      id: 6,
+      title: 'Categories',
+      icon: 'stack2',
+      detail: [
+        {
+          title: 'Create New',
+          icon: 'plus',
+          action: () => this.createNew('Post')
+        },
+        {
+          title: 'List Categories',
+          icon: 'stack2',
+          action: () => this.navigate('/portal/list-module')
+        }
+      ]
+    },
+    {
+      id: 7,
+      title: 'Tags',
+      icon: 'tags',
+      detail: [
+        {
+          title: 'Create New',
+          icon: 'plus',
+          action: () => this.createNew('Post')
+        },
+        {
+          title: 'List Tags',
+          icon: 'tags',
+          action: () => this.navigate('/portal/list-module')
+        }
+      ]
+    },
+    {
+      id: 8,
+      title: 'Medias',
+      icon: 'photo',
+      detail: [
+        {
+          title: 'Create New',
+          icon: 'plus',
+          action: () => this.createNew('Post')
+        },
+        {
+          title: 'List Medias',
+          icon: 'photo',
+          action: () => this.navigate('/portal/list-module')
+        }
+      ]
+    },
+    {
+      id: 9,
+      title: 'Users',
+      icon: 'users',
+      detail: [
+        {
+          title: 'Create New',
+          icon: 'plus',
+          action: () => this.createNew('Post')
+        },
+        {
+          title: 'List Users',
+          icon: 'users',
+          action: () => this.navigate('/portal/list-module')
+        }
+      ]
+    },
+    {
+      id: 10,
+      title: 'Themes',
+      icon: 'layout',
+      detail: [
+        {
+          title: 'Create New',
+          icon: 'plus',
+          action: () => this.createNew('Post')
+        },
+        {
+          title: 'List Themes',
+          icon: 'layout',
+          action: () => this.navigate('/portal/list-module')
+        }
+      ]
+    },
+    {
+      id: 11,
+      title: 'Settings',
+      icon: 'settings',
+      detail: [
+        {
+          title: 'Create New',
+          icon: 'plus',
+          action: () => this.createNew('Post')
+        },
+        {
+          title: 'List Settings',
+          icon: 'settings',
           action: () => this.navigate('/portal/list-module')
         }
       ]
