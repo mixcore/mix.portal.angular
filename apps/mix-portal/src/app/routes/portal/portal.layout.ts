@@ -1,5 +1,6 @@
 import { Component, HostListener, Inject, Injector } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
+import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 import {
   CreationDialogComponent,
   HeaderMenuComponent,
@@ -30,6 +31,7 @@ export class PortalLayoutComponent {
       id: 0,
       title: 'Universal Search (F2)',
       icon: 'search',
+      position: VerticalDisplayPosition.Top,
       hideDetail: true,
       action: () => this.toggleUniversalSearch(),
       detail: []
@@ -38,6 +40,7 @@ export class PortalLayoutComponent {
       id: 1,
       title: 'Dashboard',
       icon: 'smart-home',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Statistical',
@@ -50,6 +53,7 @@ export class PortalLayoutComponent {
       id: 3,
       title: 'Post',
       icon: 'news',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -67,6 +71,7 @@ export class PortalLayoutComponent {
       id: 4,
       title: 'Page',
       icon: 'file-horizontal',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -84,6 +89,7 @@ export class PortalLayoutComponent {
       id: 5,
       title: 'Module',
       icon: 'components',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -101,6 +107,7 @@ export class PortalLayoutComponent {
       id: 6,
       title: 'Categories',
       icon: 'stack2',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -118,6 +125,7 @@ export class PortalLayoutComponent {
       id: 7,
       title: 'Tags',
       icon: 'tags',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -135,6 +143,7 @@ export class PortalLayoutComponent {
       id: 8,
       title: 'Medias',
       icon: 'photo',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -152,6 +161,7 @@ export class PortalLayoutComponent {
       id: 9,
       title: 'Users',
       icon: 'users',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -169,6 +179,7 @@ export class PortalLayoutComponent {
       id: 10,
       title: 'Themes',
       icon: 'layout',
+      position: VerticalDisplayPosition.Top,
       detail: [
         {
           title: 'Create New',
@@ -186,6 +197,7 @@ export class PortalLayoutComponent {
       id: 11,
       title: 'Settings',
       icon: 'settings',
+      position: VerticalDisplayPosition.Bottom,
       detail: [
         {
           title: 'Create New',

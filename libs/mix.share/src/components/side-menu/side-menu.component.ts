@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input } from '@angular/core';
+import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 
 import { ShareModule } from '../../share.module';
 
@@ -10,6 +11,7 @@ export interface MixToolbarMenu {
   hideDetail?: boolean;
   action?: () => void;
   detail: MenuItem[];
+  position: VerticalDisplayPosition;
 }
 
 export interface MenuItem {
@@ -36,6 +38,7 @@ export class SideMenuComponent {
   @Input() public showMenuLevel2 = false;
   @Input() public menuItems: MixToolbarMenu[] = [];
   public currentSelectedItem: MixToolbarMenu | undefined;
+  readonly VerticalDisplayPosition = VerticalDisplayPosition;
 
   public itemSelect(item: MixToolbarMenu): void {
     if (item.action) item.action();
