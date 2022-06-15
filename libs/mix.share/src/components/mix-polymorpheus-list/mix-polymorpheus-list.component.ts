@@ -25,9 +25,17 @@ export class MixPolymorphousListComponent implements OnInit {
   @Input() public request!: (query: PaginationRequestModel) => Observable<PaginationResultModel<PolymorphousListResult>>;
 
   public readonly contentConfig: Record<MixContentType, { header: string; searchPlaceholder: string }> = {
-    Page: { header: 'Page Available', searchPlaceholder: 'Type your page name...' },
-    Post: { header: 'Post Available', searchPlaceholder: 'Type your post name...' },
-    Module: { header: 'Module Available', searchPlaceholder: 'Type your module name...' }
+    Page: { header: 'Page Available', searchPlaceholder: 'Type your Page name...' },
+    Post: { header: 'Post Available', searchPlaceholder: 'Type your Post name...' },
+    Module: { header: 'Module Available', searchPlaceholder: 'Type your Module name...' },
+    MixDatabase: { header: 'MixDatabase Available', searchPlaceholder: 'Type your MixDatabase name...' },
+    Scheduler: { header: 'Scheduler Available', searchPlaceholder: 'Type your Scheduler name...' },
+    Tenant : { header: 'Tenant Available', searchPlaceholder: 'Type your Tenant name...' },
+    Domain: { header: 'Domain Available', searchPlaceholder: 'Type your Domain name...' },
+    Media : { header: 'Media Available', searchPlaceholder: 'Type your Media name...' },
+    Theme : { header: 'Theme Available', searchPlaceholder: 'Type your Theme name...' },
+    Language: { header: 'Language Available', searchPlaceholder: 'Type your Language name...' },
+    Localization: { header: 'Localization Available', searchPlaceholder: 'Type your Localization name...' }
   };
 
   public itemCount = 0;
