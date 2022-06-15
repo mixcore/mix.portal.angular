@@ -41,12 +41,12 @@ export class ModalService extends AbstractTuiDialogService<ModalOption> {
   }
 
   public success(message: string): Observable<void> {
-    const options: ModalOption = { ...this.defaultOptions, heading: 'Error', borderShadowColor: this.modalShadowColor.success };
+    const options: ModalOption = { ...this.defaultOptions, heading: 'Congratulation', borderShadowColor: this.modalShadowColor.success };
     return this.open(message, options);
   }
 
   public error(message: string): Observable<void> {
-    const options: ModalOption = { ...this.defaultOptions, heading: 'Congratulation', borderShadowColor: this.modalShadowColor.success };
+    const options: ModalOption = { ...this.defaultOptions, heading: 'Error !', borderShadowColor: this.modalShadowColor.success };
     return this.open(message, options);
   }
 

@@ -1,5 +1,13 @@
-import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
-import { MixContentType, MixPagePortalModel, MixPostPortalModel, PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
+import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import {
+  MixContentStatus,
+  MixContentType,
+  MixPagePortalModel,
+  MixPostPortalModel,
+  PaginationRequestModel,
+  PaginationResultModel
+} from '@mix-spa/mix.lib';
 import { BehaviorSubject, combineLatest, Observable, tap } from 'rxjs';
 
 import { MixModuleApiService } from '../../services/api/mix-module-api.service';
@@ -11,7 +19,8 @@ import { MixDataTableModule } from '../data-table/data-table.module';
 import { MixStatusIndicatorComponent } from '../mix-status-indicator';
 import { MixToolbarComponent } from '../mix-toolbar/mix-toolbar.component';
 import { ModalService } from '../modal/modal.service';
-import { WorkspaceDynamicComponent } from '../workspace-dynamic-layout';
+
+const ITEMS: readonly string[] = ['Luke Skywalker', 'Leia Organa Solo', 'Darth Vader', 'Han Solo', 'Obi-Wan Kenobi', 'Yoda'];
 
 export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
 
@@ -20,7 +29,8 @@ export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
   templateUrl: './mix-polymorpheus-list.component.html',
   styleUrls: ['./mix-polymorpheus-list.component.scss'],
   standalone: true,
-  imports: [ShareModule, WorkspaceDynamicComponent, MixDataTableModule, MixToolbarComponent, MixStatusIndicatorComponent]
+  imports: [ShareModule, MixDataTableModule, MixToolbarComponent, MixStatusIndicatorComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MixPolymorphousListComponent implements OnInit {
   @Input() public listType: MixContentType = MixContentType.Page;
@@ -30,19 +40,33 @@ export class MixPolymorphousListComponent implements OnInit {
   @ViewChild(MixDataTableComponent) dataTable!: MixDataTableComponent<PolymorphousListResult>;
 
   public readonly contentConfig: Record<MixContentType, { header: string; searchPlaceholder: string }> = {
-    Page: { header: 'Page Available', searchPlaceholder: 'Type your Page name...' },
-    Post: { header: 'Post Available', searchPlaceholder: 'Type your Post name...' },
-    Module: { header: 'Module Available', searchPlaceholder: 'Type your Module name...' },
-    MixDatabase: { header: 'MixDatabase Available', searchPlaceholder: 'Type your MixDatabase name...' },
-    Scheduler: { header: 'Scheduler Available', searchPlaceholder: 'Type your Scheduler name...' },
-    Tenant: { header: 'Tenant Available', searchPlaceholder: 'Type your Tenant name...' },
-    Domain: { header: 'Domain Available', searchPlaceholder: 'Type your Domain name...' },
-    Media: { header: 'Media Available', searchPlaceholder: 'Type your Media name...' },
-    Theme: { header: 'Theme Available', searchPlaceholder: 'Type your Theme name...' },
-    Language: { header: 'Language Available', searchPlaceholder: 'Type your Language name...' },
-    Localization: { header: 'Localization Available', searchPlaceholder: 'Type your Localization name...' }
+    Page: { header: 'Pages Available', searchPlaceholder: 'Type your Page name...' },
+    Post: { header: 'Posts Available', searchPlaceholder: 'Type your Post name...' },
+    Module: { header: 'Module sAvailable', searchPlaceholder: 'Type your Module name...' },
+    MixDatabase: { header: 'MixDatabases Available', searchPlaceholder: 'Type your MixDatabase name...' },
+    Scheduler: { header: 'Schedulers Available', searchPlaceholder: 'Type your Scheduler name...' },
+    Tenant: { header: 'Tenants Available', searchPlaceholder: 'Type your Tenant name...' },
+    Domain: { header: 'Domains Available', searchPlaceholder: 'Type your Domain name...' },
+    Media: { header: 'Medias Available', searchPlaceholder: 'Type your Media name...' },
+    Theme: { header: 'Themes Available', searchPlaceholder: 'Type your Theme name...' },
+    Language: { header: 'Languages Available', searchPlaceholder: 'Type your Language name...' },
+    Localization: { header: 'Localizations Available', searchPlaceholder: 'Type your Localization name...' }
   };
 
+  // Filter By Status
+  public readonly statusOption: MixContentStatus[] = [
+    MixContentStatus.Draft,
+    MixContentStatus.Published,
+    MixContentStatus.Deleted,
+    MixContentStatus.Preview
+  ];
+  public statusControl: FormControl = new FormControl(this.statusOption);
+
+  // Sort Option
+  public readonly sortOption: string[] = ['Newly Added', 'Most Viewed', 'Type'];
+  public sortOptionControl: FormControl = new FormControl('Newly Added');
+
+  public showFilter = true;
   public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   public itemCount = 0;
   public currentSelectedItems: PolymorphousListResult[] = [];
@@ -95,6 +119,11 @@ export class MixPolymorphousListComponent implements OnInit {
     combineLatest(this.currentSelectedItems.map(v => this.deleteRequest(v.id))).subscribe(() => {
       this.modalService.success('Successfully delete data').subscribe();
       this.dataTable.reloadData();
+      this.currentSelectedItems = [];
     });
+  }
+
+  public toggleFilter(): void {
+    this.showFilter = !this.showFilter;
   }
 }

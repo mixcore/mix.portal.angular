@@ -24,9 +24,11 @@ import {
   TuiComboBoxModule,
   TuiDataListWrapperModule,
   TuiFieldErrorModule,
+  TuiInputDateRangeModule,
   TuiInputModule,
   TuiIslandModule,
   TuiMarkerIconModule,
+  TuiMultiSelectModule,
   TuiProgressModule,
   TuiRadioBlockModule,
   TuiSelectModule,
@@ -46,6 +48,8 @@ const Angular_CommonModule = [CommonModule, FormsModule, ReactiveFormsModule];
 const TaiGa_CommonModule = [
   TuiInputModule,
   TuiSelectModule,
+  TuiComboBoxModule,
+  TuiMultiSelectModule,
   TuiSvgModule,
   TuiAvatarModule,
   TuiButtonModule,
@@ -56,9 +60,8 @@ const TaiGa_CommonModule = [
   TuiLinkModule,
   TuiSvgModule,
   TuiLetModule,
-  TuiSelectModule,
-  TuiDataListWrapperModule,
   TuiDataListModule,
+  TuiDataListWrapperModule,
   TuiLabelModule,
   TuiIslandModule,
   TuiInputModule,
@@ -72,7 +75,6 @@ const TaiGa_CommonModule = [
   TuiTagModule,
   TuiStepperModule,
   TuiStringifyPipeModule,
-  TuiComboBoxModule,
   TuiStringifyContentPipeModule,
   TuiBadgeModule,
   TuiTabsModule,
@@ -84,7 +86,8 @@ const TaiGa_CommonModule = [
   TuiRadioBlockModule,
   TuiGroupModule,
   TuiEditorModule,
-  TuiEditorNewModule
+  TuiEditorNewModule,
+  TuiInputDateRangeModule
 ];
 
 @NgModule({
