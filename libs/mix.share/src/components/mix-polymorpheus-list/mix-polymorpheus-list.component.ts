@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MixContentType, MixPagePortalModel, MixPostPortalModel, PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
 import { Observable, tap } from 'rxjs';
 
+import { MixModuleApiService } from '../../services/api/mix-module-api.service';
 import { MixPageApiService } from '../../services/api/mix-page-api.service';
 import { MixPostApiService } from '../../services/api/mix-post-api.service';
 import { ShareModule } from '../../share.module';
@@ -29,10 +30,10 @@ export class MixPolymorphousListComponent implements OnInit {
     Module: { header: 'Module Available', searchPlaceholder: 'Type your module name...' }
   };
 
-  public pageCount = 0;
+  public itemCount = 0;
   public currentSelectedItems: PolymorphousListResult[] = [];
 
-  constructor(public pageApi: MixPageApiService, public postApi: MixPostApiService) {}
+  constructor(public pageApi: MixPageApiService, public postApi: MixPostApiService, public moduleApi: MixModuleApiService) {}
 
   public ngOnInit(): void {
     switch (this.listType) {
@@ -43,7 +44,7 @@ export class MixPolymorphousListComponent implements OnInit {
         this.request = (query: PaginationRequestModel) => this.postApi.getPosts(query);
         break;
       default:
-        this.request = (query: PaginationRequestModel) => this.pageApi.getPages(query);
+        this.request = (query: PaginationRequestModel) => this.moduleApi.getModules(query);
         break;
     }
   }
@@ -51,12 +52,16 @@ export class MixPolymorphousListComponent implements OnInit {
   public fetchDataFn = (query: PaginationRequestModel) => {
     return this.request(query).pipe(
       tap(result => {
-        this.pageCount = result.pagingData.total || 0;
+        this.itemCount = result.pagingData.total || 0;
       })
     );
   };
 
   public itemSelectedChange(items: PolymorphousListResult[]): void {
     this.currentSelectedItems = items;
+  }
+
+  public onDelete(): void {
+    //
   }
 }
