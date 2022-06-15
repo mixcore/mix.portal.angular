@@ -42,59 +42,12 @@
       </ng-container>
 
       <div class="separator"></div>
-      <ng-template #tooltip>
-        <div>
-          {{ item.title }}
-        </div>
-      </ng-template>
     </div>
   </div>
 
   <div *ngIf="currentSelectedItem"
-       class="side-menu__level-2"
-       [@enterAnimation]>
-    <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
-
-    <div class="side-menu__level-2-content">
-      <ng-container *ngFor="let menu of currentSelectedItem.detail">
-        <div class="side-menu__detail-item"
-             (click)="itemClick(menu)">
-          <i-tabler name="{{menu.icon}}"></i-tabler>
-          <div>
-            {{ menu.title }}
-          </div>
-        </div>
-      </ng-container>
-
-      <div class="separator"></div>
-
-      <div class="side-menu__detail-item">
-        <i-tabler name="tools"></i-tabler>
-        <div>
-          Configuration
-        </div>
-      </div>
-
-      <div class="side-menu__detail-item">
-        <i-tabler name="settings"></i-tabler>
-        <div>
-          Settings
-        </div>
-      </div>
-    </div>
+       class="side-menu__collapse-icon"
+       (click)="currentSelectedItem = undefined">
+    <i-tabler name="arrow-bar-left"></i-tabler>
   </div>
-
-  <div class="side-menu__detail-item">
-    <i-tabler name="settings"></i-tabler>
-    <div>
-      Settings
-    </div>
-  </div>
-</div>
-
-
-<div *ngIf="currentSelectedItem"
-     class="side-menu__collapse-icon"
-     (click)="currentSelectedItem = undefined">
-  <i-tabler name="arrow-bar-left"></i-tabler>
 </div>

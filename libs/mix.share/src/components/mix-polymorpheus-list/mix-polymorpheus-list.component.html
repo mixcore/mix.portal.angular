@@ -4,13 +4,15 @@
     <div>{{ itemCount }} {{ contentConfig[listType].header }}</div>
     <div class="separator"></div>
 
-    <mix-toolbar [selectedItem]="currentSelectedItems"></mix-toolbar>
+    <mix-toolbar [selectedItem]="currentSelectedItems"
+                 (delete)="onDelete()"></mix-toolbar>
   </div>
 
   <div main-workspace>
     <mix-data-table [fetchDataFn]="fetchDataFn"
                     [searchPlaceholder]="contentConfig[listType].searchPlaceholder"
-                    (itemsSelectedChange)="itemSelectedChange($event)">
+                    (itemsSelectedChange)="itemSelectedChange($event)"
+                    [loading$]="loading$">
       <div [columnType]="'CHECKBOX'"
            mixTableColumn></div>
       <div [header]="'#'"

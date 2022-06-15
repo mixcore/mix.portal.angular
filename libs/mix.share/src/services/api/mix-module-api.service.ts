@@ -1,4 +1,3 @@
-import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MixApiDict, MixModulePortalModel, PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
 import { Observable } from 'rxjs';
@@ -11,10 +10,7 @@ export class MixModuleApiService extends BaseApiService {
     return this.get<PaginationResultModel<MixModulePortalModel>>(MixApiDict.ModuleApi.getModuleEndpoint, <IHttpParamObject>request);
   }
 
-  public deletePages(id: string): Observable<void> {
-    const params = new HttpParams();
-    params.set('id', id);
-
-    return this.delete(MixApiDict.ModuleApi.deleteModuleEndpoint, params);
+  public deleteModules(id: number): Observable<void> {
+    return this.delete(MixApiDict.ModuleApi.deleteModuleEndpoint + id);
   }
 }
