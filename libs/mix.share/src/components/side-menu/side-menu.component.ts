@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 
 import { ShareModule } from '../../share.module';
@@ -34,11 +34,15 @@ export interface MenuItem {
     ])
   ]
 })
-export class SideMenuComponent {
+export class SideMenuComponent implements OnInit {
   @Input() public showMenuLevel2 = false;
   @Input() public menuItems: MixToolbarMenu[] = [];
   public currentSelectedItem: MixToolbarMenu | undefined;
-  readonly VerticalDisplayPosition = VerticalDisplayPosition;
+  public readonly VerticalDisplayPosition = VerticalDisplayPosition;
+
+  public ngOnInit(): void {
+    this.currentSelectedItem = this.menuItems[1];
+  }
 
   public itemSelect(item: MixToolbarMenu): void {
     if (item.action) item.action();

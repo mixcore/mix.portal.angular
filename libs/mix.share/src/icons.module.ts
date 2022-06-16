@@ -6,6 +6,7 @@ import {
   IconComponents,
   IconCopy,
   IconFileHorizontal,
+  IconFilter,
   IconLayout,
   IconListNumbers,
   IconNews,
@@ -45,5 +46,6 @@ export const ICONS = {
   IconTags,
   IconUsers,
   IconLayout,
-  IconStack2
+  IconStack2,
+  IconFilter
 };

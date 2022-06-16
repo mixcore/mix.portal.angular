@@ -1,0 +1,61 @@
+.chat-box {
+  width: 100%;
+  background-color: var(--tui-base-01);
+  border-radius: var(--mix-border-radius-01);
+  border: 1px solid var(--tui-base-04);
+  padding: 5px;
+
+  &__chat-area {
+    padding-bottom: 5px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .header {
+      padding: 10px;
+      border-bottom: 1px solid var(--tui-base-04);
+    }
+
+    .input {
+      tui-text-area {
+        min-height: 3rem;
+        font-size: 12px;
+      }
+    }
+  }
+
+  &__users {
+    padding: 5px 0px;
+    border-top: 1px solid var(--tui-base-04);
+    display: flex;
+    justify-content: flex-end;
+
+    align-items: center;
+
+    .avatar {
+      border-radius: 50%;
+      border: 3px solid var(--tui-base-01);
+      margin-right: -15px;
+      z-index: 0;
+      transition: all 0.2s ease;
+      cursor: pointer;
+
+      &:hover {
+        margin-right: 0px;
+        transform: translate(-0.3rem, -0.3ex);
+      }
+    }
+
+    .avatar:last-child {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 32px;
+      width: 32px;
+      margin-right: 0px;
+      background-color: var(--tui-base-04);
+      font-size: 12px;
+    }
+  }
+}

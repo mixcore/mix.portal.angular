@@ -9,4 +9,8 @@ export class MixPageApiService extends BaseApiService {
   public getPages(request: PaginationRequestModel): Observable<PaginationResultModel<MixPagePortalModel>> {
     return this.get<PaginationResultModel<MixPagePortalModel>>(MixApiDict.PageApi.getPageEndpoint, <IHttpParamObject>request);
   }
+
+  public deletePages(id: number): Observable<void> {
+    return this.delete(MixApiDict.PageApi.deletePageEndpoint + id);
+  }
 }

@@ -1,38 +1,91 @@
-<mix-workspace-dynamic-layout>
   <div class="polymorphous-list__header"
        header>
-    <div>{{ pageCount }} {{ contentConfig[listType].header }}</div>
+    <div>{{ itemCount }} {{ contentConfig[listType].header }}</div>
     <div class="separator"></div>
 
-    <mix-toolbar [selectedItem]="currentSelectedItems"></mix-toolbar>
+    <mix-toolbar [selectedItem]="currentSelectedItems"
+                 (delete)="onDelete()"></mix-toolbar>
+
+    <button class="toggle-left-side"
+            (click)="toggleFilter()"
+            tuiIconButton
+            size="s">
+      <i-tabler name="filter"></i-tabler>
+    </button>
   </div>
 
-  <div main-workspace>
-    <mix-data-table [fetchDataFn]="fetchDataFn"
-                    [searchPlaceholder]="contentConfig[listType].searchPlaceholder"
-                    (itemsSelectedChange)="itemSelectedChange($event)">
-      <div [columnType]="'CHECKBOX'"
-           mixTableColumn></div>
-      <div [header]="'#'"
-           [width]="'70px'"
-           mixTableColumn
-           key="id"></div>
-      <div [header]="'Title'"
-           mixTableColumn
-           key="title"></div>
-      <div [columnType]="'DATE'"
-           [header]="'Last Updated'"
-           key="createdDateTime"
-           mixTableColumn>
+  <div class="polymorphous-list__container">
+    <div class="polymorphous-list__main-workspace">
+      <mix-data-table [fetchDataFn]="fetchDataFn"
+                      [searchPlaceholder]="contentConfig[listType].searchPlaceholder"
+                      (itemsSelectedChange)="itemSelectedChange($event)"
+                      [loading$]="loading$">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+        <div [header]="'#'"
+             [width]="'70px'"
+             mixTableColumn
+             key="id"></div>
+        <div [header]="'Title'"
+             mixTableColumn
+             key="title"></div>
+        <div [columnType]="'DATE'"
+             [header]="'Last Updated'"
+             key="createdDateTime"
+             mixTableColumn>
+        </div>
+        <div [header]="'Status'"
+             mixTableColumn
+             key="status">
+          <ng-template let-data
+                       mixColumnCell>
+            <mix-status-indicator [status]="data.status"></mix-status-indicator>
+          </ng-template>
+        </div>
+      </mix-data-table>
+    </div>
+
+    <div *ngIf="showLeftSide"
+         class="polymorphous-list__left-side">
+      <div class="filter">
+        <label tuiLabel>
+          From Date - To Date (Updated Date)
+          <tui-input-date-range class="b-form"
+                                [tuiTextfieldSize]="'m'">
+            Pick a date
+          </tui-input-date-range>
+        </label>
+
+        <label tuiLabel>
+          Status
+          <tui-multi-select class="b-form"
+                            [editable]="false"
+                            [expandable]="false"
+                            [formControl]="statusControl"
+                            [tuiTextfieldLabelOutside]="true"
+                            [tuiTextfieldSize]="'m'"
+                            tuiTextfieldExampleText="Ignored text">
+            <tui-data-list-wrapper *tuiDataList
+                                   [items]="statusOption"
+                                   tuiMultiSelectGroup></tui-data-list-wrapper>
+          </tui-multi-select>
+        </label>
+
+        <label tuiLabel>
+          Sort by:
+          <tui-select class="b-form"
+                      [formControl]="sortOptionControl"
+                      [tuiTextfieldLabelOutside]="true"
+                      [tuiTextfieldSize]="'m'"
+                      tuiTextfieldExampleText="Ignored text">
+            <tui-data-list-wrapper *tuiDataList
+                                   [items]="sortOption"></tui-data-list-wrapper>
+          </tui-select>
+        </label>
       </div>
-      <div [header]="'Status'"
-           mixTableColumn
-           key="status">
-        <ng-template let-data
-                     mixColumnCell>
-          <mix-status-indicator [status]="data.status"></mix-status-indicator>
-        </ng-template>
+
+      <div class="chatbox">
+        <mix-chat-box></mix-chat-box>
       </div>
-    </mix-data-table>
+    </div>
   </div>
-</mix-workspace-dynamic-layout>

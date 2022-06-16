@@ -41,8 +41,6 @@ export class CreationDialogComponent {
     this.type = context.data;
   }
 
-  // public ngOnInit(): void {}
-
   public submitForm(): void {
     if (!FormUtils.validateForm(this.form)) return;
 

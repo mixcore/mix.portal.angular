@@ -43,7 +43,7 @@ export class PortalLayoutComponent {
       position: VerticalDisplayPosition.Top,
       detail: [
         {
-          title: 'Statistical',
+          title: 'View Dashboard',
           icon: 'list-numbers',
           action: () => this.navigate('/portal/dashboard')
         }
@@ -200,14 +200,12 @@ export class PortalLayoutComponent {
       position: VerticalDisplayPosition.Bottom,
       detail: [
         {
-          title: 'Create New',
-          icon: 'plus',
-          action: () => this.createNew('Post')
+          title: 'Local Setting',
+          icon: 'plus'
         },
         {
-          title: 'List Settings',
-          icon: 'settings',
-          action: () => this.navigate('/portal/list-module')
+          title: 'Global Setting',
+          icon: 'settings'
         }
       ]
     }

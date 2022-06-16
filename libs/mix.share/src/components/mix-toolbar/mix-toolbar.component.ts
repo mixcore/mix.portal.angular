@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ShareModule } from '../../share.module';
 
@@ -11,4 +11,9 @@ import { ShareModule } from '../../share.module';
 })
 export class MixToolbarComponent<T> {
   @Input() public selectedItem: T[] = [];
+  @Output() delete: EventEmitter<void> = new EventEmitter<void>();
+
+  public onDelete(): void {
+    this.delete.emit();
+  }
 }

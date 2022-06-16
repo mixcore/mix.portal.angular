@@ -1,7 +1,7 @@
 import { MixContentStatus } from '../../enums';
 
 export interface IEntityBase<T> {
-  id?: T;
+  id: T;
   createdDateTime: Date;
   lastModified: Date;
   createdBy: string;

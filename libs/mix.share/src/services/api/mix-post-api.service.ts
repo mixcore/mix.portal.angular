@@ -17,4 +17,8 @@ export class MixPostApiService extends BaseApiService {
   public getPosts(request: PaginationRequestModel): Observable<PaginationResultModel<MixPostPortalModel>> {
     return this.get<PaginationResultModel<MixPostPortalModel>>(MixApiDict.PostApi.getPostEndpoint, <IHttpParamObject>request);
   }
+
+  public deletePosts(id: number): Observable<void> {
+    return this.delete(MixApiDict.PostApi.deletePostEndpoint + id);
+  }
 }
