@@ -45,12 +45,13 @@
       </mix-data-table>
     </div>
 
-    <div *ngIf="showFilter"
+    <div *ngIf="showLeftSide"
          class="polymorphous-list__left-side">
-      <div class="widget">
+      <div class="filter">
         <label tuiLabel>
           From Date - To Date (Updated Date)
-          <tui-input-date-range class="b-form">
+          <tui-input-date-range class="b-form"
+                                [tuiTextfieldSize]="'m'">
             Pick a date
           </tui-input-date-range>
         </label>
@@ -59,8 +60,10 @@
           Status
           <tui-multi-select class="b-form"
                             [editable]="false"
+                            [expandable]="false"
                             [formControl]="statusControl"
                             [tuiTextfieldLabelOutside]="true"
+                            [tuiTextfieldSize]="'m'"
                             tuiTextfieldExampleText="Ignored text">
             <tui-data-list-wrapper *tuiDataList
                                    [items]="statusOption"
@@ -73,11 +76,16 @@
           <tui-select class="b-form"
                       [formControl]="sortOptionControl"
                       [tuiTextfieldLabelOutside]="true"
+                      [tuiTextfieldSize]="'m'"
                       tuiTextfieldExampleText="Ignored text">
             <tui-data-list-wrapper *tuiDataList
                                    [items]="sortOption"></tui-data-list-wrapper>
           </tui-select>
         </label>
+      </div>
+
+      <div class="chatbox">
+        <mix-chat-box></mix-chat-box>
       </div>
     </div>
   </div>

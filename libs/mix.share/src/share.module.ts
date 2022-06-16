@@ -87,7 +87,8 @@ const TaiGa_CommonModule = [
   TuiGroupModule,
   TuiEditorModule,
   TuiEditorNewModule,
-  TuiInputDateRangeModule
+  TuiInputDateRangeModule,
+  TuiAvatarModule
 ];
 
 @NgModule({

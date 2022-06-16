@@ -16,11 +16,10 @@ import { MixPostApiService } from '../../services/api/mix-post-api.service';
 import { ShareModule } from '../../share.module';
 import { MixDataTableComponent } from '../data-table';
 import { MixDataTableModule } from '../data-table/data-table.module';
+import { MixChatBoxComponent } from '../mix-chat-box';
 import { MixStatusIndicatorComponent } from '../mix-status-indicator';
 import { MixToolbarComponent } from '../mix-toolbar/mix-toolbar.component';
 import { ModalService } from '../modal/modal.service';
-
-const ITEMS: readonly string[] = ['Luke Skywalker', 'Leia Organa Solo', 'Darth Vader', 'Han Solo', 'Obi-Wan Kenobi', 'Yoda'];
 
 export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
 
@@ -29,7 +28,7 @@ export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
   templateUrl: './mix-polymorpheus-list.component.html',
   styleUrls: ['./mix-polymorpheus-list.component.scss'],
   standalone: true,
-  imports: [ShareModule, MixDataTableModule, MixToolbarComponent, MixStatusIndicatorComponent],
+  imports: [ShareModule, MixDataTableModule, MixToolbarComponent, MixStatusIndicatorComponent, MixChatBoxComponent],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MixPolymorphousListComponent implements OnInit {
@@ -66,7 +65,7 @@ export class MixPolymorphousListComponent implements OnInit {
   public readonly sortOption: string[] = ['Newly Added', 'Most Viewed', 'Type'];
   public sortOptionControl: FormControl = new FormControl('Newly Added');
 
-  public showFilter = true;
+  public showLeftSide = true;
   public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
   public itemCount = 0;
   public currentSelectedItems: PolymorphousListResult[] = [];
@@ -124,6 +123,6 @@ export class MixPolymorphousListComponent implements OnInit {
   }
 
   public toggleFilter(): void {
-    this.showFilter = !this.showFilter;
+    this.showLeftSide = !this.showLeftSide;
   }
 }
