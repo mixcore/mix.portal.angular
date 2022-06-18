@@ -9,6 +9,7 @@ import {
   IconFilter,
   IconLayout,
   IconListNumbers,
+  IconMessageCircle,
   IconNews,
   IconPhoto,
   IconPlus,
@@ -47,5 +48,6 @@ export const ICONS = {
   IconUsers,
   IconLayout,
   IconStack2,
-  IconFilter
+  IconFilter,
+  IconMessageCircle
 };

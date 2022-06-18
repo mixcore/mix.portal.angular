@@ -4,6 +4,7 @@ import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 import {
   CreationDialogComponent,
   HeaderMenuComponent,
+  MixChatBoxComponent,
   MixToolbarMenu,
   ShareModule,
   SideMenuComponent,
@@ -20,7 +21,15 @@ import { take } from 'rxjs';
   templateUrl: './portal.layout.html',
   styleUrls: ['./portal.layout.scss'],
   standalone: true,
-  imports: [HeaderMenuComponent, RouterModule, ShareModule, SideMenuComponent, UniversalSearchComponent, TabControlDialogComponent]
+  imports: [
+    HeaderMenuComponent,
+    RouterModule,
+    ShareModule,
+    SideMenuComponent,
+    UniversalSearchComponent,
+    TabControlDialogComponent,
+    MixChatBoxComponent
+  ]
 })
 export class PortalLayoutComponent {
   public isShowUniversalSearch = false;

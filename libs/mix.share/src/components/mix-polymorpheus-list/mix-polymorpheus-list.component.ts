@@ -16,7 +16,7 @@ import { MixPostApiService } from '../../services/api/mix-post-api.service';
 import { ShareModule } from '../../share.module';
 import { MixDataTableComponent } from '../data-table';
 import { MixDataTableModule } from '../data-table/data-table.module';
-import { MixChatBoxComponent } from '../mix-chat-box';
+import { MixChatBoxComponent } from '../mix-chat';
 import { MixStatusIndicatorComponent } from '../mix-status-indicator';
 import { MixToolbarComponent } from '../mix-toolbar/mix-toolbar.component';
 import { ModalService } from '../modal/modal.service';

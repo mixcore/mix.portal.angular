@@ -2,6 +2,7 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  position: relative;
 
   &__workspace {
     width: 100%;
@@ -12,5 +13,11 @@
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+  }
+
+  &__chat-bubble {
+    position: absolute;
+    bottom: 0px;
+    right: 10px;
   }
 }

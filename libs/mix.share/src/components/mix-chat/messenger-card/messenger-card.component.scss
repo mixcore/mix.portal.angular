@@ -1,0 +1,37 @@
+.messenger-card {
+  background-color: var(--tui-base-01);
+  width: 21rem;
+  height: 29rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: var(--mix-border-radius-01);
+  border: 1px solid var(--tui-base-04);
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    height: 3.5rem;
+    padding: 0 10px;
+    border-bottom: 1px solid var(--tui-base-04);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .toolbar {
+      display: flex;
+
+      button {
+        margin-left: 5px;
+      }
+    }
+  }
+
+  &__footer {
+    border-top: 1px solid var(--tui-base-04);
+    margin-top: auto;
+    padding: 8px;
+
+    .text-box {
+      min-height: 5rem;
+    }
+  }
+}

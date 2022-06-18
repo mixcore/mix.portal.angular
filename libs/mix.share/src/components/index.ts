@@ -3,7 +3,7 @@ export * from './dialogs/creation-dialog';
 export * from './dialogs/tab-control';
 export * from './dialogs/universal-search-dialog';
 export * from './header-menu';
-export * from './mix-chat-box';
+export * from './mix-chat';
 export * from './mix-polymorpheus-list';
 export * from './mix-status-indicator';
 export * from './mix-toolbar';

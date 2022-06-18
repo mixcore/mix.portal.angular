@@ -1,0 +1,29 @@
+<div class="messenger-card">
+  <div class="messenger-card__header">
+    <div class="title">
+      Phong Cao
+    </div>
+
+    <div class="toolbar">
+      <button type="button"
+              (click)="onMinimizeChat()"
+              tuiIconButton
+              icon="tuiIconSubitem"></button>
+      <button type="button"
+              (click)="onCloseChat()"
+              tuiIconButton
+              icon="tuiIconCloseLarge"></button>
+    </div>
+  </div>
+
+  <div class="messenger-card__chat-area">
+
+  </div>
+
+  <div class="messenger-card__footer">
+    <tui-text-area class="text-box"
+                   [expandable]="false">
+      Type your message
+    </tui-text-area>
+  </div>
+</div>
