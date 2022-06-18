@@ -20,6 +20,7 @@ import { MixChatBoxComponent } from '../mix-chat-box';
 import { MixStatusIndicatorComponent } from '../mix-status-indicator';
 import { MixToolbarComponent } from '../mix-toolbar/mix-toolbar.component';
 import { ModalService } from '../modal/modal.service';
+import { MixUserListHubComponent } from '../user-list-hub/user-list-hub.component';
 
 export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
 
@@ -28,7 +29,14 @@ export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
   templateUrl: './mix-polymorpheus-list.component.html',
   styleUrls: ['./mix-polymorpheus-list.component.scss'],
   standalone: true,
-  imports: [ShareModule, MixDataTableModule, MixToolbarComponent, MixStatusIndicatorComponent, MixChatBoxComponent],
+  imports: [
+    ShareModule,
+    MixDataTableModule,
+    MixToolbarComponent,
+    MixStatusIndicatorComponent,
+    MixChatBoxComponent,
+    MixUserListHubComponent
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MixPolymorphousListComponent implements OnInit {

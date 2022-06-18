@@ -12,4 +12,5 @@ export * from './modal';
 export * from './side-menu';
 export * from './sidebar-menu';
 export * from './theme-import';
+export * from './user-list-hub/user-list-hub.component';
 export * from './workspace-dynamic-layout';
