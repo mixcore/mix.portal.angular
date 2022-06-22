@@ -14,6 +14,7 @@ export class TableColumnDirective {
   @Input() public columnType: ColumnType = 'DATA';
   @Input() public showHeader = true;
   @Input() public width: string | undefined;
+  @Input() public showInSubTable = true;
 
   @ContentChild(TableCellDirective, { static: true }) public tplCell?: TableCellDirective;
   @ContentChild(TableHeaderDirective, { static: true }) public tplHeader?: TableHeaderDirective;

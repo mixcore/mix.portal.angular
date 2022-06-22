@@ -3,42 +3,44 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 html,
 body {
-    height: 100%;
-    font-family: var(--font-family);
+  height: 100%;
+  font-family: var(--font-family);
 }
 
 body {
-    margin: 0 !important;
-    padding: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 :root {
-    --mix-header-height: 47px;
-    --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --mix-header-height: 47px;
+  --font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .cdk-drag-preview {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  display: flex;
+  align-items: center;
+  td {
     border-radius: 10px;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     display: flex;
     align-items: center;
-    td {
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        background: #fff;
-    }
+    background: #fff;
+  }
 }
 
 .cdk-drag-placeholder {
-    opacity: 0.3;
+  opacity: 0.3;
+  width: 0;
 }
 
 .cdk-drag-animating {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
 i-tabler {
-    stroke-width: 1.5 !important;
+  stroke-width: 1.5 !important;
 }

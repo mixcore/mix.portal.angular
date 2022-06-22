@@ -1,13 +1,16 @@
+import { CdkDragMove, DropListRef } from '@angular/cdk/drag-drop';
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
   Component,
   ContentChildren,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
   QueryList,
+  ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
@@ -27,6 +30,7 @@ import { TableColumnDirective } from './directives/column.directive';
 export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   public currentSelectedItem: T[] = [];
   public cacheItems: T[] = [];
+  public currentPage = 0;
   public isAllSelected = false;
 
   @Input() public selfControl = true;
@@ -46,20 +50,27 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   @Output() public tableQueryChange: EventEmitter<PaginationRequestModel> = new EventEmitter();
   @Output() public itemsSelectedChange: EventEmitter<T[]> = new EventEmitter();
 
+  @ViewChild('subDropList', { static: false }) public subDropList!: DropListRef;
+  @ViewChild('dropList', { static: false }) public dropList!: DropListRef;
+
   @ContentChildren(TableColumnDirective)
   public columns!: QueryList<TableColumnDirective>;
 
   public tableInitialColumns: string[] = [];
   public tableColumns: string[] = [];
+  public subTableColumns: string[] = [];
   public tableEnabledColumns: string[] = [];
   public tableSortFields: readonly string[] = [];
-
   public columnDic: Record<string, string> = {};
+  public showSubTable = false;
 
+  public readonly showDragLeft: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public readonly showDragRight: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public readonly arrow: PolymorpheusComponent<TuiArrowComponent, object> = TUI_ARROW;
   public readonly searchText$: BehaviorSubject<string> = new BehaviorSubject('');
   public readonly size$: Subject<number> = new Subject();
   public readonly page$: Subject<number> = new Subject();
+  public readonly dragChange: Subject<number> = new Subject();
   public readonly direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<-1 | 1>(1);
   public readonly reload$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public readonly emptyData: PaginationResultModel<T> = {
@@ -79,6 +90,8 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     this.reload$
   ]);
 
+  constructor(private elementRef: ElementRef) {}
+
   public ngOnInit(): void {
     if (this.selfControl) {
       this._setupSelfControl();
@@ -93,6 +106,31 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     }
   }
 
+  public handleDragAndDrop(): void {
+    // this.dragChange.pipe(debounceTime(100)).subscribe((pointerX: number) => {
+    //   const currentListOffsetLeft = this.elementRef.nativeElement.offsetLeft;
+    //   const currentListOffsetRight = this.elementRef.nativeElement.offsetWidth + currentListOffsetLeft;
+    //   if (pointerX - currentListOffsetLeft <= 100) {
+    //     this.showDragRight.next(false);
+    //     this.showDragLeft.next(true);
+    //   } else if (currentListOffsetRight - pointerX <= 100) {
+    //     this.showDragRight.next(true);
+    //     this.showDragLeft.next(false);
+    //   } else {
+    //     this.showDragRight.next(false);
+    //     this.showDragLeft.next(false);
+    //   }
+    // });
+    // this.showDragLeft.pipe(debounceTime(500)).subscribe(v => {
+    //   if (!v) return;
+    //   this.showSubTable = true;
+    // });
+    // this.showDragRight.pipe(debounceTime(500)).subscribe(v => {
+    //   if (!v) return;
+    //   this.showSubTable = true;
+    // });
+  }
+
   public isItemSelected(item: T): boolean {
     return !!this.currentSelectedItem.find((v: T) => JSON.stringify(v) === JSON.stringify(item));
   }
@@ -101,7 +139,10 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     const columns: TableColumnDirective[] = this.columns.toArray();
     this.columnDic = this._buildColumnDictionary(columns);
     this.tableInitialColumns = columns.map((c: TableColumnDirective) => c.key);
-    this.tableColumns = this.tableInitialColumns;
+    this.tableColumns = columns.map((c: TableColumnDirective) => c.key);
+    this.subTableColumns = columns
+      .filter(c => c.columnType !== 'CHECKBOX' && c.showInSubTable === true)
+      .map((c: TableColumnDirective) => c.key);
     this.tableSortFields = columns.map((c: TableColumnDirective) => c.header);
   }
 
@@ -149,6 +190,16 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     this.reload$.next(!this.reload$.getValue());
   }
 
+  public onDragItem(event: CdkDragMove): void {
+    this.dragChange.next(event.pointerPosition.x);
+  }
+
+  public onReleaseDragItem(): void {
+    // this.showDragLeft.next(false);
+    // this.showDragRight.next(false);
+    // this.showSubTable = false;
+  }
+
   private _processSelfFetchData(searchText: string, page: number, pageSize: number): Observable<PaginationResultModel<T>> {
     return this.fetchDataFn({
       keyword: searchText,
@@ -178,6 +229,7 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
       tap((res: PaginationResultModel<T>) => {
         this._hideLoading();
         this.cacheItems = res.items;
+        this.currentPage = res.pagingData.pageIndex;
       }),
       startWith(this.emptyData),
       catchError(() => {

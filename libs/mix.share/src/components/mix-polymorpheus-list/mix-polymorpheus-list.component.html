@@ -21,6 +21,7 @@
                       (itemsSelectedChange)="itemSelectedChange($event)"
                       [loading$]="loading$">
         <div [columnType]="'CHECKBOX'"
+             [showInSubTable]="false"
              mixTableColumn></div>
         <div [header]="'#'"
              [width]="'70px'"
@@ -31,10 +32,12 @@
              key="title"></div>
         <div [columnType]="'DATE'"
              [header]="'Last Updated'"
+             [showInSubTable]="false"
              key="createdDateTime"
              mixTableColumn>
         </div>
         <div [header]="'Status'"
+             [showInSubTable]="false"
              mixTableColumn
              key="status">
           <ng-template let-data
