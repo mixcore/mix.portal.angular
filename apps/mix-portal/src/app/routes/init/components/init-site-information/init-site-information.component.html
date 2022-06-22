@@ -1,79 +1,55 @@
 <div class="init-site-information mix-form">
-  <h3 class="mix-form__header">Step 1: Your Website Info</h3>
+    <h3 class="mix-form__header">Step 1: Your Website Info</h3>
 
-  <ng-container *ngIf="step === 'general'"
-                [formGroup]="siteForm">
-    <div class="mix-form__main-label">General data</div>
-    <div class="mix-form__row">
-      <label [label]="'Site name:'"
-             tuiLabel>
-        <tui-input [tuiTextfieldLabelOutside]="true"
-                   tuiTextfieldSize="m"
-                   formControlName="siteName"> </tui-input>
+    <ng-container *ngIf="step === 'general'" [formGroup]="siteForm">
+        <div class="mix-form__main-label">General info</div>
+        <div class="mix-form__row">
+            <label [label]="'Site name:'" tuiLabel>
+        <tui-input [tuiTextfieldLabelOutside]="true" tuiTextfieldSize="m" formControlName="siteName"> </tui-input>
         <tui-field-error formControlName="siteName"></tui-field-error>
       </label>
-    </div>
+        </div>
 
-    <div class="mix-form__row">
-      <label [label]="'Culture:'"
-             tuiLabel>
-        <tui-combo-box [stringify]="cultureStringify"
-                       [tuiTextfieldLabelOutside]="true"
-                       tuiTextfieldSize="m"
-                       formControlName="culture">
-          <tui-data-list-wrapper *tuiDataList
-                                 [itemContent]="cultureStringify | tuiStringifyContent"
-                                 [items]="cultures"></tui-data-list-wrapper>
+        <div class="mix-form__row">
+            <label [label]="'Default language:'" tuiLabel>
+        <tui-combo-box [stringify]="cultureStringify" [tuiTextfieldLabelOutside]="true" tuiTextfieldSize="m"
+          formControlName="culture">
+          <tui-data-list-wrapper *tuiDataList [itemContent]="cultureStringify | tuiStringifyContent" [items]="cultures">
+          </tui-data-list-wrapper>
         </tui-combo-box>
         <tui-field-error formControlName="culture"></tui-field-error>
       </label>
-    </div>
-  </ng-container>
+        </div>
+    </ng-container>
 
-  <ng-container *ngIf="step === 'database'"
-                [formGroup]="databaseForm">
-    <div class="mix-form__main-label">Connection data</div>
-    <div class="mix-form__row">
-      <label [label]="'Database:'"
-             tuiLabel>
-        <tui-combo-box [stringify]="dbStringify"
-                       [tuiTextfieldLabelOutside]="true"
-                       tuiTextfieldSize="m"
-                       formControlName="databaseProvider">
-          <tui-data-list-wrapper *tuiDataList
-                                 [itemContent]="dbStringify | tuiStringifyContent"
-                                 [items]="databases"></tui-data-list-wrapper>
+    <ng-container *ngIf="step === 'database'" [formGroup]="databaseForm">
+        <div class="mix-form__main-label">Database Connection</div>
+        <div class="mix-form__row">
+            <label [label]="'Database:'" tuiLabel>
+        <tui-combo-box [stringify]="dbStringify" [tuiTextfieldLabelOutside]="true" tuiTextfieldSize="m"
+          formControlName="databaseProvider">
+          <tui-data-list-wrapper *tuiDataList [itemContent]="dbStringify | tuiStringifyContent" [items]="databases">
+          </tui-data-list-wrapper>
         </tui-combo-box>
       </label>
-    </div>
+        </div>
 
-    <div class="mix-form__row">
-      <label [label]="'Connection string:'"
-             tuiLabel>
-        <tui-input [tuiTextfieldLabelOutside]="true"
-                   tuiTextfieldSize="m"
-                   formControlName="sqliteDbConnectionString">
-          <input type="text"
-                 tuiTextfield>
+        <div class="mix-form__row">
+            <label [label]="'Connection string:'" tuiLabel>
+        <tui-input [tuiTextfieldLabelOutside]="true" tuiTextfieldSize="m" formControlName="sqliteDbConnectionString">
+          <input type="text" tuiTextfield>
         </tui-input>
       </label>
 
+        </div>
+    </ng-container>
+
+    <div *ngIf="step === 'general'" class="mix-form__toolbar-right">
+        <button (click)="nextToDatabaseSetting()" tuiButton>Continue</button>
     </div>
-  </ng-container>
 
-  <div *ngIf="step === 'general'"
-       class="mix-form__toolbar-right">
-    <button [pseudo]="true"
-            (click)="nextToDatabaseSetting()"
-            tuiLink>Continue</button>
-  </div>
-
-  <div *ngIf="step === 'database'"
-       class="mix-form__toolbar-right">
-    <button [pseudo]="true"
-            (click)="backToSiteSetting()"
-            tuiLink>Back</button>
-    <button (click)="submitForm()"
-            tuiButton>Next Step</button>
-  </div>
+    <div *ngIf="step === 'database'" class="mix-form__toolbar-right">
+        <button [pseudo]="true" (click)="backToSiteSetting()" tuiLink>Back</button>
+        <button (click)="submitForm()" tuiButton>Next Step</button>
+    </div>
 </div>

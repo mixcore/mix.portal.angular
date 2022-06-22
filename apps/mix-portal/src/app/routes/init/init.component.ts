@@ -28,7 +28,7 @@ export class InitComponent {
   public downloadProgress = 0;
 
   public initApplicationStep: 1 | 2 = 1;
-  public progressMessage = 'Please wait while we install your site &#9787;';
+  public progressMessage = 'Please wait while we install your site!';
 
   constructor(
     public tenancyApi: TenancyApiService,
