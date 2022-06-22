@@ -56,7 +56,8 @@ export class PortalLayoutComponent {
           icon: 'list-numbers',
           action: () => this.navigate('/portal/dashboard')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/dashboard')
     },
     {
       id: 3,
@@ -74,7 +75,8 @@ export class PortalLayoutComponent {
           icon: 'list-numbers',
           action: () => this.navigate('/portal/list-post')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-post')
     },
     {
       id: 4,
@@ -92,7 +94,8 @@ export class PortalLayoutComponent {
           icon: 'list-numbers',
           action: () => this.navigate('/portal/list-page')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-page')
     },
     {
       id: 5,
@@ -110,7 +113,8 @@ export class PortalLayoutComponent {
           icon: 'components',
           action: () => this.navigate('/portal/list-module')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-module')
     },
     {
       id: 6,
@@ -128,7 +132,8 @@ export class PortalLayoutComponent {
           icon: 'stack2',
           action: () => this.navigate('/portal/list-module')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-module')
     },
     {
       id: 7,
@@ -146,7 +151,8 @@ export class PortalLayoutComponent {
           icon: 'tags',
           action: () => this.navigate('/portal/list-module')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-module')
     },
     {
       id: 8,
@@ -164,7 +170,8 @@ export class PortalLayoutComponent {
           icon: 'photo',
           action: () => this.navigate('/portal/list-module')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-module')
     },
     {
       id: 9,
@@ -182,7 +189,8 @@ export class PortalLayoutComponent {
           icon: 'users',
           action: () => this.navigate('/portal/list-module')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-module')
     },
     {
       id: 10,
@@ -200,7 +208,8 @@ export class PortalLayoutComponent {
           icon: 'layout',
           action: () => this.navigate('/portal/list-module')
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-module')
     },
     {
       id: 11,
@@ -216,7 +225,8 @@ export class PortalLayoutComponent {
           title: 'Global Setting',
           icon: 'settings'
         }
-      ]
+      ],
+      action: () => this.navigate('/portal/list-module')
     }
   ];
 
