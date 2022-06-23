@@ -16,6 +16,7 @@ import {
   IconSearch,
   IconSettings,
   IconSmartHome,
+  IconSquareToggle,
   IconStack2,
   IconTags,
   IconTools,
@@ -49,5 +50,6 @@ export const ICONS = {
   IconLayout,
   IconStack2,
   IconFilter,
-  IconMessageCircle
+  IconMessageCircle,
+  IconSquareToggle
 };
