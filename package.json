@@ -38,6 +38,7 @@
     "crypto-js": "^4.1.1",
     "dompurify": "2.3.8",
     "glob": "^8.0.3",
+    "panzoom": "^9.4.3",
     "rxjs": "~7.5.5",
     "tslib": "^2.4.0",
     "yargs-parser": "^21.0.1",

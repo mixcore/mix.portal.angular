@@ -1,0 +1,28 @@
+<div class="mix-database-card"
+     [ngStyle]="{ left: pos.x + 'px', top: pos.y + 'px' }"
+     [cdkDragConstrainPosition]="dragConstrainPoint"
+     [cdkDragFreeDragPosition]="pos"
+     (cdkDragEnded)="endDragging($event)"
+     (cdkDragStarted)="startDragging()"
+     cdkDrag>
+  <div class="mix-database-card__header">
+    {{ database?.displayName ?? '' }}
+  </div>
+  <div class="mix-database-card__body">
+    <div class="mix-database-card__reference">
+      <a tuiLink
+         icon="tuiIconSettings"
+         iconAlign="left">
+        Add Reference Table
+      </a>
+    </div>
+
+    <div class="mix-database-card__column">
+      <a tuiLink
+         icon="tuiIconSettings"
+         iconAlign="left">
+        Add column
+      </a>
+    </div>
+  </div>
+</div>

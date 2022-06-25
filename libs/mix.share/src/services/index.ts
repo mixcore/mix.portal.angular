@@ -1,5 +1,6 @@
 export { AuthApiService } from './api/auth-api.service';
 export { DashboardApiService } from './api/dashboard-api.service';
+export { DatabaseApiService } from './api/mix-database-api.service';
 export { ShareApiService } from './api/share-api.service';
 export { TenancyApiService } from './api/tenancy-api.service';
 export { ThemeApiService } from './api/theme-api.service';

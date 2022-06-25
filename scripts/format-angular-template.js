@@ -62,7 +62,9 @@ var promises = files
   .map(file =>
     Promise.resolve().then(() => {
       const text = fs.readFileSync(file, 'utf8');
-      let result = posthtml().use(sorter(attrSortOptions)).process(text, { sync: true }).html;
+      let result = posthtml()
+        .use(sorter(attrSortOptions))
+        .process(text, { sync: true }).html;
       result = beautify.html(result, jsBeautyOptions);
       result = result.replace(/\=\"\"/gi, '');
       fs.writeFileSync(file, result + '\r\n', 'utf8');

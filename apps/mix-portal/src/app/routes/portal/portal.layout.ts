@@ -118,22 +118,17 @@ export class PortalLayoutComponent {
     },
     {
       id: 6,
-      title: 'Categories',
+      title: 'Databases',
       icon: 'stack2',
       position: VerticalDisplayPosition.Top,
       detail: [
         {
-          title: 'New category',
-          icon: 'plus',
-          action: () => this.createNew('Post')
-        },
-        {
-          title: 'Categories',
+          title: 'Databases',
           icon: 'stack2',
-          action: () => this.navigate('/portal/list-module')
+          action: () => this.navigate('/portal/list-database')
         }
       ],
-      action: () => this.navigate('/portal/list-module')
+      action: () => this.navigate('/portal/list-database')
     },
     {
       id: 7,
@@ -310,9 +305,12 @@ export class PortalLayoutComponent {
   ) {}
 
   public createNew(type: 'Post' | 'Module' | 'Page'): void {
-    const dialog = this.dialogService.open(new PolymorpheusComponent(CreationDialogComponent, this.injector), {
-      data: type
-    });
+    const dialog = this.dialogService.open(
+      new PolymorpheusComponent(CreationDialogComponent, this.injector),
+      {
+        data: type
+      }
+    );
 
     dialog.pipe(take(1)).subscribe();
   }

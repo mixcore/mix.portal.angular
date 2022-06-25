@@ -15,8 +15,10 @@ body {
 
 :root {
   --mix-header-height: 47px;
-  --font-family: 'Lexend Deca', 'Roboto', -apple-system, BlinkMacSystemFont, 'Apple Color Emoji', 'Segoe UI', Oxygen, Ubuntu, Cantarell,
-    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  --mix-sub-header-height: 47px;
+  --font-family: 'Lexend Deca', 'Roboto', -apple-system, BlinkMacSystemFont,
+    'Apple Color Emoji', 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+    'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 .cdk-drag-preview {

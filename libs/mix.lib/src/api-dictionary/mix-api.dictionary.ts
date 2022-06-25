@@ -1,3 +1,4 @@
+import { DatabaseApiDictionary } from './mix-database.dictionary';
 import { ModuleApiDictionary } from './module-api.dictionary';
 import { PageApiDictionary } from './page-api.dictionary';
 import { PostApiDictionary } from './post-api.dictionary';
@@ -10,6 +11,7 @@ export class MixApiDictionary {
   public ShareApi: ShareApiDictionary = new ShareApiDictionary();
   public ModuleApi: ModuleApiDictionary = new ModuleApiDictionary();
   public TenancyApi: TenancyApiDictionary = new TenancyApiDictionary();
+  public DatabaseApi: DatabaseApiDictionary = new DatabaseApiDictionary();
 }
 
 export const MixApiDict = new MixApiDictionary();

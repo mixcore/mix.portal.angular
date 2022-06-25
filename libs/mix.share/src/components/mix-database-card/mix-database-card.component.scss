@@ -1,0 +1,27 @@
+.mix-database-card {
+  width: 256px;
+  border: 1px solid var(--tui-base-04);
+  border-radius: var(--mix-border-radius-01);
+  overflow: hidden;
+  position: relative;
+
+  &__header {
+    padding: 10px;
+    border-bottom: 1px solid var(--tui-base-04);
+    background-color: var(--tui-base-03);
+  }
+
+  &__body {
+    padding: 10px;
+    background-color: var(--tui-base-01);
+  }
+
+  &__column,
+  &__reference {
+    padding: 10px;
+  }
+
+  &__reference {
+    border-bottom: 1px solid var(--tui-base-04);
+  }
+}

@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 
 import { DashBoardComponent } from './dashboard/dashboard.component';
+import { ListDatabaseComponent } from './list-database/list-database.component';
 import { ListModuleComponent } from './list-module/list-module.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { ListPostComponent } from './list-post/list-post.component';
@@ -32,6 +33,13 @@ export const PORTAL_ROUTES: Route[] = [
     component: ListModuleComponent,
     data: {
       title: 'Module list'
+    }
+  },
+  {
+    path: 'list-database',
+    component: ListDatabaseComponent,
+    data: {
+      title: 'Databases'
     }
   },
   {

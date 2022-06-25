@@ -37,7 +37,8 @@ import {
   TuiStringifyPipeModule,
   TuiTabsModule,
   TuiTagModule,
-  TuiTextAreaModule
+  TuiTextAreaModule,
+  TuiToggleModule
 } from '@taiga-ui/kit';
 import { TablerIconsModule } from 'angular-tabler-icons';
 
@@ -88,11 +89,16 @@ const TaiGa_CommonModule = [
   TuiEditorModule,
   TuiEditorNewModule,
   TuiInputDateRangeModule,
-  TuiAvatarModule
+  TuiAvatarModule,
+  TuiToggleModule
 ];
 
 @NgModule({
-  imports: [...Angular_CommonModule, ...TaiGa_CommonModule, TablerIconsModule.pick(ICONS)],
+  imports: [
+    ...Angular_CommonModule,
+    ...TaiGa_CommonModule,
+    TablerIconsModule.pick(ICONS)
+  ],
   declarations: [],
   exports: [...Angular_CommonModule, ...TaiGa_CommonModule, TablerIconsModule]
 })
