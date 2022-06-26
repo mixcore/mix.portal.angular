@@ -48,7 +48,8 @@ export class MixDatabaseGraphComponent implements OnInit, AfterViewInit {
   public ngAfterViewInit() {
     this.graphViewCanvas = panzoom(this.canvasElement.nativeElement, {
       maxZoom: 1,
-      minZoom: 0.1
+      minZoom: 0.1,
+      smoothScroll: true
     });
 
     this.graphViewCanvas.on('transform', e => {
