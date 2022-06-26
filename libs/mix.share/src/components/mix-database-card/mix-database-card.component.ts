@@ -5,7 +5,7 @@ import {
   DragRef,
   Point
 } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MixDatabaseModel } from '@mix-spa/mix.lib';
 
 import { ShareModule } from '../../share.module';
@@ -17,15 +17,21 @@ import { ShareModule } from '../../share.module';
   standalone: true,
   imports: [ShareModule, DragDropModule]
 })
-export class MixDatabaseCardComponent {
-  @Input() public database?: MixDatabaseModel;
+export class MixDatabaseCardComponent implements OnInit {
+  @Input() public database!: MixDatabaseModel;
   @Input() public zoomScale = 1;
-  @Input() public pos = { x: 0, y: 0 };
+  @Input() public pos = { x: 20, y: 20 };
+  @Input() public initializePos = { x: 0, y: 0 };
+  @Input() public index = 0;
 
   @Output() public dragStart = new EventEmitter<void>();
   @Output() public dragEnd = new EventEmitter<void>();
 
-  dragConstrainPoint = (point: Point, dragRef: DragRef) => {
+  public ngOnInit(): void {
+    this.pos = { x: (this.index + 1) * 10, y: 20 };
+  }
+
+  public dragConstrainPoint = (point: Point, dragRef: DragRef) => {
     let zoomMoveXDifference = 0;
     let zoomMoveYDifference = 0;
 
@@ -37,16 +43,16 @@ export class MixDatabaseCardComponent {
     }
 
     return {
-      x: point.x + zoomMoveXDifference,
+      x: point.x + 20 + zoomMoveXDifference,
       y: point.y + zoomMoveYDifference
     };
   };
 
-  startDragging() {
+  public startDragging() {
     this.dragStart.emit();
   }
 
-  endDragging($event: CdkDragEnd) {
+  public endDragging($event: CdkDragEnd) {
     const elementMoving = $event.source.getRootElement();
     const elementMovingRect: ClientRect = elementMoving.getBoundingClientRect();
     if (elementMoving.parentElement) {
@@ -65,5 +71,7 @@ export class MixDatabaseCardComponent {
 
       this.dragEnd.emit();
     }
+
+    console.log(this.pos);
   }
 }

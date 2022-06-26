@@ -3,14 +3,6 @@
        [formGroup]="toolbarForm">
     <div class="action">
       <div class="label">
-        Auto save on edit:
-      </div>
-      <tui-toggle formControlName="autoSave"
-                  size="l"></tui-toggle>
-    </div>
-
-    <div class="action">
-      <div class="label">
         View mode:
       </div>
       <tui-radio-block size="s"
@@ -26,6 +18,14 @@
                        item="list">
         List
       </tui-radio-block>
+    </div>
+
+    <div class="action">
+      <div class="label">
+        Auto save on edit:
+      </div>
+      <tui-toggle formControlName="autoSave"
+                  size="l"></tui-toggle>
     </div>
 
     <button class="action"

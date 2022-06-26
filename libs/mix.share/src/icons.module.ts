@@ -6,6 +6,7 @@ import {
   IconBrandGithub,
   IconChevronLeft,
   IconCirclePlus,
+  IconColumns,
   IconComponents,
   IconCopy,
   IconDatabase,
@@ -79,5 +80,6 @@ export const ICONS = {
   IconMessageCircle,
   IconSquareToggle,
   IconShoppingCart,
-  IconArrowRampRight
+  IconArrowRampRight,
+  IconColumns
 };

@@ -7,6 +7,10 @@
   overflow: hidden;
   position: relative;
 
+  .canvas {
+    display: flex;
+  }
+
   &__item {
     width: fit-content;
     height: fit-content;

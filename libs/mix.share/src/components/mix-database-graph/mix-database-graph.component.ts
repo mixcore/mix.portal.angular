@@ -5,7 +5,9 @@ import {
   Component,
   ElementRef,
   OnInit,
-  ViewChild
+  QueryList,
+  ViewChild,
+  ViewChildren
 } from '@angular/core';
 import { MixDatabaseModel } from '@mix-spa/mix.lib';
 import panzoom, { PanZoom, Transform } from 'panzoom';
@@ -23,6 +25,8 @@ import { MixDatabaseCardComponent } from '../mix-database-card/mix-database-card
 })
 export class MixDatabaseGraphComponent implements OnInit, AfterViewInit {
   @ViewChild('canvas') canvasElement!: ElementRef;
+  @ViewChildren(MixDatabaseCardComponent)
+  databaseCard!: QueryList<MixDatabaseCardComponent>;
 
   public zoomScale = 1;
   public graphViewCanvas!: PanZoom;
@@ -51,6 +55,8 @@ export class MixDatabaseGraphComponent implements OnInit, AfterViewInit {
       const result: Transform = this.graphViewCanvas.getTransform();
       this.zoomScale = result.scale;
     });
+
+    this.graphViewCanvas.smoothZoom(0, 0, 0.4);
   }
 
   public pauseZoom() {

@@ -1,5 +1,5 @@
 .mix-database-card {
-  width: 256px;
+  width: 300px;
   border: 1px solid var(--tui-base-04);
   border-radius: var(--mix-border-radius-01);
   overflow: hidden;
@@ -23,5 +23,31 @@
 
   &__reference {
     border-bottom: 1px solid var(--tui-base-04);
+
+    .add-reference-btn {
+      color: var(--tui-link);
+    }
+  }
+
+  &__column {
+    .add-column-btn {
+      color: var(--tui-link);
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .column-item {
+      margin-top: 10px;
+      display: flex;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--tui-info-fill);
+      }
+
+      .icon {
+        margin-right: 5px;
+      }
+    }
   }
 }

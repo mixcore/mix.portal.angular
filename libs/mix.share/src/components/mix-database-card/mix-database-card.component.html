@@ -5,12 +5,15 @@
      (cdkDragEnded)="endDragging($event)"
      (cdkDragStarted)="startDragging()"
      cdkDrag>
+
   <div class="mix-database-card__header">
     {{ database?.displayName ?? '' }}
   </div>
+
   <div class="mix-database-card__body">
     <div class="mix-database-card__reference">
-      <a tuiLink
+      <a class="add-reference-btn"
+         tuiLink
          icon="tuiIconSettings"
          iconAlign="left">
         Add Reference Table
@@ -18,11 +21,20 @@
     </div>
 
     <div class="mix-database-card__column">
-      <a tuiLink
+      <a class="add-column-btn"
+         tuiLink
          icon="tuiIconSettings"
          iconAlign="left">
         Add column
       </a>
+
+      <div *ngFor="let column of database.columns"
+           class="column-item">
+        <div class="icon">
+          <i-tabler name="columns"></i-tabler>
+        </div>
+        {{ column.displayName }} ({{ column.dataType }})
+      </div>
     </div>
   </div>
 </div>

@@ -1,16 +1,16 @@
 <div class="mix-database-graph">
-  <div #canvas>
+  <div #canvas
+       class="canvas">
     <ng-container *ngFor="let item of databases; let i = index">
       <mix-database-card [database]="item"
+                         [index]="i"
                          [zoomScale]="zoomScale"
                          (dragEnd)="resumeZoom()"
-                         (dragStart)="pauseZoom()"
-                         (mouseenter)="pauseZoom()"
-                         (mouseleave)="resumeZoom()"></mix-database-card>
+                         (dragStart)="pauseZoom()"></mix-database-card>
     </ng-container>
   </div>
 
   <div class="mix-database-graph__zoom-info">
-    Zoom: {{zoomScale * 100}}%
+    Zoom: {{ (zoomScale * 100).toFixed(2) }}% | Use Mouse Wheel to zoom In/Out
   </div>
 </div>
