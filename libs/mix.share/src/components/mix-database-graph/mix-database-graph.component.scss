@@ -3,9 +3,59 @@
   height: 100%;
   display: flex;
   overflow: hidden;
-  background: lightgrey;
   overflow: hidden;
   position: relative;
+  background-color: #fff;
+  background-size: 100% 1.2em;
+  background-image: -webkit-linear-gradient(
+      0deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    -webkit-linear-gradient(#eee 0.05em, transparent 0.05em);
+  background-image: -moz-linear-gradient(
+      0deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    -moz-linear-gradient(#eee 0.05em, transparent 0.05em);
+  background-image: -ms-linear-gradient(
+      0deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    -ms-linear-gradient(#eee 0.05em, transparent 0.05em);
+  background-image: -o-linear-gradient(
+      0deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    -o-linear-gradient(#eee 0.05em, transparent 0.05em);
+  background-image: linear-gradient(
+      0deg,
+      transparent 79px,
+      #abced4 79px,
+      #abced4 81px,
+      transparent 81px
+    ),
+    linear-gradient(#eee 0.05em, transparent 0.05em);
+  -pie-background: linear-gradient(
+        0deg,
+        transparent 79px,
+        #abced4 79px,
+        #abced4 81px,
+        transparent 81px
+      )
+      0 0 / 100% 1.2em,
+    linear-gradient(#eee 0.05em, transparent 0.05em) 0 0 / 100% 1.2em #fff;
 
   .canvas {
     display: flex;
