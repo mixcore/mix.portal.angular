@@ -15,7 +15,7 @@
     align-items: flex-start;
     justify-content: flex-end;
     width: 100%;
-    padding: 15px;
+    padding: 10px 10px 10px 20px;
     border-bottom: 1px solid var(--tui-base-04);
 
     h3 {
@@ -39,12 +39,12 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      padding: 0 15px;
+      padding: 0 20px;
       margin-bottom: 5px;
     }
 
     .workspace {
-      padding: 0 15px;
+      padding: 0 20px;
     }
 
     tui-tabs {
