@@ -1,4 +1,5 @@
-<div class="creation-dialog">
+<div class="creation-dialog"
+     [@enterAnimation]>
   <div class="creation-dialog__header">
     <h3> {{ form.value['title'] || 'Content title . . .' }}</h3>
 
@@ -28,17 +29,21 @@
 
       <div class="workspace">
         <tui-tabs [(activeItemIndex)]="activeTabIndex">
-          <button tuiTab>
+          <button (click)="activeTabIndex = 0"
+                  tuiTab>
             Contents
           </button>
-          <button tuiTab>
+          <button (click)="activeTabIndex = 1"
+                  tuiTab>
             Seo
           </button>
-          <button tuiTab>
+          <button (click)="activeTabIndex = 2"
+                  tuiTab>
             Related
           </button>
         </tui-tabs>
 
+        <!-- Main information -->
         <ng-container *ngIf="activeTabIndex === 0">
           <div class="mix-form"
                [formGroup]="form">
@@ -75,6 +80,59 @@
             </div>
           </div>
         </ng-container>
+
+        <!-- SEO information -->
+        <ng-container *ngIf="activeTabIndex === 1">
+          <div class="mix-form"
+               [formGroup]="form">
+            <div class="mix-form__row">
+              <label [label]="'Friendly Title:'"
+                     tuiLabel>
+                <tui-input [tuiTextfieldLabelOutside]="true"
+                           tuiTextfieldSize="m"
+                           formControlName="title">
+                  <input type="text"
+                         tuiTextfield>
+                </tui-input>
+                <tui-field-error formControlName="title"></tui-field-error>
+              </label>
+            </div>
+
+            <div class="mix-form__row">
+              <label [label]="'Meta Description:'"
+                     tuiLabel>
+                <tui-text-area [tuiTextfieldLabelOutside]="true"
+                               tuiTextfieldSize="m"
+                               formControlName="excerpt"></tui-text-area>
+              </label>
+            </div>
+
+            <div class="mix-form__row">
+              <label [label]="'Friendly URL:'"
+                     tuiLabel>
+                <tui-input [tuiTextfieldLabelOutside]="true"
+                           tuiTextfieldSize="m"
+                           formControlName="title">
+                  <input type="text"
+                         tuiTextfield>
+                </tui-input>
+                <tui-field-error formControlName="title"></tui-field-error>
+              </label>
+            </div>
+
+            <div class="mix-form__row">
+              <label [label]="'Meta Keywords:'"
+                     tuiLabel>
+                <tui-text-area [tuiTextfieldLabelOutside]="true"
+                               tuiTextfieldSize="m"
+                               formControlName="excerpt"></tui-text-area>
+              </label>
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Data information -->
+        <ng-container *ngIf="activeTabIndex === 2"> </ng-container>
       </div>
     </div>
 

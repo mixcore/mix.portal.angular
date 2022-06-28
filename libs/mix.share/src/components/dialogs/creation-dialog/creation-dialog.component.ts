@@ -2,6 +2,7 @@ import { Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MixPostPortalModel } from '@mix-spa/mix.lib';
 import { TuiAlertService } from '@taiga-ui/core';
+import { slideAnimation } from 'libs/mix.share/src/animations';
 import { switchMap } from 'rxjs';
 
 import {
@@ -18,13 +19,14 @@ export type MixCreationType = 'Post' | 'Page' | 'Module';
   templateUrl: './creation-dialog.component.html',
   styleUrls: ['./creation-dialog.component.scss'],
   standalone: true,
-  imports: [ShareModule]
+  imports: [ShareModule],
+  animations: [slideAnimation]
 })
 export class CreationDialogComponent {
   @Input() public type: MixCreationType = 'Post';
   public items: MixCreationType[] = ['Post', 'Page', 'Module'];
   public form: FormGroup = new FormGroup({
-    title: new FormControl('', Validators.required),
+    title: new FormControl('Your content title', Validators.required),
     excerpt: new FormControl(''),
     description: new FormControl('')
   });
