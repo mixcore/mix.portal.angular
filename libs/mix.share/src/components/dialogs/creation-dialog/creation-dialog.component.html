@@ -88,7 +88,8 @@
             <div class="mix-form__row">
               <label [label]="'Friendly Title:'"
                      tuiLabel>
-                <tui-input [tuiTextfieldLabelOutside]="true"
+                <tui-input [tuiHintContent]="'Google displays the entire title on the search results, which has 63 characters.'"
+                           [tuiTextfieldLabelOutside]="true"
                            tuiTextfieldSize="m"
                            formControlName="title">
                   <input type="text"
@@ -101,7 +102,8 @@
             <div class="mix-form__row">
               <label [label]="'Meta Description:'"
                      tuiLabel>
-                <tui-text-area [tuiTextfieldLabelOutside]="true"
+                <tui-text-area [tuiHintContent]="'Do make sure your most important keywords for the webpage show up in the meta description. Often search engines will highlight in bold where it finds the searchers query in your snippet.'"
+                               [tuiTextfieldLabelOutside]="true"
                                tuiTextfieldSize="m"
                                formControlName="excerpt"></tui-text-area>
               </label>
@@ -110,7 +112,8 @@
             <div class="mix-form__row">
               <label [label]="'Friendly URL:'"
                      tuiLabel>
-                <tui-input [tuiTextfieldLabelOutside]="true"
+                <tui-input [tuiHintContent]="seoHint"
+                           [tuiTextfieldLabelOutside]="true"
                            tuiTextfieldSize="m"
                            formControlName="title">
                   <input type="text"
@@ -123,7 +126,8 @@
             <div class="mix-form__row">
               <label [label]="'Meta Keywords:'"
                      tuiLabel>
-                <tui-text-area [tuiTextfieldLabelOutside]="true"
+                <tui-text-area [tuiHintContent]="'Do make sure your most important keywords for the webpage show up in the meta description. Often search engines will highlight in bold where it finds the searchers query in your snippet.'"
+                               [tuiTextfieldLabelOutside]="true"
                                tuiTextfieldSize="m"
                                formControlName="excerpt"></tui-text-area>
               </label>
@@ -166,3 +170,15 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #seoHint>
+  <div>
+    Easy to read: Users and search engines should be able to understand what is on each page just by looking at the URL. <br> <br>
+
+    Keyword-rich: Keywords still matter and your target queries should be within URLs. Just be wary of overkill; extending URLs just to
+    include more keywords is a bad idea.<br> <br>
+    Consistent: There are multiple ways to create an SEO-friendly URL structure on any site. It’s essential that, whatever logic you choose
+    to follow, it is applied consistently across the site.
+  </div>
+</ng-template>
