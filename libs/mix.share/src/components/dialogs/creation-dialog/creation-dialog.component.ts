@@ -1,10 +1,13 @@
 import { Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MixPostPortalModel } from '@mix-spa/mix.lib';
-import { TuiAlertService, TuiDialogService } from '@taiga-ui/core';
+import { TuiAlertService } from '@taiga-ui/core';
 import { switchMap } from 'rxjs';
 
-import { MixPostApiService } from '../../../services';
+import {
+  MixPostApiService,
+  PortalSidebarControlService
+} from '../../../services';
 import { ShareModule } from '../../../share.module';
 import { FormUtils } from '../../../utils';
 
@@ -30,11 +33,13 @@ export class CreationDialogComponent {
   public loading = false;
   public initialize = false;
   public activeTabIndex = 0;
+  public showRightSideMenu = true;
 
   constructor(
-    @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     public postApi: MixPostApiService,
-    @Inject(TuiAlertService) private readonly alertService: TuiAlertService
+    @Inject(TuiAlertService) private readonly alertService: TuiAlertService,
+    @Inject(PortalSidebarControlService)
+    private readonly sidebarControl: PortalSidebarControlService
   ) {}
 
   public submitForm(): void {
@@ -74,5 +79,9 @@ export class CreationDialogComponent {
 
   public handleAfterCreate(): void {
     this.loading = false;
+  }
+
+  public closeSidebar(): void {
+    this.sidebarControl.removeAll();
   }
 }

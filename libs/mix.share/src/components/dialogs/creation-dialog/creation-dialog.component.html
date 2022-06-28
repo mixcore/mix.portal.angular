@@ -1,21 +1,17 @@
 <div class="creation-dialog">
   <div class="creation-dialog__header">
-    <h3> {{ form.value['title'] || 'Your title . . .' }}</h3>
+    <h3> {{ form.value['title'] || 'Content title . . .' }}</h3>
 
     <button [appearance]="'icon'"
             [size]="'xs'"
+            (click)="showRightSideMenu = !showRightSideMenu"
             tuiButton>
       <i-tabler name="layout-sidebar-right"></i-tabler>
     </button>
 
     <button [appearance]="'icon'"
             [size]="'xs'"
-            tuiButton>
-      <i-tabler name="maximize"></i-tabler>
-    </button>
-
-    <button [appearance]="'icon'"
-            [size]="'xs'"
+            (click)="closeSidebar()"
             tuiButton>
       <i-tabler name="square-x"></i-tabler>
     </button>
@@ -82,7 +78,8 @@
       </div>
     </div>
 
-    <div class="creation-dialog__content-right-side">
+    <div *ngIf="showRightSideMenu"
+         class="creation-dialog__content-right-side">
       <tui-accordion [rounded]="false">
         <tui-accordion-item [size]="'s'">
           Publishing
@@ -110,8 +107,4 @@
       </tui-accordion>
     </div>
   </div>
-
-  <!-- <div class="creation-dialog__content">
-
-  </div> -->
 </div>
