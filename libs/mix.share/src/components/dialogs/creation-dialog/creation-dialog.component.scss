@@ -1,35 +1,63 @@
 .creation-dialog {
   width: 60vw;
   max-width: 800px;
-  height: 80vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
 
   &__header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-end;
     width: 100%;
-    padding-bottom: 10px;
+    padding: 10px;
     border-bottom: 1px solid var(--tui-base-04);
 
-    > h4 {
-      width: 130px;
+    h3 {
+      margin-right: auto;
     }
 
-    > tui-select {
-      margin-left: 10px;
-      width: 100%;
+    button {
+      margin-left: 5px;
     }
   }
 
-  &__footer {
+  &__content {
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
+  }
 
-    tui-checkbox-labeled {
-      margin: 12px 0px;
+  &__content-left-side {
+    width: 100%;
+    height: 100%;
+
+    .toolbar {
+      height: var(--mix-sub-header-height);
+      background-color: var(--tui-base-03);
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 0 5px;
+      margin-bottom: 5px;
+    }
+
+    .workspace {
+      padding: 0 10px;
+    }
+
+    tui-tabs {
+      margin-bottom: 10px;
+    }
+  }
+
+  &__content-right-side {
+    width: 300px;
+    height: 100%;
+    border-left: 1px solid var(--tui-base-04);
+
+    tui-accordion {
+      width: 100%;
     }
   }
 }

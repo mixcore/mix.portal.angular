@@ -1,8 +1,7 @@
 import { Component, Inject, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MixPostPortalModel } from '@mix-spa/mix.lib';
-import { TuiAlertService, TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
-import { POLYMORPHEUS_CONTEXT } from '@tinkoff/ng-polymorpheus';
+import { TuiAlertService, TuiDialogService } from '@taiga-ui/core';
 import { switchMap } from 'rxjs';
 
 import { MixPostApiService } from '../../../services';
@@ -30,16 +29,13 @@ export class CreationDialogComponent {
   public closeDialogAfterCreate = true;
   public loading = false;
   public initialize = false;
+  public activeTabIndex = 0;
 
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
-    @Inject(POLYMORPHEUS_CONTEXT)
-    private context: TuiDialogContext<void, 'Post' | 'Page' | 'Module'>,
     public postApi: MixPostApiService,
     @Inject(TuiAlertService) private readonly alertService: TuiAlertService
-  ) {
-    this.type = context.data;
-  }
+  ) {}
 
   public submitForm(): void {
     if (!FormUtils.validateForm(this.form)) return;
@@ -67,7 +63,11 @@ export class CreationDialogComponent {
         })
       )
       .subscribe(() => {
-        this.alertService.open(`Create ${this.form.value.title} successfully`, { label: 'Success' }).subscribe();
+        this.alertService
+          .open(`Create ${this.form.value.title} successfully`, {
+            label: 'Success'
+          })
+          .subscribe();
         this.handleAfterCreate();
       });
   }

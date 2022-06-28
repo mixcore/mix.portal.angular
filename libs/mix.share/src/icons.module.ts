@@ -15,7 +15,9 @@ import {
   IconFilter,
   IconLanguage,
   IconLayout,
+  IconLayoutSidebarRight,
   IconListNumbers,
+  IconMaximize,
   IconMessageCircle,
   IconMinus,
   IconNews,
@@ -29,6 +31,7 @@ import {
   IconSitemap,
   IconSmartHome,
   IconSquareToggle,
+  IconSquareX,
   IconStack2,
   IconTags,
   IconTool,
@@ -42,6 +45,9 @@ import {
 } from 'angular-tabler-icons/icons';
 
 export const ICONS = {
+  IconSquareX,
+  IconLayoutSidebarRight,
+  IconMaximize,
   IconBrandGithub,
   IconVectorTriangle,
   IconSmartHome,

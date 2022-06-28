@@ -11,4 +11,5 @@ export { MixPageApiService } from './api//mix-page-api.service';
 export { MixPostApiService } from './api/mix-post-api.service';
 
 // Helper
+export { PortalSidebarControlService } from './helper/portal-sidebar-control.service';
 export { TabControl, TabControlService } from './helper/tab-control.service';

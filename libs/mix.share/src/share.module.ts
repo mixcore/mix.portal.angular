@@ -18,6 +18,7 @@ import {
   TuiTooltipModule
 } from '@taiga-ui/core';
 import {
+  TuiAccordionModule,
   TuiAvatarModule,
   TuiBadgeModule,
   TuiCheckboxLabeledModule,
@@ -90,7 +91,8 @@ const TaiGa_CommonModule = [
   TuiEditorNewModule,
   TuiInputDateRangeModule,
   TuiAvatarModule,
-  TuiToggleModule
+  TuiToggleModule,
+  TuiAccordionModule
 ];
 
 @NgModule({

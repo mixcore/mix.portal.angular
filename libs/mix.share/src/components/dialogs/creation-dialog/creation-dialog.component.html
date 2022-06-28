@@ -1,65 +1,117 @@
 <div class="creation-dialog">
   <div class="creation-dialog__header">
-    <h4>Create new: </h4>
-    <tui-select [(ngModel)]="type"
-                [tuiTextfieldLabelOutside]="true"
-                tuiTextfieldSize="m">
-      <input tuiTextfield
-             placeholder="Choose your type">
-      <tui-data-list-wrapper *tuiDataList
-                             [items]="items"></tui-data-list-wrapper>
-    </tui-select>
+    <h3> {{ form.value['title'] || 'Your title . . .' }}</h3>
+
+    <button [appearance]="'icon'"
+            [size]="'xs'"
+            tuiButton>
+      <i-tabler name="layout-sidebar-right"></i-tabler>
+    </button>
+
+    <button [appearance]="'icon'"
+            [size]="'xs'"
+            tuiButton>
+      <i-tabler name="maximize"></i-tabler>
+    </button>
+
+    <button [appearance]="'icon'"
+            [size]="'xs'"
+            tuiButton>
+      <i-tabler name="square-x"></i-tabler>
+    </button>
   </div>
 
   <div class="creation-dialog__content">
-    <div class="mix-form"
-         [formGroup]="form">
-      <div class="mix-form__row">
-        <label [label]="'Title:'"
-               tuiLabel>
-          <tui-input [tuiTextfieldLabelOutside]="true"
-                     tuiTextfieldSize="m"
-                     formControlName="title">
-            <input type="text"
-                   tuiTextfield>
-          </tui-input>
-          <tui-field-error formControlName="title"></tui-field-error>
-        </label>
+    <div class="creation-dialog__content-left-side">
+      <div class="toolbar">
+        <button class="action"
+                [icon]="'tuiIconCheckLarge'"
+                [size]="'s'"
+                tuiButton>Create</button>
       </div>
 
-      <div class="mix-form__row">
-        <label [label]="'Excerpt:'"
-               tuiLabel>
-          <tui-text-area [tuiTextfieldLabelOutside]="true"
-                         tuiTextfieldSize="m"
-                         formControlName="excerpt"></tui-text-area>
-        </label>
-      </div>
+      <div class="workspace">
+        <tui-tabs [(activeItemIndex)]="activeTabIndex">
+          <button tuiTab>
+            Contents
+          </button>
+          <button tuiTab>
+            Seo
+          </button>
+          <button tuiTab>
+            Related
+          </button>
+        </tui-tabs>
 
-      <div class="mix-form__row">
-        <label [label]="'Description:'"
-               tuiLabel>
-          <tui-editor class="editor"
-                      new
-                      formControlName="description">
-          </tui-editor>
-        </label>
+        <ng-container *ngIf="activeTabIndex === 0">
+          <div class="mix-form"
+               [formGroup]="form">
+            <div class="mix-form__row">
+              <label [label]="'Title:'"
+                     tuiLabel>
+                <tui-input [tuiTextfieldLabelOutside]="true"
+                           tuiTextfieldSize="m"
+                           formControlName="title">
+                  <input type="text"
+                         tuiTextfield>
+                </tui-input>
+                <tui-field-error formControlName="title"></tui-field-error>
+              </label>
+            </div>
+
+            <div class="mix-form__row">
+              <label [label]="'Excerpt:'"
+                     tuiLabel>
+                <tui-text-area [tuiTextfieldLabelOutside]="true"
+                               tuiTextfieldSize="m"
+                               formControlName="excerpt"></tui-text-area>
+              </label>
+            </div>
+
+            <div class="mix-form__row">
+              <label [label]="'Description:'"
+                     tuiLabel>
+                <tui-editor class="editor"
+                            new
+                            formControlName="description">
+                </tui-editor>
+              </label>
+            </div>
+          </div>
+        </ng-container>
       </div>
+    </div>
+
+    <div class="creation-dialog__content-right-side">
+      <tui-accordion [rounded]="false">
+        <tui-accordion-item [size]="'s'">
+          Publishing
+          <ng-template tuiAccordionItemContent>
+            Development kit consisting of the low level tools and abstractions
+            used to develop Taiga UI Angular entities
+          </ng-template>
+        </tui-accordion-item>
+        <tui-accordion-item [size]="'s'">
+          Language
+          <ng-template tuiAccordionItemContent>
+            <div #content>
+              Basic elements needed to develop components, directives and more
+              using Taiga UI design system
+            </div>
+          </ng-template>
+        </tui-accordion-item>
+        <tui-accordion-item [size]="'s'">
+          Images
+          <ng-template tuiAccordionItemContent>
+            The main set of components used to build Taiga UI based Angular
+            applications
+          </ng-template>
+        </tui-accordion-item>
+      </tui-accordion>
     </div>
   </div>
 
-  <div class="creation-dialog__footer">
-    <div class="option">
-      <tui-checkbox-labeled [(ngModel)]="goToPostAfterCreate">
-        Go to {{ type }} after create.
-      </tui-checkbox-labeled>
-      <tui-checkbox-labeled [(ngModel)]="closeDialogAfterCreate"
-                            [disabled]="goToPostAfterCreate">
-        Close dialog after create.
-      </tui-checkbox-labeled>
-    </div>
-    <button [disabled]="loading"
-            (click)="submitForm()"
-            tuiButton> Create </button>
-  </div>
+  <!-- <div class="creation-dialog__content">
+
+  </div> -->
 </div>

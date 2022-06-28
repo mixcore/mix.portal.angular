@@ -4,6 +4,9 @@
     <mix-header-menu></mix-header-menu>
     <div class="cms-portal-container__main-workspace">
       <router-outlet></router-outlet>
+      <ng-container ngProjectAs="tuiOverContent">
+        <mix-portal-sidebar-host></mix-portal-sidebar-host>
+      </ng-container>
     </div>
   </div>
 
@@ -12,8 +15,20 @@
   </div>
 </div>
 
-<ng-template let-observer [(tuiDialog)]="isShowUniversalSearch">
+<ng-template
+  let-observer
+  [(tuiDialog)]="isShowUniversalSearch"
+>
   <mix-universal-search></mix-universal-search>
 </ng-template>
 
-<ng-template let-observer [(tuiDialog)]="isShowTab"><mix-tab-control-dialog></mix-tab-control-dialog></ng-template>
+<ng-template
+  let-observer
+  [(tuiDialog)]="isShowTab"
+>
+  <mix-tab-control-dialog></mix-tab-control-dialog
+></ng-template>
+
+<ng-template #creationTemplate>
+  <mix-creation-dialog [type]="createMode"></mix-creation-dialog>
+</ng-template>

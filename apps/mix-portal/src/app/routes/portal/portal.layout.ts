@@ -1,4 +1,11 @@
-import { Component, HostListener, Inject, Injector } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Inject,
+  Injector,
+  TemplateRef,
+  ViewChild
+} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 import {
@@ -6,6 +13,8 @@ import {
   HeaderMenuComponent,
   MixChatBoxComponent,
   MixToolbarMenu,
+  PortalSidebarControlService,
+  PortalSidebarHostComponent,
   ShareModule,
   SideMenuComponent,
   TabControlDialogComponent,
@@ -13,8 +22,6 @@ import {
   UniversalSearchComponent
 } from '@mix-spa/mix.share';
 import { TuiDialogService } from '@taiga-ui/core';
-import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'mix-portal-layout',
@@ -28,12 +35,16 @@ import { take } from 'rxjs';
     SideMenuComponent,
     UniversalSearchComponent,
     TabControlDialogComponent,
-    MixChatBoxComponent
+    MixChatBoxComponent,
+    CreationDialogComponent,
+    PortalSidebarHostComponent
   ]
 })
 export class PortalLayoutComponent {
+  @ViewChild('creationTemplate') public createTemplate!: TemplateRef<unknown>;
   public isShowUniversalSearch = false;
   public isShowTab = false;
+  public createMode: 'Page' | 'Post' | 'Module' = 'Page';
 
   public menuItems: MixToolbarMenu[] = [
     {
@@ -301,18 +312,14 @@ export class PortalLayoutComponent {
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     @Inject(Injector) private readonly injector: Injector,
     private router: Router,
-    private tabControl: TabControlService
+    private tabControl: TabControlService,
+    @Inject(PortalSidebarControlService)
+    private readonly sidebarControl: PortalSidebarControlService
   ) {}
 
   public createNew(type: 'Post' | 'Module' | 'Page'): void {
-    const dialog = this.dialogService.open(
-      new PolymorpheusComponent(CreationDialogComponent, this.injector),
-      {
-        data: type
-      }
-    );
-
-    dialog.pipe(take(1)).subscribe();
+    this.createMode = type;
+    this.sidebarControl.show(this.createTemplate);
   }
 
   public navigate(url: string): void {
