@@ -3,12 +3,18 @@
   min-width: 800px;
   height: 100%;
   display: flex;
+  position: relative;
   flex-direction: column;
   border-top-left-radius: 10px;
   background-color: var(--tui-base-01);
   border-left: 1px sold var(--tui-base-04);
+  transition: all 0.3s ease;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+  &.--large {
+    width: 70vw;
+  }
 
   &__header {
     display: flex;
@@ -60,5 +66,23 @@
     tui-accordion {
       width: 100%;
     }
+  }
+
+  &__expand-btn {
+    position: absolute;
+    left: -15px;
+    border-radius: 50%;
+    padding: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--tui-base-04);
+    background-color: var(--tui-base-01);
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  }
+
+  &__expand-btn {
+    bottom: 10px;
   }
 }

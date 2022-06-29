@@ -1,4 +1,5 @@
 <div class="creation-dialog"
+     [ngClass]="{'--large': largeMode}"
      [@enterAnimation]>
   <div class="creation-dialog__header">
     <h3> {{ form.value['title'] || 'Content title . . .' }}</h3>
@@ -168,6 +169,11 @@
         </tui-accordion-item>
       </tui-accordion>
     </div>
+  </div>
+
+  <div class="creation-dialog__expand-btn"
+       (click)="toggleLargeMode()">
+    <tui-svg [src]="largeMode ? 'tuiIconArrowRight' : 'tuiIconArrowLeft'"></tui-svg>
   </div>
 </div>
 

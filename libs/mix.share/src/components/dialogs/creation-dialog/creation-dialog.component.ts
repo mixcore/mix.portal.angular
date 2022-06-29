@@ -28,14 +28,21 @@ export class CreationDialogComponent {
   public form: FormGroup = new FormGroup({
     title: new FormControl('Your content title', Validators.required),
     excerpt: new FormControl(''),
-    description: new FormControl('')
+    description: new FormControl(''),
+    seoName: new FormControl(''),
+    seoTitle: new FormControl(''),
+    seoDescription: new FormControl(''),
+    seoKeywords: new FormControl(''),
+    seoSource: new FormControl('')
   });
+
   public goToPostAfterCreate = true;
   public closeDialogAfterCreate = true;
   public loading = false;
   public initialize = false;
   public activeTabIndex = 0;
   public showRightSideMenu = true;
+  public largeMode = false;
 
   constructor(
     public postApi: MixPostApiService,
@@ -85,5 +92,9 @@ export class CreationDialogComponent {
 
   public closeSidebar(): void {
     this.sidebarControl.removeAll();
+  }
+
+  public toggleLargeMode(): void {
+    this.largeMode = !this.largeMode;
   }
 }
