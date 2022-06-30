@@ -1,11 +1,21 @@
-import { HttpClient, HttpContext, HttpHeaders, HttpParams } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpContext,
+  HttpHeaders,
+  HttpParams
+} from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 
+import { AppEventService } from '../services';
 import { BASE_URL } from '../token';
 
 export interface IHttpParamObject {
-  [param: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
+  [param: string]:
+    | string
+    | number
+    | boolean
+    | ReadonlyArray<string | number | boolean>;
 }
 
 export interface IHttpHeadersObject {
@@ -44,29 +54,63 @@ export class BaseApiService {
     return this.baseUrl;
   }
 
-  constructor(protected readonly http: HttpClient, @Inject(BASE_URL) public baseUrl: string) {}
+  constructor(
+    protected readonly http: HttpClient,
+    @Inject(BASE_URL) public baseUrl: string,
+    public appEvent: AppEventService
+  ) {}
 
-  public get<TResult>(path: string, params?: IHttpParamObject): Observable<TResult> {
-    return this.http.get<TResult>(this.url + path, this.getHttpOptions(params)).pipe(retry(1), catchError(this.handleError));
+  public get<TResult>(
+    path: string,
+    params?: IHttpParamObject
+  ): Observable<TResult> {
+    return this.http
+      .get<TResult>(this.url + path, this.getHttpOptions(params))
+      .pipe(retry(1), catchError(this.handleError));
   }
 
-  public post<TRequest, TResult>(path: string, request: TRequest, params?: HttpParams | IHttpParamObject): Observable<TResult> {
-    return this.http.post<TResult>(this.url + path, request, this.getHttpOptions(params)).pipe(catchError(this.handleError));
+  public post<TRequest, TResult>(
+    path: string,
+    request: TRequest,
+    params?: HttpParams | IHttpParamObject
+  ): Observable<TResult> {
+    return this.http
+      .post<TResult>(this.url + path, request, this.getHttpOptions(params))
+      .pipe(catchError(this.handleError));
   }
 
-  public put<TRequest, TResult>(path: string, request: TRequest, params?: HttpParams | IHttpParamObject): Observable<TResult> {
-    return this.http.put<TResult>(this.url + path, { data: request }, this.getHttpOptions(params)).pipe(catchError(this.handleError));
+  public put<TRequest, TResult>(
+    path: string,
+    request: TRequest,
+    params?: HttpParams | IHttpParamObject
+  ): Observable<TResult> {
+    return this.http
+      .put<TResult>(
+        this.url + path,
+        { data: request },
+        this.getHttpOptions(params)
+      )
+      .pipe(catchError(this.handleError));
   }
 
-  public delete<TResult>(path: string, params?: HttpParams | IHttpParamObject): Observable<TResult> {
-    return this.http.delete<TResult>(this.url + path, this.getHttpOptions(params)).pipe(catchError(this.handleError));
+  public delete<TResult>(
+    path: string,
+    params?: HttpParams | IHttpParamObject
+  ): Observable<TResult> {
+    return this.http
+      .delete<TResult>(this.url + path, this.getHttpOptions(params))
+      .pipe(catchError(this.handleError));
   }
 
-  private getHttpOptions(customParams?: HttpParams | IHttpParamObject): IHttpOptions {
+  private getHttpOptions(
+    customParams?: HttpParams | IHttpParamObject
+  ): IHttpOptions {
     let params: HttpParams = new HttpParams();
 
     if (customParams) {
-      params = new HttpParams({ fromObject: customParams as unknown as IHttpParamObject });
+      params = new HttpParams({
+        fromObject: customParams as unknown as IHttpParamObject
+      });
     }
 
     return { params, headers: { 'Content-Type': 'application/json' } };

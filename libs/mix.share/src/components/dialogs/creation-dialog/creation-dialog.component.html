@@ -2,21 +2,31 @@
      [ngClass]="{'--large': largeMode}"
      [@enterAnimation]>
   <div class="creation-dialog__header">
-    <h3> {{ form.value['title'] || 'Content title . . .' }}</h3>
+    <div>Create new: </div>
+    <tui-select [(ngModel)]="type"
+                [tuiTextfieldLabelOutside]="true"
+                tuiTextfieldSize="s">
+      <input tuiTextfield
+             placeholder="Choose your type">
+      <tui-data-list-wrapper *tuiDataList
+                             [items]="items"></tui-data-list-wrapper>
+    </tui-select>
 
-    <button [appearance]="'icon'"
-            [size]="'xs'"
-            (click)="showRightSideMenu = !showRightSideMenu"
-            tuiButton>
-      <i-tabler name="layout-sidebar-right"></i-tabler>
-    </button>
+    <div class="action">
+      <button [appearance]="'icon'"
+              [size]="'xs'"
+              (click)="showRightSideMenu = !showRightSideMenu"
+              tuiButton>
+        <i-tabler name="layout-sidebar-right"></i-tabler>
+      </button>
 
-    <button [appearance]="'icon'"
-            [size]="'xs'"
-            (click)="closeSidebar()"
-            tuiButton>
-      <i-tabler name="square-x"></i-tabler>
-    </button>
+      <button [appearance]="'icon'"
+              [size]="'xs'"
+              (click)="closeSidebar()"
+              tuiButton>
+        <i-tabler name="square-x"></i-tabler>
+      </button>
+    </div>
   </div>
 
   <div class="creation-dialog__content">
@@ -24,7 +34,9 @@
       <div class="toolbar">
         <button class="action"
                 [icon]="'tuiIconCheckLarge'"
+                [showLoader]="loading"
                 [size]="'s'"
+                (click)="submitForm()"
                 tuiButton>Create</button>
       </div>
 
@@ -34,11 +46,13 @@
                   tuiTab>
             Contents
           </button>
-          <button (click)="activeTabIndex = 1"
+          <button *ngIf="canShowSEOConfig"
+                  (click)="activeTabIndex = 1"
                   tuiTab>
             Seo
           </button>
-          <button (click)="activeTabIndex = 2"
+          <button *ngIf="canShowRelatedModule"
+                  (click)="activeTabIndex = 2"
                   tuiTab>
             Related
           </button>
@@ -58,6 +72,19 @@
                          tuiTextfield>
                 </tui-input>
                 <tui-field-error formControlName="title"></tui-field-error>
+              </label>
+            </div>
+
+            <div class="mix-form__row">
+              <label [label]="'System name:'"
+                     tuiLabel>
+                <tui-input [tuiTextfieldLabelOutside]="true"
+                           tuiTextfieldSize="m"
+                           formControlName="systemName">
+                  <input type="text"
+                         tuiTextfield>
+                </tui-input>
+                <tui-field-error formControlName="systemName"></tui-field-error>
               </label>
             </div>
 
@@ -92,11 +119,10 @@
                 <tui-input [tuiHintContent]="'Google displays the entire title on the search results, which has 63 characters.'"
                            [tuiTextfieldLabelOutside]="true"
                            tuiTextfieldSize="m"
-                           formControlName="title">
+                           formControlName="seoTitle">
                   <input type="text"
                          tuiTextfield>
                 </tui-input>
-                <tui-field-error formControlName="title"></tui-field-error>
               </label>
             </div>
 
@@ -106,7 +132,7 @@
                 <tui-text-area [tuiHintContent]="'Do make sure your most important keywords for the webpage show up in the meta description. Often search engines will highlight in bold where it finds the searchers query in your snippet.'"
                                [tuiTextfieldLabelOutside]="true"
                                tuiTextfieldSize="m"
-                               formControlName="excerpt"></tui-text-area>
+                               formControlName="seoDescription"></tui-text-area>
               </label>
             </div>
 
@@ -116,11 +142,10 @@
                 <tui-input [tuiHintContent]="seoHint"
                            [tuiTextfieldLabelOutside]="true"
                            tuiTextfieldSize="m"
-                           formControlName="title">
+                           formControlName="seoName">
                   <input type="text"
                          tuiTextfield>
                 </tui-input>
-                <tui-field-error formControlName="title"></tui-field-error>
               </label>
             </div>
 
@@ -130,14 +155,16 @@
                 <tui-text-area [tuiHintContent]="'Do make sure your most important keywords for the webpage show up in the meta description. Often search engines will highlight in bold where it finds the searchers query in your snippet.'"
                                [tuiTextfieldLabelOutside]="true"
                                tuiTextfieldSize="m"
-                               formControlName="excerpt"></tui-text-area>
+                               formControlName="seoKeywords"></tui-text-area>
               </label>
             </div>
           </div>
         </ng-container>
 
         <!-- Data information -->
-        <ng-container *ngIf="activeTabIndex === 2"> </ng-container>
+        <ng-container *ngIf="activeTabIndex === 2">
+          <mix-module-select></mix-module-select>
+        </ng-container>
       </div>
     </div>
 

@@ -18,14 +18,19 @@
 
   &__header {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: flex-start;
     width: 100%;
     padding: 10px 10px 10px 20px;
     border-bottom: 1px solid var(--tui-base-04);
 
-    h3 {
-      margin-right: auto;
+    tui-select {
+      margin-left: 10px;
+      width: 200px;
+    }
+
+    .action {
+      margin-left: auto;
     }
   }
 

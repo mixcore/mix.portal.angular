@@ -117,7 +117,7 @@ export class PortalLayoutComponent {
         {
           title: 'New module',
           icon: 'plus',
-          action: () => this.createNew('Post')
+          action: () => this.createNew('Module')
         },
         {
           title: 'Modules',

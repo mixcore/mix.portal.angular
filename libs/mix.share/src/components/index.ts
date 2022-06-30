@@ -10,6 +10,7 @@ export * from './mix-status-indicator';
 export * from './mix-toolbar';
 export * from './mix-widget';
 export * from './modal';
+export * from './module-selects-list/module-select.component';
 export * from './portal-sidebar-host/portal-sidebar-host.component';
 export * from './side-menu';
 export * from './sidebar-menu';

@@ -1,16 +1,23 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MixPostPortalModel } from '@mix-spa/mix.lib';
+import {
+  MixModulePortalModel,
+  MixPagePortalModel,
+  MixPostPortalModel
+} from '@mix-spa/mix.lib';
 import { TuiAlertService } from '@taiga-ui/core';
-import { slideAnimation } from 'libs/mix.share/src/animations';
 import { switchMap } from 'rxjs';
 
+import { slideAnimation } from '../../../animations';
 import {
+  MixPageApiService,
   MixPostApiService,
   PortalSidebarControlService
 } from '../../../services';
+import { MixModuleApiService } from '../../../services/api/mix-module-api.service';
 import { ShareModule } from '../../../share.module';
-import { FormUtils } from '../../../utils';
+import { FormUtils, StringUtils } from '../../../utils';
+import { MixModuleSelectComponent } from '../../module-selects-list/module-select.component';
 
 export type MixCreationType = 'Post' | 'Page' | 'Module';
 
@@ -19,14 +26,16 @@ export type MixCreationType = 'Post' | 'Page' | 'Module';
   templateUrl: './creation-dialog.component.html',
   styleUrls: ['./creation-dialog.component.scss'],
   standalone: true,
-  imports: [ShareModule],
+  imports: [ShareModule, MixModuleSelectComponent],
   animations: [slideAnimation]
 })
-export class CreationDialogComponent {
+export class CreationDialogComponent implements OnInit {
   @Input() public type: MixCreationType = 'Post';
+
   public items: MixCreationType[] = ['Post', 'Page', 'Module'];
   public form: FormGroup = new FormGroup({
-    title: new FormControl('Your content title', Validators.required),
+    title: new FormControl('', Validators.required),
+    systemName: new FormControl('', Validators.required),
     excerpt: new FormControl(''),
     description: new FormControl(''),
     seoName: new FormControl(''),
@@ -43,13 +52,29 @@ export class CreationDialogComponent {
   public activeTabIndex = 0;
   public showRightSideMenu = true;
   public largeMode = false;
+  public get canShowRelatedModule(): boolean {
+    return this.type === 'Page' || this.type === 'Post';
+  }
+  public get canShowSEOConfig(): boolean {
+    return this.type === 'Page' || this.type === 'Post';
+  }
 
   constructor(
     public postApi: MixPostApiService,
+    public moduleApi: MixModuleApiService,
+    public pageApi: MixPageApiService,
     @Inject(TuiAlertService) private readonly alertService: TuiAlertService,
     @Inject(PortalSidebarControlService)
     private readonly sidebarControl: PortalSidebarControlService
   ) {}
+
+  public ngOnInit(): void {
+    this.form.controls['title'].valueChanges.subscribe((title: string) => {
+      this.form.controls['systemName'].patchValue(
+        StringUtils.textToSystemName(title)
+      );
+    });
+  }
 
   public submitForm(): void {
     if (!FormUtils.validateForm(this.form)) return;
@@ -57,20 +82,25 @@ export class CreationDialogComponent {
     switch (this.type) {
       case 'Post':
         this.createNewPost();
+        break;
+      case 'Module':
+        this.createNewModule();
+        break;
     }
   }
 
   public createNewPost(): void {
-    this.loading = true;
+    this.handleBeforeCreate();
     this.postApi
       .getDefaultPostTemplate()
       .pipe(
         switchMap(result => {
+          const form = this.form.getRawValue();
           const post = <MixPostPortalModel>{
             ...result,
-            title: this.form.value['title'],
-            excerpt: this.form.value['excerpt'],
-            content: this.form.value['description']
+            title: form['title'],
+            excerpt: form['excerpt'],
+            content: form['description']
           };
 
           return this.postApi.savePost(post);
@@ -86,8 +116,74 @@ export class CreationDialogComponent {
       });
   }
 
+  public createNewModule(): void {
+    this.handleBeforeCreate();
+    this.moduleApi
+      .getDefaultModuleTemplate()
+      .pipe(
+        switchMap(result => {
+          const form = this.form.getRawValue();
+          const post = <MixModulePortalModel>{
+            ...result,
+            title: form['title'],
+            excerpt: form['excerpt'],
+            content: form['description'],
+            systemName: form['systemName']
+          };
+
+          return this.moduleApi.saveModule(post);
+        })
+      )
+      .subscribe(() => {
+        this.alertService
+          .open(`Create ${this.form.value.title} successfully`, {
+            label: 'Success'
+          })
+          .subscribe();
+
+        this.handleAfterCreate();
+      });
+  }
+
+  public createNewPage(): void {
+    this.handleBeforeCreate();
+    this.pageApi
+      .getDefaultPageTemplate()
+      .pipe(
+        switchMap(result => {
+          const form = this.form.getRawValue();
+          const page = <MixPagePortalModel>{
+            ...result,
+            title: form['title'],
+            excerpt: form['excerpt'],
+            content: form['description'],
+            systemName: form['systemName'],
+            seoDescription: form['seoDescription'],
+            seoKeywords: form['seoKeywords'],
+            seoName: form['seoName'],
+            seoTitle: form['seoTitle'],
+            seoSource: form['seoSource']
+          };
+
+          return this.pageApi.savePage(page);
+        })
+      )
+      .subscribe(() => {
+        const message = `Create ${this.form.value.title} successfully`;
+        this.alertService.open(message, { label: 'Success' }).subscribe();
+
+        this.handleAfterCreate();
+      });
+  }
+
+  public handleBeforeCreate(): void {
+    this.form.disable();
+    this.loading = true;
+  }
+
   public handleAfterCreate(): void {
     this.loading = false;
+    this.form.enable();
   }
 
   public closeSidebar(): void {

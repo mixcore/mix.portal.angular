@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input,
+  OnInit,
+  ViewChild
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   MixContentStatus,
@@ -8,8 +15,9 @@ import {
   PaginationRequestModel,
   PaginationResultModel
 } from '@mix-spa/mix.lib';
-import { BehaviorSubject, combineLatest, Observable, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, filter, Observable, tap } from 'rxjs';
 
+import { AppEvent, AppEventService } from '../../services';
 import { MixModuleApiService } from '../../services/api/mix-module-api.service';
 import { MixPageApiService } from '../../services/api/mix-page-api.service';
 import { MixPostApiService } from '../../services/api/mix-post-api.service';
@@ -41,23 +49,62 @@ export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
 })
 export class MixPolymorphousListComponent implements OnInit {
   @Input() public listType: MixContentType = MixContentType.Page;
-  @Input() public request!: (query: PaginationRequestModel) => Observable<PaginationResultModel<PolymorphousListResult>>;
+  @Input() public request!: (
+    query: PaginationRequestModel
+  ) => Observable<PaginationResultModel<PolymorphousListResult>>;
   @Input() public deleteRequest!: (id: number) => Observable<void>;
 
-  @ViewChild(MixDataTableComponent) dataTable!: MixDataTableComponent<PolymorphousListResult>;
+  @ViewChild(MixDataTableComponent)
+  dataTable!: MixDataTableComponent<PolymorphousListResult>;
 
-  public readonly contentConfig: Record<MixContentType, { header: string; searchPlaceholder: string }> = {
-    Page: { header: 'Pages Available', searchPlaceholder: 'Type your Page name...' },
-    Post: { header: 'Posts Available', searchPlaceholder: 'Type your Post name...' },
-    Module: { header: 'Module sAvailable', searchPlaceholder: 'Type your Module name...' },
-    MixDatabase: { header: 'MixDatabases Available', searchPlaceholder: 'Type your MixDatabase name...' },
-    Scheduler: { header: 'Schedulers Available', searchPlaceholder: 'Type your Scheduler name...' },
-    Tenant: { header: 'Tenants Available', searchPlaceholder: 'Type your Tenant name...' },
-    Domain: { header: 'Domains Available', searchPlaceholder: 'Type your Domain name...' },
-    Media: { header: 'Medias Available', searchPlaceholder: 'Type your Media name...' },
-    Theme: { header: 'Themes Available', searchPlaceholder: 'Type your Theme name...' },
-    Language: { header: 'Languages Available', searchPlaceholder: 'Type your Language name...' },
-    Localization: { header: 'Localizations Available', searchPlaceholder: 'Type your Localization name...' }
+  public readonly contentConfig: Record<
+    MixContentType,
+    { header: string; searchPlaceholder: string }
+  > = {
+    Page: {
+      header: 'Pages Available',
+      searchPlaceholder: 'Type your Page name...'
+    },
+    Post: {
+      header: 'Posts Available',
+      searchPlaceholder: 'Type your Post name...'
+    },
+    Module: {
+      header: 'Module sAvailable',
+      searchPlaceholder: 'Type your Module name...'
+    },
+    MixDatabase: {
+      header: 'MixDatabases Available',
+      searchPlaceholder: 'Type your MixDatabase name...'
+    },
+    Scheduler: {
+      header: 'Schedulers Available',
+      searchPlaceholder: 'Type your Scheduler name...'
+    },
+    Tenant: {
+      header: 'Tenants Available',
+      searchPlaceholder: 'Type your Tenant name...'
+    },
+    Domain: {
+      header: 'Domains Available',
+      searchPlaceholder: 'Type your Domain name...'
+    },
+    Media: {
+      header: 'Medias Available',
+      searchPlaceholder: 'Type your Media name...'
+    },
+    Theme: {
+      header: 'Themes Available',
+      searchPlaceholder: 'Type your Theme name...'
+    },
+    Language: {
+      header: 'Languages Available',
+      searchPlaceholder: 'Type your Language name...'
+    },
+    Localization: {
+      header: 'Localizations Available',
+      searchPlaceholder: 'Type your Localization name...'
+    }
   };
 
   // Filter By Status
@@ -70,11 +117,13 @@ export class MixPolymorphousListComponent implements OnInit {
   public statusControl: FormControl = new FormControl(this.statusOption);
 
   // Sort Option
-  public readonly sortOption: string[] = ['Newly Added', 'Most Viewed', 'Type'];
-  public sortOptionControl: FormControl = new FormControl('Newly Added');
+  public readonly sortOption: string[] = ['Last Updated', 'Priority'];
+  public sortOptionControl: FormControl = new FormControl('Last Updated');
 
   public showLeftSide = true;
-  public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    true
+  );
   public itemCount = 0;
   public currentSelectedItems: PolymorphousListResult[] = [];
 
@@ -82,24 +131,42 @@ export class MixPolymorphousListComponent implements OnInit {
     @Inject(ModalService) private readonly modalService: ModalService,
     public pageApi: MixPageApiService,
     public postApi: MixPostApiService,
-    public moduleApi: MixModuleApiService
+    public moduleApi: MixModuleApiService,
+    private appEvent: AppEventService
   ) {}
 
   public ngOnInit(): void {
     switch (this.listType) {
       case MixContentType.Page:
-        this.request = (query: PaginationRequestModel) => this.pageApi.getPages(query);
+        this.request = (query: PaginationRequestModel) =>
+          this.pageApi.getPages(query);
         this.deleteRequest = (id: number) => this.pageApi.deletePages(id);
         break;
       case MixContentType.Post:
-        this.request = (query: PaginationRequestModel) => this.postApi.getPosts(query);
+        this.request = (query: PaginationRequestModel) =>
+          this.postApi.getPosts(query);
         this.deleteRequest = (id: number) => this.postApi.deletePosts(id);
         break;
       default:
-        this.request = (query: PaginationRequestModel) => this.moduleApi.getModules(query);
+        this.request = (query: PaginationRequestModel) =>
+          this.moduleApi.getModules(query);
         this.deleteRequest = (id: number) => this.moduleApi.deleteModules(id);
         break;
     }
+
+    this.appEvent.event$
+      .pipe(
+        filter(event =>
+          [
+            AppEvent.NewModuleAdded,
+            AppEvent.NewPageAdded,
+            AppEvent.NewPostAdded
+          ].includes(event)
+        )
+      )
+      .subscribe(() => {
+        this.dataTable.reloadData();
+      });
   }
 
   public fetchDataFn = (query: PaginationRequestModel) => {
@@ -115,7 +182,8 @@ export class MixPolymorphousListComponent implements OnInit {
   }
 
   public onDelete(): void {
-    const message = 'Are you sure to delete this items ? Your data may not be revert';
+    const message =
+      'Are you sure to delete this items ? Your data may not be revert';
     this.modalService.confirm(message).subscribe((ok: boolean) => {
       if (ok) this.deleteItem();
     });
@@ -123,7 +191,9 @@ export class MixPolymorphousListComponent implements OnInit {
 
   public deleteItem(): void {
     this.loading$.next(true);
-    combineLatest(this.currentSelectedItems.map(v => this.deleteRequest(v.id))).subscribe(() => {
+    combineLatest(
+      this.currentSelectedItems.map(v => this.deleteRequest(v.id))
+    ).subscribe(() => {
       this.modalService.success('Successfully delete data').subscribe();
       this.dataTable.reloadData();
       this.currentSelectedItems = [];

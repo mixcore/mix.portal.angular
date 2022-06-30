@@ -1,8 +1,14 @@
 import { Injectable } from '@angular/core';
-import { MixApiDict, MixPostPortalModel, PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
-import { Observable } from 'rxjs';
+import {
+  MixApiDict,
+  MixPostPortalModel,
+  PaginationRequestModel,
+  PaginationResultModel
+} from '@mix-spa/mix.lib';
+import { Observable, tap } from 'rxjs';
 
 import { BaseApiService, IHttpParamObject } from '../../bases/base-api.service';
+import { AppEvent } from '../helper/app-event.service';
 
 @Injectable({ providedIn: 'root' })
 export class MixPostApiService extends BaseApiService {
@@ -11,11 +17,19 @@ export class MixPostApiService extends BaseApiService {
   }
 
   public savePost(data: MixPostPortalModel): Observable<void> {
-    return this.post<MixPostPortalModel, void>(MixApiDict.PostApi.savePostEndpoint, data);
+    return this.post<MixPostPortalModel, void>(
+      MixApiDict.PostApi.savePostEndpoint,
+      data
+    ).pipe(tap(() => this.appEvent.notify(AppEvent.NewPostAdded)));
   }
 
-  public getPosts(request: PaginationRequestModel): Observable<PaginationResultModel<MixPostPortalModel>> {
-    return this.get<PaginationResultModel<MixPostPortalModel>>(MixApiDict.PostApi.getPostEndpoint, <IHttpParamObject>request);
+  public getPosts(
+    request: PaginationRequestModel
+  ): Observable<PaginationResultModel<MixPostPortalModel>> {
+    return this.get<PaginationResultModel<MixPostPortalModel>>(
+      MixApiDict.PostApi.getPostEndpoint,
+      <IHttpParamObject>request
+    );
   }
 
   public deletePosts(id: number): Observable<void> {
