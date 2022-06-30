@@ -86,6 +86,9 @@ export class CreationDialogComponent implements OnInit {
       case 'Module':
         this.createNewModule();
         break;
+      case 'Page':
+        this.createNewPage();
+        break;
     }
   }
 
@@ -123,7 +126,7 @@ export class CreationDialogComponent implements OnInit {
       .pipe(
         switchMap(result => {
           const form = this.form.getRawValue();
-          const post = <MixModulePortalModel>{
+          const module = <MixModulePortalModel>{
             ...result,
             title: form['title'],
             excerpt: form['excerpt'],
@@ -131,7 +134,7 @@ export class CreationDialogComponent implements OnInit {
             systemName: form['systemName']
           };
 
-          return this.moduleApi.saveModule(post);
+          return this.moduleApi.saveModule(module);
         })
       )
       .subscribe(() => {
