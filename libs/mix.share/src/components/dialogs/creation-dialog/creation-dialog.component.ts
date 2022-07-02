@@ -190,7 +190,7 @@ export class CreationDialogComponent implements OnInit {
   }
 
   public closeSidebar(): void {
-    this.sidebarControl.removeAll();
+    this.sidebarControl.hide();
   }
 
   public toggleLargeMode(): void {

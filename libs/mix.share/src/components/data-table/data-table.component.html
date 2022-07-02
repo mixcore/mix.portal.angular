@@ -77,7 +77,7 @@
                       <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
                     </ng-container>
 
-                    <ng-container *ngIf="!col.tplHeader">
+                    <ng-container *ngIf="!col.tplHeader && col.showHeader">
                       {{ col.header }}
                     </ng-container>
                   </th>

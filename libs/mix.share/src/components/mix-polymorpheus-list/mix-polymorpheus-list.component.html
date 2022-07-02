@@ -45,6 +45,26 @@
             <mix-status-indicator [status]="data.status"></mix-status-indicator>
           </ng-template>
         </div>
+        <div [columnType]="'ACTION'"
+             [showHeader]="false"
+             [sortable]="false"
+             header="Action"
+             mixTableColumn
+             key="Action">
+          <ng-template let-data
+                       mixColumnCell>
+            <tui-hosted-dropdown [content]="action"
+                                 tuiDropdownAlign="left">
+              <button type="button"
+                      (click)="currentActionItem = data"
+                      tuiIconButton
+                      size="m"
+                      appearance="flat"
+                      icon="tuiIconMoreVer">
+              </button>
+            </tui-hosted-dropdown>
+          </ng-template>
+        </div>
       </mix-data-table>
     </div>
 
@@ -92,3 +112,25 @@
       </div>
     </div>
   </div>
+
+
+
+  <ng-template #action>
+    <tui-data-list>
+      <button class="tui-space_right-3"
+              type="button"
+              [size]="'s'"
+              (click)="editItem()"
+              tuiOption
+              tuiHintMode="onDark"
+              tuiHintDirection="right">
+        Edit
+      </button>
+    </tui-data-list>
+  </ng-template>
+
+
+  <ng-template #moduleDetail>
+    <mix-module-detail [mode]="'Quickly'"
+                       [moduleId]="moduleId"></mix-module-detail>
+  </ng-template>

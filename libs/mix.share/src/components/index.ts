@@ -5,6 +5,7 @@ export * from './dialogs/universal-search-dialog';
 export * from './header-menu';
 export * from './mix-chat';
 export * from './mix-database-visualize/mix-database-visualize.component';
+export * from './mix-module-detail/mix-module-detail.component';
 export * from './mix-polymorpheus-list';
 export * from './mix-status-indicator';
 export * from './mix-toolbar';

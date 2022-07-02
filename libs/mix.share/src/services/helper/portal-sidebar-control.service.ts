@@ -5,15 +5,19 @@ import { AbstractTuiPortalService } from '@taiga-ui/cdk';
   providedIn: 'root'
 })
 export class PortalSidebarControlService extends AbstractTuiPortalService {
-  public currentTemplates: EmbeddedViewRef<unknown>[] = [];
+  public currentTemplate: EmbeddedViewRef<unknown> | null = null;
 
   public show(templateRef: TemplateRef<unknown>): void {
-    this.removeAll();
-    this.currentTemplates.push(this.addTemplate(templateRef));
+    if (this.currentTemplate) {
+      this.removeTemplate(this.currentTemplate);
+    }
+
+    this.currentTemplate = this.addTemplate(templateRef);
   }
 
-  public removeAll(): void {
-    this.currentTemplates.forEach(c => this.removeTemplate(c));
-    this.currentTemplates = [];
+  public hide(): void {
+    if (this.currentTemplate) this.removeTemplate(this.currentTemplate);
+
+    this.currentTemplate = null;
   }
 }

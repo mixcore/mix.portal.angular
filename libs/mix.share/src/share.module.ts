@@ -94,7 +94,8 @@ const TaiGa_CommonModule = [
   TuiInputDateRangeModule,
   TuiAvatarModule,
   TuiToggleModule,
-  TuiAccordionModule
+  TuiAccordionModule,
+  TuiDataListModule
 ];
 
 @NgModule({

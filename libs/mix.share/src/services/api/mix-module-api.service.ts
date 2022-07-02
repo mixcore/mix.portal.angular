@@ -25,6 +25,12 @@ export class MixModuleApiService extends BaseApiService {
     );
   }
 
+  public getModuleById(id: number): Observable<MixModulePortalModel> {
+    return this.get<MixModulePortalModel>(
+      MixApiDict.ModuleApi.getModuleById.replace('{id}', id.toString())
+    );
+  }
+
   public saveModule(data: MixModulePortalModel): Observable<void> {
     return this.post<MixModulePortalModel, void>(
       MixApiDict.ModuleApi.saveModuleEndpoint,

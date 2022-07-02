@@ -1,0 +1,31 @@
+<div class="module-detail"
+     [ngClass]="{'--quick-mode': mode === 'Quickly'}"
+     [@enterAnimation]>
+  <div *ngIf="mode === 'Quickly'"
+       class="module-detail__header">
+    <div class="action">
+      <button [appearance]="'icon'"
+              [size]="'xs'"
+              (click)="closeSidebar()"
+              tuiButton>
+        <i-tabler name="square-x"></i-tabler>
+      </button>
+    </div>
+  </div>
+
+  <div class="module-detail__content">
+    <div class="module-detail__content-left-side">
+      <div class="toolbar">
+        Toolbar
+      </div>
+
+      <div class="workspace">
+        {{ moduleId }}
+      </div>
+    </div>
+
+    <div class="module-detail__content-right-side">
+      <!-- ABC -->
+    </div>
+  </div>
+</div>

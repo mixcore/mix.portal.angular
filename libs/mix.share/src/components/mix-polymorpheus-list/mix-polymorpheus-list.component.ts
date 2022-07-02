@@ -4,12 +4,14 @@ import {
   Inject,
   Input,
   OnInit,
+  TemplateRef,
   ViewChild
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
   MixContentStatus,
   MixContentType,
+  MixModulePortalModel,
   MixPagePortalModel,
   MixPostPortalModel,
   PaginationRequestModel,
@@ -17,7 +19,11 @@ import {
 } from '@mix-spa/mix.lib';
 import { BehaviorSubject, combineLatest, filter, Observable, tap } from 'rxjs';
 
-import { AppEvent, AppEventService } from '../../services';
+import {
+  AppEvent,
+  AppEventService,
+  PortalSidebarControlService
+} from '../../services';
 import { MixModuleApiService } from '../../services/api/mix-module-api.service';
 import { MixPageApiService } from '../../services/api/mix-page-api.service';
 import { MixPostApiService } from '../../services/api/mix-post-api.service';
@@ -25,12 +31,16 @@ import { ShareModule } from '../../share.module';
 import { MixDataTableComponent } from '../data-table';
 import { MixDataTableModule } from '../data-table/data-table.module';
 import { MixChatBoxComponent } from '../mix-chat';
+import { MixModuleDetailComponent } from '../mix-module-detail/mix-module-detail.component';
 import { MixStatusIndicatorComponent } from '../mix-status-indicator';
 import { MixToolbarComponent } from '../mix-toolbar/mix-toolbar.component';
 import { ModalService } from '../modal/modal.service';
 import { MixUserListHubComponent } from '../user-list-hub/user-list-hub.component';
 
-export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
+export type PolymorphousListResult =
+  | MixPagePortalModel
+  | MixPostPortalModel
+  | MixModulePortalModel;
 
 @Component({
   selector: 'mix-polymorphous-list',
@@ -43,7 +53,8 @@ export type PolymorphousListResult = MixPagePortalModel | MixPostPortalModel;
     MixToolbarComponent,
     MixStatusIndicatorComponent,
     MixChatBoxComponent,
-    MixUserListHubComponent
+    MixUserListHubComponent,
+    MixModuleDetailComponent
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -56,6 +67,7 @@ export class MixPolymorphousListComponent implements OnInit {
 
   @ViewChild(MixDataTableComponent)
   dataTable!: MixDataTableComponent<PolymorphousListResult>;
+  @ViewChild('moduleDetail') public moduleDetail!: TemplateRef<unknown>;
 
   public readonly contentConfig: Record<
     MixContentType,
@@ -126,13 +138,16 @@ export class MixPolymorphousListComponent implements OnInit {
   );
   public itemCount = 0;
   public currentSelectedItems: PolymorphousListResult[] = [];
+  public currentActionItem: PolymorphousListResult | undefined = undefined;
+  public moduleId = 0;
 
   constructor(
     @Inject(ModalService) private readonly modalService: ModalService,
     public pageApi: MixPageApiService,
     public postApi: MixPostApiService,
     public moduleApi: MixModuleApiService,
-    private appEvent: AppEventService
+    private appEvent: AppEventService,
+    private sidebarControl: PortalSidebarControlService
   ) {}
 
   public ngOnInit(): void {
@@ -202,5 +217,18 @@ export class MixPolymorphousListComponent implements OnInit {
 
   public toggleFilter(): void {
     this.showLeftSide = !this.showLeftSide;
+  }
+
+  public editItem(): void {
+    if (!this.currentActionItem) return;
+
+    switch (this.listType) {
+      case MixContentType.Module:
+        this.moduleId = this.currentActionItem.id;
+        this.sidebarControl.show(this.moduleDetail);
+        break;
+      default:
+        break;
+    }
   }
 }
