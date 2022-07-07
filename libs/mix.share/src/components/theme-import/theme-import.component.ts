@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Inject, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Inject,
+  Output
+} from '@angular/core';
 import { ThemeModel } from '@mix-spa/mix.lib';
 
 import { ThemeApiService } from '../../services';
@@ -16,7 +22,7 @@ import { ModalService } from '../modal/modal.service';
 })
 export class ThemeImportComponent {
   public activeItemIndex = 0;
-  public themeListVm$ = this.themeApiService.getTheme();
+  public themeListVm$ = this.themeApiService.getThemeStore();
   public currentSelectedTheme: ThemeModel | null = null;
 
   @Output() public cancel: EventEmitter<void> = new EventEmitter();

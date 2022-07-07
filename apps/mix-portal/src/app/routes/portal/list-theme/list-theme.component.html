@@ -1,0 +1,30 @@
+<div class="mix-workspace-container">
+  <div class="mix-workspace-container__header">
+    ABC
+  </div>
+
+  <div class="mix-workspace-container__containter">
+    <div class="mix-workspace-container__main-workspace">
+      <mix-data-table [fetchDataFn]="fetchDataFn">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+        <div [header]="'#'"
+             [width]="'70px'"
+             mixTableColumn
+             key="id"></div>
+        <div [header]="'Name'"
+             mixTableColumn
+             key="displayName">
+          <ng-template let-data
+                       mixColumnCell>
+            <div (click)="themeClick(data)"> {{ data.displayName }}</div>
+          </ng-template>
+        </div>
+        <div [header]="'Created Date'"
+             mixTableColumn
+             key="createdDateTime"></div>
+      </mix-data-table>
+
+    </div>
+  </div>
+</div>

@@ -245,7 +245,7 @@ export class PortalLayoutComponent {
           action: () => this.navigate('/portal/list-database')
         }
       ],
-      action: () => this.navigate('/portal/list-database')
+      action: () => this.navigate('/portal/list-theme')
     },
     {
       id: 11,

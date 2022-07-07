@@ -5,6 +5,8 @@ import { ListDatabaseComponent } from './list-database/list-database.component';
 import { ListModuleComponent } from './list-module/list-module.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { ListPostComponent } from './list-post/list-post.component';
+import { ListTemplateComponent } from './list-template/list-template.component';
+import { ListThemeComponent } from './list-theme/list-theme.component';
 
 export const PORTAL_ROUTES: Route[] = [
   {
@@ -40,6 +42,20 @@ export const PORTAL_ROUTES: Route[] = [
     component: ListDatabaseComponent,
     data: {
       title: 'Databases'
+    }
+  },
+  {
+    path: 'list-theme',
+    component: ListThemeComponent,
+    data: {
+      title: 'Themes'
+    }
+  },
+  {
+    path: 'list-template/:themeId',
+    component: ListTemplateComponent,
+    data: {
+      title: 'All Template'
     }
   },
   {

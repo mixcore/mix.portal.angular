@@ -4,6 +4,7 @@ import { PageApiDictionary } from './page-api.dictionary';
 import { PostApiDictionary } from './post-api.dictionary';
 import { ShareApiDictionary } from './share-api.dictionary';
 import { TenancyApiDictionary } from './tenancy-api.dictionary';
+import { ThemeApiDictionary } from './theme-api.dictionary';
 
 export class MixApiDictionary {
   public PostApi: PostApiDictionary = new PostApiDictionary();
@@ -12,6 +13,7 @@ export class MixApiDictionary {
   public ModuleApi: ModuleApiDictionary = new ModuleApiDictionary();
   public TenancyApi: TenancyApiDictionary = new TenancyApiDictionary();
   public DatabaseApi: DatabaseApiDictionary = new DatabaseApiDictionary();
+  public ThemeApi: ThemeApiDictionary = new ThemeApiDictionary();
 }
 
 export const MixApiDict = new MixApiDictionary();
