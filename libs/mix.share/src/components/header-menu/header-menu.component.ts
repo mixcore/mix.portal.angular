@@ -57,7 +57,7 @@ export class HeaderMenuComponent {
     }
   }
 
-  private _getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: BreadcrumbOption[] = []): BreadcrumbOption[] {
+  private _getBreadcrumbs(route: ActivatedRoute, url = '', breadcrumbs: BreadcrumbOption[] = []): BreadcrumbOption[] {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) return breadcrumbs;
