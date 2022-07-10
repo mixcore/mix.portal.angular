@@ -22,7 +22,8 @@
   <ng-template tuiAccordionItemContent>
     <div class="folder-file__file-list">
       <div *ngFor="let item of result.items"
-           class="folder-file__file">
+           class="folder-file__file"
+           (click)="fileClick(item)">
         <div class="name">
           {{ item.fileName }}{{ item.extension}}
         </div>

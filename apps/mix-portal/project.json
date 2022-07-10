@@ -21,6 +21,11 @@
             "input": "node_modules/@taiga-ui/icons/src",
             "output": "assets/taiga-ui/icons"
           },
+          {
+            "glob": "**/*",
+            "input": "node_modules/monaco-editor",
+            "output": "assets/monaco-editor"
+          },
           "apps/mix-portal/src/manifest.webmanifest"
         ],
         "styles": [
@@ -103,7 +108,10 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/mix-portal/**/*.ts", "apps/mix-portal/**/*.html"]
+        "lintFilePatterns": [
+          "apps/mix-portal/**/*.ts",
+          "apps/mix-portal/**/*.html"
+        ]
       }
     },
     "test": {

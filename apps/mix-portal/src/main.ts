@@ -4,10 +4,26 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { AuthInterceptor, BASE_URL, DOMAIN_URL, GET_THEME_URL, MixModalModule } from '@mix-spa/mix.share';
-import { defaultEditorExtensions, tiptapEditorStyles, TUI_EDITOR_EXTENSIONS, TUI_EDITOR_STYLES } from '@taiga-ui/addon-editor';
-import { TUI_ANIMATIONS_DURATION, TuiAlertModule, TuiDialogModule } from '@taiga-ui/core';
+import {
+  AuthInterceptor,
+  BASE_URL,
+  DOMAIN_URL,
+  GET_THEME_URL,
+  MixModalModule
+} from '@mix-spa/mix.share';
+import {
+  defaultEditorExtensions,
+  tiptapEditorStyles,
+  TUI_EDITOR_EXTENSIONS,
+  TUI_EDITOR_STYLES
+} from '@taiga-ui/addon-editor';
+import {
+  TUI_ANIMATIONS_DURATION,
+  TuiAlertModule,
+  TuiDialogModule
+} from '@taiga-ui/core';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AppComponent } from './app/app.layout';
 import { app_routes } from './app/app.route';
@@ -58,12 +74,16 @@ bootstrapApplication(AppComponent, {
     },
     importProvidersFrom(
       RouterModule.forRoot(app_routes),
-      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production, registrationStrategy: 'registerWhenStable:30000' }),
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: environment.production,
+        registrationStrategy: 'registerWhenStable:30000'
+      }),
       BrowserAnimationsModule,
       HttpClientModule,
       TuiAlertModule,
       TuiDialogModule,
-      MixModalModule
+      MixModalModule,
+      MonacoEditorModule.forRoot()
     )
   ]
 }).catch(err => console.error(err));

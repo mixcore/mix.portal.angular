@@ -1,6 +1,7 @@
 import { Route } from '@angular/router';
 
 import { DashBoardComponent } from './dashboard/dashboard.component';
+import { MixDetailTemplateComponent } from './detail-template/detail-template.component';
 import { ListDatabaseComponent } from './list-database/list-database.component';
 import { ListModuleComponent } from './list-module/list-module.component';
 import { ListPageComponent } from './list-page/list-page.component';
@@ -56,6 +57,13 @@ export const PORTAL_ROUTES: Route[] = [
     component: ListTemplateComponent,
     data: {
       title: 'All Template'
+    }
+  },
+  {
+    path: 'template/:templateId',
+    component: MixDetailTemplateComponent,
+    data: {
+      title: 'Template'
     }
   },
   {

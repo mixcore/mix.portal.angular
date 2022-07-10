@@ -4,6 +4,7 @@ import {
   Input,
   OnInit
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   IGetTemplatesRequest,
   MixTemplateFolder,
@@ -43,7 +44,11 @@ export class MixFolderFileComponent implements OnInit {
       pageSize: 100
     });
 
-  constructor(private templateApi: MixTemplateApiService) {}
+  constructor(
+    private templateApi: MixTemplateApiService,
+    private route: Router,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   public ngOnInit(): void {
     this.defaultQuery$
@@ -63,5 +68,11 @@ export class MixFolderFileComponent implements OnInit {
         this.loading$.next(false);
         this.result$.next(result);
       });
+  }
+
+  public fileClick(template: MixTemplateModel): void {
+    this.route.navigate(['template', template.id], {
+      relativeTo: this.activatedRoute.parent
+    });
   }
 }
