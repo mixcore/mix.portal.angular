@@ -4,4 +4,5 @@ export * from './mix-data-type.enum';
 export * from './mix-direction.enum';
 export * from './mix-horizontal-position.enum';
 export * from './mix-status-type.enum';
+export * from './mix-template-folder.enum';
 export * from './mix-vertical-position.enum';

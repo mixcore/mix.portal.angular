@@ -8,7 +8,9 @@ export { ThemeSignalService } from './signalR/theme-signal.service';
 
 // Main content
 export { MixPageApiService } from './api//mix-page-api.service';
+export { MixModuleApiService } from './api/mix-module-api.service';
 export { MixPostApiService } from './api/mix-post-api.service';
+export { MixTemplateApiService } from './api/mix-template-api.service';
 
 // Helper
 export { AppEvent, AppEventService } from './helper/app-event.service';

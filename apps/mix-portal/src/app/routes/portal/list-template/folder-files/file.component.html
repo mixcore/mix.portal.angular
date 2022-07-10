@@ -1,0 +1,37 @@
+<tui-accordion-item *ngIf="(result$ | async) as result"
+                    class="folder-file"
+                    [(open)]="open"
+                    [borders]="null"
+                    [disabled]="!!(loading$ | async)"
+                    [size]="'s'">
+  <div class="folder-file__folder-header">
+    <div class="toggle-icon"
+         [ngClass]="{'--open': open}">
+      <tui-svg src="tuiIconChevronRight"></tui-svg>
+    </div>
+    <i-tabler class="icon"
+              name="file-import"></i-tabler>
+    <div class="title"> {{ folderType }} <span *ngIf="!!!(loading$ | async); else loading">({{ result.pagingData.total ?? 0 }})</span>
+      <ng-template #loading>
+        loading
+      </ng-template>
+    </div>
+    <div class="separator"></div>
+  </div>
+
+  <ng-template tuiAccordionItemContent>
+    <div class="folder-file__file-list">
+      <div *ngFor="let item of result.items"
+           class="folder-file__file">
+        <div class="name">
+          {{ item.fileName }}{{ item.extension}}
+        </div>
+        <div class="date-modified">
+          {{ item.createdDateTime || item.lastModified | date }}
+        </div>
+      </div>
+
+      <div> <a tuiLink>+ Add item</a> </div>
+    </div>
+  </ng-template>
+</tui-accordion-item>

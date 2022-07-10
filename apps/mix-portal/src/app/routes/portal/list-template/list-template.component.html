@@ -1,1 +1,24 @@
-<p>list-template works!</p>
+<div class="mix-workspace-container list-template">
+  <div class="mix-workspace-container__header">
+    <mix-toolbar></mix-toolbar>
+  </div>
+
+  <div class="mix-workspace-container__container">
+    <div class="mix-workspace-container__main-workspace list-template__file-container">
+      <mix-folder-file [folderType]="FOLDER.Layouts"
+                       [themeId]="themeId"></mix-folder-file>
+      <mix-folder-file [folderType]="FOLDER.Masters"
+                       [themeId]="themeId"></mix-folder-file>
+      <mix-folder-file [folderType]="FOLDER.Pages"
+                       [themeId]="themeId"></mix-folder-file>
+      <mix-folder-file [folderType]="FOLDER.Posts"
+                       [themeId]="themeId"></mix-folder-file>
+      <mix-folder-file [folderType]="FOLDER.Modules"
+                       [themeId]="themeId"></mix-folder-file>
+      <mix-folder-file [folderType]="FOLDER.Widgets"
+                       [themeId]="themeId"></mix-folder-file>
+      <mix-folder-file [folderType]="FOLDER.Edms"
+                       [themeId]="themeId"></mix-folder-file>
+    </div>
+  </div>
+</div>

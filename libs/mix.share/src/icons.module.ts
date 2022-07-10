@@ -12,6 +12,7 @@ import {
   IconDatabase,
   IconFile,
   IconFileHorizontal,
+  IconFileImport,
   IconFilter,
   IconLanguage,
   IconLayout,
@@ -87,5 +88,6 @@ export const ICONS = {
   IconSquareToggle,
   IconShoppingCart,
   IconArrowRampRight,
-  IconColumns
+  IconColumns,
+  IconFileImport
 };

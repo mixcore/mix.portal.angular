@@ -285,9 +285,9 @@ tui-dialog {
   background: rgba(0, 0, 0, 0.05) !important;
 }
 
-a[tuiLink] {
-  color: var(--tui-base-09);
-}
+// a[tuiLink] {
+//   color: var(--tui-base-09);
+// }
 
 tui-editor {
   * .t-tools-wrapper {
@@ -298,5 +298,11 @@ tui-editor {
       width: 20px !important;
       transform: scale(0.7) !important;
     }
+  }
+}
+
+tui-accordion-item.folder-file {
+  .wrapper {
+    background: unset !important;
   }
 }

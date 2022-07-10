@@ -42,7 +42,7 @@
   // Others
   "typescript.preferences.quoteStyle": "single",
   "workbench.iconTheme": "material-icon-theme",
-  "cSpell.words": ["", "Polymopheus", "Tabler"],
+  "cSpell.words": ["", "Edms", "Polymopheus", "Tabler"],
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
   "emeraldwalk.runonsave": {
     "commands": [

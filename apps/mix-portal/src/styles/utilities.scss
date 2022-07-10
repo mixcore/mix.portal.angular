@@ -68,6 +68,7 @@
     width: 100%;
     // 100px for header + toolbar
     height: calc(100vh - 100px);
+    overflow: auto;
   }
 
   &__main-workspace {
