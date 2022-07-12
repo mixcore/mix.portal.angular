@@ -1,3 +1,57 @@
-<p>detail-template works!</p>
-<ngx-monaco-editor [(ngModel)]="code"
-                   [options]="codeEditorOptions"></ngx-monaco-editor>
+<div class="mix-workspace-container detail-template">
+  <div class="mix-workspace-container__header"
+       [formGroup]="settingForm">
+    <button class="action"
+            [icon]="'tuiIconCheckLarge'"
+            [size]="'s'"
+            tuiButton>Save</button>
+
+    <div class="action">
+      <div class="label">
+        Auto save on edit:
+      </div>
+      <tui-toggle formControlName="autoSave"
+                  size="l"></tui-toggle>
+    </div>
+  </div>
+
+  <div class="mix-workspace-container__container">
+    <div class="mix-workspace-container__main-workspace">
+      <div class="mix-workspace-container__sub-header">
+        <tui-tabs [(activeItemIndex)]="activeTabIndex"
+                  [underline]="true">
+          <button (click)="activeTabIndex = 0"
+                  tuiTab>
+            Template
+          </button>
+          <button (click)="activeTabIndex = 1"
+                  tuiTab>
+            JavaScript
+          </button>
+          <button (click)="activeTabIndex = 2"
+                  tuiTab>
+            Style Sheets CSS
+          </button>
+        </tui-tabs>
+      </div>
+
+      <div *ngIf="currentTemplate"
+           class="detail-template__code-editor">
+        <ng-container *ngIf="activeTabIndex === 0">
+          <ngx-monaco-editor [(ngModel)]="templateCode"
+                             [options]="templateOption"></ngx-monaco-editor>
+        </ng-container>
+
+        <ng-container *ngIf="activeTabIndex === 1">
+          <ngx-monaco-editor [(ngModel)]="javascriptCode"
+                             [options]="javascriptOption"></ngx-monaco-editor>
+        </ng-container>
+
+        <ng-container *ngIf="activeTabIndex === 2">
+          <ngx-monaco-editor [(ngModel)]="styleSheetCode"
+                             [options]="styleSheetOption"></ngx-monaco-editor>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

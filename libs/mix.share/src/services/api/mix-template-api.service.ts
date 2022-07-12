@@ -19,4 +19,8 @@ export class MixTemplateApiService extends BaseApiService {
       request as unknown as IHttpParamObject
     );
   }
+
+  public getTemplateById(id: string): Observable<MixTemplateModel> {
+    return this.get(MixApiDict.TemplateApi.getTemplateByIdEndpoint(id));
+  }
 }

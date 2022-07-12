@@ -1,12 +1,10 @@
 import { Route } from '@angular/router';
 
 import { DashBoardComponent } from './dashboard/dashboard.component';
-import { MixDetailTemplateComponent } from './detail-template/detail-template.component';
 import { ListDatabaseComponent } from './list-database/list-database.component';
 import { ListModuleComponent } from './list-module/list-module.component';
 import { ListPageComponent } from './list-page/list-page.component';
 import { ListPostComponent } from './list-post/list-post.component';
-import { ListTemplateComponent } from './list-template/list-template.component';
 import { ListThemeComponent } from './list-theme/list-theme.component';
 
 export const PORTAL_ROUTES: Route[] = [
@@ -54,14 +52,20 @@ export const PORTAL_ROUTES: Route[] = [
   },
   {
     path: 'list-template/:themeId',
-    component: ListTemplateComponent,
+    loadComponent: () =>
+      import('./list-template/list-template.component').then(
+        c => c.ListTemplateComponent
+      ),
     data: {
       title: 'All Template'
     }
   },
   {
     path: 'template/:templateId',
-    component: MixDetailTemplateComponent,
+    loadComponent: () =>
+      import('./detail-template/detail-template.component').then(
+        c => c.MixDetailTemplateComponent
+      ),
     data: {
       title: 'Template'
     }
