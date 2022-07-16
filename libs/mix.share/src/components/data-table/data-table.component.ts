@@ -13,10 +13,24 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { PaginationRequestModel, PaginationResultModel } from '@mix-spa/mix.lib';
+import {
+  PaginationRequestModel,
+  PaginationResultModel
+} from '@mix-spa/mix.lib';
 import { TUI_ARROW, TuiArrowComponent } from '@taiga-ui/kit';
 import { PolymorpheusComponent } from '@tinkoff/ng-polymorpheus';
-import { BehaviorSubject, catchError, combineLatest, debounceTime, Observable, of, startWith, Subject, switchMap, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  combineLatest,
+  debounceTime,
+  Observable,
+  of,
+  startWith,
+  Subject,
+  switchMap,
+  tap
+} from 'rxjs';
 
 import { TableColumnDirective } from './directives/column.directive';
 
@@ -34,9 +48,12 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   public isAllSelected = false;
 
   @Input() public selfControl = true;
-  @Input() public fetchDataFn!: (filter: PaginationRequestModel) => Observable<PaginationResultModel<T>>;
+  @Input() public fetchDataFn!: (
+    filter: PaginationRequestModel
+  ) => Observable<PaginationResultModel<T>>;
   @Input() public data$!: Observable<PaginationResultModel<T>>;
-  @Input() public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+  @Input() public loading$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(true);
   @Input() public search = '';
   @Input() public searchPlaceholder = 'Search';
   @Input() public totalRows = 0;
@@ -47,7 +64,8 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
 
   @Output() public pageChange: EventEmitter<number> = new EventEmitter();
   @Output() public pageSizeChange: EventEmitter<number> = new EventEmitter();
-  @Output() public tableQueryChange: EventEmitter<PaginationRequestModel> = new EventEmitter();
+  @Output() public tableQueryChange: EventEmitter<PaginationRequestModel> =
+    new EventEmitter();
   @Output() public itemsSelectedChange: EventEmitter<T[]> = new EventEmitter();
 
   @ViewChild('subDropList', { static: false }) public subDropList!: DropListRef;
@@ -64,15 +82,23 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   public columnDic: Record<string, string> = {};
   public showSubTable = false;
 
-  public readonly showDragLeft: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public readonly showDragRight: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public readonly arrow: PolymorpheusComponent<TuiArrowComponent, object> = TUI_ARROW;
-  public readonly searchText$: BehaviorSubject<string> = new BehaviorSubject('');
+  public readonly showDragLeft: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  public readonly showDragRight: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+  public readonly arrow: PolymorpheusComponent<TuiArrowComponent, object> =
+    TUI_ARROW;
+  public readonly searchText$: BehaviorSubject<string> = new BehaviorSubject(
+    ''
+  );
   public readonly size$: Subject<number> = new Subject();
   public readonly page$: Subject<number> = new Subject();
   public readonly dragChange: Subject<number> = new Subject();
-  public readonly direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<-1 | 1>(1);
-  public readonly reload$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public readonly direction$: BehaviorSubject<1 | -1> = new BehaviorSubject<
+    -1 | 1
+  >(1);
+  public readonly reload$: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
   public readonly emptyData: PaginationResultModel<T> = {
     items: [],
     pagingData: {
@@ -82,13 +108,14 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     }
   };
 
-  public request$: Observable<[string, 1 | -1, number, number, boolean]> = combineLatest([
-    this.searchText$.pipe(debounceTime(300)),
-    this.direction$,
-    this.page$.pipe(startWith(0)),
-    this.size$.pipe(startWith(10)),
-    this.reload$
-  ]);
+  public request$: Observable<[string, 1 | -1, number, number, boolean]> =
+    combineLatest([
+      this.searchText$.pipe(debounceTime(300)),
+      this.direction$,
+      this.page$.pipe(startWith(0)),
+      this.size$.pipe(startWith(10)),
+      this.reload$
+    ]);
 
   constructor(private elementRef: ElementRef) {}
 
@@ -96,13 +123,15 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     if (this.selfControl) {
       this._setupSelfControl();
     } else {
-      this.request$.subscribe((query: [string, 1 | -1, number, number, boolean]) => {
-        this.tableQueryChange.emit({
-          keyword: query[0],
-          pageIndex: query[3],
-          pageSize: query[2]
-        });
-      });
+      this.request$.subscribe(
+        (query: [string, 1 | -1, number, number, boolean]) => {
+          this.tableQueryChange.emit({
+            keyword: query[0],
+            pageIndex: query[3],
+            pageSize: query[2]
+          });
+        }
+      );
     }
   }
 
@@ -132,7 +161,9 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   }
 
   public isItemSelected(item: T): boolean {
-    return !!this.currentSelectedItem.find((v: T) => JSON.stringify(v) === JSON.stringify(item));
+    return !!this.currentSelectedItem.find(
+      (v: T) => JSON.stringify(v) === JSON.stringify(item)
+    );
   }
 
   public ngAfterContentInit(): void {
@@ -147,7 +178,9 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   }
 
   public onEnabled(enabled: readonly string[]) {
-    this.tableColumns = this.tableSortFields.filter((key: string) => enabled.includes(key)).map((v: string) => this.columnDic[v]);
+    this.tableColumns = this.tableSortFields
+      .filter((key: string) => enabled.includes(key))
+      .map((v: string) => this.columnDic[v]);
   }
 
   public onPageChange(page: number): void {
@@ -164,10 +197,13 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     if (value) {
       this.currentSelectedItem.push(item);
     } else {
-      this.currentSelectedItem = this.currentSelectedItem.filter((v: T) => JSON.stringify(item) !== JSON.stringify(v));
+      this.currentSelectedItem = this.currentSelectedItem.filter(
+        (v: T) => JSON.stringify(item) !== JSON.stringify(v)
+      );
     }
 
-    this.isAllSelected = this.currentSelectedItem.length === this.cacheItems.length;
+    this.isAllSelected =
+      this.currentSelectedItem.length === this.cacheItems.length;
     this.itemsSelectedChange.emit(this.currentSelectedItem);
   }
 
@@ -200,13 +236,17 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     // this.showSubTable = false;
   }
 
-  private _processSelfFetchData(searchText: string, page: number, pageSize: number): Observable<PaginationResultModel<T>> {
+  private _processSelfFetchData(
+    searchText: string,
+    page: number,
+    pageSize: number
+  ): Observable<PaginationResultModel<T>> {
     return this.fetchDataFn({
       keyword: searchText,
       pageIndex: page,
       pageSize: pageSize,
       searchColumns: this.searchColumns,
-      searchMethod: 'Ct'
+      searchMethod: 'Like'
     });
   }
 
@@ -218,14 +258,24 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
     this.loading$.next(false);
   }
 
-  private _buildColumnDictionary(columns: TableColumnDirective[]): Record<string, string> {
-    return columns.reduce((acc: object, item: TableColumnDirective) => ({ ...acc, [item.header]: item.key }), {});
+  private _buildColumnDictionary(
+    columns: TableColumnDirective[]
+  ): Record<string, string> {
+    return columns.reduce(
+      (acc: object, item: TableColumnDirective) => ({
+        ...acc,
+        [item.header]: item.key
+      }),
+      {}
+    );
   }
 
   private _setupSelfControl(): void {
     this.data$ = this.request$.pipe(
       tap(() => this._showLoading()),
-      switchMap((query: [string, 1 | -1, number, number, boolean]) => this._processSelfFetchData(query[0], query[2], query[3])),
+      switchMap((query: [string, 1 | -1, number, number, boolean]) =>
+        this._processSelfFetchData(query[0], query[2], query[3])
+      ),
       tap((res: PaginationResultModel<T>) => {
         this._hideLoading();
         this.cacheItems = res.items;
