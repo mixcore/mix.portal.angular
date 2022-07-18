@@ -1,4 +1,8 @@
 .detail-template {
+  &__title {
+    margin-right: auto;
+  }
+
   &__code-editor {
     width: 100%;
     height: calc(100% - var(--mix-sub-header-height) - 60px);

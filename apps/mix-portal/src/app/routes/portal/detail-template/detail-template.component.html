@@ -1,10 +1,9 @@
 <div class="mix-workspace-container detail-template">
   <div class="mix-workspace-container__header"
        [formGroup]="settingForm">
-    <button class="action"
-            [icon]="'tuiIconCheckLarge'"
-            [size]="'s'"
-            tuiButton>Save</button>
+    <div class="detail-template__title">
+      {{ currentTemplate?.fileName }}
+    </div>
 
     <div class="action">
       <div class="label">
@@ -13,6 +12,12 @@
       <tui-toggle formControlName="autoSave"
                   size="l"></tui-toggle>
     </div>
+
+    <button class="action"
+            [icon]="'tuiIconCheckLarge'"
+            [size]="'s'"
+            tuiButton>Save</button>
+
   </div>
 
   <div class="mix-workspace-container__container">
