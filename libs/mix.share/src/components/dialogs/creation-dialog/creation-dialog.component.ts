@@ -42,7 +42,8 @@ export class CreationDialogComponent implements OnInit {
     seoTitle: new FormControl(''),
     seoDescription: new FormControl(''),
     seoKeywords: new FormControl(''),
-    seoSource: new FormControl('')
+    seoSource: new FormControl(''),
+    specificulture: new FormControl('en-Us')
   });
 
   public goToPostAfterCreate = true;
@@ -93,17 +94,18 @@ export class CreationDialogComponent implements OnInit {
   }
 
   public createNewPost(): void {
+    const form = this.form.getRawValue();
     this.handleBeforeCreate();
     this.postApi
       .getDefaultPostTemplate()
       .pipe(
         switchMap(result => {
-          const form = this.form.getRawValue();
           const post = <MixPostPortalModel>{
             ...result,
             title: form['title'],
             excerpt: form['excerpt'],
-            content: form['description']
+            content: form['description'],
+            specificulture: form['specificulture']
           };
 
           return this.postApi.savePost(post);
@@ -111,7 +113,7 @@ export class CreationDialogComponent implements OnInit {
       )
       .subscribe(() => {
         this.alertService
-          .open(`Create ${this.form.value.title} successfully`, {
+          .open(`Create ${form.title} successfully`, {
             label: 'Success'
           })
           .subscribe();
@@ -120,18 +122,19 @@ export class CreationDialogComponent implements OnInit {
   }
 
   public createNewModule(): void {
+    const form = this.form.getRawValue();
     this.handleBeforeCreate();
     this.moduleApi
       .getDefaultModuleTemplate()
       .pipe(
         switchMap(result => {
-          const form = this.form.getRawValue();
           const module = <MixModulePortalModel>{
             ...result,
             title: form['title'],
             excerpt: form['excerpt'],
             content: form['description'],
-            systemName: form['systemName']
+            systemName: form['systemName'],
+            specificulture: form['specificulture']
           };
 
           return this.moduleApi.saveModule(module);
@@ -139,7 +142,7 @@ export class CreationDialogComponent implements OnInit {
       )
       .subscribe(() => {
         this.alertService
-          .open(`Create ${this.form.value.title} successfully`, {
+          .open(`Create ${form.title} successfully`, {
             label: 'Success'
           })
           .subscribe();
@@ -149,12 +152,12 @@ export class CreationDialogComponent implements OnInit {
   }
 
   public createNewPage(): void {
+    const form = this.form.getRawValue();
     this.handleBeforeCreate();
     this.pageApi
       .getDefaultPageTemplate()
       .pipe(
         switchMap(result => {
-          const form = this.form.getRawValue();
           const page = <MixPagePortalModel>{
             ...result,
             title: form['title'],
@@ -165,14 +168,15 @@ export class CreationDialogComponent implements OnInit {
             seoKeywords: form['seoKeywords'],
             seoName: form['seoName'],
             seoTitle: form['seoTitle'],
-            seoSource: form['seoSource']
+            seoSource: form['seoSource'],
+            specificulture: form['specificulture']
           };
 
           return this.pageApi.savePage(page);
         })
       )
       .subscribe(() => {
-        const message = `Create ${this.form.value.title} successfully`;
+        const message = `Create ${form.title} successfully`;
         this.alertService.open(message, { label: 'Success' }).subscribe();
 
         this.handleAfterCreate();
