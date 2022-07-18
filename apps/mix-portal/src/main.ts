@@ -23,6 +23,7 @@ import {
   TuiDialogModule
 } from '@taiga-ui/core';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
+import { JoyrideModule } from 'ngx-joyride';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { AppComponent } from './app/app.layout';
@@ -83,7 +84,8 @@ bootstrapApplication(AppComponent, {
       TuiAlertModule,
       TuiDialogModule,
       MixModalModule,
-      MonacoEditorModule.forRoot()
+      MonacoEditorModule.forRoot(),
+      JoyrideModule.forRoot()
     )
   ]
 }).catch(err => console.error(err));

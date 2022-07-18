@@ -1,14 +1,23 @@
-<div *ngIf="menuItems" class="side-menu">
+<div *ngIf="menuItems"
+     class="side-menu">
   <div class="side-menu__level-1">
     <div class="side-menu__level-1-logo">
       <div class="login-form-logo-square"></div>
     </div>
 
-    <ng-container *ngFor="let item of menuItems">
+    <ng-container *ngFor="let item of menuItems; let i = index">
       <div class="side-menu__level-1-icon"
-        [ngClass]="{'--active': currentSelectedItem?.id === item?.id, 'mt-auto': item.position === VerticalDisplayPosition.Bottom}"
-        [tuiHint]="tooltip" [tuiHintHideDelay]="0" [tuiHintMode]="'onDark'" [tuiHintShowDelay]="200"
-        (click)="itemSelect(item)" tuiHintDirection="right">
+           [ngClass]="{'--active': currentSelectedItem?.id === item?.id, 'mt-auto': item.position === VerticalDisplayPosition.Bottom}"
+           [stepContent]="menuTourGuide"
+           [stepContentParams]="{'text': item.guideText}"
+           [title]="'Hi!'"
+           [tuiHint]="tooltip"
+           [tuiHintHideDelay]="0"
+           [tuiHintMode]="'onDark'"
+           [tuiHintShowDelay]="200"
+           (click)="itemSelect(item)"
+           tuiHintDirection="right"
+           joyrideStep="{{'step' + i}}">
         <i-tabler name="{{item.icon}}"></i-tabler>
 
         <ng-template #tooltip>
@@ -16,28 +25,42 @@
             {{ item.title }}
           </div>
         </ng-template>
+
+        <ng-template #menuTourGuide
+                     let-text="text">
+          <div class="tour-guide__text"> {{ text }} </div>
+          <div class="tour-guide__action">
+            <tui-checkbox-labeled [ngModel]="hideTourGuide"
+                                  (ngModelChange)="toggleTourGuide($event)">
+              Don't show this guide again.
+            </tui-checkbox-labeled>
+          </div>
+        </ng-template>
       </div>
     </ng-container>
   </div>
 
-  <div *ngIf="currentSelectedItem" class="side-menu__level-2" [@enterAnimation]>
+  <div *ngIf="currentSelectedItem"
+       class="side-menu__level-2"
+       [@enterAnimation]>
     <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
 
     <div class="side-menu__level-2-content">
       <ng-container *ngFor="let menu of currentSelectedItem.detail">
-        <div class="side-menu__detail-item" (click)="itemClick(menu)">
+        <div class="side-menu__detail-item"
+             (click)="itemClick(menu)">
           <i-tabler name="{{menu.icon}}"></i-tabler>
           <div>
             {{ menu.title }}
           </div>
         </div>
       </ng-container>
-
-      <!-- <div class="separator"></div> -->
     </div>
   </div>
 
-  <div *ngIf="currentSelectedItem" class="side-menu__collapse-icon" (click)="currentSelectedItem = undefined">
+  <div *ngIf="currentSelectedItem"
+       class="side-menu__collapse-icon"
+       (click)="currentSelectedItem = undefined">
     <i-tabler name="minus"></i-tabler>
   </div>
 </div>

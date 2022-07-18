@@ -51,6 +51,8 @@ export class PortalLayoutComponent {
       id: 0,
       title: 'Universal Search (F2)',
       icon: 'search',
+      guideText:
+        'Universal search (F2) - You can search everything in your site here.',
       position: VerticalDisplayPosition.Top,
       hideDetail: true,
       action: () => this.toggleUniversalSearch(),
@@ -61,6 +63,7 @@ export class PortalLayoutComponent {
       title: 'Dashboard',
       icon: 'smart-home',
       position: VerticalDisplayPosition.Top,
+      guideText: 'Dashboard - View your site information, analytics.',
       detail: [
         {
           title: 'View Dashboard',
@@ -74,6 +77,7 @@ export class PortalLayoutComponent {
       id: 3,
       title: 'Posts',
       icon: 'news',
+      guideText: 'Post repository - Where to manage your posts.',
       position: VerticalDisplayPosition.Top,
       detail: [
         {
@@ -93,6 +97,7 @@ export class PortalLayoutComponent {
       id: 4,
       title: 'Pages',
       icon: 'file-horizontal',
+      guideText: 'Page repository - Manage all of your pages here.',
       position: VerticalDisplayPosition.Top,
       detail: [
         {
@@ -112,6 +117,7 @@ export class PortalLayoutComponent {
       id: 5,
       title: 'Modules',
       icon: 'components',
+      guideText: 'Module repository - manage all of your modules here',
       position: VerticalDisplayPosition.Top,
       detail: [
         {

@@ -1,7 +1,9 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
+import { JoyrideModule, JoyrideService } from 'ngx-joyride';
 
+import { AppService } from '../../services/helper/app-setting.service';
 import { ShareModule } from '../../share.module';
 
 export interface MixToolbarMenu {
@@ -12,6 +14,7 @@ export interface MixToolbarMenu {
   action?: () => void;
   detail: MenuItem[];
   position: VerticalDisplayPosition;
+  guideText?: string;
 }
 
 export interface MenuItem {
@@ -26,11 +29,17 @@ export interface MenuItem {
   templateUrl: './side-menu.component.html',
   styleUrls: ['./side-menu.component.scss'],
   standalone: true,
-  imports: [ShareModule],
+  imports: [ShareModule, JoyrideModule],
   animations: [
     trigger('enterAnimation', [
-      transition(':enter', [style({ width: 0, opacity: 0 }), animate('110ms', style({ width: '200px', opacity: 1 }))]),
-      transition(':leave', [style({ width: '200px', opacity: 1 }), animate('110ms', style({ width: 0, opacity: 0 }))])
+      transition(':enter', [
+        style({ width: 0, opacity: 0 }),
+        animate('110ms', style({ width: '200px', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        style({ width: '200px', opacity: 1 }),
+        animate('110ms', style({ width: 0, opacity: 0 }))
+      ])
     ])
   ]
 })
@@ -38,10 +47,24 @@ export class SideMenuComponent implements OnInit {
   @Input() public showMenuLevel2 = false;
   @Input() public menuItems: MixToolbarMenu[] = [];
   public currentSelectedItem: MixToolbarMenu | undefined;
+  public hideTourGuide = false;
   public readonly VerticalDisplayPosition = VerticalDisplayPosition;
 
+  constructor(
+    private readonly joyrideService: JoyrideService,
+    public appService: AppService
+  ) {}
+
   public ngOnInit(): void {
+    this.hideTourGuide = this.appService.appSetting.hideTourGuide;
     this.currentSelectedItem = this.menuItems[1];
+
+    if (this.hideTourGuide) return;
+    this.joyrideService.startTour({
+      steps: this.menuItems
+        .filter(i => i.guideText)
+        .map((i, index) => `step${index}`)
+    });
   }
 
   public itemSelect(item: MixToolbarMenu): void {
@@ -55,5 +78,10 @@ export class SideMenuComponent implements OnInit {
     if (item.action) {
       return item.action();
     }
+  }
+
+  public toggleTourGuide(value: boolean) {
+    this.hideTourGuide = value;
+    this.appService.toggleTourGuide(value);
   }
 }

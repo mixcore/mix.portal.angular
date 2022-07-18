@@ -306,3 +306,13 @@ tui-accordion-item.folder-file {
     background: unset !important;
   }
 }
+
+.joyride-step {
+  &__container {
+    border-radius: 10px;
+  }
+}
+
+.joyride-button {
+  border-radius: 10px;
+}
