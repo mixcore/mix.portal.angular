@@ -1,7 +1,7 @@
 {
   "projectType": "application",
   "sourceRoot": "apps/mix-portal/src",
-  "prefix": "mix-spa",
+  "prefix": "mix",
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",

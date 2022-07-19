@@ -1,0 +1,19 @@
+.sidebar-container {
+  width: 60vw;
+  height: 100%;
+  background-color: var(--tui-base-01);
+  box-shadow: var(--sidebar-box-shadow);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: var(--mix-header-height);
+    border-bottom: 1px solid var(--tui-base-04);
+
+    .action {
+      margin-left: auto;
+    }
+  }
+}

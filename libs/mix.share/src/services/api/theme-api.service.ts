@@ -28,6 +28,10 @@ export class ThemeApiService extends BaseApiService {
     return this.http.get<IPaginationResult<ThemeModel>>(this.getThemeStoreUrl);
   }
 
+  public getDefaultTheme(): Observable<ThemeModel> {
+    return this.get(MixApiDict.ThemeApi.getDefaultThemeEndpoint);
+  }
+
   public getThemes(
     request: PaginationRequestModel
   ): Observable<PaginationResultModel<ThemeModel>> {

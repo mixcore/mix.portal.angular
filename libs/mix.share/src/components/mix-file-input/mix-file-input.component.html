@@ -1,0 +1,19 @@
+<tui-input-files *ngIf="!control.value"
+                 [accept]="'.zip'"
+                 [formControl]="control"
+                 (reject)="onReject($event)"></tui-input-files>
+
+<div *ngIf="control.valueChanges | async as file"
+     class="mix-file">
+  <div class="mix-file__name">
+    {{ file.name }}
+  </div>
+
+  <div class="mix-file__action">
+    <button [shape]="'rounded'"
+            [size]="'xs'"
+            (click)="removeFile()"
+            tuiIconButton
+            icon="tuiIconCloseLarge"></button>
+  </div>
+</div>

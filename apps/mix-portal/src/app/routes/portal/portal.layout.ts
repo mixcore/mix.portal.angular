@@ -221,11 +221,6 @@ export class PortalLayoutComponent {
       position: VerticalDisplayPosition.Top,
       detail: [
         {
-          title: 'New theme',
-          icon: 'plus',
-          action: () => this.createNew('Post')
-        },
-        {
           title: 'Themes',
           icon: 'layout',
           action: () => this.navigate('/portal/list-theme')

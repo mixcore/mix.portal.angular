@@ -1,0 +1,55 @@
+<div class="mix-theme-import">
+  <div class>
+
+  </div>
+  <div class="mix-form"
+       [formGroup]="themeForm">
+    <div class="mix-form__row">
+      <label [label]="'Display Name:'"
+             tuiLabel>
+        <tui-input [tuiTextfieldLabelOutside]="true"
+                   tuiTextfieldSize="m"
+                   formControlName="displayName">
+          <input type="text"
+                 tuiTextfield>
+        </tui-input>
+      </label>
+    </div>
+
+    <div class="mix-form__row">
+      <label [label]="'Preview Url:'"
+             tuiLabel>
+        <tui-input [tuiTextfieldLabelOutside]="true"
+                   tuiTextfieldSize="m"
+                   formControlName="previewUrl">
+          <input type="text"
+                 tuiTextfield>
+        </tui-input>
+      </label>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <div class="mix-form__row">
+          <label> Assets: </label>
+          <mix-files-input></mix-files-input>
+        </div>
+      </div>
+
+      <div class="col-6">
+        <div class="mix-form__row">
+          <label> Imports: </label>
+          <mix-files-input></mix-files-input>
+        </div>
+      </div>
+    </div>
+
+    <div class="mix-form__separator"></div>
+
+    <div class="mix-form__row">
+      <tui-checkbox-labeled formControlName="isCloneFromCurrentTheme">
+        Set this theme as default theme.
+      </tui-checkbox-labeled>
+    </div>
+  </div>
+</div>
