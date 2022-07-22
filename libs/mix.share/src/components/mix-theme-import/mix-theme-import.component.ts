@@ -1,7 +1,22 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Input
+} from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ThemeModel } from '@mix-spa/mix.lib';
+import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
+import { switchMap } from 'rxjs';
 
+import {
+  AppEvent,
+  AppEventService,
+  PortalSidebarControlService
+} from '../../services';
+import { ThemeApiService } from '../../services/api/theme-api.service';
 import { ShareModule } from '../../share.module';
+import { FormUtils } from '../../utils';
 import { MixFileInputComponent } from '../mix-file-input/mix-file-input.component';
 
 @Component({
@@ -18,6 +33,42 @@ export class MixThemeImportComponent {
   public themeForm: FormGroup = new FormGroup({
     displayName: new FormControl('', Validators.required),
     previewUrl: new FormControl(''),
-    isCloneFromCurrentTheme: new FormControl(false)
+    isCloneFromCurrentTheme: new FormControl(true)
   });
+
+  constructor(
+    private themeApi: ThemeApiService,
+    public appEvent: AppEventService,
+    private sidebarControl: PortalSidebarControlService,
+    @Inject(TuiAlertService) private readonly alertService: TuiAlertService
+  ) {}
+
+  public onImportTheme(): void {
+    if (!FormUtils.validateForm(this.themeForm)) {
+      return;
+    }
+
+    this.themeForm.disable();
+    this.themeApi
+      .getDefaultTheme()
+      .pipe(
+        switchMap(defaultTheme => {
+          const form = this.themeForm.getRawValue();
+          const request: ThemeModel = {
+            ...defaultTheme,
+            ...form
+          };
+          return this.themeApi.updateTheme(request);
+        })
+      )
+      .subscribe(() => {
+        this.appEvent.event$.next(AppEvent.NewThemeAdded);
+        this.sidebarControl.hide();
+        this.alertService
+          .open('Successfully create new theme!', {
+            status: TuiNotification.Success
+          })
+          .subscribe();
+      });
+  }
 }

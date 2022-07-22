@@ -16,4 +16,8 @@
       margin-left: auto;
     }
   }
+
+  &__content {
+    height: calc(100% - var(--mix-header-height));
+  }
 }

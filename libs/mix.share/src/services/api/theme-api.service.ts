@@ -36,8 +36,12 @@ export class ThemeApiService extends BaseApiService {
     request: PaginationRequestModel
   ): Observable<PaginationResultModel<ThemeModel>> {
     return this.get<PaginationResultModel<ThemeModel>>(
-      MixApiDict.ThemeApi.getThemeEndpoint,
+      MixApiDict.ThemeApi.prefix,
       <IHttpParamObject>request
     );
+  }
+
+  public updateTheme(theme: ThemeModel): Observable<number> {
+    return this.post<ThemeModel, number>(MixApiDict.ThemeApi.prefix, theme);
   }
 }

@@ -2,7 +2,9 @@ import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationRequestModel, ThemeModel } from '@mix-spa/mix.lib';
 import {
+  AppEvent,
   AppEventService,
+  MixDataTableComponent,
   MixDataTableModule,
   MixThemeImportComponent,
   PortalSidebarControlService,
@@ -10,7 +12,7 @@ import {
   SidebarContainerComponent,
   ThemeApiService
 } from '@mix-spa/mix.share';
-import { tap } from 'rxjs';
+import { filter, tap } from 'rxjs';
 
 @Component({
   selector: 'mix-list-theme',
@@ -26,6 +28,8 @@ import { tap } from 'rxjs';
 })
 export class ListThemeComponent {
   @ViewChild('importTheme') public importTemp!: TemplateRef<HTMLElement>;
+  @ViewChild(MixDataTableComponent)
+  public table!: MixDataTableComponent<ThemeModel>;
 
   public totalTheme: number | undefined = 0;
   public fetchDataFn = (filter: PaginationRequestModel) =>
@@ -39,7 +43,13 @@ export class ListThemeComponent {
     private activatedRoute: ActivatedRoute,
     private appEvent: AppEventService,
     private sidebarControl: PortalSidebarControlService
-  ) {}
+  ) {
+    this.appEvent.event$
+      .pipe(filter(e => e === AppEvent.NewThemeAdded))
+      .subscribe(() => {
+        this.table.reloadData();
+      });
+  }
 
   public themeClick(theme: ThemeModel): void {
     this.route.navigate(['list-template', theme.id], {

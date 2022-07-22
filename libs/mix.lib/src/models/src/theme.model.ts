@@ -33,6 +33,7 @@ export interface ThemeModel {
   thumbnailUrl: string;
   templatePath: string;
   additionalData: ThemeAdditionalData;
+  displayName: string;
 }
 
 export interface ThemeAdditionalData {

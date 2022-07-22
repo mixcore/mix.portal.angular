@@ -4,7 +4,8 @@ import { Subject } from 'rxjs';
 export enum AppEvent {
   NewModuleAdded = 'NewModuleAdded',
   NewPageAdded = 'NewPageAdded',
-  NewPostAdded = 'NewPostAdded'
+  NewPostAdded = 'NewPostAdded',
+  NewThemeAdded = 'NewThemeAdded'
 }
 
 @Injectable({ providedIn: 'root' })

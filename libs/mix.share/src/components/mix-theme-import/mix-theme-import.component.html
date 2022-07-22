@@ -1,7 +1,4 @@
 <div class="mix-theme-import">
-  <div class>
-
-  </div>
   <div class="mix-form"
        [formGroup]="themeForm">
     <div class="mix-form__row">
@@ -51,5 +48,10 @@
         Set this theme as default theme.
       </tui-checkbox-labeled>
     </div>
+  </div>
+
+  <div class="mix-theme-import__footer">
+    <button (click)="onImportTheme()"
+            tuiButton> Import </button>
   </div>
 </div>
