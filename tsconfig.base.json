@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@mix-spa/mix.lib": ["libs/mix.lib/src/index.ts"],
-      "@mix-spa/mix.share": ["libs/mix.share/src/index.ts"]
+      "@mix-spa/mix.share": ["libs/mix.share/src/index.ts"],
+      "@mix/mix.ui": ["libs/mix.ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

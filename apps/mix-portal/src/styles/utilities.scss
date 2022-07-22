@@ -73,6 +73,15 @@
     .toggle-left-side {
       margin-left: auto;
     }
+
+    .action {
+      display: flex;
+      margin-left: 10px;
+
+      .label {
+        margin-right: 5px;
+      }
+    }
   }
 
   &__container {

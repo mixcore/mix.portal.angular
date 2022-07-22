@@ -7,6 +7,7 @@ import {
   ReactiveFormsModule
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CodeEditorComponent } from '@mix/mix.ui';
 import { MixTemplateModel } from '@mix-spa/mix.lib';
 import { MixTemplateApiService } from '@mix-spa/mix.share';
 import { TuiButtonModule } from '@taiga-ui/core';
@@ -25,7 +26,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     ReactiveFormsModule,
     TuiButtonModule,
     TuiToggleModule,
-    TuiTabsModule
+    TuiTabsModule,
+    CodeEditorComponent
   ]
 })
 export class MixDetailTemplateComponent {
@@ -33,25 +35,6 @@ export class MixDetailTemplateComponent {
   public settingForm: FormGroup = new FormGroup({
     autoSave: new FormControl(true)
   });
-  public codeEditorBaseOptions = {
-    theme: 'vs',
-    automaticLayout: true
-  };
-
-  public templateOption = {
-    ...this.codeEditorBaseOptions,
-    language: 'razor'
-  };
-
-  public javascriptOption = {
-    ...this.codeEditorBaseOptions,
-    language: 'javascript'
-  };
-
-  public styleSheetOption = {
-    ...this.codeEditorBaseOptions,
-    language: 'css'
-  };
 
   public templateCode = '';
   public javascriptCode = '';

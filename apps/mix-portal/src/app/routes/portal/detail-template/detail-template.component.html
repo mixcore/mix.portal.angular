@@ -22,41 +22,46 @@
 
   <div class="mix-workspace-container__container">
     <div class="mix-workspace-container__main-workspace">
-      <div class="mix-workspace-container__sub-header">
-        <tui-tabs [(activeItemIndex)]="activeTabIndex"
-                  [underline]="true">
-          <button (click)="activeTabIndex = 0"
-                  tuiTab>
-            Template
-          </button>
-          <button (click)="activeTabIndex = 1"
-                  tuiTab>
-            JavaScript
-          </button>
-          <button (click)="activeTabIndex = 2"
-                  tuiTab>
-            Style Sheets CSS
-          </button>
-        </tui-tabs>
+      <div class="detail-template__code-zone">
+        <div class="detail-template__editor-tab">
+          <tui-tabs [(activeItemIndex)]="activeTabIndex">
+            <button (click)="activeTabIndex = 0"
+                    tuiTab>
+              Template
+            </button>
+            <button (click)="activeTabIndex = 1"
+                    tuiTab>
+              JavaScript
+            </button>
+            <button (click)="activeTabIndex = 2"
+                    tuiTab>
+              Style Sheets CSS
+            </button>
+          </tui-tabs>
+        </div>
+
+        <div *ngIf="currentTemplate"
+             class="detail-template__code-editor">
+          <ng-container *ngIf="activeTabIndex === 0">
+            <mix-code-editor [code]="templateCode"
+                             [language]="'razor'">
+            </mix-code-editor>
+          </ng-container>
+
+          <ng-container *ngIf="activeTabIndex === 1">
+            <mix-code-editor [code]="javascriptCode"
+                             [language]="'javascript'">
+            </mix-code-editor>
+          </ng-container>
+
+          <ng-container *ngIf="activeTabIndex === 2">
+            <mix-code-editor [code]="styleSheetCode"
+                             [language]="'css'">
+            </mix-code-editor>
+          </ng-container>
+        </div>
       </div>
 
-      <div *ngIf="currentTemplate"
-           class="detail-template__code-editor">
-        <ng-container *ngIf="activeTabIndex === 0">
-          <ngx-monaco-editor [(ngModel)]="templateCode"
-                             [options]="templateOption"></ngx-monaco-editor>
-        </ng-container>
-
-        <ng-container *ngIf="activeTabIndex === 1">
-          <ngx-monaco-editor [(ngModel)]="javascriptCode"
-                             [options]="javascriptOption"></ngx-monaco-editor>
-        </ng-container>
-
-        <ng-container *ngIf="activeTabIndex === 2">
-          <ngx-monaco-editor [(ngModel)]="styleSheetCode"
-                             [options]="styleSheetOption"></ngx-monaco-editor>
-        </ng-container>
-      </div>
     </div>
   </div>
 </div>

@@ -13,6 +13,7 @@
     "eamodio.gitlens",
     "angular.ng-template",
     "nrwl.angular-console",
-    "pkief.material-icon-theme"
+    "pkief.material-icon-theme",
+    "firsttris.vscode-jest-runner"
   ]
 }

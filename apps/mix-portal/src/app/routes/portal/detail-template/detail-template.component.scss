@@ -3,19 +3,18 @@
     margin-right: auto;
   }
 
+  &__code-zone {
+    margin: 15px;
+  }
+
   &__code-editor {
     width: 100%;
-    height: calc(100% - var(--mix-sub-header-height) - 60px);
-    padding: 15px;
+    padding: 10px;
+    background-color: var(--tui-base-01);
+  }
 
-    ngx-monaco-editor {
-      height: 100%;
-      width: 100%;
-      border: 1px solid var(--tui-base-04);
-      border-radius: 10px;
-      overflow: hidden;
-      background-color: var(--tui-base-01);
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    }
+  &__editor-tab {
+    padding: 0 10px;
+    background-color: var(--tui-base-01);
   }
 }
