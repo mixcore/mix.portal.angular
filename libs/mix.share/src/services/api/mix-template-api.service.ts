@@ -23,4 +23,11 @@ export class MixTemplateApiService extends BaseApiService {
   public getTemplateById(id: string): Observable<MixTemplateModel> {
     return this.get(MixApiDict.TemplateApi.getTemplateByIdEndpoint(id));
   }
+
+  public saveTemplate(template: MixTemplateModel): Observable<number> {
+    return this.post<MixTemplateModel, number>(
+      MixApiDict.TemplateApi.prefix,
+      template
+    );
+  }
 }

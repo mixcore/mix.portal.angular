@@ -6,7 +6,7 @@ import { SignalEvent } from '../interfaces/signal-event';
 import { SignalEventType } from '../interfaces/signal-event-type';
 import { DOMAIN_URL } from '../token';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export abstract class BaseSignalService {
   public _signalEvent: Subject<SignalEvent<any>> = new Subject<any>();
   public _openConnection = false;
@@ -23,9 +23,13 @@ export abstract class BaseSignalService {
 
   constructor(@Inject(DOMAIN_URL) public domain: string) {}
 
-  public getMessage<T>(...filterValues: SignalEventType[]): Observable<SignalEvent<T>> {
+  public getMessage<T>(
+    ...filterValues: SignalEventType[]
+  ): Observable<SignalEvent<T>> {
     this._ensureConnection();
-    return this._signalEvent.asObservable().pipe(filter(event => filterValues.some(f => f === event.type)));
+    return this._signalEvent
+      .asObservable()
+      .pipe(filter(event => filterValues.some(f => f === event.type)));
   }
 
   protected async _initializeSignalR() {
@@ -36,7 +40,8 @@ export abstract class BaseSignalService {
 
     try {
       await this._hubConnection.start();
-      if (this._roomName) await this._hubConnection.invoke('JoinRoom', this._roomName);
+      if (this._roomName)
+        await this._hubConnection.invoke('JoinRoom', this._roomName);
 
       this._openConnection = true;
       this._isInitializing = false;

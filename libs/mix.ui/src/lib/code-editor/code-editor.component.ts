@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
@@ -13,6 +13,8 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
 export class CodeEditorComponent implements OnInit {
   @Input() public code = '';
   @Input() public language = 'razor';
+  @Output() public codeChange: EventEmitter<string> =
+    new EventEmitter<string>();
 
   public templateOption = {};
 
@@ -22,5 +24,10 @@ export class CodeEditorComponent implements OnInit {
       automaticLayout: true,
       language: 'razor'
     };
+  }
+
+  public onCodeChange(value: string): void {
+    this.code = value;
+    this.codeChange.emit(value);
   }
 }

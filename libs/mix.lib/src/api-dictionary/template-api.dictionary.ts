@@ -1,6 +1,7 @@
 export class TemplateApiDictionary {
-  public getTemplateEndpoint = '/mix-portal/mix-template';
+  public prefix = '/mix-portal/mix-template';
+  public getTemplateEndpoint = this.prefix;
   public getTemplateByIdEndpoint(id: string) {
-    return `/mix-portal/mix-template/${id}`;
+    return `${this.prefix}/${id}`;
   }
 }

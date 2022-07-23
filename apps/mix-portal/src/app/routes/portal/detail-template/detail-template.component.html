@@ -9,15 +9,13 @@
       <div class="label">
         Auto save on edit:
       </div>
-      <tui-toggle formControlName="autoSave"
-                  size="l"></tui-toggle>
+      <tui-toggle formControlName="autoSave"></tui-toggle>
     </div>
 
     <button class="action"
-            [icon]="'tuiIconCheckLarge'"
             [size]="'s'"
+            (click)="onSave()"
             tuiButton>Save</button>
-
   </div>
 
   <div class="mix-workspace-container__container">
@@ -44,19 +42,22 @@
              class="detail-template__code-editor">
           <ng-container *ngIf="activeTabIndex === 0">
             <mix-code-editor [code]="templateCode"
-                             [language]="'razor'">
+                             [language]="'razor'"
+                             (codeChange)="templateCode = $event">
             </mix-code-editor>
           </ng-container>
 
           <ng-container *ngIf="activeTabIndex === 1">
             <mix-code-editor [code]="javascriptCode"
-                             [language]="'javascript'">
+                             [language]="'javascript'"
+                             (codeChange)="javascriptCode = $event">
             </mix-code-editor>
           </ng-container>
 
           <ng-container *ngIf="activeTabIndex === 2">
             <mix-code-editor [code]="styleSheetCode"
-                             [language]="'css'">
+                             [language]="'css'"
+                             (codeChange)="styleSheetCode = $event">
             </mix-code-editor>
           </ng-container>
         </div>

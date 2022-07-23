@@ -64,7 +64,7 @@ export class CreationDialogComponent implements OnInit {
     public postApi: MixPostApiService,
     public moduleApi: MixModuleApiService,
     public pageApi: MixPageApiService,
-    @Inject(TuiAlertService) private readonly alertService: TuiAlertService,
+    public alert: TuiAlertService,
     @Inject(PortalSidebarControlService)
     private readonly sidebarControl: PortalSidebarControlService
   ) {}
@@ -112,7 +112,7 @@ export class CreationDialogComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.alertService
+        this.alert
           .open(`Create ${form.title} successfully`, {
             label: 'Success'
           })
@@ -141,7 +141,7 @@ export class CreationDialogComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.alertService
+        this.alert
           .open(`Create ${form.title} successfully`, {
             label: 'Success'
           })
@@ -177,7 +177,7 @@ export class CreationDialogComponent implements OnInit {
       )
       .subscribe(() => {
         const message = `Create ${form.title} successfully`;
-        this.alertService.open(message, { label: 'Success' }).subscribe();
+        this.alert.open(message, { label: 'Success' }).subscribe();
 
         this.handleAfterCreate();
       });

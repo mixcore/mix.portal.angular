@@ -1,0 +1,9 @@
+.code-editor {
+  height: 50vh;
+  resize: horizontal;
+  overflow: auto;
+
+  ngx-monaco-editor {
+    height: 100%;
+  }
+}

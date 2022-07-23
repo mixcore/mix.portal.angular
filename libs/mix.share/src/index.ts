@@ -3,6 +3,7 @@ export * from './components';
 
 // Else
 export * from './animations';
+export * from './bases';
 export * from './interceptor/auth.interceptor';
 export * from './interfaces';
 export * from './pipes';

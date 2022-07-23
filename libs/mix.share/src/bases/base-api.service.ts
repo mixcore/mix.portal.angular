@@ -48,7 +48,7 @@ export interface IGetWithPaginationResult<T> {
   pageSize: number;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class BaseApiService {
   protected get url(): string {
     return this.baseUrl;

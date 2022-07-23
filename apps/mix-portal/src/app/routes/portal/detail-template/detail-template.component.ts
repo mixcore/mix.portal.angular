@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,8 +9,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { CodeEditorComponent } from '@mix/mix.ui';
 import { MixTemplateModel } from '@mix-spa/mix.lib';
-import { MixTemplateApiService } from '@mix-spa/mix.share';
-import { TuiButtonModule } from '@taiga-ui/core';
+import { BaseComponent, MixTemplateApiService } from '@mix-spa/mix.share';
+import { TuiAlertService, TuiButtonModule } from '@taiga-ui/core';
 import { TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
@@ -30,7 +30,10 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     CodeEditorComponent
   ]
 })
-export class MixDetailTemplateComponent {
+export class MixDetailTemplateComponent
+  extends BaseComponent
+  implements OnInit
+{
   public activeTabIndex = 0;
   public settingForm: FormGroup = new FormGroup({
     autoSave: new FormControl(true)
@@ -42,20 +45,39 @@ export class MixDetailTemplateComponent {
   public currentTemplate!: MixTemplateModel;
 
   constructor(
+    @Inject(TuiAlertService) public override alert: TuiAlertService,
     private templateApi: MixTemplateApiService,
     private activatedRoute: ActivatedRoute
   ) {
+    super(alert);
+  }
+
+  public ngOnInit(): void {
     const templateId: string =
       this.activatedRoute.snapshot?.params['templateId'];
-    this.templateApi.getTemplateById(templateId).subscribe(r => {
-      this.currentTemplate = r;
-      this.templateCode = r.content;
-      this.styleSheetCode = r.styles;
-      this.javascriptCode = r.scripts;
+    this.templateApi.getTemplateById(templateId).subscribe(result => {
+      this.currentTemplate = result;
+      this.templateCode = result.content;
+      this.styleSheetCode = result.styles;
+      this.javascriptCode = result.scripts;
     });
   }
 
-  public onTabChange(tabIndex: number): void {
-    //
+  public onSave(): void {
+    const request: MixTemplateModel = {
+      ...this.currentTemplate,
+      content: this.templateCode,
+      styles: this.styleSheetCode,
+      scripts: this.javascriptCode
+    };
+
+    this.templateApi.saveTemplate(request).subscribe({
+      next: () => {
+        this.showSuccess('Successfully save');
+      },
+      error: () => {
+        this.showError('Error when save template, please try again');
+      }
+    });
   }
 }
