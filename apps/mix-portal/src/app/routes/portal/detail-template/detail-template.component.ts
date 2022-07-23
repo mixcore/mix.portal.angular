@@ -13,7 +13,11 @@ import {
   InlineEditPlaceholderComponent
 } from '@mix/mix.ui';
 import { MixTemplateModel } from '@mix-spa/mix.lib';
-import { BaseComponent, MixTemplateApiService } from '@mix-spa/mix.share';
+import {
+  BaseComponent,
+  FormUtils,
+  MixTemplateApiService
+} from '@mix-spa/mix.share';
 import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 import {
   TuiAlertService,
@@ -79,11 +83,14 @@ export class MixDetailTemplateComponent
   }
 
   public onSave(): void {
+    if (!FormUtils.validateForm(this.form)) return;
+
     const request: MixTemplateModel = {
       ...this.currentTemplate,
       content: this.templateCode,
       styles: this.styleSheetCode,
-      scripts: this.javascriptCode
+      scripts: this.javascriptCode,
+      fileName: this.form.value.templateTitle
     };
 
     this.templateApi.saveTemplate(request).subscribe({
