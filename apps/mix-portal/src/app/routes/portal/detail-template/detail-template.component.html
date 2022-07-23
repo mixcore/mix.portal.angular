@@ -1,8 +1,9 @@
 <div class="mix-workspace-container detail-template">
   <div class="mix-workspace-container__header"
-       [formGroup]="settingForm">
+       [formGroup]="form">
     <div class="detail-template__title">
-      {{ currentTemplate?.fileName }}
+      <mix-inline-edit-placeholder formControlName="templateTitle">
+      </mix-inline-edit-placeholder>
     </div>
 
     <div class="action">

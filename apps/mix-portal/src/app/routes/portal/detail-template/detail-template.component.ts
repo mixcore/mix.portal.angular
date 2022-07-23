@@ -4,14 +4,23 @@ import {
   FormControl,
   FormGroup,
   FormsModule,
-  ReactiveFormsModule
+  ReactiveFormsModule,
+  Validators
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { CodeEditorComponent } from '@mix/mix.ui';
+import {
+  CodeEditorComponent,
+  InlineEditPlaceholderComponent
+} from '@mix/mix.ui';
 import { MixTemplateModel } from '@mix-spa/mix.lib';
 import { BaseComponent, MixTemplateApiService } from '@mix-spa/mix.share';
-import { TuiAlertService, TuiButtonModule } from '@taiga-ui/core';
-import { TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
+import { TuiAutoFocusModule } from '@taiga-ui/cdk';
+import {
+  TuiAlertService,
+  TuiButtonModule,
+  TuiTextfieldControllerModule
+} from '@taiga-ui/core';
+import { TuiInputModule, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 @Component({
@@ -27,7 +36,11 @@ import { MonacoEditorModule } from 'ngx-monaco-editor';
     TuiButtonModule,
     TuiToggleModule,
     TuiTabsModule,
-    CodeEditorComponent
+    CodeEditorComponent,
+    InlineEditPlaceholderComponent,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+    TuiAutoFocusModule
   ]
 })
 export class MixDetailTemplateComponent
@@ -35,8 +48,9 @@ export class MixDetailTemplateComponent
   implements OnInit
 {
   public activeTabIndex = 0;
-  public settingForm: FormGroup = new FormGroup({
-    autoSave: new FormControl(true)
+  public form: FormGroup = new FormGroup({
+    autoSave: new FormControl(true),
+    templateTitle: new FormControl('', Validators.required)
   });
 
   public templateCode = '';
@@ -60,6 +74,7 @@ export class MixDetailTemplateComponent
       this.templateCode = result.content;
       this.styleSheetCode = result.styles;
       this.javascriptCode = result.scripts;
+      this.form.controls['templateTitle'].patchValue(result.fileName);
     });
   }
 
