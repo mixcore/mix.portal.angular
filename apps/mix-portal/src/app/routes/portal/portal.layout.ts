@@ -71,7 +71,8 @@ export class PortalLayoutComponent {
           action: () => this.navigate('/portal/dashboard')
         }
       ],
-      action: () => this.navigate('/portal/dashboard')
+      action: () => this.navigate('/portal/dashboard'),
+      route: 'dashboard'
     },
     {
       id: 3,
@@ -91,7 +92,8 @@ export class PortalLayoutComponent {
           action: () => this.navigate('/portal/list-post')
         }
       ],
-      action: () => this.navigate('/portal/list-post')
+      action: () => this.navigate('/portal/list-post'),
+      route: 'list-post'
     },
     {
       id: 4,
@@ -111,7 +113,8 @@ export class PortalLayoutComponent {
           action: () => this.navigate('/portal/list-page')
         }
       ],
-      action: () => this.navigate('/portal/list-page')
+      action: () => this.navigate('/portal/list-page'),
+      route: 'list-page'
     },
     {
       id: 5,
@@ -131,7 +134,8 @@ export class PortalLayoutComponent {
           action: () => this.navigate('/portal/list-module')
         }
       ],
-      action: () => this.navigate('/portal/list-module')
+      action: () => this.navigate('/portal/list-module'),
+      route: 'list-module'
     },
     {
       id: 6,
@@ -145,7 +149,8 @@ export class PortalLayoutComponent {
           action: () => this.navigate('/portal/list-database')
         }
       ],
-      action: () => this.navigate('/portal/list-database')
+      action: () => this.navigate('/portal/list-database'),
+      route: 'list-database'
     },
     {
       id: 7,
@@ -246,7 +251,8 @@ export class PortalLayoutComponent {
           action: () => this.navigate('/portal/list-database')
         }
       ],
-      action: () => this.navigate('/portal/list-theme')
+      action: () => this.navigate('/portal/list-theme'),
+      route: 'list-theme'
     },
     {
       id: 11,

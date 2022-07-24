@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 import { JoyrideModule, JoyrideService } from 'ngx-joyride';
 
@@ -15,6 +16,7 @@ export interface MixToolbarMenu {
   detail: MenuItem[];
   position: VerticalDisplayPosition;
   guideText?: string;
+  route?: string;
 }
 
 export interface MenuItem {
@@ -52,13 +54,28 @@ export class SideMenuComponent implements OnInit {
 
   constructor(
     private readonly joyrideService: JoyrideService,
-    public appService: AppService
+    public appService: AppService,
+    private router: Router
   ) {}
 
   public ngOnInit(): void {
-    this.hideTourGuide = this.appService.appSetting.hideTourGuide;
-    this.currentSelectedItem = this.menuItems[1];
+    this.initMenu();
+    this.initTourGuide();
+  }
 
+  public initMenu(): void {
+    const route = this.router.url.split('/')[2];
+    if (route) {
+      this.currentSelectedItem = this.menuItems.find(
+        i => i.route && i.route === route
+      );
+    } else {
+      this.currentSelectedItem = this.menuItems[1];
+    }
+  }
+
+  public initTourGuide(): void {
+    this.hideTourGuide = this.appService.appSetting.hideTourGuide;
     if (this.hideTourGuide) return;
     this.joyrideService.startTour({
       steps: this.menuItems
