@@ -38,9 +38,17 @@
     position: relative;
     margin-bottom: 13px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     cursor: pointer;
+
+    .checkbox {
+      margin-right: 5px;
+    }
+
+    .date-modified {
+      margin-left: auto;
+    }
 
     &:hover {
       color: var(--tui-primary);
@@ -65,6 +73,16 @@
       border-right: 1px dashed black;
       left: -17px;
       top: -50%;
+    }
+  }
+
+  &__action {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+
+    .delete {
+      margin-left: 10px;
     }
   }
 }

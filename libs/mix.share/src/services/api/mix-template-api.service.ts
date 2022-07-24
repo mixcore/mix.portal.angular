@@ -30,4 +30,12 @@ export class MixTemplateApiService extends BaseApiService {
       template
     );
   }
+
+  public getTemplateDefault(): Observable<MixTemplateModel> {
+    return this.get(MixApiDict.TemplateApi.getTemplateDefaultEndpoint);
+  }
+
+  public deleteTemplate(id: number): Observable<void> {
+    return this.delete(MixApiDict.TemplateApi.deleteTemplateByIdEndpoint(id));
+  }
 }

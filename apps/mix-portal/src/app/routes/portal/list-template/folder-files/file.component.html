@@ -22,9 +22,13 @@
   <ng-template tuiAccordionItemContent>
     <div class="folder-file__file-list">
       <div *ngFor="let item of result.items"
-           class="folder-file__file"
-           (click)="fileClick(item)">
-        <div class="name">
+           class="folder-file__file">
+        <div class="checkbox">
+          <tui-checkbox [ngModel]="isFileSelected(item)"
+                        (ngModelChange)="onFileSelect($event, item)"></tui-checkbox>
+        </div>
+        <div class="name"
+             (click)="fileClick(item)">
           {{ item.fileName }}{{ item.extension}}
         </div>
         <div class="date-modified">
@@ -32,7 +36,34 @@
         </div>
       </div>
 
-      <div> <a tuiLink>+ Add item</a> </div>
+      <div *ngIf="editing"
+           class="folder-file__file">
+        <tui-input [style.width]="'250px'"
+                   [formControl]="newFileName"
+                   (focusedChange)="onFocusedChange($event)"
+                   (keydown.enter)="onEnter()"
+                   tuiAutoFocus
+                   tuiTextfieldSize="m">
+          Type your file name, then press enter
+          <input type="text"
+                 tuiTextfield>
+        </tui-input>
+      </div>
+
+      <div class="folder-file__action">
+        <button class="add-new"
+                (click)="editing = true"
+                tuiButton
+                size="xs">+ New item</button>
+
+        <button class="delete"
+                type="button"
+                [disabled]="selectedFiles.length <= 0"
+                (click)="deleteFile()"
+                tuiButton
+                appearance="accent"
+                size="xs">Delete</button>
+      </div>
     </div>
   </ng-template>
 </tui-accordion-item>
