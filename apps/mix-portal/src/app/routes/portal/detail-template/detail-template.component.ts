@@ -26,6 +26,7 @@ import {
 } from '@taiga-ui/core';
 import { TuiInputModule, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'mix-detail-template',
@@ -52,14 +53,14 @@ export class MixDetailTemplateComponent
   implements OnInit
 {
   public activeTabIndex = 0;
+  public autoSave: FormControl = new FormControl(true);
   public form: FormGroup = new FormGroup({
-    autoSave: new FormControl(true),
-    templateTitle: new FormControl('', Validators.required)
+    templateTitle: new FormControl('', Validators.required),
+    templateCode: new FormControl(''),
+    javascriptCode: new FormControl(''),
+    styleSheetCode: new FormControl('')
   });
 
-  public templateCode = '';
-  public javascriptCode = '';
-  public styleSheetCode = '';
   public currentTemplate!: MixTemplateModel;
 
   constructor(
@@ -71,14 +72,17 @@ export class MixDetailTemplateComponent
   }
 
   public ngOnInit(): void {
-    const templateId: string =
-      this.activatedRoute.snapshot?.params['templateId'];
+    const templateId = this.activatedRoute.snapshot?.params['templateId'];
     this.templateApi.getTemplateById(templateId).subscribe(result => {
       this.currentTemplate = result;
-      this.templateCode = result.content;
-      this.styleSheetCode = result.styles;
-      this.javascriptCode = result.scripts;
+      this.form.controls['templateCode'].patchValue(result.content);
+      this.form.controls['styleSheetCode'].patchValue(result.styles);
+      this.form.controls['javascriptCode'].patchValue(result.scripts);
       this.form.controls['templateTitle'].patchValue(result.fileName);
+
+      this.form.valueChanges.pipe(debounceTime(1000)).subscribe(() => {
+        if (this.autoSave.value) this.onSave();
+      });
     });
   }
 
@@ -87,9 +91,9 @@ export class MixDetailTemplateComponent
 
     const request: MixTemplateModel = {
       ...this.currentTemplate,
-      content: this.templateCode,
-      styles: this.styleSheetCode,
-      scripts: this.javascriptCode,
+      content: this.form.controls['templateCode'].value,
+      styles: this.form.controls['styleSheetCode'].value,
+      scripts: this.form.controls['javascriptCode'].value,
       fileName: this.form.value.templateTitle
     };
 

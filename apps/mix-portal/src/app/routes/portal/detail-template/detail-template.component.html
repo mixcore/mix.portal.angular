@@ -1,7 +1,7 @@
 <div class="mix-workspace-container detail-template">
-  <div class="mix-workspace-container__header"
-       [formGroup]="form">
-    <div class="detail-template__title">
+  <div class="mix-workspace-container__header">
+    <div class="detail-template__title"
+         [formGroup]="form">
       <mix-inline-edit-placeholder formControlName="templateTitle">
       </mix-inline-edit-placeholder>
     </div>
@@ -10,7 +10,7 @@
       <div class="label">
         Auto save on edit:
       </div>
-      <tui-toggle formControlName="autoSave"></tui-toggle>
+      <tui-toggle [formControl]="autoSave"></tui-toggle>
     </div>
 
     <button class="action"
@@ -40,25 +40,23 @@
         </div>
 
         <div *ngIf="currentTemplate"
-             class="detail-template__code-editor">
+             class="detail-template__code-editor"
+             [formGroup]="form">
           <ng-container *ngIf="activeTabIndex === 0">
-            <mix-code-editor [code]="templateCode"
-                             [language]="'razor'"
-                             (codeChange)="templateCode = $event">
+            <mix-code-editor [language]="'razor'"
+                             formControlName="templateCode">
             </mix-code-editor>
           </ng-container>
 
           <ng-container *ngIf="activeTabIndex === 1">
-            <mix-code-editor [code]="javascriptCode"
-                             [language]="'javascript'"
-                             (codeChange)="javascriptCode = $event">
+            <mix-code-editor [language]="'javascript'"
+                             formControlName="javascriptCode">
             </mix-code-editor>
           </ng-container>
 
           <ng-container *ngIf="activeTabIndex === 2">
-            <mix-code-editor [code]="styleSheetCode"
-                             [language]="'css'"
-                             (codeChange)="styleSheetCode = $event">
+            <mix-code-editor [language]="'css'"
+                             formControlName="styleSheetCode">
             </mix-code-editor>
           </ng-container>
         </div>
