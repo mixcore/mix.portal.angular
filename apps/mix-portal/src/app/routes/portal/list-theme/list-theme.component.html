@@ -30,7 +30,8 @@
             <div (click)="themeClick(data)"> {{ data.displayName }}</div>
           </ng-template>
         </div>
-        <div [header]="'Created Date'"
+        <div [columnType]="'DATE'"
+             [header]="'Created Date'"
              mixTableColumn
              key="createdDateTime"></div>
       </mix-data-table>
