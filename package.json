@@ -6,6 +6,7 @@
     "ng": "nx",
     "start": "nx serve",
     "start:ssl": "nx run mix-portal:serve:ssl --ssl",
+    "build:mixcore": "nx run mix-portal:build:mixcore",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "build": "nx build",
     "test": "nx test"

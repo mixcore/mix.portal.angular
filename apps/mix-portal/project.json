@@ -73,6 +73,26 @@
             }
           ]
         },
+        "mixcore": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "5mb",
+              "maximumError": "5mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/mix-portal/src/environments/environment.ts",
+              "with": "apps/mix-portal/src/environments/environment.mixcore.ts"
+            }
+          ]
+        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,
