@@ -1,5 +1,7 @@
 export class TenancyApiDictionary {
-  public initFullTenantEndpoint = '/mix-tenancy/setup/init-full-tenant';
-  public getInitStatusEndpoint = `/mix-tenancy/setup/get-init-status`;
-  public installThemeEndpoint = `/mix-tenancy/setup/install`;
+  public prefix = '/mix-tenancy/setup';
+  public initFullTenantEndpoint = this.prefix + '/init-full-tenant';
+  public getInitStatusEndpoint = this.prefix + '/get-init-status';
+  public installThemeEndpoint = this.prefix + '/install';
+  public loadThemeEndpoint = this.prefix + '/load-theme';
 }

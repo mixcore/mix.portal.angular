@@ -2,7 +2,12 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalSettings } from '@mix-spa/mix.lib';
-import { AuthApiService, FormUtils, ShareApiService, ShareModule } from '@mix-spa/mix.share';
+import {
+  AuthApiService,
+  FormUtils,
+  ShareApiService,
+  ShareModule
+} from '@mix-spa/mix.share';
 import { TuiValidationError } from '@taiga-ui/cdk';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 import { switchMap } from 'rxjs';
@@ -16,7 +21,9 @@ import { switchMap } from 'rxjs';
 })
 export class LoginComponent {
   public loading = false;
-  public loginError = new TuiValidationError('Failed to login, please re-check your Username or Password');
+  public loginError = new TuiValidationError(
+    'Failed to login, please re-check your Username or Password'
+  );
   public showError = false;
 
   constructor(
@@ -27,7 +34,7 @@ export class LoginComponent {
     @Inject(TuiAlertService) private readonly alertService: TuiAlertService
   ) {}
 
-  public signinForm: FormGroup = this.fb.group({
+  public signInForm: FormGroup = this.fb.group({
     userName: ['', Validators.required],
     password: ['', Validators.required],
     rememberPassword: [true]
@@ -35,11 +42,15 @@ export class LoginComponent {
 
   public submitForm(): void {
     this.showError = false;
-    if (FormUtils.validateForm(this.signinForm)) {
+    if (FormUtils.validateForm(this.signInForm)) {
       this.loading = true;
       this.shareSetting
         .getGlobalSetting()
-        .pipe(switchMap((res: GlobalSettings) => this.authSrv.login(this.signinForm.value, res.apiEncryptKey)))
+        .pipe(
+          switchMap((res: GlobalSettings) =>
+            this.authSrv.login(this.signInForm.value, res.apiEncryptKey)
+          )
+        )
         .subscribe({
           next: () => this.handleLoginSuccess(),
           error: () => this.handleLoginError()
@@ -49,13 +60,21 @@ export class LoginComponent {
 
   public handleLoginSuccess(): void {
     this.loading = false;
-    this.alertService.open('Successfully login!', { status: TuiNotification.Success }).subscribe();
-    this.route.navigateByUrl('/portal');
+    this.alertService
+      .open('Successfully login!', { status: TuiNotification.Success })
+      .subscribe();
+
+    const redirectUrl: string | null = localStorage.getItem('redirectUrl');
+    this.route.navigateByUrl(redirectUrl ?? '/portal');
   }
 
   public handleLoginError(): void {
     this.loading = false;
     this.showError = true;
-    this.alertService.open('Error when login, please try again!', { status: TuiNotification.Error }).subscribe();
+    this.alertService
+      .open('Error when login, please try again!', {
+        status: TuiNotification.Error
+      })
+      .subscribe();
   }
 }

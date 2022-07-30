@@ -1,5 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IInitFullTenantRequest, InitStep, MixApiDict, ThemeAdditionalData } from '@mix-spa/mix.lib';
+import {
+  IInitFullTenantRequest,
+  InitStep,
+  MixApiDict,
+  MixSiteDataModel,
+  ThemeAdditionalData
+} from '@mix-spa/mix.lib';
 import { Observable } from 'rxjs';
 
 import { BaseApiService } from '../../bases/base-api.service';
@@ -15,6 +21,13 @@ export class TenancyApiService extends BaseApiService {
   }
 
   public installTheme(themeModel: ThemeAdditionalData): Observable<boolean> {
-    return this.post<ThemeAdditionalData, boolean>(MixApiDict.TenancyApi.installThemeEndpoint, themeModel);
+    return this.post<ThemeAdditionalData, boolean>(
+      MixApiDict.TenancyApi.installThemeEndpoint,
+      themeModel
+    );
+  }
+
+  public loadTheme(): Observable<MixSiteDataModel> {
+    return this.get(MixApiDict.TenancyApi.loadThemeEndpoint);
   }
 }

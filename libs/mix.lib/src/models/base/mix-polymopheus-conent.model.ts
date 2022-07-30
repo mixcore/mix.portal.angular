@@ -7,4 +7,5 @@ export interface IMixPolymopheusContent {
   images?: string;
   icon?: string;
   specificulture?: string;
+  displayName?: string;
 }

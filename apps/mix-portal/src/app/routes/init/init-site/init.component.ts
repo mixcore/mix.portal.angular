@@ -1,20 +1,31 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AccountModel, InitTenantModel, ThemeModel } from '@mix-spa/mix.lib';
-import { ModalService, ShareModule, SignalEventType, TenancyApiService, ThemeSignalService } from '@mix-spa/mix.share';
+import {
+  ModalService,
+  ShareModule,
+  SignalEventType,
+  TenancyApiService,
+  ThemeSignalService
+} from '@mix-spa/mix.share';
 import { TuiAlertService } from '@taiga-ui/core';
 import { of, switchMap, tap } from 'rxjs';
 
-import { InitAccountInformationComponent } from './components/init-account-information/init-account-information.component';
-import { InitSiteInformationComponent } from './components/init-site-information/init-site-information.component';
-import { InitThemesComponent } from './components/init-themes/init-themes.component';
+import { InitAccountInformationComponent } from '../components/init-account-information/init-account-information.component';
+import { InitSiteInformationComponent } from '../components/init-site-information/init-site-information.component';
+import { InitThemesComponent } from '../components/init-themes/init-themes.component';
 
 @Component({
   selector: 'mix-portal-init-page',
   templateUrl: './init.component.html',
   styleUrls: ['./init.component.scss'],
   standalone: true,
-  imports: [ShareModule, InitAccountInformationComponent, InitSiteInformationComponent, InitThemesComponent]
+  imports: [
+    ShareModule,
+    InitAccountInformationComponent,
+    InitSiteInformationComponent,
+    InitThemesComponent
+  ]
 })
 export class InitComponent {
   public tenantData!: InitTenantModel;
@@ -50,7 +61,9 @@ export class InitComponent {
 
   public themeSubmit(value: ThemeModel | null): void {
     this.themeData = value;
-    const message = value ? `Choose ${value.title} is your default theme ?` : 'Init site with a blank theme ?';
+    const message = value
+      ? `Choose ${value.title} is your default theme ?`
+      : 'Init site with a blank theme ?';
     this.modalService.confirm(message).subscribe(ok => {
       if (ok) this.initApplication();
     });
@@ -76,12 +89,16 @@ export class InitComponent {
         }),
         switchMap(() => {
           if (this.themeData) {
-            this.themeSignal.getMessage<number>(SignalEventType.THEME_DOWNLOAD).subscribe(v => {
-              this.downloadProgress = v.data;
-              this.initProgress = 30 + v.data;
-            });
+            this.themeSignal
+              .getMessage<number>(SignalEventType.THEME_DOWNLOAD)
+              .subscribe(v => {
+                this.downloadProgress = v.data;
+                this.initProgress = 30 + v.data;
+              });
           }
-          return this.themeData ? this.tenancyApi.installTheme(this.themeData.additionalData) : of(null);
+          return this.themeData
+            ? this.tenancyApi.installTheme(this.themeData.additionalData)
+            : of(null);
         })
       )
       .subscribe(() => {
@@ -89,7 +106,9 @@ export class InitComponent {
         this.progressMessage = 'Congratulation! Successfully init your site';
         setTimeout(() => {
           this.route.navigateByUrl('portal');
-          this.alertService.open('Create your tenant successfully', { label: 'Success' }).subscribe();
+          this.alertService
+            .open('Create your tenant successfully', { label: 'Success' })
+            .subscribe();
         }, 2000);
       });
   }

@@ -1,0 +1,73 @@
+<div class="setup-theme-page">
+  <ng-container *ngIf="currentTheme; else loading">
+    <h3>Hi, you have selected {{ currentTheme?.themeName }} as the starting theme.</h3>
+    <span>We also provide some data go with this theme, please select what you want</span>
+
+    <div class="setup-theme-page__main-container container">
+      <tui-tabs [(activeItemIndex)]="activeItemIndex">
+        <button (click)="activeItemIndex = 0"
+                tuiTab>
+          Pages
+        </button>
+
+        <button (click)="activeItemIndex = 1"
+                tuiTab>
+          Modules
+        </button>
+
+        <button (click)="activeItemIndex = 2"
+                tuiTab>
+          Posts
+        </button>
+      </tui-tabs>
+
+      <div *ngIf="activeItemIndex === 0"
+           class="row">
+        <ng-container *ngFor="let page of currentTheme.pages">
+          <div class="col-3">
+            <tui-checkbox-labeled class="item"
+                                  [ngModel]="false">
+              {{ page.displayName }}
+              <div class="with-data">Angular UI Kit for awesome people</div>
+            </tui-checkbox-labeled>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="activeItemIndex === 1"
+           class="row">
+        <ng-container *ngFor="let module of currentTheme.modules">
+          <div class="col-3">
+            <tui-checkbox-labeled class="item"
+                                  [ngModel]="false">
+              {{ module.displayName }}
+              <div class="with-data">Angular UI Kit for awesome people</div>
+            </tui-checkbox-labeled>
+          </div>
+        </ng-container>
+      </div>
+
+      <div *ngIf="activeItemIndex === 2"
+           class="row">
+        <ng-container *ngFor="let post of currentTheme.posts">
+          <div class="col-3">
+            <tui-checkbox-labeled class="item"
+                                  [ngModel]="false">
+              {{ post.displayName }}
+              <div class="with-data">Angular UI Kit for awesome people</div>
+            </tui-checkbox-labeled>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="setup-theme-page__footer container">
+      <button tuiButton> Continue </button>
+    </div>
+
+  </ng-container>
+
+  <ng-template #loading>
+    <mix-skeleton-loading></mix-skeleton-loading>
+  </ng-template>
+</div>

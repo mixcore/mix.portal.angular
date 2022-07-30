@@ -14,6 +14,7 @@ export * from './src/mix-database.model';
 export * from './src/mix-module.model';
 export * from './src/mix-page.model';
 export * from './src/mix-post.model';
+export * from './src/mix-site-data.model';
 export * from './src/mix-template.model';
 export * from './src/setting.model';
 export * from './src/theme.model';

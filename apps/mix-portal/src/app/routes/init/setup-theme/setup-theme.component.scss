@@ -1,0 +1,31 @@
+.setup-theme-page {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 50px;
+
+  tui-tabs {
+    margin-top: 50px;
+    margin-bottom: 30px;
+  }
+
+  .item {
+    margin-top: 10px;
+
+    .with-data {
+      margin-top: 5px;
+      color: var(--tui-text-03);
+    }
+  }
+
+  &__footer {
+    padding-top: 20px;
+    margin-top: 30px;
+    border-top: 1px solid var(--tui-base-03);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}

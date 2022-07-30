@@ -2,14 +2,21 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { InitStep } from '@mix-spa/mix.lib';
-import { AuthApiService, TabControlService, TenancyApiService } from '@mix-spa/mix.share';
+import {
+  AuthApiService,
+  TabControlService,
+  TenancyApiService
+} from '@mix-spa/mix.share';
 import { TuiRootModule } from '@taiga-ui/core';
 
 @Component({
   selector: 'mix-spa-root',
   template: `
     <tui-root>
-      <div *ngIf="!isLoading; else loading" class="main-page">
+      <div
+        *ngIf="!isLoading; else loading"
+        class="main-page"
+      >
         <router-outlet></router-outlet>
       </div>
 
@@ -22,7 +29,10 @@ import { TuiRootModule } from '@taiga-ui/core';
 
     <ng-template #loading>
       <div class="wrapper loading-box">
-        <img src="assets/images/loading.svg" width="80px" />
+        <img
+          src="assets/images/loading.svg"
+          width="80px"
+        />
       </div>
     </ng-template>
   `,
@@ -60,24 +70,31 @@ export class AppComponent {
     private auth: AuthApiService,
     private tabControl: TabControlService
   ) {
-    this.checkSystem();
+    this._checkSystem();
     this.tabControl.init();
   }
 
-  private checkSystem(): void {
-    this.tenantApi.getInitStatus().subscribe((res: InitStep) => {
-      if (res === InitStep.Blank) {
-        this.route.navigateByUrl('/init').then(() => {
-          this.isLoading = false;
-        });
-        return;
-      } else {
-        this.initAuthorization();
+  private _checkSystem(): void {
+    this.tenantApi.getInitStatus().subscribe((step: InitStep) => {
+      switch (step) {
+        case InitStep.Blank:
+          this.route.navigateByUrl('/init').then(() => {
+            this.isLoading = false;
+          });
+          break;
+        case InitStep.SelectTheme:
+          this.route.navigateByUrl('/init/setup-theme').then(() => {
+            this.isLoading = false;
+          });
+          break;
+        default:
+          this._checkAuthorization();
+          break;
       }
     });
   }
 
-  private initAuthorization(): void {
+  private _checkAuthorization(): void {
     this.auth.fetchUserInfo().subscribe({
       next: res => {
         this.auth.user$.next(res);
