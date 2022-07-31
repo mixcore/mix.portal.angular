@@ -66,7 +66,7 @@ export class LoginComponent {
 
     const redirectUrl: string | null = localStorage.getItem('redirectUrl');
     this.route
-      .navigateByUrl(redirectUrl ?? '/portal')
+      .navigateByUrl(redirectUrl || '/portal')
       .then(() => localStorage.removeItem('redirectUrl'));
   }
 

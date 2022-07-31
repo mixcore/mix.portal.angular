@@ -5,7 +5,7 @@ import {
   HttpParams
 } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { catchError, Observable, retry, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 
 import { AppEventService } from '../services';
 import { BASE_URL } from '../token';
@@ -66,7 +66,7 @@ export class BaseApiService {
   ): Observable<TResult> {
     return this.http
       .get<TResult>(this.url + path, this.getHttpOptions(params))
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(catchError(this.handleError));
   }
 
   public post<TRequest, TResult>(
