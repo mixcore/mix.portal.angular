@@ -70,6 +70,7 @@
       <button [appearance]="'outline'"
               [showLoader]="!!(loading$ | async)"
               [size]="'m'"
+              (click)="onSelectAll()"
               tuiButton> Select All </button>
       <button [disabled]="!currentSelectedPages.length &&
                           !currentSelectedModules.length &&

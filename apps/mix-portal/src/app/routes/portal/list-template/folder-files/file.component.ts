@@ -5,7 +5,7 @@ import {
   OnInit
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import {
   IGetTemplatesRequest,
   MixTemplateFolder,
@@ -63,7 +63,6 @@ export class MixFolderFileComponent extends BaseComponent implements OnInit {
 
   constructor(
     private templateApi: MixTemplateApiService,
-    private route: Router,
     private activatedRoute: ActivatedRoute,
     public modal: ModalService
   ) {

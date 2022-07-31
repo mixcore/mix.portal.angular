@@ -97,7 +97,7 @@ export class SetupThemeComponent extends BaseComponent implements OnInit {
   }
 
   public onSelectAll(): void {
-    //
+    this.onImport();
   }
 
   public onImport(): void {
@@ -105,18 +105,19 @@ export class SetupThemeComponent extends BaseComponent implements OnInit {
 
     if (this.currentTheme) {
       const request: MixSiteDataModel = {
-        ...this.currentTheme,
-        posts: this.currentSelectedPosts,
-        pages: this.currentSelectedPages,
-        modules: this.currentSelectedModules
+        ...this.currentTheme
       };
 
       this.tenancyApi.importTheme(request).subscribe({
         next: () => {
           this.showSuccess('Successfully setup data for your site');
+          setTimeout(() => {
+            this.route.navigateByUrl('/portal');
+          }, 1500);
         },
         error: () => {
           this.showError('Something wrong, please try again');
+          this.loading$.next(false);
         }
       });
     }
