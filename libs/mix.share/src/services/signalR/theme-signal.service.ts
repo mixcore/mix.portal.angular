@@ -14,11 +14,15 @@ export class ThemeSignalService extends BaseSignalService {
 
   public _setupSignalREvents() {
     this._hubConnection.on('receive_message', result => {
+      console.log(result);
       if (!result) return;
 
       const data = JSON.parse(result);
       if (data.action && data.action === 'Downloading') {
-        this._pushMessage({ type: SignalEventType.THEME_DOWNLOAD, data: Math.round(data.message) });
+        this._pushMessage({
+          type: SignalEventType.THEME_DOWNLOAD,
+          data: Math.round(data.message)
+        });
       }
     });
 

@@ -20,7 +20,6 @@ import {
   ShareModule
 } from '@mix-spa/mix.share';
 import { TuiAutoFocusModule } from '@taiga-ui/cdk';
-import { TuiAlertService } from '@taiga-ui/core';
 import { TuiAccordionModule, TuiCheckboxModule } from '@taiga-ui/kit';
 import { BehaviorSubject, forkJoin, switchMap } from 'rxjs';
 
@@ -66,10 +65,9 @@ export class MixFolderFileComponent extends BaseComponent implements OnInit {
     private templateApi: MixTemplateApiService,
     private route: Router,
     private activatedRoute: ActivatedRoute,
-    public modal: ModalService,
-    public override alert: TuiAlertService
+    public modal: ModalService
   ) {
-    super(alert);
+    super();
   }
 
   public ngOnInit(): void {

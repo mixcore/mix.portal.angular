@@ -23,11 +23,11 @@
 
       <div *ngIf="activeItemIndex === 0"
            class="row">
-        <ng-container *ngFor="let page of currentTheme.pages">
+        <ng-container *ngFor="let page of currentPages">
           <div class="col-3">
             <tui-checkbox-labeled class="item"
-                                  [ngModel]="false">
-              {{ page.displayName }}
+                                  [(ngModel)]="page.selected">
+              {{ page.item.displayName }}
               <div class="with-data">Angular UI Kit for awesome people</div>
             </tui-checkbox-labeled>
           </div>
@@ -36,11 +36,11 @@
 
       <div *ngIf="activeItemIndex === 1"
            class="row">
-        <ng-container *ngFor="let module of currentTheme.modules">
+        <ng-container *ngFor="let module of currentModules">
           <div class="col-3">
             <tui-checkbox-labeled class="item"
-                                  [ngModel]="false">
-              {{ module.displayName }}
+                                  [(ngModel)]="module.selected">
+              {{ module.item.displayName }}
               <div class="with-data">Angular UI Kit for awesome people</div>
             </tui-checkbox-labeled>
           </div>
@@ -49,11 +49,11 @@
 
       <div *ngIf="activeItemIndex === 2"
            class="row">
-        <ng-container *ngFor="let post of currentTheme.posts">
+        <ng-container *ngFor="let post of currentPosts">
           <div class="col-3">
             <tui-checkbox-labeled class="item"
-                                  [ngModel]="false">
-              {{ post.displayName }}
+                                  [(ngModel)]="post.selected">
+              {{ post.item.displayName }}
               <div class="with-data">Angular UI Kit for awesome people</div>
             </tui-checkbox-labeled>
           </div>
@@ -62,9 +62,23 @@
     </div>
 
     <div class="setup-theme-page__footer container">
-      <button tuiButton> Continue </button>
+      <div class="info">
+        <p> {{ currentSelectedPages.length }} pages selected</p>
+        <p> {{ currentSelectedModules.length }} modules selected</p>
+        <p> {{ currentSelectedPosts.length }} posts selected</p>
+      </div>
+      <button [appearance]="'outline'"
+              [showLoader]="!!(loading$ | async)"
+              [size]="'m'"
+              tuiButton> Select All </button>
+      <button [disabled]="!currentSelectedPages.length &&
+                          !currentSelectedModules.length &&
+                          !currentSelectedPosts.length"
+              [showLoader]="!!(loading$ | async)"
+              [size]="'m'"
+              (click)="onImport()"
+              tuiButton> Select </button>
     </div>
-
   </ng-container>
 
   <ng-template #loading>

@@ -1,9 +1,8 @@
-import { Directive } from '@angular/core';
+import { inject } from '@angular/core';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 
-@Directive()
 export abstract class BaseComponent {
-  constructor(public alert: TuiAlertService) {}
+  public alert = inject(TuiAlertService);
 
   public showSuccess(text: string): void {
     this.alert

@@ -284,10 +284,6 @@ tui-dialog {
   background: rgba(0, 0, 0, 0.05) !important;
 }
 
-// a[tuiLink] {
-//   color: var(--tui-base-09);
-// }
-
 tui-editor {
   * .t-tools-wrapper {
     flex-wrap: wrap !important;
@@ -314,4 +310,12 @@ tui-accordion-item.folder-file {
 
 .joyride-button {
   border-radius: 10px;
+}
+
+p {
+  display: block;
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }

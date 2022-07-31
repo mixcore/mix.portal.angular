@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -19,11 +19,7 @@ import {
   MixTemplateApiService
 } from '@mix-spa/mix.share';
 import { TuiAutoFocusModule } from '@taiga-ui/cdk';
-import {
-  TuiAlertService,
-  TuiButtonModule,
-  TuiTextfieldControllerModule
-} from '@taiga-ui/core';
+import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { debounceTime } from 'rxjs';
@@ -64,11 +60,10 @@ export class MixDetailTemplateComponent
   public currentTemplate!: MixTemplateModel;
 
   constructor(
-    @Inject(TuiAlertService) public override alert: TuiAlertService,
     private templateApi: MixTemplateApiService,
     private activatedRoute: ActivatedRoute
   ) {
-    super(alert);
+    super();
   }
 
   public ngOnInit(): void {

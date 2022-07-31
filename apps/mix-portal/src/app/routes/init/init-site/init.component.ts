@@ -92,6 +92,7 @@ export class InitComponent {
             this.themeSignal
               .getMessage<number>(SignalEventType.THEME_DOWNLOAD)
               .subscribe(v => {
+                console.log(v);
                 this.downloadProgress = v.data;
                 this.initProgress = 30 + v.data;
               });
@@ -104,11 +105,13 @@ export class InitComponent {
       .subscribe(() => {
         this.initApplicationStep = 2;
         this.progressMessage = 'Congratulation! Successfully init your site';
+        this.alertService
+          .open('Create your tenant successfully', { label: 'Success' })
+          .subscribe();
+
         setTimeout(() => {
-          this.route.navigateByUrl('portal');
-          this.alertService
-            .open('Create your tenant successfully', { label: 'Success' })
-            .subscribe();
+          localStorage.setItem('redirectUrl', '/init/setup-theme');
+          this.route.navigateByUrl('/auth/login');
         }, 2000);
       });
   }

@@ -5,7 +5,6 @@ import {
   MixPolymorphousListComponent,
   ShareModule
 } from '@mix-spa/mix.share';
-import { TuiAlertService } from '@taiga-ui/core';
 
 @Component({
   selector: 'mix-list-page',
@@ -17,7 +16,7 @@ import { TuiAlertService } from '@taiga-ui/core';
 export class ListPageComponent extends BaseComponent {
   public type: MixContentType = MixContentType.Page;
 
-  constructor(public override alert: TuiAlertService) {
-    super(alert);
+  constructor() {
+    super();
   }
 }

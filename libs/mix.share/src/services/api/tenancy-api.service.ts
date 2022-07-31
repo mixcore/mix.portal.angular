@@ -21,13 +21,14 @@ export class TenancyApiService extends BaseApiService {
   }
 
   public installTheme(themeModel: ThemeAdditionalData): Observable<boolean> {
-    return this.post<ThemeAdditionalData, boolean>(
-      MixApiDict.TenancyApi.installThemeEndpoint,
-      themeModel
-    );
+    return this.post(MixApiDict.TenancyApi.installThemeEndpoint, themeModel);
   }
 
   public loadTheme(): Observable<MixSiteDataModel> {
     return this.get(MixApiDict.TenancyApi.loadThemeEndpoint);
+  }
+
+  public importTheme(siteData: MixSiteDataModel): Observable<MixSiteDataModel> {
+    return this.post(MixApiDict.TenancyApi.importTheme, siteData);
   }
 }

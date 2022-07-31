@@ -25,7 +25,15 @@
     margin-top: 30px;
     border-top: 1px solid var(--tui-base-03);
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
+
+    .info {
+      margin-right: auto;
+    }
+
+    button {
+      margin-right: 10px;
+    }
   }
 }
