@@ -1,11 +1,65 @@
 <div class="skeleton-loading">
-  <span class="skeleton-box"></span>
-  <span class="skeleton-box"
-        style="width:75%;"></span>
-  <span class="skeleton-box"></span>
-  <span class="skeleton-box"
-        style="width:75%;"></span>
-  <span class="skeleton-box"></span>
-  <span class="skeleton-box"
-        style="width:75%;"></span>
+  <ng-container *ngIf="type === 'none'">
+    <span class="skeleton-box"></span>
+    <span class="skeleton-box"
+          style="width:75%;"></span>
+    <span class="skeleton-box"></span>
+    <span class="skeleton-box"
+          style="width:75%;"></span>
+    <span class="skeleton-box"></span>
+    <span class="skeleton-box"
+          style="width:75%;"></span>
+  </ng-container>
+
+  <ng-container *ngIf="type === 'table'">
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th><span class="skeleton-box"></span></th>
+          <th><span class="skeleton-box"></span></th>
+          <th><span class="skeleton-box"></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="loading">
+            <span class="skeleton-box"
+                  style="width:75%;"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"
+                  style="width:75%;"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"
+                  style="width:75%;"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
 </div>

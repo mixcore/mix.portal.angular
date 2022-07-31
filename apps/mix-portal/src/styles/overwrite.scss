@@ -226,12 +226,14 @@ body {
   font-size: var(--tui-font-text-m);
 }
 
-thead th:first-child {
-  border-top-left-radius: 10px;
-}
+table[tuitable] {
+  thead th:first-child {
+    border-top-left-radius: 10px;
+  }
 
-thead th:last-child {
-  border-top-right-radius: 10px;
+  thead th:last-child {
+    border-top-right-radius: 10px;
+  }
 }
 
 tui-badge {

@@ -25,209 +25,126 @@
     </tui-hosted-dropdown>
   </p>
 
-  <!-- TODO: Comment until feature stable -->
-  <!-- <div class="mix-data-table__additional-toolbar">
-    <button *ngIf="showSubTable"
-            [appearance]="'accent'"
-            [size]="'xs'"
-            (click)="showSubTable = false"
-            tuiButton>Exit Drag & Drop Mode</button>
-
-    <button [size]="'xs'"
-            (click)="showSubTable = true"
-            tuiButton>Show Next Page</button>
-  </div> -->
-
   <div class="mix-data-table__main-container"
        cdkDropListGroup>
-    <div class="mix-data-table__main-table"
-         [ngClass]="{'--show': showSubTable}">
-      <div *ngIf="showSubTable"
-           class="mix-data-table__table-header">
-        Current Page
-      </div>
-      <tui-loader [overlay]="true"
-                  [showLoader]="!!(loading$ | async)">
-        <table *tuiLet="data$ | async as data"
-               [columns]="tableColumns"
-               tuiTable>
-          <thead>
-            <tr tuiThGroup>
-              <ng-container *ngFor="let col of columns">
-                <ng-container *ngIf="col.sortable === false && col.columnType !== 'CHECKBOX'">
-                  <th *tuiHead="col.key"
-                      [resizable]="true"
-                      [sorter]="null"
-                      tuiTh>
-                    <ng-container *ngIf="col.tplHeader">
-                      <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
-                    </ng-container>
+    <div class="mix-data-table__main-table">
+      <ng-container *ngIf="!!(loading$ | async) && firstLoad; else table">
+        <mix-skeleton-loading [type]="'table'"></mix-skeleton-loading>
+      </ng-container>
 
-                    <ng-container *ngIf="!col.tplHeader && col.showHeader">
-                      {{ col.header }}
-                    </ng-container>
-                  </th>
-                </ng-container>
+      <ng-template #table>
+        <tui-loader [overlay]="true"
+                    [showLoader]="!!(loading$ | async)">
+          <table *tuiLet="data$ | async as data"
+                 [columns]="tableColumns"
+                 tuiTable>
+            <thead>
+              <tr tuiThGroup>
+                <ng-container *ngFor="let col of columns">
+                  <ng-container *ngIf="col.sortable === false && col.columnType !== 'CHECKBOX'">
+                    <th *tuiHead="col.key"
+                        [resizable]="true"
+                        [sorter]="null"
+                        tuiTh>
+                      <ng-container *ngIf="col.tplHeader">
+                        <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
+                      </ng-container>
 
-                <ng-container *ngIf="col.sortable === true && col.columnType !== 'CHECKBOX'">
-                  <th *tuiHead="col.key"
-                      [resizable]="true"
-                      tuiTh>
-                    <ng-container *ngIf="col.tplHeader">
-                      <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
-                    </ng-container>
-
-                    <ng-container *ngIf="!col.tplHeader && col.showHeader">
-                      {{ col.header }}
-                    </ng-container>
-                  </th>
-                </ng-container>
-
-                <ng-container *ngIf="col.columnType === 'CHECKBOX'">
-                  <th *tuiHead="col.key"
-                      class="mix-data-table__checkbox"
-                      [sorter]="null"
-                      tuiTh>
-                    <div class="wrapper">
-                      <tui-checkbox [ngModel]="isAllSelected"
-                                    (ngModelChange)="markAllChecked($event)"></tui-checkbox>
-                    </div>
-                  </th>
-                </ng-container>
-              </ng-container>
-            </tr>
-          </thead>
-
-          <tbody #dropList
-                 *ngIf="data"
-                 [data]="data.items"
-                 cdkDropList
-                 tuiTbody>
-            <tr *tuiRow="let item of data.items"
-                [cdkDragData]="item"
-                (cdkDragMoved)="onDragItem($event)"
-                (cdkDragReleased)="onReleaseDragItem()"
-                cdkDrag
-                tuiTr>
-              <ng-container *ngFor="let col of columns">
-                <ng-container *ngIf="col.columnType !== 'CHECKBOX'">
-                  <td *tuiCell="col.key"
-                      class="mix-data-table__td"
-                      [ngClass]="{'--action': col.columnType === 'ACTION',
-                      '--date': col.columnType === 'DATE',
-                      '--hide-sub-table': col.showInSubTable === false}"
-                      [ngStyle]="{'width': col.width}"
-                      tuiTd>
-                    <ng-container *ngIf="col.tplCell">
-                      <ng-container *ngTemplateOutlet="col.tplCell.template; context: { $implicit: item }"></ng-container>
-                    </ng-container>
-                    <ng-container *ngIf="!col.tplCell && col.columnType === 'DATE'">
-                      {{ $any(item)[col.key] ?? 'N/A' | date:'short' | relativeTimeSpan }}
-                    </ng-container>
-
-                    <ng-container *ngIf="!col.tplCell && col.columnType !== 'DATE'">
-                      {{ $any(item)[col.key] ?? 'N/A' }}
-                    </ng-container>
-                  </td>
-                </ng-container>
-
-                <ng-container *ngIf="col.columnType === 'CHECKBOX'">
-                  <td *tuiCell="col.key"
-                      class="mix-data-table__td mix-data-table__checkbox"
-                      tuiTd>
-                    <tui-checkbox [ngModel]="isItemSelected(item)"
-                                  (ngModelChange)="onItemSelected($event, item)">
-                    </tui-checkbox>
-                  </td>
-                </ng-container>
-              </ng-container>
-            </tr>
-          </tbody>
-
-          <tfoot *ngIf="data && !showSubTable">
-            <tr class="mix-data-table__paging">
-              <td [colSpan]="columns.length">
-                <tui-pagination class="tui-space_top-2"
-                                [length]="data.pagingData.totalPage || 0"
-                                (indexChange)="onPageChange($event)">
-                </tui-pagination>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </tui-loader>
-    </div>
-
-    <div *ngIf="showSubTable"
-         class="mix-data-table__transfer-icon">
-      <i-tabler name="square-toggle"></i-tabler>
-    </div>
-
-    <div class="mix-data-table__sub-table"
-         [ngClass]="{'--show': showSubTable}">
-      <div *ngIf="showSubTable"
-           class="mix-data-table__table-header">
-        Next Page
-      </div>
-      <table *tuiLet="data$ | async as data"
-             [columns]="subTableColumns"
-             tuiTable>
-        <thead>
-          <tr tuiThGroup>
-            <ng-container *ngFor="let col of columns">
-              <ng-container *ngIf="col.columnType !== 'CHECKBOX'">
-                <th *tuiHead="col.key"
-                    [resizable]="true"
-                    [sorter]="null"
-                    tuiTh>
-                  <ng-container *ngIf="col.tplHeader">
-                    <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
+                      <ng-container *ngIf="!col.tplHeader && col.showHeader">
+                        {{ col.header }}
+                      </ng-container>
+                    </th>
                   </ng-container>
 
-                  <ng-container *ngIf="!col.tplHeader && col.showHeader">
-                    {{ col.header }}
-                  </ng-container>
-                </th>
-              </ng-container>
-            </ng-container>
-          </tr>
-        </thead>
+                  <ng-container *ngIf="col.sortable === true && col.columnType !== 'CHECKBOX'">
+                    <th *tuiHead="col.key"
+                        [resizable]="true"
+                        tuiTh>
+                      <ng-container *ngIf="col.tplHeader">
+                        <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
+                      </ng-container>
 
-        <tbody #subDropList
-               *ngIf="data"
-               [data]="data.items"
-               cdkDropList
-               tuiTbody>
-          <tr *tuiRow="let item of data.items"
-              [cdkDragData]="item"
-              (cdkDragMoved)="onDragItem($event)"
-              (cdkDragReleased)="onReleaseDragItem()"
-              cdkDrag
-              tuiTr>
-            <ng-container *ngFor="let col of columns">
-              <ng-container *ngIf="col.columnType !== 'CHECKBOX'">
-                <td *tuiCell="col.key"
-                    class="mix-data-table__td"
-                    [ngClass]="{'--action': col.columnType === 'ACTION',
-                                   '--date': col.columnType === 'DATE'}"
-                    [ngStyle]="{'width': col.width}"
-                    tuiTd>
-                  <ng-container *ngIf="col.tplCell">
-                    <ng-container *ngTemplateOutlet="col.tplCell.template; context: { $implicit: item }"></ng-container>
-                  </ng-container>
-                  <ng-container *ngIf="!col.tplCell && col.columnType === 'DATE'">
-                    {{ $any(item)[col.key] ?? 'N/A' | date:'short' | relativeTimeSpan }}
+                      <ng-container *ngIf="!col.tplHeader && col.showHeader">
+                        {{ col.header }}
+                      </ng-container>
+                    </th>
                   </ng-container>
 
-                  <ng-container *ngIf="!col.tplCell && col.columnType !== 'DATE'">
-                    {{ $any(item)[col.key] ?? 'N/A' }}
+                  <ng-container *ngIf="col.columnType === 'CHECKBOX'">
+                    <th *tuiHead="col.key"
+                        class="mix-data-table__checkbox"
+                        [sorter]="null"
+                        tuiTh>
+                      <div class="wrapper">
+                        <tui-checkbox [ngModel]="isAllSelected"
+                                      (ngModelChange)="markAllChecked($event)"></tui-checkbox>
+                      </div>
+                    </th>
                   </ng-container>
+                </ng-container>
+              </tr>
+            </thead>
+
+            <tbody #dropList
+                   *ngIf="data"
+                   [data]="data.items"
+                   cdkDropList
+                   tuiTbody>
+              <tr *tuiRow="let item of data.items"
+                  [cdkDragData]="item"
+                  (cdkDragMoved)="onDragItem($event)"
+                  (cdkDragReleased)="onReleaseDragItem()"
+                  cdkDrag
+                  tuiTr>
+                <ng-container *ngFor="let col of columns">
+                  <ng-container *ngIf="col.columnType !== 'CHECKBOX'">
+                    <td *tuiCell="col.key"
+                        class="mix-data-table__td"
+                        [ngClass]="{'--action': col.columnType === 'ACTION',
+            '--date': col.columnType === 'DATE',
+            '--hide-sub-table': col.showInSubTable === false}"
+                        [ngStyle]="{'width': col.width}"
+                        tuiTd>
+                      <ng-container *ngIf="col.tplCell">
+                        <ng-container *ngTemplateOutlet="col.tplCell.template; context: { $implicit: item }"></ng-container>
+                      </ng-container>
+                      <ng-container *ngIf="!col.tplCell && col.columnType === 'DATE'">
+                        {{ $any(item)[col.key] ?? 'N/A' | date:'short' | relativeTimeSpan }}
+                      </ng-container>
+
+                      <ng-container *ngIf="!col.tplCell && col.columnType !== 'DATE'">
+                        {{ $any(item)[col.key] ?? 'N/A' }}
+                      </ng-container>
+                    </td>
+                  </ng-container>
+
+                  <ng-container *ngIf="col.columnType === 'CHECKBOX'">
+                    <td *tuiCell="col.key"
+                        class="mix-data-table__td mix-data-table__checkbox"
+                        tuiTd>
+                      <tui-checkbox [ngModel]="isItemSelected(item)"
+                                    (ngModelChange)="onItemSelected($event, item)">
+                      </tui-checkbox>
+                    </td>
+                  </ng-container>
+                </ng-container>
+              </tr>
+            </tbody>
+
+            <tfoot *ngIf="data && !showSubTable">
+              <tr class="mix-data-table__paging">
+                <td [colSpan]="columns.length">
+                  <tui-pagination class="tui-space_top-2"
+                                  [length]="data.pagingData.totalPage || 0"
+                                  (indexChange)="onPageChange($event)">
+                  </tui-pagination>
                 </td>
-              </ng-container>
-            </ng-container>
-          </tr>
-        </tbody>
-      </table>
+              </tr>
+            </tfoot>
+          </table>
+        </tui-loader>
+      </ng-template>
+
     </div>
   </div>
 

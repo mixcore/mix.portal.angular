@@ -32,6 +32,7 @@ import {
   tap
 } from 'rxjs';
 
+import { Utils } from '../../utils';
 import { TableColumnDirective } from './directives/column.directive';
 
 @Component({
@@ -42,6 +43,14 @@ import { TableColumnDirective } from './directives/column.directive';
   encapsulation: ViewEncapsulation.None
 })
 export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
+  public readonly emptyData: PaginationResultModel<T> = {
+    items: [],
+    pagingData: {
+      pageIndex: 0,
+      pageSize: 25,
+      total: 0
+    }
+  };
   public currentSelectedItem: T[] = [];
   public cacheItems: T[] = [];
   public currentPage = 0;
@@ -51,7 +60,8 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   @Input() public fetchDataFn!: (
     filter: PaginationRequestModel
   ) => Observable<PaginationResultModel<T>>;
-  @Input() public data$!: Observable<PaginationResultModel<T>>;
+  @Input() public data$: BehaviorSubject<PaginationResultModel<T>> =
+    new BehaviorSubject(this.emptyData);
   @Input() public loading$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(true);
   @Input() public search = '';
@@ -81,6 +91,7 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   public tableSortFields: readonly string[] = [];
   public columnDic: Record<string, string> = {};
   public showSubTable = false;
+  public firstLoad = true;
 
   public readonly showDragLeft: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
@@ -99,14 +110,6 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   >(1);
   public readonly reload$: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
-  public readonly emptyData: PaginationResultModel<T> = {
-    items: [],
-    pagingData: {
-      pageIndex: 0,
-      pageSize: 25,
-      total: 0
-    }
-  };
 
   public request$: Observable<[string, 1 | -1, number, number, boolean]> =
     combineLatest([
@@ -271,21 +274,26 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   }
 
   private _setupSelfControl(): void {
-    this.data$ = this.request$.pipe(
-      tap(() => this._showLoading()),
-      switchMap((query: [string, 1 | -1, number, number, boolean]) =>
-        this._processSelfFetchData(query[0], query[2], query[3])
-      ),
-      tap((res: PaginationResultModel<T>) => {
-        this._hideLoading();
-        this.cacheItems = res.items;
-        this.currentPage = res.pagingData.pageIndex;
-      }),
-      startWith(this.emptyData),
-      catchError(() => {
-        this._hideLoading();
-        return of(this.emptyData);
-      })
-    );
+    this.request$
+      .pipe(
+        tap(() => this._showLoading()),
+        switchMap((query: [string, 1 | -1, number, number, boolean]) =>
+          this._processSelfFetchData(query[0], query[2], query[3])
+        ),
+        tap((res: PaginationResultModel<T>) => {
+          this._hideLoading();
+          this.cacheItems = res.items;
+          this.currentPage = res.pagingData.pageIndex;
+        }),
+        startWith(this.emptyData),
+        catchError(() => {
+          this._hideLoading();
+          return of(this.emptyData);
+        })
+      )
+      .subscribe(result => {
+        if (Utils.isDifferent(result, this.emptyData)) this.firstLoad = false;
+        this.data$.next(result);
+      });
   }
 }

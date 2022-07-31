@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'mix-skeleton-loading',
@@ -8,4 +8,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [CommonModule]
 })
-export class SkeletonLoadingComponent {}
+export class SkeletonLoadingComponent {
+  @Input() public type: 'table' | 'card' | 'none' = 'none';
+}

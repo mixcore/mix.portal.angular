@@ -65,7 +65,9 @@ export class LoginComponent {
       .subscribe();
 
     const redirectUrl: string | null = localStorage.getItem('redirectUrl');
-    this.route.navigateByUrl(redirectUrl ?? '/portal');
+    this.route
+      .navigateByUrl(redirectUrl ?? '/portal')
+      .then(() => localStorage.removeItem('redirectUrl'));
   }
 
   public handleLoginError(): void {
