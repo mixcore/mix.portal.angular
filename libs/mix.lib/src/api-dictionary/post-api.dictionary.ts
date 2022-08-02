@@ -1,7 +1,10 @@
 export class PostApiDictionary {
-  public getDefaultPostEndpoint = `/mix-portal/mix-post-content/default`;
-  public savePostEndpoint = `/mix-portal/mix-post-content/`;
-  public getPostEndpoint = `/mix-portal/mix-post-content/`;
-  public deletePostEndpoint = `/mix-portal/mix-post-content/`;
-  public getModuleById = `/mix-portal/mix-post-content/{id}`;
+  public prefix = '/mix-portal/mix-post-content/';
+  public getDefaultPostEndpoint = this.prefix + `default`;
+  public savePostEndpoint = this.prefix;
+  public getPostEndpoint = this.prefix;
+  public deletePostEndpoint = this.prefix;
+  public getPostByIdEndpoint(id: number): string {
+    return this.prefix + id;
+  }
 }

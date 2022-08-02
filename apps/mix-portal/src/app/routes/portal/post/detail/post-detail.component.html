@@ -1,7 +1,9 @@
 <mix-content-detail-container>
-  <ng-container>
-    <mix-skeleton-loading *ngIf="!!(loading$ | async)"
-                          [type]="'form'">
-    </mix-skeleton-loading>
-  </ng-container>
+  <mix-skeleton-loading *ngIf="!!(loading$ | async); else mainTemplate"
+                        [type]="'form'">
+  </mix-skeleton-loading>
+
+  <ng-template #mainTemplate>
+    ABC
+  </ng-template>
 </mix-content-detail-container>

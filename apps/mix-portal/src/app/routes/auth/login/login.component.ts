@@ -64,9 +64,13 @@ export class LoginComponent {
       .open('Successfully login!', { status: TuiNotification.Success })
       .subscribe();
 
-    const redirectUrl: string | null = localStorage.getItem('redirectUrl');
+    let redirectUrl: string | null = localStorage.getItem('redirectUrl');
+    if (!redirectUrl || redirectUrl === '/auth/login') {
+      redirectUrl = '/portal';
+    }
+
     this.route
-      .navigateByUrl(redirectUrl || '/portal')
+      .navigateByUrl(redirectUrl)
       .then(() => localStorage.removeItem('redirectUrl'));
   }
 

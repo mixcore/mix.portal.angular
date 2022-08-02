@@ -2,10 +2,13 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SkeletonLoadingComponent } from '@mix/mix.ui';
+import { MixPostPortalModel } from '@mix-spa/mix.lib';
 import {
   BaseComponent,
-  ContentDetailContainerComponent
+  ContentDetailContainerComponent,
+  MixPostApiService
 } from '@mix-spa/mix.share';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'mix-post-detail',
@@ -20,11 +23,27 @@ import {
   ]
 })
 export class PostDetailComponent extends BaseComponent implements OnInit {
-  constructor(public activatedRoute: ActivatedRoute) {
+  public post!: MixPostPortalModel;
+
+  constructor(
+    public activatedRoute: ActivatedRoute,
+    private postApi: MixPostApiService
+  ) {
     super();
   }
 
   public ngOnInit(): void {
-    console.log(this.activatedRoute.snapshot.params['id']);
+    this.postApi
+      .getPostById(this.activatedRoute.snapshot.params['id'])
+      .pipe(delay(1000))
+      .subscribe({
+        next: result => {
+          this.post = result;
+          this.loading$.next(false);
+        },
+        error: () => {
+          this.error$.next(true);
+        }
+      });
   }
 }

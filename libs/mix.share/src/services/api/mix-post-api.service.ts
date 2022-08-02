@@ -35,4 +35,8 @@ export class MixPostApiService extends BaseApiService {
   public deletePosts(id: number): Observable<void> {
     return this.delete(MixApiDict.PostApi.deletePostEndpoint + id);
   }
+
+  public getPostById(id: number): Observable<MixPostPortalModel> {
+    return this.get(MixApiDict.PostApi.getPostByIdEndpoint(id));
+  }
 }

@@ -4,6 +4,7 @@ import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
 import { BehaviorSubject } from 'rxjs';
 
 export abstract class BaseComponent {
+  public error$ = new BehaviorSubject<boolean>(false);
   public loading$ = new BehaviorSubject<boolean>(true);
   public alert = inject(TuiAlertService);
   public route = inject(Router);
