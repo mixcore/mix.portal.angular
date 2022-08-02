@@ -5,26 +5,32 @@ import {
   FormsModule,
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
-import { TuiEditorNewModule } from '@taiga-ui/addon-editor';
-import { TuiLabelModule } from '@taiga-ui/core';
+import { TuiLabelModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import { TuiInputModule } from '@taiga-ui/kit';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
-  selector: 'mix-rich-text-editor',
-  templateUrl: './rich-text-editor.component.html',
-  styleUrls: ['./rich-text-editor.component.scss'],
+  selector: 'mix-input-labeled',
+  templateUrl: './input-labeled.component.html',
+  styleUrls: ['./input-labeled.component.scss'],
   standalone: true,
-  imports: [CommonModule, TuiEditorNewModule, FormsModule, TuiLabelModule],
+  imports: [
+    CommonModule,
+    TuiLabelModule,
+    TuiInputModule,
+    TuiTextfieldControllerModule,
+    FormsModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: RichTextEditorComponent,
+      useExisting: InputLabeledComponent,
       multi: true
     }
   ]
 })
-export class RichTextEditorComponent implements ControlValueAccessor {
+export class InputLabeledComponent implements ControlValueAccessor {
   @Input() public label = '';
   public value = '';
   public value$: BehaviorSubject<string> = new BehaviorSubject<string>(

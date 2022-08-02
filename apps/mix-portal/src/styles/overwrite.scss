@@ -321,3 +321,16 @@ p {
   margin-inline-start: 0px;
   margin-inline-end: 0px;
 }
+
+tui-tabs.custom-tabs {
+  background: var(--tui-base-01);
+  border-radius: var(--mix-border-radius-01);
+  overflow: hidden;
+  border: 1px solid var(--tui-base-04);
+  padding: 0 10px;
+  box-shadow: var(--mix-box-shadow);
+
+  ._active {
+    font-weight: 500;
+  }
+}

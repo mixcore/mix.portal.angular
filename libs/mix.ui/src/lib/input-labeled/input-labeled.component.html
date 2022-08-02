@@ -1,0 +1,7 @@
+<label [label]="label + ':'"
+       tuiLabel>
+  <tui-input [ngModel]="value"
+             [tuiTextfieldLabelOutside]="true"
+             (ngModelChange)="onValueChange($event)"
+             tuiTextfieldSize="m"> </tui-input>
+</label>

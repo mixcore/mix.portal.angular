@@ -1,9 +1,46 @@
 <mix-content-detail-container>
-  <mix-skeleton-loading *ngIf="!!(loading$ | async); else mainTemplate"
-                        [type]="'form'">
-  </mix-skeleton-loading>
+  <div class="post-detail">
+    <tui-tabs class="custom-tabs"
+              [(activeItemIndex)]="activeTabIndex">
+      <button tuiTab>
+        Content
+      </button>
+      <button tuiTab>
+        SEO
+      </button>
+      <button tuiTab>
+        Related
+      </button>
+      <button tuiTab>
+        Parent
+      </button>
+    </tui-tabs>
 
-  <ng-template #mainTemplate>
-    ABC
-  </ng-template>
+    <div *ngIf="!!(loading$ | async); else mainTemplate"
+         class="post-detail__main-widget">
+      <mix-skeleton-loading [type]="'form'">
+      </mix-skeleton-loading>
+    </div>
+
+    <ng-template #mainTemplate>
+      <div *ngIf="activeTabIndex === 0"
+           class="post-detail__main-widget"
+           [formGroup]="form">
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'Title'"
+                             formControlName="title"></mix-input-labeled>
+        </div>
+
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'Excerpt'"
+                             formControlName="excerpt"></mix-input-labeled>
+        </div>
+
+        <div class="mix-form__row">
+          <mix-rich-text-editor [label]="'Content'"
+                                formControlName="content"></mix-rich-text-editor>
+        </div>
+      </div>
+    </ng-template>
+  </div>
 </mix-content-detail-container>

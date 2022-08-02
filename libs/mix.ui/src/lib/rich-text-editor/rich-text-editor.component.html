@@ -1,1 +1,8 @@
-<p>rich-text-editor works!</p>
+<label [label]="label + ':'"
+       tuiLabel>
+  <tui-editor class="editor"
+              [ngModel]="value"
+              (ngModelChange)="onValueChange($event)"
+              new>
+  </tui-editor>
+</label>
