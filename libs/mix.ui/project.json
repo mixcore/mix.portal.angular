@@ -3,6 +3,22 @@
   "sourceRoot": "libs/mix.ui/src",
   "prefix": "mix",
   "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/mix.ui"],
+      "options": {
+        "project": "libs/mix.ui/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/mix.ui/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/mix.ui/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/mix.ui"],
