@@ -23,6 +23,8 @@ import {
 } from '@mix-spa/mix.share';
 import { TuiDialogService } from '@taiga-ui/core';
 
+import { RouteConfig } from '../route.const';
+
 @Component({
   selector: 'mix-portal-layout',
   templateUrl: './portal.layout.html',
@@ -89,11 +91,11 @@ export class PortalLayoutComponent {
         {
           title: 'Posts',
           icon: 'list-numbers',
-          action: () => this.navigate('/portal/list-post')
+          action: () => this.navigate(`/portal/${RouteConfig.PostList}`)
         }
       ],
-      action: () => this.navigate('/portal/list-post'),
-      route: 'list-post'
+      action: () => this.navigate(`/portal/${RouteConfig.PostList}`),
+      route: RouteConfig.PostList
     },
     {
       id: 4,

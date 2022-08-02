@@ -1,3 +1,4 @@
+export * from './content-detail-container/content-detail-container.component';
 export * from './data-table';
 export * from './dialogs/creation-dialog';
 export * from './dialogs/tab-control';

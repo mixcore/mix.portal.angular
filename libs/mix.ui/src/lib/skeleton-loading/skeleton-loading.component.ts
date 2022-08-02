@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
   imports: [CommonModule]
 })
 export class SkeletonLoadingComponent {
-  @Input() public type: 'table' | 'card' | 'none' = 'none';
+  @Input() public type: 'table' | 'card' | 'none' | 'form' = 'none';
 }

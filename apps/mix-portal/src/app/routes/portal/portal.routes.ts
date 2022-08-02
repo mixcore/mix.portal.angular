@@ -1,25 +1,34 @@
 import { Route } from '@angular/router';
 
+import { RouteConfig } from '../route.const';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { ListDatabaseComponent } from './list-database/list-database.component';
 import { ListModuleComponent } from './list-module/list-module.component';
 import { ListPageComponent } from './list-page/list-page.component';
-import { ListPostComponent } from './list-post/list-post.component';
 import { ListThemeComponent } from './list-theme/list-theme.component';
+import { PostDetailComponent } from './post/detail/post-detail.component';
+import { ListPostComponent } from './post/list/list-post.component';
 
 export const PORTAL_ROUTES: Route[] = [
   {
-    path: 'dashboard',
+    path: RouteConfig.PortalDashboard,
     component: DashBoardComponent,
     data: {
       title: 'Dashboard'
     }
   },
   {
-    path: 'list-post',
+    path: RouteConfig.PostList,
     component: ListPostComponent,
     data: {
       title: 'Post list'
+    }
+  },
+  {
+    path: RouteConfig.PostDetail,
+    component: PostDetailComponent,
+    data: {
+      title: 'Post'
     }
   },
   {

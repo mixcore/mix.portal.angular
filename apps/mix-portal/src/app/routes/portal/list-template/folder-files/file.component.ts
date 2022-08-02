@@ -37,15 +37,12 @@ import { BehaviorSubject, forkJoin, switchMap } from 'rxjs';
   ]
 })
 export class MixFolderFileComponent extends BaseComponent implements OnInit {
+  @Input() public themeId = 1;
+  @Input() folderType: MixTemplateFolder = MixTemplateFolder.Masters;
   public editing = false;
   public open = false;
   public newFileName: FormControl = new FormControl('', Validators.required);
   public selectedFiles: MixTemplateModel[] = [];
-
-  @Input() public themeId = 1;
-  @Input() folderType: MixTemplateFolder = MixTemplateFolder.Masters;
-
-  public loading$ = new BehaviorSubject<boolean>(true);
   public result$ = new BehaviorSubject<PaginationResultModel<MixTemplateModel>>(
     {
       items: [],

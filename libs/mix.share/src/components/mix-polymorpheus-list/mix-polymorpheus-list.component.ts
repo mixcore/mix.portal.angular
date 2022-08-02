@@ -17,8 +17,9 @@ import {
   PaginationRequestModel,
   PaginationResultModel
 } from '@mix-spa/mix.lib';
-import { BehaviorSubject, combineLatest, filter, Observable, tap } from 'rxjs';
+import { combineLatest, filter, Observable, tap } from 'rxjs';
 
+import { BaseComponent } from '../../bases';
 import {
   AppEvent,
   AppEventService,
@@ -58,7 +59,10 @@ export type PolymorphousListResult =
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MixPolymorphousListComponent implements OnInit {
+export class MixPolymorphousListComponent
+  extends BaseComponent
+  implements OnInit
+{
   @Input() public listType: MixContentType = MixContentType.Page;
   @Input() public request!: (
     query: PaginationRequestModel
@@ -131,15 +135,11 @@ export class MixPolymorphousListComponent implements OnInit {
   // Sort Option
   public readonly sortOption: string[] = ['Last Updated', 'Priority'];
   public sortOptionControl: FormControl = new FormControl('Last Updated');
-
   public showLeftSide = true;
-  public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    true
-  );
   public itemCount = 0;
   public currentSelectedItems: PolymorphousListResult[] = [];
   public currentActionItem: PolymorphousListResult | undefined = undefined;
-  public moduleId = 0;
+  public id = 0;
 
   constructor(
     @Inject(ModalService) private readonly modalService: ModalService,
@@ -148,7 +148,9 @@ export class MixPolymorphousListComponent implements OnInit {
     public moduleApi: MixModuleApiService,
     private appEvent: AppEventService,
     private sidebarControl: PortalSidebarControlService
-  ) {}
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
     switch (this.listType) {
@@ -224,8 +226,12 @@ export class MixPolymorphousListComponent implements OnInit {
 
     switch (this.listType) {
       case MixContentType.Module:
-        this.moduleId = this.currentActionItem.id;
         this.sidebarControl.show(this.moduleDetail);
+        break;
+      case MixContentType.Post:
+        this.route.navigateByUrl(`/portal/post/${this.currentActionItem.id}`);
+        break;
+      case MixContentType.Page:
         break;
       default:
         break;

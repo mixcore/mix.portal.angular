@@ -1,8 +1,10 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
+import { BehaviorSubject } from 'rxjs';
 
 export abstract class BaseComponent {
+  public loading$ = new BehaviorSubject<boolean>(true);
   public alert = inject(TuiAlertService);
   public route = inject(Router);
 

@@ -1,0 +1,18 @@
+<div class="content-detail-container">
+  <div class="content-detail-container__toolbar">
+    <div class="action">
+      <div class="label">
+        Auto save on edit:
+      </div>
+      <tui-toggle [formControl]="autoSave"></tui-toggle>
+    </div>
+
+    <button class="action"
+            [size]="'s'"
+            tuiButton>Save</button>
+  </div>
+
+  <div class="content-detail-container__body">
+    <ng-content></ng-content>
+  </div>
+</div>

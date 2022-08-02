@@ -16,7 +16,7 @@ import {
 import { BaseComponent, TenancyApiService } from '@mix-spa/mix.share';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiCheckboxLabeledModule, TuiTabsModule } from '@taiga-ui/kit';
-import { BehaviorSubject, delay } from 'rxjs';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'mix-setup-theme',
@@ -34,9 +34,6 @@ import { BehaviorSubject, delay } from 'rxjs';
   ]
 })
 export class SetupThemeComponent extends BaseComponent implements OnInit {
-  public loading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
   public activeItemIndex = 0;
   public currentTheme: MixSiteDataModel | undefined = undefined;
   public currentPages: {
