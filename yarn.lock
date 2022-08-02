@@ -2495,6 +2495,13 @@
     "@tiptap/starter-kit" "2.0.0-beta.154"
     tslib "^1.10.0"
 
+"@taiga-ui/addon-mobile@^2.57.0":
+  version "2.57.0"
+  resolved "https://registry.yarnpkg.com/@taiga-ui/addon-mobile/-/addon-mobile-2.57.0.tgz#339f515c0273b7133973baef0a21c9d58c6bed2b"
+  integrity sha512-Ue8kbsX/esCSV9AnhS2pOtHFBeQ6ooh8NXFRsujeiEGOReNCy+ZGyzsB1kAL1aB6Ty/mohLW0RS9RbK0b2ot9Q==
+  dependencies:
+    tslib "^1.10.0"
+
 "@taiga-ui/addon-table@^2.46.0":
   version "2.46.0"
   resolved "https://registry.yarnpkg.com/@taiga-ui/addon-table/-/addon-table-2.46.0.tgz#4eda625e2b367838578d7e7492129759518d9d6d"
