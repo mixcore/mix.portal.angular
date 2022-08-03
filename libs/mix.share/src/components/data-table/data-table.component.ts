@@ -234,9 +234,7 @@ export class MixDataTableComponent<T> implements AfterContentInit, OnInit {
   }
 
   public onReleaseDragItem(): void {
-    // this.showDragLeft.next(false);
-    // this.showDragRight.next(false);
-    // this.showSubTable = false;
+    //
   }
 
   private _processSelfFetchData(

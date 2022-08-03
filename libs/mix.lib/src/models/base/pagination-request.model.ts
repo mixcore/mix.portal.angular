@@ -7,5 +7,7 @@ export interface PaginationRequestModel extends MixGraphQLModel {
   keyword?: string;
   pageIndex?: number;
   searchColumns?: string;
-  searchMethod?: string;
+  searchMethod?: SearchMethod;
 }
+
+export type SearchMethod = 'Like';

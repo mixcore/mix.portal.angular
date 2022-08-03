@@ -12,12 +12,13 @@ import {
   RichTextEditorComponent,
   SkeletonLoadingComponent
 } from '@mix/mix.ui';
-import { MixPostPortalModel } from '@mix-spa/mix.lib';
+import { MixPostPortalModel, MixPostReferenceModel } from '@mix-spa/mix.lib';
 import {
   BaseComponent,
   ContentDetailContainerComponent,
   FormUtils,
-  MixPostApiService
+  MixPostApiService,
+  PostNavSelectedComponent
 } from '@mix-spa/mix.share';
 import { TuiTabsModule } from '@taiga-ui/kit';
 import { delay } from 'rxjs';
@@ -35,10 +36,12 @@ import { delay } from 'rxjs';
     TuiTabsModule,
     ReactiveFormsModule,
     InputLabeledComponent,
-    RichTextEditorComponent
+    RichTextEditorComponent,
+    PostNavSelectedComponent
   ]
 })
 export class PostDetailComponent extends BaseComponent implements OnInit {
+  public selectedPostNavs: MixPostReferenceModel[] = [];
   public activeTabIndex = 0;
   public post!: MixPostPortalModel;
   public form!: FormGroup;
@@ -58,10 +61,16 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: result => {
           this.post = result;
+          this.selectedPostNavs = result.postNavs ?? [];
           this.form = this.fb.group({
             title: [result.title, [Validators.required]],
             excerpt: [result.excerpt, [Validators.required]],
-            content: [result.content, [Validators.required]]
+            content: [result.content, [Validators.required]],
+            seoTitle: [result.seoTitle],
+            seoName: [result.seoName],
+            seoDescription: [result.seoDescription],
+            seoKeywords: [result.seoKeywords],
+            seoSource: [result.seoSource]
           });
 
           this.loading$.next(false);

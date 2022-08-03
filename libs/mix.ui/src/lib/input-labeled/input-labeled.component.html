@@ -1,7 +1,13 @@
 <label [label]="label + ':'"
        tuiLabel>
-  <tui-input [ngModel]="value"
+  <tui-input *ngIf="type === 'text'"
+             [ngModel]="value"
              [tuiTextfieldLabelOutside]="true"
              (ngModelChange)="onValueChange($event)"
              tuiTextfieldSize="m"> </tui-input>
+
+  <tui-text-area *ngIf="type === 'text-area'"
+                 [ngModel]="value"
+                 [tuiTextfieldLabelOutside]="true"
+                 (ngModelChange)="onValueChange($event)"></tui-text-area>
 </label>

@@ -1,6 +1,6 @@
 import { MixContentStatus } from '../../enums';
 
-export interface MixModuleReferenceModel {
+export interface MixPostReferenceModel {
   createdBy: string;
   createdDateTime: Date;
   id: number;

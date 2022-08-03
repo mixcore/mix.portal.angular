@@ -6,7 +6,7 @@ import {
   NG_VALUE_ACCESSOR
 } from '@angular/forms';
 import { TuiLabelModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiInputModule } from '@taiga-ui/kit';
+import { TuiInputModule, TuiTextAreaModule } from '@taiga-ui/kit';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
@@ -19,6 +19,7 @@ import { BehaviorSubject } from 'rxjs';
     TuiLabelModule,
     TuiInputModule,
     TuiTextfieldControllerModule,
+    TuiTextAreaModule,
     FormsModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,6 +32,7 @@ import { BehaviorSubject } from 'rxjs';
   ]
 })
 export class InputLabeledComponent implements ControlValueAccessor {
+  @Input() public type: 'text' | 'text-area' = 'text';
   @Input() public label = '';
   public value = '';
   public value$: BehaviorSubject<string> = new BehaviorSubject<string>(

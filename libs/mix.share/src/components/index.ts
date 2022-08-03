@@ -16,6 +16,7 @@ export * from './mix-widget';
 export * from './modal';
 export * from './module-selects-list/module-select.component';
 export * from './portal-sidebar-host/portal-sidebar-host.component';
+export * from './post-nav-selected/post-nav-selected.component';
 export * from './side-menu';
 export * from './sidebar-container/sidebar-container.component';
 export * from './theme-import';
