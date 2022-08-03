@@ -16,6 +16,7 @@ import { MixPostPortalModel } from '@mix-spa/mix.lib';
 import {
   BaseComponent,
   ContentDetailContainerComponent,
+  FormUtils,
   MixPostApiService
 } from '@mix-spa/mix.share';
 import { TuiTabsModule } from '@taiga-ui/kit';
@@ -69,5 +70,24 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
           this.error$.next(true);
         }
       });
+  }
+
+  public savePost(): void {
+    if (!this.form || !this.post) return;
+    if (!FormUtils.validateForm(this.form)) return;
+
+    const post: MixPostPortalModel = {
+      ...this.post,
+      ...this.form.getRawValue()
+    };
+
+    this.postApi.savePost(post).subscribe({
+      next: () => {
+        this.showSuccess('Successfully save your post');
+      },
+      error: () => {
+        this.showError('Error, please try again');
+      }
+    });
   }
 }

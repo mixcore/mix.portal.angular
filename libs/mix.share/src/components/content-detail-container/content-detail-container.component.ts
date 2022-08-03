@@ -30,4 +30,8 @@ export class ContentDetailContainerComponent implements OnInit {
       this.autoSaveChange.emit(v)
     );
   }
+
+  public onSave(): void {
+    this.save.emit();
+  }
 }
