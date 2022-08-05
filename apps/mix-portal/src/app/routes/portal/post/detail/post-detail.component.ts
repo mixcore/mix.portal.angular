@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
@@ -42,6 +43,7 @@ import { takeUntil } from 'rxjs';
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     SkeletonLoadingComponent,
     ContentDetailContainerComponent,
     TuiTabsModule,
@@ -61,6 +63,7 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
   public post!: MixPostPortalModel;
   public form!: FormGroup;
   public availableTemplates: MixTemplateModel[] = [];
+  public selectedTemplate: MixTemplateModel | undefined = undefined;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -102,15 +105,20 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
 
   public loadTemplate(): void {
     if (!this.post || !this.post.template) return;
+
     this.templateApi
       .getTemplates({
         themeId: this.post.template?.mixThemeId,
         folderType: this.post.template.folderType,
+        columns: 'id, fileName',
         pageSize: 1000
       })
       .subscribe({
         next: result => {
           this.availableTemplates = result.items;
+          this.selectedTemplate = result.items.find(
+            i => i.id == this.post.templateId
+          );
         }
       });
   }

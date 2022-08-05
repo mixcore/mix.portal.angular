@@ -89,6 +89,22 @@
       <div *ngIf="activeTabIndex === 4"
            class="post-detail__main-widget"
            [formGroup]="form">
+        <tui-select [(ngModel)]="selectedTemplate"
+                    [ngModelOptions]="{standalone: true}"
+                    [valueContent]="itemContent"
+                    tuiTextfieldSize="s">
+          Template
+          <input tuiTextfield
+                 placeholder="Choose your template">
+          <tui-data-list-wrapper *tuiDataList
+                                 [itemContent]="itemContent"
+                                 [items]="availableTemplates"></tui-data-list-wrapper>
+        </tui-select>
+
+        <ng-template #itemContent
+                     let-item>
+          {{ item.fileName }}
+        </ng-template>
 
       </div>
     </ng-template>

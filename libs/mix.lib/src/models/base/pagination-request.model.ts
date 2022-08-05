@@ -1,5 +1,5 @@
 export interface MixGraphQLModel {
-  column?: string;
+  columns?: string;
 }
 
 export interface PaginationRequestModel extends MixGraphQLModel {
