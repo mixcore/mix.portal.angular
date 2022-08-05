@@ -1,5 +1,6 @@
 <div class="code-editor">
-  <ngx-monaco-editor [ngModel]="code"
+  <ngx-monaco-editor class="mix-code-editor"
+                     [ngModel]="code"
                      [options]="templateOption"
                      (ngModelChange)="onCodeChange($event)"></ngx-monaco-editor>
 </div>

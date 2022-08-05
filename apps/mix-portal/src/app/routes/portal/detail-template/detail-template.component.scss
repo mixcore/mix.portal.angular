@@ -1,22 +1,28 @@
 .detail-template {
+  height: 100%;
   &__title {
     margin-right: auto;
   }
 
   &__code-zone {
-    margin: 15px;
+    // margin: 15px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
     border-radius: 5px;
+    height: calc(100vh - var(--mix-header-height) - var(--tui-height-l));
   }
 
   &__code-editor {
     width: 100%;
-    padding: 10px;
+    height: 100%;
+    // padding: 15px;
     background-color: var(--tui-base-01);
+    mix-code-editor {
+      height: calc(100vh - var(--mix-header-height) - var(--tui-height-l));
+    }
   }
 
   &__editor-tab {
-    padding: 0 10px;
+    padding: 0 15px;
     background-color: var(--tui-base-01);
   }
 }
