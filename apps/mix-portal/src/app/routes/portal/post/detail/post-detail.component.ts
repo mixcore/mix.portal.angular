@@ -21,6 +21,7 @@ import {
 import {
   BaseComponent,
   ContentDetailContainerComponent,
+  DestroyService,
   FormUtils,
   MixPostApiService,
   MixTemplateApiService,
@@ -31,7 +32,7 @@ import {
   TuiSelectModule,
   TuiTabsModule
 } from '@taiga-ui/kit';
-import { delay } from 'rxjs';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-post-detail',
@@ -51,7 +52,8 @@ import { delay } from 'rxjs';
     CodeEditorComponent,
     TuiSelectModule,
     TuiDataListWrapperModule
-  ]
+  ],
+  providers: [DestroyService]
 })
 export class PostDetailComponent extends BaseComponent implements OnInit {
   public selectedPostNavs: MixPostReferenceModel[] = [];
@@ -64,7 +66,8 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private postApi: MixPostApiService,
     private templateApi: MixTemplateApiService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private destroy: DestroyService
   ) {
     super();
   }
@@ -72,7 +75,6 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
   public ngOnInit(): void {
     this.postApi
       .getPostById(this.activatedRoute.snapshot.params['id'])
-      .pipe(delay(1000))
       .subscribe({
         next: result => {
           this.post = result;
@@ -88,6 +90,7 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
             seoSource: [result.seoSource]
           });
 
+          this.registerTitleChange();
           this.loadTemplate();
           this.loading$.next(false);
         },
@@ -110,6 +113,14 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
           this.availableTemplates = result.items;
         }
       });
+  }
+
+  public registerTitleChange(): void {
+    this.header.setTitle(this.form.value.title);
+    this.form.controls['title'].valueChanges
+      .pipe(takeUntil(this.destroy))
+      .subscribe(t => this.header.setTitle(t));
+    this.destroy.subscribe(() => this.header.hideTitle());
   }
 
   public savePost(): void {

@@ -16,7 +16,6 @@ import {
 import { BaseComponent, TenancyApiService } from '@mix-spa/mix.share';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { TuiCheckboxLabeledModule, TuiTabsModule } from '@taiga-ui/kit';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'mix-setup-theme',
@@ -69,28 +68,25 @@ export class SetupThemeComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.tenancyApi
-      .loadTheme()
-      .pipe(delay(1000))
-      .subscribe(result => {
-        this.currentTheme = result;
-        this.currentModules = result.modules.map(m => ({
-          item: m,
-          selected: false
-        }));
+    this.tenancyApi.loadTheme().subscribe(result => {
+      this.currentTheme = result;
+      this.currentModules = result.modules.map(m => ({
+        item: m,
+        selected: false
+      }));
 
-        this.currentPages = result.pages.map(m => ({
-          item: m,
-          selected: false
-        }));
+      this.currentPages = result.pages.map(m => ({
+        item: m,
+        selected: false
+      }));
 
-        this.currentPosts = result.posts.map(m => ({
-          item: m,
-          selected: false
-        }));
+      this.currentPosts = result.posts.map(m => ({
+        item: m,
+        selected: false
+      }));
 
-        this.cdr.detectChanges();
-      });
+      this.cdr.detectChanges();
+    });
   }
 
   public onSelectAll(): void {

@@ -8,4 +8,8 @@ export class HeaderMenuService {
   public setTitle(text: string): void {
     this.title$.next(text);
   }
+
+  public hideTitle(): void {
+    this.title$.next('');
+  }
 }

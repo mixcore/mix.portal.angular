@@ -31,7 +31,6 @@ import {
   TuiSelectModule,
   TuiTabsModule
 } from '@taiga-ui/kit';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'mix-page-detail',
@@ -71,7 +70,6 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
   public ngOnInit(): void {
     this.pageApi
       .getPageById(this.activatedRoute.snapshot.params['id'])
-      .pipe(delay(1000))
       .subscribe({
         next: result => {
           this.page = result;

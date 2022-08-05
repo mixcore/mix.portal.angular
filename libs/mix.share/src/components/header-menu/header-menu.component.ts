@@ -1,5 +1,12 @@
 import { Component, Inject } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Params, PRIMARY_OUTLET, Router, RouterModule } from '@angular/router';
+import {
+  ActivatedRoute,
+  NavigationEnd,
+  Params,
+  PRIMARY_OUTLET,
+  Router,
+  RouterModule
+} from '@angular/router';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
 import { filter, startWith } from 'rxjs';
@@ -38,7 +45,8 @@ export class HeaderMenuComponent {
 
   public logout(): void {
     this.modalService.confirm('Do you want to sign out ?').subscribe(ok => {
-      if (ok) this.authService.logout(() => this.router.navigateByUrl('/auth/login'));
+      if (ok)
+        this.authService.logout(() => this.router.navigateByUrl('/auth/login'));
     });
   }
 
@@ -57,7 +65,11 @@ export class HeaderMenuComponent {
     }
   }
 
-  private _getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: BreadcrumbOption[] = []): BreadcrumbOption[] {
+  private _getBreadcrumbs(
+    route: ActivatedRoute,
+    url: string = '',
+    breadcrumbs: BreadcrumbOption[] = []
+  ): BreadcrumbOption[] {
     const children: ActivatedRoute[] = route.children;
 
     if (children.length === 0) return breadcrumbs;
