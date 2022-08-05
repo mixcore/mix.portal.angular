@@ -10,10 +10,10 @@ import { SkeletonLoadingComponent, SwitchComponent } from '@mix/mix.ui';
 import {
   MixPostPortalModel,
   MixPostReferenceModel,
+  PaginationRequestModel,
   PaginationResultModel
 } from '@mix-spa/mix.lib';
 import { TuiPaginationModule, TuiToggleModule } from '@taiga-ui/kit';
-import { PaginationRequestModel } from 'libs/mix.lib/src/models/base/pagination-request.model';
 import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 
 import { BaseComponent } from '../../bases';
