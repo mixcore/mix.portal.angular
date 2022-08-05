@@ -74,7 +74,7 @@ export class PortalLayoutComponent {
         }
       ],
       action: () => this.navigate('/portal/dashboard'),
-      route: 'dashboard'
+      route: RouteConfig.PortalDashboard
     },
     {
       id: 3,
@@ -95,7 +95,7 @@ export class PortalLayoutComponent {
         }
       ],
       action: () => this.navigate(`/portal/${RouteConfig.PostList}`),
-      route: RouteConfig.PostList
+      route: RouteConfig.Post
     },
     {
       id: 4,
@@ -116,7 +116,7 @@ export class PortalLayoutComponent {
         }
       ],
       action: () => this.navigate(`/portal/${RouteConfig.PageList}`),
-      route: RouteConfig.PostList
+      route: RouteConfig.Page
     },
     {
       id: 5,
@@ -137,7 +137,7 @@ export class PortalLayoutComponent {
         }
       ],
       action: () => this.navigate(`/portal/${RouteConfig.ModuleList}`),
-      route: RouteConfig.ModuleList
+      route: RouteConfig.Module
     },
     {
       id: 6,

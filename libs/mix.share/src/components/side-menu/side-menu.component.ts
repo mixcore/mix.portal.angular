@@ -66,9 +66,9 @@ export class SideMenuComponent implements OnInit {
   public initMenu(): void {
     const route = this.router.url.split('/')[2];
     if (route) {
-      this.currentSelectedItem = this.menuItems.find(
-        i => i.route && i.route === route
-      );
+      this.currentSelectedItem =
+        this.menuItems.find(i => i.route && i.route === route) ||
+        this.menuItems[1];
     } else {
       this.currentSelectedItem = this.menuItems[1];
     }

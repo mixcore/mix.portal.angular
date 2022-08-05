@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TuiAlertService, TuiNotification } from '@taiga-ui/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, take } from 'rxjs';
 
 import { HeaderMenuService } from '../components/header-menu/header-menu.service';
 
@@ -14,19 +14,21 @@ export abstract class BaseComponent {
 
   public showSuccess(text: string): void {
     this.alert
-      .open(new Date().toLocaleDateString(), {
+      .open(new Date().toLocaleString(), {
         label: text,
         status: TuiNotification.Success
       })
+      .pipe(take(1))
       .subscribe();
   }
 
   public showError(text: string): void {
     this.alert
-      .open(new Date().toLocaleDateString(), {
+      .open(new Date().toLocaleString(), {
         label: text,
         status: TuiNotification.Error
       })
+      .pipe(take(1))
       .subscribe();
   }
 }
