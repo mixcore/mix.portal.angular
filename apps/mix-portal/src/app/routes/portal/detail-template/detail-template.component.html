@@ -43,19 +43,22 @@
              class="detail-template__code-editor"
              [formGroup]="form">
           <ng-container *ngIf="activeTabIndex === 0">
-            <mix-code-editor [language]="'razor'"
+            <mix-code-editor class="mix-code-editor"
+                             [language]="'razor'"
                              formControlName="templateCode">
             </mix-code-editor>
           </ng-container>
 
           <ng-container *ngIf="activeTabIndex === 1">
-            <mix-code-editor [language]="'javascript'"
+            <mix-code-editor class="mix-code-editor"
+                             [language]="'javascript'"
                              formControlName="javascriptCode">
             </mix-code-editor>
           </ng-container>
 
           <ng-container *ngIf="activeTabIndex === 2">
-            <mix-code-editor [language]="'css'"
+            <mix-code-editor class="mix-code-editor"
+                             [language]="'css'"
                              formControlName="styleSheetCode">
             </mix-code-editor>
           </ng-container>
