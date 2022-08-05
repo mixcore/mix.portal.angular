@@ -5,11 +5,6 @@ import { MixToolbarComponent, ShareModule } from '@mix-spa/mix.share';
 
 import { MixFolderFileComponent } from './folder-files/file.component';
 
-interface Folders {
-  text: string;
-  value: MixTemplateFolder;
-}
-
 @Component({
   selector: 'mix-list-template',
   templateUrl: './list-template.component.html',

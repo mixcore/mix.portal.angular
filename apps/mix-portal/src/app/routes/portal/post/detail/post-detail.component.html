@@ -22,6 +22,11 @@
               tuiTab>
         Parent
       </button>
+      <button [disabled]="!!(loading$ | async)"
+              (click)="activeTabIndex = 4"
+              tuiTab>
+        Template
+      </button>
     </tui-tabs>
 
     <div *ngIf="!!(loading$ | async); else mainTemplate"
@@ -75,11 +80,17 @@
                              formControlName="seoKeywords"></mix-input-labeled>
         </div>
       </div>
-    </ng-template>
 
-    <div *ngIf="activeTabIndex === 2"
-         class="post-detail__main-widget">
-      <mix-post-nav-selected [selectedPosts]="selectedPostNavs"></mix-post-nav-selected>
-    </div>
+      <div *ngIf="activeTabIndex === 2"
+           class="post-detail__main-widget">
+        <mix-post-nav-selected [selectedPosts]="selectedPostNavs"></mix-post-nav-selected>
+      </div>
+
+      <div *ngIf="activeTabIndex === 4"
+           class="post-detail__main-widget"
+           [formGroup]="form">
+
+      </div>
+    </ng-template>
   </div>
 </mix-content-detail-container>
