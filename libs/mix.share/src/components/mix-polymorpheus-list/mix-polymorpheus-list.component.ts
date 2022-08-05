@@ -86,7 +86,7 @@ export class MixPolymorphousListComponent
       searchPlaceholder: 'Type your Post name...'
     },
     Module: {
-      header: 'Module sAvailable',
+      header: 'Modules Available',
       searchPlaceholder: 'Type your Module name...'
     },
     MixDatabase: {
@@ -232,6 +232,7 @@ export class MixPolymorphousListComponent
         this.route.navigateByUrl(`/portal/post/${this.currentActionItem.id}`);
         break;
       case MixContentType.Page:
+        this.route.navigateByUrl(`/portal/page/${this.currentActionItem.id}`);
         break;
       default:
         break;

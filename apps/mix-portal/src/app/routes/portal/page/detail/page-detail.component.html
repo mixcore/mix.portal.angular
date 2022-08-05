@@ -1,0 +1,96 @@
+<mix-content-detail-container (save)="savePage()">
+  <div class="page-detail">
+    <tui-tabs class="custom-tabs"
+              [(activeItemIndex)]="activeTabIndex">
+      <button [disabled]="!!(loading$ | async)"
+              (click)="activeTabIndex = 0"
+              tuiTab>
+        Content
+      </button>
+      <button [disabled]="!!(loading$ | async)"
+              (click)="activeTabIndex = 1"
+              tuiTab>
+        SEO
+      </button>
+      <button [disabled]="!!(loading$ | async)"
+              (click)="activeTabIndex = 2"
+              tuiTab>
+        Related
+      </button>
+      <button [disabled]="!!(loading$ | async)"
+              (click)="activeTabIndex = 3"
+              tuiTab>
+        Parent
+      </button>
+      <button [disabled]="!!(loading$ | async)"
+              (click)="activeTabIndex = 4"
+              tuiTab>
+        Template
+      </button>
+    </tui-tabs>
+
+    <div *ngIf="!!(loading$ | async); else mainTemplate"
+         class="page-detail__main-widget">
+      <mix-skeleton-loading [type]="'form'">
+      </mix-skeleton-loading>
+    </div>
+
+    <ng-template #mainTemplate>
+      <div *ngIf="activeTabIndex === 0"
+           class="page-detail__main-widget"
+           [formGroup]="form">
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'Title'"
+                             formControlName="title"></mix-input-labeled>
+        </div>
+
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'Excerpt'"
+                             formControlName="excerpt"></mix-input-labeled>
+        </div>
+
+        <div class="mix-form__row">
+          <mix-rich-text-editor [label]="'Content'"
+                                formControlName="content"></mix-rich-text-editor>
+        </div>
+      </div>
+
+      <div *ngIf="activeTabIndex === 1"
+           class="page-detail__main-widget"
+           [formGroup]="form">
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'Friendly Title'"
+                             formControlName="seoTitle"></mix-input-labeled>
+        </div>
+
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'Friendly Urls'"
+                             formControlName="seoName"></mix-input-labeled>
+        </div>
+
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'Meta Description'"
+                             [type]="'text-area'"
+                             formControlName="seoDescription"></mix-input-labeled>
+        </div>
+
+        <div class="mix-form__row">
+          <mix-input-labeled [label]="'SEO Keywords'"
+                             [type]="'text-area'"
+                             formControlName="seoKeywords"></mix-input-labeled>
+        </div>
+      </div>
+
+      <div *ngIf="activeTabIndex === 2"
+           class="page-detail__main-widget">
+        <mix-post-nav-selected [selectedPosts]="selectedPostNavs"></mix-post-nav-selected>
+      </div>
+
+      <div *ngIf="activeTabIndex === 4"
+           class="page-detail__main-widget"
+           [formGroup]="form">
+
+      </div>
+    </ng-template>
+  </div>
+</mix-content-detail-container>

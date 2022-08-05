@@ -35,4 +35,8 @@ export class MixPageApiService extends BaseApiService {
       data
     ).pipe(tap(() => this.appEvent.notify(AppEvent.NewPageAdded)));
   }
+
+  public getPageById(id: number): Observable<MixPagePortalModel> {
+    return this.get(MixApiDict.PageApi.getPageById(id));
+  }
 }

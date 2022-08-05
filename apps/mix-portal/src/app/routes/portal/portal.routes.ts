@@ -3,9 +3,11 @@ import { Route } from '@angular/router';
 import { RouteConfig } from '../route.const';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { ListDatabaseComponent } from './list-database/list-database.component';
-import { ListModuleComponent } from './list-module/list-module.component';
-import { ListPageComponent } from './list-page/list-page.component';
 import { ListThemeComponent } from './list-theme/list-theme.component';
+import { ModuleDetailComponent } from './module/detail/module-detail.component';
+import { ModuleListComponent } from './module/list/module-list.component';
+import { PageDetailComponent } from './page/detail/page-detail.component';
+import { PageListComponent } from './page/list/page-list.component';
 import { PostDetailComponent } from './post/detail/post-detail.component';
 import { ListPostComponent } from './post/list/list-post.component';
 
@@ -17,6 +19,7 @@ export const PORTAL_ROUTES: Route[] = [
       title: 'Dashboard'
     }
   },
+  // Post
   {
     path: RouteConfig.PostList,
     component: ListPostComponent,
@@ -31,20 +34,37 @@ export const PORTAL_ROUTES: Route[] = [
       title: 'Post'
     }
   },
+  // Page
   {
-    path: 'list-page',
-    component: ListPageComponent,
+    path: RouteConfig.PageList,
+    component: PageListComponent,
     data: {
       title: 'Page list'
     }
   },
   {
-    path: 'list-module',
-    component: ListModuleComponent,
+    path: RouteConfig.PageDetail,
+    component: PageDetailComponent,
+    data: {
+      title: 'Page'
+    }
+  },
+  // Module
+  {
+    path: RouteConfig.ModuleList,
+    component: ModuleListComponent,
     data: {
       title: 'Module list'
     }
   },
+  {
+    path: RouteConfig.PageDetail,
+    component: ModuleDetailComponent,
+    data: {
+      title: 'Module'
+    }
+  },
+  // Database
   {
     path: 'list-database',
     component: ListDatabaseComponent,

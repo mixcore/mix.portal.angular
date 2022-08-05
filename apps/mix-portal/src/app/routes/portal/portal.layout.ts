@@ -112,11 +112,11 @@ export class PortalLayoutComponent {
         {
           title: 'Pages',
           icon: 'list-numbers',
-          action: () => this.navigate('/portal/list-page')
+          action: () => this.navigate(`/portal/${RouteConfig.PageList}`)
         }
       ],
-      action: () => this.navigate('/portal/list-page'),
-      route: 'list-page'
+      action: () => this.navigate(`/portal/${RouteConfig.PageList}`),
+      route: RouteConfig.PostList
     },
     {
       id: 5,
@@ -133,11 +133,11 @@ export class PortalLayoutComponent {
         {
           title: 'Modules',
           icon: 'components',
-          action: () => this.navigate('/portal/list-module')
+          action: () => this.navigate(`/portal/${RouteConfig.ModuleList}`)
         }
       ],
-      action: () => this.navigate('/portal/list-module'),
-      route: 'list-module'
+      action: () => this.navigate(`/portal/${RouteConfig.ModuleList}`),
+      route: RouteConfig.ModuleList
     },
     {
       id: 6,

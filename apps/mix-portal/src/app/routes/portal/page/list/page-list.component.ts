@@ -7,13 +7,13 @@ import {
 } from '@mix-spa/mix.share';
 
 @Component({
-  selector: 'mix-list-page',
-  templateUrl: './list-page.component.html',
-  styleUrls: ['./list-page.component.scss'],
+  selector: 'mix-page-list',
+  templateUrl: './page-list.component.html',
+  styleUrls: ['./page-list.component.scss'],
   standalone: true,
   imports: [ShareModule, MixPolymorphousListComponent]
 })
-export class ListPageComponent extends BaseComponent {
+export class PageListComponent extends BaseComponent {
   public type: MixContentType = MixContentType.Page;
 
   constructor() {
