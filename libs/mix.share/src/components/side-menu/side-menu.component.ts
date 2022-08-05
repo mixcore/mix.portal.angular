@@ -75,6 +75,7 @@ export class SideMenuComponent implements OnInit {
   }
 
   public initTourGuide(): void {
+    return;
     this.hideTourGuide = this.appService.appSetting.hideTourGuide;
     if (this.hideTourGuide) return;
     this.joyrideService.startTour({
