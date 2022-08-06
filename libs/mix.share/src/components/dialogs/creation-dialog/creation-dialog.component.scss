@@ -1,38 +1,11 @@
 .creation-dialog {
-  width: 55vw;
-  min-width: 800px;
+  width: 100%;
   height: 100%;
   display: flex;
   position: relative;
   flex-direction: column;
-  border-top-left-radius: 10px;
   background-color: var(--tui-base-01);
-  border-left: 1px sold var(--tui-base-04);
   transition: all 0.3s ease;
-
-  &.--large {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-      rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
-    width: 70vw;
-  }
-
-  &__header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    padding: 10px 10px 10px 20px;
-    border-bottom: 1px solid var(--tui-base-04);
-
-    tui-select {
-      margin-left: 10px;
-      width: 200px;
-    }
-
-    .action {
-      margin-left: auto;
-    }
-  }
 
   &__content {
     width: 100%;

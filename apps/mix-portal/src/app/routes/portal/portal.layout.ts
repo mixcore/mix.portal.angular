@@ -16,6 +16,7 @@ import {
   PortalSidebarControlService,
   PortalSidebarHostComponent,
   ShareModule,
+  SidebarContainerComponent,
   SideMenuComponent,
   TabControlDialogComponent,
   TabControlService,
@@ -39,7 +40,8 @@ import { RouteConfig } from '../route.const';
     TabControlDialogComponent,
     MixChatBoxComponent,
     CreationDialogComponent,
-    PortalSidebarHostComponent
+    PortalSidebarHostComponent,
+    SidebarContainerComponent
   ]
 })
 export class PortalLayoutComponent {

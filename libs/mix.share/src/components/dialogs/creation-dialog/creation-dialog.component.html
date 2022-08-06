@@ -1,34 +1,4 @@
-<div class="creation-dialog"
-     [ngClass]="{'--large': largeMode}"
-     [@enterAnimation]>
-  <div class="creation-dialog__header">
-    <div>Create new: </div>
-    <tui-select [(ngModel)]="type"
-                [tuiTextfieldLabelOutside]="true"
-                tuiTextfieldSize="s">
-      <input tuiTextfield
-             placeholder="Choose your type">
-      <tui-data-list-wrapper *tuiDataList
-                             [items]="items"></tui-data-list-wrapper>
-    </tui-select>
-
-    <div class="action">
-      <button [appearance]="'icon'"
-              [size]="'xs'"
-              (click)="showRightSideMenu = !showRightSideMenu"
-              tuiButton>
-        <i-tabler name="layout-sidebar-right"></i-tabler>
-      </button>
-
-      <button [appearance]="'icon'"
-              [size]="'xs'"
-              (click)="closeSidebar()"
-              tuiButton>
-        <i-tabler name="square-x"></i-tabler>
-      </button>
-    </div>
-  </div>
-
+<div class="creation-dialog">
   <div class="creation-dialog__content">
     <div class="creation-dialog__content-left-side">
       <div class="toolbar">
@@ -196,11 +166,6 @@
         </tui-accordion-item>
       </tui-accordion>
     </div>
-  </div>
-
-  <div class="creation-dialog__expand-btn"
-       (click)="toggleLargeMode()">
-    <tui-svg [src]="largeMode ? 'tuiIconArrowRight' : 'tuiIconArrowLeft'"></tui-svg>
   </div>
 </div>
 

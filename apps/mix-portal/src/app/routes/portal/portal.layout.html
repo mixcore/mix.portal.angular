@@ -30,5 +30,7 @@
 ></ng-template>
 
 <ng-template #creationTemplate>
-  <mix-creation-dialog [type]="createMode"></mix-creation-dialog>
+  <mix-sidebar-container>
+    <mix-creation-dialog [type]="createMode"></mix-creation-dialog>
+  </mix-sidebar-container>
 </ng-template>
