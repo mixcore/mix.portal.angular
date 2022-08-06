@@ -1,5 +1,20 @@
 .template-editor {
+  background-color: var(--tui-base-07);
   &__tab {
     box-shadow: unset;
+    background-color: var(--tui-base-02);
+    height: 30px;
+    margin-bottom: 3px;
+  }
+
+  &__btn {
+    padding: 0 20px;
+    background: var(--tui-base-03);
+    height: 30px;
+    margin: unset;
+
+    &._active {
+      background: var(--tui-base-04);
+    }
   }
 }

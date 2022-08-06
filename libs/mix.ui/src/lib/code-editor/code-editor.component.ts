@@ -44,7 +44,7 @@ export class CodeEditorComponent implements OnInit, ControlValueAccessor {
 
   public ngOnInit(): void {
     this.templateOption = {
-      theme: 'vs',
+      theme: 'vs-dark',
       automaticLayout: true,
       language: 'razor'
     };

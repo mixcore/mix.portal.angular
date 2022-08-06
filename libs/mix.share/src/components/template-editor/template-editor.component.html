@@ -1,15 +1,18 @@
 <div class="template-editor">
   <tui-tabs class="template-editor__tab"
             [(activeItemIndex)]="activeTabIndex">
-    <button (click)="activeTabIndex = 0"
+    <button class="template-editor__btn"
+            (click)="activeTabIndex = 0"
             tuiTab>
       Template
     </button>
-    <button (click)="activeTabIndex = 1"
+    <button class="template-editor__btn"
+            (click)="activeTabIndex = 1"
             tuiTab>
       JavaScript
     </button>
-    <button (click)="activeTabIndex = 2"
+    <button class="template-editor__btn"
+            (click)="activeTabIndex = 2"
             tuiTab>
       Style Sheets CSS
     </button>
