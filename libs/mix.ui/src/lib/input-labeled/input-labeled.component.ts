@@ -32,6 +32,7 @@ import { BehaviorSubject } from 'rxjs';
   ]
 })
 export class InputLabeledComponent implements ControlValueAccessor {
+  @Input() public disabled = false;
   @Input() public type: 'text' | 'text-area' = 'text';
   @Input() public label = '';
   public value = '';

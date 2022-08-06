@@ -40,17 +40,20 @@
            class="post-detail__main-widget"
            [formGroup]="form">
         <div class="mix-form__row">
-          <mix-input-labeled [label]="'Title'"
+          <mix-input-labeled [disabled]="!!(disabled$ | async)"
+                             [label]="'Title'"
                              formControlName="title"></mix-input-labeled>
         </div>
 
         <div class="mix-form__row">
-          <mix-input-labeled [label]="'Excerpt'"
+          <mix-input-labeled [disabled]="!!(disabled$ | async)"
+                             [label]="'Excerpt'"
                              formControlName="excerpt"></mix-input-labeled>
         </div>
 
         <div class="mix-form__row">
-          <mix-rich-text-editor [label]="'Content'"
+          <mix-rich-text-editor [disabled]="!!(disabled$ | async)"
+                                [label]="'Content'"
                                 formControlName="content"></mix-rich-text-editor>
         </div>
       </div>
@@ -59,23 +62,27 @@
            class="post-detail__main-widget"
            [formGroup]="form">
         <div class="mix-form__row">
-          <mix-input-labeled [label]="'Friendly Title'"
+          <mix-input-labeled [disabled]="!!(disabled$ | async)"
+                             [label]="'Friendly Title'"
                              formControlName="seoTitle"></mix-input-labeled>
         </div>
 
         <div class="mix-form__row">
-          <mix-input-labeled [label]="'Friendly Urls'"
+          <mix-input-labeled [disabled]="!!(disabled$ | async)"
+                             [label]="'Friendly Urls'"
                              formControlName="seoName"></mix-input-labeled>
         </div>
 
         <div class="mix-form__row">
-          <mix-input-labeled [label]="'Meta Description'"
+          <mix-input-labeled [disabled]="!!(disabled$ | async)"
+                             [label]="'Meta Description'"
                              [type]="'text-area'"
                              formControlName="seoDescription"></mix-input-labeled>
         </div>
 
         <div class="mix-form__row">
-          <mix-input-labeled [label]="'SEO Keywords'"
+          <mix-input-labeled [disabled]="!!(disabled$ | async)"
+                             [label]="'SEO Keywords'"
                              [type]="'text-area'"
                              formControlName="seoKeywords"></mix-input-labeled>
         </div>
@@ -89,23 +96,29 @@
       <div *ngIf="activeTabIndex === 4"
            class="post-detail__main-widget"
            [formGroup]="form">
-        <tui-select [(ngModel)]="selectedTemplate"
-                    [ngModelOptions]="{standalone: true}"
-                    [valueContent]="itemContent"
-                    tuiTextfieldSize="s">
-          Template
-          <input tuiTextfield
-                 placeholder="Choose your template">
-          <tui-data-list-wrapper *tuiDataList
-                                 [itemContent]="itemContent"
-                                 [items]="availableTemplates"></tui-data-list-wrapper>
-        </tui-select>
+        <label [label]="'Choose your post template:'"
+               tuiLabel>
+          <tui-select [(ngModel)]="selectedTemplate"
+                      [disabled]="!!(disabled$ | async)"
+                      [ngModelOptions]="{standalone: true}"
+                      [tuiTextfieldLabelOutside]="true"
+                      [valueContent]="itemContent"
+                      (ngModelChange)="postTemplateChange($event)"
+                      tuiTextfieldSize="s">
+            <tui-data-list-wrapper *tuiDataList
+                                   [itemContent]="itemContent"
+                                   [items]="availableTemplates"></tui-data-list-wrapper>
+          </tui-select>
+        </label>
 
         <ng-template #itemContent
                      let-item>
           {{ item.fileName }}
         </ng-template>
 
+        <mix-template-editor *ngIf="selectedTemplate"
+                             [disabled]="true"
+                             [templateId]="selectedTemplate.id"></mix-template-editor>
       </div>
     </ng-template>
   </div>

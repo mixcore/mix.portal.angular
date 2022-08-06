@@ -1,0 +1,45 @@
+<div class="template-editor">
+  <tui-tabs class="template-editor__tab"
+            [(activeItemIndex)]="activeTabIndex">
+    <button (click)="activeTabIndex = 0"
+            tuiTab>
+      Template
+    </button>
+    <button (click)="activeTabIndex = 1"
+            tuiTab>
+      JavaScript
+    </button>
+    <button (click)="activeTabIndex = 2"
+            tuiTab>
+      Style Sheets CSS
+    </button>
+  </tui-tabs>
+
+  <div *ngIf="currentTemplate"
+       class="detail-template__code-editor"
+       [formGroup]="form">
+    <ng-container *ngIf="activeTabIndex === 0">
+      <mix-code-editor class="mix-code-editor"
+                       [disabled]="disabled"
+                       [language]="'razor'"
+                       formControlName="templateCode">
+      </mix-code-editor>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabIndex === 1">
+      <mix-code-editor class="mix-code-editor"
+                       [disabled]="disabled"
+                       [language]="'javascript'"
+                       formControlName="javascriptCode">
+      </mix-code-editor>
+    </ng-container>
+
+    <ng-container *ngIf="activeTabIndex === 2">
+      <mix-code-editor class="mix-code-editor"
+                       [disabled]="disabled"
+                       [language]="'css'"
+                       formControlName="styleSheetCode">
+      </mix-code-editor>
+    </ng-container>
+  </div>
+</div>

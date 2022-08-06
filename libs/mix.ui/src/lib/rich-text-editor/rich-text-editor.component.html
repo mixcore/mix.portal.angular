@@ -1,6 +1,7 @@
 <label [label]="label + ':'"
        tuiLabel>
   <tui-editor class="editor"
+              [disabled]="disabled"
               [ngModel]="value"
               (ngModelChange)="onValueChange($event)"
               new>

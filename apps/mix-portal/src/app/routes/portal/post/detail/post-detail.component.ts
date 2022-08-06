@@ -26,8 +26,10 @@ import {
   FormUtils,
   MixPostApiService,
   MixTemplateApiService,
-  PostNavSelectedComponent
+  PostNavSelectedComponent,
+  TemplateEditorComponent
 } from '@mix-spa/mix.share';
+import { TuiLabelModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
   TuiSelectModule,
@@ -53,7 +55,10 @@ import { takeUntil } from 'rxjs';
     PostNavSelectedComponent,
     CodeEditorComponent,
     TuiSelectModule,
-    TuiDataListWrapperModule
+    TuiDataListWrapperModule,
+    TuiTextfieldControllerModule,
+    TemplateEditorComponent,
+    TuiLabelModule
   ],
   providers: [DestroyService]
 })
@@ -140,13 +145,20 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
       ...this.form.getRawValue()
     };
 
+    this.disabled$.next(true);
     this.postApi.savePost(post).subscribe({
       next: () => {
         this.showSuccess('Successfully save your post');
+        this.disabled$.next(false);
       },
       error: () => {
         this.showError('Error, please try again');
+        this.disabled$.next(false);
       }
     });
+  }
+
+  public postTemplateChange(template: MixTemplateModel): void {
+    this.post.templateId = template.id;
   }
 }

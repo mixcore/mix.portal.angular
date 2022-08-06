@@ -25,6 +25,7 @@ import { BehaviorSubject } from 'rxjs';
   ]
 })
 export class RichTextEditorComponent implements ControlValueAccessor {
+  @Input() public disabled = false;
   @Input() public label = '';
   public value = '';
   public value$: BehaviorSubject<string> = new BehaviorSubject<string>(

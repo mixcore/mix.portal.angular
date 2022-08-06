@@ -2,19 +2,23 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   ControlValueAccessor,
+  FormControl,
   FormsModule,
-  NG_VALUE_ACCESSOR
+  NG_VALUE_ACCESSOR,
+  ReactiveFormsModule
 } from '@angular/forms';
+import { TuiDestroyService } from '@taiga-ui/cdk';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { BehaviorSubject } from 'rxjs';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-code-editor',
   templateUrl: './code-editor.component.html',
   styleUrls: ['./code-editor.component.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, MonacoEditorModule],
+  imports: [CommonModule, FormsModule, MonacoEditorModule, ReactiveFormsModule],
   providers: [
+    TuiDestroyService,
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: CodeEditorComponent,
@@ -23,14 +27,17 @@ import { BehaviorSubject } from 'rxjs';
   ]
 })
 export class CodeEditorComponent implements OnInit, ControlValueAccessor {
-  @Input() public code = '';
+  @Input() public set disabled(value: boolean) {
+    console.log(value);
+    value ? this.form.disable() : this.form.enable();
+  }
   @Input() public language = 'razor';
   @Output() public codeChange: EventEmitter<string> =
     new EventEmitter<string>();
   public templateOption = {};
-  public code$: BehaviorSubject<string> = new BehaviorSubject<string>(
-    this.code
-  );
+  public form: FormControl = new FormControl('');
+
+  constructor(private destroy$: TuiDestroyService) {}
 
   public onChange = (value: string) => value;
   public onTouch = () => undefined;
@@ -44,16 +51,16 @@ export class CodeEditorComponent implements OnInit, ControlValueAccessor {
   }
 
   public onCodeChange(value: string): void {
-    this.code = value;
-    this.code$.next(value);
     this.codeChange.emit(value);
     this.onChange(value);
     this.onTouch();
   }
 
   public writeValue(value: string): void {
-    this.code = value;
-    this.code$.next(value);
+    this.form.patchValue(value);
+    this.form.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(v => this.onCodeChange(v));
   }
 
   public registerOnChange(fn: (value: string) => string): void {

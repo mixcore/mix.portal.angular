@@ -19,6 +19,8 @@ import {
 } from '@taiga-ui/addon-editor';
 import {
   TUI_ANIMATIONS_DURATION,
+  TUI_NOTIFICATION_DEFAULT_OPTIONS,
+  TUI_NOTIFICATION_OPTIONS,
   TuiAlertModule,
   TuiDialogModule
 } from '@taiga-ui/core';
@@ -71,7 +73,14 @@ bootstrapApplication(AppComponent, {
     },
     {
       provide: TUI_ANIMATIONS_DURATION,
-      useValue: 100
+      useValue: 200
+    },
+    {
+      provide: TUI_NOTIFICATION_OPTIONS,
+      useValue: {
+        ...TUI_NOTIFICATION_DEFAULT_OPTIONS,
+        autocloseTimeout: 7000
+      }
     },
     importProvidersFrom(
       RouterModule.forRoot(app_routes),

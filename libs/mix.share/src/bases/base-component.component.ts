@@ -6,6 +6,7 @@ import { BehaviorSubject, take } from 'rxjs';
 import { HeaderMenuService } from '../components/header-menu/header-menu.service';
 
 export abstract class BaseComponent {
+  public disabled$ = new BehaviorSubject<boolean>(false);
   public error$ = new BehaviorSubject<boolean>(false);
   public loading$ = new BehaviorSubject<boolean>(true);
   public alert = inject(TuiAlertService);

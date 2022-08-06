@@ -19,5 +19,6 @@ export * from './portal-sidebar-host/portal-sidebar-host.component';
 export * from './post-nav-selected/post-nav-selected.component';
 export * from './side-menu';
 export * from './sidebar-container/sidebar-container.component';
+export * from './template-editor/template-editor.component';
 export * from './theme-import';
 export * from './user-list-hub/user-list-hub.component';
