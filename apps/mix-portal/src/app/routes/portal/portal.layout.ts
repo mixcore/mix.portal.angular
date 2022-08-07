@@ -65,7 +65,7 @@ export class PortalLayoutComponent {
     {
       id: 1,
       title: 'Dashboard',
-      icon: 'smart-home',
+      icon: 'device-desktop-analytics',
       position: VerticalDisplayPosition.Top,
       guideText: 'Dashboard - View your site information, analytics.',
       detail: [
@@ -81,7 +81,7 @@ export class PortalLayoutComponent {
     {
       id: 3,
       title: 'Posts',
-      icon: 'news',
+      icon: 'file-text',
       guideText: 'Post repository - Where to manage your posts.',
       position: VerticalDisplayPosition.Top,
       detail: [
@@ -123,7 +123,7 @@ export class PortalLayoutComponent {
     {
       id: 5,
       title: 'Modules',
-      icon: 'components',
+      icon: 'section',
       guideText: 'Module repository - manage all of your modules here',
       position: VerticalDisplayPosition.Top,
       detail: [
@@ -134,7 +134,7 @@ export class PortalLayoutComponent {
         },
         {
           title: 'Modules',
-          icon: 'components',
+          icon: 'section',
           action: () => this.navigate(`/portal/${RouteConfig.ModuleList}`)
         }
       ],
@@ -144,7 +144,7 @@ export class PortalLayoutComponent {
     {
       id: 6,
       title: 'Databases',
-      icon: 'stack2',
+      icon: 'database',
       position: VerticalDisplayPosition.Top,
       detail: [
         {
@@ -197,7 +197,7 @@ export class PortalLayoutComponent {
     {
       id: 9,
       title: 'Users',
-      icon: 'users',
+      icon: 'user-circle',
       position: VerticalDisplayPosition.Top,
       detail: [
         {
@@ -226,7 +226,7 @@ export class PortalLayoutComponent {
     {
       id: 10,
       title: 'Themes',
-      icon: 'layout',
+      icon: 'color-swatch',
       position: VerticalDisplayPosition.Top,
       detail: [
         {
@@ -246,7 +246,7 @@ export class PortalLayoutComponent {
         },
         {
           title: 'Modules',
-          icon: 'components',
+          icon: 'section',
           action: () => this.navigate('/portal/list-module')
         },
         {
