@@ -12,11 +12,13 @@ import {
   IconCopy,
   IconDatabase,
   IconDeviceDesktopAnalytics,
+  IconEdit,
   IconFile,
   IconFileHorizontal,
   IconFileImport,
   IconFileText,
   IconFilter,
+  IconFolder,
   IconLanguage,
   IconLayout,
   IconLayoutSidebarRight,
@@ -99,5 +101,7 @@ export const ICONS = {
   IconFileText,
   IconDeviceDesktopAnalytics,
   IconSection,
-  IconColorSwatch
+  IconColorSwatch,
+  IconFolder,
+  IconEdit
 };

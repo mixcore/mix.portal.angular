@@ -8,7 +8,12 @@
     position: sticky;
     top: 0;
     z-index: 2;
-    background-color: #f0f4f9;
+    background-color: hsla(
+      var(--primary-hover-color-hue, 211),
+      var(--primary-hover-color-saturation, 100%),
+      var(--primary-hover-color-brightness, 70%),
+      0.2
+    );
     display: flex;
     align-items: center;
     justify-content: flex-end;
