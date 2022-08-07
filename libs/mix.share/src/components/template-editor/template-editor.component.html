@@ -1,4 +1,4 @@
-<div class="template-editor">
+<!-- <div class="template-editor">
   <tui-tabs class="template-editor__tab"
             [(activeItemIndex)]="activeTabIndex">
     <button class="template-editor__btn"
@@ -44,5 +44,85 @@
                        formControlName="styleSheetCode">
       </mix-code-editor>
     </ng-container>
+  </div>
+</div> -->
+
+
+<div class="template-editor">
+  <div class="template-editor__header">
+    <div class="logo">
+      <img src="/assets/images/mixcore-logo-red-square.svg">
+    </div>
+
+    <tui-tabs class="tabs"
+              [(activeItemIndex)]="activeTabIndex">
+      <button class="tabs__btn"
+              (click)="activeTabIndex = 0"
+              tuiTab>
+        Template
+      </button>
+      <button class="tabs__btn"
+              (click)="activeTabIndex = 1"
+              tuiTab>
+        JavaScript
+      </button>
+      <button class="tabs__btn"
+              (click)="activeTabIndex = 2"
+              tuiTab>
+        Style Sheets CSS
+      </button>
+    </tui-tabs>
+
+    <div class="toolbar">
+      <div class="toolbar__btn">
+        <i-tabler class="icon"
+                  name="minus"></i-tabler>
+      </div>
+
+      <div class="toolbar__btn">
+        <i-tabler class="icon"
+                  name="square"></i-tabler>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="template-editor__body">
+    <div class="extensions">
+
+    </div>
+
+    <div class="code-zone">
+      <div *ngIf="currentTemplate"
+           [formGroup]="form">
+        <ng-container *ngIf="activeTabIndex === 0">
+          <mix-code-editor class="mix-code-editor"
+                           [disabled]="disabled"
+                           [language]="'razor'"
+                           formControlName="templateCode">
+          </mix-code-editor>
+        </ng-container>
+
+        <ng-container *ngIf="activeTabIndex === 1">
+          <mix-code-editor class="mix-code-editor"
+                           [disabled]="disabled"
+                           [language]="'javascript'"
+                           formControlName="javascriptCode">
+          </mix-code-editor>
+        </ng-container>
+
+        <ng-container *ngIf="activeTabIndex === 2">
+          <mix-code-editor class="mix-code-editor"
+                           [disabled]="disabled"
+                           [language]="'css'"
+                           formControlName="styleSheetCode">
+          </mix-code-editor>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <div class="template-editor__footer">
+    c
   </div>
 </div>

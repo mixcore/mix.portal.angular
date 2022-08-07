@@ -3,6 +3,8 @@
   box-sizing: border-box;
   display: flex;
   position: relative;
+  background-color: #f0f2f5;
+
   &__level-1 {
     height: 100%;
     padding: 5px 5px 5px 5px;
@@ -10,21 +12,20 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    // Temporary remove background for now
-    // background: rgb(214, 220, 234);
-    // background: linear-gradient(300deg, rgba(214, 220, 234, 1) 41%, rgba(148, 207, 233, 1) 100%);
   }
+
   &__level-1-logo {
     margin-bottom: 15px;
     .login-form-logo-square {
       width: 40px;
       height: 35px;
-      background-color: var(--tui-primary);
+      background-color: #f06;
       -webkit-mask: url(/assets/images/mixcore-logo-red-square.svg) no-repeat
         50% 50%;
       mask: url(/assets/images/mixcore-logo-red-square.svg) no-repeat 50% 50%;
     }
   }
+
   &__level-1-icon {
     margin-bottom: 5px;
     width: 40px;
@@ -49,10 +50,12 @@
       color: var(--tui-primary);
     }
   }
+
   &__level-2 {
     height: 100%;
     width: 255px;
   }
+
   &__level-2-title {
     height: var(--mix-header-height);
     border-bottom: 1px solid var(--tui-base-04);
@@ -62,9 +65,11 @@
     display: flex;
     align-items: center;
   }
+
   &__level-2-content {
     padding: 24px 24px 5px 24px;
   }
+
   &__detail-item {
     cursor: pointer;
     border-radius: 8px;
@@ -88,6 +93,7 @@
       transition: background 0s;
     }
   }
+
   &__collapse-icon {
     position: absolute;
     width: 40px;
@@ -99,8 +105,8 @@
     align-items: center;
     cursor: pointer;
     border-radius: 12px;
-    // background-color: #e8f0f7;
   }
+
   .separator {
     content: '';
     display: block;

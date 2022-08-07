@@ -12,13 +12,11 @@ import {
   IconCopy,
   IconDatabase,
   IconDeviceDesktopAnalytics,
-  IconEdit,
   IconFile,
   IconFileHorizontal,
   IconFileImport,
   IconFileText,
   IconFilter,
-  IconFolder,
   IconLanguage,
   IconLayout,
   IconLayoutSidebarRight,
@@ -37,6 +35,7 @@ import {
   IconShoppingCart,
   IconSitemap,
   IconSmartHome,
+  IconSquare,
   IconSquareToggle,
   IconSquareX,
   IconStack2,
@@ -102,6 +101,5 @@ export const ICONS = {
   IconDeviceDesktopAnalytics,
   IconSection,
   IconColorSwatch,
-  IconFolder,
-  IconEdit
+  IconSquare
 };
