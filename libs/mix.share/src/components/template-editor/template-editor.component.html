@@ -24,6 +24,22 @@
     </tui-tabs>
 
     <div class="toolbar">
+      <div *ngIf="!!(isValueChanges$ | async)"
+           class="toolbar__save-btn">
+        <button [size]="'xs'"
+                (click)="onDiscardChange()"
+                appearance="outline"
+                tuiButton> Discard change </button>
+      </div>
+
+      <div *ngIf="!!(isValueChanges$ | async)"
+           class="toolbar__save-btn">
+        <button [size]="'xs'"
+                (click)="onSave()"
+                appearance="support"
+                tuiButton> Save </button>
+      </div>
+
       <div class="toolbar__btn"
            (click)="minimize = !minimize">
         <i-tabler class="icon"

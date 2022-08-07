@@ -339,3 +339,20 @@ tui-tabs.custom-tabs {
     font-weight: 500;
   }
 }
+
+tui-wrapper[data-appearance='support'] {
+  background: var(--tui-support-04);
+  color: #fff;
+
+  &[data-state='hovered'] {
+    background: var(--tui-support-03);
+  }
+
+  &[data-state='pressed'] {
+    background: var(--tui-support-03);
+  }
+
+  &[data-state='disabled'] {
+    background: #eaecee;
+  }
+}
