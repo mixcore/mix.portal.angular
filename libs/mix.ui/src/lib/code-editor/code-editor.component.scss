@@ -4,6 +4,7 @@
   overflow: auto;
 
   ngx-monaco-editor {
-    height: calc(100vh - var(--mix-header-height) - var(--tui-height-l) - 2rem);
+    // height: calc(100vh - var(--mix-header-height) - var(--tui-height-l) - 2rem);
+    height: 400px;
   }
 }

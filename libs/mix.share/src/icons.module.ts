@@ -31,6 +31,7 @@ import {
   IconShoppingCart,
   IconSitemap,
   IconSmartHome,
+  IconSquare,
   IconSquareToggle,
   IconSquareX,
   IconStack2,
@@ -89,5 +90,6 @@ export const ICONS = {
   IconShoppingCart,
   IconArrowRampRight,
   IconColumns,
-  IconFileImport
+  IconFileImport,
+  IconSquare
 };

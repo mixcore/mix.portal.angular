@@ -1,22 +1,16 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input
 } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule
-} from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { CodeEditorComponent } from '@mix/mix.ui';
 import { MixTemplateModel } from '@mix-spa/mix.lib';
-import { TuiTabsModule } from '@taiga-ui/kit';
 
 import { BaseComponent } from '../../bases/base-component.component';
 import { MixTemplateApiService } from '../../services/api/mix-template-api.service';
+import { ShareModule } from '../../share.module';
 
 @Component({
   selector: 'mix-template-editor',
@@ -24,13 +18,8 @@ import { MixTemplateApiService } from '../../services/api/mix-template-api.servi
   styleUrls: ['./template-editor.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    TuiTabsModule,
-    CodeEditorComponent
-  ]
+  imports: [ShareModule, CodeEditorComponent],
+  providers: []
 })
 export class TemplateEditorComponent extends BaseComponent {
   @Input() public disabled = false;

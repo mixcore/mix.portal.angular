@@ -13,13 +13,17 @@ import { MixMessengerCardComponent } from './messenger-card/messenger-card.compo
 })
 export class MixChatBoxComponent {
   public usersOnChatting: MixUser[] = [];
-  public usersOnMinimize: MixUser[] = [{ userName: 'Phong Cao' }, { userName: 'Huy' }, { userName: 'Nhat Hoang' }];
+  public usersOnMinimize: MixUser[] = [];
 
   public addChatting(user: MixUser): void {
-    const userToAddIndex = this.usersOnMinimize.findIndex(u => u.userName === user.userName);
+    const userToAddIndex = this.usersOnMinimize.findIndex(
+      u => u.userName === user.userName
+    );
     if (userToAddIndex >= 0) {
       this.usersOnChatting.push(this.usersOnMinimize[userToAddIndex]);
-      this.usersOnMinimize = this.usersOnMinimize.filter(u => u.userName !== user.userName);
+      this.usersOnMinimize = this.usersOnMinimize.filter(
+        u => u.userName !== user.userName
+      );
     }
   }
 
@@ -29,6 +33,8 @@ export class MixChatBoxComponent {
   }
 
   public closeChat(user: MixUser): void {
-    this.usersOnChatting = this.usersOnChatting.filter(u => u.userName !== user.userName);
+    this.usersOnChatting = this.usersOnChatting.filter(
+      u => u.userName !== user.userName
+    );
   }
 }
