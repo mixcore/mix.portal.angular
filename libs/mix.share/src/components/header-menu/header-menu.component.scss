@@ -1,64 +1,64 @@
 .header-menu {
-    width: 100%;
-    box-sizing: border-box;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  height: var(--mix-header-height);
+  border-bottom: 1px solid var(--tui-base-04);
+  align-items: center;
+  padding: 0 15px;
+  justify-content: space-between;
+  &__right-menu {
+    margin-left: auto;
     display: flex;
-    height: var(--mix-header-height);
-    border-bottom: 1px solid var(--tui-base-04);
+  }
+  &__search {
+    width: 250px;
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: 500;
+  }
+  &__user-info {
+    padding: 1rem 1rem 0rem 1rem;
+    display: flex;
+    width: 200px;
     align-items: center;
-    padding: 0 15px;
-    justify-content: space-between;
-    &__right-menu {
-        margin-left: auto;
-        display: flex;
+    > tui-avatar {
+      margin-right: 15px;
     }
-    &__search {
-        width: 250px;
+    > .title {
+      > span {
+        margin-right: 5px;
+      }
+      > strong {
+        display: inline-block;
+      }
+      > strong:first-letter {
+        text-transform: uppercase;
+      }
     }
-    &__title {
-        font-size: 16px;
-        font-weight: 500;
+  }
+  &__avatar {
+    margin-left: 15px;
+    cursor: pointer;
+  }
+  &__separator {
+    display: block;
+    content: '';
+    height: 0.5px;
+    width: calc(100% - 20px);
+    background-color: var(--tui-base-04);
+    margin: 1rem 10px;
+  }
+  &__item {
+    > button[tuiLink] {
+      color: var(--tui-text-01);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      > tui-svg {
+        margin-right: 2rem !important;
+      }
     }
-    &__user-info {
-        padding: 1rem 1rem 0rem 1rem;
-        display: flex;
-        width: 200px;
-        align-items: center;
-        >tui-avatar {
-            margin-right: 15px;
-        }
-        >.title {
-            >span {
-                margin-right: 5px;
-            }
-            >strong {
-                display: inline-block;
-            }
-            >strong:first-letter {
-                text-transform: uppercase;
-            }
-        }
-    }
-    &__avatar {
-        margin-left: 15px;
-        cursor: pointer;
-    }
-    &__separator {
-        display: block;
-        content: '';
-        height: 0.5px;
-        width: calc(100% - 20px);
-        background-color: var(--tui-base-04);
-        margin: 1rem 10px;
-    }
-    &__item {
-        >button[tuiLink] {
-            color: var(--tui-text-01);
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            >tui-svg {
-                margin-right: 2rem !important;
-            }
-        }
-    }
+  }
 }

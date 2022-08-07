@@ -1,6 +1,6 @@
 :root {
-  --primary-color-hue: 220;
-  --primary-color-saturation: 50%;
+  --primary-color-hue: 335;
+  --primary-color-saturation: 75%;
   --primary-color-brightness: 50%;
   --primary-hover-color-hue: var(--primary-color-hue);
   --primary-hover-color-saturation: 50%;
@@ -32,7 +32,7 @@
   --tui-radius-xs: 0.25rem;
   --tui-radius-s: 0.5rem;
   --tui-radius-m: 0.625rem;
-  --tui-radius-l: 0.625rem;
+  --tui-radius-l: 0.825rem;
   --tui-height-xs: 1.5rem;
   --tui-height-s: 2rem;
   --tui-height-m: 2.75rem;
@@ -72,7 +72,7 @@
     var(--primary-active-color-hue, 211),
     var(--primary-active-color-saturation, 100%),
     var(--primary-active-color-brightness, 70%),
-    1
+    0.9
   ); //#314692; // primary buttons pressed
   --tui-primary-text: #fff; // text on primary background
   --tui-secondary: #ebefff; // inputs and secondary buttons
@@ -162,7 +162,12 @@
   --tui-text-01: rgba(27, 31, 59, 1);
   --tui-text-02: rgba(27, 31, 59, 0.65);
   --tui-text-03: rgba(27, 31, 59, 0.4);
-  --tui-link: #526ed3;
+  --tui-link: hsla(
+    var(--primary-color-hue, 211),
+    var(--primary-color-saturation, 100%),
+    var(--primary-color-brightness, 50%),
+    1
+  );
   --tui-link-hover: #6c86e2;
   --tui-positive: #3aa981;
   --tui-positive-hover: #7ac5aa;

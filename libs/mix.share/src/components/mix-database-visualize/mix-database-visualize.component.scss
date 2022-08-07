@@ -9,7 +9,12 @@
     justify-content: flex-start;
     padding: 10px;
     box-sizing: border-box;
-    background-color: #f0f4f9;
+    background-color: hsla(
+      var(--primary-hover-color-hue, 211),
+      var(--primary-hover-color-saturation, 100%),
+      var(--primary-hover-color-brightness, 70%),
+      0.2
+    );
 
     .action {
       margin-right: 15px;
