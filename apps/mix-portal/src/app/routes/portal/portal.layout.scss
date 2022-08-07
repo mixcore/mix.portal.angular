@@ -3,10 +3,13 @@
   height: 100vh;
   display: flex;
   position: relative;
+  background-color: var(--mix-body-background);
 
   &__workspace {
     width: 100%;
-    border-left: 1px solid var(--tui-base-04);
+    border-left: 1px solid var(--tui-base-03);
+    border-top-left-radius: var(--mix-border-radius-02);
+    background-color: #fff;
   }
 
   &__main-workspace {
