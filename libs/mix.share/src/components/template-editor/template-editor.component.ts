@@ -28,6 +28,7 @@ export class TemplateEditorComponent extends BaseComponent {
     this.loadTemplate();
   }
 
+  public minimize = false;
   public activeTabIndex = 0;
   public currentTemplate: MixTemplateModel | null = null;
   public form: FormGroup = new FormGroup({

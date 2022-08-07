@@ -1,53 +1,3 @@
-<!-- <div class="template-editor">
-  <tui-tabs class="template-editor__tab"
-            [(activeItemIndex)]="activeTabIndex">
-    <button class="template-editor__btn"
-            (click)="activeTabIndex = 0"
-            tuiTab>
-      Template
-    </button>
-    <button class="template-editor__btn"
-            (click)="activeTabIndex = 1"
-            tuiTab>
-      JavaScript
-    </button>
-    <button class="template-editor__btn"
-            (click)="activeTabIndex = 2"
-            tuiTab>
-      Style Sheets CSS
-    </button>
-  </tui-tabs>
-
-  <div *ngIf="currentTemplate"
-       class="detail-template__code-editor"
-       [formGroup]="form">
-    <ng-container *ngIf="activeTabIndex === 0">
-      <mix-code-editor class="mix-code-editor"
-                       [disabled]="disabled"
-                       [language]="'razor'"
-                       formControlName="templateCode">
-      </mix-code-editor>
-    </ng-container>
-
-    <ng-container *ngIf="activeTabIndex === 1">
-      <mix-code-editor class="mix-code-editor"
-                       [disabled]="disabled"
-                       [language]="'javascript'"
-                       formControlName="javascriptCode">
-      </mix-code-editor>
-    </ng-container>
-
-    <ng-container *ngIf="activeTabIndex === 2">
-      <mix-code-editor class="mix-code-editor"
-                       [disabled]="disabled"
-                       [language]="'css'"
-                       formControlName="styleSheetCode">
-      </mix-code-editor>
-    </ng-container>
-  </div>
-</div> -->
-
-
 <div class="template-editor">
   <div class="template-editor__header">
     <div class="logo">
@@ -74,7 +24,8 @@
     </tui-tabs>
 
     <div class="toolbar">
-      <div class="toolbar__btn">
+      <div class="toolbar__btn"
+           (click)="minimize = !minimize">
         <i-tabler class="icon"
                   name="minus"></i-tabler>
       </div>
@@ -87,7 +38,8 @@
   </div>
 
 
-  <div class="template-editor__body">
+  <div class="template-editor__body"
+       [ngClass]="{'--minimize': minimize}">
     <div class="extensions">
 
     </div>
@@ -123,6 +75,6 @@
   </div>
 
   <div class="template-editor__footer">
-    c
+    1 user editing
   </div>
 </div>

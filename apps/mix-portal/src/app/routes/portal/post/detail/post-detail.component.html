@@ -96,7 +96,7 @@
       <div *ngIf="activeTabIndex === 4"
            class="post-detail__main-widget"
            [formGroup]="form">
-        <label [label]="'Choose your post template:'"
+        <label [label]="'Post template:'"
                tuiLabel>
           <tui-select [(ngModel)]="selectedTemplate"
                       [disabled]="!!(disabled$ | async)"
@@ -116,7 +116,7 @@
           {{ item.fileName }}
         </ng-template>
 
-        <p style="margin-top: 15px;"> Post code preview: </p>
+        <p style="margin-top: 15px;"> Template preview: </p>
         <mix-template-editor *ngIf="selectedTemplate"
                              [disabled]="true"
                              [templateId]="selectedTemplate.id"></mix-template-editor>

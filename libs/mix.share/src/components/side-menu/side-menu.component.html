@@ -40,9 +40,8 @@
     </ng-container>
   </div>
 
-  <div *ngIf="currentSelectedItem"
-       class="side-menu__level-2"
-       [@enterAnimation]>
+  <div *ngIf="currentSelectedItem && expand"
+       class="side-menu__level-2">
     <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
 
     <div class="side-menu__level-2-content">
@@ -58,9 +57,15 @@
     </div>
   </div>
 
-  <div *ngIf="currentSelectedItem"
+  <div *ngIf="currentSelectedItem && expand"
        class="side-menu__collapse-icon"
-       (click)="currentSelectedItem = undefined">
+       (click)="expand = false">
     <i-tabler name="minus"></i-tabler>
+  </div>
+
+  <div *ngIf="!expand"
+       class="side-menu__expand-icon"
+       (click)="expand = true">
+    <i-tabler name="arrow-bar-left"></i-tabler>
   </div>
 </div>
