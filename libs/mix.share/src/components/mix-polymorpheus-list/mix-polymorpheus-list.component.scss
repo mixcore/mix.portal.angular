@@ -6,12 +6,6 @@ mix-data-table {
   width: 100%;
   height: 100%;
   &__header {
-    background-color: hsla(
-      var(--primary-hover-color-hue, 211),
-      var(--primary-hover-color-saturation, 100%),
-      var(--primary-hover-color-brightness, 70%),
-      0.2
-    );
     display: flex;
     align-items: center;
     padding: 5px 15px;
@@ -31,7 +25,6 @@ mix-data-table {
   &__container {
     display: flex;
     width: 100%;
-    // 100px for header + toolbar
     height: calc(100vh - 100px);
   }
   &__main-workspace {

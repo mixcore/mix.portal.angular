@@ -41,13 +41,8 @@
       color: var(--tui-text-01-night);
     }
     &.--active {
-      background-color: hsla(
-        var(--primary-hover-color-hue, 211),
-        var(--primary-hover-color-saturation, 100%),
-        var(--primary-hover-color-brightness, 70%),
-        0.2
-      );
-      color: var(--tui-primary);
+      background-color: var(--mix-primary);
+      color: var(--tui-base-01);
     }
   }
 

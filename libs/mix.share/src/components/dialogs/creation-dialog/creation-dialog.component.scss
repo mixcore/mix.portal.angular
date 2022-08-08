@@ -19,12 +19,7 @@
 
     .toolbar {
       height: var(--mix-sub-header-height);
-      background-color: hsla(
-        var(--primary-hover-color-hue, 211),
-        var(--primary-hover-color-saturation, 100%),
-        var(--primary-hover-color-brightness, 70%),
-        0.2
-      );
+      background-color: var(--mix-primary);
       display: flex;
       align-items: center;
       justify-content: flex-end;
