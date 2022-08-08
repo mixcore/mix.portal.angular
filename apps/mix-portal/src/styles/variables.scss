@@ -4,12 +4,13 @@
   --font-family: 'Lexend Deca', 'Roboto', -apple-system, BlinkMacSystemFont,
     'Apple Color Emoji', 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Fira Sans',
     'Droid Sans', 'Helvetica Neue', sans-serif;
-  --sidebar-box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  --sidebar-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  --sidebar-background-color: #fff;
+  --mix-toolbar-background-color: #fff;
+  --mix-body-background: #fff;
   --mix-box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --mix-border-radius-01: 10px;
   --mix-border-radius-02: 15px;
-  --mix-body-background: #f0f2f5;
   --mix-primary: #0f92f3;
   --mix-toolbar-color: #fff;
 }

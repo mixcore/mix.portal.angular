@@ -16,7 +16,8 @@ import { MixTemplateModel } from '@mix-spa/mix.lib';
 import {
   BaseComponent,
   FormUtils,
-  MixTemplateApiService
+  MixTemplateApiService,
+  TemplateEditorComponent
 } from '@mix-spa/mix.share';
 import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
@@ -41,7 +42,8 @@ import { debounceTime } from 'rxjs';
     InlineEditPlaceholderComponent,
     TuiInputModule,
     TuiTextfieldControllerModule,
-    TuiAutoFocusModule
+    TuiAutoFocusModule,
+    TemplateEditorComponent
   ]
 })
 export class MixDetailTemplateComponent

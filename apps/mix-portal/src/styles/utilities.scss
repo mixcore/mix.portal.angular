@@ -53,7 +53,7 @@
   height: 100%;
 
   &__header {
-    background-color: var(--mix-primary);
+    background-color: var(--mix-toolbar-background-color);
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -90,6 +90,7 @@
     width: 100%;
     overflow: auto;
     height: 100%;
+    padding: 10px;
   }
 
   &__sub-header {

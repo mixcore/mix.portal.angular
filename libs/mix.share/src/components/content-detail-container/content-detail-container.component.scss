@@ -11,8 +11,8 @@
     background-color: var(--mix-toolbar-color);
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 5px 15px;
+    justify-content: flex-end;
+    padding: 5px 20px;
     border-bottom: 1px solid var(--tui-base-04);
     height: var(--mix-header-height);
 
@@ -38,9 +38,5 @@
         margin-right: 5px;
       }
     }
-  }
-
-  &__body {
-    padding: 10px;
   }
 }

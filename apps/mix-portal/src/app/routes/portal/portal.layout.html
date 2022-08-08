@@ -1,6 +1,12 @@
 <div class="cms-portal-container">
-  <mix-side-menu [menuItems]="menuItems"></mix-side-menu>
-  <div class="cms-portal-container__workspace">
+  <mix-side-menu
+    [menuItems]="menuItems"
+    (expandChange)="expand$.next($event)"
+  ></mix-side-menu>
+  <div
+    class="cms-portal-container__workspace"
+    [ngClass]="{'--menu-expand': (expand$ | async)}"
+  >
     <mix-header-menu></mix-header-menu>
     <div class="cms-portal-container__main-workspace">
       <router-outlet></router-outlet>

@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   HostListener,
   Inject,
@@ -23,6 +24,7 @@ import {
   UniversalSearchComponent
 } from '@mix-spa/mix.share';
 import { TuiDialogService } from '@taiga-ui/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { RouteConfig } from '../route.const';
 
@@ -31,6 +33,7 @@ import { RouteConfig } from '../route.const';
   templateUrl: './portal.layout.html',
   styleUrls: ['./portal.layout.scss'],
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     HeaderMenuComponent,
     RouterModule,
@@ -49,6 +52,7 @@ export class PortalLayoutComponent {
   public isShowUniversalSearch = false;
   public isShowTab = false;
   public createMode: 'Page' | 'Post' | 'Module' = 'Page';
+  public expand$ = new BehaviorSubject<boolean>(true);
 
   public menuItems: MixToolbarMenu[] = [
     {

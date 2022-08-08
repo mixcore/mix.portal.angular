@@ -41,7 +41,8 @@
   </div>
 
   <div *ngIf="currentSelectedItem && expand"
-       class="side-menu__level-2">
+       class="side-menu__level-2"
+       [@enterAnimation]>
     <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
 
     <div class="side-menu__level-2-content">
@@ -59,13 +60,13 @@
 
   <div *ngIf="currentSelectedItem && expand"
        class="side-menu__collapse-icon"
-       (click)="expand = false">
+       (click)="onCollapse()">
     <i-tabler name="minus"></i-tabler>
   </div>
 
   <div *ngIf="!expand"
        class="side-menu__expand-icon"
-       (click)="expand = true">
+       (click)="onExpand()">
     <i-tabler name="arrow-bar-left"></i-tabler>
   </div>
 </div>

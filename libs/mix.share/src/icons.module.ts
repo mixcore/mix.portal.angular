@@ -17,6 +17,7 @@ import {
   IconFileImport,
   IconFileText,
   IconFilter,
+  IconFolder,
   IconLanguage,
   IconLayout,
   IconLayoutSidebarRight,
@@ -101,5 +102,6 @@ export const ICONS = {
   IconDeviceDesktopAnalytics,
   IconSection,
   IconColorSwatch,
-  IconSquare
+  IconSquare,
+  IconFolder
 };

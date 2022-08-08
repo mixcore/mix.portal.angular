@@ -1,17 +1,12 @@
 .post-detail {
   &__main-widget {
-    // background-color: var(--tui-base-01);
     overflow: hidden;
-    padding: 10px;
+    padding: 10px 20px;
     margin-top: 10px;
-    // border-radius: var(--mix-border-radius-01);
-    // border: 1px solid var(--tui-base-04);
-    // box-shadow: var(--mix-box-shadow);
   }
 
   tui-tabs {
     position: sticky;
-    top: 55px;
     z-index: 2;
   }
 }

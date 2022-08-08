@@ -21,16 +21,19 @@ import {
 import {
   BaseComponent,
   ContentDetailContainerComponent,
+  DestroyService,
   FormUtils,
   MixPageApiService,
   MixTemplateApiService,
   PostNavSelectedComponent
 } from '@mix-spa/mix.share';
+import { TuiSvgModule } from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
   TuiSelectModule,
   TuiTabsModule
 } from '@taiga-ui/kit';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-page-detail',
@@ -48,8 +51,10 @@ import {
     PostNavSelectedComponent,
     CodeEditorComponent,
     TuiSelectModule,
-    TuiDataListWrapperModule
-  ]
+    TuiDataListWrapperModule,
+    TuiSvgModule
+  ],
+  providers: [DestroyService]
 })
 export class PageDetailComponent extends BaseComponent implements OnInit {
   public selectedPostNavs: MixPostReferenceModel[] = [];
@@ -62,7 +67,8 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private pageApi: MixPageApiService,
     private templateApi: MixTemplateApiService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private destroy: DestroyService
   ) {
     super();
   }
@@ -84,6 +90,7 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
             seoSource: [result.seoSource]
           });
 
+          this.registerTitleChange();
           this.loadTemplate();
           this.loading$.next(false);
         },
@@ -95,6 +102,14 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
 
   public loadTemplate(): void {
     //
+  }
+
+  public registerTitleChange(): void {
+    this.header.setTitle(this.form.value.title);
+    this.form.controls['title'].valueChanges
+      .pipe(takeUntil(this.destroy))
+      .subscribe(t => this.header.setTitle(t));
+    this.destroy.subscribe(() => this.header.hideTitle());
   }
 
   public savePage(): void {

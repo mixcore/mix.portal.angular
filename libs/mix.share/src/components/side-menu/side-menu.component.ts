@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 import { JoyrideModule, JoyrideService } from 'ngx-joyride';
@@ -48,6 +48,7 @@ export interface MenuItem {
 export class SideMenuComponent implements OnInit {
   @Input() public showMenuLevel2 = false;
   @Input() public menuItems: MixToolbarMenu[] = [];
+  @Output() public expandChange: EventEmitter<boolean> = new EventEmitter();
   public currentSelectedItem: MixToolbarMenu | undefined;
   public hideTourGuide = false;
   public expand = false;
@@ -69,7 +70,7 @@ export class SideMenuComponent implements OnInit {
     this.currentSelectedItem =
       this.menuItems.find(i => i.route && i.route === route) ||
       this.menuItems[1];
-    this.expand = true;
+    this.onExpand();
   }
 
   public initTourGuide(): void {
@@ -88,7 +89,7 @@ export class SideMenuComponent implements OnInit {
     if (item.hideDetail) return;
 
     this.currentSelectedItem = item;
-    this.expand = true;
+    this.onExpand();
   }
 
   public itemClick(item: MenuItem): void {
@@ -98,5 +99,15 @@ export class SideMenuComponent implements OnInit {
   public toggleTourGuide(value: boolean) {
     this.hideTourGuide = value;
     this.appService.toggleTourGuide(value);
+  }
+
+  public onCollapse(): void {
+    this.expand = false;
+    this.expandChange.emit(false);
+  }
+
+  public onExpand(): void {
+    this.expand = true;
+    this.expandChange.emit(this.expand);
   }
 }

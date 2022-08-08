@@ -2,29 +2,39 @@
   <div class="page-detail">
     <tui-tabs class="custom-tabs"
               [(activeItemIndex)]="activeTabIndex">
-      <button [disabled]="!!(loading$ | async)"
+      <button class="custom-tabs__btn"
+              [disabled]="!!(loading$ | async)"
               (click)="activeTabIndex = 0"
               tuiTab>
+        <tui-svg src="tuiIconEdit"></tui-svg>
         Content
       </button>
-      <button [disabled]="!!(loading$ | async)"
+      <button class="custom-tabs__btn"
+              [disabled]="!!(loading$ | async)"
               (click)="activeTabIndex = 1"
               tuiTab>
+        <tui-svg src="tuiIconChartBar"></tui-svg>
         SEO
       </button>
-      <button [disabled]="!!(loading$ | async)"
+      <button class="custom-tabs__btn"
+              [disabled]="!!(loading$ | async)"
               (click)="activeTabIndex = 2"
               tuiTab>
+        <tui-svg src="tuiIconLink"></tui-svg>
         Related
       </button>
-      <button [disabled]="!!(loading$ | async)"
+      <button class="custom-tabs__btn"
+              [disabled]="!!(loading$ | async)"
               (click)="activeTabIndex = 3"
               tuiTab>
+        <tui-svg src="tuiIconLink"></tui-svg>
         Parent
       </button>
-      <button [disabled]="!!(loading$ | async)"
+      <button class="custom-tabs__btn"
+              [disabled]="!!(loading$ | async)"
               (click)="activeTabIndex = 4"
               tuiTab>
+        <tui-svg src="tuiIconFile"></tui-svg>
         Template
       </button>
     </tui-tabs>

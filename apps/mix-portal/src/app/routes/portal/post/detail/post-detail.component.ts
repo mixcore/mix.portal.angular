@@ -29,7 +29,11 @@ import {
   PostNavSelectedComponent,
   TemplateEditorComponent
 } from '@mix-spa/mix.share';
-import { TuiLabelModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
+import {
+  TuiLabelModule,
+  TuiSvgModule,
+  TuiTextfieldControllerModule
+} from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
   TuiSelectModule,
@@ -58,7 +62,8 @@ import { takeUntil } from 'rxjs';
     TuiDataListWrapperModule,
     TuiTextfieldControllerModule,
     TemplateEditorComponent,
-    TuiLabelModule
+    TuiLabelModule,
+    TuiSvgModule
   ],
   providers: [DestroyService]
 })
