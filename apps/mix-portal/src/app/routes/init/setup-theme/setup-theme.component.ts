@@ -85,6 +85,7 @@ export class SetupThemeComponent extends BaseComponent implements OnInit {
         selected: false
       }));
 
+      this.loading$.next(false);
       this.cdr.detectChanges();
     });
   }
