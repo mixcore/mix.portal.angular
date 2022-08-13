@@ -79,7 +79,7 @@ $group-width: 68px;
     .menu {
       width: 100%;
       height: 100%;
-      padding: 20px 10px;
+      padding: 0px 10px;
 
       &__label {
         font-weight: 700;
@@ -129,8 +129,8 @@ $group-width: 68px;
         height: 1px;
         width: 100%;
         background-color: var(--tui-base-03);
-        margin-bottom: 10px;
-        margin-top: 10px;
+        margin-bottom: 15px;
+        margin-top: 15px;
       }
 
       &__no-data {
