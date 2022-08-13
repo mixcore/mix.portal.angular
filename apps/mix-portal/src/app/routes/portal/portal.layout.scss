@@ -7,7 +7,7 @@
 
   &__workspace {
     width: 100%;
-    border-left: 1px solid var(--tui-base-03);
+    // border-left: 1px solid var(--tui-base-03);
     margin-left: 10px;
     margin-top: 5px;
     background-color: #fff;
@@ -15,8 +15,8 @@
 
     &.--menu-expand {
       border-top-left-radius: var(--mix-border-radius-02);
-      margin-left: 30px;
-      box-shadow: var(--sidebar-box-shadow);
+      margin-left: 20px;
+      // box-shadow: var(--sidebar-box-shadow);
       z-index: 2;
     }
   }
