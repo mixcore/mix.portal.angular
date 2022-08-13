@@ -1,72 +1,64 @@
-<div *ngIf="menuItems"
+<div *ngIf="groups"
      class="side-menu">
-  <div class="side-menu__level-1">
-    <div class="side-menu__level-1-logo">
-      <div class="login-form-logo-square"></div>
+  <div class="side-menu__groups">
+    <div class="toggle"
+         (click)="toggleMenu()">
+      <tui-svg src="tuiIconFrameLarge"></tui-svg>
     </div>
 
-    <ng-container *ngFor="let item of menuItems; let i = index">
-      <div class="side-menu__level-1-icon"
-           [ngClass]="{'--active': currentSelectedItem?.id === item?.id, 'mt-auto': item.position === VerticalDisplayPosition.Bottom}"
-           [stepContent]="menuTourGuide"
-           [stepContentParams]="{'text': item.guideText}"
-           [title]="'Hi!'"
-           [tuiHint]="tooltip"
-           [tuiHintHideDelay]="0"
-           [tuiHintMode]="'onDark'"
-           [tuiHintShowDelay]="200"
-           (click)="itemSelect(item)"
-           tuiHintDirection="right"
-           joyrideStep="{{'step' + i}}">
-        <i-tabler name="{{item.icon}}"></i-tabler>
+    <div class="search">
+      <a type="button"
+         [appearance]="'outline'"
+         [shape]="'rounded'"
+         [size]="'s'"
+         (click)="appEvent.onSearch()"
+         tuiIconButton
+         icon="tuiIconSearch"></a>
+    </div>
 
-        <ng-template #tooltip>
-          <div>
-            {{ item.title }}
-          </div>
-        </ng-template>
+    <div *ngFor="let menu of groups"
+         class="item"
+         [ngClass]="{'--active': currentSelectedItem === menu}"
+         (click)="selectGroup(menu)">
+      <i-tabler name="{{menu.icon}}"></i-tabler>
+      <p> {{ menu.title }} </p>
+    </div>
+  </div>
 
-        <ng-template #menuTourGuide
-                     let-text="text">
-          <div class="tour-guide__text"> {{ text }} </div>
-          <div class="tour-guide__action">
-            <tui-checkbox-labeled [ngModel]="hideTourGuide"
-                                  (ngModelChange)="toggleTourGuide($event)">
-              Don't show this guide again.
-            </tui-checkbox-labeled>
-          </div>
-        </ng-template>
-      </div>
+  <div *ngIf="currentSelectedItem && isShowMenu"
+       class="side-menu__menu"
+       [@enterAnimation]>
+    <div class="side-menu__big-logo">
+      <img src="assets/images/mixcore-logo-red-2.svg"
+           width="80%">
+    </div>
+    <ng-container [ngSwitch]="currentSelectedItem.id">
+      <!-- Dashboard -->
+      <ng-container *ngSwitchCase="'dashboard'">
+        <mix-dashboard-menu></mix-dashboard-menu>
+      </ng-container>
+
+      <!-- Content -->
+      <ng-container *ngSwitchCase="'content'">
+        <mix-content-menu></mix-content-menu>
+      </ng-container>
+
+      <!-- Template -->
+      <ng-container *ngSwitchCase="'template'">
+        <mix-template-menu></mix-template-menu>
+      </ng-container>
     </ng-container>
   </div>
 
-  <div *ngIf="currentSelectedItem && expand"
-       class="side-menu__level-2"
-       [@enterAnimation]>
-    <div class="side-menu__level-2-title"> {{ currentSelectedItem.title }} </div>
+  <ng-template #dashboard>
+    <mix-dashboard-menu></mix-dashboard-menu>
+  </ng-template>
 
-    <div class="side-menu__level-2-content">
-      <ng-container *ngFor="let menu of currentSelectedItem.detail">
-        <div class="side-menu__detail-item"
-             (click)="itemClick(menu)">
-          <i-tabler name="{{menu.icon}}"></i-tabler>
-          <div>
-            {{ menu.title }}
-          </div>
-        </div>
-      </ng-container>
-    </div>
-  </div>
+  <ng-template #content>
+    <mix-content-menu></mix-content-menu>
+  </ng-template>
 
-  <div *ngIf="currentSelectedItem && expand"
-       class="side-menu__collapse-icon"
-       (click)="onCollapse()">
-    <i-tabler name="minus"></i-tabler>
-  </div>
-
-  <div *ngIf="!expand"
-       class="side-menu__expand-icon"
-       (click)="onExpand()">
-    <i-tabler name="arrow-bar-left"></i-tabler>
-  </div>
+  <ng-template #template>
+    <mix-template-menu></mix-template-menu>
+  </ng-template>
 </div>

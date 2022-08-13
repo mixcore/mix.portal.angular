@@ -1,8 +1,5 @@
 <div class="cms-portal-container">
-  <mix-side-menu
-    [menuItems]="menuItems"
-    (expandChange)="expand$.next($event)"
-  ></mix-side-menu>
+  <mix-side-menu (expandChange)="expand$.next($event)"></mix-side-menu>
   <div
     class="cms-portal-container__workspace"
     [ngClass]="{'--menu-expand': (expand$ | async)}"

@@ -1,0 +1,33 @@
+<div class="menu">
+  <button type="button"
+          [shape]="'rounded'"
+          [size]="'m'"
+          tuiButton>
+    New theme
+  </button>
+
+  <div class="menu__separator"></div>
+
+  <tui-accordion [closeOthers]="false">
+    <tui-accordion-item [borders]="null"
+                        [open]="true"
+                        [size]="'s'">
+      <div class="menu__group">Themes</div>
+      <ng-template tuiAccordionItemContent>
+        <div class="menu__item"
+             (click)="navigateTo(routes.ThemeList)"><a> List Theme </a></div>
+      </ng-template>
+    </tui-accordion-item>
+
+    <tui-accordion-item [borders]="null"
+                        [open]="true"
+                        [size]="'s'">
+      <div class="menu__group">Mix Market</div>
+      <ng-template tuiAccordionItemContent>
+        <div class="menu__item"><a> Visit </a></div>
+        <div class="menu__item"
+             (click)="navigateTo(routes.PageList)"><a> Choose template </a></div>
+      </ng-template>
+    </tui-accordion-item>
+  </tui-accordion>
+</div>

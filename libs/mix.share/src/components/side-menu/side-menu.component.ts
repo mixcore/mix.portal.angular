@@ -1,14 +1,26 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { VerticalDisplayPosition } from '@mix-spa/mix.lib';
 import { JoyrideModule, JoyrideService } from 'ngx-joyride';
 
+import { RouteConfig } from '../../routes/routes.const';
+import { AppEventService } from '../../services';
 import { AppService } from '../../services/helper/app-setting.service';
 import { ShareModule } from '../../share.module';
+import { ContentMenuComponent } from './content-menu/content-menu.component';
+import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.component';
+import { TemplateMenuComponent } from './template-menu/template-menu.component';
 
 export interface MixToolbarMenu {
-  id: number;
+  id: number | string;
   title: string;
   icon: string;
   hideDetail?: boolean;
@@ -16,7 +28,7 @@ export interface MixToolbarMenu {
   detail: MenuItem[];
   position: VerticalDisplayPosition;
   guideText?: string;
-  route?: string;
+  route?: string | string[];
 }
 
 export interface MenuItem {
@@ -29,9 +41,16 @@ export interface MenuItem {
 @Component({
   selector: 'mix-side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.scss'],
+  styleUrls: ['./side-menu.component.scss', './styles.scss'],
+  encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [ShareModule, JoyrideModule],
+  imports: [
+    ShareModule,
+    JoyrideModule,
+    DashboardMenuComponent,
+    ContentMenuComponent,
+    TemplateMenuComponent
+  ],
   animations: [
     trigger('enterAnimation', [
       transition(':enter', [
@@ -47,67 +66,71 @@ export interface MenuItem {
 })
 export class SideMenuComponent implements OnInit {
   @Input() public showMenuLevel2 = false;
-  @Input() public menuItems: MixToolbarMenu[] = [];
   @Output() public expandChange: EventEmitter<boolean> = new EventEmitter();
   public currentSelectedItem: MixToolbarMenu | undefined;
-  public hideTourGuide = false;
-  public expand = false;
-  public readonly VerticalDisplayPosition = VerticalDisplayPosition;
+  public isShowMenu = true;
+  public open = false;
+
+  public groups: MixToolbarMenu[] = [
+    {
+      id: 'dashboard',
+      title: 'Dashboard',
+      icon: 'device-desktop-analytics',
+      position: VerticalDisplayPosition.Top,
+      detail: [],
+      route: [RouteConfig.PortalDashboard]
+    },
+    {
+      id: 'content',
+      title: 'Contents',
+      icon: 'file-text',
+      position: VerticalDisplayPosition.Top,
+      detail: [],
+      route: [RouteConfig.Page, RouteConfig.Post, RouteConfig.Module]
+    },
+    {
+      id: 'template',
+      title: 'Themes',
+      icon: 'color-swatch',
+      position: VerticalDisplayPosition.Top,
+      detail: []
+    },
+    {
+      id: 'files',
+      title: 'Files',
+      icon: 'file',
+      position: VerticalDisplayPosition.Top,
+      detail: []
+    }
+  ];
 
   constructor(
     private readonly joyrideService: JoyrideService,
     public appService: AppService,
-    private router: Router
+    private router: Router,
+    public appEvent: AppEventService
   ) {}
 
   public ngOnInit(): void {
     this.initMenu();
-    this.initTourGuide();
   }
 
   public initMenu(): void {
     const route = this.router.url.split('/')[2];
     this.currentSelectedItem =
-      this.menuItems.find(i => i.route && i.route === route) ||
-      this.menuItems[1];
-    this.onExpand();
+      this.groups.find(i => i.route && i.route.includes(route)) ||
+      this.groups[1];
+
+    this.expandChange.emit(this.isShowMenu);
   }
 
-  public initTourGuide(): void {
-    return;
-    this.hideTourGuide = this.appService.appSetting.hideTourGuide;
-    if (this.hideTourGuide) return;
-    this.joyrideService.startTour({
-      steps: this.menuItems
-        .filter(i => i.guideText)
-        .map((i, index) => `step${index}`)
-    });
+  public toggleMenu(): void {
+    this.isShowMenu = !this.isShowMenu;
+    this.expandChange.emit(this.isShowMenu);
   }
 
-  public itemSelect(item: MixToolbarMenu): void {
-    if (item.action) item.action();
-    if (item.hideDetail) return;
-
-    this.currentSelectedItem = item;
-    this.onExpand();
-  }
-
-  public itemClick(item: MenuItem): void {
-    if (item.action) item.action();
-  }
-
-  public toggleTourGuide(value: boolean) {
-    this.hideTourGuide = value;
-    this.appService.toggleTourGuide(value);
-  }
-
-  public onCollapse(): void {
-    this.expand = false;
-    this.expandChange.emit(false);
-  }
-
-  public onExpand(): void {
-    this.expand = true;
-    this.expandChange.emit(this.expand);
+  public selectGroup(group: MixToolbarMenu): void {
+    this.currentSelectedItem = group;
+    if (!this.isShowMenu) this.isShowMenu = true;
   }
 }
