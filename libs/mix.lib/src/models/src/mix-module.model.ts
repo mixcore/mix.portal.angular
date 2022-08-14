@@ -1,3 +1,4 @@
+import { MixTemplateFolder } from '../../enums/mix-template-folder.enum';
 import { IEntityBase } from '../base/entity-base.model';
 import { IMixPolymopheusContent } from '../base/mix-polymopheus-conent.model';
 import { MixModuleReferenceModel } from './mix-module-reference.model';
@@ -5,7 +6,12 @@ import { MixModuleReferenceModel } from './mix-module-reference.model';
 export interface MixModulePortalModel
   extends IMixPolymopheusContent,
     IEntityBase<number> {
-  template?: string;
+  templateId?: number;
+  template?: {
+    id: number;
+    mixThemeId: number;
+    folderType: MixTemplateFolder;
+  };
   excerpt?: string;
   content?: string;
   views?: number;
