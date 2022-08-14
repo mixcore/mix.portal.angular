@@ -69,6 +69,7 @@ export class SideMenuComponent implements OnInit {
   @Output() public expandChange: EventEmitter<boolean> = new EventEmitter();
   public currentSelectedItem: MixToolbarMenu | undefined;
   public isShowMenu = true;
+  public isMiniGroupBar = false;
   public open = false;
 
   public groups: MixToolbarMenu[] = [
@@ -127,6 +128,10 @@ export class SideMenuComponent implements OnInit {
   public toggleMenu(): void {
     this.isShowMenu = !this.isShowMenu;
     this.expandChange.emit(this.isShowMenu);
+  }
+
+  public toggleMiniGroupBar(): void {
+    this.isMiniGroupBar = !this.isMiniGroupBar;
   }
 
   public selectGroup(group: MixToolbarMenu): void {
