@@ -21,18 +21,11 @@
               (click)="activeTabIndex = 2"
               tuiTab>
         <tui-svg src="tuiIconLink"></tui-svg>
-        Related
+        Module
       </button>
       <button class="custom-tabs__btn"
               [disabled]="!!(loading$ | async)"
               (click)="activeTabIndex = 3"
-              tuiTab>
-        <tui-svg src="tuiIconLink"></tui-svg>
-        Parent
-      </button>
-      <button class="custom-tabs__btn"
-              [disabled]="!!(loading$ | async)"
-              (click)="activeTabIndex = 4"
               tuiTab>
         <tui-svg src="tuiIconFile"></tui-svg>
         Template
@@ -96,10 +89,13 @@
         <mix-post-nav-selected [selectedPosts]="selectedPostNavs"></mix-post-nav-selected>
       </div>
 
-      <div *ngIf="activeTabIndex === 4"
+      <div *ngIf="activeTabIndex === 3"
            class="page-detail__main-widget"
            [formGroup]="form">
-
+        <p style="margin-top: 5px;"> </p>
+        <mix-template-editor *ngIf="selectedTemplateId"
+                             [disabled]="true"
+                             [templateId]="selectedTemplateId"></mix-template-editor>
       </div>
     </ng-template>
   </div>
