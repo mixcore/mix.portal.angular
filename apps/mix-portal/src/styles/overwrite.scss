@@ -317,23 +317,30 @@ p {
   margin-inline-end: 0px;
 }
 
+tui-tabs.custom-tabs {
+  height: var(--mix-tab-height) !important;
+  box-shadow: unset !important;
+}
+
 tui-tabs {
   .custom-tabs {
     background: var(--tui-base-01);
     overflow: hidden;
 
     &__btn {
-      margin: unset;
-      padding: 0 15px;
-      border-left: 0.5px solid var(--tui-base-03);
-      border-right: 0.5px solid var(--tui-base-03);
+      padding: 0 15px 0px 10px;
+      border: 1px solid var(--tui-base-04);
+      border-radius: 2rem;
+      margin-right: 0.5rem;
+      transition-property: unset !important;
 
       &._active {
-        border-bottom: 2px solid var(--mix-primary);
+        background-color: var(--mix-primary) !important;
+        color: var(--tui-primary-text) !important;
+        border: 1px solid var(--mix-primary) !important;
       }
 
       tui-svg {
-        opacity: 0.5;
         margin-right: 3px;
       }
     }
