@@ -9,16 +9,14 @@ $side-menu-width: 331px;
   position: relative;
 
   &__big-logo {
-    // padding: 10px 10px;
     margin: 20px 20px 10px 20px;
     height: 40px;
-    // border-bottom: 1px solid var(--tui-base-03);
   }
 
   &__groups {
     width: var(--groupWidth);
     height: 100%;
-    background-color: var(--tui-base-01);
+    background-color: var(--mix-side-menu-group-bg);
 
     .toggle {
       margin-bottom: 10px;
