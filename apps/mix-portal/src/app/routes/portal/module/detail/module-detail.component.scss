@@ -1,0 +1,12 @@
+.module-detail {
+  &__main-widget {
+    overflow: hidden;
+    padding: 10px 20px;
+    margin-top: 10px;
+  }
+
+  tui-tabs {
+    position: sticky;
+    z-index: 2;
+  }
+}

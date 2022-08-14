@@ -21,18 +21,11 @@
               (click)="activeTabIndex = 2"
               tuiTab>
         <tui-svg src="tuiIconLink"></tui-svg>
-        Related
+        Module
       </button>
       <button class="custom-tabs__btn"
               [disabled]="!!(loading$ | async)"
               (click)="activeTabIndex = 3"
-              tuiTab>
-        <tui-svg src="tuiIconLink"></tui-svg>
-        Parent
-      </button>
-      <button class="custom-tabs__btn"
-              [disabled]="!!(loading$ | async)"
-              (click)="activeTabIndex = 4"
               tuiTab>
         <tui-svg src="tuiIconFile"></tui-svg>
         Template
@@ -96,10 +89,32 @@
         <mix-post-nav-selected [selectedPosts]="selectedPostNavs"></mix-post-nav-selected>
       </div>
 
-      <div *ngIf="activeTabIndex === 4"
+      <div *ngIf="activeTabIndex === 3"
            class="page-detail__main-widget"
            [formGroup]="form">
+        <label [label]="'Page template:'"
+               tuiLabel>
+          <tui-select [(ngModel)]="selectedTemplate"
+                      [disabled]="!!(disabled$ | async)"
+                      [ngModelOptions]="{standalone: true}"
+                      [tuiTextfieldLabelOutside]="true"
+                      [valueContent]="itemContent"
+                      (ngModelChange)="pageTemplateChange($event)"
+                      tuiTextfieldSize="s">
+            <tui-data-list-wrapper *tuiDataList
+                                   [itemContent]="itemContent"
+                                   [items]="availableTemplates"></tui-data-list-wrapper>
+          </tui-select>
+        </label>
 
+        <ng-template #itemContent
+                     let-item>
+          {{ item.fileName }}
+        </ng-template>
+        <p style="margin-top: 5px;"> </p>
+        <mix-template-editor *ngIf="selectedTemplate"
+                             [disabled]="true"
+                             [templateId]="selectedTemplate.id"></mix-template-editor>
       </div>
     </ng-template>
   </div>

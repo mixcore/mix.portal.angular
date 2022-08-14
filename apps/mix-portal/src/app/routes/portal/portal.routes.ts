@@ -58,7 +58,7 @@ export const PORTAL_ROUTES: Route[] = [
     }
   },
   {
-    path: RouteConfig.PageDetail,
+    path: RouteConfig.ModuleDetail,
     component: ModuleDetailComponent,
     data: {
       title: 'Module'

@@ -226,7 +226,7 @@ export class MixPolymorphousListComponent
 
     switch (this.listType) {
       case MixContentType.Module:
-        this.sidebarControl.show(this.moduleDetail);
+        this.route.navigateByUrl(`/portal/module/${this.currentActionItem.id}`);
         break;
       case MixContentType.Post:
         this.route.navigateByUrl(`/portal/post/${this.currentActionItem.id}`);

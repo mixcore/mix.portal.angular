@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
@@ -25,9 +26,14 @@ import {
   FormUtils,
   MixPageApiService,
   MixTemplateApiService,
-  PostNavSelectedComponent
+  PostNavSelectedComponent,
+  TemplateEditorComponent
 } from '@mix-spa/mix.share';
-import { TuiSvgModule } from '@taiga-ui/core';
+import {
+  TuiLabelModule,
+  TuiSvgModule,
+  TuiTextfieldControllerModule
+} from '@taiga-ui/core';
 import {
   TuiDataListWrapperModule,
   TuiSelectModule,
@@ -52,7 +58,12 @@ import { takeUntil } from 'rxjs';
     CodeEditorComponent,
     TuiSelectModule,
     TuiDataListWrapperModule,
-    TuiSvgModule
+    TuiSvgModule,
+    TemplateEditorComponent,
+    TuiSelectModule,
+    TuiTextfieldControllerModule,
+    FormsModule,
+    TuiLabelModule
   ],
   providers: [DestroyService]
 })
@@ -62,6 +73,7 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
   public page!: MixPagePortalModel;
   public form!: FormGroup;
   public availableTemplates: MixTemplateModel[] = [];
+  public selectedTemplate: MixTemplateModel | undefined = undefined;
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -101,7 +113,23 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
   }
 
   public loadTemplate(): void {
-    //
+    if (!this.page || !this.page.template) return;
+
+    this.templateApi
+      .getTemplates({
+        themeId: this.page.template?.mixThemeId,
+        folderType: this.page.template.folderType,
+        columns: 'id, fileName',
+        pageSize: 1000
+      })
+      .subscribe({
+        next: result => {
+          this.availableTemplates = result.items;
+          this.selectedTemplate = result.items.find(
+            i => i.id == this.page.templateId
+          );
+        }
+      });
   }
 
   public registerTitleChange(): void {
@@ -129,5 +157,9 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
         this.showError('Error, please try again');
       }
     });
+  }
+
+  public pageTemplateChange(template: MixTemplateModel): void {
+    this.page.templateId = template.id;
   }
 }
