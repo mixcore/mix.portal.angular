@@ -136,6 +136,9 @@ export class SideMenuComponent implements OnInit {
 
   public selectGroup(group: MixToolbarMenu): void {
     this.currentSelectedItem = group;
-    if (!this.isShowMenu) this.isShowMenu = true;
+    if (!this.isShowMenu) {
+      this.isShowMenu = true;
+      this.expandChange.emit(this.isShowMenu);
+    }
   }
 }

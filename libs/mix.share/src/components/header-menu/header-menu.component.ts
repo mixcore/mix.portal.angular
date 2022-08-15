@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -30,6 +30,7 @@ export interface BreadcrumbOption {
   imports: [ShareModule, TuiBreadcrumbsModule, RouterModule, TuiLinkModule]
 })
 export class HeaderMenuComponent {
+  @Input() public showLogo = false;
   public user$ = this.authService.user$;
   public breadcrumb: BreadcrumbOption[] = [];
 

@@ -1,6 +1,14 @@
 <div class="header-menu">
   <div class="header-menu__title">
     <tui-breadcrumbs [size]="'l'">
+      <ng-container *ngIf="showLogo">
+        <div *tuiBreadcrumb
+             style="display: flex; align-items: center">
+          <img src="assets/images/mixcore-logo-red-square.svg"
+               width="24px">
+        </div>
+      </ng-container>
+
       <ng-container *ngFor="let item of breadcrumb">
         <a *tuiBreadcrumb
            [routerLink]="item.routerLink"
