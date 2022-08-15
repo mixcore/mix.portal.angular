@@ -82,13 +82,13 @@ export class PortalLayoutComponent {
     private appEvent: AppEventService
   ) {
     this.appEvent.event$.subscribe(event => {
-      if (event == AppEvent.CreatePage) {
+      if (event.type == AppEvent.CreatePage) {
         this.createNew('Page');
-      } else if (event == AppEvent.CreatePost) {
+      } else if (event.type == AppEvent.CreatePost) {
         this.createNew('Post');
-      } else if (event == AppEvent.CreateModule) {
+      } else if (event.type == AppEvent.CreateModule) {
         this.createNew('Module');
-      } else if (event == AppEvent.UniversalSearch) {
+      } else if (event.type == AppEvent.UniversalSearch) {
         this.toggleUniversalSearch();
       }
     });

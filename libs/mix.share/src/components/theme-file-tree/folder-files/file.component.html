@@ -32,7 +32,8 @@
              (click)="fileClick(item)">
           {{ item.fileName }}{{ item.extension}}
         </div>
-        <div class="date-modified">
+        <div *ngIf="showFileDate"
+             class="date-modified">
           {{ item.createdDateTime || item.lastModified | date }}
         </div>
       </div>

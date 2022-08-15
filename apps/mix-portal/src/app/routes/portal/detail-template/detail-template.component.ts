@@ -15,6 +15,7 @@ import {
 import { MixTemplateModel } from '@mix-spa/mix.lib';
 import {
   BaseComponent,
+  DestroyService,
   FormUtils,
   MixTemplateApiService,
   TemplateEditorComponent
@@ -23,7 +24,7 @@ import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { debounceTime } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-detail-template',
@@ -44,7 +45,8 @@ import { debounceTime } from 'rxjs';
     TuiTextfieldControllerModule,
     TuiAutoFocusModule,
     TemplateEditorComponent
-  ]
+  ],
+  providers: [DestroyService]
 })
 export class MixDetailTemplateComponent
   extends BaseComponent
@@ -63,24 +65,32 @@ export class MixDetailTemplateComponent
 
   constructor(
     private templateApi: MixTemplateApiService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private destroy$: DestroyService
   ) {
     super();
   }
 
   public ngOnInit(): void {
-    const templateId = this.activatedRoute.snapshot?.params['templateId'];
-    this.templateApi.getTemplateById(templateId).subscribe(result => {
-      this.currentTemplate = result;
-      this.form.controls['templateCode'].patchValue(result.content);
-      this.form.controls['styleSheetCode'].patchValue(result.styles);
-      this.form.controls['javascriptCode'].patchValue(result.scripts);
-      this.form.controls['templateTitle'].patchValue(result.fileName);
+    this.activatedRoute.params
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(params => {
+        if (!params['templateId']) return;
 
-      this.form.valueChanges.pipe(debounceTime(1000)).subscribe(() => {
-        if (this.autoSave.value) this.onSave();
+        this.templateApi
+          .getTemplateById(params['templateId'])
+          .subscribe(result => {
+            this.currentTemplate = result;
+            this.form.controls['templateCode'].patchValue(result.content);
+            this.form.controls['styleSheetCode'].patchValue(result.styles);
+            this.form.controls['javascriptCode'].patchValue(result.scripts);
+            this.form.controls['templateTitle'].patchValue(result.fileName);
+
+            this.form.valueChanges.pipe(debounceTime(1000)).subscribe(() => {
+              if (this.autoSave.value) this.onSave();
+            });
+          });
       });
-    });
   }
 
   public onSave(): void {

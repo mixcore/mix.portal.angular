@@ -62,7 +62,7 @@ export class MixThemeImportComponent {
         })
       )
       .subscribe(() => {
-        this.appEvent.event$.next(AppEvent.NewThemeAdded);
+        this.appEvent.event$.next({ type: AppEvent.NewThemeAdded });
         this.sidebarControl.hide();
         this.alertService
           .open('Successfully create new theme!', {

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MixTemplateFolder } from '@mix-spa/mix.lib';
-import { MixToolbarComponent, ShareModule } from '@mix-spa/mix.share';
-
-import { MixFolderFileComponent } from './folder-files/file.component';
+import {
+  MixFolderFileComponent,
+  MixToolbarComponent,
+  ShareModule
+} from '@mix-spa/mix.share';
 
 @Component({
   selector: 'mix-list-template',

@@ -9,5 +9,6 @@ export enum RouteConfig {
   Module = 'module',
   ModuleDetail = 'module/:id',
   ModuleList = 'module/list',
-  ThemeList = 'list-theme'
+  Theme = 'theme',
+  ThemeList = 'theme/list'
 }

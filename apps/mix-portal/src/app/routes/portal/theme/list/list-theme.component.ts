@@ -4,6 +4,7 @@ import { PaginationRequestModel, ThemeModel } from '@mix-spa/mix.lib';
 import {
   AppEvent,
   AppEventService,
+  DestroyService,
   MixDataTableComponent,
   MixDataTableModule,
   MixThemeImportComponent,
@@ -12,7 +13,7 @@ import {
   SidebarContainerComponent,
   ThemeApiService
 } from '@mix-spa/mix.share';
-import { filter, tap } from 'rxjs';
+import { filter, takeUntil, tap } from 'rxjs';
 
 @Component({
   selector: 'mix-list-theme',
@@ -24,7 +25,8 @@ import { filter, tap } from 'rxjs';
     MixDataTableModule,
     MixThemeImportComponent,
     SidebarContainerComponent
-  ]
+  ],
+  providers: [DestroyService]
 })
 export class ListThemeComponent {
   @ViewChild('importTheme') public importTemp!: TemplateRef<HTMLElement>;
@@ -42,18 +44,23 @@ export class ListThemeComponent {
     private route: Router,
     private activatedRoute: ActivatedRoute,
     private appEvent: AppEventService,
-    private sidebarControl: PortalSidebarControlService
+    private sidebarControl: PortalSidebarControlService,
+    private destroy$: DestroyService
   ) {
     this.appEvent.event$
-      .pipe(filter(e => e === AppEvent.NewThemeAdded))
+      .pipe(
+        filter(e => e.type === AppEvent.NewThemeAdded),
+        takeUntil(this.destroy$)
+      )
       .subscribe(() => {
         this.table.reloadData();
       });
   }
 
   public themeClick(theme: ThemeModel): void {
-    this.route.navigate(['list-template', theme.id], {
-      relativeTo: this.activatedRoute.parent
+    this.appEvent.notify({
+      type: AppEvent.ThemeSelected,
+      data: { id: theme.id }
     });
   }
 

@@ -94,6 +94,7 @@ export class SideMenuComponent implements OnInit {
       title: 'Themes',
       icon: 'color-swatch',
       position: VerticalDisplayPosition.Top,
+      route: [RouteConfig.Theme],
       detail: []
     },
     {

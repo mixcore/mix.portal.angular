@@ -10,18 +10,24 @@ export enum AppEvent {
   CreatePage = 'CreatePage',
   CreateModule = 'CreateModule',
   CreateTheme = 'CreateTheme',
-  UniversalSearch = 'UniversalSearch'
+  UniversalSearch = 'UniversalSearch',
+  ThemeSelected = 'ThemeSelected'
+}
+
+export interface AppEventModel {
+  type: AppEvent;
+  data?: any;
 }
 
 @Injectable({ providedIn: 'root' })
 export class AppEventService {
-  public event$: Subject<AppEvent> = new Subject();
+  public event$: Subject<AppEventModel> = new Subject();
 
-  public notify(event: AppEvent): void {
+  public notify(event: AppEventModel): void {
     this.event$.next(event);
   }
 
   public onSearch(): void {
-    this.event$.next(AppEvent.UniversalSearch);
+    this.event$.next({ type: AppEvent.UniversalSearch });
   }
 }

@@ -12,16 +12,15 @@ import {
   MixTemplateModel,
   PaginationResultModel
 } from '@mix-spa/mix.lib';
-import {
-  BaseComponent,
-  FormUtils,
-  MixTemplateApiService,
-  ModalService,
-  ShareModule
-} from '@mix-spa/mix.share';
 import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 import { TuiAccordionModule, TuiCheckboxModule } from '@taiga-ui/kit';
 import { BehaviorSubject, forkJoin, switchMap } from 'rxjs';
+
+import { BaseComponent } from '../../../bases';
+import { MixTemplateApiService } from '../../../services';
+import { ShareModule } from '../../../share.module';
+import { FormUtils } from '../../../utils';
+import { ModalService } from '../../modal';
 
 @Component({
   selector: 'mix-folder-file',
@@ -37,6 +36,7 @@ import { BehaviorSubject, forkJoin, switchMap } from 'rxjs';
   ]
 })
 export class MixFolderFileComponent extends BaseComponent implements OnInit {
+  @Input() public showFileDate = true;
   @Input() public themeId = 1;
   @Input() folderType: MixTemplateFolder = MixTemplateFolder.Masters;
   public editing = false;
@@ -72,7 +72,7 @@ export class MixFolderFileComponent extends BaseComponent implements OnInit {
 
   public fileClick(template: MixTemplateModel): void {
     this.route.navigate(['template', template.id], {
-      relativeTo: this.activatedRoute.parent
+      relativeTo: this.activatedRoute
     });
   }
 

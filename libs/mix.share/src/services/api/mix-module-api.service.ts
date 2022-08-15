@@ -35,7 +35,7 @@ export class MixModuleApiService extends BaseApiService {
     return this.post<MixModulePortalModel, void>(
       MixApiDict.ModuleApi.saveModuleEndpoint,
       data
-    ).pipe(tap(() => this.appEvent.notify(AppEvent.NewModuleAdded)));
+    ).pipe(tap(() => this.appEvent.notify({ type: AppEvent.NewModuleAdded })));
   }
 
   public deleteModules(id: number): Observable<void> {

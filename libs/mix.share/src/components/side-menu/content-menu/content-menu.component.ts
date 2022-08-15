@@ -43,13 +43,13 @@ export class ContentMenuComponent {
   public createNew(type: 'CreatePage' | 'CreatePost' | 'CreateModule'): void {
     switch (type) {
       case 'CreatePage':
-        this.appEvent.notify(AppEvent.CreatePage);
+        this.appEvent.notify({ type: AppEvent.CreatePage });
         break;
       case 'CreatePost':
-        this.appEvent.notify(AppEvent.CreatePost);
+        this.appEvent.notify({ type: AppEvent.CreatePost });
         break;
       default:
-        this.appEvent.notify(AppEvent.CreateModule);
+        this.appEvent.notify({ type: AppEvent.CreateModule });
         break;
     }
 

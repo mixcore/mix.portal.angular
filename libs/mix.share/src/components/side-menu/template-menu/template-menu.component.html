@@ -30,4 +30,10 @@
       </ng-template>
     </tui-accordion-item>
   </tui-accordion>
+
+  <div class="menu__separator"></div>
+
+  <mix-theme-file-tree *ngIf="selectedThemeId"
+                       [showFileDate]="false"
+                       [themeId]="selectedThemeId"></mix-theme-file-tree>
 </div>

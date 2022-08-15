@@ -3,13 +3,13 @@ import { Route } from '@angular/router';
 import { RouteConfig } from '../route.const';
 import { DashBoardComponent } from './dashboard/dashboard.component';
 import { ListDatabaseComponent } from './list-database/list-database.component';
-import { ListThemeComponent } from './list-theme/list-theme.component';
 import { ModuleDetailComponent } from './module/detail/module-detail.component';
 import { ModuleListComponent } from './module/list/module-list.component';
 import { PageDetailComponent } from './page/detail/page-detail.component';
 import { PageListComponent } from './page/list/page-list.component';
 import { PostDetailComponent } from './post/detail/post-detail.component';
 import { ListPostComponent } from './post/list/list-post.component';
+import { ListThemeComponent } from './theme/list/list-theme.component';
 
 export const PORTAL_ROUTES: Route[] = [
   {
@@ -73,7 +73,7 @@ export const PORTAL_ROUTES: Route[] = [
     }
   },
   {
-    path: 'list-theme',
+    path: RouteConfig.ThemeList,
     component: ListThemeComponent,
     data: {
       title: 'Themes'

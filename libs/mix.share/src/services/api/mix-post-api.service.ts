@@ -20,7 +20,7 @@ export class MixPostApiService extends BaseApiService {
     return this.post<MixPostPortalModel, void>(
       MixApiDict.PostApi.savePostEndpoint,
       data
-    ).pipe(tap(() => this.appEvent.notify(AppEvent.NewPostAdded)));
+    ).pipe(tap(() => this.appEvent.notify({ type: AppEvent.NewPostAdded })));
   }
 
   public getPosts(

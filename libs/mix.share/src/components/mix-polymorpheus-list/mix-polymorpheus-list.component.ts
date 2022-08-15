@@ -178,7 +178,7 @@ export class MixPolymorphousListComponent
             AppEvent.NewModuleAdded,
             AppEvent.NewPageAdded,
             AppEvent.NewPostAdded
-          ].includes(event)
+          ].includes(event.type)
         )
       )
       .subscribe(() => {

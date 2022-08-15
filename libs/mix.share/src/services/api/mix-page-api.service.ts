@@ -33,7 +33,7 @@ export class MixPageApiService extends BaseApiService {
     return this.post<MixPagePortalModel, void>(
       MixApiDict.PageApi.savePageEndpoint,
       data
-    ).pipe(tap(() => this.appEvent.notify(AppEvent.NewPageAdded)));
+    ).pipe(tap(() => this.appEvent.notify({ type: AppEvent.NewPageAdded })));
   }
 
   public getPageById(id: number): Observable<MixPagePortalModel> {
