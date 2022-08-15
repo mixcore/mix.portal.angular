@@ -1,5 +1,5 @@
 <div class="mix-workspace-container detail-template">
-  <div class="mix-workspace-container__header">
+  <!-- <div class="mix-workspace-container__header">
     <div class="detail-template__title"
          [formGroup]="form">
       <mix-inline-edit-placeholder formControlName="templateTitle">
@@ -17,11 +17,14 @@
             [size]="'s'"
             (click)="onSave()"
             tuiButton>Save</button>
-  </div>
+  </div> -->
 
   <div class="mix-workspace-container__container">
-    <mix-template-editor *ngIf="currentTemplate"
+    <mix-template-editor *ngIf="currentTemplate && !!!(loading$ | async)"
                          [disabled]="true"
                          [templateId]="currentTemplate.id"></mix-template-editor>
+
+    <mix-skeleton-loading *ngIf="!!(loading$ | async)"></mix-skeleton-loading>
   </div>
+
 </div>

@@ -10,7 +10,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import {
   CodeEditorComponent,
-  InlineEditPlaceholderComponent
+  InlineEditPlaceholderComponent,
+  SkeletonLoadingComponent
 } from '@mix/mix.ui';
 import { MixTemplateModel } from '@mix-spa/mix.lib';
 import {
@@ -24,7 +25,7 @@ import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 import { TuiButtonModule, TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
-import { debounceTime, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-detail-template',
@@ -44,7 +45,8 @@ import { debounceTime, takeUntil } from 'rxjs';
     TuiInputModule,
     TuiTextfieldControllerModule,
     TuiAutoFocusModule,
-    TemplateEditorComponent
+    TemplateEditorComponent,
+    SkeletonLoadingComponent
   ],
   providers: [DestroyService]
 })
@@ -77,6 +79,7 @@ export class MixDetailTemplateComponent
       .subscribe(params => {
         if (!params['templateId']) return;
 
+        this.loading$.next(true);
         this.templateApi
           .getTemplateById(params['templateId'])
           .subscribe(result => {
@@ -85,10 +88,7 @@ export class MixDetailTemplateComponent
             this.form.controls['styleSheetCode'].patchValue(result.styles);
             this.form.controls['javascriptCode'].patchValue(result.scripts);
             this.form.controls['templateTitle'].patchValue(result.fileName);
-
-            this.form.valueChanges.pipe(debounceTime(1000)).subscribe(() => {
-              if (this.autoSave.value) this.onSave();
-            });
+            this.loading$.next(false);
           });
       });
   }
