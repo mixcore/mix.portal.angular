@@ -31,7 +31,8 @@
         "styles": [
           "node_modules/@taiga-ui/core/styles/taiga-ui-global.less",
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-          "apps/mix-portal/src/styles.scss"
+          "apps/mix-portal/src/styles.scss",
+          "apps/mix-portal/src/styles/functions.less"
         ],
         "scripts": [],
         "serviceWorker": true,
