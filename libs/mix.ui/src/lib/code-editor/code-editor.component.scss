@@ -2,9 +2,9 @@
   height: 100%;
   resize: vertical;
   overflow: auto;
+  height: 500px;
 
   ngx-monaco-editor {
-    // height: calc(100vh - var(--mix-header-height) - var(--tui-height-l) - 2rem);
-    height: 400px;
+    height: 100%;
   }
 }
