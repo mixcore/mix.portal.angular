@@ -108,7 +108,7 @@ $item-hover: rgba(243, 146, 243, 0.1);
 
     .menu {
       width: 100%;
-      height: 100%;
+      height: calc(100vh - 40px);
       padding: 0px 24px 10px 24px;
 
       &__label {
@@ -128,6 +128,10 @@ $item-hover: rgba(243, 146, 243, 0.1);
         transition: all 0.2s ease;
         position: relative;
         height: var(--mix-space-4);
+
+        [automation-id='tui-accordion__item-content'] {
+          padding: 0.5rem 1rem 1rem 1rem !important;
+        }
 
         &:hover {
           opacity: 0.7;
@@ -173,17 +177,15 @@ $item-hover: rgba(243, 146, 243, 0.1);
         font-size: 11px;
         opacity: 0.7;
       }
+
+      &__accordion {
+        .header.header_open {
+          background-color: var(--tui-base-01);
+          border-radius: 1rem;
+        }
+      }
     }
   }
-}
-
-[automation-id='tui-accordion__item-content'] {
-  padding: 0.5rem 1rem 1rem 1rem !important;
-}
-
-.header.header_open {
-  background-color: var(--tui-base-01);
-  border-radius: 1rem;
 }
 
 tui-accordion-item {

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import {
   TuiButtonModule,
@@ -16,6 +16,7 @@ import {
 } from '../../../services/helper/app-event.service';
 import { DestroyService } from '../../../services/helper/destroy.service';
 import { ThemeFileTreeComponent } from '../../theme-file-tree/theme-file-tree.component';
+import { ResizeObserverDirective } from '../resize-observer.directive';
 
 @Component({
   selector: 'mix-template-menu',
@@ -30,7 +31,8 @@ import { ThemeFileTreeComponent } from '../../theme-file-tree/theme-file-tree.co
     TuiDataListModule,
     TuiHostedDropdownModule,
     RouterModule,
-    ThemeFileTreeComponent
+    ThemeFileTreeComponent,
+    ResizeObserverDirective
   ],
   providers: [DestroyService]
 })
@@ -38,11 +40,14 @@ export class TemplateMenuComponent {
   public readonly arrow = TUI_ARROW;
   public readonly routes = RouteConfig;
   public selectedThemeId: number | undefined = undefined;
-
+  public fileTreeHeight = '50vh';
+  @ViewChild('mainMenu', { static: true }) public mainMenu!: ElementRef;
+  @ViewChild('fileTree', { static: false }) public fileTree!: ElementRef;
   constructor(
     private route: Router,
     public appEvent: AppEventService,
-    public destroy$: DestroyService
+    public destroy$: DestroyService,
+    private host: ElementRef
   ) {
     this.appEvent.event$
       .pipe(
@@ -52,6 +57,12 @@ export class TemplateMenuComponent {
       .subscribe(e => {
         this.selectedThemeId = e.data.id;
       });
+  }
+
+  public resizeChange(entry: ResizeObserverEntry): void {
+    const fullHeight = this.host.nativeElement.children[0].clientHeight;
+    const menuHeight = this.mainMenu.nativeElement.clientHeight;
+    this.fileTreeHeight = `${fullHeight - menuHeight - 150}px`;
   }
 
   public navigateTo(route: string): void {

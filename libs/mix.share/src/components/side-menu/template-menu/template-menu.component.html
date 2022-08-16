@@ -6,33 +6,40 @@
     New theme
   </button>
 
-  <div class="menu__separator"></div>
+  <div #mainMenu
+       (resizeChange)="resizeChange($event)"
+       mixResizeObserver>
+    <div class="menu__separator"></div>
 
-  <tui-accordion [closeOthers]="false">
-    <tui-accordion-item [borders]="null"
-                        [open]="true"
-                        [size]="'s'">
-      <div class="menu__group">Themes</div>
-      <ng-template tuiAccordionItemContent>
-        <div class="menu__item"
-             (click)="navigateTo(routes.ThemeList)"><a> List Theme </a></div>
-      </ng-template>
-    </tui-accordion-item>
+    <tui-accordion class="menu__accordion"
+                   [closeOthers]="false">
+      <tui-accordion-item [borders]="null"
+                          [open]="true"
+                          [size]="'s'">
+        <div class="menu__group">Themes</div>
+        <ng-template tuiAccordionItemContent>
+          <div class="menu__item"
+               (click)="navigateTo(routes.ThemeList)"><a> List Theme </a></div>
+        </ng-template>
+      </tui-accordion-item>
 
-    <tui-accordion-item [borders]="null"
-                        [open]="true"
-                        [size]="'s'">
-      <div class="menu__group">Mix Market</div>
-      <ng-template tuiAccordionItemContent>
-        <div class="menu__item"><a> Visit </a></div>
-        <div class="menu__item"
-             (click)="navigateTo(routes.PageList)"><a> Choose template </a></div>
-      </ng-template>
-    </tui-accordion-item>
-  </tui-accordion>
+      <tui-accordion-item [borders]="null"
+                          [open]="true"
+                          [size]="'s'">
+        <div class="menu__group">Mix Market</div>
+        <ng-template tuiAccordionItemContent>
+          <div class="menu__item"><a> Visit </a></div>
+          <div class="menu__item"
+               (click)="navigateTo(routes.PageList)"><a> Choose template </a></div>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-accordion>
 
-  <div class="menu__separator"></div>
-  <div style="height: 50vh; overflow: auto">
+    <div class="menu__separator"></div>
+  </div>
+
+  <div #fileTree
+       [style.height]="fileTreeHeight">
     <mix-theme-file-tree *ngIf="selectedThemeId"
                          [showFileDate]="false"
                          [themeId]="selectedThemeId"></mix-theme-file-tree>
