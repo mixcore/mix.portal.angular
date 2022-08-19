@@ -13,6 +13,7 @@ import { filter, startWith } from 'rxjs';
 
 import { AuthApiService } from '../../services';
 import { ShareModule } from '../../share.module';
+import { LocationControllerComponent } from '../location-controller/location-controller.component';
 import { ModalService } from '../modal/modal.service';
 import { HeaderMenuService } from './header-menu.service';
 
@@ -27,7 +28,13 @@ export interface BreadcrumbOption {
   templateUrl: './header-menu.component.html',
   styleUrls: ['./header-menu.component.scss'],
   standalone: true,
-  imports: [ShareModule, TuiBreadcrumbsModule, RouterModule, TuiLinkModule]
+  imports: [
+    ShareModule,
+    TuiBreadcrumbsModule,
+    RouterModule,
+    TuiLinkModule,
+    LocationControllerComponent
+  ]
 })
 export class HeaderMenuComponent {
   @Input() public showLogo = false;

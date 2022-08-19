@@ -9,19 +9,26 @@
     width: 100%;
     margin-left: var(--mix-space-1);
     margin-top: var(--mix-space-1);
-    background-color: #fff;
     transition: all 0.2s ease-in-out;
-    border-top-left-radius: var(--mix-border-radius-02);
 
     &.--menu-expand {
       z-index: 2;
     }
   }
 
+  &__header {
+    background-color: #fff;
+    border-top-left-radius: var(--mix-border-radius-02);
+    border-bottom-left-radius: var(--mix-border-radius-02);
+    margin-bottom: var(--mix-space-1);
+  }
+
   &__main-workspace {
+    border-top-left-radius: var(--mix-border-radius-02);
     width: 100%;
     height: calc(100vh - var(--mix-header-height));
     box-sizing: border-box;
+    background-color: #fff;
     position: relative;
   }
 

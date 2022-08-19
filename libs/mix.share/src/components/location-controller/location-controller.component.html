@@ -1,0 +1,22 @@
+<div class="location-controller">
+  <button type="button"
+          [size]="'s'"
+          (click)="location.back()"
+          tuiIconButton
+          appearance="icon"
+          icon="tuiIconArrowLeft"></button>
+
+  <button type="button"
+          [size]="'s'"
+          (click)="location.forward()"
+          tuiIconButton
+          appearance="icon"
+          icon="tuiIconArrowRight"></button>
+
+  <button type="button"
+          [size]="'s'"
+          (click)="refreshClick()"
+          tuiIconButton
+          appearance="icon"
+          icon="tuiIconRedo"></button>
+</div>

@@ -1,5 +1,5 @@
 <div class="header-menu">
-  <div class="header-menu__title">
+  <div class="header-menu__breadcrumb">
     <tui-breadcrumbs [size]="'l'">
       <ng-container *ngIf="showLogo">
         <div *tuiBreadcrumb
@@ -25,15 +25,9 @@
       </ng-container>
     </tui-breadcrumbs>
   </div>
+  <mix-location-controller></mix-location-controller>
 
   <div class="header-menu__right-menu">
-    <!-- <tui-input class="header-menu__search"
-               tuiTextfieldSize="s">
-      Search
-      <input type="text"
-             tuiTextfield>
-    </tui-input> -->
-
     <tui-hosted-dropdown class="header-menu__avatar"
                          [content]="profileTemplate">
       <tui-avatar [rounded]="true"

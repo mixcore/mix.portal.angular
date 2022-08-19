@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -62,7 +62,8 @@ export class PageModuleSelectedComponent
 
   constructor(
     private moduleApi: MixModuleApiService,
-    private pageModuleApi: MixPageModuleApiService
+    private pageModuleApi: MixPageModuleApiService,
+    private location: Location
   ) {
     super();
   }

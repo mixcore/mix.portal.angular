@@ -178,7 +178,8 @@ export class MixPolymorphousListComponent
           [
             AppEvent.NewModuleAdded,
             AppEvent.NewPageAdded,
-            AppEvent.NewPostAdded
+            AppEvent.NewPostAdded,
+            AppEvent.Refresh
           ].includes(event.type)
         )
       )

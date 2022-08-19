@@ -1,0 +1,10 @@
+.location-controller {
+  width: fit-content;
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  button {
+    margin-right: var(--mix-space-01);
+  }
+}

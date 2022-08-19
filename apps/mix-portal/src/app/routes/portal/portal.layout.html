@@ -4,7 +4,10 @@
     class="cms-portal-container__workspace"
     [ngClass]="{'--menu-expand': (expand$ | async)}"
   >
-    <mix-header-menu [showLogo]="!!!(expand$ | async)"></mix-header-menu>
+    <div class="cms-portal-container__header">
+      <mix-header-menu [showLogo]="!!!(expand$ | async)"></mix-header-menu>
+    </div>
+
     <div class="cms-portal-container__main-workspace">
       <router-outlet></router-outlet>
       <ng-container ngProjectAs="tuiOverContent">

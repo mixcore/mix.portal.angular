@@ -11,7 +11,8 @@ export enum AppEvent {
   CreateModule = 'CreateModule',
   CreateTheme = 'CreateTheme',
   UniversalSearch = 'UniversalSearch',
-  ThemeSelected = 'ThemeSelected'
+  ThemeSelected = 'ThemeSelected',
+  Refresh = 'Refresh'
 }
 
 export interface AppEventModel {
