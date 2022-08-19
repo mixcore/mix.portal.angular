@@ -3,15 +3,12 @@
     <mix-skeleton-loading></mix-skeleton-loading>
   </ng-container>
 
-  <ng-container *ngIf="data$ | async as data">
-    <div *ngFor="let post of data.items"
+  <ng-container *ngIf="posts && posts.length">
+    <div *ngFor="let post of posts"
          class="post-nav-selected__item">
-      <mix-switch [checked]="isChecked(post)"
-                  (checkedChange)="checkedChange($event, post)"></mix-switch>
-      <p> {{ post.title}} </p>
+      <mix-switch [checked]="post.isSelected"
+                  (checkedChange)="checkedChange($event, post.item)"></mix-switch>
+      <p> {{ post.item.title}} </p>
     </div>
-
-    <tui-pagination [index]="data.pagingData.page ?? 0"
-                    [length]="data.pagingData.totalPage ?? 0"></tui-pagination>
   </ng-container>
 </div>

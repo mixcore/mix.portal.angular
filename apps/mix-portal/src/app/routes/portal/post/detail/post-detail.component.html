@@ -100,7 +100,8 @@
 
       <div *ngIf="activeTabIndex === 2"
            class="post-detail__main-widget">
-        <mix-post-nav-selected [selectedPosts]="selectedPostNavs"></mix-post-nav-selected>
+        <mix-post-nav-selected [parentId]="post.id"
+                               [selectedPosts]="selectedPostNavs"></mix-post-nav-selected>
       </div>
 
       <div *ngIf="activeTabIndex === 4"

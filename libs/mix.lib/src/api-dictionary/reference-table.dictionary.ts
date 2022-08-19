@@ -4,6 +4,10 @@ export class PostPostApiDictionary extends BaseMixApiDictionary {
   protected get url(): string {
     return '/mix-portal/mix-post-post/';
   }
+
+  public get searchEndpoint() {
+    return this.url + 'search';
+  }
 }
 
 export class PagePostApiDictionary extends BaseMixApiDictionary {
