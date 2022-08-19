@@ -3,10 +3,16 @@
     <mix-skeleton-loading></mix-skeleton-loading>
   </ng-container>
 
-  <ng-container *ngIf="posts && posts.length">
-    <div *ngFor="let post of posts"
+  <ng-container *ngIf="posts  && posts.length">
+    <div class="post-nav-selected__search">
+      <mix-input-labeled [(ngModel)]="searchText"
+                         [label]="'Search: '"></mix-input-labeled>
+    </div>
+
+    <div *ngFor="let post of viewablePost"
          class="post-nav-selected__item">
       <mix-switch [checked]="post.isSelected"
+                  [disabled]="!!(disabled$ | async)"
                   (checkedChange)="checkedChange($event, post.item)"></mix-switch>
       <p> {{ post.item.title}} </p>
     </div>

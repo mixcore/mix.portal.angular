@@ -16,8 +16,8 @@ export abstract class BaseMixApiService<T> extends BaseApiService {
     return this.get(this.apiDict.getDefaultEndpoint);
   }
 
-  public save(data: T): Observable<void> {
-    return this.post<T, void>(this.apiDict.saveEndpoint, data);
+  public save(data: T): Observable<T> {
+    return this.post<T, T>(this.apiDict.saveEndpoint, data);
   }
 
   public gets(

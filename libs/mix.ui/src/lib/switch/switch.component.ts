@@ -20,8 +20,15 @@ import { TuiToggleModule } from '@taiga-ui/kit';
 })
 export class SwitchComponent implements OnInit {
   @Input() public checked = false;
+  @Input() public set disabled(value: boolean) {
+    this._disabled = value;
+    this._disabled
+      ? this.control.disable({ emitEvent: false })
+      : this.control.enable({ emitEvent: false });
+  }
   @Output() public checkedChange: EventEmitter<boolean> = new EventEmitter();
 
+  public _disabled = false;
   public control: FormControl = new FormControl(this.checked);
 
   ngOnInit(): void {

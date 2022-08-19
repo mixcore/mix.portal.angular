@@ -5,7 +5,12 @@ import {
   Input,
   OnInit
 } from '@angular/core';
-import { SkeletonLoadingComponent, SwitchComponent } from '@mix/mix.ui';
+import { FormsModule } from '@angular/forms';
+import {
+  InputLabeledComponent,
+  SkeletonLoadingComponent,
+  SwitchComponent
+} from '@mix/mix.ui';
 import { MixPostPortalModel, MixPostReferenceModel } from '@mix-spa/mix.lib';
 import { TuiPaginationModule, TuiToggleModule } from '@taiga-ui/kit';
 import { combineLatest, switchMap } from 'rxjs';
@@ -24,7 +29,9 @@ import { MixPostPostApiService } from '../../services/api/mix-post-post-api.serv
     TuiPaginationModule,
     SkeletonLoadingComponent,
     TuiToggleModule,
-    SwitchComponent
+    SwitchComponent,
+    InputLabeledComponent,
+    FormsModule
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -34,6 +41,21 @@ export class PostNavSelectedComponent extends BaseComponent implements OnInit {
 
   public posts: { isSelected: boolean; item: MixPostPortalModel }[] = [];
   public postNav: MixPostReferenceModel[] = [];
+  public searchText = '';
+
+  public get viewablePost(): {
+    isSelected: boolean;
+    item: MixPostPortalModel;
+  }[] {
+    return this.posts.filter(post =>
+      post.item.title
+        .toLocaleLowerCase()
+        .trim()
+        .includes(
+          this.searchText ? this.searchText.toLocaleLowerCase().trim() : ''
+        )
+    );
+  }
 
   constructor(
     private postApi: MixPostApiService,
@@ -61,7 +83,8 @@ export class PostNavSelectedComponent extends BaseComponent implements OnInit {
         .filter(post => post.id !== this.parentId)
         .map(post => {
           return {
-            isSelected: !!this.postNav.find(pn => pn.parentId === post.id),
+            isSelected:
+              this.postNav.find(pn => pn.childId === post.id) != undefined,
             item: post
           };
         });
@@ -70,11 +93,8 @@ export class PostNavSelectedComponent extends BaseComponent implements OnInit {
     });
   }
 
-  public isChecked(value: MixPostPortalModel): boolean {
-    return this.selectedPosts.findIndex(post => post.id === value.id) >= 0;
-  }
-
   public checkedChange(isCheck: boolean, post: MixPostPortalModel): void {
+    this.disabled$.next(true);
     if (isCheck) {
       this.postPostApi
         .getDefault()
@@ -87,11 +107,20 @@ export class PostNavSelectedComponent extends BaseComponent implements OnInit {
             });
           })
         )
-        .subscribe(() => {
-          console.log('ok');
+        .subscribe((result: MixPostReferenceModel) => {
+          this.showSuccess('Link post success!');
+          this.postNav.push(result);
+          this.disabled$.next(false);
         });
     } else {
-      this.postPostApi;
+      const postNav = this.postNav.find(pn => pn.childId === post.id);
+      if (!postNav) return;
+
+      this.postPostApi.remove(postNav.id).subscribe(() => {
+        this.showSuccess('Un-link post success!');
+        this.postNav = this.postNav.filter(pn => pn.id === postNav.id);
+        this.disabled$.next(false);
+      });
     }
   }
 }
