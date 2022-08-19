@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import {
   AbstractTuiPortalHostComponent,
   AbstractTuiPortalService
@@ -13,7 +13,6 @@ import { PortalSidebarControlService } from '../../services';
   styleUrls: ['./portal-sidebar-host.component.scss'],
   standalone: true,
   imports: [CommonModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: AbstractTuiPortalService,
@@ -21,4 +20,12 @@ import { PortalSidebarControlService } from '../../services';
     }
   ]
 })
-export class PortalSidebarHostComponent extends AbstractTuiPortalHostComponent {}
+export class PortalSidebarHostComponent extends AbstractTuiPortalHostComponent {
+  constructor(
+    elementRef: ElementRef<HTMLElement>,
+    portalService: AbstractTuiPortalService,
+    public sidebarControl: PortalSidebarControlService
+  ) {
+    super(elementRef, portalService);
+  }
+}

@@ -5,10 +5,10 @@ import {
   MixPagePortalModel,
   MixPostPortalModel
 } from '@mix-spa/mix.lib';
-import { TuiAlertService } from '@taiga-ui/core';
 import { switchMap } from 'rxjs';
 
 import { slideAnimation } from '../../../animations';
+import { BaseComponent } from '../../../bases/base-component.component';
 import {
   MixPageApiService,
   MixPostApiService,
@@ -29,7 +29,7 @@ export type MixCreationType = 'Post' | 'Page' | 'Module';
   imports: [ShareModule, MixModuleSelectComponent],
   animations: [slideAnimation]
 })
-export class CreationDialogComponent implements OnInit {
+export class CreationDialogComponent extends BaseComponent implements OnInit {
   @Input() public type: MixCreationType = 'Post';
 
   public items: MixCreationType[] = ['Post', 'Page', 'Module'];
@@ -64,10 +64,11 @@ export class CreationDialogComponent implements OnInit {
     public postApi: MixPostApiService,
     public moduleApi: MixModuleApiService,
     public pageApi: MixPageApiService,
-    public alert: TuiAlertService,
     @Inject(PortalSidebarControlService)
     private readonly sidebarControl: PortalSidebarControlService
-  ) {}
+  ) {
+    super();
+  }
 
   public ngOnInit(): void {
     this.form.controls['title'].valueChanges.subscribe((title: string) => {
@@ -112,11 +113,7 @@ export class CreationDialogComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.alert
-          .open(`Create ${form.title} successfully`, {
-            label: 'Success'
-          })
-          .subscribe();
+        this.showSuccess(`Create ${form.title} successfully`);
         this.handleAfterCreate();
       });
   }
@@ -141,12 +138,7 @@ export class CreationDialogComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        this.alert
-          .open(`Create ${form.title} successfully`, {
-            label: 'Success'
-          })
-          .subscribe();
-
+        this.showSuccess(`Create ${form.title} successfully`);
         this.handleAfterCreate();
       });
   }
@@ -176,9 +168,7 @@ export class CreationDialogComponent implements OnInit {
         })
       )
       .subscribe(() => {
-        const message = `Create ${form.title} successfully`;
-        this.alert.open(message, { label: 'Success' }).subscribe();
-
+        this.showSuccess(`Create ${form.title} successfully`);
         this.handleAfterCreate();
       });
   }

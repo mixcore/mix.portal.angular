@@ -8,5 +8,11 @@
 
 .portal-sidebar-host {
   height: 100%;
-  width: 100%;
+
+  &.--open {
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    background: rgba(0, 0, 0, 0.5);
+  }
 }

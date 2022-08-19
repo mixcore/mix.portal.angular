@@ -3,6 +3,7 @@
   height: 100%;
   background-color: var(--tui-base-01);
   box-shadow: var(--sidebar-box-shadow);
+  border-top-left-radius: var(--mix-border-radius-02);
 
   &__header {
     display: flex;
