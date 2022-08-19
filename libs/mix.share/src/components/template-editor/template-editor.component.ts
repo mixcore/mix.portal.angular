@@ -54,7 +54,7 @@ export class TemplateEditorComponent extends BaseComponent {
   }
 
   public loadTemplate(): void {
-    this.templateApi.getTemplateById(this._templateId).subscribe(result => {
+    this.templateApi.getById(this._templateId).subscribe(result => {
       this.currentTemplate = result;
       this.form.controls['templateCode'].patchValue(result.content);
       this.form.controls['styleSheetCode'].patchValue(result.styles);
@@ -79,7 +79,7 @@ export class TemplateEditorComponent extends BaseComponent {
       scripts: this.form.controls['javascriptCode'].value
     };
 
-    this.templateApi.saveTemplate(request).subscribe({
+    this.templateApi.save(request).subscribe({
       next: () => {
         this.showSuccess('Successfully save');
         this.initialValue = this.form.getRawValue();

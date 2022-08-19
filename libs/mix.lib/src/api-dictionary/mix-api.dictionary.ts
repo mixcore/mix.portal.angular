@@ -2,6 +2,10 @@ import { DatabaseApiDictionary } from './mix-database.dictionary';
 import { ModuleApiDictionary } from './module-api.dictionary';
 import { PageApiDictionary } from './page-api.dictionary';
 import { PostApiDictionary } from './post-api.dictionary';
+import {
+  PagePostApiDictionary,
+  PostPostApiDictionary
+} from './reference-table.dictionary';
 import { ShareApiDictionary } from './share-api.dictionary';
 import { TemplateApiDictionary } from './template-api.dictionary';
 import { TenancyApiDictionary } from './tenancy-api.dictionary';
@@ -16,6 +20,10 @@ export class MixApiDictionary {
   public DatabaseApi: DatabaseApiDictionary = new DatabaseApiDictionary();
   public ThemeApi: ThemeApiDictionary = new ThemeApiDictionary();
   public TemplateApi: TemplateApiDictionary = new TemplateApiDictionary();
+
+  // reference table
+  public PostPostApi: PostPostApiDictionary = new PostPostApiDictionary();
+  public PagePostApi: PagePostApiDictionary = new PagePostApiDictionary();
 }
 
 export const MixApiDict = new MixApiDictionary();

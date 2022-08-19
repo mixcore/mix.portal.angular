@@ -1,42 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
+  BaseMixApiDictionary,
   MixApiDict,
-  MixPostPortalModel,
-  PaginationRequestModel,
-  PaginationResultModel
+  MixPostPortalModel
 } from '@mix-spa/mix.lib';
-import { Observable, tap } from 'rxjs';
 
-import { BaseApiService, IHttpParamObject } from '../../bases/base-api.service';
-import { AppEvent } from '../helper/app-event.service';
+import { BaseMixApiService } from './base-mix-api.service';
 
 @Injectable({ providedIn: 'root' })
-export class MixPostApiService extends BaseApiService {
-  public getDefaultPostTemplate(): Observable<MixPostPortalModel> {
-    return this.get(MixApiDict.PostApi.getDefaultPostEndpoint);
-  }
-
-  public savePost(data: MixPostPortalModel): Observable<void> {
-    return this.post<MixPostPortalModel, void>(
-      MixApiDict.PostApi.savePostEndpoint,
-      data
-    ).pipe(tap(() => this.appEvent.notify({ type: AppEvent.NewPostAdded })));
-  }
-
-  public getPosts(
-    request: PaginationRequestModel
-  ): Observable<PaginationResultModel<MixPostPortalModel>> {
-    return this.get<PaginationResultModel<MixPostPortalModel>>(
-      MixApiDict.PostApi.getPostEndpoint,
-      <IHttpParamObject>request
-    );
-  }
-
-  public deletePosts(id: number): Observable<void> {
-    return this.delete(MixApiDict.PostApi.deletePostEndpoint + id);
-  }
-
-  public getPostById(id: number): Observable<MixPostPortalModel> {
-    return this.get(MixApiDict.PostApi.getPostByIdEndpoint(id));
+export class MixPostApiService extends BaseMixApiService<MixPostPortalModel> {
+  protected get apiDict(): BaseMixApiDictionary {
+    return MixApiDict.PostApi;
   }
 }

@@ -85,7 +85,7 @@ export class MixFolderFileComponent extends BaseComponent implements OnInit {
       return;
 
     this.templateApi
-      .getTemplateDefault()
+      .getDefault()
       .pipe(
         switchMap((defaultTemplate: MixTemplateModel) => {
           const request: MixTemplateModel = {
@@ -96,7 +96,7 @@ export class MixFolderFileComponent extends BaseComponent implements OnInit {
             extension: '.cshtml'
           };
 
-          return this.templateApi.saveTemplate(request);
+          return this.templateApi.save(request);
         })
       )
       .subscribe({
@@ -119,7 +119,7 @@ export class MixFolderFileComponent extends BaseComponent implements OnInit {
       folderType: this.folderType
     };
 
-    this.templateApi.getTemplates(query).subscribe({
+    this.templateApi.gets(query).subscribe({
       next: result => {
         this.loading$.next(false);
         this.result$.next(result);
@@ -147,7 +147,7 @@ export class MixFolderFileComponent extends BaseComponent implements OnInit {
       .subscribe(ok => {
         if (ok) {
           const requests = this.selectedFiles.map(file =>
-            this.templateApi.deleteTemplate(file.id)
+            this.templateApi.remove(file.id)
           );
 
           forkJoin(requests).subscribe(() => {

@@ -1,3 +1,4 @@
+export { BaseMixApiDictionary } from './base-dictionary';
 export * from './mix-api.dictionary';
 export * from './page-api.dictionary';
 export * from './post-api.dictionary';

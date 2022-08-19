@@ -86,38 +86,36 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.postApi
-      .getPostById(this.activatedRoute.snapshot.params['id'])
-      .subscribe({
-        next: result => {
-          this.post = result;
-          this.selectedPostNavs = result.postNavs ?? [];
-          this.form = this.fb.group({
-            title: [result.title, [Validators.required]],
-            excerpt: [result.excerpt, [Validators.required]],
-            content: [result.content, [Validators.required]],
-            seoTitle: [result.seoTitle],
-            seoName: [result.seoName],
-            seoDescription: [result.seoDescription],
-            seoKeywords: [result.seoKeywords],
-            seoSource: [result.seoSource]
-          });
+    this.postApi.getById(this.activatedRoute.snapshot.params['id']).subscribe({
+      next: result => {
+        this.post = result;
+        this.selectedPostNavs = result.postNavs ?? [];
+        this.form = this.fb.group({
+          title: [result.title, [Validators.required]],
+          excerpt: [result.excerpt, [Validators.required]],
+          content: [result.content, [Validators.required]],
+          seoTitle: [result.seoTitle],
+          seoName: [result.seoName],
+          seoDescription: [result.seoDescription],
+          seoKeywords: [result.seoKeywords],
+          seoSource: [result.seoSource]
+        });
 
-          this.registerTitleChange();
-          this.loadTemplate();
-          this.loading$.next(false);
-        },
-        error: () => {
-          this.error$.next(true);
-        }
-      });
+        this.registerTitleChange();
+        this.loadTemplate();
+        this.loading$.next(false);
+      },
+      error: () => {
+        this.error$.next(true);
+      }
+    });
   }
 
   public loadTemplate(): void {
     if (!this.post || !this.post.template) return;
 
     this.templateApi
-      .getTemplates({
+      .gets({
         themeId: this.post.template?.mixThemeId,
         folderType: this.post.template.folderType,
         columns: 'id, fileName',
@@ -151,7 +149,7 @@ export class PostDetailComponent extends BaseComponent implements OnInit {
     };
 
     this.disabled$.next(true);
-    this.postApi.savePost(post).subscribe({
+    this.postApi.save(post).subscribe({
       next: () => {
         this.showSuccess('Successfully save your post');
         this.disabled$.next(false);

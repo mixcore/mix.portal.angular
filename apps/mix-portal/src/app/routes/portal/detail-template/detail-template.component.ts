@@ -80,16 +80,14 @@ export class MixDetailTemplateComponent
         if (!params['templateId']) return;
 
         this.loading$.next(true);
-        this.templateApi
-          .getTemplateById(params['templateId'])
-          .subscribe(result => {
-            this.currentTemplate = result;
-            this.form.controls['templateCode'].patchValue(result.content);
-            this.form.controls['styleSheetCode'].patchValue(result.styles);
-            this.form.controls['javascriptCode'].patchValue(result.scripts);
-            this.form.controls['templateTitle'].patchValue(result.fileName);
-            this.loading$.next(false);
-          });
+        this.templateApi.getById(params['templateId']).subscribe(result => {
+          this.currentTemplate = result;
+          this.form.controls['templateCode'].patchValue(result.content);
+          this.form.controls['styleSheetCode'].patchValue(result.styles);
+          this.form.controls['javascriptCode'].patchValue(result.scripts);
+          this.form.controls['templateTitle'].patchValue(result.fileName);
+          this.loading$.next(false);
+        });
       });
   }
 
@@ -104,7 +102,7 @@ export class MixDetailTemplateComponent
       fileName: this.form.value.templateTitle
     };
 
-    this.templateApi.saveTemplate(request).subscribe({
+    this.templateApi.save(request).subscribe({
       next: () => {
         this.showSuccess('Successfully save');
       },

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+  BaseMixApiDictionary,
   IGetTemplatesRequest,
   MixApiDict,
   MixTemplateModel,
@@ -7,35 +8,21 @@ import {
 } from '@mix-spa/mix.lib';
 import { Observable } from 'rxjs';
 
-import { BaseApiService, IHttpParamObject } from '../../bases';
+import { IHttpParamObject } from '../../bases';
+import { BaseMixApiService } from './base-mix-api.service';
 
 @Injectable({ providedIn: 'root' })
-export class MixTemplateApiService extends BaseApiService {
-  public getTemplates(
+export class MixTemplateApiService extends BaseMixApiService<MixTemplateModel> {
+  protected get apiDict(): BaseMixApiDictionary {
+    return MixApiDict.TemplateApi;
+  }
+
+  public override gets(
     request: IGetTemplatesRequest
   ): Observable<PaginationResultModel<MixTemplateModel>> {
-    return this.get(
-      MixApiDict.TemplateApi.getTemplateEndpoint,
+    return this.get<PaginationResultModel<MixTemplateModel>>(
+      this.apiDict.getEndpoint,
       request as unknown as IHttpParamObject
     );
-  }
-
-  public getTemplateById(id: number): Observable<MixTemplateModel> {
-    return this.get(MixApiDict.TemplateApi.getTemplateByIdEndpoint(id));
-  }
-
-  public saveTemplate(template: MixTemplateModel): Observable<number> {
-    return this.post<MixTemplateModel, number>(
-      MixApiDict.TemplateApi.prefix,
-      template
-    );
-  }
-
-  public getTemplateDefault(): Observable<MixTemplateModel> {
-    return this.get(MixApiDict.TemplateApi.getTemplateDefaultEndpoint);
-  }
-
-  public deleteTemplate(id: number): Observable<void> {
-    return this.delete(MixApiDict.TemplateApi.deleteTemplateByIdEndpoint(id));
   }
 }

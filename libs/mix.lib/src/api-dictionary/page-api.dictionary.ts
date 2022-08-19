@@ -1,10 +1,7 @@
-export class PageApiDictionary {
-  public prefix = '/mix-portal/mix-page-content/';
-  public getDefaultPageEndpoint = this.prefix;
-  public savePageEndpoint = this.prefix;
-  public getPageEndpoint = this.prefix;
-  public deletePageEndpoint = this.prefix;
-  public getPageById(id: number): string {
-    return this.prefix + id;
+import { BaseMixApiDictionary } from './base-dictionary';
+
+export class PageApiDictionary extends BaseMixApiDictionary {
+  protected get url(): string {
+    return '/mix-portal/mix-page-content/';
   }
 }

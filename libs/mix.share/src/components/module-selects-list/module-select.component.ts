@@ -23,7 +23,7 @@ export class MixModuleSelectComponent {
     });
 
   public data$ = this.filter$.pipe(
-    switchMap(filter => this.moduleApi.getModules(filter))
+    switchMap(filter => this.moduleApi.gets(filter))
   );
 
   constructor(private moduleApi: MixModuleApiService) {}

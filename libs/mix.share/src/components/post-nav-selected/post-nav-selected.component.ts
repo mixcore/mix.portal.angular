@@ -55,7 +55,7 @@ export class PostNavSelectedComponent extends BaseComponent {
   public loadPost(): void {
     this.data$ = this.request$.pipe(
       tap(() => this.loading$.next(true)),
-      switchMap(request => this.postApi.getPosts(request)),
+      switchMap(request => this.postApi.gets(request)),
       tap(() => this.loading$.next(false))
     );
   }

@@ -86,37 +86,35 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.pageApi
-      .getPageById(this.activatedRoute.snapshot.params['id'])
-      .subscribe({
-        next: result => {
-          this.page = result;
-          this.form = this.fb.group({
-            title: [result.title, [Validators.required]],
-            excerpt: [result.excerpt],
-            content: [result.content],
-            seoTitle: [result.seoTitle],
-            seoName: [result.seoName],
-            seoDescription: [result.seoDescription],
-            seoKeywords: [result.seoKeywords],
-            seoSource: [result.seoSource]
-          });
+    this.pageApi.getById(this.activatedRoute.snapshot.params['id']).subscribe({
+      next: result => {
+        this.page = result;
+        this.form = this.fb.group({
+          title: [result.title, [Validators.required]],
+          excerpt: [result.excerpt],
+          content: [result.content],
+          seoTitle: [result.seoTitle],
+          seoName: [result.seoName],
+          seoDescription: [result.seoDescription],
+          seoKeywords: [result.seoKeywords],
+          seoSource: [result.seoSource]
+        });
 
-          this.registerTitleChange();
-          this.loadTemplate();
-          this.loading$.next(false);
-        },
-        error: () => {
-          this.error$.next(true);
-        }
-      });
+        this.registerTitleChange();
+        this.loadTemplate();
+        this.loading$.next(false);
+      },
+      error: () => {
+        this.error$.next(true);
+      }
+    });
   }
 
   public loadTemplate(): void {
     if (!this.page || !this.page.template) return;
 
     this.templateApi
-      .getTemplates({
+      .gets({
         themeId: this.page.template?.mixThemeId,
         folderType: this.page.template.folderType,
         columns: 'id, fileName',
@@ -149,7 +147,7 @@ export class PageDetailComponent extends BaseComponent implements OnInit {
       ...this.form.getRawValue()
     };
 
-    this.pageApi.savePage(page).subscribe({
+    this.pageApi.save(page).subscribe({
       next: () => {
         this.showSuccess('Successfully save your page');
       },

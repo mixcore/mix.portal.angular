@@ -87,7 +87,7 @@ export class ModuleDetailComponent extends BaseComponent implements OnInit {
 
   public ngOnInit(): void {
     this.moduleApi
-      .getModuleById(this.activatedRoute.snapshot.params['id'])
+      .getById(this.activatedRoute.snapshot.params['id'])
       .subscribe({
         next: result => {
           this.module = result;
@@ -111,7 +111,7 @@ export class ModuleDetailComponent extends BaseComponent implements OnInit {
     if (!this.module || !this.module.template) return;
 
     this.templateApi
-      .getTemplates({
+      .gets({
         themeId: this.module.template?.mixThemeId,
         folderType: this.module.template.folderType,
         columns: 'id, fileName',
@@ -144,7 +144,7 @@ export class ModuleDetailComponent extends BaseComponent implements OnInit {
       ...this.form.getRawValue()
     };
 
-    this.moduleApi.saveModule(module).subscribe({
+    this.moduleApi.save(module).subscribe({
       next: () => {
         this.showSuccess('Successfully save your module');
       },

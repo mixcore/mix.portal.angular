@@ -156,18 +156,18 @@ export class MixPolymorphousListComponent
     switch (this.listType) {
       case MixContentType.Page:
         this.request = (query: PaginationRequestModel) =>
-          this.pageApi.getPages(query);
-        this.deleteRequest = (id: number) => this.pageApi.deletePages(id);
+          this.pageApi.gets(query);
+        this.deleteRequest = (id: number) => this.pageApi.remove(id);
         break;
       case MixContentType.Post:
         this.request = (query: PaginationRequestModel) =>
-          this.postApi.getPosts(query);
-        this.deleteRequest = (id: number) => this.postApi.deletePosts(id);
+          this.postApi.gets(query);
+        this.deleteRequest = (id: number) => this.postApi.remove(id);
         break;
       default:
         this.request = (query: PaginationRequestModel) =>
-          this.moduleApi.getModules(query);
-        this.deleteRequest = (id: number) => this.moduleApi.deleteModules(id);
+          this.moduleApi.gets(query);
+        this.deleteRequest = (id: number) => this.moduleApi.remove(id);
         break;
     }
 

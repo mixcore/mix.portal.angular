@@ -27,7 +27,7 @@ export class MixModuleDetailComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.moduleApi.getModuleById(this.moduleId).subscribe(module => {
+    this.moduleApi.getById(this.moduleId).subscribe(module => {
       console.log(module);
     });
   }

@@ -97,7 +97,7 @@ export class CreationDialogComponent implements OnInit {
     const form = this.form.getRawValue();
     this.handleBeforeCreate();
     this.postApi
-      .getDefaultPostTemplate()
+      .getDefault()
       .pipe(
         switchMap(result => {
           const post = <MixPostPortalModel>{
@@ -108,7 +108,7 @@ export class CreationDialogComponent implements OnInit {
             specificulture: form['specificulture']
           };
 
-          return this.postApi.savePost(post);
+          return this.postApi.save(post);
         })
       )
       .subscribe(() => {
@@ -125,7 +125,7 @@ export class CreationDialogComponent implements OnInit {
     const form = this.form.getRawValue();
     this.handleBeforeCreate();
     this.moduleApi
-      .getDefaultModuleTemplate()
+      .getDefault()
       .pipe(
         switchMap(result => {
           const module = <MixModulePortalModel>{
@@ -137,7 +137,7 @@ export class CreationDialogComponent implements OnInit {
             specificulture: form['specificulture']
           };
 
-          return this.moduleApi.saveModule(module);
+          return this.moduleApi.save(module);
         })
       )
       .subscribe(() => {
@@ -155,7 +155,7 @@ export class CreationDialogComponent implements OnInit {
     const form = this.form.getRawValue();
     this.handleBeforeCreate();
     this.pageApi
-      .getDefaultPageTemplate()
+      .getDefault()
       .pipe(
         switchMap(result => {
           const page = <MixPagePortalModel>{
@@ -172,7 +172,7 @@ export class CreationDialogComponent implements OnInit {
             specificulture: form['specificulture']
           };
 
-          return this.pageApi.savePage(page);
+          return this.pageApi.save(page);
         })
       )
       .subscribe(() => {
