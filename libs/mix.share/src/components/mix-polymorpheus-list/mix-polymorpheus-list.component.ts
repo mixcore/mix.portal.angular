@@ -20,6 +20,7 @@ import {
 import { combineLatest, filter, Observable, tap } from 'rxjs';
 
 import { BaseComponent } from '../../bases';
+import { RouteConfig } from '../../routes/routes.const';
 import {
   AppEvent,
   AppEventService,
@@ -221,18 +222,16 @@ export class MixPolymorphousListComponent
     this.showLeftSide = !this.showLeftSide;
   }
 
-  public editItem(): void {
-    if (!this.currentActionItem) return;
-
+  public editItem(data: PolymorphousListResult): void {
     switch (this.listType) {
       case MixContentType.Module:
-        this.route.navigateByUrl(`/portal/module/${this.currentActionItem.id}`);
+        this.route.navigateByUrl(`${RouteConfig.Module}/${data.id}`);
         break;
       case MixContentType.Post:
-        this.route.navigateByUrl(`/portal/post/${this.currentActionItem.id}`);
+        this.route.navigateByUrl(`${RouteConfig.Post}/${data.id}`);
         break;
       case MixContentType.Page:
-        this.route.navigateByUrl(`/portal/page/${this.currentActionItem.id}`);
+        this.route.navigateByUrl(`${RouteConfig.Page}/${data.id}`);
         break;
       default:
         break;

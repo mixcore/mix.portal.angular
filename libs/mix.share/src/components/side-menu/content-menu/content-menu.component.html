@@ -27,24 +27,24 @@
     <tui-accordion-item [borders]="null"
                         [open]="true"
                         [size]="'s'">
-      <div class="menu__group">Posts</div>
-      <ng-template tuiAccordionItemContent>
-        <div class="menu__item"
-             (click)="appEvent.notify({type: events.CreatePost})"><a> Create post </a></div>
-        <div class="menu__item"
-             (click)="navigateTo(routes.PostList)"><a> List post </a></div>
-      </ng-template>
-    </tui-accordion-item>
-
-    <tui-accordion-item [borders]="null"
-                        [open]="true"
-                        [size]="'s'">
       <div class="menu__group">Pages</div>
       <ng-template tuiAccordionItemContent>
         <div class="menu__item"
              (click)="appEvent.notify({type: events.CreatePage})"><a> Create page </a></div>
         <div class="menu__item"
              (click)="navigateTo(routes.PageList)"><a> List page </a></div>
+      </ng-template>
+    </tui-accordion-item>
+
+    <tui-accordion-item [borders]="null"
+                        [open]="true"
+                        [size]="'s'">
+      <div class="menu__group">Posts</div>
+      <ng-template tuiAccordionItemContent>
+        <div class="menu__item"
+             (click)="appEvent.notify({type: events.CreatePost})"><a> Create post </a></div>
+        <div class="menu__item"
+             (click)="navigateTo(routes.PostList)"><a> List post </a></div>
       </ng-template>
     </tui-accordion-item>
 

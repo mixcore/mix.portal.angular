@@ -37,7 +37,7 @@ export class ContentMenuComponent {
   constructor(private route: Router, public appEvent: AppEventService) {}
 
   public navigateTo(route: string): void {
-    this.route.navigateByUrl(`portal/${route}`);
+    this.route.navigateByUrl(`${route}`);
   }
 
   public createNew(type: 'CreatePage' | 'CreatePost' | 'CreateModule'): void {

@@ -73,6 +73,6 @@ export class TemplateMenuComponent {
   }
 
   public navigateTo(route: string): void {
-    this.route.navigateByUrl(`portal/${route}`);
+    this.route.navigateByUrl(`${route}`);
   }
 }

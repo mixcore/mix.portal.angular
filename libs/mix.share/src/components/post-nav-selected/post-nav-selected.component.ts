@@ -34,6 +34,7 @@ import { MixPostApiService } from '../../services/api/mix-post-api.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostNavSelectedComponent extends BaseComponent {
+  @Input() public parentId!: number;
   @Input() public selectedPosts: MixPostReferenceModel[] = [];
   @Output() public selectedPostsChange: EventEmitter<MixPostReferenceModel[]> =
     new EventEmitter();

@@ -87,14 +87,19 @@ export class SideMenuComponent implements OnInit {
       icon: 'file-text',
       position: VerticalDisplayPosition.Top,
       detail: [],
-      route: [RouteConfig.Page, RouteConfig.Post, RouteConfig.Module]
+      route: [
+        RouteConfig.PageList,
+        RouteConfig.Page,
+        RouteConfig.Post,
+        RouteConfig.Module
+      ]
     },
     {
       id: 'template',
       title: 'Themes',
       icon: 'color-swatch',
       position: VerticalDisplayPosition.Top,
-      route: [RouteConfig.Theme],
+      route: [RouteConfig.ThemeList, RouteConfig.Theme],
       detail: []
     },
     {
@@ -136,7 +141,13 @@ export class SideMenuComponent implements OnInit {
   }
 
   public selectGroup(group: MixToolbarMenu): void {
+    if (this.currentSelectedItem === group) return;
     this.currentSelectedItem = group;
+
+    if (group && group.route) {
+      this.router.navigateByUrl(`${group.route[0]}`);
+    }
+
     if (!this.isShowMenu) {
       this.isShowMenu = true;
       this.expandChange.emit(this.isShowMenu);
