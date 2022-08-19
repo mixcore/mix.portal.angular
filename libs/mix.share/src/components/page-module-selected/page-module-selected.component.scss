@@ -1,0 +1,21 @@
+.page-nav-selected {
+  width: 100%;
+
+  &__item {
+    width: 100%;
+    border-radius: var(--mix-border-radius-01);
+    border: 1px solid var(--tui-base-04);
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    mix-switch {
+      margin-right: 15px;
+    }
+  }
+
+  &__search {
+    margin-bottom: var(--mix-space-2);
+  }
+}

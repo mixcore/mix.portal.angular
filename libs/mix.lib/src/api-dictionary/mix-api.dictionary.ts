@@ -3,7 +3,7 @@ import { ModuleApiDictionary } from './module-api.dictionary';
 import { PageApiDictionary } from './page-api.dictionary';
 import { PostApiDictionary } from './post-api.dictionary';
 import {
-  PagePostApiDictionary,
+  PageModuleApiDictionary,
   PostPostApiDictionary
 } from './reference-table.dictionary';
 import { ShareApiDictionary } from './share-api.dictionary';
@@ -23,7 +23,7 @@ export class MixApiDictionary {
 
   // reference table
   public PostPostApi: PostPostApiDictionary = new PostPostApiDictionary();
-  public PagePostApi: PagePostApiDictionary = new PagePostApiDictionary();
+  public PageModuleApi: PageModuleApiDictionary = new PageModuleApiDictionary();
 }
 
 export const MixApiDict = new MixApiDictionary();

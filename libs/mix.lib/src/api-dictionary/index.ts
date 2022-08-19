@@ -3,7 +3,7 @@ export * from './mix-api.dictionary';
 export * from './page-api.dictionary';
 export * from './post-api.dictionary';
 export {
-  PagePostApiDictionary,
+  PageModuleApiDictionary,
   PostPostApiDictionary
 } from './reference-table.dictionary';
 export * from './share-api.dictionary';

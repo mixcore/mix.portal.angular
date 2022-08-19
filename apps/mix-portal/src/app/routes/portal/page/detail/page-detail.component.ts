@@ -14,11 +14,7 @@ import {
   RichTextEditorComponent,
   SkeletonLoadingComponent
 } from '@mix/mix.ui';
-import {
-  MixPagePortalModel,
-  MixPostReferenceModel,
-  MixTemplateModel
-} from '@mix-spa/mix.lib';
+import { MixPagePortalModel, MixTemplateModel } from '@mix-spa/mix.lib';
 import {
   BaseComponent,
   ContentDetailContainerComponent,
@@ -26,7 +22,7 @@ import {
   FormUtils,
   MixPageApiService,
   MixTemplateApiService,
-  PostNavSelectedComponent,
+  PageModuleSelectedComponent,
   TemplateEditorComponent
 } from '@mix-spa/mix.share';
 import {
@@ -54,7 +50,6 @@ import { takeUntil } from 'rxjs';
     ReactiveFormsModule,
     InputLabeledComponent,
     RichTextEditorComponent,
-    PostNavSelectedComponent,
     CodeEditorComponent,
     TuiSelectModule,
     TuiDataListWrapperModule,
@@ -63,12 +58,12 @@ import { takeUntil } from 'rxjs';
     TuiSelectModule,
     TuiTextfieldControllerModule,
     FormsModule,
-    TuiLabelModule
+    TuiLabelModule,
+    PageModuleSelectedComponent
   ],
   providers: [DestroyService]
 })
 export class PageDetailComponent extends BaseComponent implements OnInit {
-  public selectedPostNavs: MixPostReferenceModel[] = [];
   public activeTabIndex = 0;
   public page!: MixPagePortalModel;
   public form!: FormGroup;

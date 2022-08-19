@@ -11,18 +11,22 @@ import {
   SkeletonLoadingComponent,
   SwitchComponent
 } from '@mix/mix.ui';
-import { MixPostPortalModel, MixPostReferenceModel } from '@mix-spa/mix.lib';
+import {
+  MixModulePortalModel,
+  MixPostPortalModel,
+  MixTableReferenceModel
+} from '@mix-spa/mix.lib';
 import { TuiPaginationModule, TuiToggleModule } from '@taiga-ui/kit';
 import { combineLatest, switchMap } from 'rxjs';
 
 import { BaseComponent } from '../../bases';
-import { MixPostApiService } from '../../services/api/mix-post-api.service';
-import { MixPostPostApiService } from '../../services/api/mix-post-post-api.service';
+import { MixModuleApiService } from '../../services';
+import { MixPageModuleApiService } from '../../services/api/mix-page-module-api.service';
 
 @Component({
-  selector: 'mix-post-nav-selected',
-  templateUrl: './post-nav-selected.component.html',
-  styleUrls: ['./post-nav-selected.component.scss'],
+  selector: 'mix-page-module-selected',
+  templateUrl: './page-module-selected.component.html',
+  styleUrls: ['./page-module-selected.component.scss'],
   standalone: true,
   imports: [
     CommonModule,
@@ -35,19 +39,20 @@ import { MixPostPostApiService } from '../../services/api/mix-post-post-api.serv
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PostNavSelectedComponent extends BaseComponent implements OnInit {
+export class PageModuleSelectedComponent
+  extends BaseComponent
+  implements OnInit
+{
   @Input() public parentId!: number;
-  @Input() public selectedPosts: MixPostReferenceModel[] = [];
-
-  public posts: { isSelected: boolean; item: MixPostPortalModel }[] = [];
-  public postNav: MixPostReferenceModel[] = [];
+  public modules: { isSelected: boolean; item: MixModulePortalModel }[] = [];
+  public moduleNav: MixTableReferenceModel[] = [];
   public searchText = '';
 
-  public get viewablePost(): {
+  public get viewableModule(): {
     isSelected: boolean;
     item: MixPostPortalModel;
   }[] {
-    return this.posts.filter(post =>
+    return this.modules.filter(post =>
       post.item.title
         .toLocaleLowerCase()
         .trim()
@@ -56,8 +61,8 @@ export class PostNavSelectedComponent extends BaseComponent implements OnInit {
   }
 
   constructor(
-    private postApi: MixPostApiService,
-    private postPostApi: MixPostPostApiService
+    private moduleApi: MixModuleApiService,
+    private pageModuleApi: MixPageModuleApiService
   ) {
     super();
   }
@@ -69,23 +74,21 @@ export class PostNavSelectedComponent extends BaseComponent implements OnInit {
   public loadData(): void {
     this.loading$.next(true);
     combineLatest([
-      this.postPostApi.search({
+      this.pageModuleApi.search({
         pageSize: 1000,
         parentId: this.parentId
       }),
-      this.postApi.gets({ pageSize: 1000 })
+      this.moduleApi.gets({ pageSize: 1000 })
     ]).subscribe(result => {
-      const [postNav, posts] = result;
-      this.postNav = postNav.items;
-      this.posts = posts.items
-        .filter(post => post.id !== this.parentId)
-        .map(post => {
-          return {
-            isSelected:
-              this.postNav.find(pn => pn.childId === post.id) != undefined,
-            item: post
-          };
-        });
+      const [moduleNav, modules] = result;
+      this.moduleNav = moduleNav.items;
+      this.modules = modules.items.map(post => {
+        return {
+          isSelected:
+            this.moduleNav.find(pn => pn.childId === post.id) != undefined,
+          item: post
+        };
+      });
 
       this.loading$.next(false);
     });
@@ -94,29 +97,29 @@ export class PostNavSelectedComponent extends BaseComponent implements OnInit {
   public checkedChange(isCheck: boolean, post: MixPostPortalModel): void {
     this.disabled$.next(true);
     if (isCheck) {
-      this.postPostApi
+      this.pageModuleApi
         .getDefault()
         .pipe(
           switchMap(empty => {
-            return this.postPostApi.save({
+            return this.pageModuleApi.save({
               ...empty,
               parentId: this.parentId,
               childId: post.id
             });
           })
         )
-        .subscribe((result: MixPostReferenceModel) => {
-          this.showSuccess('Link post success!');
-          this.postNav.push(result);
+        .subscribe((result: MixTableReferenceModel) => {
+          this.showSuccess('Link module success!');
+          this.moduleNav.push(result);
           this.disabled$.next(false);
         });
     } else {
-      const postNav = this.postNav.find(pn => pn.childId === post.id);
+      const postNav = this.moduleNav.find(pn => pn.childId === post.id);
       if (!postNav) return;
 
-      this.postPostApi.remove(postNav.id).subscribe(() => {
-        this.showSuccess('Un-link post success!');
-        this.postNav = this.postNav.filter(pn => pn.id === postNav.id);
+      this.pageModuleApi.remove(postNav.id).subscribe(() => {
+        this.showSuccess('Un-link module success!');
+        this.moduleNav = this.moduleNav.filter(pn => pn.id === postNav.id);
         this.disabled$.next(false);
       });
     }

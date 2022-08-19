@@ -6,3 +6,16 @@ export interface MixPostReferenceModel {
   parentId: number;
   childId: number;
 }
+
+export interface MixPageReferenceModel {
+  id: number;
+  status: MixContentStatus;
+  parentId: number;
+  childId: number;
+}
+
+export interface MixTableReferenceModel {
+  id: number;
+  parentId: number;
+  childId: number;
+}

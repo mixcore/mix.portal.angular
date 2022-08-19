@@ -10,8 +10,12 @@ export class PostPostApiDictionary extends BaseMixApiDictionary {
   }
 }
 
-export class PagePostApiDictionary extends BaseMixApiDictionary {
+export class PageModuleApiDictionary extends BaseMixApiDictionary {
   protected get url(): string {
-    return '/mix-portal/mix-page-post/';
+    return '/mix-portal/mix-page-module/';
+  }
+
+  public get searchEndpoint() {
+    return this.url + 'search';
   }
 }
