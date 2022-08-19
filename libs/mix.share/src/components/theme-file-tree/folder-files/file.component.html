@@ -9,8 +9,6 @@
          [ngClass]="{'--open': open}">
       <tui-svg src="tuiIconChevronRight"></tui-svg>
     </div>
-    <i-tabler class="icon"
-              name="folder"></i-tabler>
     <div class="title"> {{ folderType }} <span *ngIf="!!!(loading$ | async); else loading">({{ result.pagingData.total
         ?? 0 }})</span>
       <ng-template #loading>

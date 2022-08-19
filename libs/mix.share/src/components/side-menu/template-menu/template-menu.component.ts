@@ -40,6 +40,8 @@ export class TemplateMenuComponent {
   public readonly arrow = TUI_ARROW;
   public readonly routes = RouteConfig;
   public selectedThemeId: number | undefined = undefined;
+  public selectedTheme: { title: string; id: number }[] = [];
+
   public fileTreeHeight = '50vh';
   @ViewChild('mainMenu', { static: true }) public mainMenu!: ElementRef;
   @ViewChild('fileTree', { static: false }) public fileTree!: ElementRef;
@@ -55,6 +57,11 @@ export class TemplateMenuComponent {
         takeUntil(this.destroy$)
       )
       .subscribe(e => {
+        if (this.selectedTheme.find(i => i.id == e.data.id)) {
+          return;
+        }
+
+        this.selectedTheme.push(e.data);
         this.selectedThemeId = e.data.id;
       });
   }

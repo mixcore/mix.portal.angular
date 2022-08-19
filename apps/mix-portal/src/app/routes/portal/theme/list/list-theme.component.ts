@@ -60,7 +60,7 @@ export class ListThemeComponent {
   public themeClick(theme: ThemeModel): void {
     this.appEvent.notify({
       type: AppEvent.ThemeSelected,
-      data: { id: theme.id }
+      data: { id: theme.id, title: theme.displayName }
     });
   }
 

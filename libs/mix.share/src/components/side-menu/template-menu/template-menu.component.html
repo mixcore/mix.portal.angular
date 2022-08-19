@@ -39,9 +39,20 @@
   </div>
 
   <div #fileTree
+       class="menu__file-tree"
        [style.height]="fileTreeHeight">
-    <mix-theme-file-tree *ngIf="selectedThemeId"
-                         [showFileDate]="false"
-                         [themeId]="selectedThemeId"></mix-theme-file-tree>
+
+    <tui-accordion [closeOthers]="false">
+      <tui-accordion-item *ngFor="let theme of selectedTheme"
+                          [borders]="null"
+                          [open]="true"
+                          [size]="'s'">
+        <div class="menu__group">{{theme.title}}</div>
+        <ng-template tuiAccordionItemContent>
+          <mix-theme-file-tree [showFileDate]="false"
+                               [themeId]="theme.id"></mix-theme-file-tree>
+        </ng-template>
+      </tui-accordion-item>
+    </tui-accordion>
   </div>
 </div>
