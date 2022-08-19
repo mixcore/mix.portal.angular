@@ -363,3 +363,7 @@ tui-wrapper[data-appearance='support'] {
     background: #eaecee;
   }
 }
+
+tui-alert[role='alert'] {
+  margin: auto 3rem 3rem 3rem !important;
+}
