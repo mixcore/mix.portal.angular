@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Inject, Input, NgModule } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
@@ -9,12 +9,15 @@ import {
 } from '@angular/router';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
+import { TablerIconsModule } from 'angular-tabler-icons';
+import { IconBell, IconHelp } from 'angular-tabler-icons/icons';
 import { filter, startWith } from 'rxjs';
 
 import { AuthApiService } from '../../services';
 import { ShareModule } from '../../share.module';
 import { LocationControllerComponent } from '../location-controller/location-controller.component';
 import { ModalService } from '../modal/modal.service';
+import { SideMenuService } from '../side-menu/side-menu.service';
 import { HeaderMenuService } from './header-menu.service';
 
 export interface BreadcrumbOption {
@@ -22,6 +25,12 @@ export interface BreadcrumbOption {
   params: Params;
   routerLink: string;
 }
+
+@NgModule({
+  imports: [TablerIconsModule.pick({ IconBell, IconHelp })],
+  exports: [TablerIconsModule]
+})
+class HeaderIcons {}
 
 @Component({
   selector: 'mix-header-menu',
@@ -33,7 +42,8 @@ export interface BreadcrumbOption {
     TuiBreadcrumbsModule,
     RouterModule,
     TuiLinkModule,
-    LocationControllerComponent
+    LocationControllerComponent,
+    HeaderIcons
   ]
 })
 export class HeaderMenuComponent {
@@ -46,9 +56,14 @@ export class HeaderMenuComponent {
     public headerService: HeaderMenuService,
     private router: Router,
     @Inject(ModalService) private readonly modalService: ModalService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public sideMenuService: SideMenuService
   ) {
     this._registerRouterChange();
+  }
+
+  public toggleMenu(): void {
+    this.sideMenuService.open$.next(!this.sideMenuService.open$.getValue());
   }
 
   public logout(): void {

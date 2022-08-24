@@ -1,12 +1,10 @@
 <div class="cms-portal-container">
-  <mix-side-menu (expandChange)="expand$.next($event)"></mix-side-menu>
-  <div
-    class="cms-portal-container__workspace"
-    [ngClass]="{'--menu-expand': (expand$ | async)}"
-  >
-    <div class="cms-portal-container__header">
-      <mix-header-menu [showLogo]="!!!(expand$ | async)"></mix-header-menu>
-    </div>
+  <div class="cms-portal-container__header">
+    <mix-header-menu [showLogo]="!!!(expand$ | async)"></mix-header-menu>
+  </div>
+
+  <div class="cms-portal-container__body">
+    <mix-side-menu (expandChange)="expand$.next($event)"></mix-side-menu>
 
     <div class="cms-portal-container__main-workspace">
       <router-outlet></router-outlet>
@@ -14,10 +12,6 @@
         <mix-portal-sidebar-host></mix-portal-sidebar-host>
       </ng-container>
     </div>
-  </div>
-
-  <div class="cms-portal-container__chat-bubble">
-    <mix-chat-box></mix-chat-box>
   </div>
 </div>
 

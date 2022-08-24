@@ -1,42 +1,29 @@
 .cms-portal-container {
   width: 100vw;
   height: 100vh;
-  display: flex;
   position: relative;
   background-color: var(--mix-body-background);
 
-  &__workspace {
-    width: 100%;
-    margin-left: var(--mix-space-1);
-    margin-top: var(--mix-space-1);
-    transition: all 0.2s ease-in-out;
-
-    &.--menu-expand {
-      z-index: 2;
-    }
-  }
-
-  &__header {
-    background-color: #fff;
-    border-top-left-radius: var(--mix-border-radius-02);
-    border-bottom-left-radius: var(--mix-border-radius-02);
-    margin-bottom: var(--mix-space-1);
+  &__body {
+    display: flex;
+    height: calc(100vh - var(--mix-header-height));
   }
 
   &__main-workspace {
-    border-top-left-radius: var(--mix-border-radius-02);
+    border-radius: var(--mix-border-radius-02);
+    margin-left: var(--mix-space-1);
+    margin-right: var(--mix-space-2);
     width: 100%;
-    height: calc(100vh - var(--mix-header-height));
+    height: calc(100% - var(--mix-space-2));
     box-sizing: border-box;
     background-color: #fff;
     position: relative;
-    overflow: hidden;
   }
 
   &__chat-bubble {
     position: absolute;
     bottom: 0px;
     right: var(--mix-space-1);
-    z-index: 3;
+    z-index: 1;
   }
 }

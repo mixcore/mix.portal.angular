@@ -2,16 +2,17 @@
   width: 60vw;
   height: 100%;
   background-color: var(--tui-base-01);
-  box-shadow: var(--sidebar-box-shadow);
-  border-top-left-radius: var(--mix-border-radius-02);
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+  border-radius: var(--mix-border-radius-02);
+  overflow: hidden;
 
   &__header {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     width: 100%;
-    height: var(--mix-header-height);
-    border-bottom: 1px solid var(--tui-base-04);
+    height: var(--mix-sub-header-height);
+    border-bottom: 1px solid var(--tui-base-03);
 
     .action {
       margin-left: auto;
@@ -19,6 +20,6 @@
   }
 
   &__content {
-    height: calc(100% - var(--mix-header-height));
+    height: calc(100% - var(--mix-sub-header-height));
   }
 }

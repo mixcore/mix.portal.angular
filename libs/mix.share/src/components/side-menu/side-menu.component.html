@@ -1,61 +1,36 @@
 <div *ngIf="groups"
      class="side-menu"
-     [style.--groupHeight]="isMiniGroupBar ? '40px' : '64px'"
-     [style.--groupWidth]="isMiniGroupBar ? '48px' : '72px'">
+     [style.--groupHeight]="!!(sideMenuService.miniSize$ | async) ? '40px' : '64px'"
+     [style.--groupWidth]="!!(sideMenuService.miniSize$ | async) ? '48px' : '72px'">
   <div class="side-menu__groups"
-       [ngClass]="{'--mini': isMiniGroupBar}">
-    <div class="toggle">
-      <div class="btn"
-           (click)="toggleMenu()">
-        <tui-svg src="tuiIconFrameLarge"></tui-svg>
-      </div>
-
-      <div class="btn"
-           (click)="toggleMiniGroupBar()">
-        <tui-svg src="tuiIconTableMergeLarge"></tui-svg>
-      </div>
-    </div>
-
-    <div class="search">
-      <a type="button"
-         [appearance]="'outline'"
-         [shape]="'rounded'"
-         [size]="'s'"
-         (click)="appEvent.onSearch()"
-         tuiIconButton
-         icon="tuiIconSearch"></a>
-    </div>
-
-    <div *ngFor="let menu of groups"
-         class="item"
-         [ngClass]="{'--active': currentSelectedItem === menu}"
-         (click)="selectGroup(menu)">
-      <i-tabler name="{{menu.icon}}"></i-tabler>
-      <p *ngIf="!isMiniGroupBar"> {{ menu.title }} </p>
+       [ngClass]="{'--mini': !!(sideMenuService.miniSize$ | async)}">
+    <mix-side-menu-button *ngFor="let menu of groups"
+                          [currentSelectedItem]="currentSelectedItem"
+                          [menu]="menu"
+                          (selectMenu)="selectMenu($event)"></mix-side-menu-button>
+    <div class="toggle-mini-size"
+         title="Mini toolbar"
+         (click)="toggleMiniSize()">
     </div>
   </div>
 
-  <div *ngIf="currentSelectedItem && isShowMenu"
-       class="side-menu__menu"
-       [@enterAnimation]>
-    <div class="side-menu__big-logo">
-      <img src="assets/images/mixcore-logo-red-2.svg"
-           height="28px">
-    </div>
+  <div *ngIf="currentSelectedItem && !!(sideMenuService.open$ | async)"
+       class="side-menu__menu">
     <ng-container [ngSwitch]="currentSelectedItem.id">
-      <!-- Dashboard -->
       <ng-container *ngSwitchCase="'dashboard'">
         <mix-dashboard-menu></mix-dashboard-menu>
       </ng-container>
 
-      <!-- Content -->
       <ng-container *ngSwitchCase="'content'">
         <mix-content-menu></mix-content-menu>
       </ng-container>
 
-      <!-- Template -->
       <ng-container *ngSwitchCase="'template'">
-        <mix-template-menu> </mix-template-menu>
+        <mix-template-menu></mix-template-menu>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'settings'">
+        <mix-setting-menu></mix-setting-menu>
       </ng-container>
     </ng-container>
   </div>

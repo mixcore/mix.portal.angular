@@ -1,61 +1,85 @@
 <div class="header-menu">
-  <div class="header-menu__breadcrumb">
-    <tui-breadcrumbs [size]="'l'">
-      <ng-container *ngIf="showLogo">
-        <div *tuiBreadcrumb
-             style="display: flex; align-items: center">
-          <img src="assets/images/mixcore-logo-red-square.svg"
-               width="24px">
-        </div>
-      </ng-container>
+  <div class="header-menu__sub"
+       [ngClass]="{'--mini': !!(sideMenuService.miniSize$ | async)}">
+    <div class="toggle"
+         [style.width]="!!(sideMenuService.miniSize$ | async) ? '48px' : '72px'">
+      <button type="button"
+              (click)=" toggleMenu()"
+              tuiIconButton
+              appearance="icon"
+              icon="tuiIconAlignJustifyLarge"></button>
+    </div>
 
-      <ng-container *ngFor="let item of breadcrumb">
-        <a *tuiBreadcrumb
-           [routerLink]="item.routerLink"
-           tuiLink>
-          {{ item.caption }}
-        </a>
-      </ng-container>
-
-      <ng-container *ngIf="(headerService.title$ | async) as title">
-        <a *tuiBreadcrumb
-           tuiLink>
-          {{ title }}
-        </a>
-      </ng-container>
-    </tui-breadcrumbs>
+    <img src="assets/images/mixcore-logo-red-2.svg"
+         height="28px">
   </div>
-  <mix-location-controller></mix-location-controller>
 
-  <div class="header-menu__right-menu">
-    <tui-hosted-dropdown class="header-menu__avatar"
-                         [content]="profileTemplate">
-      <tui-avatar [rounded]="true"
-                  text="Admin"
-                  size="s"></tui-avatar>
-      <ng-template #profileTemplate
-                   let-activeZone>
-        <div *ngIf="user$ | async as user"
-             class="header-menu__user-info">
-          <tui-avatar class="header-menu__avatar"
-                      [avatarUrl]="user.avatar || null"
-                      [rounded]="true"
-                      [text]="user.userName"
-                      size="l"></tui-avatar>
-          <div class="title">
-            <span>Hi</span> <strong>{{ user.userName }}</strong>
-            <button [pseudo]="true"
-                    tuiLink>View your profile</button>
+  <div class="header-menu__main"
+       [ngClass]="{'--mini': !!(sideMenuService.miniSize$ | async)}">
+    <mix-location-controller></mix-location-controller>
+
+    <div class="header-menu__breadcrumb">
+      <tui-breadcrumbs [size]="'l'">
+        <ng-container *ngFor="let item of breadcrumb">
+          <a *tuiBreadcrumb
+             [routerLink]="item.routerLink"
+             tuiLink>
+            {{ item.caption }}
+          </a>
+        </ng-container>
+      </tui-breadcrumbs>
+    </div>
+
+    <tui-input class="header-menu__search"
+               [style.--tui-height-m]="'48px'"
+               icon="tuiIconSearchLarge"
+               tuiTextfieldSize="m">
+      Universal Search
+      <input tuiTextfield>
+    </tui-input>
+
+    <div class="header-menu__right-menu">
+      <button class="header-menu__icon-button"
+              [size]="'s'"
+              appearance="icon"
+              tuiIconButton>
+        <i-tabler name="bell"></i-tabler>
+      </button>
+      <button class="header-menu__icon-button"
+              [size]="'s'"
+              appearance="icon"
+              tuiIconButton>
+        <i-tabler name="help"></i-tabler>
+      </button>
+      <tui-hosted-dropdown class="header-menu__icon-button"
+                           [content]="profileTemplate">
+        <tui-avatar [rounded]="true"
+                    text="Admin"
+                    size="s"></tui-avatar>
+        <ng-template #profileTemplate
+                     let-activeZone>
+          <div *ngIf="user$ | async as user"
+               class="header-menu__user-info">
+            <tui-avatar class="header-menu__avatar"
+                        [avatarUrl]="user.avatar || null"
+                        [rounded]="true"
+                        [text]="user.userName"
+                        size="l"></tui-avatar>
+            <div class="title">
+              <span>Hi</span> <strong>{{ user.userName }}</strong>
+              <button [pseudo]="true"
+                      tuiLink>View your profile</button>
+            </div>
           </div>
-        </div>
-        <div class="header-menu__separator"></div>
-        <p class="header-menu__item tui-space_vertical-4 tui-space_horizontal-4">
-          <button (click)="logout()"
-                  tuiLink
-                  icon="tuiIconLogoutLarge"
-                  iconAlign="right">Logout</button>
-        </p>
-      </ng-template>
-    </tui-hosted-dropdown>
+          <div class="header-menu__separator"></div>
+          <p class="header-menu__item tui-space_vertical-4 tui-space_horizontal-4">
+            <button (click)="logout()"
+                    tuiLink
+                    icon="tuiIconLogoutLarge"
+                    iconAlign="right">Logout</button>
+          </p>
+        </ng-template>
+      </tui-hosted-dropdown>
+    </div>
   </div>
 </div>

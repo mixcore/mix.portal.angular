@@ -1,8 +1,8 @@
 .content-detail-container {
   width: 100%;
   height: calc(100vh - 50px);
-  overflow: auto;
   position: relative;
+  overflow: auto;
 
   &__toolbar {
     position: sticky;
@@ -12,9 +12,11 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 5px 20px;
-    border-bottom: 1px solid var(--tui-base-04);
-    height: var(--mix-header-height);
+    padding: 0px var(--mix-space-2);
+    border-bottom: 1px solid var(--tui-base-03);
+    height: var(--mix-sub-header-height);
+    border-top-left-radius: var(--mix-border-radius-02);
+    border-top-right-radius: var(--mix-border-radius-02);
 
     .separator {
       content: '';

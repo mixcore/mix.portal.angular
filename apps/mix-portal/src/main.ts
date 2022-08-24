@@ -1,5 +1,9 @@
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { enableProdMode, importProvidersFrom } from '@angular/core';
+import {
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule
+} from '@angular/common/http';
+import { enableProdMode, importProvidersFrom, Injectable } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -11,6 +15,14 @@ import {
   GET_THEME_URL,
   MixModalModule
 } from '@mix-spa/mix.share';
+import {
+  Translation,
+  TRANSLOCO_CONFIG,
+  TRANSLOCO_LOADER,
+  translocoConfig,
+  TranslocoLoader,
+  TranslocoModule
+} from '@ngneat/transloco';
 import {
   defaultEditorExtensions,
   tiptapEditorStyles,
@@ -34,6 +46,15 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+}
+
+@Injectable({ providedIn: 'root' })
+export class TranslocoHttpLoader implements TranslocoLoader {
+  constructor(private http: HttpClient) {}
+
+  getTranslation(lang: string) {
+    return this.http.get<Translation>(`/assets/i18n/${lang}.json`);
+  }
 }
 
 bootstrapApplication(AppComponent, {
@@ -82,6 +103,16 @@ bootstrapApplication(AppComponent, {
         autocloseTimeout: 7000
       }
     },
+    {
+      provide: TRANSLOCO_CONFIG,
+      useValue: translocoConfig({
+        availableLangs: ['en'],
+        defaultLang: 'en',
+        reRenderOnLangChange: true,
+        prodMode: environment.production
+      })
+    },
+    { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
     importProvidersFrom(
       RouterModule.forRoot(app_routes),
       ServiceWorkerModule.register('ngsw-worker.js', {
@@ -93,6 +124,7 @@ bootstrapApplication(AppComponent, {
       TuiAlertModule,
       TuiDialogModule,
       MixModalModule,
+      TranslocoModule,
       MonacoEditorModule.forRoot(),
       JoyrideModule.forRoot()
     )

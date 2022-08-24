@@ -1,5 +1,6 @@
 <div class="location-controller">
   <button type="button"
+          [disabled]="!!(locationService.canGoBack$ | async)"
           [size]="'s'"
           (click)="location.back()"
           tuiIconButton

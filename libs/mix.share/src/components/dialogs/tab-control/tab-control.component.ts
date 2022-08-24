@@ -1,7 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { TabControlService } from '../../../services/helper/tab-control.service';
+import { LocationService } from '../../../services/helper/tab-control.service';
 import { ShareModule } from '../../../share.module';
 
 @Component({
@@ -15,7 +15,7 @@ export class TabControlDialogComponent implements OnDestroy {
   public item$ = this.tabControl.navControl$;
   public index$ = this.tabControl.index$;
 
-  constructor(public tabControl: TabControlService, public router: Router) {}
+  constructor(public tabControl: LocationService, public router: Router) {}
 
   public ngOnDestroy(): void {
     const tabControls = this.item$.getValue();

@@ -1,8 +1,11 @@
 .location-controller {
   width: fit-content;
-  height: 100%;
+  height: var(--mix-space-6);
   display: flex;
   align-items: center;
+  border-radius: var(--mix-border-radius-01);
+  background-color: var(--mix-main-widget-color);
+  padding: 4px;
 
   button {
     margin-right: var(--mix-space-01);

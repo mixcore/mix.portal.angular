@@ -12,6 +12,7 @@ import {
   AppEventService,
   CreationDialogComponent,
   HeaderMenuComponent,
+  LocationService,
   MixChatBoxComponent,
   PortalSidebarControlService,
   PortalSidebarHostComponent,
@@ -19,7 +20,6 @@ import {
   SidebarContainerComponent,
   SideMenuComponent,
   TabControlDialogComponent,
-  TabControlService,
   UniversalSearchComponent
 } from '@mix-spa/mix.share';
 import { TuiDialogService } from '@taiga-ui/core';
@@ -76,7 +76,7 @@ export class PortalLayoutComponent {
   constructor(
     @Inject(TuiDialogService) private readonly dialogService: TuiDialogService,
     private router: Router,
-    private tabControl: TabControlService,
+    private tabControl: LocationService,
     @Inject(PortalSidebarControlService)
     private readonly sidebarControl: PortalSidebarControlService,
     private appEvent: AppEventService

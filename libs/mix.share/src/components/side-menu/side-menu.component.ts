@@ -1,4 +1,3 @@
-import { animate, style, transition, trigger } from '@angular/animations';
 import {
   Component,
   EventEmitter,
@@ -17,6 +16,9 @@ import { AppService } from '../../services/helper/app-setting.service';
 import { ShareModule } from '../../share.module';
 import { ContentMenuComponent } from './content-menu/content-menu.component';
 import { DashboardMenuComponent } from './dashboard-menu/dashboard-menu.component';
+import { SettingMenuComponent } from './setting-menu/setting-menu.component';
+import { SideMenuService } from './side-menu.service';
+import { SideMenuButtonComponent } from './side-menu-button/side-menu-button.component';
 import { TemplateMenuComponent } from './template-menu/template-menu.component';
 
 export interface MixToolbarMenu {
@@ -41,7 +43,7 @@ export interface MenuItem {
 @Component({
   selector: 'mix-side-menu',
   templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.scss', './styles.scss'],
+  styleUrls: ['./side-menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [
@@ -49,19 +51,9 @@ export interface MenuItem {
     JoyrideModule,
     DashboardMenuComponent,
     ContentMenuComponent,
-    TemplateMenuComponent
-  ],
-  animations: [
-    trigger('enterAnimation', [
-      transition(':enter', [
-        style({ width: 0, opacity: 0 }),
-        animate('110ms', style({ width: '200px', opacity: 1 }))
-      ]),
-      transition(':leave', [
-        style({ width: '200px', opacity: 1 }),
-        animate('110ms', style({ width: 0, opacity: 0 }))
-      ])
-    ])
+    TemplateMenuComponent,
+    SettingMenuComponent,
+    SideMenuButtonComponent
   ]
 })
 export class SideMenuComponent implements OnInit {
@@ -108,6 +100,13 @@ export class SideMenuComponent implements OnInit {
       icon: 'file',
       position: VerticalDisplayPosition.Top,
       detail: []
+    },
+    {
+      id: 'settings',
+      title: 'Settings',
+      icon: 'settings',
+      position: VerticalDisplayPosition.Bottom,
+      detail: []
     }
   ];
 
@@ -115,7 +114,8 @@ export class SideMenuComponent implements OnInit {
     private readonly joyrideService: JoyrideService,
     public appService: AppService,
     private router: Router,
-    public appEvent: AppEventService
+    public appEvent: AppEventService,
+    public sideMenuService: SideMenuService
   ) {}
 
   public ngOnInit(): void {
@@ -131,16 +131,13 @@ export class SideMenuComponent implements OnInit {
     this.expandChange.emit(this.isShowMenu);
   }
 
-  public toggleMenu(): void {
-    this.isShowMenu = !this.isShowMenu;
-    this.expandChange.emit(this.isShowMenu);
+  public toggleMiniSize(): void {
+    this.sideMenuService.miniSize$.next(
+      !this.sideMenuService.miniSize$.getValue()
+    );
   }
 
-  public toggleMiniGroupBar(): void {
-    this.isMiniGroupBar = !this.isMiniGroupBar;
-  }
-
-  public selectGroup(group: MixToolbarMenu): void {
+  public selectMenu(group: MixToolbarMenu): void {
     if (this.currentSelectedItem === group) return;
     this.currentSelectedItem = group;
 
@@ -148,9 +145,8 @@ export class SideMenuComponent implements OnInit {
       this.router.navigateByUrl(`${group.route[0]}`);
     }
 
-    if (!this.isShowMenu) {
-      this.isShowMenu = true;
-      this.expandChange.emit(this.isShowMenu);
+    if (!this.sideMenuService.open$.getValue()) {
+      this.sideMenuService.open$.next(true);
     }
   }
 }

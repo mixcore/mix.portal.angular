@@ -15,7 +15,6 @@ import { AppEvent, AppEventService } from '../../../services';
 @Component({
   selector: 'mix-content-menu',
   templateUrl: './content-menu.component.html',
-  styleUrls: ['./content-menu.component.scss'],
   standalone: true,
   imports: [
     CommonModule,

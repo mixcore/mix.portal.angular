@@ -1,25 +1,63 @@
 .header-menu {
   width: 100%;
-  box-sizing: border-box;
   display: flex;
   height: var(--mix-header-height);
   align-items: center;
-  padding: 0 15px;
   justify-content: space-between;
+
+  &__sub {
+    width: 400px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .toggle {
+      width: 72px;
+      height: 100%;
+      background-color: var(--main-widget-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: var(--mix-space-3);
+    }
+
+    &.--mini {
+      width: 352px;
+    }
+  }
+
+  &__main {
+    width: calc(100% - 400px);
+    display: flex;
+    align-items: center;
+    margin-right: var(--mix-space-2);
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 4px 10px;
+
+    &.--mini {
+      width: calc(100% - 352px);
+    }
+  }
+
   &__right-menu {
     margin-left: auto;
     display: flex;
   }
+
   &__search {
-    width: 250px;
+    width: 400px;
   }
+
   &__breadcrumb {
-    padding: 0 10px;
-    border-radius: var(--mix-border-radius-02);
-    background: var(--tui-base-02);
-    margin-right: var(--mix-space-2);
-    margin-left: -10px;
+    padding: 4px 16px 4px 16px;
+    border-radius: var(--mix-border-radius-01);
+    background: var(--mix-main-widget-color);
+    margin-right: var(--mix-space-1);
+    margin-left: var(--mix-space-1);
+    height: var(--mix-space-6);
   }
+
   &__user-info {
     padding: 1rem 1rem 0rem 1rem;
     display: flex;
@@ -40,10 +78,12 @@
       }
     }
   }
-  &__avatar {
+
+  &__icon-button {
     margin-left: 15px;
     cursor: pointer;
   }
+
   &__separator {
     display: block;
     content: '';
@@ -52,6 +92,7 @@
     background-color: var(--tui-base-04);
     margin: 1rem 10px;
   }
+
   &__item {
     > button[tuiLink] {
       color: var(--tui-text-01);

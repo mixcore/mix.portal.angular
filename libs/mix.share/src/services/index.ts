@@ -17,4 +17,4 @@ export { AppEvent, AppEventService } from './helper/app-event.service';
 export { AppService, AppSetting } from './helper/app-setting.service';
 export { DestroyService } from './helper/destroy.service';
 export { PortalSidebarControlService } from './helper/portal-sidebar-control.service';
-export { TabControl, TabControlService } from './helper/tab-control.service';
+export { LocationService, TabControl } from './helper/tab-control.service';
