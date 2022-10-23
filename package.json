@@ -25,6 +25,7 @@
     "@angular/router": "v14.0.0-rc.1 ",
     "@angular/service-worker": "^13.3.11",
     "@microsoft/signalr": "^6.0.5",
+    "@ngneat/transloco": "^4.1.1",
     "@nrwl/angular": "14.1.7",
     "@tabler/icons": "^1.68.0",
     "@taiga-ui/addon-editor": "^2.46.0",
