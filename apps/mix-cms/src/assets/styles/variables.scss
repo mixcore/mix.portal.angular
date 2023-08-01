@@ -11,6 +11,10 @@ html {
   --element-rounded: 0.5rem;
   --main-layout-gap: 8px;
 
+  --main-backdrop-color: rgb(238 238 238 / 85%);
+  --menu-active-color: rgba(255, 255, 255, 45%);
+  --child-menu-active-color: rgba(255, 255, 255, 65%);
+
   --background-color-primary: #ffffff;
   --background-color-secondary: #f8f8f8;
   --background-color-hight-light: #d8dee9;
@@ -22,7 +26,7 @@ html {
   --border-color-default: #ededed;
   --border-radius-default: 6px;
 
-  --primary-color: #228af3;
+  --primary-color: rgb(10, 120, 190);
   --default-primary-color-hue: 210;
 
   --link-color: rgba(27, 31, 59, 0.65);
@@ -48,6 +52,10 @@ html {
 
 html[mode='dark'] {
   &:root {
+    --main-backdrop-color: rgb(1 1 1 / 55%);
+    --menu-active-color: rgba(1, 1, 1, 45%);
+    --child-menu-active-color: rgba(1, 1, 1, 65%);
+
     --background-color-primary: #242526;
     --background-color-secondary: #18191a;
     --background-color-hight-light: #18191a;
@@ -108,5 +116,4 @@ html[mode='dark'] {
     --tui-elevation-01: #222;
     --tui-elevation-02: #222;
   }
-  // mix
 }
