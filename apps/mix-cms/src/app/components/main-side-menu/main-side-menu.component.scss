@@ -40,6 +40,11 @@
     padding: 4px;
     border-radius: 50%;
     cursor: pointer;
+    transition: all 0.2s ease-in;
+
+    &.--active {
+      transform: rotate(90deg);
+    }
   }
 
   &__child-item {

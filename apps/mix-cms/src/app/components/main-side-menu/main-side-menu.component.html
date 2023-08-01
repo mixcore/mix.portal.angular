@@ -39,6 +39,7 @@
         <!-- Level 1 children -->
         <span *ngIf="showDetail && item.children?.length"
               class="side-menu__item-toggle mix-icon"
+              [ngClass]="{'--active': selectedMenu?.title === item.title}"
               (click)="$event.stopPropagation(); onMenuSelect(item)">
           chevron_right
         </span>

@@ -41,7 +41,8 @@
           "crypto-js",
           "rfdc",
           "jsoneditor",
-          "flat"
+          "flat",
+          "qrcode"
         ],
         "serviceWorker": true,
         "ngswConfigPath": "apps/mix-cms/ngsw-config.json"
