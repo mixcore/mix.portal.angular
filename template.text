@@ -1,0 +1,102 @@
+detail html:
+<tui-loader *ngIf="loadingState$ | async as state"
+            class="data-detail-page"
+            [formGroup]="form"
+            [overlay]="true"
+            [showLoader]="state === 'Loading'">
+  <div class="data-detail-page__content-container">
+    <div class="data-detail-page__toolbar">
+      <div class="data-detail-page__toolbar-top">
+        <mix-input class="page-title"
+                   [floatingLabel]="true"
+                   formControlName="title"
+                   placeHolder="Your page title"
+                   size="l"></mix-input>
+
+        <mix-button class="ml-auto">
+          <span class="icon material-symbols-outlined">
+            save_as
+          </span>
+          Save
+        </mix-button>
+      </div>
+
+      <div class="data-detail-page__toolbar-separator">
+      </div>
+
+      <div class="deta-detail-page__toolbar-bottom">
+        <nav [(activeItemIndex)]="activeTabIndex"
+             tuiTabs>
+          <button tuiTab><span class="material-symbols-outlined">
+              feed
+            </span>&nbsp; General</button>
+          <button tuiTab><span class="material-symbols-outlined">
+              content_paste
+            </span>&nbsp; Setting </button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="data-detail-page__content">
+      <div class="container">
+        <!-- Main Content -->
+        <ng-container *ngIf="activeTabIndex === 0">
+          <div class="data-detail-page__main-content">
+            <div class="data-detail-page__content-title">
+              General Information
+            </div>
+          </div>
+        </ng-container>
+
+        <!-- Content -->
+        <ng-container *ngIf="activeTabIndex === 1">
+          <div class="data-detail-page__main-content">
+            <div class="data-detail-page__content-title">
+              Setting
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</tui-loader>
+
+
+
+detail ts:
+import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BaseComponent } from '@mixcore/share/base';
+import { MixButtonComponent } from '@mixcore/ui/button';
+import { MixEditorComponent } from '@mixcore/ui/editor';
+import { MixInputComponent } from '@mixcore/ui/input';
+import { MixSelectComponent } from '@mixcore/ui/select';
+import { MixTextAreaComponent } from '@mixcore/ui/textarea';
+import { TuiLoaderModule, TuiScrollbarModule } from '@taiga-ui/core';
+import { TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
+
+@Component({
+  selector: 'mix-database-detail',
+  standalone: true,
+  imports: [
+    CommonModule,
+    MixInputComponent,
+    TuiTabsModule,
+    MixButtonComponent,
+    MixTextAreaComponent,
+    MixEditorComponent,
+    FormsModule,
+    TuiScrollbarModule,
+    TuiLoaderModule,
+    ReactiveFormsModule,
+    MixSelectComponent,
+    TuiToggleModule,
+  ],
+  templateUrl: './database-detail.component.html',
+  styleUrls: ['./database-detail.component.scss'],
+})
+export class DatabaseDetailComponent extends BaseComponent {
+  public form = new FormGroup({});
+  public activeTabIndex = 0;
+}

@@ -1,0 +1,150 @@
+<div class="data-table-page"
+     [formGroup]="filterForm">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'listing'"
+                     [title]="'All Promotion' | transloco">
+      <mix-button class="ms-auto"
+                  (click)="addNew()"
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp; Create</mix-button>
+    </mix-sub-toolbar>
+
+    <div class="data-table-page__sub-toolbar">
+      <div class="d-flex">
+        <div class="d-flex gap-2 align-items-center filter-header">
+          <div class="text-nowrap">Active From:</div>
+          <mix-date-picker class="mt-1"
+                           style="min-width: 150px"
+                           formControlName="fromDate"></mix-date-picker>
+        </div>
+
+        <div class="d-flex ms-3 gap-2 align-items-center filter-header">
+          <div class="text-nowrap">Active To:</div>
+          <mix-date-picker class="mt-1"
+                           style="min-width: 150px"
+                           formControlName="toDate"></mix-date-picker>
+        </div>
+
+        <div class="d-flex ms-3 gap-2 align-items-center filter-header">
+          <div class="text-nowrap">Currency:</div>
+          <mix-select [items]="$any(currencyOptions)"
+                      style="min-width: 150px"
+                      formControlName="currency"></mix-select>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="store.state() as state"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
+                      [forceLoading]="forceLoading"
+                      [loading]="state.status === 'Loading'"
+                      [pageInfo]="state.pageInfo"
+                      [searchFieldOptions]="searchOptions"
+                      [searchTextValue]="store.request$().keyword ?? ''"
+                      (itemsSelectedChange)="onItemSelectedChange($event)"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="
+          store.searchChange($event.searchText, $event.searchField)
+        ">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Promotion Code'"
+             key="code"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="text-bold text-primary"
+                 (click)="goDetail(data.id)">
+              {{ data.code }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Promotion Type'"
+             [minWidth]="'150px'"
+             key="promotionType"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              {{ data.promotionType }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Discount Info'"
+             [minWidth]="'150px'"
+             key="discountPercent"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+
+            <div *ngIf="data.promotionType === 'Coupon'">
+              <div>Discount percent: <strong>{{ data.discountPercent }}%</strong></div>
+              <div>Max value: <strong>{{ (data.maxDiscountValue | currency:data.currency||'USD') || '--' }}</strong></div>
+            </div>
+
+            <div *ngIf="data.promotionType === 'Voucher'">
+              <div>Discount value: <strong>{{ data.discountValue | currency:data.currency||'USD' }}</strong></div>
+            </div>
+
+            <div *ngIf="data.promotionType === 'FreeShipping'">
+              <div>Reduce delivery fee: <strong>100%</strong></div>
+              <div>Max value: <strong>{{ (data.maxDiscountValue | currency:data.currency||'USD') || '--' }}</strong></div>
+            </div>
+
+            <!-- <div>
+              {{ data.discountPercent ? data.discountPercent + '%' : '--' }}
+            </div> -->
+          </ng-template>
+        </div>
+
+        <div [header]="'Active Date'"
+             key="activeDate"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="d-flex align-items-center gap-1">
+              <div class="text-bold">
+                {{
+                  data?.fromDate !== null && data?.fromDate !== 0
+                    ? (data?.fromDate | mixDate | date: 'dd.MM.yy, HH:mm')
+                    : '--'
+                }}
+              </div>
+              --
+              <div class="text-bold">
+                {{
+                  data?.toDate !== null && data?.toDate !== 0
+                    ? (data?.toDate | mixDate | date: 'dd.MM.yy, HH:mm')
+                    : '--'
+                }}
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Remaining Info'"
+             [minWidth]="'150px'"
+             key="totalUsed"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              Total Used: <strong>{{ data.totalUsed ?? '--' }}</strong>
+            </div>
+            <div>
+              Max Allowed: <strong>{{ data.maxAllowed ?? '--' }}</strong>
+            </div>
+          </ng-template>
+        </div>
+      </mix-data-table>
+    </div>
+  </div>
+
+  <div *ngIf="showFilter"
+       class="data-table-page__filter"
+       [formGroup]="filterForm"></div>
+</div>

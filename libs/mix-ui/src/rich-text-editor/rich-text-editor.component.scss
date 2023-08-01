@@ -1,0 +1,30 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+tui-editor {
+  height: 100%;
+  width: 100%;
+}
+
+.rich-text-editor {
+  height: 100%;
+  position: relative;
+
+  &.--full-width {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 50;
+  }
+
+  &__button {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+    background-color: #fff;
+  }
+}

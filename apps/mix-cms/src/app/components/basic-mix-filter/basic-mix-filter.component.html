@@ -1,0 +1,27 @@
+<div class="w-100"
+     [formGroup]="filterForm">
+  <div class="text-600 mt-2">Status</div>
+  <mix-select class="mt-1"
+              [items]="$any(filterOptions)"
+              formControlName="status"></mix-select>
+
+  <div class="text-600 mt-2">From Date</div>
+  <mix-date-picker class="mt-1"
+                   formControlName="fromDate"></mix-date-picker>
+
+  <div class="text-600 mt-2">To Date</div>
+  <mix-date-picker class="mt-1"
+                   formControlName="toDate"></mix-date-picker>
+
+  <div class="text-600 mt-2">Sort By</div>
+  <mix-select class="mt-1"
+              [items]="$any(directionOptions)"
+              formControlName="direction"></mix-select>
+
+  <div class="text-600 mt-2">Order By</div>
+  <mix-select class="mt-1"
+              [items]="$any(orderByOptions)"
+              [stringify]="$any(stringify)"
+              formControlName="orderBy"></mix-select>
+  <span class="d-block mt-1 text-xs">*Hint: order by priority to manage order</span>
+</div>

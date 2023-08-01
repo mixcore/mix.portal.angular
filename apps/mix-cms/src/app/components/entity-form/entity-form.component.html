@@ -1,0 +1,60 @@
+<div class="entity-form"
+     [formGroup]="form">
+  <div class="row">
+    <div class="col-3">
+      <p class="content-label">Display Name</p>
+      <mix-input [size]="'l'"
+                 formControlName="displayName"></mix-input>
+    </div>
+
+    <div class="col-3">
+      <p class="content-label">System Name</p>
+      <mix-input [size]="'l'"
+                 formControlName="systemName"></mix-input>
+    </div>
+
+    <div class="col-3">
+      <p class="content-label">Data Type</p>
+      <mix-select [items]="$any(dataTypes)"
+                  [size]="'s'"
+                  formControlName="dataType"></mix-select>
+    </div>
+  </div>
+
+  <div class="entity-form__action">
+    <mix-button type="danger"
+                [iconBtn]="true"><span class="material-symbols-outlined">
+        delete
+      </span></mix-button>
+    <mix-button [iconBtn]="true"
+                (click)="showDialog(template)"><span class="material-symbols-outlined">
+        settings
+      </span></mix-button>
+  </div>
+</div>
+
+
+<ng-template #template
+             let-observer>
+  <nav [(activeItemIndex)]="activeTabIndex"
+       tuiTabs>
+    <button tuiTab><span class="material-symbols-outlined">
+        feed
+      </span>&nbsp; General</button>
+    <button tuiTab><span class="material-symbols-outlined">
+        settings
+      </span>&nbsp; Default Value </button>
+
+
+  </nav>
+
+  <div class="mt-8"
+       [formGroup]="configurationForm">
+    <ng-container *ngIf="activeTabIndex === 0">
+      <mix-toggle class="mt-2"
+                  formControlName="isEncrypt"> Encrypt this field</mix-toggle>
+      <mix-toggle class="mt-2"
+                  formControlName="isRequire"> Mark this field as required</mix-toggle>
+    </ng-container>
+  </div>
+</ng-template>

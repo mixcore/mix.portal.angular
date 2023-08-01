@@ -1,0 +1,41 @@
+<div class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'LISTING'"
+                     [title]="dbDisplayName()">
+      <div class="toolbar-separator"></div>
+      <mix-action-collapse [actionMaps]="actionMaps"></mix-action-collapse>
+      <mix-button class="ms-auto"
+                  [iconBtn]="true"
+                  [type]="showFilter ? 'primary' : 'outline'"
+                  (click)="showFilter = !showFilter"
+                  size="s">
+        <span class="material-symbols-outlined"> filter_alt </span></mix-button>
+    </mix-sub-toolbar>
+
+    <div class="data-table-page__body">
+      <mix-dynamic-db-list *ngIf="viewInit"
+                           [dbSysName]="dbSysName()"
+                           [filterValue]="filterValue()"
+                           [onloadSuccess]="onloadSuccess"
+                           [type]="'output'"
+                           (editDataChange)="onEditData($event)"
+                           (itemsSelectedChange)="selectedItems = $event">
+      </mix-dynamic-db-list>
+    </div>
+  </div>
+
+  <div *ngIf="showFilter"
+       class="data-table-page__filter">
+    <div class="shell">
+      <div class="filter-toggle"
+           (click)="showFilter = !showFilter">
+        <span class="material-symbols-outlined"> close </span>
+      </div>
+      <div class="data-table-page__filter-container">
+        <div class="text-bold">Filter</div>
+        <mix-basic-mix-filter [value]="filterValue()"
+                              (valueChange)="onFilterChange($event)"></mix-basic-mix-filter>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+.post-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__toolbar {
+    height: var(--primary-toolbar-height);
+    border-bottom: 1px solid var(--border-color-default);
+    background-color: var(--background-color-secondary);
+    padding: var(--container-padding);
+  }
+
+  &__body {
+    flex-grow: 1;
+  }
+
+  .textarea {
+    min-height: var(--tui-height-l);
+  }
+}
+
+.add-post-container {
+  width: 500px;
+  padding: 12px 12px 18px 12px;
+}

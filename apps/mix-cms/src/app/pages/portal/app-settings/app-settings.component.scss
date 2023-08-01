@@ -1,0 +1,14 @@
+.app-settings-item {
+  padding: 12px;
+  border-radius: var(--element-rounded);
+  border: 1px solid var(--border-color-default);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--background-color-secondary);
+  }
+}

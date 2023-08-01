@@ -1,0 +1,323 @@
+<div class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'listing'"
+                     [title]="'All Post' | transloco">
+      <tui-hosted-dropdown [(open)]="showQuickAddPost"
+                           [content]="addNewMenuItem"
+                           [tuiDropdownMaxHeight]="700">
+        <mix-button size="s"><span class="material-symbols-outlined"> add </span>&nbsp;{{
+            'Add' | transloco
+          }}</mix-button>
+      </tui-hosted-dropdown>
+
+      <div class="toolbar-separator"></div>
+
+      <mix-button class="mr-1"
+                  type="secondary-danger"
+                  [disabled]="!selectedPosts.length"
+                  (click)="bulkDeleteClick()"
+                  size="s">
+        <span class="material-symbols-outlined"> delete </span>&nbsp;
+        {{ 'Delete(s)' | transloco }}</mix-button>
+
+      <div class="toolbar-separator"></div>
+
+      <tui-hosted-dropdown class="ms-2"
+                           [(open)]="openChooseBulkAction"
+                           [content]="buildActionDropdown">
+        <button type="button"
+                [pseudoActive]="openChooseBulkAction || null"
+                tuiButton
+                appearance="outline"
+                size="s"
+                iconRight="tuiIconChevronRight">
+          Bulk Action
+        </button>
+
+        <ng-template #buildActionDropdown
+                     let-activeZone
+                     let-close="close">
+          <tui-data-list>
+            <button [disabled]="!selectedPosts.length"
+                    tuiOption>
+              <span class="d-flex align-items-center">
+                <span class="material-symbols-outlined"> sync </span>&nbsp; Sync
+                data(s)
+              </span>
+            </button>
+            <button [disabled]="!selectedPosts.length"
+                    (click)="showBulkAssignMetadata = true"
+                    tuiOption>
+              <span class="d-flex align-items-center">
+                <span class="material-symbols-outlined">
+                  sync_saved_locally </span>&nbsp; Assign Metadata</span>
+            </button>
+
+            <button [disabled]="!selectedPosts.length"
+                    (click)="bulkDeleteClick()"
+                    tuiOption>
+              <span class="d-flex align-items-center">
+                <span class="material-symbols-outlined"> delete </span>&nbsp;
+                Delete(s)
+              </span>
+            </button>
+          </tui-data-list>
+        </ng-template>
+      </tui-hosted-dropdown>
+
+      <div class="toolbar-separator"></div>
+
+      <div>Mark as:</div>
+      <tui-hosted-dropdown [(open)]="openChooseBulkStatus"
+                           [content]="dropdown"
+                           tuiDropdownLimitWidth="fixed">
+        <div class="group ms-2"
+             [collapsed]="true"
+             tuiGroup>
+          <button [disabled]="!selectedPosts.length"
+                  (click)="buildActionClick()"
+                  appearance="outline"
+                  tuiButton
+                  size="s">
+            <mix-status-indicator [status]="$any(bulkActionStatus)"></mix-status-indicator>
+          </button>
+
+          <button class="tui-group__auto-width-item"
+                  type="button"
+                  title="A sample of icon-button in a group"
+                  tuiIconButton
+                  tuiHostedDropdownHost
+                  appearance="outline"
+                  size="s"
+                  icon="tuiIconChevronDownLarge"></button>
+
+          <ng-template #dropdown
+                       let-activeZone
+                       let-close="close">
+            <tui-data-list>
+              <button *ngFor="let status of filterOptions"
+                      (click)="
+                  bulkActionStatus = status; openChooseBulkStatus = false
+                "
+                      tuiOption>
+                <mix-status-indicator [status]="$any(status)"></mix-status-indicator>
+              </button>
+            </tui-data-list>
+          </ng-template>
+        </div>
+      </tui-hosted-dropdown>
+
+      <mix-button class="ms-auto"
+                  [iconBtn]="true"
+                  [size]="'s'"
+                  [type]="showFilter ? 'primary' : 'outline'"
+                  (click)="showFilter = !showFilter">
+        <span class="material-symbols-outlined"> filter_alt </span></mix-button>
+    </mix-sub-toolbar>
+
+    <div *ngIf="store.state() as state"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
+                      [enableDnd]="state.request.orderBy === 'priority'"
+                      [forceLoading]="forceLoading"
+                      [loading]="state.status === 'Loading'"
+                      [pageInfo]="state.pageInfo"
+                      [searchFieldOptions]="searchOptions"
+                      [searchTextValue]="store.request$().keyword ?? ''"
+                      (dragDropChange)="onDragDropDataChange($event)"
+                      (itemsSelectedChange)="selectedPosts = $event"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="
+          store.searchChange($event.searchText, $event.searchField)
+        ">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Name'"
+             [minWidth]="'150px'"
+             key="title"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div (click)="goDetail(data.id)">
+              <div class="text-600">{{ data.title }}</div>
+              <div class="text-sub text-s text-100">
+                {{ data.seoName }}
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Preview'"
+             key="image"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="image-preview">
+              <mix-compress-image [src]="data.image || 'assets/images/image_placeholder.jpg'"></mix-compress-image>
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Created'"
+             key="createdDateTime"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="text-500">
+              {{ data.createdDateTime | mixDate | date: 'dd/MM/yyyy, hh:mm a' }}
+            </div>
+
+            <div class="text-sub text-s text-100">
+              {{ data.createdDateTime | mixDate | relativeTime | titlecase }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Author'"
+             key="modifiedBy"
+             mixTableColumn></div>
+
+        <div [header]="'Status'"
+             key="status"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <editable (save)="onSave(data.status, 'status', data)">
+              <ng-template viewMode>
+                <mix-status-indicator [status]="data.status"></mix-status-indicator>
+              </ng-template>
+
+              <ng-template editMode>
+                <mix-select [(value)]="data.status"
+                            [items]="$any(filterOptions)"
+                            [selfControl]="true"
+                            editableOnEnter
+                            editableOnEscape></mix-select>
+              </ng-template>
+            </editable>
+          </ng-template>
+        </div>
+
+        <div [columnType]="'ACTION'"
+             [header]="''"
+             [sortable]="false"
+             key="action"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <mix-button class="ms-2"
+                        [iconBtn]="true"
+                        (click)="goDetail(data.id)"
+                        size="s"><span class="material-symbols-outlined"> edit </span></mix-button>
+          </ng-template>
+        </div>
+
+        <div *ngIf="state.request.orderBy === 'priority'"
+             [columnType]="'DRAG'"
+             key="drag"
+             mixTableColumn></div>
+      </mix-data-table>
+    </div>
+  </div>
+
+  <div *ngIf="showFilter"
+       class="data-table-page__filter"
+       [formGroup]="filterForm">
+    <div class="shell">
+      <div class="filter-toggle"
+           (click)="showFilter = !showFilter">
+        <span class="material-symbols-outlined"> close </span>
+      </div>
+
+      <div class="data-table-page__filter-container">
+        <div class="text-bold">Filter</div>
+
+        <div class="text-600 mt-2">Status</div>
+        <mix-select class="mt-1"
+                    [items]="$any(filterOptions)"
+                    formControlName="status"></mix-select>
+
+        <div class="text-600 mt-2">From Date</div>
+        <mix-date-picker class="mt-1"
+                         formControlName="fromDate"></mix-date-picker>
+
+        <div class="text-600 mt-2">To Date</div>
+        <mix-date-picker class="mt-1"
+                         formControlName="toDate"></mix-date-picker>
+
+        <div class="text-600 mt-2">Sort By</div>
+        <mix-select class="mt-1"
+                    [items]="$any(directionOptions)"
+                    formControlName="direction"></mix-select>
+
+        <div class="text-600 mt-2">Order By</div>
+        <mix-select class="mt-1"
+                    [items]="$any(orderByOptions)"
+                    [stringify]="$any(stringify)"
+                    formControlName="orderBy"></mix-select>
+        <span class="d-block mt-1 text-xs">*Hint: order by priority to drag & drop data</span>
+      </div>
+
+      <div class="data-table-page__filter-container">
+        <div class="text-bold data-table-page__filter-container-title">
+          Metadata
+        </div>
+
+        <ng-container *ngFor="let type of metadataTypes; trackBy: metadataTrackBy">
+          <div class="text-600 mt-2">{{ metadataDisplays[type] }}</div>
+          <tui-multi-select [editable]="false"
+                            [formControl]="metadataForms[type]"
+                            [stringify]="$any(stringifyMetadata)"
+                            [tuiTextfieldCleaner]="true"
+                            [tuiTextfieldLabelOutside]="true"
+                            tuiTextfieldSize="m">
+            Select {{ metadataDisplays[type] }}
+
+            <tui-data-list-wrapper *tuiDataList
+                                   [itemContent]="stringifyMetadata | tuiStringifyContent"
+                                   [items]="$any(metadataOptions[type])"
+                                   tuiMultiSelectGroup></tui-data-list-wrapper>
+          </tui-multi-select>
+        </ng-container>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #bulkAssignMetadata
+             [(tuiDialog)]="showBulkAssignMetadata"
+             [tuiDialogOptions]="{ size: 'auto' }"
+             let-observer>
+  <mix-bulk-assign-metadata [posts]="selectedPosts"></mix-bulk-assign-metadata>
+</ng-template>
+
+<ng-template #addNewMenuItem
+             let-activeZone>
+  <div class="add-post-container"
+       [formGroup]="addPostForm">
+    <div>Type product name to create:</div>
+
+    <span class="content-label mt-3">Product name</span>
+
+    <tui-input-tag [tuiTextfieldCleaner]="true"
+                   [tuiTextfieldLabelOutside]="true"
+                   formControlName="names"
+                   tuiTextfieldSize="s">
+      Product name, press enter to add multiple
+    </tui-input-tag>
+
+    <div class="d-flex justify-content-end mt-3">
+      <mix-button type="outline"
+                  [size]="'s'"
+                  (click)="showQuickAddPost = false">Cancel</mix-button>
+
+      <mix-button class="ms-2"
+                  [disabled]="addPostForm.disabled"
+                  [size]="'s'"
+                  (click)="syncPosts()">Create</mix-button>
+    </div>
+  </div>
+</ng-template>

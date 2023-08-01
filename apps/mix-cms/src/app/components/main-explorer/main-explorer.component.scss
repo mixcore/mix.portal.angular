@@ -1,0 +1,22 @@
+:host {
+  height: 100%;
+  display: block;
+}
+
+.mix-main-explorer {
+  height: 100%;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-top-right-radius: var(--border-radius-default);
+  border-bottom-right-radius: var(--border-radius-default);
+  background-color: var(--background-color-primary);
+  border: 1px solid var(--border-color-default);
+  border-left: unset;
+
+  .avatar {
+    cursor: pointer;
+  }
+}

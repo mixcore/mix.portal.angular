@@ -1,0 +1,99 @@
+<tui-loader *ngIf="loadingState$ | async as state"
+            class="data-detail-page"
+            [formGroup]="moduleForm"
+            [overlay]="true"
+            [showLoader]="state === 'Loading'">
+  <div class="data-detail-page__content-container">
+    <div class="data-detail-page__toolbar">
+      <div class="data-detail-page__toolbar-top">
+        <mix-input class="page-title"
+                   [floatingLabel]="true"
+                   formControlName="title"
+                   placeHolder="Your module name"
+                   size="l"></mix-input>
+
+        <mix-button (click)="submit()">
+          <span class="icon material-symbols-outlined"> save_as </span>
+          {{ mode === 'create' ? 'Create' : 'Save' }}
+        </mix-button>
+      </div>
+
+      <div class="data-detail-page__toolbar-separator"></div>
+
+      <div class="deta-detail-page__toolbar-bottom">
+        <nav [(activeItemIndex)]="activeTabIndex"
+             tuiTabs>
+          <button tuiTab>
+            <span class="material-symbols-outlined"> feed </span>&nbsp; General
+          </button>
+          <button class="ml-auto"
+                  tuiTab>
+            <span class="material-symbols-outlined"> settings </span>&nbsp;
+            Setting
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="data-detail-page__content">
+      <div class="container">
+        <!-- Main Content -->
+        <div [ngClass]="{ 'd-none': activeTabIndex !== 0 }">
+          <div class="data-detail-page__main-content">
+            <div class="data-detail-page__content-title">
+              General Information
+            </div>
+
+            <p class="content-label mt-3">Excerpt</p>
+            <mix-text-area placeHolder="Type your page excerpt"
+                           formControlName="excerpt"
+                           size="l"></mix-text-area>
+
+            <div class="data-detail-page__content-title mt-8">
+              Source Information
+            </div>
+
+            <div class="row">
+              <div class="col-6">
+                <p class="content-label mt-3">Page Size</p>
+                <mix-input type="number"
+                           placeHolder="Limit page size"
+                           formControlName="pageSize"
+                           size="l"></mix-input>
+              </div>
+
+              <div class="col-6">
+                <p class="content-label mt-3">Priority</p>
+                <mix-input type="number"
+                           placeHolder="Select"
+                           formControlName="priority"
+                           size="l"></mix-input>
+              </div>
+
+              <div class="col-12 mt-3">
+                <p class="content-label">Source URL</p>
+                <mix-input placeHolder="Your page source URL"
+                           formControlName="source"
+                           size="l"></mix-input>
+              </div>
+
+              <div class="col-12 mt-3">
+                <p class="content-label">CSS</p>
+                <mix-input placeHolder="Your page CSS class"
+                           formControlName="cssClass"
+                           size="l"></mix-input>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Setting Content -->
+        <div [ngClass]="{ 'd-none': activeTabIndex !== 1 }">
+          <div class="data-detail-page__main-content">
+            <div class="data-detail-page__content-title">Module Types</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</tui-loader>

@@ -1,0 +1,64 @@
+<div *ngIf="store.data$()"
+     class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar *ngIf="store.state() as state"
+                     [description]="'LISTING'"
+                     [title]="'All Permissions'">
+      <div class="toolbar-separator"></div>
+      <mix-button size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
+        Add</mix-button>
+      <div class="toolbar-separator"></div>
+    </mix-sub-toolbar>
+
+    <div *ngIf="store.state$ | async as state"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
+                      [loading]="state.status === 'Loading'"
+                      [pageInfo]="state.pageInfo"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="store.searchChange($event.searchText, 'name')">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Permission Name'"
+             [minWidth]="'150px'"
+             key="title"
+             mixTableColumn></div>
+
+        <div *ngIf="!showDetail"
+             [header]="'Created Date'"
+             [minWidth]="'150px'"
+             key="createdDateTime"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            {{ data.createdDateTime | relativeTimeSpan | date: 'short' }}
+          </ng-template>
+        </div>
+
+        <div *ngIf="!showDetail"
+             [header]="'Status'"
+             [minWidth]="'150px'"
+             key="status"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <mix-status-indicator [status]="data.status"></mix-status-indicator>
+          </ng-template>
+        </div>
+
+        <div *ngIf="!showDetail"
+             [columnType]="'DRAG'"
+             [header]="'Action'"
+             key="drag"
+             mixTableColumn></div>
+      </mix-data-table>
+    </div>
+  </div>
+
+  <div *ngIf="showDetail && selectedPerm"
+       class="data-table-page__detail-container">
+    <mix-permission-form [permission]="selectedPerm"></mix-permission-form>
+  </div>
+</div>

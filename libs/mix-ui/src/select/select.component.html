@@ -1,0 +1,9 @@
+<tui-combo-box *ngIf="control"
+               [formControl]="control"
+               [stringify]="stringify"
+               [tuiTextfieldLabelOutside]="true"
+               [tuiTextfieldSize]="size">
+  <tui-data-list-wrapper *tuiDataList
+                         [itemContent]="stringify | tuiStringifyContent"
+                         [items]="items"></tui-data-list-wrapper>
+</tui-combo-box>

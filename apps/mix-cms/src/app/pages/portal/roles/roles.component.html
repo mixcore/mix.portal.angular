@@ -1,0 +1,49 @@
+<div *ngIf="store.data$()"
+     class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar *ngIf="store.state() as state"
+                     [description]="'LISTING'"
+                     [title]="'All Roles'">
+      <div class="toolbar-separator"></div>
+      <mix-button size="s"><span class="material-symbols-outlined"> add </span>&nbsp; Add
+        Role</mix-button>
+      <div class="toolbar-separator"></div>
+    </mix-sub-toolbar>
+
+    <div *ngIf="store.state$ | async as state"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
+                      [loading]="state.status === 'Loading'"
+                      [pageInfo]="state.pageInfo"
+                      [selectedItem]="selectedRole"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="store.searchChange($event.searchText, 'name')">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Role Name'"
+             [minWidth]="'150px'"
+             key="name"
+             mixTableColumn></div>
+
+        <div *ngIf="!showDetail"
+             [header]="'Normalized Name'"
+             [minWidth]="'150px'"
+             key="normalizedName"
+             mixTableColumn></div>
+
+        <div *ngIf="!showDetail"
+             [columnType]="'DRAG'"
+             [header]="'Action'"
+             key="drag"
+             mixTableColumn></div>
+      </mix-data-table>
+    </div>
+  </div>
+
+  <div *ngIf="showDetail && selectedRole"
+       class="data-table-page__detail-container">
+    <mix-role-form [role]="selectedRole"></mix-role-form>
+  </div>
+</div>

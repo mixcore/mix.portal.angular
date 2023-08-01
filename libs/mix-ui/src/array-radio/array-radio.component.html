@@ -1,0 +1,15 @@
+<form [formGroup]="form">
+  <tui-radio-labeled *ngFor="let item of items"
+                     class="mb-2"
+                     [item]="item"
+                     size="l"
+                     formControlName="choose">
+    {{ item }} &nbsp;-<a (click)="onRemove(item)"
+       tuiLink>
+      Remove</a>
+  </tui-radio-labeled>
+
+  <mix-input [formControl]="newValue"
+             (keyup.enter)="onAddNewClicked()"
+             placeHolder="Type and press enter to add new"> </mix-input>
+</form>

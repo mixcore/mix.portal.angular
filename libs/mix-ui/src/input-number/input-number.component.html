@@ -1,0 +1,10 @@
+<tui-input-number *ngIf="control"
+                  [formControl]="control"
+                  [step]="step"
+                  [tuiTextfieldCleaner]="true"
+                  [tuiTextfieldIconLeft]="searchIcon ? 'tuiIconSearchLarge' : undefined"
+                  [tuiTextfieldLabelOutside]="!floatingLabel"
+                  [tuiTextfieldPostfix]="prefix"
+                  [tuiTextfieldSize]="size">
+  {{ placeHolder }}
+</tui-input-number>

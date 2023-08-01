@@ -1,0 +1,26 @@
+<button *ngIf="!iconBtn"
+        class="mix-button"
+        type="button"
+        [appearance]="typeMaps[type]"
+        [disabled]="loading || disabled"
+        [showLoader]="loading"
+        [size]="size"
+        tuiButton>
+  <ng-container *ngTemplateOutlet="content"> </ng-container>
+</button>
+
+<ng-container *ngIf="iconBtn">
+  <button class="mix-button"
+          type="button"
+          [appearance]="typeMaps[type]"
+          [disabled]="loading || disabled"
+          [showLoader]="loading"
+          [size]="size"
+          tuiIconButton>
+    <ng-container *ngTemplateOutlet="content"> </ng-container>
+  </button>
+</ng-container>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>

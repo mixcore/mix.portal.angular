@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10">
+      <tui-loader class="config-form"
+                  [overlay]="true"
+                  [showLoader]="loadingState() === 'Loading'">
+        <mix-sub-toolbar [description]="mode === 'create' ? 'creating' : 'updating'"
+                         [title]="'Configurations'">
+          <div class="toolbar-separator"></div>
+          <mix-button class="ms-auto"
+                      type="outline"
+                      (click)="location.back()"
+                      size="s"><span class="material-symbols-outlined"> west </span>&nbsp; Back
+          </mix-button>
+          <mix-button class="ms-2"
+                      (click)="onSubmit()"
+                      size="s"><span class="material-symbols-outlined">
+              {{ mode === 'create' ? 'add' : 'save_as' }} </span>&nbsp; {{ mode === 'create' ? 'Create' : 'Save' }}
+          </mix-button>
+        </mix-sub-toolbar>
+        <div class="data-detail-page__content">
+          <div class="container"
+               [formGroup]="form">
+            <div class="row">
+              <div class="col-12">
+                <div class="mt-3">
+                  <label class="content-label">Display name</label>
+                  <mix-input formControlName="displayName"></mix-input>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="mt-3">
+                  <label class="content-label">System name</label>
+                  <mix-input formControlName="systemName"></mix-input>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="mt-3">
+                  <label class="content-label">Description</label>
+                  <mix-input formControlName="description"></mix-input>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="mt-3">
+                  <label class="content-label">Category</label>
+                  <mix-select [items]="$any(categoryOptions)"
+                              formControlName="category"></mix-select>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="mt-3">
+                  <label class="content-label">Type</label>
+                  <mix-select [items]="$any(dataTypeOptions)"
+                              formControlName="dataType"></mix-select>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <div class="mt-5">
+                  <form [formGroup]="valueForm">
+                    <formly-form *ngIf="fields.length"
+                                 [fields]="fields"
+                                 [form]="valueForm"
+                                 [model]="valueData"></formly-form>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </tui-loader>
+    </div>
+  </div>
+</div>

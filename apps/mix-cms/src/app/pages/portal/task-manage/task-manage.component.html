@@ -1,0 +1,101 @@
+<div *ngIf="loadingState() as loading"
+     class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'listing'"
+                     [title]="'All Work Items' | transloco">
+      <div class="toolbar-separator"></div>
+
+      <tui-hosted-dropdown [(open)]="showAdd"
+                           [content]="dropdown"
+                           [tuiDropdownMaxHeight]="1000">
+        <mix-button size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
+          {{ 'Add New' | transloco }}</mix-button></tui-hosted-dropdown>
+
+      <ng-template #dropdown
+                   let-activeZone>
+        <div class="ad-task-container"
+             [formGroup]="taskForm">
+          <div>Fill following info to create new task</div>
+
+          <span class="content-label mt-3">Task name</span>
+          <mix-input formControlName="title"
+                     placeHolder="Task title"></mix-input>
+          <mix-form-error formControlName="title"></mix-form-error>
+
+          <span class="content-label mt-3">Description</span>
+          <mix-rich-text-editor style="height: 500px"
+                                formControlName="description"
+                                placeHolder="Task title"></mix-rich-text-editor>
+
+          <span class="content-label mt-3">Assign to</span>
+          <mix-input formControlName="assignee"
+                     placeHolder="User name"></mix-input>
+          <mix-form-error formControlName="assignee"></mix-form-error>
+
+          <div class="d-flex justify-content-end mt-auto">
+            <mix-button type="outline"
+                        (click)="showAdd = false">Cancel</mix-button>
+            <mix-button class="ms-2"
+                        (click)="submitTask()">Create</mix-button>
+          </div>
+        </div>
+      </ng-template>
+
+      <div class="toolbar-separator"></div>
+    </mix-sub-toolbar>
+
+    <div class="task-manage__main-view">
+      <div class="task-manage__kanban-header">
+        <div class="task-manage__kanban-header-item --new">New</div>
+        <div class="task-manage__kanban-header-item --in-progress">
+          In Progress
+        </div>
+        <div class="task-manage__kanban-header-item --ready-test">
+          Ready For Test
+        </div>
+        <div class="task-manage__kanban-header-item --done">Done</div>
+      </div>
+
+      <ng-container *ngIf="loading === 'Success' && result() as result">
+        <mix-task-item *ngFor="let task of result.items ?? []"
+                       class="task-manage__item"
+                       [task]="task"
+                       (taskDelete)="loadTask()">
+        </mix-task-item>
+
+        <tui-pagination class="mt-auto"
+                        [index]="result.pagingData.pageIndex"
+                        [length]="result.pagingData.totalPage ?? 0"
+                        (indexChange)="onPageChange($event)"></tui-pagination>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<ng-template #taskCard
+             let-item="item">
+  <div #dropdown="tuiDropdown"
+       [tuiDropdown]="contextMenu"
+       tuiDropdownContext>
+    <div class="board-item__title">#{{ item.id }} - {{ item.title }}</div>
+
+    <div class="board-item__date">
+      {{ item.createdDateTime | relativeTimeSpan }}
+    </div>
+  </div>
+
+  <ng-template #contextMenu>
+    <tui-data-list class="context-menu"
+                   role="menu"
+                   tuiDataListDropdownManager>
+      <button *ngFor="let menu of contextMenus"
+              (click)="menu.action(item); dropdown.toggle(false)"
+              tuiOption>
+        {{ menu.label }}
+        <span class="material-symbols-outlined ms-5">
+          {{ menu.icon }}
+        </span>
+      </button>
+    </tui-data-list>
+  </ng-template>
+</ng-template>

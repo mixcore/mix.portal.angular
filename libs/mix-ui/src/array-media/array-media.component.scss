@@ -1,0 +1,61 @@
+.array-media {
+  &__image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+
+    &:not(:first-of-type) {
+      margin-right: 4px;
+    }
+
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+  }
+
+  &__prev-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 500px;
+  }
+
+  &__preview-img {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 12px;
+
+    &:before {
+      content: 'Drop here';
+      display: flex;
+      height: 100%;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+      color: var(--tui-base-04);
+      border-radius: var(--tui-radius-l);
+      border: 2px dashed var(--tui-base-03);
+      position: absolute;
+      z-index: 1;
+    }
+  }
+
+  &__delete {
+    position: absolute;
+    bottom: -10px;
+    right: -10px;
+    z-index: 2;
+    --tui-height-m: 24px;
+  }
+}
+
+.cdk-drag-placeholder {
+  display: none;
+}

@@ -1,0 +1,33 @@
+<div class="qrcodeImage">
+  <qrcode #qrcode
+          class="d-block w-full"
+          [allowEmptyString]="true"
+          [ariaLabel]="'QR Code image with the following content...'"
+          [cssClass]="'d-flex justify-content-center'"
+          [elementType]="'canvas'"
+          [errorCorrectionLevel]="'M'"
+          [imageHeight]="30"
+          [imageSrc]="'./assets/images/mix-stu-square-logo.svg'"
+          [imageWidth]="30"
+          [qrdata]="control.value"
+          [scale]="1"
+          [width]="250"></qrcode>
+
+  <div class="d-flex gap-1">
+    <tui-input *ngIf="control"
+               class="flex-grow-1"
+               [formControl]="control"
+               [tuiTextfieldCleaner]="true"
+               [tuiTextfieldIconLeft]="searchIcon ? 'tuiIconSearchLarge' : undefined"
+               [tuiTextfieldLabelOutside]="!floatingLabel"
+               [tuiTextfieldSize]="size">
+      {{ placeHolder }}
+      <input [type]="type"
+             tuiTextfield>
+    </tui-input>
+    <mix-button [iconBtn]="true"><span class="material-symbols-outlined"
+            (click)="saveAsImage(qrcode)">
+        download
+      </span></mix-button>
+  </div>
+</div>

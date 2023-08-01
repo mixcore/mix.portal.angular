@@ -1,0 +1,73 @@
+.mix-inbox-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color-primary);
+  border-radius: var(--border-radius-default);
+  border: 1px solid var(--border-color-default);
+  overflow: hidden;
+
+  &__header {
+    width: 100%;
+    padding: var(--default-widget-padding);
+    border-bottom: 1px solid var(--border-color-default);
+  }
+
+  &__body {
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+  }
+
+  &__chat-filter {
+    padding: var(--default-widget-padding);
+  }
+
+  &__filter {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    justify-content: center;
+    display: flex;
+
+    .filter-btn {
+      margin-right: 12px;
+    }
+  }
+
+  &__chat-list {
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid var(--border-color-default);
+  }
+
+  &__chat-item {
+    display: flex;
+    align-items: center;
+    padding: var(--default-widget-padding);
+    border-bottom: 1px solid var(--border-color-default);
+    cursor: pointer;
+
+    .avatar {
+      margin-right: 12px;
+    }
+
+    .title {
+      font-family: 18px;
+    }
+
+    &.--active {
+      border-right: 2px solid var(--primary-color);
+      background-color: var(--background-color-secondary);
+    }
+
+    &:hover {
+      background-color: var(--background-color-secondary);
+    }
+  }
+
+  &__chat-zone {
+    width: 80%;
+    height: 100%;
+  }
+}

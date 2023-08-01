@@ -1,0 +1,13 @@
+<ng-container *ngIf="gateway === GATEWAY.OnePay">
+  <div class="gateway-indicator">
+    <img src="/assets/images/onepay-logo.svg"
+         alt="Onepay logo">
+  </div>
+</ng-container>
+
+<ng-container *ngIf="gateway === GATEWAY.Paypal">
+  <div class="gateway-indicator">
+    <img src="/assets/images/paypal-logo.svg"
+         alt="Paypal logo">
+  </div>
+</ng-container>

@@ -1,0 +1,216 @@
+<div class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'listing'"
+                     [title]="('All Post' | transloco) + ' Discount'">
+      <div class="toolbar-separator"></div>
+
+      <mix-button class="mr-1"
+                  type="secondary-danger"
+                  [disabled]="!selectedPosts.length"
+                  (click)="onBulkRemoveDiscount()"
+                  size="s">
+        <span class="material-symbols-outlined"> delete </span>&nbsp;
+        {{ 'Remove discount' | transloco }}</mix-button>
+
+      <mix-button class="ms-auto"
+                  [iconBtn]="true"
+                  [type]="showFilter ? 'primary' : 'outline'"
+                  (click)="showFilter = !showFilter">
+        <span class="material-symbols-outlined"> filter_alt </span></mix-button>
+    </mix-sub-toolbar>
+
+    <div class="data-table-page__sub-toolbar">
+      <span class="text-bold">Active Dates:</span>
+
+      <div class="d-flex gap-3 mt-1"
+           [formGroup]="discountRuleForm">
+        <mix-date-time-picker formControlName="discountFromDate"
+                              placeHolder="Discount from"></mix-date-time-picker>
+
+        <mix-date-time-picker formControlName="discountToDate"
+                              placeHolder="Discount to"></mix-date-time-picker>
+        <mix-input-number [prefix]="'%'"
+                          formControlName="discountPercent"
+                          placeHolder="Value (percentage)"></mix-input-number>
+
+        <mix-button [disabled]="!selectedPosts.length"
+                    (click)="applyDiscount()">Apply</mix-button>
+      </div>
+
+      <div>Check item(s) you want to apply discount</div>
+    </div>
+
+    <div *ngIf="store.state() as state"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
+                      [forceLoading]="forceLoading"
+                      [loading]="state.status === 'Loading'"
+                      [pageInfo]="state.pageInfo"
+                      [searchFieldOptions]="searchOptions"
+                      [searchTextValue]="store.request$().keyword ?? ''"
+                      (itemsSelectedChange)="onItemSelectedChange($event)"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="
+          store.searchChange($event.searchText, $event.searchField)
+        ">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Name'"
+             [minWidth]="'150px'"
+             key="title"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="text-600">
+              {{ data.title }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Preview'"
+             key="image"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="image-preview">
+              <mix-compress-image [src]="data.image || 'assets/images/image_placeholder.jpg'"></mix-compress-image>
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Percentage'"
+             key="DiscountPercent"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="text-bold">
+              {{
+                data?.kiotVietProduct?.discountPercent !== null &&
+                data?.kiotVietProduct?.discountPercent !== undefined &&
+                data?.kiotVietProduct?.discountPercent > 0
+                  ? data?.kiotVietProduct?.discountPercent + '%'
+                  : '-'
+              }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Active Dates'"
+             key="modifiedBy"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="d-flex gap-2">
+              <div class>
+                {{
+                  data?.kiotVietProduct?.discountFromDate !== null &&
+                  data?.kiotVietProduct?.discountFromDate !== 0
+                    ? (data?.kiotVietProduct?.discountFromDate
+                      | mixDate
+                      | date: 'dd.MM.yy, HH:mm')
+                    : '--'
+                }}
+              </div>
+              ~
+              <div class>
+                {{
+                  data?.kiotVietProduct?.discountToDate !== null &&
+                  data?.kiotVietProduct?.discountToDate !== 0
+                    ? (data?.kiotVietProduct?.discountToDate
+                      | mixDate
+                      | date: 'dd.MM.yy, HH:mm')
+                    : '--'
+                }}
+              </div>
+            </div>
+          </ng-template>
+        </div>
+      </mix-data-table>
+    </div>
+  </div>
+
+  <div *ngIf="showFilter"
+       class="data-table-page__filter"
+       [formGroup]="filterForm">
+    <div class="shell">
+      <div class="filter-toggle"
+           (click)="showFilter = !showFilter">
+        <span class="material-symbols-outlined"> close </span>
+      </div>
+
+      <div class="data-table-page__filter-container">
+        <div class="text-bold">Basic Filter</div>
+
+        <div class="text-600 mt-2">Discount From Date</div>
+        <mix-date-picker class="mt-1"
+                         formControlName="fromDate"></mix-date-picker>
+
+        <div class="text-600 mt-2">Discount To Date</div>
+        <mix-date-picker class="mt-1"
+                         formControlName="toDate"></mix-date-picker>
+
+        <div class="text-600 mt-2">Sort By</div>
+        <mix-select class="mt-1"
+                    [items]="$any(directionOptions)"
+                    formControlName="direction"></mix-select>
+
+        <div class="text-600 mt-2">Order By</div>
+        <mix-select class="mt-1"
+                    [items]="$any(orderByOptions)"
+                    [stringify]="$any(stringify)"
+                    formControlName="orderBy"></mix-select>
+
+        <div class="text-600 mt-2">Percentage Range</div>
+        <tui-input-range class="mt-1"
+                         [max]="100"
+                         [min]="0"
+                         [pluralize]="pluralize"
+                         [quantum]="1"
+                         [segments]="5"
+                         [steps]="5"
+                         [tuiTextfieldLabelOutside]="true"
+                         [tuiTextfieldSize]="'m'"
+                         formControlName="percentageRange">
+        </tui-input-range>
+        <div class="ticks-labels">
+          <span>0%</span>
+          <span>20%</span>
+          <span>40%</span>
+          <span>60%</span>
+          <span>80%</span>
+          <span>100%</span>
+        </div>
+      </div>
+
+      <div class="data-table-page__filter-container">
+        <div class="text-bold data-table-page__filter-container-title">
+          Metadata Filter
+        </div>
+        <ng-container *ngFor="let type of metadataTypes">
+          <div class="text-600 mt-2">{{ metadataDisplays[type] }}</div>
+          <tui-multi-select [editable]="false"
+                            [formControl]="metadataForms[type]"
+                            [stringify]="$any(stringifyMetadata)"
+                            [tuiTextfieldCleaner]="true"
+                            [tuiTextfieldLabelOutside]="true"
+                            tuiTextfieldSize="m">
+            Select {{ metadataDisplays[type] }}
+            <tui-data-list-wrapper *tuiDataList
+                                   [itemContent]="stringifyMetadata | tuiStringifyContent"
+                                   [items]="$any(metadataOptions[type])"
+                                   tuiMultiSelectGroup></tui-data-list-wrapper>
+          </tui-multi-select>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #bulkAssignMetadata
+             [(tuiDialog)]="showBulkAssignMetadata"
+             [tuiDialogOptions]="{ size: 'auto' }"
+             let-observer>
+  <mix-bulk-assign-metadata [posts]="selectedPosts"></mix-bulk-assign-metadata>
+</ng-template>

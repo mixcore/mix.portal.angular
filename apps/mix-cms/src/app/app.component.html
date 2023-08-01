@@ -1,0 +1,23 @@
+<tui-root>
+  <div *ngIf="appAvailable"
+       class="app-backdrop">
+    <div class="main-app">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+
+  <mix-loading-screen *ngIf="!appAvailable"
+                      [@zoomOutLeftOnLeave]></mix-loading-screen>
+
+  <ng-container ngProjectAs="tuiOverContent">
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverDialogs">
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverAlerts">
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverPortals">
+  </ng-container>
+  <ng-container ngProjectAs="tuiOverHints">
+  </ng-container>
+</tui-root>

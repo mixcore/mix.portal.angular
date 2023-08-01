@@ -1,0 +1,89 @@
+<tui-loader *ngIf="loadingState$ | async as state"
+            class="data-detail-page"
+            [formGroup]="form"
+            [overlay]="true"
+            [showLoader]="state === 'Loading'">
+  <div class="data-detail-page__content-container">
+    <div class="data-detail-page__toolbar">
+      <div class="data-detail-page__toolbar-top">
+        <div class="data-detail-page__title">
+          <div class="data-detail-page__description">
+            {{ mode === 'create' ? 'Create' : 'Save' }}
+          </div>
+          <div>Database</div>
+        </div>
+
+        <mix-input class="page-title"
+                   [floatingLabel]="true"
+                   formControlName="displayName"
+                   placeHolder="Database display name"
+                   size="l"></mix-input>
+
+        <mix-button class="ml-auto"
+                    (click)="submit()">
+          <span class="icon material-symbols-outlined"> save_as </span>
+          {{ mode === 'create' ? 'Create' : 'Save' }}
+        </mix-button>
+      </div>
+
+      <div class="data-detail-page__toolbar-separator"></div>
+
+      <div class="deta-detail-page__toolbar-bottom">
+        <nav [(activeItemIndex)]="activeTabIndex"
+             tuiTabs>
+          <button tuiTab>
+            <span class="material-symbols-outlined"> feed </span>&nbsp; General
+          </button>
+          <button tuiTab>
+            <span class="material-symbols-outlined"> settings </span>&nbsp;
+            Column Design
+          </button>
+        </nav>
+      </div>
+    </div>
+
+    <div class="data-detail-page__content">
+      <div class="container">
+        <!-- Main Content -->
+        <ng-container *ngIf="activeTabIndex === 0">
+          <div class="data-detail-page__main-content">
+            <div class="data-detail-page__content-title">
+              General Information
+            </div>
+
+            <p class="content-label mt-3">Display Name</p>
+            <mix-input placeHolder="Your database friendly name"
+                       formControlName="displayName"></mix-input>
+
+            <mix-form-error class="mt-1"
+                            formControlName="displayName"></mix-form-error>
+
+            <p class="content-label mt-3">System Name</p>
+            <mix-input placeHolder="Unique system name"
+                       formControlName="systemName"></mix-input>
+
+            <mix-form-error class="mt-1"
+                            formControlName="systemName"></mix-form-error>
+
+            <p class="content-label mt-3">Description</p>
+            <mix-text-area placeHolder="Description"
+                           formControlName="description"></mix-text-area>
+          </div>
+        </ng-container>
+
+        <!-- Content -->
+        <ng-container *ngIf="activeTabIndex === 1">
+          <div class="data-detail-page__main-content">
+            <div class="data-detail-page__content-title">Entities</div>
+
+            <ng-container *ngFor="let entity of data?.columns ?? []; let i = index">
+              <mix-entity-form class="mt-3"
+                               [entity]="entity"
+                               (entityChange)="entityChange($event, i)"></mix-entity-form>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</tui-loader>

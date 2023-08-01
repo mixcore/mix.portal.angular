@@ -1,0 +1,130 @@
+<div class="dashboard">
+  <div class="tui-island__category mt-6">
+    {{ currentDay }}, {{ currentDate }}
+  </div>
+  <h1 class="bolt-header-title-l">
+    {{ helloPrefix }}, {{ userName$ | async | titlecase }}
+  </h1>
+
+  <div class="text-l mt-5">Congratulations, your shop this month:</div>
+  <div class="chart__line mt-4">Status</div>
+
+  <div class="dashboard-page__chart-tile mt-3">
+    <div class="row chart__container">
+      <div class="col-auto">
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['success']">
+          <div class="d-flex gap-1 align-items-end">
+            <div class="number-chart__number"
+                 [countUp]="(success$ | async) || 0"
+                 [duration]="1000"></div>
+            <div class="text-s text-sub">item(s)</div>
+          </div>
+
+          <div class="number-chart__title">Success</div>
+          <div class="number-chart__sub-title">This month</div>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['paid']">
+          <div class="d-flex gap-1 align-items-end">
+            <div class="number-chart__number"
+                 [countUp]="(paid$ | async) || 0"
+                 [duration]="1000"></div>
+            <div class="text-s text-sub">item(s)</div>
+          </div>
+
+          <div class="number-chart__title">Paid</div>
+          <div class="number-chart__sub-title">This month</div>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['wait']">
+          <div class="d-flex gap-1 align-items-end">
+            <div class="number-chart__number"
+                 [countUp]="(waitToPay$ | async) || 0"
+                 [duration]="1000"></div>
+            <div class="text-s text-sub">item(s)</div>
+          </div>
+
+          <div class="number-chart__title">Wait To Pay</div>
+          <div class="number-chart__sub-title">This month</div>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['shipping']">
+          <div class="d-flex gap-1 align-items-end">
+            <div class="number-chart__number"
+                 [countUp]="(shipping$ | async) || 0"
+                 [duration]="1000"></div>
+            <div class="text-s text-sub">item(s)</div>
+          </div>
+
+          <div class="number-chart__title">On Shipping</div>
+          <div class="number-chart__sub-title">This month</div>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['error']">
+          <div class="d-flex gap-1 align-items-end">
+            <div class="number-chart__number"
+                 [countUp]="(canceled$ | async) || 0"
+                 [duration]="1000"></div>
+            <div class="text-s text-sub">item(s)</div>
+          </div>
+
+          <div class="number-chart__title">Canceled</div>
+          <div class="number-chart__sub-title">This month</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart__line mt-4">Gate Way</div>
+
+    <div class="row chart__container mt-2">
+      <div class="col-auto">
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['gateway']">
+          <div class="d-flex gap-1 align-items-end">
+            <div class="number-chart__number"
+                 [countUp]="(onePay$ | async) || 0"
+                 [duration]="1000"></div>
+            <div class="text-s text-sub">item(s)</div>
+          </div>
+
+          <div class="number-chart__title d-flex gap-2 align-items-center">
+            <div>OnePay</div>
+            <mix-gateway-indicator [gateway]="OnePay"></mix-gateway-indicator>
+          </div>
+          <div class="number-chart__sub-title">This month</div>
+        </div>
+      </div>
+
+      <div class="col-auto">
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['gateway']">
+          <div class="d-flex gap-1 align-items-end">
+            <div class="number-chart__number"
+                 [countUp]="(paypal$ | async) || 0"
+                 [duration]="1000"></div>
+            <div class="text-s text-sub">item(s)</div>
+          </div>
+
+          <div class="number-chart__title d-flex gap-2 align-items-center">
+            <div>PayPal</div>
+            <mix-gateway-indicator [gateway]="Paypal"></mix-gateway-indicator>
+          </div>
+          <div class="number-chart__sub-title">This month</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

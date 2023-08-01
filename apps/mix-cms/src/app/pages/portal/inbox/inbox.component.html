@@ -1,0 +1,35 @@
+<div class="mix-inbox-page">
+  <div class="mix-inbox-page__header">
+    <mix-button>All Message</mix-button>
+  </div>
+
+  <div class="mix-inbox-page__body">
+    <div class="mix-inbox-page__chat-list">
+      <div class="mix-inbox-page__chat-filter">
+        <mix-input [searchIcon]="true"
+                   placeHolder="Search in chat"></mix-input>
+
+        <div class="mix-inbox-page__filter">
+          <a class="filter-btn"
+             tuiLink>All</a>
+
+          <a class="filter-btn"
+             tuiLink>Unread</a>
+        </div>
+
+      </div>
+
+      <div class="mix-inbox-page__chat-item --active">
+        <tui-avatar class="avatar"
+                    [rounded]="true"
+                    text="Global Message"></tui-avatar>
+
+        <div class="title">Global</div>
+      </div>
+    </div>
+
+    <div class="mix-inbox-page__chat-zone">
+      <mix-share-messenger></mix-share-messenger>
+    </div>
+  </div>
+</div>

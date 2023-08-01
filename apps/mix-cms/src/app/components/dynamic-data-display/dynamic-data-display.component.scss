@@ -1,0 +1,17 @@
+.dynamic-data-display {
+  --background: #fff;
+  display: flex;
+  align-items: center;
+
+  &__color {
+    &::before {
+      display: inline-block;
+      content: '';
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--background, #fff);
+      margin-right: 4px;
+    }
+  }
+}

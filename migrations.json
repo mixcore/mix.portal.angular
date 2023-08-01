@@ -1,0 +1,25 @@
+{
+  "migrations": [
+    {
+      "description": "Proprietary marker icons migration",
+      "version": "3.30.0",
+      "factory": "./ng-update/v3-30/index#updateToV3_30",
+      "package": "@taiga-ui/cdk",
+      "name": "updateToV3_30"
+    },
+    {
+      "description": "Proprietary all icons migration",
+      "version": "3.35.0",
+      "factory": "./ng-update/v3-35/index#updateToV3_35",
+      "package": "@taiga-ui/cdk",
+      "name": "updateToV3_35"
+    },
+    {
+      "description": "Add @tinkoff/tui-editor",
+      "version": "3.36.0",
+      "factory": "./ng-update/v3-36/index#updateToV3_36",
+      "package": "@taiga-ui/cdk",
+      "name": "updateToV3_36"
+    }
+  ]
+}

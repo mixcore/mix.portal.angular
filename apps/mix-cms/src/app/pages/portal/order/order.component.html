@@ -1,0 +1,162 @@
+<div class="data-table-page"
+     [formGroup]="filterForm">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'listing'"
+                     [title]="'All Order' | transloco">
+      <div class="d-flex gap-2 align-items-center filter-header">
+        <div>From:</div>
+        <mix-date-picker class="mt-1"
+                         formControlName="fromDate"></mix-date-picker>
+      </div>
+
+      <div class="d-flex ms-3 gap-2 align-items-center filter-header">
+        <div>To:</div>
+        <mix-date-picker class="mt-1"
+                         formControlName="toDate"></mix-date-picker>
+      </div>
+
+      <mix-button class="ms-auto"
+                  [iconBtn]="true"
+                  [size]="'s'"
+                  [type]="showFilter ? 'primary' : 'outline'"
+                  (click)="showFilter = !showFilter">
+        <span class="material-symbols-outlined"> filter_alt </span></mix-button>
+    </mix-sub-toolbar>
+    <!--
+    <div class="data-table-page__sub-toolbar">
+      <span>Total Range:</span>
+      <div class="wrapper mt-1">
+        <tui-input-range [max]="max"
+                         [min]="min"
+                         [segments]="segments"
+                         [steps]="totalSteps"
+                         [tuiTextfieldLabelOutside]="true"
+                         [tuiTextfieldSize]="'m'"
+                         formControlName="totalRange">
+        </tui-input-range>
+
+        <div class="ticks-labels">
+          <span *ngFor="let label of moneyLabels">{{ label | number }}</span>
+        </div>
+      </div>
+    </div> -->
+
+    <div *ngIf="store.state() as state"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
+                      [loading]="state.status === 'Loading'"
+                      [pageInfo]="state.pageInfo"
+                      [searchFieldOptions]="searchOptions"
+                      [searchTextValue]="store.request$().keyword ?? ''"
+                      (itemsSelectedChange)="selectedPosts = $event"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="onSearchChange($event.searchText, $event.searchField)">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Order'"
+             key="code"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <a class="text-600"
+               (click)="goDetail(data.id)"
+               tuiLink><span class="text-sub me-2">#{{ data.id }}</span>
+              {{ data.code || '--' }}</a>
+
+            <div class="text-sub text-s">
+              {{ data.email }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Date Added'"
+             key="createdDateTime"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              {{ data.createdDateTime | mixDate | date: 'dd/MM/yyyy, hh:mm a' }}
+            </div>
+            <div class="text-sub text-s">
+              {{ data.createdDateTime | mixDate | relativeTime | titlecase }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Total'"
+             key="total"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div *ngIf="data.total"
+                 class="text-600 d-flex gap-2">
+              <div>
+                {{ data.total | currency: data.currency }}
+              </div>
+            </div>
+            <div *ngIf="!data.total"
+                 class="text-600">--</div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Gate'"
+             key="gate"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <mix-gateway-indicator [gateway]="data.paymentGateway"></mix-gateway-indicator>
+          </ng-template>
+        </div>
+
+        <div [header]="'Status'"
+             key="gateway"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <mix-order-status-indicator [orderStatus]="data.orderStatus"></mix-order-status-indicator>
+          </ng-template>
+        </div>
+
+        <div *ngIf="state.request.orderBy === 'priority'"
+             [columnType]="'DRAG'"
+             key="drag"
+             mixTableColumn></div>
+      </mix-data-table>
+    </div>
+  </div>
+
+  <div *ngIf="showFilter"
+       class="data-table-page__filter"
+       [formGroup]="filterForm">
+    <div class="shell">
+      <div class="filter-toggle"
+           (click)="showFilter = !showFilter">
+        <span class="material-symbols-outlined"> close </span>
+      </div>
+
+      <mix-order-statistics></mix-order-statistics>
+
+      <div class="data-table-page__filter-container mt-3">
+        <div class="text-bold">Filter</div>
+
+        <div class="text-600 mt-2">Currency</div>
+        <mix-select class="mt-1"
+                    [items]="$any(currencyOptions)"
+                    formControlName="currency"></mix-select>
+
+        <div class="text-600 mt-2">Payment Gate Way</div>
+        <mix-select class="mt-1"
+                    [items]="$any(gateWayOptions)"
+                    formControlName="gateWay"></mix-select>
+
+        <div class="text-600 mt-2">Order Status</div>
+        <mix-select class="mt-1"
+                    [items]="$any(statusOptions)"
+                    [stringify]="$any(stringify)"
+                    formControlName="status"></mix-select>
+      </div>
+    </div>
+  </div>
+</div>

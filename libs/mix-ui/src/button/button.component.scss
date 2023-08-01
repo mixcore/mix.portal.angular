@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.mix-button {
+  width: inherit;
+  line-height: 1;
+
+  .icon {
+    font-weight: 200;
+    margin-right: 6px;
+  }
+}

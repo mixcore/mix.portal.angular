@@ -1,0 +1,40 @@
+<tui-loader class="data-detail-page"
+            [overlay]="true"
+            [showLoader]="loadingState() === 'Loading'">
+  <div class="data-detail-page__content-container">
+    <mix-sub-toolbar [description]="mode === 'create' ? 'creating' : 'updating'"
+                     [title]="'Data'">
+      <div class="toolbar-separator"></div>
+      <mix-button class="ms-auto"
+                  type="outline"
+                  (click)="goBack()"
+                  size="s"><span class="material-symbols-outlined"> west </span>&nbsp; Back
+      </mix-button>
+      <mix-button class="ms-2"
+                  (click)="submitData()"
+                  size="s"><span class="material-symbols-outlined">
+          {{ mode === 'create' ? 'add' : 'save_as' }} </span>&nbsp; {{ mode === 'create' ? 'Create' : 'Save' }}
+      </mix-button>
+    </mix-sub-toolbar>
+
+    <div class="data-detail-page__content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <div class="data-detail-page__main-content">
+              <div class="text-l">Fill all of the following columns</div>
+
+              <form class="mt-3"
+                    [formGroup]="form">
+                <formly-form *ngIf="fields.length"
+                             [fields]="fields"
+                             [form]="form"
+                             [model]="modelData"></formly-form>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</tui-loader>

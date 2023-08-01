@@ -1,0 +1,86 @@
+<div class="side-menu d-flex"
+     (tuiActiveZoneChange)="onActiveZone($event)">
+  <div class="side-menu__icon-bar"
+       [ngClass]="{ '--active': showDetail }">
+    <div class="side-menu__item --fixed"
+         (click)="showDetail = !showDetail">
+      <div class="side-menu__parent-container">
+        <span class="mix-icon side-menu__icon">
+          menu
+        </span>
+      </div>
+    </div>
+
+    <tui-hosted-dropdown *ngFor="let item of menu"
+                         class="w-100"
+                         [canOpen]="!showDetail"
+                         [content]="dropdown"
+                         [sided]="true"
+                         [tuiDropdownHideDelay]="50"
+                         [tuiDropdownShowDelay]="0"
+                         tuiDropdownHover
+                         tuiDropdownDirection="bottom">
+      <div class="side-menu__item"
+           [ngClass]="{'--open':  selectedMenu?.title === item.title}"
+           [routerLink]="'/' + item.url"
+           [routerLinkActive]="'--active'"
+           [routerLinkActiveOptions]="{ exact: true }">
+        <div class="side-menu__parent-container">
+          <span *ngIf="item.icon"
+                class="mix-icon side-menu__icon">
+            {{ item.icon }}
+          </span>
+
+          <span *ngIf="showDetail"
+                class="side-menu__item-title">
+            {{ item.title | transloco }}</span>
+        </div>
+
+        <!-- Level 1 children -->
+        <span *ngIf="showDetail && item.children?.length"
+              class="side-menu__item-toggle mix-icon"
+              (click)="$event.stopPropagation(); onMenuSelect(item)">
+          chevron_right
+        </span>
+
+        <div *ngIf="showDetail && item.children?.length && selectedMenu?.title === item.title"
+             class="side-menu__child-container"
+             @expandRightOnEnter
+             @collapseLeftOnLeave>
+          <div *ngFor="let child of item.children"
+               class="side-menu__child-item"
+               [routerLink]="'/' + child.url"
+               (click)="$event.stopPropagation()">
+            <span class="mix-icon">{{ child.icon || 'fiber_manual_record' }}</span>
+            <span>
+              {{ child.title }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #dropdown
+                   let-close="close">
+        <tui-data-list>
+          <tui-opt-group>
+            <button *ngFor="let item of item.children"
+                    class="menu"
+                    [routerLink]="'/' + item.url"
+                    [routerLinkActive]="'--active'"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    (click)="onMenuSelect(item)"
+                    style="justify-content: flex-start"
+                    tuiOption>
+              <span *ngIf="item.icon"
+                    class="mix-icon me-2">
+                {{ item.icon }}
+              </span>
+
+              {{ item.title | transloco }}
+            </button>
+          </tui-opt-group>
+        </tui-data-list>
+      </ng-template>
+    </tui-hosted-dropdown>
+  </div>
+</div>

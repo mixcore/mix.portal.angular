@@ -1,0 +1,73 @@
+<tui-input-files [formControl]="control"
+                 [label]="'or drop it here, allowed 4mb'"
+                 [link]="'Choose a files'"
+                 [maxFileSize]="maxFileSize * 1000 * 1000"
+                 [multiple]="true"
+                 (reject)="rejectFile($event)"
+                 accept="image/*"></tui-input-files>
+
+<div *ngIf="processingImages() as processImages"
+     class="array-media__files">
+  <tui-files>
+    <tui-file *ngFor="let file of processImages"
+              [file]="file"
+              state="loading"></tui-file>
+  </tui-files>
+</div>
+
+<div class="mt-2">
+  Click to preview the image, drag and drop to change image order
+</div>
+<div class="array-media__prev-container"
+     cdkDropListGroup>
+  <ng-container *ngFor="let image of images; let i = index">
+    <div class="array-media__preview-img"
+         [cdkDropListData]="{item: image,index:i}"
+         (cdkDropListDropped)="drop($event)"
+         cdkDropList
+         cdkDropListOrientation="horizontal">
+
+      <img class="array-media__image"
+           alt="img"
+           [src]="image"
+           (click)="showPreview(i)"
+           cdkDrag>
+
+      <div *cdkDragPlaceholder>
+      </div>
+
+      <mix-button class="array-media__delete"
+                  type="danger"
+                  [iconBtn]="true"
+                  (click)="delete(image)">
+        <span class="material-symbols-outlined"> delete </span></mix-button>
+    </div>
+
+  </ng-container>
+</div>
+
+
+<ng-template #preview
+             let-preview>
+  <tui-preview [rotatable]="true">
+    <tui-preview-title>{{ 'Image ' + (previewIndex + 1) }}</tui-preview-title>
+    <tui-preview-pagination [(index)]="previewIndex"
+                            [length]="images.length"></tui-preview-pagination>
+
+    <button type="button"
+            title="Download"
+            tuiIconButton
+            tuiPreviewAction
+            icon="tuiIconDownload"></button>
+    <button type="button"
+            title="Close"
+            (click)="preview.complete()"
+            tuiPreviewAction
+            tuiIconButton
+            icon="tuiIconCloseLarge"></button>
+
+    <img class="polymorpheus"
+         alt="preview-image"
+         [src]="images[previewIndex]">
+  </tui-preview>
+</ng-template>

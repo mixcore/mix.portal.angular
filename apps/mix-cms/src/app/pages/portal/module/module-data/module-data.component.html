@@ -1,0 +1,46 @@
+<div class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'LISTING'"
+                     [title]="'All ' + (module?.title || 'data')">
+      <div class="toolbar-separator"></div>
+      <mix-button (click)="createNew()"
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp; Add New
+      </mix-button>
+      <div class="toolbar-separator"></div>
+    </mix-sub-toolbar>
+
+    <div *ngIf="result() as result"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="result.items"
+                      [loading]="loadingState() === 'Loading'"
+                      [pageInfo]="result.pagingData">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <ng-container *ngFor="let column of columns ?? []">
+          <div [header]="column.displayName"
+               [key]="column.systemName"
+               mixTableColumn>
+            <ng-template let-data
+                         mixColumnCell>
+              <mix-dynamic-data-display [mixColumn]="column"
+                                        [mixData]="data.data[column.systemName]?.value"></mix-dynamic-data-display>
+            </ng-template>
+          </div>
+        </ng-container>
+
+        <div [header]="'Created date'"
+             [key]="'createdDateTime'"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              {{ data.createdDateTime | date: 'short' | relativeTimeSpan }}
+            </div>
+          </ng-template>
+        </div>
+      </mix-data-table>
+    </div>
+  </div>
+</div>

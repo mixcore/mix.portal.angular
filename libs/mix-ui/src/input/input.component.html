@@ -1,0 +1,22 @@
+<ng-container *tuiLet="autoCompleteItems$ | async as autoCompletes">
+  <tui-input *ngIf="control"
+             [formControl]="control"
+             [tuiTextfieldCleaner]="true"
+             [tuiTextfieldIconLeft]="searchIcon ? 'tuiIconSearchLarge' : undefined"
+             [tuiTextfieldLabelOutside]="!floatingLabel"
+             [tuiTextfieldSize]="size">
+    {{ placeHolder }}
+    <input [type]="type"
+           tuiTextfield>
+
+    <ng-container *ngIf="autoCompletes?.length">
+      <tui-data-list *tuiDataList>
+        <button *ngFor="let option of autoCompletes"
+                [value]="option"
+                tuiOption>
+          {{ option }}
+        </button>
+      </tui-data-list>
+    </ng-container>
+  </tui-input>
+</ng-container>

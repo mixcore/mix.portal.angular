@@ -1,0 +1,59 @@
+<div *ngIf="loadingState$ | async as state"
+     class="login"
+     [formGroup]="loginForm">
+  <div class="login__logo">
+    <img src="assets/images/mixcore-logo.svg">
+  </div>
+
+  <form class="login__container">
+    <div class="login__title">
+      Sign In
+    </div>
+    <div class="login__des">
+      Let manage your site together!
+    </div>
+
+
+    <div class="mt-8 d-flex">
+      <form class="d-flex w-100 justify-content-center align-items-center"
+            [formGroup]="modeForm">
+        <tui-radio-labeled [item]="appUrls[0]"
+                           formControlName="url">
+          Production
+        </tui-radio-labeled>
+        <tui-radio-labeled class="ms-3"
+                           [item]="appUrls[1]"
+                           formControlName="url">
+          Staging
+        </tui-radio-labeled>
+      </form>
+    </div>
+
+    <mix-input class="mt-8"
+               placeHolder="Username/Email"
+               formControlName="userName"></mix-input>
+
+    <mix-form-error formControlName="userName"></mix-form-error>
+
+    <mix-input class="mt-3"
+               type="password"
+               placeHolder="Password"
+               (keyup.enter)="submit()"
+               formControlName="password"></mix-input>
+
+    <mix-form-error formControlName="password"></mix-form-error>
+
+    <mix-error-alert class="mt-3 mb-4"
+                     [error]="error"></mix-error-alert>
+
+    <mix-button class="mt-4 w-100"
+                [loading]="state === 'Loading'"
+                (click)="submit()">Login</mix-button>
+  </form>
+
+  <div class="mt-4">
+    <span>Developed by <a href="https://mixcore.studio/"
+         target="_blank"
+         tuiLink>Mixcore Studio</a></span>
+  </div>
+</div>

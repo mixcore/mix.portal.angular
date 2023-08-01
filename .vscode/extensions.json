@@ -1,19 +1,9 @@
 {
   "recommendations": [
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-typescript-tslint-plugin",
-    "emeraldwalk.runonsave",
-    "vscode-icons-team.vscode-icons",
-    "dracula-theme.theme-dracula",
-    "christian-kohler.npm-intellisense",
-    "christian-kohler.path-intellisense",
-    "streetsidesoftware.code-spell-checker",
-    "alefragnani.bookmarks",
-    "eamodio.gitlens",
     "angular.ng-template",
     "nrwl.angular-console",
-    "pkief.material-icon-theme",
-    "firsttris.vscode-jest-runner"
+    "esbenp.prettier-vscode",
+    "firsttris.vscode-jest-runner",
+    "dbaeumer.vscode-eslint"
   ]
 }

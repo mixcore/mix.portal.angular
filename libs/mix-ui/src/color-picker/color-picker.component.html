@@ -1,0 +1,8 @@
+<tui-input-color *ngIf="control"
+                 [colors]="palette"
+                 [formControl]="control"
+                 [tuiTextfieldIconLeft]="searchIcon ? 'tuiIconSearchLarge' : undefined"
+                 [tuiTextfieldLabelOutside]="!floatingLabel"
+                 [tuiTextfieldSize]="size">
+  {{ placeHolder }}
+</tui-input-color>

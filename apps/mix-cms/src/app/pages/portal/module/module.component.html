@@ -1,0 +1,85 @@
+<div *ngIf="store.data$()"
+     class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar *ngIf="store.state() as state"
+                     [description]="'LISTING'"
+                     [title]="'All Modules'">
+      <div class="toolbar-separator"></div>
+      <mix-button (click)="addNew()"
+                  size="m"><span class="material-symbols-outlined"> add </span>&nbsp; Add New
+        Module</mix-button>
+      <div class="toolbar-separator"></div>
+      <mix-button class="mr-1"
+                  type="secondary-danger"
+                  [disabled]="!selectedPages.length"
+                  size="m">
+        <span class="material-symbols-outlined"> delete </span>&nbsp; Delete
+        Module(s)</mix-button>
+    </mix-sub-toolbar>
+
+    <div *ngIf="store.state$ | async as state"
+         class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
+                      [loading]="state.status === 'Loading'"
+                      [pageInfo]="state.pageInfo"
+                      [searchFieldOptions]="['title']"
+                      (itemsSelectedChange)="selectedPages = $event || []"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="
+          store.searchChange($event.searchText, $event.searchField)
+        ">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Module Name'"
+             [minWidth]="'150px'"
+             key="title"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="text-600"
+                 (click)="goDetail(data.id)">
+              {{ data.title }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Screen'"
+             key="image"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              <mix-compress-image [src]="data.image || 'assets/images/image_placeholder.jpg'"></mix-compress-image>
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Created'"
+             key="createdDateTime"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              {{ data.createdDateTime | date: 'short' | relativeTimeSpan }}
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Author'"
+             key="modifiedBy"
+             mixTableColumn></div>
+
+        <div [header]="'Status'"
+             key="status"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <mix-status-indicator [status]="data.status"></mix-status-indicator>
+          </ng-template>
+        </div>
+      </mix-data-table>
+    </div>
+  </div>
+</div>

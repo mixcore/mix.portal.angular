@@ -1,0 +1,9 @@
+<tui-input-date *ngIf="control"
+                [formControl]="control"
+                [tuiTextfieldCleaner]="true"
+                [tuiTextfieldLabelOutside]="true"
+                tuiTextfieldSize="m"
+                toNativeDate>
+  {{ placeHolder }}
+  <input tuiTextfield>
+</tui-input-date>

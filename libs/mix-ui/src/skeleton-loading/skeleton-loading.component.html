@@ -1,0 +1,109 @@
+<div class="skeleton-loading">
+  <ng-container *ngIf="type === 'none'">
+    <span class="skeleton-box"></span>
+    <span class="skeleton-box mt-2"
+          style="width:75%;"></span>
+    <span class="skeleton-box mt-2 "></span>
+    <span class="skeleton-box mt-2"
+          style="width:75%;"></span>
+  </ng-container>
+
+  <ng-container *ngIf="type === 'table'">
+    <table style="width: 100%">
+      <thead>
+        <tr>
+          <th><span class="skeleton-box"></span></th>
+          <th><span class="skeleton-box"></span></th>
+          <th><span class="skeleton-box"></span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="loading">
+            <span class="skeleton-box"
+                  style="width:75%;"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"
+                  style="width:75%;"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"
+                  style="width:75%;"></span>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+          <td class="loading">
+            <span class="skeleton-box"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+
+  <ng-container *ngIf="type === 'form'">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-11">
+          <span class="skeleton-box"
+                style="width: 100px"></span>
+          <span class="skeleton-box"
+                style="height: 2rem"></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-11">
+          <span class="skeleton-box"
+                style="width: 100px"></span>
+          <span class="skeleton-box"
+                style="height: 2rem"></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <span class="skeleton-box"
+                style="width: 100px"></span>
+          <span class="skeleton-box"
+                style="height: 2rem"></span>
+        </div>
+
+        <div class="col-5">
+          <span class="skeleton-box"
+                style="width: 100px"></span>
+          <span class="skeleton-box"
+                style="height: 2rem"></span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-11">
+          <span class="skeleton-box"
+                style="width: 100px"></span>
+          <span class="skeleton-box"
+                style="height: 5rem"></span>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

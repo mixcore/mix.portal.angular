@@ -1,0 +1,90 @@
+<div class="main-toolbar">
+  <div class="main-toolbar__logo">
+    <img src="assets/images/mixcore-logo.svg"
+         alt="logo">
+  </div>
+
+
+  <mix-location-controller></mix-location-controller>
+
+  <div class="main-toolbar__breadcrumbs">
+    <!-- <tui-breadcrumbs>
+      <ng-container *ngFor="let item of breadcrumbs">
+        <a *tuiItem
+           [routerLink]="item.url"
+           tuiLink>
+          {{ item.label }}
+        </a>
+      </ng-container>
+    </tui-breadcrumbs> -->
+  </div>
+
+  <div class="main-toolbar__tag ms-auto main-toolbar__tag{{ mode }}"> {{ mode }} </div>
+
+  <div class="main-toolbar__theme-switch">
+    <button type="button"
+            [size]="'s'"
+            (click)="themeService.toggle()"
+            tuiButton
+            appearance="flat">
+      <span class="material-symbols-outlined">
+        {{ themeService.theme === 'light' ? 'dark_mode' : 'light_mode' }}
+      </span>
+    </button>
+  </div>
+
+  <ng-container *ngIf="auth.cultures$ | async as cultures">
+    <div *ngIf="cultures?.length"
+         class="main-toolbar__culture">
+      <tui-hosted-dropdown #dropdown1
+                           [(open)]="dropdownOpen"
+                           [content]="content">
+        <button type="button"
+                [pseudoHover]="dropdown1.open || null"
+                [size]="'s'"
+                tuiButton
+                appearance="flat">
+          <span class="flag-icon {{ auth.currentCulture?.icon }}"></span>
+        </button>
+      </tui-hosted-dropdown>
+
+      <ng-template #content
+                   let-activeZone>
+        <tui-data-list>
+          <button *ngFor="let culture of cultures"
+                  (click)="changeCulture(culture)"
+                  tuiOption>
+            <span class="main-toolbar__culture-icon flag-icon {{ culture.icon }}"></span>
+            {{ culture.displayName }}
+          </button>
+        </tui-data-list></ng-template>
+    </div>
+  </ng-container>
+
+  <div class="main-toolbar__action">
+    <tui-hosted-dropdown #dropdown2
+                         [(open)]="userMenuOpen"
+                         [content]="userMenu">
+      <button type="button"
+              [pseudoHover]="dropdown2.open || null"
+              [size]="'s'"
+              tuiButton
+              appearance="flat">
+        <span class="material-symbols-outlined"> menu </span>
+      </button>
+    </tui-hosted-dropdown>
+
+    <ng-template #userMenu
+                 let-activeZone>
+      <tui-data-list>
+        <button tuiOption>
+          {{ 'Account Information' }}
+        </button>
+
+        <button (click)="logout()"
+                tuiOption>
+          {{ 'Logout' }}
+        </button>
+      </tui-data-list></ng-template>
+  </div>
+</div>

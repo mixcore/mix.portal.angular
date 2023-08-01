@@ -1,0 +1,154 @@
+:host {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.mix-data-table {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-top: 12px;
+
+  &__checkbox {
+    width: 40px;
+    vertical-align: middle !important;
+    text-align: center;
+  }
+
+  &__drag {
+    width: 60px;
+    vertical-align: middle !important;
+    text-align: center;
+  }
+
+  &__footer {
+    margin-top: auto;
+    min-height: var(--primary-toolbar-height);
+    border-top: 1px solid var(--border-color-default);
+    background-color: var(--background-color-primary);
+    padding: var(--container-padding);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+
+    tui-pagination {
+      margin-left: auto;
+    }
+  }
+
+  &__filter {
+    padding: var(--container-padding);
+    width: 100%;
+
+    .input {
+      flex-grow: 1;
+    }
+
+    .select {
+      width: 150px;
+    }
+  }
+
+  &__main-table {
+    width: 100%;
+    flex-grow: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  th._sticky::after {
+    display: none !important;
+  }
+
+  &__td {
+    border: none !important;
+    border-bottom: 1px solid var(--border-color-default) !important;
+    cursor: pointer;
+    height: 50px !important;
+    white-space: nowrap;
+
+    &.--action {
+      position: sticky !important;
+      right: 0;
+    }
+  }
+
+  th:first-child,
+  td:first-child {
+    padding-left: var(--default-padding);
+  }
+
+  table {
+    width: 100%;
+    border-spacing: 0;
+  }
+
+  th {
+    border: none;
+    height: 50px;
+    box-shadow: inset 0 -1px 0 var(--border-color-default);
+
+    button {
+      line-height: 24px;
+      font-weight: 600 !important;
+      text-transform: uppercase !important;
+      color: #6a819e !important;
+    }
+  }
+
+  tr:hover td {
+    background: var(--highlight-background-color);
+  }
+
+  tr.--active {
+    td:first-child {
+      border-left: 3px solid var(--primary-color) !important;
+    }
+
+    td {
+      border-top: 1px solid var(--primary-color) !important;
+      border-bottom: 1px solid var(--primary-color) !important;
+    }
+  }
+
+  &__empty-content {
+    text-align: center;
+
+    &-default {
+      &-ellipse {
+        fill: #f5f5f5;
+        fill-opacity: 0.8;
+      }
+
+      &-path {
+        &-1 {
+          fill: #aeb8c2;
+        }
+
+        &-2 {
+          fill: #aeb8c2;
+        }
+
+        &-3 {
+          fill: #f5f5f7;
+        }
+
+        &-4 {
+          fill: #dce0e6;
+        }
+
+        &-5 {
+          fill: #dce0e6;
+        }
+      }
+
+      &-g {
+        fill: var(--tui-base-01);
+      }
+    }
+  }
+}

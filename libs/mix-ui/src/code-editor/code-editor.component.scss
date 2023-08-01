@@ -1,0 +1,10 @@
+.code-editor {
+  height: 100%;
+  overflow: auto;
+  min-height: 500px;
+}
+
+:host {
+  height: 100%;
+  display: block;
+}

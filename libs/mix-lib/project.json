@@ -1,0 +1,24 @@
+{
+  "name": "mix-lib",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mix-lib/src",
+  "prefix": "mix.aio",
+  "targets": {
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/mix-lib"],
+      "options": {
+        "jestConfig": "libs/mix-lib/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/mix-lib/**/*.ts", "libs/mix-lib/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}

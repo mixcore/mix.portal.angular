@@ -1,9 +1,0 @@
-{
-  "version": 2,
-  "projects": {
-    "mix-portal": "apps/mix-portal",
-    "mix.lib": "libs/mix.lib",
-    "mix.share": "libs/mix.share",
-    "mix.ui": "libs/mix.ui"
-  }
-}
