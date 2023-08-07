@@ -121,7 +121,7 @@ export class PostPageComponent implements OnInit {
   forceLoading = false;
   searchOptions = ['title'];
   selectedPosts: MixPost[] = [];
-  showFilter = true;
+  showFilter = false;
   showBulkAssignMetadata = false;
   filterForm = new FormGroup({
     status: new FormControl(),
@@ -238,25 +238,21 @@ export class PostPageComponent implements OnInit {
               value: metadata.seoContent,
             });
           }
-
           this.metadataDisplays[type] = metadata.type;
           this.metadataForms[type] = new FormControl();
         });
-
         Object.keys(this.metadataForms).forEach((key) => {
           this.metadataForms[key].patchValue(
             this.store
               .request$()
               .metadataQueries?.filter((x) => x.fieldName === key) ?? []
           );
-
           this.metadataForms[key].valueChanges
             .pipe(takeUntil(this.destroy$), debounceTime(300))
             .subscribe((v) => {
               this.onMetadataFilterChange(key, v);
             });
         });
-
         this.cdr.detectChanges();
       });
   }

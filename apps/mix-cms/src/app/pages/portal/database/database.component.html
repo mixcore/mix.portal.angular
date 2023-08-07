@@ -32,24 +32,20 @@
              mixTableColumn></div>
 
         <div [header]="'Name'"
-             [minWidth]="'150px'"
              key="displayName"
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <div class="text-600"
+            <div class="d-flex gap-2"
                  (click)="goDetail(data.id)">
-              {{ data.displayName }}
-            </div>
-          </ng-template>
-        </div>
+              <div class="text-600">
+                {{ data.displayName }}
+              </div>
 
-        <div [header]="'System Name'"
-             key="systemName"
-             mixTableColumn>
-          <ng-template let-data
-                       mixColumnCell>
-            <div (click)="goDetail(data.id)">{{ data.systemName }}</div>
+              <div class="text-sub text-m">
+                {{ data.systemName }}
+              </div>
+            </div>
           </ng-template>
         </div>
 
@@ -64,9 +60,16 @@
           </ng-template>
         </div>
 
-        <div [header]="'Author'"
+        <div [header]="'Columns'"
              key="modifiedBy"
-             mixTableColumn></div>
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="mix-db__column">
+              {{ data.columns.length }} column(s)
+            </div>
+          </ng-template>
+        </div>
 
         <div [header]="'Status'"
              key="status"
@@ -84,7 +87,8 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <mix-button (click)="goDetail(data.id)"
+            <mix-button type="outline"
+                        (click)="goDetail(data.id)"
                         size="s"><span class="material-symbols-outlined">
                 construction
               </span></mix-button>

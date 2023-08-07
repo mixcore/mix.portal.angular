@@ -47,6 +47,7 @@
       "@mixcore/ui/modal": ["libs/mix-ui/src/modal/index.ts"],
       "@mixcore/ui/qr-code": ["libs/mix-ui/src/qr-code/index.ts"],
       "@mixcore/ui/select": ["libs/mix-ui/src/select/index.ts"],
+      "@mixcore/ui/sidebar": ["libs/mix-ui/src/portal-sidebar/index.ts"],
       "@mixcore/ui/skeleton": ["libs/mix-ui/src/skeleton-loading/index.ts"],
       "@mixcore/ui/table": ["libs/mix-ui/src/data-table/index.ts"],
       "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],

@@ -313,6 +313,64 @@ export function slideInLeftOnEnterAnimation(
   ]);
 }
 
+const slideInRight = () =>
+  animation([
+    animate(
+      '{{duration}}ms {{delay}}ms',
+      keyframes([
+        style({
+          visibility: 'visible',
+          transform: 'translate3d({{translate}}, 0, 0)',
+          easing: 'ease',
+          offset: 0,
+        }),
+        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 }),
+      ])
+    ),
+  ]);
+
+export function slideInRightAnimation(
+  options?: ISlideInLeftAnimationOptions
+): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'slideInLeft', [
+    transition(
+      '0 => 1',
+      [
+        style({ visibility: 'hidden' }),
+        ...useAnimationIncludingChildren(slideInLeft(), options),
+      ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%',
+        },
+      }
+    ),
+  ]);
+}
+
+export function slideInRightOnEnterAnimation(
+  options?: ISlideInLeftAnimationOptions
+): AnimationTriggerMetadata {
+  return trigger((options && options.anchor) || 'slideInRightOnEnter', [
+    transition(
+      ':enter',
+      [
+        style({ visibility: 'hidden' }),
+        ...useAnimationIncludingChildren(slideInRight(), options),
+      ],
+      {
+        params: {
+          delay: (options && options.delay) || 0,
+          duration: (options && options.duration) || DEFAULT_DURATION,
+          translate: (options && options.translate) || '100%',
+        },
+      }
+    ),
+  ]);
+}
+
 export function collapseAnimation(
   options?: IAnimationOptions
 ): AnimationTriggerMetadata {

@@ -3,19 +3,21 @@
     <tui-input class="input"
                [formControl]="searchText"
                [tuiTextfieldCleaner]="true"
+               [tuiTextfieldLabelOutside]="true"
+               [tuiTextfieldSize]="'m'"
                tuiTextfieldIconLeft="tuiIconSearchLarge">
       {{ searchPlaceholder }}
     </tui-input>
 
     <tui-select class="ms-2 select"
-                [formControl]="searchField">
+                [formControl]="searchField"
+                [tuiTextfieldSize]="'m'">
       Find on
       <input tuiTextfield>
       <tui-data-list-wrapper *tuiDataList
                              [items]="searchFieldOptions"></tui-data-list-wrapper>
     </tui-select>
   </div>
-
   <div #mainTable
        class="mix-data-table__main-table">
     <tui-loader [overlay]="true"
@@ -25,73 +27,32 @@
              tuiTable>
         <thead>
           <tr tuiThGroup>
-            <ng-container *ngFor="let col of columns">
-              <ng-container *ngIf="
-                  col.sortable === false &&
-                  col.columnType !== 'CHECKBOX' &&
-                  col.columnType !== 'DRAG'
-                ">
-                <th *tuiHead="col.key"
-                    [sorter]="null"
-                    [sticky]="true"
-                    tuiTh>
-                  <ng-container *ngIf="col.tplHeader">
-                    <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
-                  </ng-container>
+            <ng-container *ngFor="let col of displayColumns; let i = index">
+              <th *tuiHead="col.key"
+                  [sorter]="null"
+                  [sticky]="true"
+                  tuiTh>
+                <div class="d-flex align-items-center">
+                  <tui-checkbox *ngIf="i === 0"
+                                class="me-3"
+                                [ngModel]="isAllSelected"
+                                [size]="'m'"
+                                (click)="$event.stopPropagation()"
+                                (ngModelChange)="markAllChecked($event)"></tui-checkbox>
 
-                  <ng-container *ngIf="!col.tplHeader && col.showHeader">
-                    {{ col.header }}
-                  </ng-container>
-                </th>
-              </ng-container>
+                  <div class="flex-grow-1">
+                    <ng-container *ngIf="col.tplHeader">
+                      <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
+                    </ng-container>
 
-              <ng-container *ngIf="
-                  col.sortable === true &&
-                  col.columnType !== 'CHECKBOX' &&
-                  col.columnType !== 'DRAG'
-                ">
-                <th *tuiHead="col.key"
-                    [sticky]="true"
-                    tuiTh>
-                  <ng-container *ngIf="col.tplHeader">
-                    <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
-                  </ng-container>
-
-                  <ng-container *ngIf="!col.tplHeader && col.showHeader">
-                    <div>
-                      <div>{{ col.header }}</div>
-                    </div>
-                  </ng-container>
-                </th>
-              </ng-container>
-
-              <ng-container *ngIf="col.columnType === 'CHECKBOX'">
-                <th *tuiHead="col.key"
-                    class="mix-data-table__checkbox"
-                    [sorter]="null"
-                    [sticky]="true"
-                    tuiTh>
-                  <div class="wrapper">
-                    <tui-checkbox [ngModel]="isAllSelected"
-                                  [size]="'m'"
-                                  (ngModelChange)="markAllChecked($event)"></tui-checkbox>
+                    <ng-container *ngIf="!col.tplHeader && col.showHeader">
+                      <div>
+                        <div>{{ col.header }}</div>
+                      </div>
+                    </ng-container>
                   </div>
-                </th>
-              </ng-container>
-
-              <ng-container *ngIf="col.columnType === 'DRAG'">
-                <th *tuiHead="col.key"
-                    class="mix-data-table__drag"
-                    [sorter]="null"
-                    [sticky]="true"
-                    tuiTh>
-                  <div class="wrapper">
-                    <span class="material-symbols-outlined">
-                      drag_indicator
-                    </span>
-                  </div>
-                </th>
-              </ng-container>
+                </div>
+              </th>
             </ng-container>
           </tr>
         </thead>
@@ -102,78 +63,37 @@
                (cdkDropListDropped)="drop($event)"
                cdkDropList
                tuiTbody>
-          <tr #dropdown="tuiDropdown"
-              *ngFor="let item of dataset; trackBy: dataTrackBy"
-              [ngClass]="{
-              '--active':
-                selectedItem &&
-                $any(selectedItem)[uniqueKey] === $any(item)[uniqueKey]
-            }"
-              [tuiDropdown]="contextMenu"
+          <tr *ngFor="let item of dataset; trackBy: dataTrackBy"
               cdkDrag
-              tuiDropdownContext
               tuiTr>
-            <ng-container *ngFor="let col of columns">
-              <ng-container *ngIf="
-                  col.columnType !== 'CHECKBOX' && col.columnType !== 'DRAG'
-                ">
-                <td *tuiCell="col.key"
-                    class="mix-data-table__td"
-                    [ngClass]="{
-                    '--action': col.columnType === 'ACTION',
-                  }"
-                    [ngStyle]="{ width: col.width, 'min-width': col.minWidth }"
-                    tuiTd>
-                  <ng-container *ngIf="col.tplCell">
-                    <ng-container *ngTemplateOutlet="
-                        col.tplCell.template;
-                        context: { $implicit: item }
-                      "></ng-container>
-                  </ng-container>
-
-                  <ng-container *ngIf="!col.tplCell">
-                    {{ $any(item)[col.key] ?? '--' }}
-                  </ng-container>
-                </td>
-              </ng-container>
-
-              <ng-container *ngIf="col.columnType === 'CHECKBOX'">
-                <td *tuiCell="col.key"
-                    class="mix-data-table__td mix-data-table__checkbox"
-                    tuiTd>
-                  <tui-checkbox [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
+            <ng-container *ngFor="let col of displayColumns; let i = index">
+              <td *tuiCell="col.key"
+                  class="mix-data-table__td"
+                  [ngStyle]="{ width: col.width, 'min-width': col.minWidth }"
+                  tuiTd>
+                <div class="d-flex h-100 align-items-center">
+                  <tui-checkbox *ngIf="i === 0"
+                                class="me-3"
+                                [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
                                 [size]="'m'"
                                 (ngModelChange)="onItemSelected($event, item)">
                   </tui-checkbox>
-                </td>
-              </ng-container>
 
-              <ng-container *ngIf="col.columnType === 'DRAG'">
-                <td *tuiCell="col.key"
-                    class="mix-data-table__td mix-data-table__drag"
-                    tuiTd>
-                  <span class="material-symbols-outlined"
-                        cdkDragHandle>
-                    drag_indicator
-                  </span>
-                </td>
-              </ng-container>
+                  <div class="flex-grow-1">
+                    <ng-container *ngIf="col.tplCell">
+                      <ng-container *ngTemplateOutlet="
+                          col.tplCell.template;
+                          context: { $implicit: item }
+                        "></ng-container>
+                    </ng-container>
+
+                    <ng-container *ngIf="!col.tplCell">
+                      {{ $any(item)[col.key] ?? '--' }}
+                    </ng-container>
+                  </div>
+                </div>
+              </td>
             </ng-container>
-
-            <ng-template #contextMenu>
-              <tui-data-list class="context-menu"
-                             role="menu"
-                             tuiDataListDropdownManager>
-                <button *ngFor="let menu of contextMenus"
-                        (click)="menu.action(item); dropdown.toggle(false)"
-                        tuiOption>
-                  {{ menu.label }}
-                  <span class="material-symbols-outlined ms-5">
-                    {{ menu.icon }}
-                  </span>
-                </button>
-              </tui-data-list>
-            </ng-template>
           </tr>
         </tbody>
 
@@ -237,6 +157,7 @@
     <div class="mix-data-table__page-info">
       Total items: {{ pageInfo.total }}
     </div>
+
     <tui-pagination *ngIf="!!pageInfo?.totalPage"
                     [index]="pageInfo.pageIndex"
                     [length]="pageInfo.totalPage ?? 0"

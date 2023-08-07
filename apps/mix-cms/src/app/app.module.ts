@@ -25,6 +25,7 @@ import { MixFormlyInputNumberComponent } from '@mixcore/ui/input-number';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { InMemoryCache } from '@apollo/client/core';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
+import { HttpCancelService, ManageHttpInterceptor } from '@mixcore/share/api';
 import { MixFormlyArrayMediaComponent } from '@mixcore/ui/array-media';
 import { MixFormlyArrayRadioComponent } from '@mixcore/ui/array-radio';
 import { MixFormlyColorPickerComponent } from '@mixcore/ui/color-picker';
@@ -33,6 +34,7 @@ import { JsonEditorFormlyComponent } from '@mixcore/ui/json';
 import { MixModalModule } from '@mixcore/ui/modal';
 import { MixFormlyQRCodeComponent } from '@mixcore/ui/qr-code';
 import { MixFormlySelectComponent } from '@mixcore/ui/select';
+import { PortalSidebarComponent } from '@mixcore/ui/sidebar';
 import { MixFormlyToggleComponent } from '@mixcore/ui/toggle';
 import { MixFormlyUploadComponent } from '@mixcore/ui/upload';
 import {
@@ -51,13 +53,16 @@ import {
 } from '@ngneat/transloco';
 import { FormlyModule } from '@ngx-formly/core';
 import { TuiPreviewModule } from '@taiga-ui/addon-preview';
+import { TuiPortalModule } from '@taiga-ui/cdk';
 import {
   TUI_ANIMATIONS_DURATION,
+  TUI_SANITIZER,
   TuiAlertModule,
   TuiDialogModule,
   TuiRootModule,
 } from '@taiga-ui/core';
 import { TuiPushModule } from '@taiga-ui/kit';
+import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
@@ -91,6 +96,7 @@ const domainUrlFactory = () => {
     MixModalModule,
     TuiAlertModule,
     TuiPreviewModule,
+    TuiPortalModule,
     TuiPushModule,
     HttpClientModule,
     ApolloModule,
@@ -99,6 +105,7 @@ const domainUrlFactory = () => {
     MonacoEditorModule.forRoot(),
     HotToastModule.forRoot(),
     TuiDialogModule,
+    PortalSidebarComponent,
     FormlyModule.forRoot({
       types: [
         {
@@ -193,6 +200,13 @@ const domainUrlFactory = () => {
       }),
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
+    HttpCancelService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ManageHttpInterceptor,
+      multi: true,
+    },
+
     provideTippyConfig({
       defaultVariation: 'tooltip',
       variations: {
@@ -211,6 +225,10 @@ const domainUrlFactory = () => {
         };
       },
       deps: [HttpLink],
+    },
+    {
+      provide: TUI_SANITIZER,
+      useClass: NgDompurifySanitizer,
     },
   ],
   bootstrap: [AppComponent],

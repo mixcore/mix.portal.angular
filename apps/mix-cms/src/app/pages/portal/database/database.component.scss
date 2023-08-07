@@ -1,0 +1,9 @@
+.mix-db {
+  &__column {
+    font-size: var(--text-size-s);
+    padding: 2px 4px;
+    border-radius: 4px;
+    background-color: var(--border-color-default);
+    width: fit-content;
+  }
+}

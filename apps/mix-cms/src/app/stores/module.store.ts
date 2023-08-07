@@ -3,7 +3,7 @@ import { MixModule, PaginationRequestModel } from '@mixcore/lib/model';
 import { CMS_ROUTES } from '../app.routes';
 import { BaseCRUDStore } from './base-crud.store';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class ModuleStore extends BaseCRUDStore<MixModule> {
   public override requestFn = (request: PaginationRequestModel) =>
     this.mixApi.moduleApi.gets({

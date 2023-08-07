@@ -1,6 +1,6 @@
 <div class="data-table-page">
   <div class="data-table-page__main-container">
-    <mix-sub-toolbar [description]="'listing'"
+    <mix-sub-toolbar [description]="'LISTING'"
                      [title]="'All Post' | transloco">
       <tui-hosted-dropdown [(open)]="showQuickAddPost"
                            [content]="addNewMenuItem"
@@ -124,16 +124,12 @@
                       [loading]="state.status === 'Loading'"
                       [pageInfo]="state.pageInfo"
                       [searchFieldOptions]="searchOptions"
-                      [searchTextValue]="store.request$().keyword ?? ''"
                       (dragDropChange)="onDragDropDataChange($event)"
                       (itemsSelectedChange)="selectedPosts = $event"
                       (pageChange)="store.changePage($event)"
                       (searchChange)="
           store.searchChange($event.searchText, $event.searchField)
         ">
-        <div [columnType]="'CHECKBOX'"
-             mixTableColumn></div>
-
         <div [header]="'Name'"
              [minWidth]="'150px'"
              key="title"
@@ -142,7 +138,7 @@
                        mixColumnCell>
             <div (click)="goDetail(data.id)">
               <div class="text-600">{{ data.title }}</div>
-              <div class="text-sub text-s text-100">
+              <div class="text-sub text-s">
                 {{ data.seoName }}
               </div>
             </div>
@@ -154,8 +150,9 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <div class="image-preview">
-              <mix-compress-image [src]="data.image || 'assets/images/image_placeholder.jpg'"></mix-compress-image>
+            <div class="d-flex align-items-center">
+              <mix-compress-image *ngIf="data.image; else noImg"
+                                  [src]="data.image"></mix-compress-image>
             </div>
           </ng-template>
         </div>
@@ -169,7 +166,7 @@
               {{ data.createdDateTime | mixDate | date: 'dd/MM/yyyy, hh:mm a' }}
             </div>
 
-            <div class="text-sub text-s text-100">
+            <div class="text-sub text-s">
               {{ data.createdDateTime | mixDate | relativeTime | titlecase }}
             </div>
           </ng-template>
@@ -184,9 +181,9 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
+            <mix-status-indicator [status]="data.status"></mix-status-indicator>
             <editable (save)="onSave(data.status, 'status', data)">
               <ng-template viewMode>
-                <mix-status-indicator [status]="data.status"></mix-status-indicator>
               </ng-template>
 
               <ng-template editMode>
@@ -213,11 +210,6 @@
                         size="s"><span class="material-symbols-outlined"> edit </span></mix-button>
           </ng-template>
         </div>
-
-        <div *ngIf="state.request.orderBy === 'priority'"
-             [columnType]="'DRAG'"
-             key="drag"
-             mixTableColumn></div>
       </mix-data-table>
     </div>
   </div>
@@ -286,6 +278,8 @@
 
   </div>
 </div>
+
+<ng-template #noImg>--</ng-template>
 
 <ng-template #bulkAssignMetadata
              [(tuiDialog)]="showBulkAssignMetadata"

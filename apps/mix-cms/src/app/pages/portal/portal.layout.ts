@@ -1,11 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  signal,
+} from '@angular/core';
 import {
   NavigationEnd,
   NavigationStart,
   Router,
   RouterModule,
 } from '@angular/router';
+import { PortalSidebarComponent } from '@mixcore/ui/sidebar';
 import { TuiProgressModule } from '@taiga-ui/kit';
 import { MainExplorerComponent } from '../../components/main-explorer/main-explorer.component';
 import { MainSideMenuComponent } from '../../components/main-side-menu/main-side-menu.component';
@@ -23,7 +29,9 @@ import { MainToolbarComponent } from '../../components/main-toolbar/main-toolbar
     MainToolbarComponent,
     MainExplorerComponent,
     TuiProgressModule,
+    PortalSidebarComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixPortalLayoutComponent {
   router = inject(Router);
@@ -36,9 +44,9 @@ export class MixPortalLayoutComponent {
       }
 
       if (v instanceof NavigationEnd) {
-        setTimeout(() => {
-          this.showProgress.set(false);
-        }, 300);
+        // setTimeout(() => {
+        this.showProgress.set(false);
+        // }, 300);
       }
     });
   }

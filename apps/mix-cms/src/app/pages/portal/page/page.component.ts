@@ -39,7 +39,6 @@ import { MixStatusIndicatorComponent } from '../../../components/status-indicato
   styleUrls: ['./page.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [PageStore],
 })
 export class PagePageComponent {
   store = inject(PageStore);

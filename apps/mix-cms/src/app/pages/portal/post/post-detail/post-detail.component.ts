@@ -177,7 +177,7 @@ export class PostDetailComponent extends DetailPageKit implements OnInit {
 
         this.mixApi.postApi
           .getById(this.id)
-          .pipe(this.observerLoadingState())
+          .pipe(takeUntil(this.destroy$), this.observerLoadingState())
           .subscribe((v: MixPost) => {
             this.post = v;
             this.form.patchValue({ ...v, priority: v.priority || undefined });
@@ -187,14 +187,17 @@ export class PostDetailComponent extends DetailPageKit implements OnInit {
   }
 
   loadDbData(): void {
-    this.mixApi.databaseApi.getDatabaseBySystemName('Metadata').subscribe({
-      next: (metadataDb) => {
-        this.metadataAllowedType.set(
-          metadataDb.columns?.find((c) => c.systemName === 'type')
-            ?.columnConfigurations.allowedValues ?? []
-        );
-      },
-    });
+    this.mixApi.databaseApi
+      .getDatabaseBySystemName('Metadata')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (metadataDb) => {
+          this.metadataAllowedType.set(
+            metadataDb.columns?.find((c) => c.systemName === 'type')
+              ?.columnConfigurations.allowedValues ?? []
+          );
+        },
+      });
 
     if (!this.post?.mixDatabaseName) return;
 
@@ -207,27 +210,29 @@ export class PostDetailComponent extends DetailPageKit implements OnInit {
       this.mixApi.databaseApi.getDataByPostParent<
         Record<string, string | Date | number>
       >(this.post.mixDatabaseName, this.post.id),
-    ]).subscribe({
-      next: ([database, databaseData]) => {
-        const { model, fields } = Utils.BuildDynamicFormField(
-          database.columns,
-          databaseData,
-          this.uploadFileFn,
-          this.deleteFileFn
-        );
+    ])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: ([database, databaseData]) => {
+          const { model, fields } = Utils.BuildDynamicFormField(
+            database.columns,
+            databaseData,
+            this.uploadFileFn,
+            this.deleteFileFn
+          );
 
-        this.model = model;
-        this.fields = fields;
-        this.additionalDb = database;
-        this.postVariantDb.set(
-          this.additionalDb.relationships?.find(
-            (r) => r.type === RelationShipType.OneToMany
-          )
-        );
-        this.loadAdditionalDb.set(false);
-      },
-      error: () => this.loadAdditionalDb.set(false),
-    });
+          this.model = model;
+          this.fields = fields;
+          this.additionalDb = database;
+          this.postVariantDb.set(
+            this.additionalDb.relationships?.find(
+              (r) => r.type === RelationShipType.OneToMany
+            )
+          );
+          this.loadAdditionalDb.set(false);
+        },
+        error: () => this.loadAdditionalDb.set(false),
+      });
   }
 
   submit(): void {

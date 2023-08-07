@@ -7,12 +7,12 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  NgZone,
   Output,
   QueryList,
   ViewChild,
   ViewEncapsulation,
   inject,
-  signal,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TuiDestroyService } from '@taiga-ui/cdk';
@@ -40,6 +40,7 @@ export class DataTableComponent<T> implements AfterContentInit {
 
   public cdr = inject(ChangeDetectorRef);
   public destroy$ = inject(TuiDestroyService);
+  public zone = inject(NgZone);
 
   @Output() public dragDropChange: EventEmitter<{ item: T; toItem: T }> =
     new EventEmitter();
@@ -94,15 +95,11 @@ export class DataTableComponent<T> implements AfterContentInit {
     totalPage: 0,
   };
 
-  public tableSortFieldsInitial: readonly string[] = [];
-  public tableSortFieldsSorted: readonly string[] = [];
-  public tableInitialColumns: string[] = [];
   public tableColumns: string[] = [];
-  public columnDic: Record<string, string> = {};
+  public displayColumns: TableColumnDirective[] = [];
   public isAllSelected = false;
   public currentSelectedItem: T[] = [];
   public currentSelectedItemDic: Record<string, T | undefined> = {};
-  public displayDataSet = signal<T[]>([]);
 
   private _dataset: T[] = [];
   private _searchFieldOptions: string[] = [];
@@ -110,31 +107,30 @@ export class DataTableComponent<T> implements AfterContentInit {
   @Output() public itemsSelectedChange: EventEmitter<T[]> = new EventEmitter();
 
   public ngAfterContentInit(): void {
-    this.searchText.patchValue(this.searchTextValue, { emitEvent: false });
-    this.displayDataSet.set(this.dataset);
-    this.columns.changes
-      .pipe(startWith([]), takeUntil(this.destroy$))
-      .subscribe((v) => {
-        const columns: TableColumnDirective[] = this.columns.toArray();
-        this.columnDic = this._buildColumnDictionary(columns);
-        this.tableInitialColumns = columns.map(
-          (c: TableColumnDirective) => c.key
-        );
-        this.tableColumns = this.tableInitialColumns;
-        this.tableSortFieldsInitial = columns.map(
-          (c: TableColumnDirective) => c.header
-        );
-        this.tableSortFieldsSorted = this.tableSortFieldsInitial;
-      });
+    this.zone.runOutsideAngular(() => {
+      this.searchText.patchValue(this.searchTextValue, { emitEvent: false });
 
-    this.searchText.valueChanges
-      .pipe(debounceTime(500), takeUntil(this.destroy$))
-      .subscribe((v) => {
-        this.searchChange.next({
-          searchText: v,
-          searchField: this.searchField.getRawValue(),
+      this.columns.changes
+        .pipe(startWith([]), takeUntil(this.destroy$))
+        .subscribe(() => {
+          this.displayColumns = this.columns
+            .toArray()
+            .filter((x) => x.columnType !== 'CHECKBOX');
+
+          this.tableColumns = this.displayColumns.map(
+            (c: TableColumnDirective) => c.key
+          );
         });
-      });
+
+      this.searchText.valueChanges
+        .pipe(debounceTime(500), takeUntil(this.destroy$))
+        .subscribe((v) => {
+          this.searchChange.next({
+            searchText: v,
+            searchField: this.searchField.getRawValue(),
+          });
+        });
+    });
   }
 
   public onPageChange(index: number): void {
@@ -184,18 +180,6 @@ export class DataTableComponent<T> implements AfterContentInit {
     this.currentSelectedItemDic = {};
     this.itemsSelectedChange.emit(this.currentSelectedItem);
     this.isAllSelected = false;
-  }
-
-  private _buildColumnDictionary(
-    columns: TableColumnDirective[]
-  ): Record<string, string> {
-    return columns.reduce(
-      (acc: object, item: TableColumnDirective) => ({
-        ...acc,
-        [item.header]: item.key,
-      }),
-      {}
-    );
   }
 
   public drop(event: CdkDragDrop<any>) {

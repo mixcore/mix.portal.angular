@@ -90,7 +90,6 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
 
     effect(
       () => {
-        this.routeChange$()?.toString();
         this.loadData(this.request$());
       },
       { allowSignalWrites: true }
@@ -100,13 +99,8 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public loadData = this.effect(
     (request$: Observable<PaginationRequestModel>) =>
       request$.pipe(
-        tap((request) => {
+        tap(() => {
           this.patchState({ status: 'Loading' });
-          // this.cacheKey = this.buildCacheKey(request);
-
-          // if (!this.cacheService.has(this.cacheKey)) {
-          // this.patchState({ status: 'Loading' });
-          // }
         }),
         switchMap((request) => this.silentFetchData(request)),
         tapResponse(

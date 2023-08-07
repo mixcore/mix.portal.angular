@@ -20,6 +20,7 @@ import { CMS_ROUTES } from '../../../app.routes';
 import { CompressImageComponent } from '../../../components/compress-image/compress-image.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { ModuleStore } from '../../../stores/module.store';
+
 @Component({
   selector: 'mix-module',
   standalone: true,
@@ -39,7 +40,6 @@ import { ModuleStore } from '../../../stores/module.store';
   styleUrls: ['./module.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [ModuleStore],
 })
 export class ModulesComponent {
   store = inject(ModuleStore);

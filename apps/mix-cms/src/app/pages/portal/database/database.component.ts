@@ -1,12 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MixDatabase } from '@mixcore/lib/model';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { PortalSidebarService } from '@mixcore/ui/sidebar';
 import { MixDataTableModule } from '@mixcore/ui/table';
 import { Apollo, gql } from 'apollo-angular';
 import { CMS_ROUTES } from '../../../app.routes';
+import { DatabaseDetailComponent } from '../../../components/database-detail/database-detail.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { DatabaseStore } from '../../../stores/database.store';
@@ -21,6 +23,7 @@ import { DatabaseStore } from '../../../stores/database.store';
     MixDataTableModule,
     MixStatusIndicatorComponent,
     RelativeTimeSpanPipe,
+    DatabaseDetailComponent,
   ],
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.scss'],
@@ -30,6 +33,11 @@ export class DatabaseComponent {
   store = inject(DatabaseStore);
   router = inject(Router);
   selectedPages: MixDatabase[] = [];
+
+  constructor(
+    @Inject(PortalSidebarService)
+    private readonly sidebar: PortalSidebarService
+  ) {}
 
   ngOnInit() {
     this.apollo
@@ -50,9 +58,11 @@ export class DatabaseComponent {
   }
 
   async goDetail(id: number) {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal.database.fullPath}/${id}`
-    );
+    this.sidebar.addTemplate(DatabaseDetailComponent);
+
+    // await this.router.navigateByUrl(
+    //   `${CMS_ROUTES.portal.database.fullPath}/${id}`
+    // );
   }
 
   async goDatabaseData(sysName: string) {

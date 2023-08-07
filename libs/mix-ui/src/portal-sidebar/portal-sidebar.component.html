@@ -1,0 +1,10 @@
+<div *ngIf="selectedPortal"
+     class="portal-sidebar">
+
+  <div *ngIf="selectedPortal"
+       class="portal-sidebar__main"
+       @slideInRightOnEnter>
+    <ng-template [cdkPortalOutlet]="selectedPortal"
+                 t></ng-template>
+  </div>
+</div>
