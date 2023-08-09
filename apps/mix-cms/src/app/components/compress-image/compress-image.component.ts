@@ -25,8 +25,8 @@ export class CompressImageComponent implements AfterViewInit {
   @ViewChild('canvas2', { static: false })
   canvas2El!: ElementRef<HTMLCanvasElement>;
 
-  @Input() public set src(v: string) {
-    this._src = v;
+  @Input() public set src(v: string | null) {
+    this._src = v || '';
     this.loadData();
   }
 
@@ -70,7 +70,7 @@ export class CompressImageComponent implements AfterViewInit {
       false
     );
 
-    this.image.src = this.src;
+    this.image.src = this.src!;
   }
 
   public scaleImage(image: HTMLImageElement, canvas: HTMLCanvasElement) {

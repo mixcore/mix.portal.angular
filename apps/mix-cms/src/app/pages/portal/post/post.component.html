@@ -12,8 +12,7 @@
 
       <div class="toolbar-separator"></div>
 
-      <mix-button class="mr-1"
-                  type="secondary-danger"
+      <mix-button type="secondary-danger"
                   [disabled]="!selectedPosts.length"
                   (click)="bulkDeleteClick()"
                   size="s">
@@ -22,8 +21,7 @@
 
       <div class="toolbar-separator"></div>
 
-      <tui-hosted-dropdown class="ms-2"
-                           [(open)]="openChooseBulkAction"
+      <tui-hosted-dropdown [(open)]="openChooseBulkAction"
                            [content]="buildActionDropdown">
         <button type="button"
                 [pseudoActive]="openChooseBulkAction || null"
@@ -65,9 +63,6 @@
         </ng-template>
       </tui-hosted-dropdown>
 
-      <div class="toolbar-separator"></div>
-
-      <div>Mark as:</div>
       <tui-hosted-dropdown [(open)]="openChooseBulkStatus"
                            [content]="dropdown"
                            tuiDropdownLimitWidth="fixed">
@@ -115,7 +110,7 @@
         <span class="material-symbols-outlined"> filter_alt </span></mix-button>
     </mix-sub-toolbar>
 
-    <div *ngIf="store.state() as state"
+    <div *ngIf="store.vm$ | async as state"
          class="data-table-page__body">
       <mix-data-table [contextMenus]="contextMenus"
                       [dataset]="state.data"
@@ -131,7 +126,6 @@
           store.searchChange($event.searchText, $event.searchField)
         ">
         <div [header]="'Name'"
-             [minWidth]="'150px'"
              key="title"
              mixTableColumn>
           <ng-template let-data
@@ -151,8 +145,10 @@
           <ng-template let-data
                        mixColumnCell>
             <div class="d-flex align-items-center">
-              <mix-compress-image *ngIf="data.image; else noImg"
-                                  [src]="data.image"></mix-compress-image>
+              <img [src]="data.image | mixImg:'XS'"
+                   style="object-fit: cover;"
+                   width="60"
+                   height="30">
             </div>
           </ng-template>
         </div>
@@ -182,18 +178,6 @@
           <ng-template let-data
                        mixColumnCell>
             <mix-status-indicator [status]="data.status"></mix-status-indicator>
-            <editable (save)="onSave(data.status, 'status', data)">
-              <ng-template viewMode>
-              </ng-template>
-
-              <ng-template editMode>
-                <mix-select [(value)]="data.status"
-                            [items]="$any(filterOptions)"
-                            [selfControl]="true"
-                            editableOnEnter
-                            editableOnEscape></mix-select>
-              </ng-template>
-            </editable>
           </ng-template>
         </div>
 

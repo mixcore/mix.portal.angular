@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ActivationEnd, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Injectable()
@@ -24,11 +24,11 @@ export class HttpCancelService {
 @Injectable()
 export class ManageHttpInterceptor implements HttpInterceptor {
   constructor(router: Router, private httpCancelService: HttpCancelService) {
-    router.events.subscribe((event) => {
-      if (event instanceof ActivationEnd) {
-        this.httpCancelService.cancelPendingRequests();
-      }
-    });
+    // router.events.subscribe((event) => {
+    //   if (event instanceof ActivationEnd) {
+    //     this.httpCancelService.cancelPendingRequests();
+    //   }
+    // });
   }
 
   intercept<T>(

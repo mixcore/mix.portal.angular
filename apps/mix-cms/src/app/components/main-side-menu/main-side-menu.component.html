@@ -23,8 +23,7 @@
       <div class="side-menu__item"
            [ngClass]="{'--open':  selectedMenu?.title === item.title}"
            [routerLink]="'/' + item.url"
-           [routerLinkActive]="'--active'"
-           [routerLinkActiveOptions]="{ exact: true }">
+           [routerLinkActive]="'--active'">
         <div class="side-menu__parent-container">
           <span *ngIf="item.icon"
                 class="mix-icon side-menu__icon">
@@ -33,10 +32,10 @@
 
           <span *ngIf="showDetail"
                 class="side-menu__item-title">
-            {{ item.title | transloco }}</span>
+            {{ item.title | transloco }}
+          </span>
         </div>
 
-        <!-- Level 1 children -->
         <span *ngIf="showDetail && item.children?.length"
               class="side-menu__item-toggle mix-icon"
               [ngClass]="{'--active': selectedMenu?.title === item.title}"
@@ -45,9 +44,7 @@
         </span>
 
         <div *ngIf="showDetail && item.children?.length && selectedMenu?.title === item.title"
-             class="side-menu__child-container"
-             @expandRightOnEnter
-             @collapseLeftOnLeave>
+             class="side-menu__child-container">
           <div *ngFor="let child of item.children"
                class="side-menu__child-item"
                [routerLink]="'/' + child.url"

@@ -11,13 +11,14 @@
 
     <tui-select class="ms-2 select"
                 [formControl]="searchField"
+                [tuiTextfieldLabelOutside]="true"
                 [tuiTextfieldSize]="'m'">
-      Find on
       <input tuiTextfield>
       <tui-data-list-wrapper *tuiDataList
                              [items]="searchFieldOptions"></tui-data-list-wrapper>
     </tui-select>
   </div>
+
   <div #mainTable
        class="mix-data-table__main-table">
     <tui-loader [overlay]="true"
@@ -54,6 +55,13 @@
                 </div>
               </th>
             </ng-container>
+
+
+            <th *tuiHead="'MENU'"
+                [sorter]="null"
+                [sticky]="true"
+                tuiTh>
+            </th>
           </tr>
         </thead>
 
@@ -94,6 +102,16 @@
                 </div>
               </td>
             </ng-container>
+
+            <td *tuiCell="'MENU'"
+                class="mix-data-table__td"
+                tuiTd>
+              <mix-button type="outline"
+                          [iconBtn]="true"
+                          size="s"> <span class="mix-icon">
+                  more_horiz
+                </span></mix-button>
+            </td>
           </tr>
         </tbody>
 
@@ -155,7 +173,7 @@
 
   <div class="mix-data-table__footer">
     <div class="mix-data-table__page-info">
-      Total items: {{ pageInfo.total }}
+      Total items: <strong>{{ pageInfo.total || '--' }}</strong> &nbsp; Page size: <strong>{{ pageInfo.pageSize || '0' }}</strong>
     </div>
 
     <tui-pagination *ngIf="!!pageInfo?.totalPage"

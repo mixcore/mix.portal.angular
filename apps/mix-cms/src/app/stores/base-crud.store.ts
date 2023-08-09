@@ -1,4 +1,4 @@
-import { Injectable, effect, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd } from '@angular/router';
 
@@ -48,6 +48,13 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public status$ = this.selectSignal((s) => s.status);
   public request$ = this.selectSignal((s) => s.request);
   public data$ = this.selectSignal((s) => s.data);
+
+  public request$$ = this.select((s) => s.request);
+  public vm$ = this.request$$.pipe(
+    tap((r) => this.loadData(r)),
+    switchMap((s) => this.select((s) => s))
+  );
+
   public columns = '';
   public cacheSubject$ = new BehaviorSubject<PaginationResultModel<T>>({
     items: [],
@@ -56,6 +63,7 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
       pageSize: 30,
     },
   });
+
   public cacheKey = '';
   public isSilentlyLoading = false;
   public requestObserver!: Subscription;
@@ -88,12 +96,7 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
       },
     });
 
-    effect(
-      () => {
-        this.loadData(this.request$());
-      },
-      { allowSignalWrites: true }
-    );
+    // effect(() => this.loadData(this.request$()), { allowSignalWrites: true });
   }
 
   public loadData = this.effect(

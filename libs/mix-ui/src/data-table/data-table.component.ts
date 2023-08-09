@@ -115,11 +115,14 @@ export class DataTableComponent<T> implements AfterContentInit {
         .subscribe(() => {
           this.displayColumns = this.columns
             .toArray()
-            .filter((x) => x.columnType !== 'CHECKBOX');
+            .filter(
+              (x) => x.columnType !== 'CHECKBOX' && x.columnType !== 'ACTION'
+            );
 
           this.tableColumns = this.displayColumns.map(
             (c: TableColumnDirective) => c.key
           );
+          this.tableColumns.push('MENU');
         });
 
       this.searchText.valueChanges

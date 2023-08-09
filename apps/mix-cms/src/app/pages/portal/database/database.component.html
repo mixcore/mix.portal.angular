@@ -1,8 +1,7 @@
-<div *ngIf="store.data$()"
+<div *ngIf="store.vm$ | async as state"
      class="data-table-page">
   <div class="data-table-page__main-container">
-    <mix-sub-toolbar *ngIf="store.state() as state"
-                     [description]="'LISTING'"
+    <mix-sub-toolbar [description]="'LISTING'"
                      [title]="'All Database'">
       <div class="toolbar-separator"></div>
       <mix-button (click)="createDatabase()"
@@ -17,8 +16,7 @@
         Database(s)</mix-button>
     </mix-sub-toolbar>
 
-    <div *ngIf="store.state$ | async as state"
-         class="data-table-page__body">
+    <div class="data-table-page__body">
       <mix-data-table [dataset]="state.data"
                       [loading]="state.status === 'Loading'"
                       [pageInfo]="state.pageInfo"

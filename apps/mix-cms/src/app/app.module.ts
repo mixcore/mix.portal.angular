@@ -25,7 +25,6 @@ import { MixFormlyInputNumberComponent } from '@mixcore/ui/input-number';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { InMemoryCache } from '@apollo/client/core';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
-import { HttpCancelService, ManageHttpInterceptor } from '@mixcore/share/api';
 import { MixFormlyArrayMediaComponent } from '@mixcore/ui/array-media';
 import { MixFormlyArrayRadioComponent } from '@mixcore/ui/array-radio';
 import { MixFormlyColorPickerComponent } from '@mixcore/ui/color-picker';
@@ -200,12 +199,11 @@ const domainUrlFactory = () => {
       }),
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
-    HttpCancelService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ManageHttpInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: ManageHttpInterceptor,
+    //   multi: true,
+    // },
 
     provideTippyConfig({
       defaultVariation: 'tooltip',

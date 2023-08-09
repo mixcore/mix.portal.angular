@@ -29,6 +29,7 @@ import { FormHelper } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 
 import {
+  MixImgLoaderPipe,
   MixUtcDatePipe,
   RelativeTimePipe,
   RelativeTimeSpanPipe,
@@ -101,6 +102,7 @@ import { PostStore } from '../../../stores/post.store';
     TuiInputTagModule,
     MixUtcDatePipe,
     RelativeTimePipe,
+    MixImgLoaderPipe,
   ],
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],

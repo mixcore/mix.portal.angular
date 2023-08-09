@@ -17,6 +17,7 @@ import {
   TuiProgressModule,
   TuiSelectModule,
 } from '@taiga-ui/kit';
+import { MixButtonComponent } from '../button';
 import { MixInputComponent } from '../input';
 import { DataTableComponent } from './data-table.component';
 import { TableCellDirective } from './directives/cell.directive';
@@ -41,6 +42,7 @@ import { TableHeaderDirective } from './directives/header.directive';
     FormsModule,
     ReactiveFormsModule,
     MixInputComponent,
+    MixButtonComponent,
     DragDropModule,
     TuiProgressModule,
     TuiDropdownModule,
