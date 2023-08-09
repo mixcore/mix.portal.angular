@@ -5,19 +5,20 @@
                      [title]="'All Database'">
       <div class="toolbar-separator"></div>
       <mix-button (click)="createDatabase()"
-                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp; Add New
-        Database</mix-button>
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp; New
+        Table</mix-button>
       <div class="toolbar-separator"></div>
       <mix-button class="mr-1"
                   type="secondary-danger"
                   [disabled]="!selectedPages.length"
                   size="s">
-        <span class="material-symbols-outlined"> delete </span>&nbsp; Delete
-        Database(s)</mix-button>
+        <span class="material-symbols-outlined"> delete </span>&nbsp;
+        Delete(s)</mix-button>
     </mix-sub-toolbar>
 
     <div class="data-table-page__body">
-      <mix-data-table [dataset]="state.data"
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="state.data"
                       [loading]="state.status === 'Loading'"
                       [pageInfo]="state.pageInfo"
                       [searchFieldOptions]="['displayName']"
@@ -26,23 +27,31 @@
                       (searchChange)="
           store.searchChange($event.searchText, $event.searchField)
         ">
-        <div [columnType]="'CHECKBOX'"
-             mixTableColumn></div>
-
         <div [header]="'Name'"
              key="displayName"
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <div class="d-flex gap-2"
+            <div class="d-flex w-fit"
                  (click)="goDetail(data.id)">
-              <div class="text-600">
+              <div class="text-600 me-2">
                 {{ data.displayName }}
               </div>
 
               <div class="text-sub text-m">
                 {{ data.systemName }}
               </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Description'"
+             key="description"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              {{ data.description || 'No description' }}
             </div>
           </ng-template>
         </div>
@@ -75,27 +84,6 @@
           <ng-template let-data
                        mixColumnCell>
             <mix-status-indicator [status]="data.status"></mix-status-indicator>
-          </ng-template>
-        </div>
-
-        <div [columnType]="'ACTION'"
-             [header]="''"
-             [sortable]="false"
-             key="action"
-             mixTableColumn>
-          <ng-template let-data
-                       mixColumnCell>
-            <mix-button type="outline"
-                        (click)="goDetail(data.id)"
-                        size="s"><span class="material-symbols-outlined">
-                construction
-              </span></mix-button>
-
-            <mix-button class="ms-2"
-                        (click)="goDatabaseData(data.systemName)"
-                        size="s"><span class="material-symbols-outlined">
-                database
-              </span></mix-button>
           </ng-template>
         </div>
       </mix-data-table>

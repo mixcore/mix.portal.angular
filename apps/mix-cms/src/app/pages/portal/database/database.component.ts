@@ -5,8 +5,8 @@ import { MixDatabase } from '@mixcore/lib/model';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { PortalSidebarService } from '@mixcore/ui/sidebar';
-import { MixDataTableModule } from '@mixcore/ui/table';
-import { Apollo, gql } from 'apollo-angular';
+import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
+import { Apollo } from 'apollo-angular';
 import { CMS_ROUTES } from '../../../app.routes';
 import { DatabaseDetailComponent } from '../../../components/database-detail/database-detail.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
@@ -29,40 +29,36 @@ import { DatabaseStore } from '../../../stores/database.store';
   styleUrls: ['./database.component.scss'],
 })
 export class DatabaseComponent {
-  apollo = inject(Apollo);
-  store = inject(DatabaseStore);
-  router = inject(Router);
-  selectedPages: MixDatabase[] = [];
+  public apollo = inject(Apollo);
+  public store = inject(DatabaseStore);
+  public router = inject(Router);
+  public selectedPages: MixDatabase[] = [];
+  public contextMenus: TableContextMenu<MixDatabase>[] = [
+    {
+      label: 'Modify database',
+      icon: 'construction',
+      action: (item) => {
+        this.router.navigateByUrl(
+          `${CMS_ROUTES.portal.database.fullPath}/${item.id}`
+        );
+      },
+    },
+    {
+      label: 'View table data',
+      icon: 'database',
+      action: (item) => {
+        this.goDatabaseData(item.systemName);
+      },
+    },
+  ];
 
   constructor(
     @Inject(PortalSidebarService)
     private readonly sidebar: PortalSidebarService
   ) {}
 
-  ngOnInit() {
-    this.apollo
-      .watchQuery({
-        query: gql`
-          {
-            shippingmethod_list {
-              id
-              status
-              totalCount
-            }
-          }
-        `,
-      })
-      .valueChanges.subscribe((result: any) => {
-        console.log(result);
-      });
-  }
-
   async goDetail(id: number) {
     this.sidebar.addTemplate(DatabaseDetailComponent);
-
-    // await this.router.navigateByUrl(
-    //   `${CMS_ROUTES.portal.database.fullPath}/${id}`
-    // );
   }
 
   async goDatabaseData(sysName: string) {
