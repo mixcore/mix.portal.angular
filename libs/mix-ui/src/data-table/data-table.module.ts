@@ -6,6 +6,7 @@ import { TuiTableModule } from '@taiga-ui/addon-table';
 import {
   TuiDataListModule,
   TuiDropdownModule,
+  TuiHostedDropdownModule,
   TuiLoaderModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -49,6 +50,7 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiDataListModule,
     TuiSelectModule,
     TuiDataListWrapperModule,
+    TuiHostedDropdownModule,
   ],
   exports: [
     DataTableComponent,

@@ -104,6 +104,10 @@
     background: var(--highlight-background-color);
   }
 
+  tr.--selected td {
+    background: var(--highlight-background-color);
+  }
+
   tr.--active {
     td:first-child {
       border-left: 3px solid var(--primary-color) !important;

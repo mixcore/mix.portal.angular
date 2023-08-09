@@ -35,9 +35,9 @@
                   tuiTh>
                 <div class="d-flex align-items-center">
                   <tui-checkbox *ngIf="i === 0"
-                                class="me-3"
+                                class="me-4"
                                 [ngModel]="isAllSelected"
-                                [size]="'m'"
+                                [size]="'l'"
                                 (click)="$event.stopPropagation()"
                                 (ngModelChange)="markAllChecked($event)"></tui-checkbox>
 
@@ -70,6 +70,9 @@
                cdkDropList
                tuiTbody>
           <tr *ngFor="let item of dataset; trackBy: dataTrackBy"
+              [ngClass]="{
+              '--selected': !!currentSelectedItemDic[$any(item)[uniqueKey]]
+            }"
               cdkDrag
               tuiTr>
             <ng-container *ngFor="let col of displayColumns; let i = index">
@@ -79,9 +82,9 @@
                   tuiTd>
                 <div class="d-flex h-100 align-items-center">
                   <tui-checkbox *ngIf="i === 0"
-                                class="me-3"
+                                class="me-4"
                                 [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
-                                [size]="'m'"
+                                [size]="'l'"
                                 (ngModelChange)="onItemSelected($event, item)">
                   </tui-checkbox>
 
@@ -104,10 +107,29 @@
             <td *tuiCell="'MENU'"
                 class="mix-data-table__td"
                 tuiTd>
-              <mix-button type="outline"
-                          [iconBtn]="true"
-                          size="s">
-                <span class="mix-icon"> more_horiz </span></mix-button>
+              <tui-hosted-dropdown [content]="dropdown"
+                                   tuiDropdownAlign="right">
+                <mix-button type="outline"
+                            [iconBtn]="true"
+                            size="s">
+                  <span class="mix-icon"> more_horiz </span></mix-button>
+              </tui-hosted-dropdown>
+              <ng-template #dropdown
+                           let-close="close"><tui-data-list>
+                  <tui-opt-group>
+                    <button *ngFor="let v of contextMenus"
+                            (click)="v.action(item)"
+                            tuiOption>
+                      <div class="d-flex align-items-center gap-3">
+                        <span class="mix-icon"> {{ v.icon }}</span>
+                        <div>
+                          {{ v.label }}
+                        </div>
+                      </div>
+                    </button>
+                  </tui-opt-group>
+                </tui-data-list>
+              </ng-template>
             </td>
           </tr>
         </tbody>
