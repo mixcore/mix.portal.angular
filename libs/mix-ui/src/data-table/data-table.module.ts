@@ -1,4 +1,5 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -51,6 +52,7 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiSelectModule,
     TuiDataListWrapperModule,
     TuiHostedDropdownModule,
+    ScrollingModule,
   ],
   exports: [
     DataTableComponent,

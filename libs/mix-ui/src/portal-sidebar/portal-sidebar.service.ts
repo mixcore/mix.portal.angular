@@ -13,4 +13,8 @@ export class PortalSidebarService {
   public addTemplate(template: any) {
     this.selectedPortal$.next(new ComponentPortal(template));
   }
+
+  public close() {
+    this.selectedPortal$.next(undefined);
+  }
 }

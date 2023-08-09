@@ -1,9 +1,9 @@
-<tui-loader *ngIf="loadingState$ | async as state"
-            class="data-detail-page"
-            [formGroup]="form"
-            [overlay]="true"
-            [showLoader]="state === 'Loading'">
-  <div class="data-detail-page__content-container">
+<div class="data-detail-page__content-container">
+  <tui-loader *ngIf="loadingState$ | async as state"
+              class="data-detail-page"
+              [formGroup]="form"
+              [overlay]="true"
+              [showLoader]="state === 'Loading'">
     <div class="data-detail-page__toolbar">
       <div class="data-detail-page__toolbar-top">
         <!-- Thumbnail -->
@@ -301,8 +301,8 @@
         </div>
       </div>
     </div>
-  </div>
-</tui-loader>
+  </tui-loader>
+</div>
 
 <ng-template #preview
              let-preview>

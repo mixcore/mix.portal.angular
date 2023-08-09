@@ -38,7 +38,7 @@
                 {{ data.displayName }}
               </div>
 
-              <div class="text-sub text-m">
+              <div class="mix-db__highlight">
                 {{ data.systemName }}
               </div>
             </div>
@@ -72,13 +72,13 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <div class="mix-db__column">
+            <div class="mix-db__highlight">
               {{ data.columns.length }} column(s)
             </div>
           </ng-template>
         </div>
 
-        <div [header]="'Status'"
+        <div [header]="''"
              key="status"
              mixTableColumn>
           <ng-template let-data

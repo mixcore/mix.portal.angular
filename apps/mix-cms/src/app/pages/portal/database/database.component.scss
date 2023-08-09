@@ -1,9 +1,10 @@
 .mix-db {
-  &__column {
+  &__highlight {
     font-size: var(--text-size-s);
-    padding: 2px 4px;
+    padding: 2px 6px;
     border-radius: 4px;
     background-color: var(--border-color-default);
     width: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
   }
 }

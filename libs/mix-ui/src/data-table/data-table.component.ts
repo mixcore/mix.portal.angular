@@ -1,10 +1,10 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import {
   AfterContentInit,
   ChangeDetectorRef,
   Component,
   ContentChildren,
-  ElementRef,
   EventEmitter,
   Input,
   NgZone,
@@ -36,7 +36,7 @@ export class DataTableComponent<T> implements AfterContentInit {
   @ContentChildren(TableColumnDirective)
   public columns!: QueryList<TableColumnDirective>;
 
-  @ViewChild('mainTable') mainTable!: ElementRef<HTMLElement>;
+  @ViewChild('viewport') mainTable!: CdkVirtualScrollViewport;
 
   public cdr = inject(ChangeDetectorRef);
   public destroy$ = inject(TuiDestroyService);
@@ -68,9 +68,9 @@ export class DataTableComponent<T> implements AfterContentInit {
     this._dataset = v;
     this.markAllUnchecked();
 
-    if (this.mainTable?.nativeElement) {
+    if (this.mainTable) {
       setTimeout(() => {
-        this.mainTable.nativeElement.scrollTop = 0;
+        this.mainTable.scrollToOffset(0, 'smooth');
       }, 100);
     }
   }

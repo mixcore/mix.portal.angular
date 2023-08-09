@@ -35,13 +35,9 @@
     height: calc(100% - var(--main-layout-gap) - var(--main-layout-gap));
     width: calc(100% - var(--main-layout-gap) - var(--main-layout-gap));
     flex-grow: 1;
-    overflow: auto;
     margin: var(--main-layout-gap);
     margin-right: unset;
     z-index: 1;
-    box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
-    -webkit-box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
-    -moz-box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
   }
 
   &__explorer {

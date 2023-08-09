@@ -8,16 +8,15 @@
   &__filter {
     background-color: var(--background-color-primary);
     border-radius: var(--border-radius-default);
-    // border: 1px solid var(--border-color-default);
     overflow: hidden;
     padding: var(--default-padding);
-    // max-width: 400px;
-    // width: 25vw;
-    // min-width: 220px;
     height: 100%;
     width: 370px;
     display: flex;
     flex-direction: column;
+    box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
+    -webkit-box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
 
     .filter-toggle {
       display: none;
@@ -56,7 +55,6 @@
     display: flex;
     flex-direction: column;
     background-color: var(--background-color-primary);
-    // border-radius: var(--border-radius-default);
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
     border: 1px solid var(--border-color-default);

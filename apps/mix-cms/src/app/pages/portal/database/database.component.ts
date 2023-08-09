@@ -38,9 +38,7 @@ export class DatabaseComponent {
       label: 'Modify database',
       icon: 'construction',
       action: (item) => {
-        this.router.navigateByUrl(
-          `${CMS_ROUTES.portal.database.fullPath}/${item.id}`
-        );
+        this.goDetail(item.id);
       },
     },
     {
@@ -58,7 +56,7 @@ export class DatabaseComponent {
   ) {}
 
   async goDetail(id: number) {
-    this.sidebar.addTemplate(DatabaseDetailComponent);
+    this.router.navigateByUrl(`${CMS_ROUTES.portal.database.fullPath}/${id}`);
   }
 
   async goDatabaseData(sysName: string) {

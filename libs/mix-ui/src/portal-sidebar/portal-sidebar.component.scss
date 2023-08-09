@@ -8,7 +8,13 @@
   z-index: 1;
   right: 0;
   top: 0;
-  // background-color: rgba(1, 1, 1, 0.2);
+
+  &__backdrop {
+    width: 50%;
+    height: 100%;
+    display: block;
+    content: '';
+  }
 
   &__main {
     background-color: #fff;
@@ -16,7 +22,6 @@
     height: 100%;
     border-top-left-radius: 12px;
     border-bottom-left-radius: 12px;
-    // box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px,
-    //   rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+    border: 1px solid var(--border-color-default);
   }
 }
