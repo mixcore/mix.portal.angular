@@ -92,16 +92,12 @@
   }
 
   th {
-    border: none;
-    height: 50px;
+    border-top: none;
+    border-bottom: none;
+    border-color: var(--border-color-default);
+    height: 36px;
     box-shadow: inset 0 -1px 0 var(--border-color-default);
-
-    button {
-      line-height: 24px;
-      font-weight: 600 !important;
-      text-transform: uppercase !important;
-      color: #6a819e !important;
-    }
+    font-size: 14px;
   }
 
   tr:hover td {

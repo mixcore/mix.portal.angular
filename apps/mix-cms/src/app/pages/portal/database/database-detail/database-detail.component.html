@@ -66,21 +66,21 @@
         <!-- Main Content -->
         <ng-container *ngIf="activeTabIndex === 0">
           <div class="data-detail-page__main-content">
-            <p class="content-label mt-3">Table Display Name</p>
+            <p class="content-label mt-3">Display Name</p>
             <mix-input placeHolder="Your table friendly name"
                        formControlName="displayName"></mix-input>
 
             <mix-form-error class="mt-1"
                             formControlName="displayName"></mix-form-error>
 
-            <p class="content-label mt-3">Table System Name</p>
+            <p class="content-label mt-3">System Name</p>
             <mix-input placeHolder="Unique system name"
                        formControlName="systemName"></mix-input>
 
             <mix-form-error class="mt-1"
                             formControlName="systemName"></mix-form-error>
 
-            <p class="content-label mt-3">Table Short Description</p>
+            <p class="content-label mt-3">Short Description</p>
             <mix-text-area placeHolder="Description"
                            formControlName="description"></mix-text-area>
 
@@ -107,13 +107,44 @@
         <!-- Content -->
         <ng-container *ngIf="activeTabIndex === 1">
           <div class="data-detail-page__main-content">
-            <div class="data-detail-page__content-title">Entities</div>
+            <tui-notification class="mt-1"
+                              status="warning">
+              Default system fields:
+              <span class="text-highlight">id</span>,
+              <span class="text-highlight">createdAt</span>,
+              <span class="text-highlight">createdBy</span>,
+              <span class="text-highlight">updatedAt</span>,
+              <span class="text-highlight">priority</span>
+            </tui-notification>
+
+            <div class="data-detail-page__content-title mt-3">Entities</div>
+
+
+            <div class="entity-table-header mt-3">
+              <div class="row">
+                <div class="col-3 name">
+                  <div>Display name</div>
+                </div>
+
+                <div class="col-3">
+                  <div>System name</div>
+                </div>
+
+                <div class="col-3">
+                  <div>Data type</div>
+                </div>
+              </div>
+            </div>
 
             <ng-container *ngFor="let entity of data?.columns ?? []; let i = index">
               <mix-entity-form class="mt-3"
                                [entity]="entity"
                                (entityChange)="entityChange($event, i)"></mix-entity-form>
             </ng-container>
+
+            <div class="entity-table-footer mt-3">
+              <mix-button size="s"><span class="mix-icon">add</span> Add new field</mix-button>
+            </div>
           </div>
         </ng-container>
       </div>

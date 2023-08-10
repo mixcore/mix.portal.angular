@@ -36,6 +36,7 @@
             <tr tuiThGroup>
               <ng-container *ngFor="let col of displayColumns; let i = index">
                 <th *tuiHead="col.key"
+                    [resizable]="true"
                     [sorter]="null"
                     [sticky]="true"
                     tuiTh>

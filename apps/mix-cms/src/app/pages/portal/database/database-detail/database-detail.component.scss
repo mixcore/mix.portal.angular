@@ -37,11 +37,18 @@
       &:hover {
         opacity: 1;
         background-color: var(--background-color-hight-light);
-
-        .mix-icon {
-          color: var(--primary-color) !important;
-        }
       }
     }
+  }
+}
+
+.entity-table-header {
+  padding: 8px 12px;
+  border: 1px solid var(--border-color-default);
+  border-radius: var(--border-radius-default);
+  font-weight: 500;
+
+  .name {
+    padding-left: 24px;
   }
 }
