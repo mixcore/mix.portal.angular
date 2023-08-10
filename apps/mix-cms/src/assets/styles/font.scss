@@ -61,3 +61,12 @@
 .text-danger {
   color: var(--form-error);
 }
+
+.text-highlight {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--border-color-default);
+  width: fit-content;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  font-weight: 500;
+}

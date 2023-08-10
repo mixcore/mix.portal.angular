@@ -6,16 +6,16 @@
   &__tree {
     margin-top: 12px;
     margin-bottom: 12px;
-    width: 180px;
+    width: 220px;
     height: calc(100% - 24px);
     background-color: var(--background-color-primary);
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     padding: 8px;
-    font-size: 12px;
+    font-size: 14px;
 
     .tree-title {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: bolder;
       margin-bottom: 4px;
     }

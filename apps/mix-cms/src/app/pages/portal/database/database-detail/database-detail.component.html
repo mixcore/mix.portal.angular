@@ -3,12 +3,21 @@
   <div *ngIf="databaseStore.vm$ | async as vm"
        class="database-detail__tree">
     <ng-container *ngIf="vm.data">
-      <div class="tree-title"> Table ({{vm.data.length || '0'}}) </div>
+      <div class="tree-title">Table ({{ vm.data.length || '0' }})</div>
+
+      <div class="tree-item mt-2 mb-2"
+           [class.--active]="mode == 'create'"
+           (click)="selectedTableChange('create')">
+        <span class="mix-icon">add</span>
+        <span> Create new </span>
+      </div>
+
       <ng-container *ngFor="let table of vm.data">
         <div class="tree-item"
              [class.--active]="id == table.id"
              (click)="selectedTableChange(table.id)">
-          <span class="mix-icon">table</span> <span>{{ table.displayName }}</span>
+          <span class="mix-icon">table</span>
+          <span>{{ table.displayName }}</span>
         </div>
       </ng-container>
     </ng-container>
@@ -22,17 +31,10 @@
                 [showLoader]="state === 'Loading'">
       <div class="data-detail-page__toolbar">
         <div class="data-detail-page__toolbar-top">
-          <div class="data-detail-page__title">
-            <div class="data-detail-page__description">
-              {{ mode === 'create' ? 'Create' : 'Save' }}
-            </div>
-            <div>Table</div>
-          </div>
-
           <mix-input class="page-title"
                      [floatingLabel]="false"
                      formControlName="displayName"
-                     placeHolder="Database display name"
+                     placeHolder="Table display name"
                      size="s"></mix-input>
 
           <mix-button class="ml-auto"
@@ -49,58 +51,62 @@
           <nav [(activeItemIndex)]="activeTabIndex"
                tuiTabs>
             <button tuiTab>
-              <span class="material-symbols-outlined"> feed </span>&nbsp; General
+              <span class="material-symbols-outlined"> feed </span>&nbsp;
+              General
             </button>
             <button tuiTab>
               <span class="material-symbols-outlined"> settings </span>&nbsp;
-              Column Design
+              Field(s) Design
             </button>
           </nav>
         </div>
       </div>
 
       <div class="data-detail-page__content">
-        <div class="container">
-          <!-- Main Content -->
-          <ng-container *ngIf="activeTabIndex === 0">
-            <div class="data-detail-page__main-content">
-              <div class="data-detail-page__content-title">
-                General Information
-              </div>
+        <!-- Main Content -->
+        <ng-container *ngIf="activeTabIndex === 0">
+          <div class="data-detail-page__main-content">
+            <p class="content-label mt-3">Table Display Name</p>
+            <mix-input placeHolder="Your table friendly name"
+                       formControlName="displayName"></mix-input>
 
-              <p class="content-label mt-3">Display Name</p>
-              <mix-input placeHolder="Your database friendly name"
-                         formControlName="displayName"></mix-input>
+            <mix-form-error class="mt-1"
+                            formControlName="displayName"></mix-form-error>
 
-              <mix-form-error class="mt-1"
-                              formControlName="displayName"></mix-form-error>
+            <p class="content-label mt-3">Table System Name</p>
+            <mix-input placeHolder="Unique system name"
+                       formControlName="systemName"></mix-input>
 
-              <p class="content-label mt-3">System Name</p>
-              <mix-input placeHolder="Unique system name"
-                         formControlName="systemName"></mix-input>
+            <mix-form-error class="mt-1"
+                            formControlName="systemName"></mix-form-error>
 
-              <mix-form-error class="mt-1"
-                              formControlName="systemName"></mix-form-error>
+            <p class="content-label mt-3">Table Short Description</p>
+            <mix-text-area placeHolder="Description"
+                           formControlName="description"></mix-text-area>
 
-              <p class="content-label mt-3">Description</p>
-              <mix-text-area placeHolder="Description"
-                             formControlName="description"></mix-text-area>
-            </div>
-          </ng-container>
+            <tui-notification class="mt-3">
+              Default system fields:
+              <span class="text-highlight">id</span>,
+              <span class="text-highlight">createdAt</span>,
+              <span class="text-highlight">createdBy</span>,
+              <span class="text-highlight">updatedAt</span>,
+              <span class="text-highlight">priority</span>
+            </tui-notification>
+          </div>
+        </ng-container>
 
-          <!-- Content -->
-          <ng-container *ngIf="activeTabIndex === 1">
-            <div class="data-detail-page__main-content">
-              <div class="data-detail-page__content-title">Entities</div>
+        <!-- Content -->
+        <ng-container *ngIf="activeTabIndex === 1">
+          <div class="data-detail-page__main-content">
+            <div class="data-detail-page__content-title">Entities</div>
 
-              <ng-container *ngFor="let entity of data?.columns ?? []; let i = index">
-                <mix-entity-form class="mt-3"
-                                 [entity]="entity"
-                                 (entityChange)="entityChange($event, i)"></mix-entity-form>
-              </ng-container>
-            </div>
-          </ng-container>
-        </div>
+            <ng-container *ngFor="let entity of data?.columns ?? []; let i = index">
+              <mix-entity-form class="mt-3"
+                               [entity]="entity"
+                               (entityChange)="entityChange($event, i)"></mix-entity-form>
+            </ng-container>
+          </div>
+        </ng-container>
       </div>
     </tui-loader>
   </div>

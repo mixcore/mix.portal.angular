@@ -1,11 +1,17 @@
 import { Location } from '@angular/common';
-import { ChangeDetectorRef, Directive, inject } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  DestroyRef,
+  Directive,
+  inject,
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
 
 @Directive()
 export class DetailPageKit extends BaseComponent {
+  public destroyRef = inject(DestroyRef);
   public location = inject(Location);
   public cdr = inject(ChangeDetectorRef);
   public mixApi = inject(MixApiFacadeService);

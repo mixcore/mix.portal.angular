@@ -8,7 +8,6 @@ import { PortalSidebarService } from '@mixcore/ui/sidebar';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { Apollo } from 'apollo-angular';
 import { CMS_ROUTES } from '../../../app.routes';
-import { DatabaseDetailComponent } from '../../../components/database-detail/database-detail.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { DatabaseStore } from '../../../stores/database.store';
@@ -23,7 +22,6 @@ import { DatabaseStore } from '../../../stores/database.store';
     MixDataTableModule,
     MixStatusIndicatorComponent,
     RelativeTimeSpanPipe,
-    DatabaseDetailComponent,
   ],
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.scss'],

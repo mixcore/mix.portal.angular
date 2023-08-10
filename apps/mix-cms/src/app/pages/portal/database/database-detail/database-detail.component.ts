@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormGroup,
@@ -15,7 +16,11 @@ import { MixEditorComponent } from '@mixcore/ui/editor';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
-import { TuiLoaderModule, TuiScrollbarModule } from '@taiga-ui/core';
+import {
+  TuiLoaderModule,
+  TuiNotificationModule,
+  TuiScrollbarModule,
+} from '@taiga-ui/core';
 import { TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
@@ -41,6 +46,7 @@ import { DatabaseStore } from '../../../../stores/database.store';
     TuiToggleModule,
     EntityFormComponent,
     MixFormErrorComponent,
+    TuiNotificationModule,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
@@ -64,6 +70,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
 
         if (!this.id || this.id === 'create') {
           this.mode = 'create';
+          this.form.reset();
           return;
         }
 
@@ -73,8 +80,14 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
           .pipe(takeUntil(this.destroy$), this.observerLoadingState())
           .subscribe((v) => {
             this.data = v;
-            this.form.patchValue(v);
+            this.form.patchValue(v, { emitEvent: false });
           });
+      });
+
+    this.form.controls.displayName.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((value) => {
+        //
       });
   }
 
@@ -108,7 +121,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     }
   }
 
-  public selectedTableChange(id: number) {
+  public selectedTableChange(id: string | number) {
     if (id == this.id) return;
 
     this.router.navigateByUrl(`${CMS_ROUTES.portal.database.fullPath}/${id}`);
