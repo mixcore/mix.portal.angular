@@ -125,7 +125,7 @@ export type MixDynamicDataValue =
 
 export const DataTypeDisplay: Record<
   DataType,
-  { name: string; value: DataType; description: string }
+  { name: string; value: DataType; description: string; icon?: string }
 > = {
   [DataType.Custom]: {
     name: 'Custom',

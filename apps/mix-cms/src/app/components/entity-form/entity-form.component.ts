@@ -14,7 +14,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DataType, DataTypeDisplay, MixColumn } from '@mixcore/lib/model';
+import { DataTypeDisplay, MixColumn } from '@mixcore/lib/model';
 import { FormHelper } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -47,7 +47,7 @@ export class EntityFormComponent implements OnInit {
   @Output() deleteEntity = new EventEmitter<MixColumn>();
 
   public activeTabIndex = 0;
-  public dataTypes = Object.keys(DataType);
+  public dataTypes = Object.keys(DataTypeDisplay);
   public dialog = inject(TuiDialogService);
   public dataTypeDisplay = DataTypeDisplay;
 

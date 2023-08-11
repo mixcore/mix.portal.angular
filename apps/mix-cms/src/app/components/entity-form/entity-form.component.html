@@ -70,22 +70,26 @@
 
 <ng-template #dataTypePicker
              let-observer>
-  <div class="row"
-       [formGroup]="form">
-    <div *ngFor="let dataType of dataTypes"
-         class="col-12 col-md-6">
-      <tui-radio-block class="w-100"
-                       [item]="dataType"
-                       formControlName="dataType"
-                       size="l">
-        <div class="inner">
-          {{ $any(dataTypeDisplay)[dataType].name }}
-          <div class="text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
-            atque incidunt itaque iusto natus quaerat quia similique veniam?
+  <div class="data-type-picker-dialog-container">
+    <div class="row"
+         [formGroup]="form">
+      <div *ngFor="let dataType of dataTypes"
+           class="col-12 col-md-6">
+        <tui-radio-block class="mb-2 data-type-card"
+                         [item]="dataType"
+                         formControlName="dataType"
+                         contentAlign="left"
+                         size="l">
+          <div class="inner">
+            {{ $any(dataTypeDisplay)[dataType].name }}
+
+            <div class="text-sub text-s">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit?
+            </div>
           </div>
-        </div>
-      </tui-radio-block>
+        </tui-radio-block>
+      </div>
     </div>
   </div>
+
 </ng-template>
