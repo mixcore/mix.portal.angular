@@ -1,60 +1,91 @@
 <div class="entity-form"
+     [class.--new]="entity.new"
      [formGroup]="form">
   <div class="row">
     <div class="col-3 d-flex align-items-center gap-2">
       <span class="mix-icon">drag_indicator</span>
 
       <mix-input [size]="'s'"
+                 placeHolder="Display name"
                  formControlName="displayName"></mix-input>
     </div>
 
     <div class="col-3">
       <mix-input [size]="'s'"
+                 placeHolder="Unique system name"
                  formControlName="systemName"></mix-input>
     </div>
 
     <div class="col-3">
-      <mix-select [items]="$any(dataTypes)"
-                  [size]="'s'"
-                  formControlName="dataType"></mix-select>
+      <mix-button class="w-100 data-type-select"
+                  type="outline"
+                  (click)="showDataTypeDialog($event, dataTypePicker)"
+                  size="s">
+        <div>
+          {{ form.controls.dataType.value }}
+        </div>
+
+        <span class="mix-icon">chevron_right</span>
+      </mix-button>
     </div>
   </div>
 
   <div class="entity-form__action">
     <mix-button [iconBtn]="true"
                 (click)="showDialog(template)"
-                size="s"><span class="material-symbols-outlined">
-        settings
-      </span></mix-button>
+                size="s"><span class="material-symbols-outlined"> settings </span></mix-button>
 
     <mix-button type="outline"
                 [iconBtn]="true"
-                size="s"><span class="material-symbols-outlined">
-        delete
-      </span></mix-button>
+                (click)="deleteEntity.emit(entity)"
+                size="s"><span class="material-symbols-outlined"> delete </span></mix-button>
   </div>
 </div>
-
 
 <ng-template #template
              let-observer>
   <nav [(activeItemIndex)]="activeTabIndex"
        tuiTabs>
-    <button tuiTab><span class="material-symbols-outlined">
-        feed
-      </span>&nbsp; General</button>
-    <button tuiTab><span class="material-symbols-outlined">
-        settings
-      </span>&nbsp; Default Value </button>
+    <button tuiTab>
+      <span class="material-symbols-outlined"> feed </span>&nbsp; General
+    </button>
+    <button tuiTab>
+      <span class="material-symbols-outlined"> settings </span>&nbsp; Default
+      Value
+    </button>
   </nav>
 
   <div class="mt-8"
        [formGroup]="configurationForm">
     <ng-container *ngIf="activeTabIndex === 0">
       <mix-toggle class="mt-2"
-                  formControlName="isEncrypt"> Encrypt this field</mix-toggle>
+                  formControlName="isEncrypt">
+        Encrypt this field</mix-toggle>
       <mix-toggle class="mt-2"
-                  formControlName="isRequire"> Mark this field as required</mix-toggle>
+                  formControlName="isRequire">
+        Mark this field as required</mix-toggle>
     </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #dataTypePicker
+             let-observer>
+  <div class="row"
+       [formGroup]="form">
+    <div *ngFor="let dataType of dataTypes"
+         class="col-12 col-md-6">
+      <tui-radio-block class="w-100"
+                       [item]="dataType"
+                       formControlName="dataType"
+                       size="l">
+        <div class="inner">
+          {{ $any(dataTypeDisplay)[dataType].name }}
+          <div class="text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
+            atque incidunt itaque iusto natus quaerat quia similique veniam?
+          </div>
+        </div>
+      </tui-radio-block>
+    </div>
   </div>
 </ng-template>

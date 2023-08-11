@@ -1,4 +1,4 @@
-:host {
+mix-entity-form {
   display: block;
   width: 100%;
 }
@@ -10,6 +10,10 @@
   border: 1px solid var(--border-color-default);
   border-radius: var(--border-radius-default);
   position: relative;
+
+  &.--new {
+    border: 1px solid var(--success-color);
+  }
 
   &__action {
     position: absolute;
@@ -24,5 +28,11 @@
 
   &:hover {
     background-color: var(--highlight-background-color);
+  }
+}
+
+.data-type-select {
+  .t-content {
+    justify-content: space-between;
   }
 }

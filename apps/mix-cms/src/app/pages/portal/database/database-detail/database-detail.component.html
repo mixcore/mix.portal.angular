@@ -56,7 +56,7 @@
             </button>
             <button tuiTab>
               <span class="material-symbols-outlined"> settings </span>&nbsp;
-              Field(s) Design
+              Columns Design
             </button>
           </nav>
         </div>
@@ -64,89 +64,88 @@
 
       <div class="data-detail-page__content">
         <!-- Main Content -->
-        <ng-container *ngIf="activeTabIndex === 0">
-          <div class="data-detail-page__main-content">
-            <p class="content-label mt-3">Display Name</p>
-            <mix-input placeHolder="Your table friendly name"
-                       formControlName="displayName"></mix-input>
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 0">
+          <p class="content-label mt-3">Display Name</p>
+          <mix-input placeHolder="Your table friendly name"
+                     formControlName="displayName"></mix-input>
 
-            <mix-form-error class="mt-1"
-                            formControlName="displayName"></mix-form-error>
+          <mix-form-error class="mt-1"
+                          formControlName="displayName"></mix-form-error>
 
-            <p class="content-label mt-3">System Name</p>
-            <mix-input placeHolder="Unique system name"
-                       formControlName="systemName"></mix-input>
+          <p class="content-label mt-3">System Name</p>
+          <mix-input placeHolder="Unique system name"
+                     formControlName="systemName"></mix-input>
 
-            <mix-form-error class="mt-1"
-                            formControlName="systemName"></mix-form-error>
+          <mix-form-error class="mt-1"
+                          formControlName="systemName"></mix-form-error>
 
-            <p class="content-label mt-3">Short Description</p>
-            <mix-text-area placeHolder="Description"
-                           formControlName="description"></mix-text-area>
+          <p class="content-label mt-3">Short Description</p>
+          <mix-text-area placeHolder="Description"
+                         formControlName="description"></mix-text-area>
 
-            <tui-notification class="mt-3"
-                              status="warning">
-              Default system fields:
-              <span class="text-highlight">id</span>,
-              <span class="text-highlight">createdAt</span>,
-              <span class="text-highlight">createdBy</span>,
-              <span class="text-highlight">updatedAt</span>,
-              <span class="text-highlight">priority</span>
+          <tui-notification class="mt-3"
+                            status="warning">
+            Default system columns:
+            <span class="text-highlight">id</span>,
+            <span class="text-highlight">createdAt</span>,
+            <span class="text-highlight">createdBy</span>,
+            <span class="text-highlight">updatedAt</span>,
+            <span class="text-highlight">priority</span>
 
-              <br>
-              <br>
+            <br>
+            <br>
 
-              Visit
-              <a href="https://docs.mixcore.org/"
-                 target="_blank">Here</a> to
-              get more information how Mixcore Database work.
-            </tui-notification>
-          </div>
-        </ng-container>
+            Visit
+            <a href="https://docs.mixcore.org/"
+               target="_blank">Here</a> to get
+            more information how Mixcore Database work.
+          </tui-notification>
+        </div>
 
         <!-- Content -->
-        <ng-container *ngIf="activeTabIndex === 1">
-          <div class="data-detail-page__main-content">
-            <tui-notification class="mt-1"
-                              status="warning">
-              Default system fields:
-              <span class="text-highlight">id</span>,
-              <span class="text-highlight">createdAt</span>,
-              <span class="text-highlight">createdBy</span>,
-              <span class="text-highlight">updatedAt</span>,
-              <span class="text-highlight">priority</span>
-            </tui-notification>
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 1">
+          <tui-notification class="mt-1"
+                            status="warning">
+            Default system columns:
+            <span class="text-highlight">id</span>,
+            <span class="text-highlight">createdAt</span>,
+            <span class="text-highlight">createdBy</span>,
+            <span class="text-highlight">updatedAt</span>,
+            <span class="text-highlight">priority</span>
+          </tui-notification>
 
-            <div class="data-detail-page__content-title mt-3">Entities</div>
+          <div class="data-detail-page__content-title mt-3">Entities</div>
 
+          <div class="entity-table-header mt-3">
+            <div class="row">
+              <div class="col-3 name">
+                <div>Display name</div>
+              </div>
 
-            <div class="entity-table-header mt-3">
-              <div class="row">
-                <div class="col-3 name">
-                  <div>Display name</div>
-                </div>
+              <div class="col-3">
+                <div>System name</div>
+              </div>
 
-                <div class="col-3">
-                  <div>System name</div>
-                </div>
-
-                <div class="col-3">
-                  <div>Data type</div>
-                </div>
+              <div class="col-3">
+                <div>Data type</div>
               </div>
             </div>
-
-            <ng-container *ngFor="let entity of data?.columns ?? []; let i = index">
-              <mix-entity-form class="mt-3"
-                               [entity]="entity"
-                               (entityChange)="entityChange($event, i)"></mix-entity-form>
-            </ng-container>
-
-            <div class="entity-table-footer mt-3">
-              <mix-button size="s"><span class="mix-icon">add</span> Add new field</mix-button>
-            </div>
           </div>
-        </ng-container>
+
+          <ng-container *ngFor="let entity of data?.columns ?? []; let i = index">
+            <mix-entity-form class="mt-3"
+                             [entity]="entity"
+                             (deleteEntity)="removeEntity($event, i)"
+                             (entityChange)="entityChange($event, i)"></mix-entity-form>
+          </ng-container>
+
+          <div class="entity-table-footer mt-3">
+            <mix-button (click)="addNewEntity()"
+                        size="s"><span class="mix-icon">add</span> Add new columns</mix-button>
+          </div>
+        </div>
       </div>
     </tui-loader>
   </div>

@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  QueryList,
+  ViewChildren,
+  inject,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
@@ -52,6 +58,9 @@ import { DatabaseStore } from '../../../../stores/database.store';
   styleUrls: ['./database-detail.component.scss'],
 })
 export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
+  @ViewChildren(EntityFormComponent)
+  entityForms!: QueryList<EntityFormComponent>;
+
   public router = inject(Router);
   public databaseStore = inject(DatabaseStore);
   public data: MixDatabase | undefined = undefined;
@@ -91,6 +100,23 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       });
   }
 
+  public addNewEntity(): void {
+    if (!this.data) return;
+    if (!this.data?.columns?.length) {
+      this.data.columns = [new MixColumn({ systemName: 'mixdb__', new: true })];
+    } else {
+      this.data.columns.push(
+        new MixColumn({ systemName: 'mixdb__', new: true })
+      );
+    }
+  }
+
+  public removeEntity(entity: MixColumn, index: number) {
+    if (!this.data) return;
+
+    this.data.columns.splice(index, 1);
+  }
+
   public entityChange(entity: MixColumn, index: number) {
     if (!this.data) return;
 
@@ -101,9 +127,12 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   }
 
   public submit(): void {
-    if (FormHelper.validateForm(this.form)) {
-      console.log(this.data);
+    if (this.entityForms.some((v) => !v.validate())) {
+      this.activeTabIndex = 1;
+      return;
+    }
 
+    if (FormHelper.validateForm(this.form)) {
       this.mixApi.databaseApi
         .save({
           ...this.data,
