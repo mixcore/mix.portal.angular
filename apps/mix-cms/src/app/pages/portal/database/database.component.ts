@@ -2,11 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MixDatabase } from '@mixcore/lib/model';
+import { MixApiFacadeService } from '@mixcore/share/api';
+import { toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { ModalService } from '@mixcore/ui/modal';
 import { PortalSidebarService } from '@mixcore/ui/sidebar';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
+import { HotToastService } from '@ngneat/hot-toast';
 import { Apollo } from 'apollo-angular';
+import { forkJoin } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
@@ -30,7 +35,11 @@ export class DatabaseComponent {
   public apollo = inject(Apollo);
   public store = inject(DatabaseStore);
   public router = inject(Router);
-  public selectedPages: MixDatabase[] = [];
+  public modal = inject(ModalService);
+  public mixApi = inject(MixApiFacadeService);
+  public toast = inject(HotToastService);
+
+  public selectedTable: MixDatabase[] = [];
   public contextMenus: TableContextMenu<MixDatabase>[] = [
     {
       label: 'Modify database',
@@ -66,6 +75,26 @@ export class DatabaseComponent {
   async createDatabase() {
     await this.router.navigateByUrl(
       `${CMS_ROUTES.portal.database.fullPath}/create`
+    );
+  }
+
+  public onDeleteTable() {
+    if (!this.selectedTable.length) return;
+
+    this.modal.asKForAction(
+      'Are you sure to delete selected table(s) ?',
+      () => {
+        const requests = this.selectedTable
+          .map((tb) => tb.id)
+          .map((id) => this.mixApi.databaseApi.deleteById(id));
+
+        forkJoin(requests)
+          .pipe(toastObserverProcessing(this.toast))
+          .subscribe(() => {
+            this.store.reload();
+            this.selectedTable = [];
+          });
+      }
     );
   }
 }
