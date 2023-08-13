@@ -1,10 +1,24 @@
 .mix-db {
   &__highlight {
     font-size: var(--text-size-s);
-    padding: 2px 6px;
+    padding: 4px 6px;
     border-radius: 4px;
     background-color: var(--border-color-default);
     width: fit-content;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+
+    &.--ring {
+      background-color: rgb(139 92 246);
+      color: #fff;
+    }
+
+    &.--green {
+      background-color: rgb(34 197 94);
+      color: #fff;
+    }
+
+    &.--orange {
+      background-color: rgb(234 179 8);
+      color: #fff;
+    }
   }
 }
