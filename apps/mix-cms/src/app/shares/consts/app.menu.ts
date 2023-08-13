@@ -76,7 +76,7 @@ export const APP_MENU = [
     children: [],
   },
   {
-    title: 'Databases',
+    title: 'MixDbs',
     url: CMS_ROUTES.portal.database.fullPath,
     icon: 'database',
     children: [
