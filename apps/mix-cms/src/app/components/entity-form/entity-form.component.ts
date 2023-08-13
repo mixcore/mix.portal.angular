@@ -1,6 +1,7 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   EventEmitter,
@@ -45,6 +46,7 @@ import { debounceTime } from 'rxjs';
   templateUrl: './entity-form.component.html',
   styleUrls: ['./entity-form.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EntityFormComponent implements OnInit {
   @Input({ required: true }) entity!: MixColumn;

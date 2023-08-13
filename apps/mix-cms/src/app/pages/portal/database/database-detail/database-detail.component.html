@@ -17,7 +17,7 @@
           <div class="tree-item"
                [class.--active]="id == table.id"
                (click)="selectedTableChange(table.id)">
-            <span class="mix-icon">table</span>
+            <span class="mix-icon">database</span>
             <span>{{ table.displayName }}</span>
           </div>
         </ng-container>
@@ -136,7 +136,7 @@
                              (deleteEntity)="removeEntity($event, i)"
                              (entityChange)="entityChange($event, i)"
                              cdkDrag>
-              <span class="mix-icon"
+              <span class="mix-icon cursor-grab"
                     cdkDragHandle>drag_indicator</span>
             </mix-entity-form>
           </div>
