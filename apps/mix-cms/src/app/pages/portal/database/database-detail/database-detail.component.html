@@ -90,18 +90,7 @@
           <mix-text-area placeHolder="Description"
                          formControlName="description"></mix-text-area>
 
-          <tui-notification class="mt-3"
-                            status="warning">
-            Default system columns:
-            <span class="text-highlight">id</span>,
-            <span class="text-highlight">createdAt</span>,
-            <span class="text-highlight">createdBy</span>,
-            <span class="text-highlight">updatedAt</span>,
-            <span class="text-highlight">priority</span>
-
-            <br>
-            <br>
-
+          <tui-notification class="mt-3">
             Visit
             <a href="https://docs.mixcore.org/"
                target="_blank">Here</a> to get
@@ -112,8 +101,7 @@
         <!-- Content -->
         <div class="data-detail-page__main-content"
              [class.d-none]="activeTabIndex !== 1">
-          <tui-notification class="mt-1"
-                            status="warning">
+          <tui-notification class="mt-1">
             Default system columns:
             <span class="text-highlight">id</span>,
             <span class="text-highlight">createdAt</span>,
@@ -121,8 +109,6 @@
             <span class="text-highlight">updatedAt</span>,
             <span class="text-highlight">priority</span>
           </tui-notification>
-
-          <div class="data-detail-page__content-title mt-3">Entities</div>
 
           <div class="entity-table-header mt-3">
             <div class="row">

@@ -47,6 +47,10 @@
   border: 1px solid var(--border-color-default);
   border-radius: var(--border-radius-default);
   font-weight: 500;
+  background-color: var(--background-color-secondary);
+  position: sticky;
+  top: -18px;
+  z-index: 2;
 
   .name {
     padding-left: 24px;

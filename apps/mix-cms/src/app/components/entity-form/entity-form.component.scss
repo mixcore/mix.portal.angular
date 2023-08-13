@@ -10,6 +10,8 @@ mix-entity-form {
   border: 1px solid var(--border-color-default);
   border-radius: var(--border-radius-default);
   position: relative;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
   &.--new {
     border: 1px solid var(--success-color);
@@ -49,6 +51,13 @@ mix-entity-form {
     .inner {
       margin: 1rem 0;
       white-space: normal;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      line-height: 1;
     }
   }
 }

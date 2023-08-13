@@ -50,12 +50,10 @@ export class EntityFormComponent implements OnInit {
   @Output() deleteEntity = new EventEmitter<MixColumn>();
 
   public activeTabIndex = 0;
-  public dataTypes = Object.keys(DataTypeDisplay);
-
   public destroyRef = inject(DestroyRef);
   public dialog = inject(TuiDialogService);
-  public dataTypeDisplay = DataTypeDisplay;
 
+  public dataTypeDisplay = DataTypeDisplay;
   public dataTypeGroups = [
     {
       label: 'Text',
@@ -72,6 +70,7 @@ export class EntityFormComponent implements OnInit {
         DataTypeDisplay.ImageUrl,
         DataTypeDisplay.Password,
         DataTypeDisplay.Guid,
+        DataTypeDisplay.CreditCard,
       ],
     },
     {
@@ -98,9 +97,14 @@ export class EntityFormComponent implements OnInit {
       ],
     },
     {
+      label: 'Boolean',
+      id: 'boolean',
+      types: [DataTypeDisplay.Boolean],
+    },
+    {
       label: 'Other',
       id: 'other',
-      types: [DataTypeDisplay.Custom],
+      types: [DataTypeDisplay.Upload, DataTypeDisplay.Custom],
     },
   ];
 

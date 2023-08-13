@@ -28,8 +28,8 @@
                   type="outline"
                   (click)="showDataTypeDialog($event, dataTypePicker)"
                   size="s">
-        <div>
-          {{ form.controls.dataType.value }}
+        <div *ngIf="form.controls.dataType.value">
+          {{ $any(dataTypeDisplay)[form.controls.dataType.value].name }}
         </div>
 
         <span class="mix-icon">chevron_right</span>
@@ -42,7 +42,7 @@
                 (click)="showDialog(template)"
                 size="s"><span class="material-symbols-outlined"> settings </span></mix-button>
 
-    <mix-button type="outline"
+    <mix-button type="danger"
                 [iconBtn]="true"
                 (click)="deleteEntity.emit(entity)"
                 size="s"><span class="material-symbols-outlined"> delete </span></mix-button>
@@ -78,24 +78,30 @@
 <ng-template #dataTypePicker
              let-observer>
   <div class="data-type-picker-dialog-container">
-    <div class="row"
-         [formGroup]="form">
-      <div *ngFor="let dataType of dataTypes"
-           class="col-12 col-md-6">
-        <tui-radio-block class="mb-2 data-type-card"
-                         [item]="dataType"
-                         formControlName="dataType"
-                         contentAlign="left"
-                         size="l">
-          <div class="inner">
-            {{ $any(dataTypeDisplay)[dataType].name }}
+    <ng-container *ngFor="let group of dataTypeGroups">
+      <div class="row mb-3"
+           [formGroup]="form">
 
-            <div class="text-sub text-s">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit?
+        <div class="col-12">
+          <div class="text-l mb-2 text-500">{{ group.label }}</div>
+        </div>
+        <div *ngFor="let dataType of group.types"
+             class="col-12 col-md-6">
+          <tui-radio-block class="mb-2 data-type-card"
+                           [item]="dataType.value"
+                           formControlName="dataType"
+                           contentAlign="left"
+                           size="l">
+            <div class="inner">
+              <span class="header"><span class="mix-icon">{{ dataType.icon }}</span> {{ dataType.name }}</span>
+
+              <div class="text-sub text-s mt-2">
+                {{ dataType.description || 'Lorem ipsum dolor sit amet, consectetur adipisicing elit?'}}
+              </div>
             </div>
-          </div>
-        </tui-radio-block>
+          </tui-radio-block>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </ng-template>
