@@ -12,14 +12,16 @@
         <span> Create new </span>
       </div>
 
-      <ng-container *ngFor="let table of vm.data">
-        <div class="tree-item"
-             [class.--active]="id == table.id"
-             (click)="selectedTableChange(table.id)">
-          <span class="mix-icon">table</span>
-          <span>{{ table.displayName }}</span>
-        </div>
-      </ng-container>
+      <div class="tree-container">
+        <ng-container *ngFor="let table of vm.data">
+          <div class="tree-item"
+               [class.--active]="id == table.id"
+               (click)="selectedTableChange(table.id)">
+            <span class="mix-icon">table</span>
+            <span>{{ table.displayName }}</span>
+          </div>
+        </ng-container>
+      </div>
     </ng-container>
   </div>
 

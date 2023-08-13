@@ -8,36 +8,44 @@
     margin-bottom: 12px;
     width: 220px;
     height: calc(100% - 24px);
-    background-color: var(--background-color-primary);
+    background-color: var(--background-color-03);
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     padding: 8px;
     font-size: 14px;
     margin-right: 2px;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
 
     .tree-title {
       font-size: 14px;
       font-weight: bolder;
       margin-bottom: 4px;
+      position: sticky;
+      top: 0px;
+    }
+
+    .tree-container {
+      flex-grow: 1;
+      overflow: auto;
     }
 
     .tree-item {
       display: flex;
       align-items: center;
-      gap: 4px;
-      opacity: 0.6;
+      gap: 6px;
       padding: 4px;
       border-radius: 4px;
       overflow: hidden;
       cursor: pointer;
       white-space: nowrap;
       text-overflow: ellipsis;
-      margin-bottom: 2px;
+      margin-bottom: 6px;
 
       &.--active,
       &:hover {
         opacity: 1;
-        // background-color: var(--background-color-hight-light);
         background: linear-gradient(var(--tui-info-bg), var(--tui-info-bg)),
           var(--tui-base-01);
       }

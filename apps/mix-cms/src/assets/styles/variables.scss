@@ -17,6 +17,7 @@ html {
 
   --background-color-primary: #ffffff;
   --background-color-secondary: #f8f8f8;
+  --background-color-03: rgba(255, 255, 255, 55%);
   --background-color-hight-light: #d8dee9;
   --background-color-error: #ff3333;
   --background-color-scrollbar: #ececec;
@@ -59,6 +60,7 @@ html[mode='dark'] {
 
     --background-color-primary: #242526;
     --background-color-secondary: #18191a;
+    --background-color-03: rgba(1, 1, 1, 55%);
     --background-color-hight-light: #18191a;
     --background-color-error: #ff3333;
     --background-color-scrollbar: rgb(62, 64, 66);
