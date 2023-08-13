@@ -19,6 +19,7 @@ export const MixSwagger = {
     database: '/api/v2/rest/mix-portal/mix-database',
     getDatabaseBySystemName: '/api/v2/rest/mix-portal/mix-database/get-by-name',
     mixDb: '/api/v2/rest/mix-portal/mix-db',
+    mixDbColumn: '/api/v2/rest/mix-portal/mix-database-column',
   },
   storage: {
     upload: '/api/v2/rest/mix-storage/upload-file',

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  DestroyRef,
   EventEmitter,
   Input,
   OnInit,
@@ -8,6 +9,7 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormGroup,
@@ -23,6 +25,7 @@ import { MixToggleComponent } from '@mixcore/ui/toggle';
 import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
 import { TuiRadioBlockModule, TuiTabsModule } from '@taiga-ui/kit';
 import { PolymorpheusContent } from '@tinkoff/ng-polymorpheus';
+import { debounceTime } from 'rxjs';
 
 @Component({
   selector: 'mix-entity-form',
@@ -48,8 +51,58 @@ export class EntityFormComponent implements OnInit {
 
   public activeTabIndex = 0;
   public dataTypes = Object.keys(DataTypeDisplay);
+
+  public destroyRef = inject(DestroyRef);
   public dialog = inject(TuiDialogService);
   public dataTypeDisplay = DataTypeDisplay;
+
+  public dataTypeGroups = [
+    {
+      label: 'Text',
+      id: 'text',
+      types: [
+        DataTypeDisplay.Text,
+        DataTypeDisplay.MultilineText,
+        DataTypeDisplay.Html,
+        DataTypeDisplay.Color,
+        DataTypeDisplay.Url,
+        DataTypeDisplay.QRCode,
+        DataTypeDisplay.PostalCode,
+        DataTypeDisplay.Icon,
+        DataTypeDisplay.ImageUrl,
+        DataTypeDisplay.Password,
+        DataTypeDisplay.Guid,
+      ],
+    },
+    {
+      label: 'Integer',
+      id: 'integer',
+      types: [
+        DataTypeDisplay.Integer,
+        DataTypeDisplay.Double,
+        DataTypeDisplay.PhoneNumber,
+      ],
+    },
+    {
+      label: 'Date',
+      id: 'date',
+      types: [DataTypeDisplay.Date, DataTypeDisplay.DateTime],
+    },
+    {
+      label: 'Json',
+      id: 'json',
+      types: [
+        DataTypeDisplay.Json,
+        DataTypeDisplay.ArrayMedia,
+        DataTypeDisplay.ArrayRadio,
+      ],
+    },
+    {
+      label: 'Other',
+      id: 'other',
+      types: [DataTypeDisplay.Custom],
+    },
+  ];
 
   public form = new FormGroup({
     systemName: new FormControl('', Validators.required),
@@ -67,13 +120,23 @@ export class EntityFormComponent implements OnInit {
     this.form.patchValue(this.entity);
     this.configurationForm.patchValue(this.entity.columnConfigurations);
 
-    this.configurationForm.valueChanges.subscribe((v) => {
-      this.changeEntity();
-    });
+    this.configurationForm.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.changeEntity();
+      });
 
-    this.form.valueChanges.subscribe((v) => {
-      this.changeEntity();
-    });
+    this.form.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.changeEntity();
+      });
+
+    this.form.controls.displayName.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(500))
+      .subscribe(() => {
+        this.updateSystemName();
+      });
   }
 
   public showDialog(content: PolymorpheusContent<TuiDialogContext>): void {
@@ -105,5 +168,21 @@ export class EntityFormComponent implements OnInit {
 
   public validate() {
     return FormHelper.validateForm(this.form);
+  }
+
+  public updateSystemName() {
+    if (!this.form.value.displayName || this.form.value.systemName) return;
+
+    const words = this.form.value.displayName.split(' ');
+    const camelCaseString = words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join('');
+    const prefix = 'mixCol_';
+
+    this.form.controls.systemName.patchValue(`${prefix}${camelCaseString}`, {
+      emitEvent: false,
+    });
+
+    this.changeEntity();
   }
 }

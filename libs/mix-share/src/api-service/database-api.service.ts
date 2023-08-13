@@ -10,6 +10,10 @@ import { IHttpParamObject } from '../bases';
 import { MixRestfulApi } from './mix-crud-api.service';
 
 export class MixDatabaseApi extends MixRestfulApi<MixDatabase> {
+  public deleteDbColumn(columnId: number) {
+    return this.delete(`${MixSwagger.content.mixDbColumn}/${columnId}`);
+  }
+
   public getDatabaseBySystemName(dbSysName: string): Observable<MixDatabase> {
     return this.get<MixDatabase>(
       MixSwagger.content.getDatabaseBySystemName + '/' + dbSysName

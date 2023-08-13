@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
   QueryList,
@@ -17,9 +18,11 @@ import {
 import { Router } from '@angular/router';
 import { MixColumn, MixDatabase } from '@mixcore/lib/model';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
+import { toastObserverProcessing } from '@mixcore/share/helper';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixEditorComponent } from '@mixcore/ui/editor';
 import { MixInputComponent } from '@mixcore/ui/input';
+import { ModalService } from '@mixcore/ui/modal';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { HotToastService } from '@ngneat/hot-toast';
@@ -57,6 +60,7 @@ import { DatabaseStore } from '../../../../stores/database.store';
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   @ViewChildren(EntityFormComponent)
@@ -65,6 +69,8 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   public toast = inject(HotToastService);
   public router = inject(Router);
   public databaseStore = inject(DatabaseStore);
+  public modal = inject(ModalService);
+
   public data: MixDatabase | undefined = undefined;
   public form = new FormGroup({
     displayName: new FormControl('', Validators.required),
@@ -77,11 +83,11 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
         this.id = params['id'];
+        this.data = undefined;
+        this.form.reset();
 
         if (!this.id || this.id === 'create') {
           this.mode = 'create';
-          this.data = undefined;
-          this.form.reset();
           return;
         }
 
@@ -107,18 +113,31 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   public addNewEntity(): void {
     if (!this.data) return;
     if (!this.data?.columns?.length) {
-      this.data.columns = [new MixColumn({ systemName: 'mixdb__', new: true })];
+      this.data.columns = [new MixColumn({ new: true })];
     } else {
-      this.data.columns.push(
-        new MixColumn({ systemName: 'mixdb__', new: true })
-      );
+      this.data.columns.push(new MixColumn({ new: true }));
     }
   }
 
   public removeEntity(entity: MixColumn, index: number) {
     if (!this.data) return;
 
-    this.data.columns.splice(index, 1);
+    const toDeleteData = this.data.columns[index];
+    if (toDeleteData.id >= 0 && !toDeleteData.new) {
+      this.modal.asKForAction('Are you sure to remove this column?', () => {
+        this.mixApi.databaseApi
+          .deleteDbColumn(toDeleteData.id)
+          .pipe(toastObserverProcessing(this.toast))
+          .subscribe({
+            next: () => {
+              this.data?.columns.splice(index, 1);
+              this.cdr.detectChanges();
+            },
+          });
+      });
+    } else {
+      this.data.columns.splice(index, 1);
+    }
   }
 
   public entityChange(entity: MixColumn, index: number) {
@@ -136,39 +155,41 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       return;
     }
 
-    if (FormHelper.validateForm(this.form)) {
-      this.mixApi.databaseApi
-        .save({
-          ...this.data,
-          ...(this.form.value as MixDatabase),
-        })
-        .pipe(
-          this.toast.observe({
-            loading: `${this.mode === 'create' ? 'Creating' : 'Saving'} table`,
-            success: 'Successfully apply change',
-            error: 'Something error, please try again later.',
-          })
-        )
-        .subscribe({
-          next: (value) => {
-            if (this.mode === 'create') {
-              this.databaseStore.reload();
-              this.data = value;
-              this.mode = 'update';
-            }
-
-            this.processAfterSave();
-          },
-        });
+    if (!FormHelper.validateForm(this.form)) {
+      this.activeTabIndex = 0;
+      return;
     }
+
+    this.mixApi.databaseApi
+      .save({
+        ...this.data,
+        ...(this.form.value as MixDatabase),
+        columns: this.data?.columns,
+      })
+      .pipe(
+        this.toast.observe({
+          loading: `${this.mode === 'create' ? 'Creating' : 'Saving'} table`,
+          success: 'Successfully applied change',
+          error: 'Something error, please try again later.',
+        })
+      )
+      .subscribe({
+        next: (value) => {
+          if (this.mode === 'create') {
+            this.databaseStore.reload();
+            this.data = value;
+            this.mode = 'update';
+          }
+
+          this.processAfterSave(value);
+        },
+      });
   }
 
-  public processAfterSave() {
-    if (this.data)
-      this.data.columns = this.data.columns.map((x) => ({
-        ...x,
-        new: false,
-      }));
+  public processAfterSave(value: MixDatabase) {
+    if (this.data) this.data.columns = value.columns;
+
+    this.cdr.detectChanges();
   }
 
   public selectedTableChange(id: string | number) {
@@ -186,7 +207,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     const camelCaseString = words
       .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join('');
-    const prefix = 'mixDb';
+    const prefix = 'mixDb_';
 
     this.form.controls.systemName.patchValue(`${prefix}${camelCaseString}`, {
       emitEvent: false,
