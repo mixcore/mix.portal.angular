@@ -3,7 +3,9 @@
      [formGroup]="form">
   <div class="row">
     <div class="col-4 d-flex align-items-center gap-2">
-      <span class="mix-icon">drag_indicator</span>
+      <div>
+        <ng-content></ng-content>
+      </div>
 
       <mix-input [size]="'s'"
                  placeHolder="Display name"

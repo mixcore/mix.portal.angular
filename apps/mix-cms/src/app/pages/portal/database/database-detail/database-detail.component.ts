@@ -1,3 +1,8 @@
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+} from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -57,6 +62,7 @@ import { DatabaseStore } from '../../../../stores/database.store';
     EntityFormComponent,
     MixFormErrorComponent,
     TuiNotificationModule,
+    DragDropModule,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
@@ -96,7 +102,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
           .getById(this.id)
           .pipe(takeUntil(this.destroy$), this.observerLoadingState())
           .subscribe((v) => {
-            this.data = v;
+            this.data = new MixDatabase(v);
             this.form.patchValue(v, { emitEvent: false });
           });
       });
@@ -113,9 +119,11 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   public addNewEntity(): void {
     if (!this.data) return;
     if (!this.data?.columns?.length) {
-      this.data.columns = [new MixColumn({ new: true })];
+      this.data.columns = [new MixColumn({ new: true, priority: 0 })];
     } else {
-      this.data.columns.push(new MixColumn({ new: true }));
+      const priority =
+        Math.max(...this.data.columns.map((x) => x.priority || 0)) + 1;
+      this.data.columns.push(new MixColumn({ new: true, priority: priority }));
     }
   }
 
@@ -177,19 +185,13 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
         next: (value) => {
           if (this.mode === 'create') {
             this.databaseStore.reload();
-            this.data = value;
             this.mode = 'update';
           }
 
-          this.processAfterSave(value);
+          this.data = new MixDatabase(value);
+          this.cdr.detectChanges();
         },
       });
-  }
-
-  public processAfterSave(value: MixDatabase) {
-    if (this.data) this.data.columns = value.columns;
-
-    this.cdr.detectChanges();
   }
 
   public selectedTableChange(id: string | number) {
@@ -199,7 +201,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   }
 
   public identify(index: number, item: MixColumn) {
-    return item.priority;
+    return item.id;
   }
 
   public updateSystemName(value: string) {
@@ -212,5 +214,22 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     this.form.controls.systemName.patchValue(`${prefix}${camelCaseString}`, {
       emitEvent: false,
     });
+  }
+
+  public drop(event: CdkDragDrop<MixColumn[]>) {
+    if (this.data?.columns) {
+      moveItemInArray(
+        this.data?.columns,
+        event.previousIndex,
+        event.currentIndex
+      );
+
+      this.data.columns = this.data.columns.map((x, index) => ({
+        ...x,
+        priority: index,
+      }));
+
+      this.cdr.detectChanges();
+    }
   }
 }

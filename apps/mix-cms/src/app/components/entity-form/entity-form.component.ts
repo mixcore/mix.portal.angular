@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   Component,
@@ -39,6 +40,7 @@ import { debounceTime } from 'rxjs';
     TuiTabsModule,
     MixToggleComponent,
     TuiRadioBlockModule,
+    DragDropModule,
   ],
   templateUrl: './entity-form.component.html',
   styleUrls: ['./entity-form.component.scss'],
@@ -112,6 +114,7 @@ export class EntityFormComponent implements OnInit {
     systemName: new FormControl('', Validators.required),
     displayName: new FormControl('', Validators.required),
     dataType: new FormControl('', Validators.required),
+    priority: new FormControl(0, Validators.required),
   });
 
   public configurationForm = new FormGroup({

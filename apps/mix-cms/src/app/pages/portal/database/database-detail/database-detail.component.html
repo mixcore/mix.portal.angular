@@ -126,12 +126,18 @@
             </div>
           </div>
 
-          <ng-container *ngFor="let entity of data?.columns ?? []; let i = index; trackBy:identify">
-            <mix-entity-form class="mt-3"
+          <div (cdkDropListDropped)="drop($event)"
+               cdkDropList>
+            <mix-entity-form *ngFor="let entity of data?.columns ?? []; let i = index; trackBy:identify"
+                             class="mt-2"
                              [entity]="entity"
                              (deleteEntity)="removeEntity($event, i)"
-                             (entityChange)="entityChange($event, i)"></mix-entity-form>
-          </ng-container>
+                             (entityChange)="entityChange($event, i)"
+                             cdkDrag>
+              <span class="mix-icon"
+                    cdkDragHandle>drag_indicator</span>
+            </mix-entity-form>
+          </div>
 
           <div class="entity-table-footer mt-3">
             <mix-button (click)="addNewEntity()"

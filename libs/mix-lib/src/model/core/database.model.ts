@@ -1,17 +1,33 @@
-export interface MixDatabase {
-  systemName: string;
-  type: string;
-  selfManaged: boolean;
-  columns: MixColumn[];
-  relationships: MixRelationShip[];
-  displayName: string;
-  mixTenantId: number;
-  id: number;
-  createdDateTime: string;
-  priority: number;
-  status: string;
-  isValid: boolean;
-  errors: string[];
+export class MixDatabase {
+  systemName!: string;
+  type!: string;
+  selfManaged!: boolean;
+  columns!: MixColumn[];
+  relationships!: MixRelationShip[];
+  displayName!: string;
+  mixTenantId!: number;
+  id!: number;
+  createdDateTime!: string;
+  priority!: number;
+  status!: string;
+  isValid!: boolean;
+  errors!: string[];
+
+  constructor(value: MixDatabase) {
+    this.systemName = value.systemName;
+    this.type = value.type;
+    this.selfManaged = value.selfManaged;
+    this.columns = value.columns?.sort((a, b) => a.priority - b.priority);
+    this.relationships = value.relationships;
+    this.displayName = value.displayName;
+    this.mixTenantId = value.mixTenantId;
+    this.id = value.id;
+    this.createdDateTime = value.createdDateTime;
+    this.priority = value.priority;
+    this.status = value.status;
+    this.isValid = value.isValid;
+    this.errors = value.errors;
+  }
 }
 
 export interface MixRelationShip {
@@ -53,6 +69,7 @@ export class MixColumn {
     this.systemName = data.systemName ?? '';
     this.dataType = data.dataType ?? DataType.Text;
     this.new = data.new ?? false;
+    this.priority = data.priority ?? 0;
   }
 }
 
