@@ -97,7 +97,7 @@ export enum DataType {
   Text = 'Text',
   Html = 'Html',
   MultilineText = 'MultilineText',
-  EmailAddress = ' EmailAddress',
+  EmailAddress = 'EmailAddress',
   Password = 'Password',
   Url = 'Url',
   ImageUrl = 'ImageUrl',

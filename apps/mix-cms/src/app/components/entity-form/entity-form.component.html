@@ -31,7 +31,7 @@
                   (click)="showDataTypeDialog($event, dataTypePicker)"
                   size="s">
         <div *ngIf="form.controls.dataType.value">
-          {{ $any(dataTypeDisplay)[form.controls.dataType.value].name }}
+          {{ $any(dataTypeDisplay)[form.controls.dataType.value]?.name ?? form.controls.dataType.value }}
         </div>
 
         <span class="mix-icon">chevron_right</span>

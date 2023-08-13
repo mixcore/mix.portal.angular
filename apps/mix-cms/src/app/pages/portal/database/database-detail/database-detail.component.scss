@@ -13,6 +13,7 @@
     border-bottom-left-radius: 8px;
     padding: 8px;
     font-size: 14px;
+    margin-right: 2px;
 
     .tree-title {
       font-size: 14px;
@@ -36,7 +37,9 @@
       &.--active,
       &:hover {
         opacity: 1;
-        background-color: var(--background-color-hight-light);
+        // background-color: var(--background-color-hight-light);
+        background: linear-gradient(var(--tui-info-bg), var(--tui-info-bg)),
+          var(--tui-base-01);
       }
     }
   }
