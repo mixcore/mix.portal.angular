@@ -41,7 +41,7 @@ export class MixButtonComponent {
     primary: 'primary',
     'secondary-danger': 'secondary-destructive',
     danger: 'accent',
-    outline: 'whiteblock',
+    outline: 'outline',
     flat: 'flat',
     secondary: 'secondary',
   };

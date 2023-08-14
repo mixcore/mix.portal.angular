@@ -6,6 +6,7 @@ import { MixApiFacadeService } from '@mixcore/share/api';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { DynamicFilterComponent } from '@mixcore/ui/filter';
 import { ModalService } from '@mixcore/ui/modal';
 import { PortalSidebarService } from '@mixcore/ui/sidebar';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
@@ -27,6 +28,7 @@ import { DatabaseStore } from '../../../stores/database.store';
     MixDataTableModule,
     MixStatusIndicatorComponent,
     RelativeTimeSpanPipe,
+    DynamicFilterComponent,
   ],
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.scss'],

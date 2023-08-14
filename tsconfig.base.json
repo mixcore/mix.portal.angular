@@ -52,7 +52,8 @@
       "@mixcore/ui/table": ["libs/mix-ui/src/data-table/index.ts"],
       "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],
       "@mixcore/ui/toggle": ["libs/mix-ui/src/toggle/index.ts"],
-      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"]
+      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"],
+      "@mixcore/ui/filter": ["libs/mix-ui/src/dynamic-filter/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

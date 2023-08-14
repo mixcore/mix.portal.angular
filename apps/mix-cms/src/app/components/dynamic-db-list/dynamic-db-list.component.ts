@@ -118,6 +118,7 @@ export class DynamicDbListComponent
   public columns = signal(<MixColumn[]>[]);
   public db = signal(<MixDatabase | undefined>undefined);
   public searchFieldOptions: string[] = [];
+  public searchFieldOptionsDict: { [key: string]: string } = {};
   public selectedData = signal<MixDynamicData | undefined>(undefined);
 
   // Edit variant require item
@@ -212,11 +213,15 @@ export class DynamicDbListComponent
       .pipe(this.observerLoadingStateSignal(silentLoad))
       .subscribe({
         next: ([result, db]) => {
-          const columnsToShow = db.columns
+          const columnsToShow = [...db.columns]
             .sort((a, b) => a.priority - b.priority)
             .slice(0, 4);
 
-          this.searchFieldOptions = columnsToShow.map((x) => x.systemName);
+          this.searchFieldOptions = [];
+          columnsToShow.forEach((x) => {
+            this.searchFieldOptions.push(x.displayName);
+            this.searchFieldOptionsDict[x.displayName] = x.systemName;
+          });
 
           this.data.set(result.items);
           this.pageInfo.set(result.pagingData);
@@ -229,10 +234,14 @@ export class DynamicDbListComponent
   }
 
   public onSearchChange(searchText: string, searchField: string[]) {
+    const searchFields = searchField
+      .map((field) => this.searchFieldOptionsDict[field])
+      .join(', ');
+
     this.query.update((s) => ({
       ...s,
       keyword: searchText,
-      searchColumns: searchField.join(', '),
+      searchColumns: searchFields,
       searchMethod: 'InRange',
     }));
   }

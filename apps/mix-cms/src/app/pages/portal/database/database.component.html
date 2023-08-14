@@ -27,6 +27,11 @@
                       (searchChange)="
           store.search($event.searchText, $any($event.searchField))
         ">
+        <div class="col-auto"
+             filter>
+          <mix-dynamic-filter></mix-dynamic-filter>
+        </div>
+
         <div [header]="'Name'"
              key="displayName"
              mixTableColumn>

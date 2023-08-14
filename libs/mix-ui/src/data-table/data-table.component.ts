@@ -59,7 +59,8 @@ export class DataTableComponent<T> implements AfterContentInit {
   @Input() public searchField: FormControl = new FormControl();
   @Input() public set searchFieldOptions(v: string[]) {
     this._searchFieldOptions = v;
-    if (!this.searchField.value) this.searchField.patchValue([v[0]]);
+    if (!this.searchField.value && v?.length)
+      this.searchField.patchValue([v[0]]);
   }
   public get searchFieldOptions() {
     return this._searchFieldOptions;
