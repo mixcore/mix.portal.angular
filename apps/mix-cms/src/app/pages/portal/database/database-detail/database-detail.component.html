@@ -84,7 +84,6 @@
                        formControlName="systemName"></mix-input>
           </div>
 
-
           <mix-form-error class="mt-1"
                           formControlName="systemName"></mix-form-error>
 
@@ -130,8 +129,11 @@
 
           <div (cdkDropListDropped)="drop($event)"
                cdkDropList>
-            <mix-entity-form *ngFor="let entity of data?.columns ?? []; let i = index; trackBy:identify"
-                             class="mt-2"
+            <mix-entity-form *ngFor="
+                let entity of data?.columns ?? [];
+                let i = index;
+                trackBy: identify
+              "
                              [entity]="entity"
                              (deleteEntity)="removeEntity($event, i)"
                              (entityChange)="entityChange($event, i)"

@@ -11,8 +11,6 @@ mix-entity-form {
   border-radius: var(--border-radius-default);
   background-color: var(--background-color-primary);
   position: relative;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 
   &.--new {
     border: 1px solid var(--success-color);
