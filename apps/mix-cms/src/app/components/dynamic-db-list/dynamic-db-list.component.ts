@@ -228,12 +228,12 @@ export class DynamicDbListComponent
       });
   }
 
-  public onSearchChange(searchText: string, searchField: string) {
+  public onSearchChange(searchText: string, searchField: string[]) {
     this.query.update((s) => ({
       ...s,
       keyword: searchText,
-      searchColumns: searchField,
-      searchMethod: 'Like',
+      searchColumns: searchField.join(', '),
+      searchMethod: 'InRange',
     }));
   }
 

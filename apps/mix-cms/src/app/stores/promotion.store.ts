@@ -16,4 +16,9 @@ export class PromotionStore extends BaseCRUDStore<MixPromotion> {
 
   public override mainUrl = '/' + CMS_ROUTES.portal.promotion.fullPath;
   public override requestName = 'daphalePromotion';
+  public override searchColumns = ['Code', 'Type'];
+  public override searchColumnsDict: { [key: string]: string } = {
+    Code: 'code',
+    Type: 'type',
+  };
 }

@@ -5,7 +5,8 @@
                      [title]="'All Promotion' | transloco">
       <mix-button class="ms-auto"
                   (click)="addNew()"
-                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp; Create</mix-button>
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
+        Create</mix-button>
     </mix-sub-toolbar>
 
     <div class="data-table-page__sub-toolbar">
@@ -40,13 +41,11 @@
                       [forceLoading]="forceLoading"
                       [loading]="state.status === 'Loading'"
                       [pageInfo]="state.pageInfo"
-                      [searchFieldOptions]="searchOptions"
+                      [searchFieldOptions]="store.searchColumns"
                       [searchTextValue]="store.request$().keyword ?? ''"
                       (itemsSelectedChange)="onItemSelectedChange($event)"
                       (pageChange)="store.changePage($event)"
-                      (searchChange)="
-          store.searchChange($event.searchText, $event.searchField)
-        ">
+                      (searchChange)="store.search($event.searchText, $event.searchField)">
         <div [columnType]="'CHECKBOX'"
              mixTableColumn></div>
 
@@ -80,19 +79,37 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-
             <div *ngIf="data.promotionType === 'Coupon'">
-              <div>Discount percent: <strong>{{ data.discountPercent }}%</strong></div>
-              <div>Max value: <strong>{{ (data.maxDiscountValue | currency:data.currency||'USD') || '--' }}</strong></div>
+              <div>
+                Discount percent: <strong>{{ data.discountPercent }}%</strong>
+              </div>
+              <div>
+                Max value:
+                <strong>{{
+                  (data.maxDiscountValue | currency: data.currency || 'USD') ||
+                    '--'
+                }}</strong>
+              </div>
             </div>
 
             <div *ngIf="data.promotionType === 'Voucher'">
-              <div>Discount value: <strong>{{ data.discountValue | currency:data.currency||'USD' }}</strong></div>
+              <div>
+                Discount value:
+                <strong>{{
+                  data.discountValue | currency: data.currency || 'USD'
+                }}</strong>
+              </div>
             </div>
 
             <div *ngIf="data.promotionType === 'FreeShipping'">
               <div>Reduce delivery fee: <strong>100%</strong></div>
-              <div>Max value: <strong>{{ (data.maxDiscountValue | currency:data.currency||'USD') || '--' }}</strong></div>
+              <div>
+                Max value:
+                <strong>{{
+                  (data.maxDiscountValue | currency: data.currency || 'USD') ||
+                    '--'
+                }}</strong>
+              </div>
             </div>
 
             <!-- <div>

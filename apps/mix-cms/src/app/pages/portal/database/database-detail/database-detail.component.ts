@@ -31,12 +31,17 @@ import { ModalService } from '@mixcore/ui/modal';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { HotToastService } from '@ngneat/hot-toast';
+import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 import {
   TuiLoaderModule,
   TuiNotificationModule,
   TuiScrollbarModule,
 } from '@taiga-ui/core';
-import { TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
+import {
+  TuiInputInlineModule,
+  TuiTabsModule,
+  TuiToggleModule,
+} from '@taiga-ui/kit';
 import { debounceTime, takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
 import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
@@ -63,6 +68,8 @@ import { DatabaseStore } from '../../../../stores/database.store';
     MixFormErrorComponent,
     TuiNotificationModule,
     DragDropModule,
+    TuiInputInlineModule,
+    TuiAutoFocusModule,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
@@ -77,6 +84,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   public databaseStore = inject(DatabaseStore);
   public modal = inject(ModalService);
 
+  public editTitle = false;
   public data: MixDatabase | undefined = undefined;
   public form = new FormGroup({
     displayName: new FormControl('', Validators.required),
@@ -184,10 +192,10 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       .subscribe({
         next: (value) => {
           if (this.mode === 'create') {
-            this.databaseStore.reload();
             this.mode = 'update';
           }
 
+          this.databaseStore.reload();
           this.data = new MixDatabase(value);
           this.cdr.detectChanges();
         },
@@ -214,6 +222,14 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     this.form.controls.systemName.patchValue(`${prefix}${camelCaseString}`, {
       emitEvent: false,
     });
+  }
+
+  public toggleEditTitle() {
+    this.editTitle = !this.editTitle;
+  }
+
+  public onFocusedChange(focused: boolean): void {
+    if (!focused) this.editTitle = false;
   }
 
   public drop(event: CdkDragDrop<MixColumn[]>) {

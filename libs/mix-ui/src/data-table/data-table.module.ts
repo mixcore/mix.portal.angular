@@ -15,6 +15,7 @@ import {
   TuiCheckboxModule,
   TuiDataListWrapperModule,
   TuiInputModule,
+  TuiMultiSelectModule,
   TuiPaginationModule,
   TuiProgressModule,
   TuiSelectModule,
@@ -53,6 +54,7 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiDataListWrapperModule,
     TuiHostedDropdownModule,
     ScrollingModule,
+    TuiMultiSelectModule,
   ],
   exports: [
     DataTableComponent,

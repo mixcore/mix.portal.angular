@@ -42,7 +42,14 @@ export class DatabaseComponent {
   public selectedTable: MixDatabase[] = [];
   public contextMenus: TableContextMenu<MixDatabase>[] = [
     {
-      label: 'Modify database',
+      label: 'Setting Db',
+      icon: 'construction',
+      action: (item) => {
+        this.goDetail(item.id);
+      },
+    },
+    {
+      label: `Setting Db's Columns`,
       icon: 'construction',
       action: (item) => {
         this.goDetail(item.id);

@@ -33,11 +33,27 @@
                 [showLoader]="state === 'Loading'">
       <div class="data-detail-page__toolbar">
         <div class="data-detail-page__toolbar-top">
-          <mix-input class="page-title"
-                     [floatingLabel]="false"
-                     formControlName="displayName"
-                     placeHolder="Table display name"
-                     size="s"></mix-input>
+          <span class="data-detail-page__input-title"
+                [class.--empty]="!form.controls.displayName.value">
+            <tui-input-inline *ngIf="editTitle; else text"
+                              (focusedChange)="onFocusedChange($event)"
+                              tuiAutoFocus
+                              (keydown.esc.prevent)="toggleEditTitle()"
+                              (keydown.enter.prevent)="toggleEditTitle()"
+                              formControlName="displayName">
+              Type db name
+            </tui-input-inline>
+
+            <ng-template #text>
+              <span>{{
+                form.controls.displayName.value || 'Type db name'
+              }}</span>
+              <mix-button type="flat"
+                          [iconBtn]="true"
+                          [size]="'s'"
+                          (click)="toggleEditTitle()"><span class="mix-icon">edit</span></mix-button>
+            </ng-template>
+          </span>
 
           <mix-button *ngIf="mode === 'update' && data"
                       class="ml-auto"

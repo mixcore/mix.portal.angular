@@ -19,7 +19,6 @@ import {
   OrderStatus,
   OrderStatusDisplay,
   PaymentGateway,
-  SearchMethod,
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ImageHandleDirective } from '@mixcore/share/directives';
@@ -231,25 +230,5 @@ export class OrderComponent extends ListPageKit<MixOrder> implements OnInit {
     interval(300000)
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => this.store.reload());
-  }
-
-  public onSearchChange(value: string, searchOn: string) {
-    let field = '';
-    let method: SearchMethod = 'Like';
-
-    if (searchOn === 'Order ID') {
-      field = 'id';
-      method = 'Equal';
-    }
-
-    if (searchOn === 'Order Code') {
-      field = 'code';
-    }
-
-    if (searchOn === 'Customer Email') {
-      field = 'email';
-    }
-
-    this.store.searchChange(value, field, method);
   }
 }

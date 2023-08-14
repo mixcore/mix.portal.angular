@@ -10,4 +10,11 @@ export class DatabaseStore extends BaseCRUDStore<MixDatabase> {
 
   public override mainUrl = '/' + CMS_ROUTES.portal.database.fullPath;
   public override requestName = 'database';
+
+  public override searchColumns = ['Name', 'Description'];
+  public override searchColumnsDict: { [key: string]: string } = {
+    Name: 'displayName',
+    Description: 'description',
+    Status: 'status',
+  };
 }

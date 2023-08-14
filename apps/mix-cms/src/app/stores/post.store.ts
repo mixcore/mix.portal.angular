@@ -13,4 +13,9 @@ export class PostStore extends BaseCRUDStore<MixPost> {
 
   public override mainUrl = '/' + CMS_ROUTES.portal.post.fullPath;
   public override requestName = 'posts';
+
+  public override searchColumns = ['Name'];
+  public override searchColumnsDict: { [key: string]: string } = {
+    Name: 'title',
+  };
 }

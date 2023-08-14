@@ -13,4 +13,9 @@ export class PageStore extends BaseCRUDStore<MixPage> {
 
   public override mainUrl = '/' + CMS_ROUTES.portal.page.fullPath;
   public override requestName = 'page';
+
+  public override searchColumns = ['Name'];
+  public override searchColumnsDict: { [key: string]: string } = {
+    Name: 'title',
+  };
 }

@@ -5,12 +5,14 @@
                      [title]="'All Modules'">
       <div class="toolbar-separator"></div>
       <mix-button (click)="addNew()"
-                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp; Add</mix-button>
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
+        Add</mix-button>
       <div class="toolbar-separator"></div>
       <mix-button type="secondary-danger"
                   [disabled]="!selectedPages.length"
                   size="s">
-        <span class="material-symbols-outlined"> delete </span>&nbsp; Delete(s)</mix-button>
+        <span class="material-symbols-outlined"> delete </span>&nbsp;
+        Delete(s)</mix-button>
     </mix-sub-toolbar>
 
     <div class="data-table-page__body">
@@ -21,9 +23,7 @@
                       [searchFieldOptions]="['title']"
                       (itemsSelectedChange)="selectedPages = $event || []"
                       (pageChange)="store.changePage($event)"
-                      (searchChange)="
-          store.searchChange($event.searchText, $event.searchField)
-        ">
+                      (searchChange)="store.search($event.searchText, $event.searchField)">
         <div [columnType]="'CHECKBOX'"
              mixTableColumn></div>
 

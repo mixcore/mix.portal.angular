@@ -118,13 +118,11 @@
                       [forceLoading]="forceLoading"
                       [loading]="state.status === 'Loading'"
                       [pageInfo]="state.pageInfo"
-                      [searchFieldOptions]="searchOptions"
+                      [searchFieldOptions]="store.searchColumns"
                       (dragDropChange)="onDragDropDataChange($event)"
                       (itemsSelectedChange)="selectedPosts = $event"
                       (pageChange)="store.changePage($event)"
-                      (searchChange)="
-          store.searchChange($event.searchText, $event.searchField)
-        ">
+                      (searchChange)="store.search($event.searchText, $event.searchField)">
         <div [header]="'Name'"
              key="title"
              mixTableColumn>
@@ -145,8 +143,9 @@
           <ng-template let-data
                        mixColumnCell>
             <div class="d-flex align-items-center">
-              <img [src]="data.image | mixImg:'XS'"
-                   style="object-fit: cover;"
+              <img alt="preview"
+                   [src]="data.image | mixImg: 'XS'"
+                   style="object-fit: cover"
                    width="60"
                    height="30">
             </div>
@@ -259,7 +258,6 @@
         </ng-container>
       </div>
     </div>
-
   </div>
 </div>
 

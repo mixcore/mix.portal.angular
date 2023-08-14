@@ -51,9 +51,7 @@
                       [searchTextValue]="store.request$().keyword ?? ''"
                       (itemsSelectedChange)="onItemSelectedChange($event)"
                       (pageChange)="store.changePage($event)"
-                      (searchChange)="
-          store.searchChange($event.searchText, $event.searchField)
-        ">
+                      (searchChange)="store.search($event.searchText, $event.searchField)">
         <div [columnType]="'CHECKBOX'"
              mixTableColumn></div>
 

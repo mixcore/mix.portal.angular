@@ -47,11 +47,11 @@
                       [dataset]="state.data"
                       [loading]="state.status === 'Loading'"
                       [pageInfo]="state.pageInfo"
-                      [searchFieldOptions]="searchOptions"
+                      [searchFieldOptions]="store.searchColumns"
                       [searchTextValue]="store.request$().keyword ?? ''"
                       (itemsSelectedChange)="selectedPosts = $event"
                       (pageChange)="store.changePage($event)"
-                      (searchChange)="onSearchChange($event.searchText, $event.searchField)">
+                      (searchChange)="store.search($event.searchText, $event.searchField)">
         <div [columnType]="'CHECKBOX'"
              mixTableColumn></div>
 

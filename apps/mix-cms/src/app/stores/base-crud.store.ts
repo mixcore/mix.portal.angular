@@ -67,6 +67,8 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public cacheKey = '';
   public isSilentlyLoading = false;
   public requestObserver!: Subscription;
+  public searchColumns: string[] = [];
+  public searchColumnsDict: { [key: string]: string } = {};
 
   public requestFn!: (
     request: PaginationRequestModel
@@ -212,6 +214,22 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
         ...s.request,
         queries: queries,
         pageIndex: 0,
+      },
+    }));
+  }
+
+  public search(searchText: string, searchColumns: string[]) {
+    const trueSearchCols = searchColumns.map((f) => this.searchColumnsDict[f]);
+    const searchColText = trueSearchCols.join(', ');
+
+    this.patchState((s) => ({
+      ...s,
+      request: {
+        ...s.request,
+        keyword: searchText,
+        searchColumns: searchColText,
+        pageIndex: 0,
+        searchMethod: 'Like',
       },
     }));
   }

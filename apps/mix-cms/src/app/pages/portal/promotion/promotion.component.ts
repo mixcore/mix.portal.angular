@@ -74,7 +74,7 @@ export class PromotionComponent
           icon: 'delete',
         },
       ],
-      searchOptions: ['code', 'type'],
+      searchOptions: [],
       detailUrl: `${CMS_ROUTES.portal.promotion.fullPath}`,
     });
   }

@@ -1,22 +1,29 @@
 <div class="mix-data-table">
   <div class="mix-data-table__filter d-flex">
-    <tui-input class="input"
-               [formControl]="searchText"
-               [tuiTextfieldCleaner]="true"
-               [tuiTextfieldLabelOutside]="true"
-               [tuiTextfieldSize]="'m'"
-               tuiTextfieldIconLeft="tuiIconSearchLarge">
-      {{ searchPlaceholder }}
-    </tui-input>
+    <div class="row">
+      <div class="col-auto d-flex">
+        <tui-input class="search-input"
+                   [formControl]="searchText"
+                   [tuiTextfieldCleaner]="true"
+                   [tuiTextfieldLabelOutside]="true"
+                   [tuiTextfieldSize]="'m'"
+                   tuiTextfieldIconLeft="tuiIconSearchLarge">
+          {{ searchPlaceholder }}
+        </tui-input>
 
-    <tui-select class="ms-2 select"
-                [formControl]="searchField"
-                [tuiTextfieldLabelOutside]="true"
-                [tuiTextfieldSize]="'m'">
-      <input tuiTextfield>
-      <tui-data-list-wrapper *tuiDataList
-                             [items]="searchFieldOptions"></tui-data-list-wrapper>
-    </tui-select>
+        <tui-multi-select class="ms-2 select"
+                          [expandable]="false"
+                          [formControl]="searchField"
+                          [tuiTextfieldLabelOutside]="true"
+                          [tuiTextfieldSize]="'m'">
+          <input tuiTextfield>
+
+          <tui-data-list-wrapper *tuiDataList
+                                 [items]="searchFieldOptions"
+                                 tuiMultiSelectGroup></tui-data-list-wrapper>
+        </tui-multi-select>
+      </div>
+    </div>
   </div>
 
   <div #mainTable
