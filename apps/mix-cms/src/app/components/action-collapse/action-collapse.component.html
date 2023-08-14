@@ -7,7 +7,7 @@
                 [type]="$any(item.type || 'outline')"
                 (click)="onClick(item.key)"
                 size="s">
-      <span class="material-symbols-outlined"> {{ item.icon }} </span>&nbsp;
+      <span class="mix-icon"> {{ item.icon }} </span>&nbsp;
       {{ item.label }}
     </mix-button>
   </ng-container>
@@ -20,7 +20,7 @@
       <mix-button class="item"
                   [type]="'outline'"
                   size="s">
-        <span class="material-symbols-outlined"> more_vert </span>
+        <span class="mix-icon"> more_vert </span>
       </mix-button>
       <ng-template #dropdown>
         <tui-data-list size="l">
@@ -29,7 +29,8 @@
                     (click)="onClick(item.key)"
                     tuiOption>
               <span>
-                <span class="material-symbols-outlined"> {{ item.icon }} </span>&nbsp; {{ item.label }}
+                <span class="mix-icon"> {{ item.icon }} </span>&nbsp;
+                {{ item.label }}
               </span>
             </button>
           </ng-container>

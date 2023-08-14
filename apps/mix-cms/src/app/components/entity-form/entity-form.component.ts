@@ -179,8 +179,9 @@ export class EntityFormComponent implements OnInit {
     return FormHelper.validateForm(this.form);
   }
 
-  public updateSystemName() {
-    if (!this.form.value.displayName || this.form.value.systemName) return;
+  public updateSystemName(force = false) {
+    if (!this.form.value.displayName) return;
+    if (this.form.value.systemName && !force) return;
 
     const words = this.form.value.displayName.split(' ');
     const camelCaseString = words

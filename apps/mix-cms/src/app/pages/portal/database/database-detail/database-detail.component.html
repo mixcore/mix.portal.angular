@@ -39,10 +39,19 @@
                      placeHolder="Table display name"
                      size="s"></mix-input>
 
-          <mix-button class="ml-auto"
+          <mix-button *ngIf="mode === 'update' && data"
+                      class="ml-auto"
+                      type="secondary"
+                      [size]="'s'"
+                      (click)="goDatabaseData(data.systemName)">
+            View Data &nbsp;
+            <span class="mix-icon"> arrow_right_alt </span>
+          </mix-button>
+
+          <mix-button class="ms-2"
                       [size]="'s'"
                       (click)="submit()">
-            <span class="icon material-symbols-outlined"> save_as </span>
+            <span class="icon mix-icon"> save_as </span>
             {{ mode === 'create' ? 'Create' : 'Save' }}
           </mix-button>
         </div>
@@ -53,12 +62,10 @@
           <nav [(activeItemIndex)]="activeTabIndex"
                tuiTabs>
             <button tuiTab>
-              <span class="material-symbols-outlined"> feed </span>&nbsp;
-              General
+              <span class="mix-icon"> feed </span>&nbsp; General
             </button>
             <button tuiTab>
-              <span class="material-symbols-outlined"> settings </span>&nbsp;
-              Columns Design
+              <span class="mix-icon"> settings </span>&nbsp; Columns Design
             </button>
           </nav>
         </div>

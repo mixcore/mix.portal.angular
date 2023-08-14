@@ -21,7 +21,8 @@ export class MixButtonComponent {
     | 'secondary-danger'
     | 'danger'
     | 'outline'
-    | 'flat' = 'primary';
+    | 'flat'
+    | 'secondary' = 'primary';
   @Input() public iconBtn = false;
 
   constructor(elementRef: ElementRef) {
@@ -40,7 +41,8 @@ export class MixButtonComponent {
     primary: 'primary',
     'secondary-danger': 'secondary-destructive',
     danger: 'accent',
-    outline: 'outline',
+    outline: 'whiteblock',
     flat: 'flat',
+    secondary: 'secondary',
   };
 }

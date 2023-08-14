@@ -232,4 +232,10 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       this.cdr.detectChanges();
     }
   }
+
+  async goDatabaseData(sysName: string) {
+    await this.router.navigateByUrl(
+      `${CMS_ROUTES.portal['database-data'].fullPath}/${sysName}`
+    );
+  }
 }

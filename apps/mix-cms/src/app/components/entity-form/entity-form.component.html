@@ -16,7 +16,7 @@
       <div class="d-flex gap-1">
         <mix-button type="outline"
                     [iconBtn]="true"
-                    (click)="updateSystemName()"
+                    (click)="updateSystemName(true)"
                     size="s"><span class="mix-icon">refresh</span></mix-button>
         <mix-input [closable]="false"
                    [size]="'s'"
@@ -31,7 +31,10 @@
                   (click)="showDataTypeDialog($event, dataTypePicker)"
                   size="s">
         <div *ngIf="form.controls.dataType.value">
-          {{ $any(dataTypeDisplay)[form.controls.dataType.value]?.name ?? form.controls.dataType.value }}
+          {{
+            $any(dataTypeDisplay)[form.controls.dataType.value]?.name ??
+              form.controls.dataType.value
+          }}
         </div>
 
         <span class="mix-icon">chevron_right</span>
@@ -83,7 +86,6 @@
     <ng-container *ngFor="let group of dataTypeGroups">
       <div class="row mb-3"
            [formGroup]="form">
-
         <div class="col-12">
           <div class="text-l mb-2 text-500">{{ group.label }}</div>
         </div>
@@ -95,10 +97,14 @@
                            contentAlign="left"
                            size="l">
             <div class="inner">
-              <span class="header"><span class="mix-icon">{{ dataType.icon }}</span> {{ dataType.name }}</span>
+              <span class="header"><span class="mix-icon">{{ dataType.icon }}</span>
+                {{ dataType.name }}</span>
 
               <div class="text-sub text-s mt-2">
-                {{ dataType.description || 'Lorem ipsum dolor sit amet, consectetur adipisicing elit?'}}
+                {{
+                  dataType.description ||
+                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit?'
+                }}
               </div>
             </div>
           </tui-radio-block>
