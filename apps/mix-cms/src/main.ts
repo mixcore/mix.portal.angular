@@ -12,5 +12,6 @@ platformBrowserDynamic()
   .bootstrapModule(AppModule, {
     ngZoneEventCoalescing: true,
     defaultEncapsulation: ViewEncapsulation.None,
+    ngZoneRunCoalescing: true,
   })
   .catch((err) => console.error(err));
