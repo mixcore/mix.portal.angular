@@ -277,8 +277,22 @@ tui-dropdown {
 ngneat-dialog {
   .ngneat-dialog-backdrop {
     .ngneat-dialog-content {
-      padding: 0px 18px 18px 18px;
+      padding: 18px;
     }
+  }
+}
+
+.mix-dialog {
+  &__header {
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  &__footer {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 }
 

@@ -81,7 +81,8 @@
 </ng-template>
 
 <ng-template #dataTypePicker
-             let-observer>
+             let-ref>
+  <div class="mix-dialog__header">Choose data type</div>
   <div class="data-type-picker-dialog-container">
     <ng-container *ngFor="let group of dataTypeGroups">
       <div class="row mb-3"
@@ -111,5 +112,8 @@
         </div>
       </div>
     </ng-container>
+  </div>
+  <div class="mix-dialog__footer">
+    <mix-button (click)="ref.close()">Ok</mix-button>
   </div>
 </ng-template>

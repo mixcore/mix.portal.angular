@@ -102,7 +102,9 @@ const domainUrlFactory = () => {
     RouterModule.forRoot(ROUTES),
     LoadingScreenComponent,
     MonacoEditorModule.forRoot(),
-    HotToastModule.forRoot(),
+    HotToastModule.forRoot({
+      position: 'bottom-center',
+    }),
     TuiDialogModule,
     PortalSidebarComponent,
     FormlyModule.forRoot({
@@ -146,7 +148,7 @@ const domainUrlFactory = () => {
     TranslocoModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:30000',
+      registrationStrategy: 'registerWhenStable:20000',
     }),
   ],
   providers: [

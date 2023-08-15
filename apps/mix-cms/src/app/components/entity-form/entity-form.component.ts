@@ -24,9 +24,8 @@ import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixToggleComponent } from '@mixcore/ui/toggle';
-import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
+import { DialogService } from '@ngneat/dialog';
 import { TuiRadioBlockModule, TuiTabsModule } from '@taiga-ui/kit';
-import { PolymorpheusContent } from '@tinkoff/ng-polymorpheus';
 import { debounceTime } from 'rxjs';
 
 @Component({
@@ -55,7 +54,7 @@ export class EntityFormComponent implements OnInit {
 
   public activeTabIndex = 0;
   public destroyRef = inject(DestroyRef);
-  public dialog = inject(TuiDialogService);
+  public dialogSrv = inject(DialogService);
 
   public dataTypeDisplay = DataTypeDisplay;
   public dataTypeGroups = [
@@ -148,18 +147,15 @@ export class EntityFormComponent implements OnInit {
       });
   }
 
-  public showDialog(content: PolymorpheusContent<TuiDialogContext>): void {
-    this.dialog.open(content, { size: 'l' }).subscribe();
+  public showDialog(content: any): void {
+    this.dialogSrv.open(content, { size: 'lg' });
   }
 
-  public showDataTypeDialog(
-    event: Event,
-    content: PolymorpheusContent<TuiDialogContext>
-  ): void {
+  public showDataTypeDialog(event: Event, content: any): void {
     event.preventDefault();
     event.stopPropagation();
 
-    this.dialog.open(content, { size: 'l' }).subscribe();
+    this.dialogSrv.open(content, { resizable: true, size: 'lg' });
   }
 
   public changeEntity(): void {
