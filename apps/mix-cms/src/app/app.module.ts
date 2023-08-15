@@ -199,12 +199,6 @@ const domainUrlFactory = () => {
       }),
     },
     { provide: TRANSLOCO_LOADER, useClass: TranslocoHttpLoader },
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: ManageHttpInterceptor,
-    //   multi: true,
-    // },
-
     provideTippyConfig({
       defaultVariation: 'tooltip',
       variations: {
