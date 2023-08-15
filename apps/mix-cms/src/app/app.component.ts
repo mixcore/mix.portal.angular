@@ -1,4 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { zoomOutLeftOnLeaveAnimation } from '@mixcore/share/animation';
@@ -11,6 +16,7 @@ import { filter, switchMap } from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [zoomOutLeftOnLeaveAnimation({ duration: 1000 })],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   public authService = inject(AuthService);
