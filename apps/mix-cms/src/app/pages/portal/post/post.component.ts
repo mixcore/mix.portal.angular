@@ -16,8 +16,8 @@ import {
 import { Router } from '@angular/router';
 import {
   Metadata,
-  MetadataQuery,
   MixContentStatus,
+  MixFilter,
   MixOrderBy,
   MixPost,
   OrderDisplay,
@@ -141,7 +141,7 @@ export class PostPageComponent implements OnInit {
   orderByOptions: string[] = [MixOrderBy.Priority, MixOrderBy.CreatedDateTime];
   directionOptions: string[] = ['Asc', 'Desc'];
   stringify = (value: MixOrderBy) => OrderDisplay[value];
-  stringifyMetadata = (value: MetadataQuery) => value?.displayName ?? '';
+  stringifyMetadata = (value: MixFilter) => value?.displayName ?? '';
   openChooseBulkAction = false;
   openChooseBulkStatus = false;
   showQuickAddPost = false;
@@ -149,7 +149,7 @@ export class PostPageComponent implements OnInit {
     names: new FormControl([], Validators.required),
   });
 
-  metadataOptions: Record<string, Partial<MetadataQuery>[]> = {};
+  metadataOptions: Record<string, Partial<MixFilter>[]> = {};
   metadataDisplays: Record<string, string> = {};
   metadataForms: Record<string, FormControl> = {};
   contextMenus: TableContextMenu<MixPost>[] = [
@@ -259,7 +259,7 @@ export class PostPageComponent implements OnInit {
       });
   }
 
-  public onMetadataFilterChange(key: string, value: MetadataQuery[]) {
+  public onMetadataFilterChange(key: string, value: MixFilter[]) {
     this.store.metadataChange(key, value);
   }
 

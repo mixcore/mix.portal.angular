@@ -2,8 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
-  MetadataQuery,
   MixContentStatus,
+  MixFilter,
   MixOrderBy,
   OrderDisplay,
   PaginationRequestModel,
@@ -46,7 +46,7 @@ export class BasicMixFilterComponent implements OnInit {
   orderByOptions: string[] = [MixOrderBy.Priority, MixOrderBy.CreatedDateTime];
   directionOptions: string[] = ['Asc', 'Desc'];
   stringify = (value: MixOrderBy) => OrderDisplay[value];
-  stringifyMetadata = (value: MetadataQuery) => value?.displayName ?? '';
+  stringifyMetadata = (value: MixFilter) => value?.displayName ?? '';
 
   ngOnInit() {
     this.filterForm.patchValue(this.value);

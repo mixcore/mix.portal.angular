@@ -16,9 +16,9 @@ import {
 import { Router } from '@angular/router';
 import {
   Metadata,
-  MetadataQuery,
   MixContentStatus,
   MixDynamicData,
+  MixFilter,
   MixOrderBy,
   MixPost,
   OrderDisplay,
@@ -139,7 +139,7 @@ export class PostDiscountComponent implements OnInit {
   orderByOptions: string[] = [MixOrderBy.Priority, MixOrderBy.CreatedDateTime];
   directionOptions: string[] = ['Asc', 'Desc'];
   stringify = (value: MixOrderBy) => OrderDisplay[value];
-  stringifyMetadata = (value: MetadataQuery) => value?.displayName ?? '';
+  stringifyMetadata = (value: MixFilter) => value?.displayName ?? '';
   openChooseBulkAction = false;
   openChooseBulkStatus = false;
   discountRuleForm = new FormGroup({
@@ -152,7 +152,7 @@ export class PostDiscountComponent implements OnInit {
     other: '%',
   };
 
-  metadataOptions: Record<string, Partial<MetadataQuery>[]> = {};
+  metadataOptions: Record<string, Partial<MixFilter>[]> = {};
   metadataDisplays: Record<string, string> = {};
   metadataForms: Record<string, FormControl> = {};
   contextMenus: TableContextMenu<MixPost>[] = [
@@ -195,7 +195,7 @@ export class PostDiscountComponent implements OnInit {
         const queries = [];
 
         if (filterValue.fromDate) {
-          queries.push(<MetadataQuery>{
+          queries.push(<MixFilter>{
             value: DateUtils.setToStartOfDay(filterValue.fromDate),
             compareOperator: 'GreaterThanOrEqual',
             fieldName: 'discountFromDate',
@@ -203,7 +203,7 @@ export class PostDiscountComponent implements OnInit {
         }
 
         if (filterValue.toDate) {
-          queries.push(<MetadataQuery>{
+          queries.push(<MixFilter>{
             value: filterValue.toDate,
             compareOperator: 'LessThanOrEqual',
             fieldName: 'discountToDate',
@@ -212,13 +212,13 @@ export class PostDiscountComponent implements OnInit {
 
         const max = filterValue.percentageRange?.[1];
         if (max !== undefined && max > 0) {
-          queries.push(<MetadataQuery>{
+          queries.push(<MixFilter>{
             value: filterValue.percentageRange?.[0] ?? 0,
             compareOperator: 'GreaterThanOrEqual',
             fieldName: 'discountPercent',
           });
 
-          queries.push(<MetadataQuery>{
+          queries.push(<MixFilter>{
             value: max,
             compareOperator: 'LessThanOrEqual',
             fieldName: 'discountPercent',
@@ -288,7 +288,7 @@ export class PostDiscountComponent implements OnInit {
       });
   }
 
-  public onMetadataFilterChange(key: string, value: MetadataQuery[]) {
+  public onMetadataFilterChange(key: string, value: MixFilter[]) {
     this.store.metadataChange(key, value);
   }
 

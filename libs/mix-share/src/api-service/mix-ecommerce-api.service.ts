@@ -1,5 +1,5 @@
 import {
-  MetadataQuery,
+  MixFilter,
   MixOrder,
   OrderStatus,
   PaymentGateway,
@@ -32,7 +32,7 @@ export class MixeCommerce extends BaseApiService {
       1
     )
   ): Observable<number> {
-    const queries = <MetadataQuery[]>[
+    const queries = <MixFilter[]>[
       {
         value: fromDate,
         compareOperator: 'GreaterThanOrEqual',
@@ -62,7 +62,7 @@ export class MixeCommerce extends BaseApiService {
       1
     )
   ): Observable<number> {
-    const queries = <MetadataQuery[]>[
+    const queries = <MixFilter[]>[
       {
         value: fromDate,
         compareOperator: 'GreaterThanOrEqual',

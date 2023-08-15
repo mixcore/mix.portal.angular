@@ -273,3 +273,11 @@ tui-dropdown {
     opacity: 0.1;
   }
 }
+
+ngneat-dialog {
+  .ngneat-dialog-backdrop {
+    .ngneat-dialog-content {
+      padding: 0px 18px 18px 18px;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject, signal } from '@angular/core';
-import { MetadataQuery, MixOrder, OrderStatus } from '@mixcore/lib/model';
+import { MixFilter, MixOrder, OrderStatus } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
@@ -15,7 +15,7 @@ import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 export class OrderStatisticsComponent extends BaseComponent implements OnInit {
   mixApi = inject(MixApiFacadeService);
   public totalFail = signal(0);
-  public monthlyQueries: MetadataQuery[] = [
+  public monthlyQueries: MixFilter[] = [
     {
       value: new Date(new Date().getFullYear(), new Date().getMonth(), 1),
       compareOperator: 'GreaterThanOrEqual',
@@ -42,7 +42,7 @@ export class OrderStatisticsComponent extends BaseComponent implements OnInit {
   public countFail() {
     const queries = [
       ...this.monthlyQueries,
-      <MetadataQuery>{
+      <MixFilter>{
         value: `${OrderStatus.PAYMENT_FAILED},${OrderStatus.SHIPPING_FAILED}`,
         compareOperator: 'InRange',
         fieldName: 'orderStatus',

@@ -13,8 +13,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import {
-  MetadataQuery,
   MixContentStatus,
+  MixFilter,
   MixOrder,
   OrderStatus,
   OrderStatusDisplay,
@@ -168,9 +168,9 @@ export class OrderComponent extends ListPageKit<MixOrder> implements OnInit {
 
   ngOnInit() {
     this.filterForm.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
-      const queries: MetadataQuery[] = [];
+      const queries: MixFilter[] = [];
       if (value.fromDate) {
-        queries.push(<MetadataQuery>{
+        queries.push(<MixFilter>{
           value: DateUtils.setToStartOfDay(value.fromDate),
           compareOperator: 'GreaterThanOrEqual',
           fieldName: 'createdDateTime',
@@ -178,7 +178,7 @@ export class OrderComponent extends ListPageKit<MixOrder> implements OnInit {
       }
 
       if (value.gateWay && value.gateWay !== 'All') {
-        queries.push(<MetadataQuery>{
+        queries.push(<MixFilter>{
           value: value.gateWay,
           compareOperator: 'InRange',
           fieldName: 'paymentGateway',
@@ -186,7 +186,7 @@ export class OrderComponent extends ListPageKit<MixOrder> implements OnInit {
       }
 
       if (value.currency && value.currency !== 'All') {
-        queries.push(<MetadataQuery>{
+        queries.push(<MixFilter>{
           value: value.currency,
           compareOperator: 'InRange',
           fieldName: 'currency',
@@ -194,7 +194,7 @@ export class OrderComponent extends ListPageKit<MixOrder> implements OnInit {
       }
 
       if (value.status && value.status !== 'All') {
-        queries.push(<MetadataQuery>{
+        queries.push(<MixFilter>{
           value: value.status,
           compareOperator: 'InRange',
           fieldName: 'orderStatus',
@@ -202,7 +202,7 @@ export class OrderComponent extends ListPageKit<MixOrder> implements OnInit {
       }
 
       if (value.toDate) {
-        queries.push(<MetadataQuery>{
+        queries.push(<MixFilter>{
           value: value.toDate,
           compareOperator: 'LessThanOrEqual',
           fieldName: 'createdDateTime',
@@ -211,13 +211,13 @@ export class OrderComponent extends ListPageKit<MixOrder> implements OnInit {
 
       const max = value.totalRange?.[1];
       if (max !== undefined && max > 0) {
-        queries.push(<MetadataQuery>{
+        queries.push(<MixFilter>{
           value: value.totalRange?.[0] ?? 0,
           compareOperator: 'GreaterThanOrEqual',
           fieldName: 'total',
         });
 
-        queries.push(<MetadataQuery>{
+        queries.push(<MixFilter>{
           value: max,
           compareOperator: 'LessThanOrEqual',
           fieldName: 'total',

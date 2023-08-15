@@ -4,8 +4,8 @@ import { NavigationEnd } from '@angular/router';
 
 import { Router } from '@angular/router';
 import {
-  MetadataQuery,
   MixContentStatus,
+  MixFilter,
   PaginationModel,
   PaginationRequestModel,
   PaginationResultModel,
@@ -178,7 +178,7 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
     }));
   }
 
-  public metadataChange(key: string, metadata: MetadataQuery[]) {
+  public metadataChange(key: string, metadata: MixFilter[]) {
     const request = this.request$();
     if (!metadata) return;
 
@@ -207,7 +207,7 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
     }));
   }
 
-  public queryChange(queries: MetadataQuery[]) {
+  public queryChange(queries: MixFilter[]) {
     this.patchState((s) => ({
       ...s,
       request: {

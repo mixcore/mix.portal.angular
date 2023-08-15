@@ -14,6 +14,9 @@
                   size="s">
         <span class="material-symbols-outlined"> delete </span>&nbsp;
         Delete(s)</mix-button>
+
+
+      <mix-dynamic-filter class="d-block ms-auto"></mix-dynamic-filter>
     </mix-sub-toolbar>
 
     <div class="data-table-page__body">
@@ -27,11 +30,6 @@
                       (searchChange)="
           store.search($event.searchText, $any($event.searchField))
         ">
-        <div class="col-auto"
-             filter>
-          <mix-dynamic-filter></mix-dynamic-filter>
-        </div>
-
         <div [header]="'Name'"
              key="displayName"
              mixTableColumn>

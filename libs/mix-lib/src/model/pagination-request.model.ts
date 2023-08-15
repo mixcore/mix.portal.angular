@@ -17,8 +17,8 @@ export interface PaginationRequestModel extends MixGraphQLModel {
   filters?: {
     [key: string]: any;
   };
-  queries?: MetadataQuery[];
-  metadataQueries?: MetadataQuery[];
+  queries?: MixFilter[];
+  metadataQueries?: MixFilter[];
   loadNestedData?: boolean;
   mixDatabaseName?: string;
 }
@@ -36,10 +36,12 @@ export type CompareOperator =
   | 'NotContain'
   | 'InRange';
 
-export interface MetadataQuery {
+export interface MixFilter {
   fieldName: string;
   value: string | number | null | Date;
   compareOperator: CompareOperator;
   isRequired?: boolean;
   displayName?: string;
+  options?: string[];
+  type?: 'select' | 'date';
 }

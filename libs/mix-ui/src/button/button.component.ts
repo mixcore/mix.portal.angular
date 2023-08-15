@@ -13,7 +13,7 @@ import { fromEvent } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
 })
 export class MixButtonComponent {
-  @Input() public size: 'l' | 'm' | 's' | 'xs' = 'm';
+  @Input() public size: 'l' | 'm' | 's' | 'xs' = 's';
   @Input() public loading = false;
   @Input() public disabled = false;
   @Input() public type:

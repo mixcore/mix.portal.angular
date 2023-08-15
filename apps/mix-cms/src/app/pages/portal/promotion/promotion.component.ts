@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
-  MetadataQuery,
+  MixFilter,
   MixPromotion,
   PaginationRequestModel,
 } from '@mixcore/lib/model';
@@ -86,7 +86,7 @@ export class PromotionComponent
         const queries = [];
 
         if (filterValue.fromDate) {
-          queries.push(<MetadataQuery>{
+          queries.push(<MixFilter>{
             value: DateUtils.setToStartOfDay(filterValue.fromDate),
             compareOperator: 'GreaterThanOrEqual',
             fieldName: 'fromDate',
@@ -94,7 +94,7 @@ export class PromotionComponent
         }
 
         if (filterValue.currency && filterValue.currency !== 'All') {
-          queries.push(<MetadataQuery>{
+          queries.push(<MixFilter>{
             value: filterValue.currency,
             compareOperator: 'InRange',
             fieldName: 'currency',
@@ -102,7 +102,7 @@ export class PromotionComponent
         }
 
         if (filterValue.toDate) {
-          queries.push(<MetadataQuery>{
+          queries.push(<MixFilter>{
             value: filterValue.toDate,
             compareOperator: 'LessThanOrEqual',
             fieldName: 'toDate',
