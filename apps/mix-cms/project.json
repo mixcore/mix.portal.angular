@@ -42,7 +42,8 @@
           "rfdc",
           "jsoneditor",
           "flat",
-          "qrcode"
+          "qrcode",
+          "dompurify"
         ],
         "serviceWorker": true,
         "ngswConfigPath": "apps/mix-cms/ngsw-config.json"
