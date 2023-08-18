@@ -139,7 +139,7 @@ a {
 }
 
 [tuiWrapper][data-appearance='textfield'] {
-  box-shadow: unset !important;
+  // box-shadow: unset !important;
   border-radius: var(--element-rounded) !important;
   background: var(--background-color-primary);
   color: var(--text-color-primary);

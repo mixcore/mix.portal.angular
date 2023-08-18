@@ -44,6 +44,7 @@ import {
 } from '@taiga-ui/kit';
 import { debounceTime, takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
+import { DatabaseSelectComponent } from '../../../../components/database-select/database-select.component';
 import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
 import { DatabaseStore } from '../../../../stores/database.store';
@@ -70,6 +71,7 @@ import { DatabaseStore } from '../../../../stores/database.store';
     DragDropModule,
     TuiInputInlineModule,
     TuiAutoFocusModule,
+    DatabaseSelectComponent,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],

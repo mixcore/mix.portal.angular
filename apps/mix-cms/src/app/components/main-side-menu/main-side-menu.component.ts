@@ -4,12 +4,12 @@ import {
   Component,
   Input,
   ViewEncapsulation,
-  inject
+  inject,
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import {
   collapseLeftOnLeaveAnimation,
-  expandRightOnEnterAnimation
+  expandRightOnEnterAnimation,
 } from '@mixcore/share/animation';
 import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
@@ -44,38 +44,36 @@ export type MenuItem = {
     TuiDropdownModule,
     TuiTreeModule,
     TranslocoModule,
-    TuiActiveZoneModule
+    TuiActiveZoneModule,
   ],
   templateUrl: './main-side-menu.component.html',
   styleUrls: ['./main-side-menu.component.scss'],
   animations: [
     collapseLeftOnLeaveAnimation({ duration: 250 }),
-    expandRightOnEnterAnimation({ duration: 250 })
+    expandRightOnEnterAnimation({ duration: 250 }),
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class MainSideMenuComponent  {
+export class MainSideMenuComponent {
   public activeRoute = inject(ActivatedRoute);
   public authService = inject(AuthService);
 
-  @Input() public showDetail = true;
+  @Input() public showDetail = false;
   @Input() public menu: MenuItem[] = this.authService.portalMenu;
 
   public selectedMenu: MenuItem | undefined = undefined;
-  public showMenu = true;
 
   constructor(public route: Router) {}
 
-
   public onMenuSelect(menu: MenuItem) {
-      if (this.selectedMenu?.title === menu.title) {
-        this.selectedMenu = undefined;
-        return;
-      }
+    if (this.selectedMenu?.title === menu.title) {
+      this.selectedMenu = undefined;
+      return;
+    }
 
-      this.selectedMenu = menu;
-      this.route.navigateByUrl(menu.url);
+    this.selectedMenu = menu;
+    this.route.navigateByUrl(menu.url);
   }
 
   public toggleMenu(): void {

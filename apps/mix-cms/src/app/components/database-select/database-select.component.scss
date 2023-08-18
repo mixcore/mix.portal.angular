@@ -1,0 +1,46 @@
+.database-select {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  &__add-btn {
+    width: 100%;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  &__title {
+    font-size: var(--text-size-m);
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  &__list {
+    flex-grow: 1;
+    overflow: auto;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    gap: 6px;
+    padding: 6px;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+    font-size: 12px;
+
+    &.--active,
+    &:hover {
+      opacity: 1;
+      background: linear-gradient(var(--tui-info-bg), var(--tui-info-bg)),
+        var(--tui-base-01);
+    }
+  }
+}

@@ -1,28 +1,9 @@
 <!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <div class="database-detail">
-  <div *ngIf="databaseStore.vm$ | async as vm"
-       class="database-detail__tree">
-    <ng-container *ngIf="vm.data">
-      <div class="tree-title">Table ({{ vm.data.length || '0' }})</div>
-
-      <div class="tree-item mt-2 mb-2"
-           [class.--active]="mode == 'create'"
-           (click)="selectedTableChange('create')">
-        <span class="mix-icon">add</span>
-        <span> Create new </span>
-      </div>
-
-      <div class="tree-container">
-        <ng-container *ngFor="let table of vm.data">
-          <div class="tree-item"
-               [class.--active]="id == table.id"
-               (click)="selectedTableChange(table.id)">
-            <span class="mix-icon">database</span>
-            <span>{{ table.displayName }}</span>
-          </div>
-        </ng-container>
-      </div>
-    </ng-container>
+  <div class="database-detail__tree">
+    <mix-database-select [isCreate]="mode == 'create'"
+                         [selectedItemId]="id"
+                         (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
   </div>
 
   <div class="data-detail-page__content-container flex-grow-1">

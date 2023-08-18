@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
   public router = inject(Router);
   public swUpdate = inject(SwUpdate);
   public eaterEgg = inject(MixEaterEgg);
-
   public appAvailable = false;
 
   public ngOnInit(): void {

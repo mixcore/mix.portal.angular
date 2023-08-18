@@ -4,9 +4,7 @@
   height: 100%;
 
   &__tree {
-    margin-top: 2px;
-    margin-bottom: 2px;
-    width: 220px;
+    width: 255px;
     height: calc(100% - 4px);
     background-color: var(--background-color-primary);
     border-top-left-radius: 8px;
@@ -14,42 +12,7 @@
     padding: 8px;
     font-size: 14px;
     overflow: auto;
-    display: flex;
-    flex-direction: column;
     margin-right: -6px;
-
-    .tree-title {
-      font-size: 14px;
-      font-weight: bolder;
-      margin-bottom: 4px;
-      position: sticky;
-      top: 0px;
-    }
-
-    .tree-container {
-      flex-grow: 1;
-      overflow: auto;
-    }
-
-    .tree-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px;
-      border-radius: 4px;
-      overflow: hidden;
-      cursor: pointer;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin-bottom: 6px;
-
-      &.--active,
-      &:hover {
-        opacity: 1;
-        background: linear-gradient(var(--tui-info-bg), var(--tui-info-bg)),
-          var(--tui-base-01);
-      }
-    }
   }
 }
 

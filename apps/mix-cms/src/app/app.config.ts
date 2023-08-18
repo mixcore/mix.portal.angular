@@ -102,7 +102,7 @@ export const appConfig: ApplicationConfig = {
       ApolloModule,
       MonacoEditorModule.forRoot(),
       HotToastModule.forRoot({
-        position: 'bottom-center',
+        position: 'top-center',
       }),
       TuiDialogModule,
       FormlyModule.forRoot({

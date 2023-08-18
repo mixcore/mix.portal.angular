@@ -41,12 +41,8 @@ export class MixPortalLayoutComponent {
     this.router.events.subscribe((v) => {
       if (v instanceof NavigationStart) {
         this.showProgress.set(true);
-      }
-
-      if (v instanceof NavigationEnd) {
-        // setTimeout(() => {
+      } else if (v instanceof NavigationEnd) {
         this.showProgress.set(false);
-        // }, 300);
       }
     });
   }
