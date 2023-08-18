@@ -1,27 +1,23 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   OnInit,
-  ViewChild,
-  ViewEncapsulation,
   inject,
-  signal,
 } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import {
-  MixContentStatus,
-  MixDatabase,
-  MixDynamicData,
-  MixOrderBy,
-  PaginationRequestModel,
-} from '@mixcore/lib/model';
+import { MixDynamicData } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { DomHelper, toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixDataTableModule } from '@mixcore/ui/table';
+import { TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
+import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { forkJoin, takeUntil, tap } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
@@ -45,29 +41,53 @@ import { DatabaseDataStore } from '../../../stores/database-data.store';
     DynamicDbListComponent,
     BasicMixFilterComponent,
     ActionCollapseComponent,
+    TuiTableModule,
+    TuiCheckboxModule,
+    FormsModule,
+    MixInputComponent,
+    TuiPaginationModule,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
-  providers: [DatabaseDataStore, TuiDestroyService],
-  encapsulation: ViewEncapsulation.None,
+  providers: [TuiDestroyService, DatabaseDataStore],
+  // encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatabaseDataComponent
   extends ListPageKit<MixDynamicData>
   implements OnInit
 {
-  @ViewChild(DynamicDbListComponent) dataList!: DynamicDbListComponent;
-
-  public dbSysName = signal('');
-  public dbDisplayName = signal('Database');
+  public dbSysName = '';
+  public dbDisplayName = '';
   public mixApi = inject(MixApiFacadeService);
   public activatedRoute = inject(ActivatedRoute);
   public modal = inject(ModalService);
-  public filterValue = signal<PaginationRequestModel>({
-    status: MixContentStatus.Published,
-    orderBy: MixOrderBy.CreatedDateTime,
-    direction: 'Desc',
-  });
-  public viewInit = true;
+  public store = inject(DatabaseDataStore);
+  public activeCol = '';
+  public isAllCheck = false;
+
+  public actions = [
+    {
+      label: 'Insert',
+      key: 'create',
+      icon: 'add',
+      place: 'left',
+      type: 'primary',
+    },
+    {
+      label: 'Delete',
+      key: 'delete',
+      icon: 'delete',
+      place: 'left',
+      type: 'secondary-danger',
+    },
+    {
+      label: 'Export',
+      key: 'export',
+      icon: 'system_update_alt',
+      place: 'left',
+    },
+  ];
   public actionMaps = {
     create: () => this.onCreateData(),
     delete: () => this.onDeleteData(),
@@ -82,15 +102,13 @@ export class DatabaseDataComponent
     });
   }
 
-  public onloadSuccess = (db: MixDatabase) => {
-    this.dbDisplayName.set(db.displayName);
-  };
-
   public ngOnInit(): void {
     this.activatedRoute.params.pipe(takeUntil(this.destroy$)).subscribe((v) => {
-      this.dbSysName.set(v['databaseSysName']);
-      setTimeout(() => (this.viewInit = false));
-      setTimeout(() => (this.viewInit = true));
+      this.dbSysName = v['databaseSysName'];
+
+      if (this.dbSysName) {
+        this.store.patchState((s) => ({ ...s, dbSysName: this.dbSysName }));
+      }
     });
   }
 
@@ -106,25 +124,20 @@ export class DatabaseDataComponent
       .subscribe((ok) => {
         if (!ok) return;
         const requests = selectedData.map((d) =>
-          this.mixApi.databaseApi.deleteData(this.dbSysName(), d.id!)
+          this.mixApi.databaseApi.deleteData(this.dbSysName, d.id!)
         );
 
         forkJoin(requests).subscribe({
           next: () => {
-            this.dataList.onReload();
             this.modal.success('Successfully delete your data').subscribe();
           },
         });
       });
   }
 
-  public onFilterChange(value: PaginationRequestModel) {
-    this.filterValue.set(value);
-  }
-
   public onExportData() {
     this.mixApi.databaseApi
-      .exportDataByDbName(this.dbSysName(), {
+      .exportDataByDbName(this.dbSysName, {
         pageSize: 1000,
         pageIndex: 0,
       })
@@ -135,19 +148,19 @@ export class DatabaseDataComponent
       .subscribe();
   }
 
+  public onResizeChange(v: any) {
+    console.log(v);
+  }
+
   async onEditData(data: MixDynamicData) {
     await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName()}/${
-        data.id
-      }`
+      `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/${data.id}`
     );
   }
 
   async onCreateData() {
     await this.router.navigateByUrl(
-      `${
-        CMS_ROUTES.portal['database-data'].fullPath
-      }/${this.dbSysName()}/create`
+      `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/create`
     );
   }
 }

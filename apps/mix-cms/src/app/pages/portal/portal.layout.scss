@@ -1,7 +1,6 @@
 .mix-main-layout {
   display: flex;
   height: 100%;
-  // background: #eff4f9;
   background: rgb(255 255 255 / 25%);
 
   &__progress {
@@ -33,11 +32,11 @@
 
   &__workspace {
     height: calc(100% - var(--main-layout-gap) - var(--main-layout-gap));
-    width: calc(100% - var(--main-layout-gap) - var(--main-layout-gap));
     flex-grow: 1;
     margin: var(--main-layout-gap);
     margin-right: unset;
     z-index: 1;
+    overflow: auto;
   }
 
   &__explorer {
@@ -45,5 +44,13 @@
     border-radius: 12px;
     margin: var(--main-layout-gap);
     margin-left: unset;
+  }
+
+  &__main-workspace {
+    display: flex;
+    flex-grow: 1;
+    overflow: auto;
+    height: 100%;
+    position: relative;
   }
 }

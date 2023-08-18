@@ -22,7 +22,8 @@ export class MixButtonComponent {
     | 'danger'
     | 'outline'
     | 'flat'
-    | 'secondary' = 'primary';
+    | 'secondary'
+    | 'icon' = 'primary';
   @Input() public iconBtn = false;
 
   constructor(elementRef: ElementRef) {
@@ -44,5 +45,6 @@ export class MixButtonComponent {
     outline: 'outline',
     flat: 'flat',
     secondary: 'secondary',
+    icon: 'icon',
   };
 }

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  domainUrl: 'https://api.mixcore.dev',
-  stageDomainUrl: 'https://api.mixcore.dev',
+  domainUrl: 'https://stag.api.daphalestudios.com',
+  stageDomainUrl: 'https://stag.api.daphalestudios.com',
 };

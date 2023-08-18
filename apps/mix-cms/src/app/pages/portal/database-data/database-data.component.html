@@ -1,40 +1,115 @@
-<div class="data-table-page">
+<div *ngIf="store.vm$ | async as vm"
+     class="data-table-page">
   <div class="data-table-page__main-container">
     <mix-sub-toolbar [description]="'LISTING'"
-                     [title]="dbDisplayName()">
+                     [title]="vm.db?.displayName || 'Db Data'">
       <div class="toolbar-separator"></div>
-      <mix-action-collapse [actionMaps]="actionMaps"></mix-action-collapse>
-      <mix-button class="ms-auto"
-                  [iconBtn]="true"
-                  [type]="showFilter ? 'primary' : 'outline'"
-                  (click)="showFilter = !showFilter"
-                  size="s">
-        <span class="material-symbols-outlined"> filter_alt </span></mix-button>
+      <mix-action-collapse [actionMaps]="actionMaps"
+                           [actions]="actions"></mix-action-collapse>
     </mix-sub-toolbar>
 
-    <div class="data-table-page__body">
-      <mix-dynamic-db-list *ngIf="viewInit"
-                           [dbSysName]="dbSysName()"
-                           [filterValue]="filterValue()"
-                           [onloadSuccess]="onloadSuccess"
-                           [type]="'output'"
-                           (editDataChange)="onEditData($event)"
-                           (itemsSelectedChange)="selectedItems = $event">
-      </mix-dynamic-db-list>
-    </div>
-  </div>
-
-  <div *ngIf="showFilter"
-       class="data-table-page__filter">
-    <div class="shell">
-      <div class="filter-toggle"
-           (click)="showFilter = !showFilter">
-        <span class="material-symbols-outlined"> close </span>
+    <div class="data-table-page__body d-flex flex-column">
+      <div class="mix-dbs-table__toolbar">
+        <mix-input class="search"
+                   [searchIcon]="true"
+                   placeHolder="Search on string fields"></mix-input>
       </div>
-      <div class="data-table-page__filter-container">
-        <div class="text-bold">Filter</div>
-        <mix-basic-mix-filter [value]="filterValue()"
-                              (valueChange)="onFilterChange($event)"></mix-basic-mix-filter>
+
+      <div class="mix-dbs-table__main-container">
+        <ng-container *ngIf="vm.status === 'Success'">
+          <table class="mix-dbs-table__table"
+                 [columns]="vm.columnKeys"
+                 tuiTable>
+            <thead>
+              <tr tuiThGroup>
+                <th *tuiHead="'checkbox'"
+                    class="mix-dbs-table__th"
+                    [resizable]="true"
+                    [sorter]="null"
+                    [sticky]="true"
+                    tuiTh>
+                  <tui-checkbox [ngModel]="isAllCheck"
+                                [size]="'m'"
+                                (click)="$event.stopPropagation()"></tui-checkbox>
+                </th>
+
+                <ng-container *ngFor="let col of vm.columns">
+                  <th *tuiHead="col.systemName"
+                      class="mix-dbs-table__th"
+                      [resizable]="true"
+                      [sorter]="null"
+                      [sticky]="true"
+                      (resize)="onResizeChange($event)"
+                      tuiTh>
+                    <span class="text-highlight">{{ col.dataType }}</span> &nbsp; {{ col.displayName }}
+                  </th>
+                </ng-container>
+
+                <th *tuiHead="'add-col'"
+                    class="mix-dbs-table__th --sticky-r"
+                    [resizable]="true"
+                    [sorter]="null"
+                    [sticky]="true"
+                    tuiTh>
+                  <mix-button><span class="mix-icon">add</span></mix-button>
+                </th>
+              </tr>
+            </thead>
+            <tbody [data]="vm.data"
+                   tuiTbody>
+              <tr *ngFor="let item of vm.data"
+                  tuiTr>
+                <td *tuiCell="'checkbox'"
+                    class="mix-dbs-table__td --check"
+                    tuiTd>
+                  <tui-checkbox [ngModel]="isAllCheck"
+                                [size]="'m'"
+                                (click)="$event.stopPropagation()"></tui-checkbox>
+                </td>
+
+                <ng-container *ngFor="let col of vm.columns">
+                  <td *tuiCell="col.systemName"
+                      class="mix-dbs-table__td"
+                      [class.--active]="activeCol === col.systemName + item['id']"
+                      (click)="activeCol = col.systemName + item['id']"
+                      tuiTd>
+                    {{ $any(item)[col.systemName] }}
+                  </td>
+                </ng-container>
+
+                <td *tuiCell="'add-col'"
+                    class="mix-dbs-table__td --sticky-r"
+                    tuiTd>
+                  <mix-button type="icon"><span class="mix-icon">more_horiz</span></mix-button>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="mix-dbs-table__td --check"
+                    tuiTd>
+                </td>
+                <ng-container *ngFor="let col of vm.columns; let i = index">
+                  <td class="mix-dbs-table__td"
+                      tuiTd>
+                    <mix-button *ngIf="i === 0"><span class="mix-icon">add</span>&nbsp;Insert</mix-button>
+                  </td>
+                </ng-container>
+              </tr>
+            </tbody>
+          </table>
+        </ng-container>
+      </div>
+
+
+      <div class="mix-dbs-table__footer">
+        <div class="d-flex gap-2">
+          Total items: <strong>{{ vm.pageInfo.total || '--' }}</strong> &nbsp; Page
+          size: <strong>{{ vm.pageInfo.pageSize || '0' }}</strong>
+        </div>
+
+        <tui-pagination *ngIf="!!vm.pageInfo?.totalPage"
+                        [index]="vm.pageInfo.pageIndex"
+                        [length]="vm.pageInfo.totalPage ?? 0"></tui-pagination>
       </div>
     </div>
   </div>

@@ -15,6 +15,9 @@
   background-color: var(--background-color-primary);
   border: 1px solid var(--border-color-default);
   border-left: unset;
+  box-shadow: 11px -3px 20px -19px rgba(0, 0, 0, 1) inset;
+  -webkit-box-shadow: 11px -3px 20px -19px rgba(0, 0, 0, 1) inset;
+  -moz-box-shadow: 11px -3px 20px -19px rgba(0, 0, 0, 1) inset;
 
   .avatar {
     cursor: pointer;

@@ -1,14 +1,21 @@
-import { Injectable, effect, inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MixDatabase, PaginationRequestModel } from '@mixcore/lib/model';
+import {
+  MixColumn,
+  MixDatabase,
+  MixDynamicData,
+  PaginationRequestModel,
+} from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ComponentStore } from '@ngrx/component-store';
-import { forkJoin, tap } from 'rxjs';
+import { combineLatest, filter, forkJoin, switchMap, tap } from 'rxjs';
 import { BaseState } from './base-crud.store';
 
-export interface DatabaseDataState extends BaseState<object> {
+export interface DatabaseDataState extends BaseState<MixDynamicData> {
   dbSysName?: string;
   db?: MixDatabase;
+  columns: MixColumn[];
+  columnKeys: string[];
 }
 
 @Injectable()
@@ -16,44 +23,33 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
   public mixApi = inject(MixApiFacadeService);
   public router = inject(Router);
 
-  public status = this.selectSignal((s) => s.status);
-  public dbSysName$ = this.selectSignal((s) => s.dbSysName);
-  public request$ = this.selectSignal((s) => s.request);
-  public data$ = this.selectSignal((s) => s.data);
-  public db = this.selectSignal((s) => s.db);
-  public pageInfo = this.selectSignal((s) => s.pageInfo);
-  public dbColumn = this.selectSignal((s) =>
-    s.db?.columns.sort((c) => c.priority).slice(0, 3)
+  public dbSysName$ = this.select((s) => s.dbSysName).pipe(filter(Boolean));
+  public query$ = this.select((s) => s.request);
+  public vm$ = combineLatest([this.dbSysName$, this.query$]).pipe(
+    tap(([dbSysName, request]) => this.loadData(request, dbSysName)),
+    switchMap(() => this.select((s) => s))
   );
 
   constructor() {
     super({
+      columnKeys: [],
+      columns: [],
       data: [],
       status: 'Pending',
       request: {
         pageIndex: 0,
-        pageSize: 10,
+        pageSize: 20,
       },
       pageInfo: {
         pageIndex: 0,
-        pageSize: 10,
+        pageSize: 20,
       },
     });
-
-    effect(
-      () => {
-        const dbName = this.dbSysName$();
-        if (!dbName) return;
-
-        this.loadData(this.request$(), dbName);
-      },
-      { allowSignalWrites: true }
-    );
   }
 
   public loadData(request: PaginationRequestModel, dbName: string) {
     forkJoin([
-      this.mixApi.databaseApi.getDataByName(dbName, request),
+      this.mixApi.databaseApi.getDataByName<MixDynamicData>(dbName, request),
       this.mixApi.databaseApi.getDatabaseBySystemName(dbName),
     ])
       .pipe(tap(() => this.patchState({ status: 'Loading' })))
@@ -62,8 +58,14 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
           this.patchState((s) => ({
             ...s,
             status: 'Success',
-            data: result.items as object[],
+            data: result.items,
             db: db,
+            columns: db.columns,
+            columnKeys: [
+              'checkbox',
+              ...db.columns.map((x) => x.systemName),
+              'add-col',
+            ],
             pageInfo: result.pagingData,
           }));
         },
