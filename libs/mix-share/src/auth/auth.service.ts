@@ -54,6 +54,7 @@ export class AuthService extends BaseApiService {
   public static REFRESH_TOKEN = 'refresh_token';
   public static TOKEN_TYPE = 'token_type';
   public static CULTURE = 'culture';
+  public static SPECIFIC_CULTURE = 'specificCulture';
 
   public user$ = new BehaviorSubject<User | null>(null);
   public cultures$ = new BehaviorSubject<Culture[]>([]);
@@ -138,6 +139,11 @@ export class AuthService extends BaseApiService {
     });
   }
 
+  public setCulture(value: Culture) {
+    localStorage.setItem(AuthService.CULTURE, JSON.stringify(value));
+    localStorage.setItem(AuthService.SPECIFIC_CULTURE, value.specificulture);
+  }
+
   public initRoles() {
     const currentRoles = this.user$.getValue()?.roles;
     let request: Observable<MixRole>[] = [];
@@ -174,6 +180,8 @@ export class AuthService extends BaseApiService {
         } else {
           this.currentCulture = result.items[0];
         }
+
+        if (this.currentCulture) this.setCulture(this.currentCulture);
 
         return of(result);
       }),

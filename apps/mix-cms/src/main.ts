@@ -1,17 +1,16 @@
-import { ViewEncapsulation, enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from '@angular/core';
 
-import { AppModule } from './app/app.module';
+import { bootstrapApplication } from '@angular/platform-browser';
 import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule, {
-    ngZoneEventCoalescing: true,
-    defaultEncapsulation: ViewEncapsulation.None,
-    ngZoneRunCoalescing: true,
-  })
-  .catch((err) => console.error(err));
+Promise.all([import('./app/app.component'), import('./app/app.config')]).then(
+  ([appComponentModule, appConfigModule]) =>
+    bootstrapApplication(
+      appComponentModule.AppComponent,
+      appConfigModule.appConfig
+    ).catch((err) => console.error(err))
+);

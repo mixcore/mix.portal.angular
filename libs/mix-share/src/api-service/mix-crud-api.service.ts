@@ -1,10 +1,8 @@
-import { inject } from '@angular/core';
 import {
   PaginationRequestModel,
   PaginationResultModel,
 } from '@mixcore/lib/model';
 import { Observable } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
 import { BaseApiService, IHttpParamObject } from '../bases';
 import { Utils } from '../utils';
 
@@ -14,7 +12,6 @@ export class MixRestfulApi<
 > extends BaseApiService {
   public restUrl = '';
   public resultHandler?: { requestSuccessMsg: string };
-  public auth = inject(AuthService);
 
   constructor(url: string, resultHandler?: { requestSuccessMsg: string }) {
     super();
@@ -28,7 +25,7 @@ export class MixRestfulApi<
   ): Observable<PaginationResultModel<T>> {
     const query = {
       ...request,
-      culture: withCulture ? this.auth.currentCulture?.specificulture : '',
+      culture: localStorage.getItem('specificCulture'),
     };
 
     return this.get<PaginationResultModel<T>>(
@@ -40,7 +37,7 @@ export class MixRestfulApi<
   public filter(request: U): Observable<PaginationResultModel<T>> {
     const query = {
       ...request,
-      specificulture: this.auth.currentCulture?.specificulture,
+      specificulture: localStorage.getItem('specificCulture'),
     };
 
     return this.post<U, PaginationResultModel<T>>(
