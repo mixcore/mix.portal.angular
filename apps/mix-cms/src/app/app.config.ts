@@ -3,10 +3,18 @@ import {
   HttpClient,
   HttpClientModule,
 } from '@angular/common/http';
-import { Injectable, NgModule, isDevMode } from '@angular/core';
+import {
+  ApplicationConfig,
+  Injectable,
+  importProvidersFrom,
+  isDevMode,
+} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule } from '@angular/router';
+import { provideRouter } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { InMemoryCache } from '@apollo/client/cache';
+import { DataType, DataTypeUi } from '@mixcore/lib/model';
 import {
   AuthInterceptor,
   FULL_MENU,
@@ -16,24 +24,18 @@ import {
 } from '@mixcore/share/auth';
 import { DOMAIN_URL, DOMAIN_URL$ } from '@mixcore/share/base';
 import { ERROR_MAP, errorMap } from '@mixcore/share/form';
-import { MixFormlyDatePickerComponent } from '@mixcore/ui/date-picker';
-import { MixFormlyDateTimePickerComponent } from '@mixcore/ui/date-time-picker';
-
-import { MixFormlyInputComponent } from '@mixcore/ui/input';
-import { MixFormlyInputNumberComponent } from '@mixcore/ui/input-number';
-
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { InMemoryCache } from '@apollo/client/core';
-import { DataType, DataTypeUi } from '@mixcore/lib/model';
 import { MixFormlyArrayMediaComponent } from '@mixcore/ui/array-media';
 import { MixFormlyArrayRadioComponent } from '@mixcore/ui/array-radio';
 import { MixFormlyColorPickerComponent } from '@mixcore/ui/color-picker';
+import { MixFormlyDatePickerComponent } from '@mixcore/ui/date-picker';
+import { MixFormlyDateTimePickerComponent } from '@mixcore/ui/date-time-picker';
 import { MixFormlyRichTextComponent } from '@mixcore/ui/editor';
+import { MixFormlyInputComponent } from '@mixcore/ui/input';
+import { MixFormlyInputNumberComponent } from '@mixcore/ui/input-number';
 import { JsonEditorFormlyComponent } from '@mixcore/ui/json';
 import { MixModalModule } from '@mixcore/ui/modal';
 import { MixFormlyQRCodeComponent } from '@mixcore/ui/qr-code';
 import { MixFormlySelectComponent } from '@mixcore/ui/select';
-import { PortalSidebarComponent } from '@mixcore/ui/sidebar';
 import { MixFormlyToggleComponent } from '@mixcore/ui/toggle';
 import { MixFormlyUploadComponent } from '@mixcore/ui/upload';
 import {
@@ -67,9 +69,7 @@ import { HttpLink } from 'apollo-angular/http';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../environments/environment';
-import { AppComponent } from './app.component';
 import { CMS_ROUTES, ROUTES } from './app.routes';
-import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 import { APP_MENU, APP_NOT_SUPPER_ADMIN_MENU } from './shares/consts/app.menu';
 
 @Injectable({ providedIn: 'root' })
@@ -81,77 +81,80 @@ export class TranslocoHttpLoader implements TranslocoLoader {
   }
 }
 
-const domainUrlFactory = () => {
+export const domainUrlFactory = () => {
   const url = localStorage.getItem('domainUrl');
   return new BehaviorSubject<string>(url || environment.domainUrl);
 };
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    TuiRootModule,
-    MixModalModule,
-    TuiAlertModule,
-    TuiPreviewModule,
-    TuiPortalModule,
-    TuiPushModule,
-    HttpClientModule,
-    ApolloModule,
-    RouterModule.forRoot(ROUTES),
-    LoadingScreenComponent,
-    MonacoEditorModule.forRoot(),
-    HotToastModule.forRoot({
-      position: 'bottom-center',
-    }),
-    TuiDialogModule,
-    PortalSidebarComponent,
-    FormlyModule.forRoot({
-      types: [
-        {
-          name: DataType.Text,
-          component: MixFormlyInputComponent,
-          defaultOptions: { props: { type: 'text' } },
-        },
-        {
-          name: DataType.Custom,
-          component: MixFormlyInputComponent,
-          defaultOptions: { props: { type: 'text' } },
-        },
-        {
-          name: DataType.Url,
-          component: MixFormlyInputComponent,
-          defaultOptions: { props: { type: 'text' } },
-        },
-        {
-          name: DataType.DateTime,
-          component: MixFormlyDateTimePickerComponent,
-        },
-        { name: DataType.Integer, component: MixFormlyInputNumberComponent },
-        { name: DataType.Double, component: MixFormlyInputNumberComponent },
-        { name: DataType.Color, component: MixFormlyColorPickerComponent },
-        { name: DataTypeUi.TextSelect, component: MixFormlySelectComponent },
-        { name: DataType.Upload, component: MixFormlyUploadComponent },
-        { name: DataType.Json, component: JsonEditorFormlyComponent },
-        { name: DataType.Array, component: JsonEditorFormlyComponent },
-        { name: DataType.QRCode, component: MixFormlyQRCodeComponent },
-        { name: DataType.Date, component: MixFormlyDatePickerComponent },
-        { name: DataType.Boolean, component: MixFormlyToggleComponent },
-        { name: DataType.Html, component: MixFormlyRichTextComponent },
-        { name: DataType.Html, component: MixFormlyRichTextComponent },
-        { name: DataType.ArrayMedia, component: MixFormlyArrayMediaComponent },
-        { name: DataType.ArrayRadio, component: MixFormlyArrayRadioComponent },
-      ],
-    }),
-    TuiPreviewModule,
-    TranslocoModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      registrationStrategy: 'registerWhenStable:20000',
-    }),
-  ],
+export const appConfig: ApplicationConfig = {
   providers: [
+    provideRouter(ROUTES),
+    importProvidersFrom(
+      BrowserModule,
+      BrowserAnimationsModule,
+      TuiRootModule,
+      MixModalModule,
+      TuiAlertModule,
+      TuiPreviewModule,
+      TuiPortalModule,
+      TuiPushModule,
+      HttpClientModule,
+      ApolloModule,
+      MonacoEditorModule.forRoot(),
+      HotToastModule.forRoot({
+        position: 'bottom-center',
+      }),
+      TuiDialogModule,
+      FormlyModule.forRoot({
+        types: [
+          {
+            name: DataType.Text,
+            component: MixFormlyInputComponent,
+            defaultOptions: { props: { type: 'text' } },
+          },
+          {
+            name: DataType.Custom,
+            component: MixFormlyInputComponent,
+            defaultOptions: { props: { type: 'text' } },
+          },
+          {
+            name: DataType.Url,
+            component: MixFormlyInputComponent,
+            defaultOptions: { props: { type: 'text' } },
+          },
+          {
+            name: DataType.DateTime,
+            component: MixFormlyDateTimePickerComponent,
+          },
+          { name: DataType.Integer, component: MixFormlyInputNumberComponent },
+          { name: DataType.Double, component: MixFormlyInputNumberComponent },
+          { name: DataType.Color, component: MixFormlyColorPickerComponent },
+          { name: DataTypeUi.TextSelect, component: MixFormlySelectComponent },
+          { name: DataType.Upload, component: MixFormlyUploadComponent },
+          { name: DataType.Json, component: JsonEditorFormlyComponent },
+          { name: DataType.Array, component: JsonEditorFormlyComponent },
+          { name: DataType.QRCode, component: MixFormlyQRCodeComponent },
+          { name: DataType.Date, component: MixFormlyDatePickerComponent },
+          { name: DataType.Boolean, component: MixFormlyToggleComponent },
+          { name: DataType.Html, component: MixFormlyRichTextComponent },
+          { name: DataType.Html, component: MixFormlyRichTextComponent },
+          {
+            name: DataType.ArrayMedia,
+            component: MixFormlyArrayMediaComponent,
+          },
+          {
+            name: DataType.ArrayRadio,
+            component: MixFormlyArrayRadioComponent,
+          },
+        ],
+      }),
+      TuiPreviewModule,
+      TranslocoModule,
+      ServiceWorkerModule.register('ngsw-worker.js', {
+        enabled: !isDevMode(),
+        registrationStrategy: 'registerWhenStable:20000',
+      })
+    ),
     {
       provide: DOMAIN_URL,
       useValue: environment.domainUrl,
@@ -225,6 +228,4 @@ const domainUrlFactory = () => {
       useClass: NgDompurifySanitizer,
     },
   ],
-  bootstrap: [AppComponent],
-})
-export class AppModule {}
+};
