@@ -35,7 +35,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
       columnKeys: [],
       columns: [],
       data: [],
-      status: 'Pending',
+      status: 'Loading',
       request: {
         pageIndex: 0,
         pageSize: 20,

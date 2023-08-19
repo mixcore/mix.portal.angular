@@ -7,13 +7,14 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MixDynamicData } from '@mixcore/lib/model';
+import { MixDatabase, MixDynamicData } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { DomHelper, toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
+import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { MixDataTableModule } from '@mixcore/ui/table';
 import { TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
@@ -22,6 +23,7 @@ import { forkJoin, takeUntil, tap } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
 import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
+import { DatabaseSelectComponent } from '../../../components/database-select/database-select.component';
 import { DynamicDbListComponent } from '../../../components/dynamic-db-list/dynamic-db-list.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
@@ -46,11 +48,12 @@ import { DatabaseDataStore } from '../../../stores/database-data.store';
     FormsModule,
     MixInputComponent,
     TuiPaginationModule,
+    DatabaseSelectComponent,
+    SkeletonLoadingComponent,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
   providers: [TuiDestroyService, DatabaseDataStore],
-  // encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatabaseDataComponent
@@ -58,7 +61,6 @@ export class DatabaseDataComponent
   implements OnInit
 {
   public dbSysName = '';
-  public dbDisplayName = '';
   public mixApi = inject(MixApiFacadeService);
   public activatedRoute = inject(ActivatedRoute);
   public modal = inject(ModalService);
@@ -107,7 +109,11 @@ export class DatabaseDataComponent
       this.dbSysName = v['databaseSysName'];
 
       if (this.dbSysName) {
-        this.store.patchState((s) => ({ ...s, dbSysName: this.dbSysName }));
+        this.store.patchState((s) => ({
+          ...s,
+          status: 'Loading',
+          dbSysName: this.dbSysName,
+        }));
       }
     });
   }
@@ -148,10 +154,6 @@ export class DatabaseDataComponent
       .subscribe();
   }
 
-  public onResizeChange(v: any) {
-    console.log(v);
-  }
-
   async onEditData(data: MixDynamicData) {
     await this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/${data.id}`
@@ -161,6 +163,14 @@ export class DatabaseDataComponent
   async onCreateData() {
     await this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/create`
+    );
+  }
+
+  public selectedTableChange(mixDb: MixDatabase) {
+    if (mixDb.systemName == this.dbSysName) return;
+
+    this.router.navigateByUrl(
+      `${CMS_ROUTES.portal['database-data'].fullPath}/${mixDb.systemName}`
     );
   }
 }

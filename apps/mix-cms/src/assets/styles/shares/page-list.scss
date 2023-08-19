@@ -5,6 +5,11 @@
   flex-direction: row;
   position: relative;
 
+  tui-loader > .t-content {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__filter {
     background-color: var(--background-color-primary);
     border-radius: var(--border-radius-default);
@@ -25,6 +30,17 @@
     .shell {
       position: relative;
     }
+  }
+
+  &__sidebar {
+    min-width: 255px;
+    max-width: 255px;
+    height: calc(100% - 4px);
+    background-color: var(--background-color-primary);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    overflow: auto;
+    margin-right: -4px;
   }
 
   &__sub-toolbar {

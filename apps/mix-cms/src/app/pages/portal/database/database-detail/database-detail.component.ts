@@ -204,10 +204,12 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       });
   }
 
-  public selectedTableChange(id: string | number) {
-    if (id == this.id) return;
+  public selectedTableChange(ev: MixDatabase) {
+    if (ev.id == this.id) return;
 
-    this.router.navigateByUrl(`${CMS_ROUTES.portal.database.fullPath}/${id}`);
+    this.router.navigateByUrl(
+      `${CMS_ROUTES.portal.database.fullPath}/${ev.id}`
+    );
   }
 
   public identify(index: number, item: MixColumn) {

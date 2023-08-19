@@ -1,5 +1,11 @@
 <div *ngIf="store.vm$ | async as vm"
      class="data-table-page">
+  <div class="data-table-page__sidebar">
+    <mix-database-select [isCreate]="false"
+                         [selectedItemId]="vm.db?.id"
+                         (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
+  </div>
+
   <div class="data-table-page__main-container">
     <mix-sub-toolbar [description]="'LISTING'"
                      [title]="vm.db?.displayName || 'Db Data'">
@@ -39,7 +45,6 @@
                       [resizable]="true"
                       [sorter]="null"
                       [sticky]="true"
-                      (resize)="onResizeChange($event)"
                       tuiTh>
                     <span class="text-highlight">{{ col.dataType }}</span> &nbsp; {{ col.displayName }}
                   </th>
@@ -97,6 +102,10 @@
               </tr>
             </tbody>
           </table>
+        </ng-container>
+
+        <ng-container *ngIf="vm.status === 'Loading'">
+          <mix-skeleton-loading type="table"></mix-skeleton-loading>
         </ng-container>
       </div>
 

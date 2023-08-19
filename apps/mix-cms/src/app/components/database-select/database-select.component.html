@@ -4,7 +4,7 @@
   <mix-button class="database-select__add-btn"
               [class.--disable]="isCreate"
               [type]="isCreate ? 'secondary' : 'outline'"
-              (click)="selectedItemChange.emit('create')">
+              (click)="createDb()">
     <span class="mix-icon">add</span>&nbsp;
     {{ isCreate ? 'Creating' : 'New Table' }}
   </mix-button>
@@ -20,7 +20,7 @@
     <ng-container *ngFor="let table of (searchText.value | filter:vm.data)">
       <div class="database-select__item"
            [class.--active]="selectedItemId == table.id"
-           (click)="selectedItemChange.emit(table.id)">
+           (click)="selectDb(table)">
         <span class="mix-icon">database</span>
         <span>{{ table.displayName }}</span>
       </div>
