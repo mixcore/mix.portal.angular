@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   inject,
+  NgZone,
   OnInit,
 } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
@@ -10,6 +12,7 @@ import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { zoomOutLeftOnLeaveAnimation } from '@mixcore/share/animation';
 import { MixEaterEgg } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
+import { ModalService } from '@mixcore/ui/modal';
 import { TuiRootModule } from '@taiga-ui/core';
 import { filter, switchMap } from 'rxjs';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
@@ -28,26 +31,32 @@ export class AppComponent implements OnInit {
   public router = inject(Router);
   public swUpdate = inject(SwUpdate);
   public eaterEgg = inject(MixEaterEgg);
+  public zone = inject(NgZone);
+  public modal = inject(ModalService);
+  public cdr = inject(ChangeDetectorRef);
+
   public appAvailable = false;
 
   public ngOnInit(): void {
-    if (this.swUpdate.isEnabled) {
-      this.swUpdate.versionUpdates
-        .pipe(
-          filter(
-            (evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'
-          )
-        )
-        .subscribe(() => {
-          if (
-            confirm(
-              'A new version of the application is available. Update now?'
+    this.zone.runOutsideAngular(() => {
+      if (this.swUpdate.isEnabled) {
+        this.swUpdate.versionUpdates
+          .pipe(
+            filter(
+              (evt): evt is VersionReadyEvent => evt.type === 'VERSION_READY'
+            ),
+            switchMap(() =>
+              this.modal.success(
+                'A new version of the application is available. Update now?'
+              )
             )
-          ) {
-            window.location.reload();
-          }
-        });
-    }
+          )
+          .subscribe((ok) => {
+            if (ok) window.location.reload();
+            this.cdr.detectChanges();
+          });
+      }
+    });
 
     this.authService
       .fetchUserData()

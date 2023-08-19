@@ -2,10 +2,11 @@
 <div *ngIf="store.vm$ | async as vm"
      class="database-select">
   <mix-button class="database-select__add-btn"
+              [class.--disable]="isCreate"
               [type]="isCreate ? 'secondary' : 'outline'"
               (click)="selectedItemChange.emit('create')">
     <span class="mix-icon">add</span>&nbsp;
-    New Table
+    {{ isCreate ? 'Creating' : 'New Table' }}
   </mix-button>
 
   <mix-input class="database-select__search"
