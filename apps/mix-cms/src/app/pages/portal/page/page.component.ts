@@ -16,7 +16,6 @@ import { ImageHandleDirective } from '@mixcore/share/directives';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
-import { TuiHintModule } from '@taiga-ui/core';
 import { CMS_ROUTES } from '../../../app.routes';
 import { CompressImageComponent } from '../../../components/compress-image/compress-image.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
@@ -30,7 +29,6 @@ import { MixStatusIndicatorComponent } from '../../../components/status-indicato
     MixDataTableModule,
     MixStatusIndicatorComponent,
     RelativeTimeSpanPipe,
-    TuiHintModule,
     NgOptimizedImage,
     ImageHandleDirective,
     CompressImageComponent,

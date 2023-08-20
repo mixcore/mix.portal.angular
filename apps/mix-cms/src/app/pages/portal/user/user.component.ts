@@ -23,11 +23,7 @@ import { MixErrorAlertComponent } from '@mixcore/ui/error';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixDataTableModule } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
-import {
-  TuiDialogContext,
-  TuiDialogService,
-  TuiHintModule,
-} from '@taiga-ui/core';
+import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusContent } from '@tinkoff/ng-polymorpheus';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { UserStore } from '../../../stores/user.store';
@@ -41,7 +37,6 @@ import { UserStore } from '../../../stores/user.store';
     MixButtonComponent,
     MixDataTableModule,
     RelativeTimeSpanPipe,
-    TuiHintModule,
     NgOptimizedImage,
     ImageHandleDirective,
     MixInputComponent,

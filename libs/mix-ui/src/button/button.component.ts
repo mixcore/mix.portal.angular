@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  Input,
+  NgZone,
+  ViewEncapsulation,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TuiButtonModule } from '@taiga-ui/core';
 import { fromEvent } from 'rxjs';
@@ -26,16 +32,18 @@ export class MixButtonComponent {
     | 'icon' = 'primary';
   @Input() public iconBtn = false;
 
-  constructor(elementRef: ElementRef) {
-    fromEvent<PointerEvent>(elementRef.nativeElement, 'click')
-      .pipe(takeUntilDestroyed())
-      .subscribe((c) => {
-        if (this.disabled || this.loading) {
-          c.stopPropagation();
-          c.stopImmediatePropagation();
-          c.preventDefault();
-        }
-      });
+  constructor(elementRef: ElementRef, zone: NgZone) {
+    zone.runOutsideAngular(() => {
+      fromEvent<PointerEvent>(elementRef.nativeElement, 'click')
+        .pipe(takeUntilDestroyed())
+        .subscribe((c) => {
+          if (this.disabled || this.loading) {
+            c.stopPropagation();
+            c.stopImmediatePropagation();
+            c.preventDefault();
+          }
+        });
+    });
   }
 
   public typeMaps = {

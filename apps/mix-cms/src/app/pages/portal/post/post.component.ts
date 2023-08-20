@@ -50,7 +50,6 @@ import {
   TuiDataListModule,
   TuiDialogModule,
   TuiGroupModule,
-  TuiHintModule,
   TuiHostedDropdownModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -83,7 +82,6 @@ import { PostStore } from '../../../stores/post.store';
     MixSelectComponent,
     MixDatePickerComponent,
     ReactiveFormsModule,
-    TuiHintModule,
     ImageHandleDirective,
     FormsModule,
     TuiMultiSelectModule,

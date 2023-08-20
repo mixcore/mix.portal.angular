@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { TuiHintModule } from '@taiga-ui/core';
 import { TuiAvatarModule } from '@taiga-ui/kit';
 
 import { IMessage } from '../messenger/messenger.component';
@@ -8,7 +7,7 @@ import { IMessage } from '../messenger/messenger.component';
 @Component({
   selector: 'mix-messenger-message',
   standalone: true,
-  imports: [CommonModule, TuiAvatarModule, TuiHintModule],
+  imports: [CommonModule, TuiAvatarModule],
   templateUrl: './messenger-message.component.html',
   styleUrls: ['./messenger-message.component.scss'],
 })

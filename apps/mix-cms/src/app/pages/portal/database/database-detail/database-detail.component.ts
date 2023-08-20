@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  NgZone,
   OnInit,
   QueryList,
   ViewChildren,
@@ -85,6 +86,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   public router = inject(Router);
   public databaseStore = inject(DatabaseStore);
   public modal = inject(ModalService);
+  public zone = inject(NgZone);
 
   public editTitle = false;
   public data: MixDatabase | undefined = undefined;
@@ -95,35 +97,38 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   });
 
   ngOnInit() {
-    this.activeRoute.params
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((params) => {
-        this.id = params['id'];
-        this.data = undefined;
-        this.form.reset();
+    this.zone.runOutsideAngular(() => {
+      this.activeRoute.params
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((params) => {
+          this.id = params['id'];
+          this.data = undefined;
+          this.form.reset();
 
-        if (!this.id || this.id === 'create') {
-          this.mode = 'create';
-          return;
-        }
+          if (!this.id || this.id === 'create') {
+            this.mode = 'create';
+            return;
+          }
 
-        this.mode = 'update';
-        this.mixApi.databaseApi
-          .getById(this.id)
-          .pipe(takeUntil(this.destroy$), this.observerLoadingState())
-          .subscribe((v) => {
-            this.data = new MixDatabase(v);
-            this.form.patchValue(v, { emitEvent: false });
-          });
-      });
+          this.mode = 'update';
+          this.mixApi.databaseApi
+            .getById(this.id)
+            .pipe(takeUntil(this.destroy$), this.observerLoadingState())
+            .subscribe((v) => {
+              this.data = new MixDatabase(v);
+              this.form.patchValue(v, { emitEvent: false });
+              this.cdr.detectChanges();
+            });
+        });
 
-    this.form.controls.displayName.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(600))
-      .subscribe((value) => {
-        if (!value || this.form.value.systemName) return;
+      this.form.controls.displayName.valueChanges
+        .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(600))
+        .subscribe((value) => {
+          if (!value || this.form.value.systemName) return;
 
-        this.updateSystemName(value);
-      });
+          this.updateSystemName(value);
+        });
+    });
   }
 
   public addNewEntity(): void {
@@ -226,6 +231,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     this.form.controls.systemName.patchValue(`${prefix}${camelCaseString}`, {
       emitEvent: false,
     });
+    this.cdr.detectChanges();
   }
 
   public toggleEditTitle() {

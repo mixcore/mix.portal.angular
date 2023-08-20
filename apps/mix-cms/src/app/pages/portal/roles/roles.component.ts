@@ -7,7 +7,6 @@ import { ImageHandleDirective } from '@mixcore/share/directives';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
-import { TuiHintModule } from '@taiga-ui/core';
 import { RoleFormComponent } from '../../../components/role-form/role-form.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { RolesStore } from '../../../stores/roles.store';
@@ -21,7 +20,6 @@ import { RolesStore } from '../../../stores/roles.store';
     MixButtonComponent,
     MixDataTableModule,
     RelativeTimeSpanPipe,
-    TuiHintModule,
     NgOptimizedImage,
     ImageHandleDirective,
     RoleFormComponent,

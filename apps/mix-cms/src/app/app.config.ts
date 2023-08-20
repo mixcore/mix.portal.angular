@@ -6,6 +6,7 @@ import {
 import {
   ApplicationConfig,
   Injectable,
+  NgZone,
   importProvidersFrom,
   isDevMode,
 } from '@angular/core';
@@ -13,7 +14,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { InMemoryCache } from '@apollo/client/cache';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
 import {
   AuthInterceptor,
@@ -64,8 +64,7 @@ import {
 } from '@taiga-ui/core';
 import { TuiPushModule } from '@taiga-ui/kit';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
-import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
+import { ApolloModule } from 'apollo-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../environments/environment';
@@ -88,6 +87,13 @@ export const domainUrlFactory = () => {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    {
+      provide: NgZone,
+      useValue: new NgZone({
+        shouldCoalesceEventChangeDetection: true,
+        shouldCoalesceRunChangeDetection: true,
+      }),
+    },
     provideRouter(ROUTES),
     importProvidersFrom(
       BrowserModule,
@@ -211,18 +217,6 @@ export const appConfig: ApplicationConfig = {
         popper: popperVariation,
       },
     }),
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory(httpLink: HttpLink) {
-        return {
-          cache: new InMemoryCache(),
-          link: httpLink.create({
-            uri: 'https://stag.api.daphalestudios.com/graphql',
-          }),
-        };
-      },
-      deps: [HttpLink],
-    },
     {
       provide: TUI_SANITIZER,
       useClass: NgDompurifySanitizer,

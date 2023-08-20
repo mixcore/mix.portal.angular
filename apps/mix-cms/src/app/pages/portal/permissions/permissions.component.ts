@@ -9,7 +9,6 @@ import { MixButtonComponent } from '@mixcore/ui/button';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
-import { TuiHintModule } from '@taiga-ui/core';
 import { tap } from 'rxjs';
 import { PermissionFormComponent } from '../../../components/permission-form/permission-form.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
@@ -25,7 +24,6 @@ import { PermissionsStore } from '../../../stores/permission.store';
     MixButtonComponent,
     MixDataTableModule,
     RelativeTimeSpanPipe,
-    TuiHintModule,
     NgOptimizedImage,
     ImageHandleDirective,
     MixStatusIndicatorComponent,

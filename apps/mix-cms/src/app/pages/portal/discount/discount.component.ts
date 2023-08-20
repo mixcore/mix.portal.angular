@@ -46,7 +46,6 @@ import {
   TuiDataListModule,
   TuiDialogModule,
   TuiGroupModule,
-  TuiHintModule,
   TuiHostedDropdownModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
@@ -78,7 +77,6 @@ import { DiscountStore } from '../../../stores/discount.store';
     MixSelectComponent,
     MixDatePickerComponent,
     ReactiveFormsModule,
-    TuiHintModule,
     ImageHandleDirective,
     FormsModule,
     TuiMultiSelectModule,
