@@ -100,6 +100,12 @@ dependencies:
   '@tinkoff/ng-polymorpheus':
     specifier: 4.1.0
     version: 4.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
+  ag-grid-angular:
+    specifier: ^30.0.6
+    version: 30.0.6(@angular/common@16.1.8)(@angular/core@16.1.8)(ag-grid-community@30.0.6)
+  ag-grid-community:
+    specifier: ^30.0.6
+    version: 30.0.6
   ang-jsoneditor:
     specifier: ^3.1.0
     version: 3.1.0(@angular/common@16.1.8)(@angular/core@16.1.8)(jsoneditor@9.10.2)
@@ -6129,6 +6135,23 @@ packages:
     dependencies:
       loader-utils: 2.0.4
       regex-parser: 2.2.11
+
+  /ag-grid-angular@30.0.6(@angular/common@16.1.8)(@angular/core@16.1.8)(ag-grid-community@30.0.6):
+    resolution: {integrity: sha512-Qmeldg//Wy2Pr/e0WLRg3s0KKHzIZES1ga5JC/Cn2hNRglkK+zOlXl2PSlvM+kyuKH4I+rwVStw5xwkf6DE3AQ==}
+    peerDependencies:
+      '@angular/common': '>= 12.0.0'
+      '@angular/core': '>= 12.0.0'
+      ag-grid-community: ~30.0.6
+    dependencies:
+      '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      ag-grid-community: 30.0.6
+      tslib: 2.6.1
+    dev: false
+
+  /ag-grid-community@30.0.6:
+    resolution: {integrity: sha512-aMTJNXFDC00QxMaI0/V6M0GTzAtsXUvuxuld97S1Kqb4LvFNsycZlQ3/IcHW7JangRQZxAcwmSpBQBV/lcWoEg==}
+    dev: false
 
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}

@@ -46,6 +46,8 @@
     "@taiga-ui/kit": "3.39.1",
     "@tinkoff/ng-dompurify": "^4.0.0",
     "@tinkoff/ng-polymorpheus": "4.1.0",
+    "ag-grid-angular": "^30.0.6",
+    "ag-grid-community": "^30.0.6",
     "ang-jsoneditor": "^3.1.0",
     "angular-tabler-icons": "^2.13.0",
     "angularx-qrcode": "^16.0.0",

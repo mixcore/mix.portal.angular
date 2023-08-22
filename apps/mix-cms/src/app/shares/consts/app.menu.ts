@@ -85,6 +85,11 @@ export const APP_MENU = [
         title: 'List',
         url: CMS_ROUTES.portal.database.fullPath,
       },
+      {
+        icon: 'table_view',
+        title: 'Table Editor',
+        url: CMS_ROUTES.portal['database-data'].fullPath,
+      },
     ],
   },
   {

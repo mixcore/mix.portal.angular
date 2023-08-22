@@ -8,7 +8,7 @@ import {
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ComponentStore } from '@ngrx/component-store';
-import { combineLatest, filter, forkJoin, switchMap, tap } from 'rxjs';
+import { filter, forkJoin, tap } from 'rxjs';
 import { BaseState } from './base-crud.store';
 
 export interface DatabaseDataState extends BaseState<MixDynamicData> {
@@ -25,17 +25,14 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
 
   public dbSysName$ = this.select((s) => s.dbSysName).pipe(filter(Boolean));
   public query$ = this.select((s) => s.request);
-  public vm$ = combineLatest([this.dbSysName$, this.query$]).pipe(
-    tap(([dbSysName, request]) => this.loadData(request, dbSysName)),
-    switchMap(() => this.select((s) => s))
-  );
+  public vm$ = this.select((s) => s);
 
   constructor() {
     super({
       columnKeys: [],
       columns: [],
       data: [],
-      status: 'Loading',
+      status: 'Pending',
       request: {
         pageIndex: 0,
         pageSize: 20,
@@ -75,14 +72,18 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
   public changePage(index: number) {
     this.patchState((s) => ({
       ...s,
+      status: 'Loading',
       request: {
         ...s.request,
         pageIndex: index,
       },
     }));
+
+    this.loadData(this.get().request, this.get().dbSysName!);
   }
 
   public changeDb(dbName: string) {
-    this.patchState((s) => ({ ...s, dbSysName: dbName }));
+    this.patchState((s) => ({ ...s, status: 'Loading', dbSysName: dbName }));
+    this.loadData(this.get().request, dbName);
   }
 }

@@ -92,6 +92,6 @@ export class MainSideMenuComponent {
   }
 
   public onActiveZone(active: boolean) {
-    if (!active && this.selectedMenu) this.selectedMenu = undefined;
+    // if (!active && this.selectedMenu) this.selectedMenu = undefined;
   }
 }
