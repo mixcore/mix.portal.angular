@@ -31,6 +31,7 @@ import { MixStatusIndicatorComponent } from '../../../components/status-indicato
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
+import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
 
 @Component({
   selector: 'mix-database-data',
@@ -53,6 +54,7 @@ import { DatabaseDataStore } from '../../../stores/database-data.store';
     DatabaseSelectComponent,
     SkeletonLoadingComponent,
     AgGridModule,
+    CustomHeaderComponent,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -71,7 +73,38 @@ export class DatabaseDataComponent
   public activeCol = '';
   public isAllCheck = false;
 
+  public components: {
+    [p: string]: any;
+  } = {
+    agColumnHeader: CustomHeaderComponent,
+  };
   public rowData$!: Observable<MixDynamicData[]>;
+  public readonly checkableColumnDef: ColDef = {
+    rowDrag: true,
+    resizable: false,
+    width: 50,
+    colId: 'uid',
+    field: 'priority',
+    pinned: 'left',
+    lockPinned: true,
+    sortable: false,
+    headerComponentParams: {
+      displayName: '--',
+      columnType: 'check',
+    },
+  };
+  public readonly actionColumnDef: ColDef = {
+    resizable: false,
+    width: 100,
+    colId: 'action',
+    field: 'action',
+    sortable: false,
+    pinned: 'right',
+    headerComponentParams: {
+      displayName: '#',
+      columnType: 'action',
+    },
+  };
   public columnDefs: ColDef[] = [];
   public defaultColDef: ColDef = {
     sortable: true,
@@ -81,12 +114,24 @@ export class DatabaseDataComponent
   onGridReady(params: GridReadyEvent) {
     this.rowData$ = this.store.vm$.pipe(
       filter((s) => s.status === 'Success'),
-
       tap((s) => {
-        if (s.db)
-          this.columnDefs = s.db?.columns.map(
-            (x) => <ColDef>{ colId: x.systemName, field: x.displayName }
-          );
+        if (s.db) {
+          this.columnDefs = [
+            this.checkableColumnDef,
+            ...s.db.columns.map(
+              (x, i) =>
+                <ColDef>{
+                  colId: x.systemName,
+                  field: x.systemName,
+                  headerComponentParams: {
+                    displayName: x.displayName,
+                    dataType: x.dataType,
+                  },
+                }
+            ),
+            this.actionColumnDef,
+          ];
+        }
       }),
       map((s) => s.data)
     );
@@ -114,6 +159,7 @@ export class DatabaseDataComponent
       place: 'left',
     },
   ];
+
   public actionMaps = {
     create: () => this.onCreateData(),
     delete: () => this.onDeleteData(),

@@ -1,0 +1,52 @@
+<div role="presentation">
+  <div class="d-flex gap-2 align-items-center w-100">
+    <div *ngIf="params['dataType']"
+         class="text-highlight">
+      {{ params['dataType'] }}
+    </div>
+    <div>
+      {{ params['displayName'] }}
+    </div>
+
+    <tui-hosted-dropdown #dropdown
+                         class="ms-auto"
+                         [content]="content"
+                         [tuiDropdownMaxHeight]="500">
+      <button type="button"
+              [icon]="arrow"
+              [pseudoHover]="dropdown.open || null"
+              [size]="'xs'"
+              tuiIconButton
+              appearance="flat"></button>
+    </tui-hosted-dropdown>
+    <ng-template #content>
+      <tui-data-list class="list"
+                     size="l">
+        <tui-opt-group label="Sort">
+          <button tuiOption>Sort Ascending</button>
+
+          <button tuiOption>Sort Descending</button>
+        </tui-opt-group>
+      </tui-data-list>
+    </ng-template>
+  </div>
+
+  <div class="ag-header-cell-label"
+       role="presentation"
+       ref="eLabel">
+    <span class="ag-header-cell-text"
+          ref="eText"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-order"
+          aria-hidden="true"
+          ref="eSortOrder"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-ascending-icon"
+          aria-hidden="true"
+          ref="eSortAsc"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-descending-icon"
+          aria-hidden="true"
+          ref="eSortDesc"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-none-icon"
+          aria-hidden="true"
+          ref="eSortNone"></span>
+  </div>
+</div>
