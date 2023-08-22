@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { CMS_ROUTES } from '../../../app.routes';
 
 export const routes: Routes = [
   {
@@ -23,7 +22,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/' + CMS_ROUTES.portal.database.fullPath,
-    pathMatch: 'full',
+    loadComponent: () =>
+      import('./database-data.component').then((m) => m.DatabaseDataComponent),
   },
 ];

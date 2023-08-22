@@ -19,7 +19,9 @@ import { MixDataTableModule } from '@mixcore/ui/table';
 import { TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
-import { forkJoin, takeUntil, tap } from 'rxjs';
+import { AgGridModule } from 'ag-grid-angular';
+import { ColDef, GridReadyEvent } from 'ag-grid-community';
+import { Observable, filter, forkJoin, map, takeUntil, tap } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
 import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
@@ -50,6 +52,7 @@ import { DatabaseDataStore } from '../../../stores/database-data.store';
     TuiPaginationModule,
     DatabaseSelectComponent,
     SkeletonLoadingComponent,
+    AgGridModule,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -67,6 +70,27 @@ export class DatabaseDataComponent
   public store = inject(DatabaseDataStore);
   public activeCol = '';
   public isAllCheck = false;
+
+  public rowData$!: Observable<MixDynamicData[]>;
+  public columnDefs: ColDef[] = [];
+  public defaultColDef: ColDef = {
+    sortable: true,
+    resizable: true,
+  };
+
+  onGridReady(params: GridReadyEvent) {
+    this.rowData$ = this.store.vm$.pipe(
+      filter((s) => s.status === 'Success'),
+
+      tap((s) => {
+        if (s.db)
+          this.columnDefs = s.db?.columns.map(
+            (x) => <ColDef>{ colId: x.systemName, field: x.displayName }
+          );
+      }),
+      map((s) => s.data)
+    );
+  }
 
   public actions = [
     {
@@ -109,11 +133,7 @@ export class DatabaseDataComponent
       this.dbSysName = v['databaseSysName'];
 
       if (this.dbSysName) {
-        this.store.patchState((s) => ({
-          ...s,
-          status: 'Loading',
-          dbSysName: this.dbSysName,
-        }));
+        this.store.changeDb(this.dbSysName);
       }
     });
   }

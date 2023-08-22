@@ -31,6 +31,7 @@ import {
 import { MixDatabaseApi } from '../api-service/database-api.service';
 import { MixAccountApi } from '../api-service/mix-account-api';
 import { BaseApiService } from '../bases/base-api.service';
+import { DomHelper } from '../helpers';
 import { cryptoService } from './crypto-service';
 
 export const FULL_MENU = new InjectionToken<MenuItem[]>(
@@ -287,5 +288,24 @@ export class AuthService extends BaseApiService {
           return forkJoin(request).pipe(map(() => result.items));
         })
       );
+  }
+
+  public checkAuthorize(): boolean {
+    const token = localStorage.getItem(AuthService.ACCESS_TOKEN);
+    if (!token) {
+      this.isAuthorized$.next(false);
+      return false;
+    }
+
+    const tokenInfo = DomHelper.decodeJWT(token);
+    if (tokenInfo && tokenInfo['ExpireAt']) {
+      if (new Date(tokenInfo['ExpireAt']) > new Date()) {
+        this.isAuthorized$.next(true);
+        return true;
+      }
+    }
+
+    this.isAuthorized$.next(false);
+    return false;
   }
 }
