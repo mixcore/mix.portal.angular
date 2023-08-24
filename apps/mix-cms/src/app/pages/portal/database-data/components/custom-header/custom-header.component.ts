@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+} from '@angular/core';
 import { DataType } from '@mixcore/lib/model';
 import {
   TuiButtonModule,
@@ -13,7 +17,7 @@ import { IHeaderParams, SortDirection } from 'ag-grid-community';
 export interface ICustomHeaderParams {
   displayName: string;
   dataType: DataType;
-  columnType: 'check' | 'action' | 'normal';
+  columnType: 'check' | 'action' | 'value';
 }
 
 @Component({
@@ -28,17 +32,21 @@ export interface ICustomHeaderParams {
   templateUrl: './custom-header.component.html',
   styleUrls: ['./custom-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CustomHeaderComponent implements IHeaderAngularComp {
   public params!: IHeaderParams & ICustomHeaderParams;
   public ascSort!: string;
   public descSort!: string;
   public noSort!: string;
+  public isPinned = false;
+
   readonly drinks = ['Cola', 'Tea', 'Coffee', 'Slurm'];
   readonly arrow = TUI_ARROW;
 
   public agInit(params: IHeaderParams & ICustomHeaderParams): void {
     this.params = params;
+    this.isPinned = !!params.column.getPinned();
 
     params.column.addEventListener(
       'sortChanged',
@@ -59,6 +67,14 @@ export class CustomHeaderComponent implements IHeaderAngularComp {
 
   public onSortRequested(order: SortDirection, event: any) {
     this.params.setSort(order, event.shiftKey);
+  }
+
+  public pinColumn() {
+    const pinned = this.isPinned ? false : 'left';
+    this.params.columnApi.setColumnPinned(
+      this.params.column.getColId(),
+      pinned
+    );
   }
 
   public refresh(params: IHeaderParams<any, any>): boolean {

@@ -16,12 +16,24 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { MixDataTableModule } from '@mixcore/ui/table';
-import { TuiTableModule } from '@taiga-ui/addon-table';
+import { TippyDirective } from '@ngneat/helipopper';
+import { TuiReorderModule, TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
+import { TuiHostedDropdownModule } from '@taiga-ui/core';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridReadyEvent } from 'ag-grid-community';
-import { Observable, filter, forkJoin, map, takeUntil, tap } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  debounceTime,
+  distinctUntilChanged,
+  filter,
+  forkJoin,
+  map,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
 import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
@@ -32,7 +44,6 @@ import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-tool
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
 import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
-
 @Component({
   selector: 'mix-database-data',
   standalone: true,
@@ -55,6 +66,9 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     SkeletonLoadingComponent,
     AgGridModule,
     CustomHeaderComponent,
+    TuiReorderModule,
+    TuiHostedDropdownModule,
+    TippyDirective,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -82,20 +96,22 @@ export class DatabaseDataComponent
   public readonly checkableColumnDef: ColDef = {
     rowDrag: true,
     resizable: false,
-    width: 50,
+    width: 80,
     colId: 'uid',
     field: 'priority',
     pinned: 'left',
     lockPinned: true,
     sortable: false,
+    headerCheckboxSelection: true,
+    checkboxSelection: true,
     headerComponentParams: {
-      displayName: '--',
+      displayName: '',
       columnType: 'check',
     },
   };
   public readonly actionColumnDef: ColDef = {
     resizable: false,
-    width: 100,
+    width: 80,
     colId: 'action',
     field: 'action',
     sortable: false,
@@ -105,36 +121,51 @@ export class DatabaseDataComponent
       columnType: 'action',
     },
   };
-  public columnDefs: ColDef[] = [];
-  public defaultColDef: ColDef = {
+  public readonly defaultColDef: ColDef = {
     sortable: true,
     resizable: true,
+    width: 250,
   };
+
+  public allColumnDefs: ColDef[] = [];
+  public columnDefs: ColDef[] = [];
+  public columnNames: string[] = [];
+  public displayColumns: string[] = [];
+  public displayColumns$ = new Subject<string[]>();
 
   onGridReady(params: GridReadyEvent) {
     this.rowData$ = this.store.vm$.pipe(
       filter((s) => s.status === 'Success'),
       tap((s) => {
         if (s.db) {
+          this.allColumnDefs = s.db.columns.map(
+            (x, i) =>
+              <ColDef>{
+                colId: x.systemName,
+                field: x.systemName,
+                headerComponentParams: {
+                  displayName: x.displayName,
+                  dataType: x.dataType,
+                  columnType: 'value',
+                },
+              }
+          );
+          this.columnNames = s.db.columns.map((x) => x.displayName);
+          this.displayColumns = this.columnNames;
+
           this.columnDefs = [
             this.checkableColumnDef,
-            ...s.db.columns.map(
-              (x, i) =>
-                <ColDef>{
-                  colId: x.systemName,
-                  field: x.systemName,
-                  headerComponentParams: {
-                    displayName: x.displayName,
-                    dataType: x.dataType,
-                  },
-                }
-            ),
+            ...this.allColumnDefs,
             this.actionColumnDef,
           ];
         }
       }),
       map((s) => s.data)
     );
+
+    this.displayColumns$
+      .pipe(distinctUntilChanged(), debounceTime(0))
+      .subscribe((v) => this.reUpdateColumnDef());
   }
 
   public actions = [
@@ -220,13 +251,13 @@ export class DatabaseDataComponent
       .subscribe();
   }
 
-  async onEditData(data: MixDynamicData) {
+  public async onEditData(data: MixDynamicData) {
     await this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/${data.id}`
     );
   }
 
-  async onCreateData() {
+  public async onCreateData() {
     await this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/create`
     );
@@ -238,5 +269,20 @@ export class DatabaseDataComponent
     this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${mixDb.systemName}`
     );
+  }
+
+  public reUpdateColumnDef() {
+    const columnDefs = this.displayColumns.map(
+      (v) =>
+        this.allColumnDefs.find(
+          (x) => x.headerComponentParams.displayName === v
+        )!
+    );
+
+    this.columnDefs = [
+      this.checkableColumnDef,
+      ...columnDefs,
+      this.actionColumnDef,
+    ];
   }
 }

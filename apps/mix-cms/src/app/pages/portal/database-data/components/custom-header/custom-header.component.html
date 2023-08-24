@@ -4,31 +4,51 @@
          class="text-highlight">
       {{ params['dataType'] }}
     </div>
-    <div>
+
+    <div *ngIf="params['displayName']"
+         class="header-title">
       {{ params['displayName'] }}
     </div>
 
-    <tui-hosted-dropdown #dropdown
-                         class="ms-auto"
-                         [content]="content"
-                         [tuiDropdownMaxHeight]="500">
-      <button type="button"
-              [icon]="arrow"
-              [pseudoHover]="dropdown.open || null"
-              [size]="'xs'"
-              tuiIconButton
-              appearance="flat"></button>
-    </tui-hosted-dropdown>
-    <ng-template #content>
-      <tui-data-list class="list"
-                     size="l">
-        <tui-opt-group label="Sort">
-          <button tuiOption>Sort Ascending</button>
+    <ng-container *ngIf="params.columnType === 'value'">
+      <tui-hosted-dropdown #dropdown
+                           class="ms-auto"
+                           [content]="content"
+                           [tuiDropdownMaxHeight]="500">
+        <button type="button"
+                [icon]="arrow"
+                [pseudoHover]="dropdown.open || null"
+                [size]="'xs'"
+                tuiIconButton
+                appearance="flat"></button>
+      </tui-hosted-dropdown>
 
-          <button tuiOption>Sort Descending</button>
-        </tui-opt-group>
-      </tui-data-list>
-    </ng-template>
+      <ng-template #content>
+        <tui-data-list class="list"
+                       size="l">
+          <button (click)="pinColumn()"
+                  tuiOption>
+            <div class="d-flex align-items-center"><span class="mix-icon">push_pin</span>&nbsp;
+              {{ isPinned ? 'Unpin Column' : 'Pin Column'}}
+            </div>
+          </button>
+
+          <button (click)="onSortRequested('asc', $event)"
+                  tuiOption>
+            <div class="d-flex align-items-center"><span class="mix-icon">reorder</span>&nbsp;
+              Sort Ascending
+            </div>
+          </button>
+
+          <button (click)="onSortRequested('desc', $event)"
+                  tuiOption>
+            <div class="d-flex align-items-center"><span class="mix-icon">sort</span>&nbsp;
+              Sort Descending
+            </div>
+          </button>
+        </tui-data-list>
+      </ng-template>
+    </ng-container>
   </div>
 
   <div class="ag-header-cell-label"

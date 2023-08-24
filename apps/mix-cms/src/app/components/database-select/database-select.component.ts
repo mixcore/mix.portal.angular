@@ -36,6 +36,7 @@ export class DatabaseSelectComponent {
 
   public searchText = new FormControl('');
 
+  @Input() public prefix = '';
   @Input() public isCreate = false;
   @Input() public selectedItemId?: number;
   @Output() public selectedItemChange = new EventEmitter<MixDatabase>();

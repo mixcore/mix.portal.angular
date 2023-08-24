@@ -11,7 +11,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
@@ -97,7 +97,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(ROUTES),
     importProvidersFrom(
       BrowserModule,
-      BrowserAnimationsModule,
       TuiRootModule,
       MixModalModule,
       TuiAlertModule,
@@ -161,6 +160,7 @@ export const appConfig: ApplicationConfig = {
         registrationStrategy: 'registerWhenStable:20000',
       })
     ),
+    provideAnimations(),
     {
       provide: DOMAIN_URL,
       useValue: environment.domainUrl,
@@ -188,7 +188,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: TUI_ANIMATIONS_DURATION,
-      useValue: 0,
+      useValue: 100,
     },
     {
       provide: FULL_MENU,

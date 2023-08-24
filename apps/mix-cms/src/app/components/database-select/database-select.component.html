@@ -14,7 +14,7 @@
              [placeHolder]="'Search table'"
              [searchIcon]="true"></mix-input>
 
-  <div class="database-select__title">Tables ({{ vm.data.length || '0' }})</div>
+  <div class="database-select__title">{{ prefix }} Tables ({{ vm.data.length || '0' }})</div>
 
   <div class="database-select__list">
     <ng-container *ngFor="let table of (searchText.value | filter:vm.data)">

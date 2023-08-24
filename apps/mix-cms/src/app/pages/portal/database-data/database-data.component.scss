@@ -15,6 +15,9 @@
   &__toolbar {
     padding: 8px;
     border-bottom: 1px solid var(--border-color-default);
+    display: flex;
+    gap: 4px;
+    align-items: center;
 
     .search {
       width: 200px;
@@ -74,4 +77,8 @@
       border-left: 1px solid var(--border-color-default) !important;
     }
   }
+}
+
+.columns {
+  width: 300px;
 }
