@@ -35,11 +35,11 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
       status: 'Pending',
       request: {
         pageIndex: 0,
-        pageSize: 20,
+        pageSize: 25,
       },
       pageInfo: {
         pageIndex: 0,
-        pageSize: 20,
+        pageSize: 25,
       },
     });
   }

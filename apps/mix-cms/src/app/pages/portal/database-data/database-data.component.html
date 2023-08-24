@@ -2,6 +2,7 @@
      class="data-table-page">
   <div class="data-table-page__sidebar">
     <mix-database-select [isCreate]="false"
+                         [prefix]="'Query'"
                          [selectedItemId]="vm.db?.id"
                          (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
   </div>
@@ -17,7 +18,7 @@
     </ng-container>
 
     <ng-container *ngIf="vm.status !== 'Pending'">
-      <mix-sub-toolbar [description]="'LISTING'"
+      <mix-sub-toolbar [description]="'QUERY ON'"
                        [title]="vm.db?.displayName || 'Db Data'">
         <div class="toolbar-separator"></div>
         <mix-action-collapse [actionMaps]="actionMaps"
@@ -29,10 +30,28 @@
           <mix-input class="search"
                      [searchIcon]="true"
                      placeHolder="Search on string fields"></mix-input>
+
+
+          <mix-button type="outline"
+                      [tp]="tpl"
+                      tpVariation="popper"
+                      tuiButton
+                      size="m">
+            Columns ({{ displayColumns.length || 0 }}/{{ columnNames.length || 0 }})
+          </mix-button>
+
+          <ng-template #tpl
+                       let-hide>
+            <tui-reorder class="columns"
+                         [(enabled)]="displayColumns"
+                         [(items)]="columnNames"
+                         (enabledChange)="displayColumns$.next(displayColumns)"></tui-reorder>
+          </ng-template>
         </div>
 
         <div class="mix-dbs-table__main-container">
-          <ng-container *ngIf="vm.status === 'Success'">
+          <div class="h-100 w-100"
+               [class.d-none]="vm.status !== 'Success'">
             <ag-grid-angular class="ag-theme-alpine"
                              [animateRows]="true"
                              [columnDefs]="columnDefs"
@@ -125,7 +144,7 @@
                 </tr>
               </tbody>
             </table> -->
-          </ng-container>
+          </div>
 
           <ng-container *ngIf="vm.status === 'Loading'">
             <mix-skeleton-loading type="table"></mix-skeleton-loading>

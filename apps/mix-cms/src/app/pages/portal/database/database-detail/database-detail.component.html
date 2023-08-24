@@ -2,6 +2,7 @@
 <div class="database-detail">
   <div class="database-detail__tree">
     <mix-database-select [isCreate]="mode == 'create'"
+                         [prefix]="'Setting'"
                          [selectedItemId]="id"
                          (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
   </div>
