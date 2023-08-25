@@ -28,22 +28,30 @@
                        size="l">
           <button (click)="pinColumn()"
                   tuiOption>
-            <div class="d-flex align-items-center"><span class="mix-icon">push_pin</span>&nbsp;
-              {{ isPinned ? 'Unpin Column' : 'Pin Column'}}
+            <div class="d-flex align-items-center">
+              <span class="mix-icon">push_pin</span>&nbsp;
+              {{ isPinned ? 'Unpin Column' : 'Pin Column' }}
+            </div>
+          </button>
+
+          <button (click)="parentComp.onHideColumn(params['displayName'])"
+                  tuiOption>
+            <div class="d-flex align-items-center">
+              <span class="mix-icon">visibility_off</span>&nbsp; Hide Column
             </div>
           </button>
 
           <button (click)="onSortRequested('asc', $event)"
                   tuiOption>
-            <div class="d-flex align-items-center"><span class="mix-icon">reorder</span>&nbsp;
-              Sort Ascending
+            <div class="d-flex align-items-center">
+              <span class="mix-icon">reorder</span>&nbsp; Sort Ascending
             </div>
           </button>
 
           <button (click)="onSortRequested('desc', $event)"
                   tuiOption>
-            <div class="d-flex align-items-center"><span class="mix-icon">sort</span>&nbsp;
-              Sort Descending
+            <div class="d-flex align-items-center">
+              <span class="mix-icon">sort</span>&nbsp; Sort Descending
             </div>
           </button>
         </tui-data-list>

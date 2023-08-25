@@ -73,7 +73,7 @@ export class MainSideMenuComponent {
     }
 
     this.selectedMenu = menu;
-    this.route.navigateByUrl(menu.url);
+    // this.route.navigateByUrl(menu.url);
   }
 
   public toggleMenu(): void {

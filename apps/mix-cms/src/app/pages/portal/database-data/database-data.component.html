@@ -31,13 +31,15 @@
                      [searchIcon]="true"
                      placeHolder="Search on string fields"></mix-input>
 
-
-          <mix-button type="outline"
+          <mix-button type="secondary"
                       [tp]="tpl"
+                      tpPlacement="bottom"
                       tpVariation="popper"
                       tuiButton
                       size="m">
-            Columns ({{ displayColumns.length || 0 }}/{{ columnNames.length || 0 }})
+            Columns ({{ displayColumns.length || 0 }}/{{
+              columnNames.length || 0
+            }})
           </mix-button>
 
           <ng-template #tpl
@@ -47,6 +49,10 @@
                          [(items)]="columnNames"
                          (enabledChange)="displayColumns$.next(displayColumns)"></tui-reorder>
           </ng-template>
+
+          <mix-button class="ms-auto"
+                      type="outline"
+                      size="m">API Document</mix-button>
         </div>
 
         <div class="mix-dbs-table__main-container">
@@ -56,6 +62,7 @@
                              [animateRows]="true"
                              [columnDefs]="columnDefs"
                              [components]="components"
+                             [context]="context"
                              [defaultColDef]="defaultColDef"
                              [rowData]="rowData$ | async"
                              [rowDragManaged]="true"

@@ -127,6 +127,7 @@ export class DatabaseDataComponent
     width: 250,
   };
 
+  public context: any;
   public allColumnDefs: ColDef[] = [];
   public columnDefs: ColDef[] = [];
   public columnNames: string[] = [];
@@ -203,6 +204,10 @@ export class DatabaseDataComponent
       searchOptions: [],
       detailUrl: '',
     });
+
+    this.context = {
+      componentParent: this,
+    };
   }
 
   public ngOnInit(): void {
@@ -261,6 +266,11 @@ export class DatabaseDataComponent
     await this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/create`
     );
+  }
+
+  public onHideColumn(displayName: string) {
+    this.displayColumns = this.displayColumns.filter((d) => d !== displayName);
+    this.reUpdateColumnDef();
   }
 
   public selectedTableChange(mixDb: MixDatabase) {
