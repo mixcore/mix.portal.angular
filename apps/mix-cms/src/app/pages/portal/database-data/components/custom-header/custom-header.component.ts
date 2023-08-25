@@ -40,6 +40,7 @@ export class CustomHeaderComponent implements IHeaderAngularComp {
   public descSort!: string;
   public noSort!: string;
   public isPinned = false;
+  public parentComp: any;
 
   readonly drinks = ['Cola', 'Tea', 'Coffee', 'Slurm'];
   readonly arrow = TUI_ARROW;
@@ -47,6 +48,7 @@ export class CustomHeaderComponent implements IHeaderAngularComp {
   public agInit(params: IHeaderParams & ICustomHeaderParams): void {
     this.params = params;
     this.isPinned = !!params.column.getPinned();
+    this.parentComp = this.params.context.componentParent;
 
     params.column.addEventListener(
       'sortChanged',
