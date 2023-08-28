@@ -50,8 +50,10 @@
                          (enabledChange)="displayColumns$.next(displayColumns)"></tui-reorder>
           </ng-template>
 
-          <mix-button class="ms-auto"
+          <mix-button *ngIf="vm.db"
+                      class="ms-auto"
                       type="outline"
+                      (click)="onPreviewData(vm.db)"
                       size="m">
             <span class="mix-icon">code</span>&nbsp; API Document</mix-button>
         </div>

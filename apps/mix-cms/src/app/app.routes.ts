@@ -4,32 +4,6 @@ import { portalPageGuard } from './shares/guards/auth-login.guard';
 
 export const breadcrumbName = (name: string) => ({ title: name });
 
-export const processRoutes = (option: {
-  path: string;
-  name: string;
-  listComponent: any;
-  detailComponent: any;
-}) => ({
-  path: option.path,
-  data: breadcrumbName(option.name),
-  children: [
-    {
-      path: '',
-      component: option.listComponent,
-    },
-    {
-      path: ':id',
-      component: option.detailComponent,
-      data: breadcrumbName('Detail'),
-    },
-    {
-      path: 'create',
-      component: option.detailComponent,
-      data: breadcrumbName('Create'),
-    },
-  ],
-});
-
 export const CMS_ROUTES = {
   auth: {
     path: 'auth',
@@ -78,6 +52,10 @@ export const CMS_ROUTES = {
     database: {
       path: 'database',
       fullPath: 'app/database',
+    },
+    'database-doc': {
+      path: 'open-api',
+      fullPath: 'app/database/open-api',
     },
     'database-data': {
       path: 'db-data',

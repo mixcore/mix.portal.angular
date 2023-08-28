@@ -1,0 +1,16 @@
+<div class="data-table-page">
+  <div class="data-table-page__sidebar">
+    <mix-database-select [isCreate]="false"
+                         [prefix]="'Document'"
+                         [selectedItemId]="db?.id"></mix-database-select>
+  </div>
+
+
+  <div class="data-table-page__main-container">
+    <div class="open-api-preview">
+      <div class="open-api-preview__header">
+        {{ db?.displayName }}
+      </div>
+    </div>
+  </div>
+</div>
