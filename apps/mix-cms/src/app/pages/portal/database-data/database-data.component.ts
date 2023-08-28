@@ -295,4 +295,11 @@ export class DatabaseDataComponent
       this.actionColumnDef,
     ];
   }
+
+  public onPreviewData(db: MixDatabase): void {
+    this.router.navigateByUrl(
+      `${CMS_ROUTES.portal['database-doc'].fullPath}/${db.id}`,
+      { state: { db: db } }
+    );
+  }
 }

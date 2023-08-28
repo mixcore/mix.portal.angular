@@ -8,6 +8,13 @@ export const routes: Routes = [
       import('./database.component').then((m) => m.DatabaseComponent),
   },
   {
+    path: 'open-api/:id',
+    loadComponent: () =>
+      import('./database-document/database-document.component').then(
+        (m) => m.DatabaseDocumentComponent
+      ),
+  },
+  {
     path: ':id',
     loadComponent: () =>
       import('./database-detail/database-detail.component').then(
