@@ -188,7 +188,7 @@ export const appConfig: ApplicationConfig = {
     },
     {
       provide: TUI_ANIMATIONS_DURATION,
-      useValue: 100,
+      useValue: 0,
     },
     {
       provide: FULL_MENU,
