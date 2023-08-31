@@ -16,21 +16,14 @@
           <tui-accordion-item [open]="true">
             Restful API
             <ng-template tuiAccordionItemContent>
-              <div class="menu-item">
-                <span class="open-api-type -get">get</span> List
-                {{ db?.displayName }} records
-              </div>
-              <div class="menu-item">
-                <span class="open-api-type -post">post</span> Update
-                {{ db?.displayName }} record by id
-              </div>
-              <div class="menu-item">
-                <span class="open-api-type -put">patch</span> Patch
-                {{ db?.displayName }} record by id
-              </div>
-              <div class="menu-item">
-                <span class="open-api-type -delete">del</span> Delete
-                {{ db?.displayName }} record by id
+              <div *ngFor="
+                  let item of dbDocumentKey | filterDocumentMenu: dbDocument
+                "
+                   class="menu-item">
+                <span class="open-api-type -{{ item.method }}">{{
+                  item.method
+                }}</span>
+                {{ item.title }}
               </div>
             </ng-template>
           </tui-accordion-item>
@@ -52,7 +45,6 @@
       <div class="open-api-preview__content">
         <div class="open-api-preview__codezone">
           <div class="text-l">Request samples</div>
-          <code [innerHtml]="text"> </code>
         </div>
       </div>
     </div>
