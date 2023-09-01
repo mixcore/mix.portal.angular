@@ -16,7 +16,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TuiDestroyService } from '@taiga-ui/cdk';
-import { debounceTime, startWith, takeUntil } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs';
 import { TableColumnDirective } from './directives/column.directive';
 
 export interface TableContextMenu<T> {
@@ -115,23 +115,32 @@ export class DataTableComponent<T> implements AfterContentInit {
   @Output() public itemsSelectedChange: EventEmitter<T[]> = new EventEmitter();
 
   public ngAfterContentInit(): void {
+    this.displayColumns = this.columns
+      .toArray()
+      .filter((x) => x.columnType !== 'CHECKBOX' && x.columnType !== 'ACTION');
+
+    this.tableColumns = this.displayColumns.map(
+      (c: TableColumnDirective) => c.key
+    );
+    this.tableColumns.push('MENU');
+
     this.zone.runOutsideAngular(() => {
       this.searchText.patchValue(this.searchTextValue, { emitEvent: false });
 
-      this.columns.changes
-        .pipe(startWith([]), takeUntil(this.destroy$))
-        .subscribe(() => {
-          this.displayColumns = this.columns
-            .toArray()
-            .filter(
-              (x) => x.columnType !== 'CHECKBOX' && x.columnType !== 'ACTION'
-            );
+      // this.columns.changes
+      //   .pipe(startWith([]), takeUntil(this.destroy$))
+      //   .subscribe(() => {
+      //     this.displayColumns = this.columns
+      //       .toArray()
+      //       .filter(
+      //         (x) => x.columnType !== 'CHECKBOX' && x.columnType !== 'ACTION'
+      //       );
 
-          this.tableColumns = this.displayColumns.map(
-            (c: TableColumnDirective) => c.key
-          );
-          this.tableColumns.push('MENU');
-        });
+      //     this.tableColumns = this.displayColumns.map(
+      //       (c: TableColumnDirective) => c.key
+      //     );
+      //     this.tableColumns.push('MENU');
+      //   });
 
       this.searchText.valueChanges
         .pipe(debounceTime(500), takeUntil(this.destroy$))

@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter } from '@angular/router';
+import { RouteReuseStrategy, provideRouter } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
 import {
@@ -24,6 +24,7 @@ import {
 } from '@mixcore/share/auth';
 import { DOMAIN_URL, DOMAIN_URL$ } from '@mixcore/share/base';
 import { ERROR_MAP, errorMap } from '@mixcore/share/form';
+import { CustomAppReuseStrategy } from '@mixcore/share/services';
 import { MixFormlyArrayMediaComponent } from '@mixcore/ui/array-media';
 import { MixFormlyArrayRadioComponent } from '@mixcore/ui/array-radio';
 import { MixFormlyColorPickerComponent } from '@mixcore/ui/color-picker';
@@ -87,6 +88,7 @@ export const domainUrlFactory = () => {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    { provide: RouteReuseStrategy, useClass: CustomAppReuseStrategy },
     {
       provide: NgZone,
       useValue: new NgZone({

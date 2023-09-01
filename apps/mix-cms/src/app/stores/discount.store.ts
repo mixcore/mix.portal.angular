@@ -5,7 +5,6 @@ import {
   PaginationRequestModel,
 } from '@mixcore/lib/model';
 import { forkJoin, map, of, switchMap } from 'rxjs';
-import { CMS_ROUTES } from '../app.routes';
 import { BaseCRUDStore } from './base-crud.store';
 
 @Injectable({ providedIn: 'root' })
@@ -44,6 +43,6 @@ export class DiscountStore extends BaseCRUDStore<MixPost> {
         })
       );
 
-  public override mainUrl = '/' + CMS_ROUTES.portal.discount.fullPath;
+  //   public override mainUrl = '/' + CMS_ROUTES.portal.discount.fullPath;
   public override requestName = 'discount';
 }

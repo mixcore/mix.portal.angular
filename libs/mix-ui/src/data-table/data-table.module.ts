@@ -3,6 +3,7 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TippyDirective } from '@ngneat/helipopper';
 import { TuiTableModule } from '@taiga-ui/addon-table';
 import {
   TuiDataListModule,
@@ -55,6 +56,7 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiHostedDropdownModule,
     ScrollingModule,
     TuiMultiSelectModule,
+    TippyDirective,
   ],
   exports: [
     DataTableComponent,

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { MixModule, PaginationRequestModel } from '@mixcore/lib/model';
-import { CMS_ROUTES } from '../app.routes';
 import { BaseCRUDStore } from './base-crud.store';
 
 @Injectable({ providedIn: 'root' })
@@ -11,6 +10,6 @@ export class ModuleStore extends BaseCRUDStore<MixModule> {
       columns: 'image,title,createdDateTime,createdBy,status,priority',
     });
 
-  public override mainUrl = '/' + CMS_ROUTES.portal.module.fullPath;
+  //   public override mainUrl = '/' + CMS_ROUTES.portal.module.fullPath;
   public override requestName = 'modules';
 }

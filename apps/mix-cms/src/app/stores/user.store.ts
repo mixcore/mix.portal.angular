@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PaginationRequestModel, UserListVm } from '@mixcore/lib/model';
 import { forkJoin, of, switchMap } from 'rxjs';
-import { CMS_ROUTES } from '../app.routes';
 import { BaseCRUDStore } from './base-crud.store';
 
 @Injectable({ providedIn: 'root' })
@@ -29,6 +28,6 @@ export class UserStore extends BaseCRUDStore<UserListVm> {
         })
       );
 
-  public override mainUrl = '/' + CMS_ROUTES.portal.user.fullPath;
+  //   public override mainUrl = '/' + CMS_ROUTES.portal.user.fullPath;
   public override requestName = 'users';
 }

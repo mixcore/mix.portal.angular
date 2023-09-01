@@ -45,12 +45,12 @@
                   [sticky]="true"
                   tuiTh>
                 <div class="d-flex align-items-center">
-                  <tui-checkbox *ngIf="i === 0"
-                                class="me-4"
-                                [ngModel]="isAllSelected"
-                                [size]="'l'"
-                                (click)="$event.stopPropagation()"
-                                (ngModelChange)="markAllChecked($event)"></tui-checkbox>
+                  <input *ngIf="i === 0"
+                         class="form-check-input me-4"
+                         type="checkbox"
+                         aria-label="Checkbox check all"
+                         [ngModel]="isAllSelected"
+                         (ngModelChange)="markAllChecked($event)">
 
                   <div class="flex-grow-1">
                     <ng-container *ngIf="col.tplHeader">
@@ -92,12 +92,18 @@
                   [ngStyle]="{ width: col.width, 'min-width': col.minWidth }"
                   tuiTd>
                 <div class="d-flex h-100 align-items-center">
-                  <tui-checkbox *ngIf="i === 0"
+                  <input *ngIf="i === 0"
+                         class="form-check-input me-4"
+                         type="checkbox"
+                         [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
+                         (ngModelChange)="onItemSelected($event, item)">
+
+                  <!-- <tui-checkbox *ngIf="i === 0"
                                 class="me-4"
                                 [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
                                 [size]="'l'"
                                 (ngModelChange)="onItemSelected($event, item)">
-                  </tui-checkbox>
+                  </tui-checkbox> -->
 
                   <div class="flex-grow-1">
                     <ng-container *ngIf="col.tplCell">
@@ -118,18 +124,21 @@
             <td *tuiCell="'MENU'"
                 class="mix-data-table__td"
                 tuiTd>
-              <tui-hosted-dropdown [content]="dropdown"
-                                   tuiDropdownAlign="right">
-                <mix-button type="outline"
-                            [iconBtn]="true"
-                            size="s">
-                  <span class="mix-icon"> more_horiz </span></mix-button>
-              </tui-hosted-dropdown>
-              <ng-template #dropdown
-                           let-close="close"><tui-data-list>
+              <!-- <tui-hosted-dropdown [content]="dropdown"
+                                   tuiDropdownAlign="right"> -->
+              <mix-button type="outline"
+                          [iconBtn]="true"
+                          [tp]="tpl"
+                          tpPlacement="bottom"
+                          tpVariation="popper"
+                          size="s">
+                <span class="mix-icon"> more_horiz </span></mix-button>
+              <!-- </tui-hosted-dropdown> -->
+              <ng-template #tpl
+                           let-hide><tui-data-list>
                   <tui-opt-group>
                     <button *ngFor="let v of contextMenus"
-                            (click)="v.action(item)"
+                            (click)="hide(); v.action(item);"
                             tuiOption>
                       <div class="d-flex align-items-center gap-3">
                         <span class="mix-icon"> {{ v.icon }}</span>
