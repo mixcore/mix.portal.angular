@@ -124,31 +124,30 @@
             <td *tuiCell="'MENU'"
                 class="mix-data-table__td"
                 tuiTd>
-              <!-- <tui-hosted-dropdown [content]="dropdown"
-                                   tuiDropdownAlign="right"> -->
               <mix-button type="outline"
                           [iconBtn]="true"
                           [tp]="tpl"
-                          tpPlacement="bottom"
+                          tpPlacement="bottom-end"
                           tpVariation="popper"
                           size="s">
                 <span class="mix-icon"> more_horiz </span></mix-button>
-              <!-- </tui-hosted-dropdown> -->
+
               <ng-template #tpl
-                           let-hide><tui-data-list>
-                  <tui-opt-group>
-                    <button *ngFor="let v of contextMenus"
-                            (click)="hide(); v.action(item);"
-                            tuiOption>
-                      <div class="d-flex align-items-center gap-3">
-                        <span class="mix-icon"> {{ v.icon }}</span>
-                        <div>
-                          {{ v.label }}
-                        </div>
+                           let-hide>
+                <div class="py-1"
+                     role="none">
+                  <div *ngFor="let v of contextMenus"
+                       class="cursor-pointer text-gray-700 hover:bg-gray-100 block pl-1 pr-4 py-2 text-sm"
+                       (click)="hide(); v.action(item);"
+                       tabindex="-1">
+                    <div class="d-flex align-items-center gap-3">
+                      <span class="mix-icon"> {{ v.icon }}</span>
+                      <div>
+                        {{ v.label }}
                       </div>
-                    </button>
-                  </tui-opt-group>
-                </tui-data-list>
+                    </div>
+                  </div>
+                </div>
               </ng-template>
             </td>
           </tr>

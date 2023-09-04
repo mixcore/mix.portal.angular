@@ -21,7 +21,8 @@
 
       <div class="toolbar-separator"></div>
 
-      <tui-hosted-dropdown [(open)]="openChooseBulkAction"
+      <!-- TODO: Remove -->
+      <!-- <tui-hosted-dropdown [(open)]="openChooseBulkAction"
                            [content]="buildActionDropdown">
         <button type="button"
                 [pseudoActive]="openChooseBulkAction || null"
@@ -100,7 +101,7 @@
             </tui-data-list>
           </ng-template>
         </div>
-      </tui-hosted-dropdown>
+      </tui-hosted-dropdown> -->
 
       <mix-button class="ms-auto"
                   [iconBtn]="true"
@@ -263,12 +264,12 @@
 
 <ng-template #noImg>--</ng-template>
 
-<ng-template #bulkAssignMetadata
+<!-- <ng-template #bulkAssignMetadata
              [(tuiDialog)]="showBulkAssignMetadata"
              [tuiDialogOptions]="{ size: 'auto' }"
              let-observer>
   <mix-bulk-assign-metadata [posts]="selectedPosts"></mix-bulk-assign-metadata>
-</ng-template>
+</ng-template> -->
 
 <ng-template #addNewMenuItem
              let-activeZone>

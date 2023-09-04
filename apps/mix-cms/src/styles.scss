@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './assets/styles/spacing.scss';
 @import './assets/styles/variables.scss';
 @import './assets/styles/overwrite-variables.scss';
