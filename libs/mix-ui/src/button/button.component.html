@@ -1,25 +1,8 @@
-<button *ngIf="!iconBtn"
-        class="mix-button"
-        type="button"
-        [appearance]="typeMaps[type]"
-        [disabled]="loading || disabled"
-        [showLoader]="loading"
-        [size]="size"
-        tuiButton>
+<button class="font-bold rounded flex items-center outline-none {{ typeMaps[type] }}"
+        [class.btn-icon]="iconBtn"
+        [class.btn-large]="largeBtn">
   <ng-container *ngTemplateOutlet="content"> </ng-container>
 </button>
-
-<ng-container *ngIf="iconBtn">
-  <button class="mix-button"
-          type="button"
-          [appearance]="typeMaps[type]"
-          [disabled]="loading || disabled"
-          [showLoader]="loading"
-          [size]="size"
-          tuiIconButton>
-    <ng-container *ngTemplateOutlet="content"> </ng-container>
-  </button>
-</ng-container>
 
 <ng-template #content>
   <ng-content></ng-content>

@@ -1,22 +1,25 @@
 <div class="mix-modal"
      style="--modal-boxshadow: {{ context.borderShadowColor }}">
-  <h3 [id]="context.id">{{ context.heading }}</h3>
-  <section>
+  <h3 class="text-2xl"
+      [id]="context.id">{{ context.heading }}</h3>
+
+  <section class="mix-modal__content">
     <ng-container *polymorpheusOutlet="$any(context.content) as text; context: context">
       {{ text }}
     </ng-container>
   </section>
-  <p class="mix-modal__buttons">
-    <button (click)="onClick(true)"
-            tuiButton>
-      {{ context.buttons[0] }}
-    </button>
 
-    <button *ngIf="context.buttons[1]"
-            (click)="onClick(false)"
-            tuiButton
-            appearance="secondary">
+  <p class="mix-modal__buttons">
+    <mix-button [largeBtn]="true"
+                (click)="onClick(true)">
+      {{ context.buttons[0] }}
+    </mix-button>
+
+    <mix-button *ngIf="context.buttons[1]"
+                type="secondary"
+                [largeBtn]="true"
+                (click)="onClick(false)">
       {{ context.buttons[1] }}
-    </button>
+    </mix-button>
   </p>
 </div>
