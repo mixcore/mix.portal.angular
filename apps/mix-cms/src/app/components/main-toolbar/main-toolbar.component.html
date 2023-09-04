@@ -21,7 +21,8 @@
 
   <div class="main-toolbar__tag ms-auto main-toolbar__tag{{ mode }}"> {{ mode }} </div>
 
-  <div class="main-toolbar__theme-switch">
+  <!-- TODO: Enable when stable -->
+  <!-- <div class="main-toolbar__theme-switch">
     <button type="button"
             [size]="'s'"
             (click)="themeService.toggle()"
@@ -31,7 +32,7 @@
         {{ themeService.theme === 'light' ? 'dark_mode' : 'light_mode' }}
       </span>
     </button>
-  </div>
+  </div> -->
 
   <ng-container *ngIf="auth.cultures$ | async as cultures">
     <div *ngIf="cultures?.length"
