@@ -1,7 +1,7 @@
 <div class="mix-data-table">
   <div class="mix-data-table__filter d-flex">
-    <div class="row">
-      <div class="col-auto d-flex">
+    <div class="row w-100">
+      <div class="col-12 d-flex">
         <tui-input class="search-input"
                    [formControl]="searchText"
                    [tuiTextfieldCleaner]="true"
@@ -98,13 +98,6 @@
                          [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
                          (ngModelChange)="onItemSelected($event, item)">
 
-                  <!-- <tui-checkbox *ngIf="i === 0"
-                                class="me-4"
-                                [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
-                                [size]="'l'"
-                                (ngModelChange)="onItemSelected($event, item)">
-                  </tui-checkbox> -->
-
                   <div class="flex-grow-1">
                     <ng-container *ngIf="col.tplCell">
                       <ng-container *ngTemplateOutlet="
@@ -137,8 +130,8 @@
                 <div class="py-1"
                      role="none">
                   <div *ngFor="let v of contextMenus"
-                       class="cursor-pointer text-gray-700 hover:bg-gray-100 block pl-1 pr-4 py-2 text-sm"
-                       (click)="hide(); v.action(item);"
+                       class="mix-menu-item"
+                       (click)="hide(); v.action(item)"
                        tabindex="-1">
                     <div class="d-flex align-items-center gap-3">
                       <span class="mix-icon"> {{ v.icon }}</span>

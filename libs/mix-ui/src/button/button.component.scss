@@ -3,29 +3,16 @@ mix-button {
   width: fit-content;
 }
 
-@tailwind components;
-@layer components {
-  .primary {
-    @apply py-2 px-4 bg-blue-500 border border-transparent hover:bg-blue-700 text-white;
+.mix-button {
+  width: inherit;
+  line-height: 1;
+
+  .icon {
+    font-weight: 200;
+    margin-right: 6px;
   }
 
-  .secondary-destructive {
-    @apply py-2 px-4 bg-red-500 border border-transparent hover:bg-red-700 text-white;
-  }
-
-  .secondary {
-    @apply py-2 px-4 bg-blue-50 border border-transparent hover:bg-blue-100 hover:text-blue-600 text-blue-500;
-  }
-
-  .btn-outline {
-    @apply py-2 px-4 bg-transparent border-solid border border-blue-500 hover:bg-blue-50 text-gray-600;
-  }
-
-  .btn-icon {
-    @apply px-2 py-2;
-  }
-
-  .btn-large {
-    @apply px-8 py-2;
+  .t-content {
+    line-height: 1;
   }
 }

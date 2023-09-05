@@ -49,7 +49,7 @@ export class ActionCollapseComponent {
       key: 'delete',
       icon: 'delete',
       place: 'left',
-      type: 'secondary-danger',
+      type: 'danger',
     },
     {
       label: 'Export',

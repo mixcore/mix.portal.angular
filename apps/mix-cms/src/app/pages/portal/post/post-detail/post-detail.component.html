@@ -15,17 +15,29 @@
 
         <div class="d-flex flex-column w-100 h-100 ms-3">
           <div class="d-flex flex-grow-1">
-            <!-- Title -->
-            <mix-input class="page-title fw-bolder"
-                       [floatingLabel]="true"
-                       formControlName="title"
-                       placeHolder="Product name"
-                       size="l"></mix-input>
+            <span class="data-detail-page__input-title"
+                  [class.--empty]="!form.controls.title.value">
+              <tui-input-inline *ngIf="editTitle; else text"
+                                (focusedChange)="onFocusedChange($event)"
+                                tuiAutoFocus
+                                (keydown.esc.prevent)="toggleEditTitle()"
+                                (keydown.enter.prevent)="toggleEditTitle()"
+                                formControlName="title">
+                Type db name
+              </tui-input-inline>
+
+              <ng-template #text>
+                <span>{{ form.controls.title.value || 'Type post name' }}</span>
+                <mix-button type="flat"
+                            [iconBtn]="true"
+                            [size]="'s'"
+                            (click)="toggleEditTitle()"><span class="mix-icon">edit</span></mix-button>
+              </ng-template>
+            </span>
 
             <mix-button class="ml-auto"
                         (click)="submit()">
-              <span class="icon material-symbols-outlined"> save_as </span>
-              Save
+              <span class="mix-icon"> save_as </span>&nbsp; Save
             </mix-button>
           </div>
 

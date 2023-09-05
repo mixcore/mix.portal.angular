@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 
 @import './assets/styles/spacing.scss';
 @import './assets/styles/variables.scss';
@@ -10,6 +10,7 @@
 @import './assets/styles/material-symbol.scss';
 @import './assets/styles/font.scss';
 @import './assets/styles/progress-bar.scss';
+@import './assets/styles/tippy.scss';
 
 @import 'node_modules/@ngneat/hot-toast/src/styles/styles.scss';
 @import '~jsoneditor/dist/jsoneditor.min.css';
@@ -302,20 +303,8 @@ ngneat-dialog {
   }
 }
 
-.tippy-arrow {
-  display: none;
-}
-
-.tippy-box {
-  border-radius: var(--element-rounded) !important;
-  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
-    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
-}
-
 .ag-theme-alpine {
-  /* disable all borders */
   --ag-borders: none;
-  /* then add back a border between rows */
   --ag-border-color: var(--tui-base-04);
   --ag-borders-critical: 1px solid;
   --ag-row-border-style: solid;

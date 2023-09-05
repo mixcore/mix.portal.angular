@@ -182,7 +182,7 @@ export class DatabaseDataComponent
       key: 'delete',
       icon: 'delete',
       place: 'left',
-      type: 'secondary-danger',
+      type: 'danger',
     },
     {
       label: 'Export',
