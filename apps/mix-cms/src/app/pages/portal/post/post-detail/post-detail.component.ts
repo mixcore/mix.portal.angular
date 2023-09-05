@@ -67,6 +67,7 @@ import { MixStatusIndicatorComponent } from '../../../../components/status-indic
 import { TemplateEditorComponent } from '../../../../components/template-editor/template-editor.component';
 import { FormlyMixModule } from '../../../../shares/kits/formly-mix.module';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
+import { PostStore } from '../../../../stores/post.store';
 
 @Component({
   selector: 'mix-post-detail',
@@ -108,6 +109,7 @@ import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.comp
 })
 export class PostDetailComponent extends DetailPageKit implements OnInit {
   public reviewSrv = inject(TuiPreviewDialogService);
+  public postStore = inject(PostStore);
 
   @ViewChild('preview')
   readonly preview?: TemplateRef<TuiDialogContext>;
@@ -264,7 +266,11 @@ export class PostDetailComponent extends DetailPageKit implements OnInit {
         );
       }
 
-      forkJoin(requests).pipe(this.observerLoadingState()).subscribe();
+      forkJoin(requests)
+        .pipe(this.observerLoadingState())
+        .subscribe(() => {
+          this.postStore.reload();
+        });
     }
   }
 
