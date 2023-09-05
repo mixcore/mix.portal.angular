@@ -12,7 +12,7 @@
 
       <div class="toolbar-separator"></div>
 
-      <mix-button type="secondary-danger"
+      <mix-button type="danger"
                   [disabled]="!selectedPosts.length"
                   (click)="bulkDeleteClick()"
                   size="s">
@@ -146,7 +146,7 @@
             <div class="d-flex align-items-center">
               <img alt="preview"
                    [src]="data.image | mixImg: 'XS'"
-                   style="object-fit: cover"
+                   style="object-fit: cover; height: 40px"
                    width="60"
                    height="30">
             </div>

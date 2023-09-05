@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import {
   ActivatedRoute,
@@ -11,14 +16,10 @@ import {
 import { Culture } from '@mixcore/lib/model';
 import { AuthService } from '@mixcore/share/auth';
 import { DOMAIN_URL$ } from '@mixcore/share/base';
+import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
-import {
-  TuiButtonModule,
-  TuiDataListModule,
-  TuiHostedDropdownModule,
-  TuiLinkModule,
-} from '@taiga-ui/core';
+import { TippyDirective } from '@ngneat/helipopper';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
 import { filter, startWith } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -40,15 +41,14 @@ interface BreadcrumbOption {
     MixInputComponent,
     ReactiveFormsModule,
     TuiBreadcrumbsModule,
-    TuiLinkModule,
     RouterModule,
-    TuiHostedDropdownModule,
-    TuiDataListModule,
-    TuiButtonModule,
     LocationControllerComponent,
+    TippyDirective,
+    MixButtonComponent,
   ],
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainToolbarComponent implements OnInit {
   public auth = inject(AuthService);

@@ -43,6 +43,7 @@ import {
   TuiPreviewDialogService,
   TuiPreviewModule,
 } from '@taiga-ui/addon-preview';
+import { TuiAutoFocusModule } from '@taiga-ui/cdk';
 import {
   TuiDataListModule,
   TuiDialogContext,
@@ -51,7 +52,12 @@ import {
   TuiLoaderModule,
   TuiScrollbarModule,
 } from '@taiga-ui/core';
-import { TuiFileLike, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
+import {
+  TuiFileLike,
+  TuiInputInlineModule,
+  TuiTabsModule,
+  TuiToggleModule,
+} from '@taiga-ui/kit';
 import { Observable, combineLatest, forkJoin, takeUntil } from 'rxjs';
 import { BasicMixFilterComponent } from '../../../../components/basic-mix-filter/basic-mix-filter.component';
 import { DynamicDbListComponent } from '../../../../components/dynamic-db-list/dynamic-db-list.component';
@@ -94,6 +100,8 @@ import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.comp
     TuiHostedDropdownModule,
     MixStatusIndicatorComponent,
     BasicMixFilterComponent,
+    TuiInputInlineModule,
+    TuiAutoFocusModule,
   ],
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.scss'],
@@ -144,6 +152,7 @@ export class PostDetailComponent extends DetailPageKit implements OnInit {
   showMetadata = false;
   showVariant = false;
   showRelatedPost = false;
+  editTitle = false;
 
   filterValue = signal<PaginationRequestModel>({
     status: MixContentStatus.Published,
@@ -274,5 +283,13 @@ export class PostDetailComponent extends DetailPageKit implements OnInit {
     setTimeout(() => {
       this.openChooseStatus = false;
     });
+  }
+
+  public toggleEditTitle() {
+    this.editTitle = !this.editTitle;
+  }
+
+  public onFocusedChange(focused: boolean): void {
+    if (!focused) this.editTitle = false;
   }
 }

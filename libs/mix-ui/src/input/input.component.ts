@@ -8,17 +8,8 @@ import {
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
-import {
-  TuiDestroyService,
-  TuiLetModule,
-  tuiControlValue,
-} from '@taiga-ui/cdk';
-import {
-  TuiDataListModule,
-  TuiDropdownModule,
-  TuiHostedDropdownModule,
-  TuiTextfieldControllerModule,
-} from '@taiga-ui/core';
+import { TuiDestroyService, tuiControlValue } from '@taiga-ui/cdk';
+import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/kit';
 import { Observable, map, takeUntil } from 'rxjs';
 import { BaseTextControl } from '../base/base-text.control';
@@ -31,10 +22,6 @@ import { BaseTextControl } from '../base/base-text.control';
     TuiInputModule,
     TuiTextfieldControllerModule,
     ReactiveFormsModule,
-    TuiDataListModule,
-    TuiLetModule,
-    TuiHostedDropdownModule,
-    TuiDropdownModule,
   ],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],

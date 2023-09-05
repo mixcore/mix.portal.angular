@@ -10,14 +10,14 @@
   </section>
 
   <p class="mix-modal__buttons">
-    <mix-button [largeBtn]="true"
+    <mix-button [size]="'l'"
                 (click)="onClick(true)">
       {{ context.buttons[0] }}
     </mix-button>
 
     <mix-button *ngIf="context.buttons[1]"
                 type="secondary"
-                [largeBtn]="true"
+                [size]="'l'"
                 (click)="onClick(false)">
       {{ context.buttons[1] }}
     </mix-button>

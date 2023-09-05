@@ -4,11 +4,10 @@
          alt="logo">
   </div>
 
-
   <mix-location-controller></mix-location-controller>
 
-  <div class="main-toolbar__breadcrumbs">
-    <!-- <tui-breadcrumbs>
+  <!-- <div class="main-toolbar__breadcrumbs me-auto"> -->
+  <!-- <tui-breadcrumbs>
       <ng-container *ngFor="let item of breadcrumbs">
         <a *tuiItem
            [routerLink]="item.url"
@@ -17,9 +16,9 @@
         </a>
       </ng-container>
     </tui-breadcrumbs> -->
-  </div>
+  <!-- </div> -->
 
-  <div class="main-toolbar__tag ms-auto main-toolbar__tag{{ mode }}"> {{ mode }} </div>
+  <!-- <div class="main-toolbar__tag ms-auto main-toolbar__tag{{ mode }}"> {{ mode }} </div> -->
 
   <!-- TODO: Enable when stable -->
   <!-- <div class="main-toolbar__theme-switch">
@@ -37,55 +36,43 @@
   <ng-container *ngIf="auth.cultures$ | async as cultures">
     <div *ngIf="cultures?.length"
          class="main-toolbar__culture">
-      <tui-hosted-dropdown #dropdown1
-                           [(open)]="dropdownOpen"
-                           [content]="content">
-        <button type="button"
-                [pseudoHover]="dropdown1.open || null"
-                [size]="'s'"
-                tuiButton
-                appearance="flat">
-          <span class="flag-icon {{ auth.currentCulture?.icon }}"></span>
-        </button>
-      </tui-hosted-dropdown>
+      <mix-button type="flat"
+                  [iconBtn]="true"
+                  [size]="'s'"
+                  [tp]="cultureTpl"
+                  tpPlacement="bottom-end"
+                  tpVariation="popper">
+        <span class="flag-icon {{ auth.currentCulture?.icon }}"></span>
+      </mix-button>
 
-      <ng-template #content
-                   let-activeZone>
-        <tui-data-list>
-          <button *ngFor="let culture of cultures"
-                  (click)="changeCulture(culture)"
-                  tuiOption>
-            <span class="main-toolbar__culture-icon flag-icon {{ culture.icon }}"></span>
-            {{ culture.displayName }}
-          </button>
-        </tui-data-list></ng-template>
+      <ng-template #cultureTpl>
+        <div *ngFor="let culture of cultures"
+             class="mix-menu-item">
+          <span class="main-toolbar__culture-icon flag-icon {{ culture.icon }}"></span>{{ culture.displayName }}
+        </div>
+      </ng-template>
     </div>
   </ng-container>
 
   <div class="main-toolbar__action">
-    <tui-hosted-dropdown #dropdown2
-                         [(open)]="userMenuOpen"
-                         [content]="userMenu">
-      <button type="button"
-              [pseudoHover]="dropdown2.open || null"
-              [size]="'s'"
-              tuiButton
-              appearance="flat">
-        <span class="material-symbols-outlined"> menu </span>
-      </button>
-    </tui-hosted-dropdown>
+    <mix-button type="flat"
+                [iconBtn]="true"
+                [size]="'s'"
+                [tp]="userMenuTpl"
+                tpPlacement="bottom-end"
+                tpVariation="popper">
+      <span class="material-symbols-outlined"> menu </span>
+    </mix-button>
 
-    <ng-template #userMenu
-                 let-activeZone>
-      <tui-data-list>
-        <button tuiOption>
-          {{ 'Account Information' }}
-        </button>
+    <ng-template #userMenuTpl>
+      <div class="mix-menu-item">
+        {{ 'Account Information' }}
+      </div>
 
-        <button (click)="logout()"
-                tuiOption>
-          {{ 'Logout' }}
-        </button>
-      </tui-data-list></ng-template>
+      <div class="mix-menu-item"
+           (click)="logout()">
+        {{ 'Logout' }}
+      </div>
+    </ng-template>
   </div>
 </div>

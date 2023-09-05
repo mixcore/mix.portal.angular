@@ -8,12 +8,13 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TuiButtonModule } from '@taiga-ui/core';
 import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'mix-button',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TuiButtonModule],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -32,7 +33,6 @@ export class MixButtonComponent {
     | 'secondary'
     | 'icon' = 'primary';
   @Input() public iconBtn = false;
-  @Input() public largeBtn = false;
 
   constructor(elementRef: ElementRef, zone: NgZone) {
     zone.runOutsideAngular(() => {
@@ -52,7 +52,7 @@ export class MixButtonComponent {
     primary: 'primary',
     'secondary-danger': 'secondary-destructive',
     danger: 'accent',
-    outline: 'btn-outline',
+    outline: 'outline',
     flat: 'flat',
     secondary: 'secondary',
     icon: 'icon',
