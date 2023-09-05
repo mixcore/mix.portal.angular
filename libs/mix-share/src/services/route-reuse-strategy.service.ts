@@ -27,6 +27,7 @@ export class CustomAppReuseStrategy implements RouteReuseStrategy {
   public retrieve(route: ActivatedRouteSnapshot): DetachedRouteHandle | null {
     if (!route.routeConfig || !this.handlers.has(route.routeConfig))
       return null;
+
     return this.handlers.get(route.routeConfig)!;
   }
 

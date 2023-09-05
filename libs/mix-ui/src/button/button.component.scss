@@ -15,4 +15,8 @@ mix-button {
   .t-content {
     line-height: 1;
   }
+
+  &.icon-btn {
+    --tui-padding: 0.5rem;
+  }
 }
