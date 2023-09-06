@@ -66,6 +66,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
             pageInfo: result.pagingData,
           }));
         },
+        error: () => this.patchState((s) => ({ ...s, status: 'Error' })),
       });
   }
 

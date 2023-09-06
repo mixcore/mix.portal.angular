@@ -59,7 +59,7 @@ export class MainSideMenuComponent {
   public activeRoute = inject(ActivatedRoute);
   public authService = inject(AuthService);
 
-  @Input() public showDetail = false;
+  @Input() public showDetail = true;
   @Input() public menu: MenuItem[] = this.authService.portalMenu;
 
   public selectedMenu: MenuItem | undefined = undefined;

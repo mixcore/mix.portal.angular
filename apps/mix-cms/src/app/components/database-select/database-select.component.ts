@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { MixDatabase } from '@mixcore/lib/model';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
+import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { CMS_ROUTES } from '../../app.routes';
 import { DatabaseStore } from '../../stores/database.store';
 import { DatabaseFilterPipe } from './database-filter.pipe';
@@ -25,6 +26,7 @@ import { DatabaseFilterPipe } from './database-filter.pipe';
     MixInputComponent,
     DatabaseFilterPipe,
     ReactiveFormsModule,
+    SkeletonLoadingComponent,
   ],
   templateUrl: './database-select.component.html',
   styleUrls: ['./database-select.component.scss'],

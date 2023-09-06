@@ -9,5 +9,5 @@ import { Component, Input } from '@angular/core';
   imports: [NgIf],
 })
 export class SkeletonLoadingComponent {
-  @Input() public type: 'table' | 'card' | 'none' | 'form' = 'none';
+  @Input() public type: 'table' | 'card' | 'none' | 'form' | 'inline' = 'none';
 }

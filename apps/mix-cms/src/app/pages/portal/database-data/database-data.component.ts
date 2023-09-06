@@ -19,7 +19,6 @@ import { MixDataTableModule } from '@mixcore/ui/table';
 import { TippyDirective } from '@ngneat/helipopper';
 import { TuiReorderModule, TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
-import { TuiHostedDropdownModule } from '@taiga-ui/core';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridReadyEvent } from 'ag-grid-community';
@@ -38,7 +37,6 @@ import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
 import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
 import { DatabaseSelectComponent } from '../../../components/database-select/database-select.component';
-import { DynamicDbListComponent } from '../../../components/dynamic-db-list/dynamic-db-list.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
@@ -54,7 +52,6 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     MixDataTableModule,
     MixStatusIndicatorComponent,
     RelativeTimeSpanPipe,
-    DynamicDbListComponent,
     BasicMixFilterComponent,
     ActionCollapseComponent,
     TuiTableModule,
@@ -67,7 +64,6 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     AgGridModule,
     CustomHeaderComponent,
     TuiReorderModule,
-    TuiHostedDropdownModule,
     TippyDirective,
   ],
   templateUrl: './database-data.component.html',

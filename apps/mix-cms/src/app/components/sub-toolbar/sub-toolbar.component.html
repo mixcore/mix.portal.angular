@@ -1,7 +1,11 @@
 <div class="sub-toolbar">
   <div class="sub-toolbar__title">
     <div class="sub-toolbar__description">{{ description }}</div>
-    <div>{{ title }}</div>
+    <mix-skeleton-loading *ngIf="loading; else titleTpl"
+                          type="inline"></mix-skeleton-loading>
+    <ng-template #titleTpl>
+      <div>{{ title }}</div>
+    </ng-template>
   </div>
 
   <div class="sub-toolbar__action">

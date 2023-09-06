@@ -1,7 +1,7 @@
 // @tailwind base;
 // @tailwind components;
 // @tailwind utilities;
-
+@import '@taiga-ui/core/styles/taiga-ui-local.scss';
 @import './assets/styles/spacing.scss';
 @import './assets/styles/variables.scss';
 @import './assets/styles/overwrite-variables.scss';
