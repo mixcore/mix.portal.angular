@@ -45,3 +45,10 @@ export interface MixFilter {
   options?: string[];
   type?: 'select' | 'date';
 }
+
+export const buildCacheKey = (
+  request: PaginationRequestModel,
+  prefix: string
+) => {
+  return `${prefix}-${request.pageIndex}-${request.pageSize}-${request.status}-${request.direction}-${request.keyword}-${request.orderBy}`;
+};

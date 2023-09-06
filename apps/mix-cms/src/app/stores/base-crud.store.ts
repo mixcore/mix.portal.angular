@@ -8,17 +8,34 @@ import {
   PaginationRequestModel,
   PaginationResultModel,
   SearchMethod,
+  buildCacheKey,
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ComponentStore, tapResponse } from '@ngrx/component-store';
-import { Observable, Subscription, switchMap, tap } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subscription,
+  delay,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { CacheService } from '../shares/services/cached.service';
+
 export interface BaseState<T> {
   data: T[];
   request: PaginationRequestModel;
   pageInfo: PaginationModel;
   status: 'Loading' | 'Error' | 'Pending' | 'Success';
 }
+
+export const DEFAULT_DATA = {
+  items: [],
+  pagingData: {
+    pageIndex: 0,
+    pageSize: 30,
+  },
+};
 
 @Injectable()
 export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
@@ -27,7 +44,6 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public cacheService = inject(CacheService);
 
   public requestName = '';
-  // public mainUrl = '';
   public status$ = this.selectSignal((s) => s.status);
   public request$ = this.selectSignal((s) => s.request);
   public data$ = this.selectSignal((s) => s.data);
@@ -35,17 +51,13 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public request$$ = this.select((s) => s.request);
   public vm$ = this.request$$.pipe(
     tap((r) => this.loadData(r)),
-    switchMap((s) => this.select((s) => s))
+    switchMap(() => this.select((s) => s))
   );
 
+  public cachePool$ = new BehaviorSubject<PaginationResultModel<T>>(
+    DEFAULT_DATA
+  );
   public columns = '';
-  // public cacheSubject$ = new BehaviorSubject<PaginationResultModel<T>>({
-  //   items: [],
-  //   pagingData: {
-  //     pageIndex: 0,
-  //     pageSize: 30,
-  //   },
-  // });
 
   public cacheKey = '';
   public isSilentlyLoading = false;
@@ -57,44 +69,21 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
     request: PaginationRequestModel
   ) => Observable<PaginationResultModel<T>>;
 
-  // public buildCacheKey(request: PaginationRequestModel): string {
-  //   return `${this.requestName}-${request.pageIndex}-${request.pageSize}-${request.status}-${request.direction}-${request.keyword}-${request.orderBy}`;
-  // }
-
-  constructor() {
-    super({
-      data: [],
-      status: 'Pending',
-      request: {
-        pageIndex: 0,
-        pageSize: 30,
-        direction: 'Desc',
-        status: MixContentStatus.Published,
-        searchMethod: 'Like',
-        columns: '',
-        orderBy: 'createdDateTime',
-        metadataQueries: [],
-      },
-      pageInfo: {
-        pageIndex: 0,
-        pageSize: 30,
-      },
-    });
-
-    // effect(() => this.loadData(this.request$()), { allowSignalWrites: true });
-  }
-
   public loadData = this.effect(
     (request$: Observable<PaginationRequestModel>) =>
       request$.pipe(
-        tap(() => {
-          this.patchState({ status: 'Loading' });
+        tap((request) => {
+          this.cacheKey = buildCacheKey(request, this.requestName);
+          if (!this.cacheService.has(this.cacheKey)) {
+            this.patchState({ status: 'Loading' });
+          }
         }),
+        delay(300),
         switchMap((request) => this.silentFetchData(request)),
         tapResponse(
           (result) => {
-            // this.cacheService.delete(this.cacheKey);
-            // this.cacheService.set(this.cacheKey, result);
+            this.cacheService.delete(this.cacheKey);
+            this.cacheService.set(this.cacheKey, result);
 
             this.patchState({
               data: result.items,
@@ -114,24 +103,23 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public silentFetchData(
     request: PaginationRequestModel
   ): Observable<PaginationResultModel<T>> {
-    // if (this.cacheService.has(this.cacheKey)) {
-    //   const cachedResponse = this.cacheService.get(this.cacheKey);
-    //   this.cacheSubject$.next(cachedResponse);
-    // }
-    return this.requestFn(request);
+    if (this.cacheService.has(this.cacheKey)) {
+      const cachedResponse = this.cacheService.get(this.cacheKey);
+      this.cachePool$.next(cachedResponse);
+    }
 
-    // if (this.requestFn) {
-    //   if (this.requestObserver) {
-    //     this.requestObserver.unsubscribe();
-    //   }
+    if (this.requestFn) {
+      if (this.requestObserver) {
+        this.requestObserver.unsubscribe();
+      }
 
-    //   this.requestObserver = this.requestFn(request).subscribe((result) => {
-    //     this.patchState({ status: 'Success' });
-    //     this.cacheSubject$.next(result);
-    //   });
-    // }
+      this.requestObserver = this.requestFn(request).subscribe((result) => {
+        this.patchState({ status: 'Success' });
+        this.cachePool$.next(result);
+      });
+    }
 
-    // return this.cacheSubject$.asObservable();
+    return this.cachePool$.asObservable();
   }
 
   public changePage(index: number) {
@@ -215,5 +203,23 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
         searchMethod: 'Like',
       },
     }));
+  }
+
+  constructor() {
+    super({
+      status: 'Pending',
+      request: {
+        pageIndex: 0,
+        pageSize: 30,
+        direction: 'Desc',
+        status: MixContentStatus.Published,
+        searchMethod: 'Like',
+        columns: '',
+        orderBy: 'createdDateTime',
+        metadataQueries: [],
+      },
+      data: DEFAULT_DATA.items,
+      pageInfo: DEFAULT_DATA.pagingData,
+    });
   }
 }
