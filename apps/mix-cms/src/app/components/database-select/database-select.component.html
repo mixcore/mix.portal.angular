@@ -1,12 +1,12 @@
 <!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <div *ngIf="store.vm$ | async as vm"
      class="database-select">
-  <mix-button class="database-select__add-btn"
-              [class.--disable]="isCreate"
-              [type]="isCreate ? 'secondary' : 'outline'"
+  <mix-button *ngIf="!isCreate"
+              class="database-select__add-btn"
+              [type]="'outline'"
               (click)="createDb()">
     <span class="mix-icon">add</span>&nbsp;
-    {{ isCreate ? 'Creating' : 'New Table' }}
+    New Table'
   </mix-button>
 
   <mix-input class="database-select__search"

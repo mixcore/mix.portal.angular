@@ -33,11 +33,7 @@ import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TuiAutoFocusModule } from '@taiga-ui/cdk';
-import {
-  TuiLoaderModule,
-  TuiNotificationModule,
-  TuiScrollbarModule,
-} from '@taiga-ui/core';
+import { TuiLoaderModule, TuiScrollbarModule } from '@taiga-ui/core';
 import {
   TuiInputInlineModule,
   TuiTabsModule,
@@ -68,7 +64,6 @@ import { DatabaseStore } from '../../../../stores/database.store';
     TuiToggleModule,
     EntityFormComponent,
     MixFormErrorComponent,
-    TuiNotificationModule,
     DragDropModule,
     TuiInputInlineModule,
     TuiAutoFocusModule,

@@ -17,7 +17,7 @@
         <mix-button type="outline"
                     [iconBtn]="true"
                     (click)="updateSystemName(true)"
-                    size="s"><span class="mix-icon">refresh</span></mix-button>
+                    size="m"><span class="mix-icon">refresh</span></mix-button>
         <mix-input [closable]="false"
                    [size]="'s'"
                    placeHolder="Unique system name"
@@ -29,7 +29,7 @@
       <mix-button class="w-100 data-type-select"
                   type="outline"
                   (click)="showDataTypeDialog($event, dataTypePicker)"
-                  size="s">
+                  size="m">
         <div *ngIf="form.controls.dataType.value">
           {{
             $any(dataTypeDisplay)[form.controls.dataType.value]?.name ??
