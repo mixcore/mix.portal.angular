@@ -1,4 +1,7 @@
 html {
+  --white-0: #fff;
+  --blue-500: rgb(59 130 246);
+
   --font: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica, Arial,
     sans-serif;
@@ -27,7 +30,7 @@ html {
   --border-color-default: #ededed;
   --border-radius-default: 6px;
 
-  --primary-color: rgb(59 130 246);
+  --primary-color: var(--blue-500);
   --default-primary-color-hue: 210;
   --success-color: #20c997;
 

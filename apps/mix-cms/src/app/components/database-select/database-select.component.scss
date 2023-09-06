@@ -4,6 +4,8 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
+  box-shadow: -30px 3px 50px -45px rgba(0, 0, 0, 0.5) inset;
+  border: 1px solid var(--border-color-default);
 
   &__add-btn {
     width: 100%;
@@ -44,8 +46,8 @@
     &.--active,
     &:hover {
       opacity: 1;
-      background: linear-gradient(var(--tui-info-bg), var(--tui-info-bg)),
-        var(--tui-base-01);
+      background: var(--blue-500);
+      color: var(--white-0);
     }
   }
 }

@@ -16,7 +16,7 @@ import {
   BehaviorSubject,
   Observable,
   Subscription,
-  delay,
+  of,
   switchMap,
   tap,
 } from 'rxjs';
@@ -72,13 +72,14 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public loadData = this.effect(
     (request$: Observable<PaginationRequestModel>) =>
       request$.pipe(
-        tap((request) => {
+        switchMap((request) => {
           this.cacheKey = buildCacheKey(request, this.requestName);
           if (!this.cacheService.has(this.cacheKey)) {
-            this.patchState({ status: 'Loading' });
+            this.patchState((s) => ({ ...s, status: 'Loading' }));
           }
+
+          return of(request);
         }),
-        delay(300),
         switchMap((request) => this.silentFetchData(request)),
         tapResponse(
           (result) => {
@@ -88,7 +89,6 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
             this.patchState({
               data: result.items,
               pageInfo: result.pagingData,
-              status: 'Success',
             });
           },
           () => this.patchState({ status: 'Error' })

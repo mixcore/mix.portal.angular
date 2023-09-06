@@ -33,9 +33,9 @@
 
   &__footer {
     margin-top: auto;
-    min-height: var(--primary-toolbar-height);
     border-top: 1px solid var(--border-color-default);
     background-color: var(--background-color-primary);
+    min-height: var(--primary-toolbar-height);
     padding: var(--container-padding);
     display: flex;
     align-items: center;

@@ -8,7 +8,7 @@ import {
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ComponentStore } from '@ngrx/component-store';
-import { filter, forkJoin, tap } from 'rxjs';
+import { catchError, filter, forkJoin, of } from 'rxjs';
 import { BaseState } from './base-crud.store';
 
 export interface DatabaseDataState extends BaseState<MixDynamicData> {
@@ -16,6 +16,7 @@ export interface DatabaseDataState extends BaseState<MixDynamicData> {
   db?: MixDatabase;
   columns: MixColumn[];
   columnKeys: string[];
+  loadDataError: boolean;
 }
 
 @Injectable()
@@ -32,6 +33,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
       columnKeys: [],
       columns: [],
       data: [],
+      loadDataError: false,
       status: 'Pending',
       request: {
         pageIndex: 0,
@@ -46,28 +48,39 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
 
   public loadData(request: PaginationRequestModel, dbName: string) {
     forkJoin([
-      this.mixApi.databaseApi.getDataByName<MixDynamicData>(dbName, request),
+      this.mixApi.databaseApi
+        .getDataByName<MixDynamicData>(dbName, request)
+        .pipe(
+          catchError(() => {
+            return of({
+              items: [],
+              pagingData: {
+                pageIndex: 0,
+                pageSize: 30,
+              },
+              error: true,
+            });
+          })
+        ),
       this.mixApi.databaseApi.getDatabaseBySystemName(dbName),
-    ])
-      .pipe(tap(() => this.patchState({ status: 'Loading' })))
-      .subscribe({
-        next: ([result, db]) => {
-          this.patchState((s) => ({
-            ...s,
-            status: 'Success',
-            data: result.items,
-            db: db,
-            columns: db.columns,
-            columnKeys: [
-              'checkbox',
-              ...db.columns.map((x) => x.systemName),
-              'add-col',
-            ],
-            pageInfo: result.pagingData,
-          }));
-        },
-        error: () => this.patchState((s) => ({ ...s, status: 'Error' })),
-      });
+    ]).subscribe({
+      next: ([result, db]) => {
+        this.patchState((s) => ({
+          ...s,
+          status: 'Success',
+          data: result.items,
+          db: db,
+          columns: db.columns,
+          loadDataError: (result as any)['error'],
+          columnKeys: [
+            'checkbox',
+            ...db.columns.map((x) => x.systemName),
+            'add-col',
+          ],
+          pageInfo: result.pagingData,
+        }));
+      },
+    });
   }
 
   public changePage(index: number) {
@@ -84,7 +97,12 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
   }
 
   public changeDb(dbName: string) {
-    this.patchState((s) => ({ ...s, status: 'Loading', dbSysName: dbName }));
+    this.patchState((s) => ({
+      ...s,
+      status: 'Loading',
+      dbSysName: dbName,
+      loadDataError: false,
+    }));
     this.loadData(this.get().request, dbName);
   }
 }

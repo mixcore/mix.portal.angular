@@ -35,50 +35,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px;
+    min-height: var(--primary-toolbar-height);
+    padding: var(--container-padding);
     border-top: 1px solid var(--border-color-default);
   }
-
-  &__td {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    cursor: pointer !important;
-    font-size: 12px !important;
-    max-width: 250px;
-
-    &.--check {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    &.--active {
-      border: 1px solid var(--primary-color) !important;
-    }
-
-    &.--sticky-r {
-      position: sticky;
-      right: 0px;
-      border-left: 1px solid var(--border-color-default) !important;
-    }
-  }
-
-  &__th {
-    white-space: nowrap;
-    font-size: 12px !important;
-    background-color: #f8f9fa !important;
-    border-top: unset !important;
-    cursor: pointer !important;
-
-    &.--sticky-r {
-      position: sticky;
-      right: 0px;
-      border-left: 1px solid var(--border-color-default) !important;
-    }
-  }
-}
-
-.columns {
-  width: 300px;
 }
