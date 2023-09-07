@@ -102,6 +102,9 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
 
         if (!this.id || this.id === 'create') {
           this.mode = 'create';
+          this.data = {
+            columns: [],
+          } as any;
           return;
         }
 
@@ -123,7 +126,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
 
         this.updateSystemName(value);
       });
-    // });
   }
 
   public addNewEntity(): void {

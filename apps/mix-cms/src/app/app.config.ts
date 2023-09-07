@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import { provideRouter } from '@angular/router';
+import { PreloadAllModules, RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
 import {
@@ -95,8 +95,8 @@ export const appConfig: ApplicationConfig = {
         shouldCoalesceRunChangeDetection: true,
       }),
     },
-    provideRouter(ROUTES),
     importProvidersFrom(
+      RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
       BrowserModule,
       TuiRootModule,
       MixModalModule,
