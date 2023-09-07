@@ -105,4 +105,25 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
     }));
     this.loadData(this.get().request, dbName);
   }
+
+  public reloadOnlyData() {
+    const state = this.get();
+    if (!state.dbSysName) return;
+
+    this.mixApi.databaseApi
+      .getDataByName<MixDynamicData>(state.dbSysName, state.request)
+      .subscribe((result) => {
+        this.patchState((s) => ({
+          ...s,
+          data: result.items,
+        }));
+      });
+  }
+
+  public addData(data: MixDynamicData) {
+    this.patchState((s) => ({
+      ...s,
+      data: [...s.data, data],
+    }));
+  }
 }

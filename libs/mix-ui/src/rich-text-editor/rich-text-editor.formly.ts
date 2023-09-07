@@ -1,26 +1,23 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldType, FieldTypeConfig, FormlyModule } from '@ngx-formly/core';
+import { FormlyControlLayoutComponent } from '../base/formly-control-layout/formly-control-layout.component';
 import { MixEditorComponent } from './rich-text-editor.component';
 
 @Component({
   selector: 'mix-formly-toggle',
   template: `
-    <div class="row mb-4">
-      <div class="col-md-2">
-        <span class="content-label mb-1"> {{ field.props.label }}:</span>
-        <div class="content-sub-label">{{ field.type }}</div>
-      </div>
-
-      <div class="col-md-10">
-        <mix-rich-text-editor
-          style="height: 300px"
-          [formControl]="formControl"
-          [formlyAttributes]="field"
-        ></mix-rich-text-editor>
-      </div>
-    </div>
+    <mix-formly-control-layout
+      [title]="field.props.label"
+      [description]="field.type?.toString()"
+    >
+      <mix-rich-text-editor
+        style="height: 300px"
+        [formControl]="formControl"
+        [formlyAttributes]="field"
+      ></mix-rich-text-editor>
+    </mix-formly-control-layout>
   `,
   standalone: true,
   imports: [
@@ -28,6 +25,8 @@ import { MixEditorComponent } from './rich-text-editor.component';
     ReactiveFormsModule,
     MixEditorComponent,
     CommonModule,
+    FormlyControlLayoutComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixFormlyRichTextComponent extends FieldType<FieldTypeConfig> {}

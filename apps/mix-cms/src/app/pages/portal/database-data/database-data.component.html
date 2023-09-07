@@ -45,10 +45,10 @@
 
           <ng-template #tpl
                        let-hide>
-            <tui-reorder class="columns"
-                         [(enabled)]="displayColumns"
+            <tui-reorder [(enabled)]="displayColumns"
                          [(items)]="columnNames"
-                         (enabledChange)="displayColumns$.next(displayColumns)"></tui-reorder>
+                         (enabledChange)="displayColumns$.next(displayColumns)"
+                         style="width: 300px;"></tui-reorder>
           </ng-template>
 
           <mix-button *ngIf="vm.db"

@@ -16,6 +16,7 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { MixDataTableModule } from '@mixcore/ui/table';
+import { DialogService } from '@ngneat/dialog';
 import { TippyDirective } from '@ngneat/helipopper';
 import { TuiReorderModule, TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
@@ -30,6 +31,7 @@ import {
   filter,
   forkJoin,
   map,
+  take,
   takeUntil,
   tap,
 } from 'rxjs';
@@ -37,6 +39,7 @@ import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
 import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
 import { DatabaseSelectComponent } from '../../../components/database-select/database-select.component';
+import { RecordFormComponent } from '../../../components/record-form/record-form.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
@@ -75,11 +78,13 @@ export class DatabaseDataComponent
   extends ListPageKit<MixDynamicData>
   implements OnInit
 {
-  public dbSysName = '';
   public mixApi = inject(MixApiFacadeService);
   public activatedRoute = inject(ActivatedRoute);
   public modal = inject(ModalService);
   public store = inject(DatabaseDataStore);
+  public dialog = inject(DialogService);
+
+  public dbSysName = '';
   public activeCol = '';
   public isAllCheck = false;
 
@@ -189,7 +194,7 @@ export class DatabaseDataComponent
   ];
 
   public actionMaps = {
-    create: () => this.onCreateData(),
+    create: () => this.onInsertData(),
     delete: () => this.onDeleteData(),
     export: () => this.onExportData(),
   };
@@ -297,5 +302,19 @@ export class DatabaseDataComponent
       `${CMS_ROUTES.portal['database-doc'].fullPath}/${db.id}`,
       { state: { db: db } }
     );
+  }
+
+  public onInsertData(): void {
+    this.store.state$.pipe(take(1)).subscribe((value) => {
+      if (!value.db) return;
+
+      const dialogRef = this.dialog.open(RecordFormComponent, {
+        data: { mixDatabase: value.db },
+      });
+
+      dialogRef.afterClosed$.subscribe((value) => {
+        if (value) this.store.addData(value);
+      });
+    });
   }
 }
