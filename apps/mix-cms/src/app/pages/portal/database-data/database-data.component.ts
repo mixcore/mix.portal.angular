@@ -44,6 +44,7 @@ import { MixStatusIndicatorComponent } from '../../../components/status-indicato
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
+import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
 import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
 @Component({
   selector: 'mix-database-data',
@@ -121,6 +122,7 @@ export class DatabaseDataComponent
       displayName: '#',
       columnType: 'action',
     },
+    cellRenderer: CustomActionCellComponent,
   };
   public readonly defaultColDef: ColDef = {
     sortable: true,
