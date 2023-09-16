@@ -14,6 +14,7 @@ import { ICellRendererParams } from 'ag-grid-community';
 })
 export class CustomActionCellComponent implements ICellRendererAngularComp {
   public cellValue!: string;
+  public dataId!: number;
 
   public agInit(params: ICellRendererParams): void {
     this.cellValue = this.getValueToDisplay(params);
@@ -29,7 +30,7 @@ export class CustomActionCellComponent implements ICellRendererAngularComp {
   }
 
   public getValueToDisplay(params: ICellRendererParams) {
-    console.log(params);
+    this.dataId = params.data.id;
     return params.valueFormatted ? params.valueFormatted : params.value;
   }
 }
