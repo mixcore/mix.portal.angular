@@ -22,7 +22,7 @@ import { TuiReorderModule, TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { AgGridModule } from 'ag-grid-angular';
-import { ColDef, GridReadyEvent } from 'ag-grid-community';
+import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 import {
   Observable,
   Subject,
@@ -136,8 +136,10 @@ export class DatabaseDataComponent
   public columnNames: string[] = [];
   public displayColumns: string[] = [];
   public displayColumns$ = new Subject<string[]>();
+  public gridApi!: GridApi<MixDynamicData>;
 
-  onGridReady(params: GridReadyEvent) {
+  public onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
     this.rowData$ = this.store.vm$.pipe(
       filter((s) => s.status === 'Success'),
       tap((s) => {
@@ -164,12 +166,17 @@ export class DatabaseDataComponent
           ];
         }
       }),
-      map((s) => s.data)
+      map((s) => s.data),
+      takeUntil(this.destroy$)
     );
 
     this.displayColumns$
       .pipe(distinctUntilChanged(), debounceTime(0))
       .subscribe((v) => this.reUpdateColumnDef());
+  }
+
+  public onSelectionChanged() {
+    this.selectedItems = this.gridApi.getSelectedRows();
   }
 
   public actions = [
@@ -238,11 +245,16 @@ export class DatabaseDataComponent
           this.mixApi.databaseApi.deleteData(this.dbSysName, d.id!)
         );
 
-        forkJoin(requests).subscribe({
-          next: () => {
-            this.modal.success('Successfully delete your data').subscribe();
-          },
-        });
+        forkJoin(requests)
+          .pipe(toastObserverProcessing(this.toast))
+          .subscribe({
+            next: () => {
+              this.modal.success('Successfully delete your data').subscribe();
+              this.store.removeData(selectedData.map((x) => x.id!));
+              this.selectedItems = [];
+              this.gridApi.deselectAll();
+            },
+          });
       });
   }
 

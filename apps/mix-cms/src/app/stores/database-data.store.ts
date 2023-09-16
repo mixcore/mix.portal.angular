@@ -126,4 +126,11 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
       data: [...s.data, data],
     }));
   }
+
+  public removeData(dataId: number[]) {
+    this.patchState((s) => ({
+      ...s,
+      data: s.data.filter((x) => !dataId.includes(x.id!)),
+    }));
+  }
 }
