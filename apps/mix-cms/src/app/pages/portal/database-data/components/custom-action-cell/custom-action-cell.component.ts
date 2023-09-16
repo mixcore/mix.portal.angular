@@ -15,9 +15,11 @@ import { ICellRendererParams } from 'ag-grid-community';
 export class CustomActionCellComponent implements ICellRendererAngularComp {
   public cellValue!: string;
   public dataId!: number;
+  public parentComp: any;
 
   public agInit(params: ICellRendererParams): void {
     this.cellValue = this.getValueToDisplay(params);
+    this.parentComp = params.context.componentParent;
   }
 
   public refresh(params: ICellRendererParams): boolean {
@@ -26,7 +28,7 @@ export class CustomActionCellComponent implements ICellRendererAngularComp {
   }
 
   public btnClick() {
-    console.log(123);
+    this.parentComp.editData(this.dataId);
   }
 
   public getValueToDisplay(params: ICellRendererParams) {

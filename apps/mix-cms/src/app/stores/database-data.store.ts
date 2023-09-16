@@ -127,6 +127,18 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
     }));
   }
 
+  public updateData(dataIndex: number, data: MixDynamicData) {
+    this.patchState((s) => {
+      const current = s.data;
+      current[dataIndex] = data;
+
+      return {
+        ...s,
+        data: current,
+      };
+    });
+  }
+
   public removeData(dataId: number[]) {
     this.patchState((s) => ({
       ...s,

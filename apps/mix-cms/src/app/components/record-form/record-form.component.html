@@ -1,6 +1,6 @@
 <div class="mix-dialog">
   <div class="mix-dialog__header">
-    Create record from {{ ref.data.mixDatabase.displayName }}
+    {{ mode === 'create' ? 'Create' : 'Update'}} record from {{ ref.data.mixDatabase.displayName }}
   </div>
 
   <div class="mix-dialog__content">

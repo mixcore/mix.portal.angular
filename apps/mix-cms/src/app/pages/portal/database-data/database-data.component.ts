@@ -323,11 +323,28 @@ export class DatabaseDataComponent
       if (!value.db) return;
 
       const dialogRef = this.dialog.open(RecordFormComponent, {
-        data: { mixDatabase: value.db },
+        data: { mixDatabase: value.db, data: undefined },
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
         if (value) this.store.addData(value);
+      });
+    });
+  }
+
+  public editData(dataId: number) {
+    this.store.state$.pipe(take(1)).subscribe((state) => {
+      if (!state.db) return;
+
+      const dataIndex = state.data.findIndex((x) => x.id === dataId);
+      if (dataIndex < 0) return;
+
+      const dialogRef = this.dialog.open(RecordFormComponent, {
+        data: { mixDatabase: state.db, data: state.data[dataIndex] },
+      });
+
+      dialogRef.afterClosed$.subscribe((value) => {
+        if (value) this.store.updateData(dataIndex, value);
       });
     });
   }

@@ -34,6 +34,7 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
   ref: DialogRef<
     {
       mixDatabase: MixDatabase;
+      data: MixDynamicData | undefined;
     },
     MixDynamicData
   > = inject(DialogRef);
@@ -53,10 +54,12 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
   public modelData: MixDynamicData = {};
   public fields: FormlyFieldConfig[] = [];
   public form = new FormGroup({});
+  public mode: 'create' | 'update' = 'create';
 
   ngOnInit() {
     const db = this.ref.data.mixDatabase;
-    const data = {};
+    const data = this.ref.data.data ?? {};
+    this.mode = data ? 'update' : 'create';
 
     const { model, fields } = Utils.BuildDynamicFormField(
       db.columns,
