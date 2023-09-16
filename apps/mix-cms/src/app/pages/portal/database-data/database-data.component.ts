@@ -5,7 +5,7 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MixDatabase, MixDynamicData } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
@@ -69,6 +69,7 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     CustomHeaderComponent,
     TuiReorderModule,
     TippyDirective,
+    ReactiveFormsModule,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -88,6 +89,7 @@ export class DatabaseDataComponent
   public dbSysName = '';
   public activeCol = '';
   public isAllCheck = false;
+  public searchForm = new FormControl();
 
   public components: {
     [p: string]: any;
@@ -171,8 +173,14 @@ export class DatabaseDataComponent
     );
 
     this.displayColumns$
-      .pipe(distinctUntilChanged(), debounceTime(0))
+      .pipe(distinctUntilChanged(), debounceTime(0), takeUntil(this.destroy$))
       .subscribe((v) => this.reUpdateColumnDef());
+
+    this.searchForm.valueChanges
+      .pipe(takeUntil(this.destroy$), debounceTime(500))
+      .subscribe((v) => {
+        this.store.changeSearch(v);
+      });
   }
 
   public onSelectionChanged() {
@@ -291,6 +299,7 @@ export class DatabaseDataComponent
   public selectedTableChange(mixDb: MixDatabase) {
     if (mixDb.systemName == this.dbSysName) return;
 
+    this.searchForm.reset(null, { emitEvent: false, onlySelf: true });
     this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${mixDb.systemName}`
     );

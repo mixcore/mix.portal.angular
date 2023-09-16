@@ -5,6 +5,7 @@ import {
   MixDatabase,
   MixDynamicData,
   PaginationRequestModel,
+  STRING_DATA_TYPE,
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ComponentStore } from '@ngrx/component-store';
@@ -16,6 +17,7 @@ export interface DatabaseDataState extends BaseState<MixDynamicData> {
   db?: MixDatabase;
   columns: MixColumn[];
   columnKeys: string[];
+  searchColumnKeys: string;
   loadDataError: boolean;
 }
 
@@ -32,6 +34,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
     super({
       columnKeys: [],
       columns: [],
+      searchColumnKeys: '',
       data: [],
       loadDataError: false,
       status: 'Pending',
@@ -46,7 +49,17 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
     });
   }
 
-  public loadData(request: PaginationRequestModel, dbName: string) {
+  public loadData(
+    request: PaginationRequestModel,
+    dbName: string,
+    forceReloadDb = false
+  ) {
+    const state = this.get();
+    const getDbReq =
+      state.dbSysName !== dbName || !state.db || forceReloadDb
+        ? this.mixApi.databaseApi.getDatabaseBySystemName(dbName)
+        : of(state.db);
+
     forkJoin([
       this.mixApi.databaseApi
         .getDataByName<MixDynamicData>(dbName, request)
@@ -62,7 +75,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
             });
           })
         ),
-      this.mixApi.databaseApi.getDatabaseBySystemName(dbName),
+      getDbReq,
     ]).subscribe({
       next: ([result, db]) => {
         this.patchState((s) => ({
@@ -71,6 +84,10 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
           data: result.items,
           db: db,
           columns: db.columns,
+          searchColumnKeys: db.columns
+            .filter((x) => STRING_DATA_TYPE.includes(x.dataType))
+            .map((x) => x.systemName)
+            .join(', '),
           loadDataError: (result as any)['error'],
           columnKeys: [
             'checkbox',
@@ -84,6 +101,9 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
   }
 
   public changePage(index: number) {
+    const state = this.get();
+    if (!state.dbSysName) return;
+
     this.patchState((s) => ({
       ...s,
       status: 'Loading',
@@ -93,7 +113,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
       },
     }));
 
-    this.loadData(this.get().request, this.get().dbSysName!);
+    this.loadData(state.request, state.dbSysName!);
   }
 
   public changeDb(dbName: string) {
@@ -101,9 +121,35 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
       ...s,
       status: 'Loading',
       dbSysName: dbName,
+      db: undefined,
       loadDataError: false,
+      request: {
+        pageIndex: 0,
+        pageSize: 25,
+      },
     }));
-    this.loadData(this.get().request, dbName);
+    this.loadData(this.get().request, dbName, true);
+  }
+
+  public changeSearch(searchText: string) {
+    const state = this.get();
+    if (!state.dbSysName) return;
+
+    const request = {
+      ...state.request,
+      keyword: searchText,
+      searchColumns: state.searchColumnKeys,
+      searchMethod: 'Like',
+    } as PaginationRequestModel;
+
+    this.patchState((s) => ({
+      ...s,
+      status: 'Loading',
+      loadDataError: false,
+      request: request,
+    }));
+
+    this.loadData(request, state.dbSysName);
   }
 
   public reloadOnlyData() {
