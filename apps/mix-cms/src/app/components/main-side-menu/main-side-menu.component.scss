@@ -105,7 +105,9 @@
       background-color: var(--menu-active-color);
     }
 
-    &.--active {
+    &.--route-active {
+      background-color: var(--menu-active-color);
+
       &::before {
         position: absolute;
         width: 4px;

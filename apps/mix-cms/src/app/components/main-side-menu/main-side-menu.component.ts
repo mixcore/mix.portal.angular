@@ -7,10 +7,6 @@ import {
   inject,
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import {
-  collapseLeftOnLeaveAnimation,
-  expandRightOnEnterAnimation,
-} from '@mixcore/share/animation';
 import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
 import { TranslocoModule } from '@ngneat/transloco';
@@ -19,9 +15,7 @@ import {
   TuiDataListModule,
   TuiDropdownModule,
   TuiHostedDropdownModule,
-  TuiLinkModule,
 } from '@taiga-ui/core';
-import { TuiTreeModule } from '@taiga-ui/kit';
 
 export type MenuItem = {
   title: string;
@@ -37,21 +31,15 @@ export type MenuItem = {
   imports: [
     CommonModule,
     MixIconButtonComponent,
-    TuiLinkModule,
     RouterModule,
     TuiHostedDropdownModule,
     TuiDataListModule,
     TuiDropdownModule,
-    TuiTreeModule,
     TranslocoModule,
     TuiActiveZoneModule,
   ],
   templateUrl: './main-side-menu.component.html',
   styleUrls: ['./main-side-menu.component.scss'],
-  animations: [
-    collapseLeftOnLeaveAnimation({ duration: 250 }),
-    expandRightOnEnterAnimation({ duration: 250 }),
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
@@ -63,21 +51,21 @@ export class MainSideMenuComponent {
   @Input() public menu: MenuItem[] = this.authService.portalMenu;
 
   public selectedMenu: MenuItem | undefined = undefined;
+  public selectedMenus: Record<string, MenuItem | undefined> = {};
 
   constructor(public route: Router) {}
 
   public onMenuSelect(menu: MenuItem) {
-    if (this.selectedMenu?.title === menu.title) {
-      this.selectedMenu = undefined;
-      return;
+    if (this.selectedMenus[menu.title]) {
+      this.selectedMenus[menu.title] = undefined;
+    } else {
+      this.selectedMenus[menu.title] = menu;
     }
-
-    this.selectedMenu = menu;
-    // this.route.navigateByUrl(menu.url);
   }
 
   public toggleMenu(): void {
     this.showDetail = !this.showDetail;
+    if (!this.showDetail) this.selectedMenus = {};
   }
 
   public getShortName(name: string) {
@@ -89,9 +77,5 @@ export class MainSideMenuComponent {
     }
 
     return name;
-  }
-
-  public onActiveZone(active: boolean) {
-    // if (!active && this.selectedMenu) this.selectedMenu = undefined;
   }
 }
