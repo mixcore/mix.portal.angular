@@ -14,10 +14,6 @@ import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent, LoadingState } from '@mixcore/share/base';
 import { Utils } from '@mixcore/share/utils';
 import { MixButtonComponent } from '@mixcore/ui/button';
-import { MixEditorComponent } from '@mixcore/ui/editor';
-import { MixInputComponent } from '@mixcore/ui/input';
-import { MixSelectComponent } from '@mixcore/ui/select';
-import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { TuiLoaderModule, TuiScrollbarModule } from '@taiga-ui/core';
 import { TuiFileLike, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
@@ -33,21 +29,17 @@ import { FormlyMixModule } from '../../../../shares/kits/formly-mix.module';
   standalone: true,
   imports: [
     CommonModule,
-    MixInputComponent,
     TuiTabsModule,
     MixButtonComponent,
-    MixTextAreaComponent,
-    MixEditorComponent,
     FormsModule,
     TuiScrollbarModule,
     TuiLoaderModule,
     ReactiveFormsModule,
-    MixSelectComponent,
     TuiToggleModule,
     FormlyMixModule,
     MixSubToolbarComponent,
     DynamicDbListComponent,
-    BasicMixFilterComponent
+    BasicMixFilterComponent,
   ],
   templateUrl: './database-data-form.component.html',
   styleUrls: ['./database-data-form.component.scss'],
@@ -70,7 +62,6 @@ export class DatabaseDataFormComponent extends BaseComponent {
     orderBy: 'priority',
     direction: 'Desc',
   };
-
 
   parentId: number | undefined = undefined;
   parentDbName: string | undefined = undefined;

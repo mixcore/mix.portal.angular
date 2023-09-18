@@ -19,7 +19,7 @@
 
     <ng-container *ngIf="vm.status !== 'Pending'">
       <mix-sub-toolbar [description]="'QUERY ON'"
-                       [loading]="vm.status === 'Loading'"
+                       [loading]="vm.status === 'Loading' && vm.db === undefined"
                        [title]="vm.db?.displayName || 'Db Data'">
         <div class="toolbar-separator"></div>
         <mix-action-collapse [actionMaps]="actionMaps"
@@ -29,6 +29,7 @@
       <div class="data-table-page__body d-flex flex-column">
         <div class="mix-dbs-table__toolbar">
           <mix-input class="search"
+                     [formControl]="searchForm"
                      [searchIcon]="true"
                      placeHolder="Search on string fields"></mix-input>
 
@@ -45,10 +46,10 @@
 
           <ng-template #tpl
                        let-hide>
-            <tui-reorder class="columns"
-                         [(enabled)]="displayColumns"
+            <tui-reorder [(enabled)]="displayColumns"
                          [(items)]="columnNames"
-                         (enabledChange)="displayColumns$.next(displayColumns)"></tui-reorder>
+                         (enabledChange)="displayColumns$.next(displayColumns)"
+                         style="width: 300px;"></tui-reorder>
           </ng-template>
 
           <mix-button *ngIf="vm.db"
@@ -73,6 +74,7 @@
                              [rowSelection]="'multiple'"
                              [suppressMoveWhenRowDragging]="true"
                              (gridReady)="onGridReady($event)"
+                             (selectionChanged)="onSelectionChanged()"
                              style="width: 100%; height: 100%">
             </ag-grid-angular>
           </div>

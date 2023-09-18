@@ -1,25 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FieldType, FieldTypeConfig, FormlyModule } from '@ngx-formly/core';
+import { FormlyControlLayoutComponent } from '../base/formly-control-layout/formly-control-layout.component';
 import { MixArrayRadioComponent } from './array-radio.component';
 
 @Component({
   selector: 'mix-array-radio-formly',
   template: `
-  <div class="row mb-4">
-    <div class="col-md-2">
-      <span class="content-label mb-1"> {{ field.props.label }}:</span>
-      <div class="content-sub-label">{{ field.type }}</div>
-    </div>
-
-      <div class="col-md-10">
-        <mix-array-radio
-          [formControl]="formControl"
-          [formlyAttributes]="field"
-        />
-      </div>
-    </div>
+  <mix-formly-control-layout [title]="field.props.label" [description]="field.type?.toString()">
+    <mix-array-radio
+      [formControl]="formControl"
+      [formlyAttributes]="field"
+    />
+  </mix-formly-control-layout>
   `,
   standalone: true,
   imports: [
@@ -27,6 +21,8 @@ import { MixArrayRadioComponent } from './array-radio.component';
     ReactiveFormsModule,
     MixArrayRadioComponent,
     CommonModule,
+    FormlyControlLayoutComponent,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixFormlyArrayRadioComponent extends FieldType<FieldTypeConfig> {}

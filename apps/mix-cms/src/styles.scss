@@ -296,10 +296,15 @@ ngneat-dialog {
     margin-bottom: 4px;
   }
 
+  &__content {
+    margin: 24px 0px;
+  }
+
   &__footer {
     margin-top: 4px;
     display: flex;
     align-items: center;
+    gap: 4px;
     justify-content: flex-end;
   }
 }
@@ -315,6 +320,10 @@ ngneat-dialog {
   --ag-background-color: var(--background-color-primary);
   --ag-cell-horizontal-border: 1px solid var(--border-color-default);
   --ag-header-height: 32px;
-  --ag-row-height: 32px;
+  --ag-row-height: 40px;
   --ag-row-hover-color: rgba(233, 234, 237, 0.5);
+}
+
+tui-dropdown-host {
+  z-index: unset !important;
 }

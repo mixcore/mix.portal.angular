@@ -42,14 +42,18 @@
                   [tp]="cultureTpl"
                   tpPlacement="bottom-end"
                   tpVariation="popper">
-        <span class="flag-icon {{ auth.currentCulture?.icon }}"></span>
+        <span class="flag-icon {{ auth.currentCulture?.icon }}"
+              style="width: 16px; height: 10px;"></span>
       </mix-button>
 
-      <ng-template #cultureTpl>
+      <ng-template #cultureTpl
+                   let-hide>
         <div *ngFor="let culture of cultures"
-             class="mix-menu-item">
+             class="mix-menu-item"
+             (click)="hide(); changeCulture(culture)">
           <span class="main-toolbar__culture-icon flag-icon {{ culture.icon }}"></span>{{ culture.displayName }}
         </div>
+
       </ng-template>
     </div>
   </ng-container>
@@ -61,16 +65,17 @@
                 [tp]="userMenuTpl"
                 tpPlacement="bottom-end"
                 tpVariation="popper">
-      <span class="material-symbols-outlined"> menu </span>
+      <span class="mix-icon"> menu </span>
     </mix-button>
 
-    <ng-template #userMenuTpl>
+    <ng-template #userMenuTpl
+                 let-hide>
       <div class="mix-menu-item">
         {{ 'Account Information' }}
       </div>
 
       <div class="mix-menu-item"
-           (click)="logout()">
+           (click)="hide(); logout()">
         {{ 'Logout' }}
       </div>
     </ng-template>

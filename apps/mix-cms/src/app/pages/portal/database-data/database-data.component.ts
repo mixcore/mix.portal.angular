@@ -5,7 +5,7 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MixDatabase, MixDynamicData } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
@@ -16,12 +16,13 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { MixDataTableModule } from '@mixcore/ui/table';
+import { DialogService } from '@ngneat/dialog';
 import { TippyDirective } from '@ngneat/helipopper';
 import { TuiReorderModule, TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { AgGridModule } from 'ag-grid-angular';
-import { ColDef, GridReadyEvent } from 'ag-grid-community';
+import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
 import {
   Observable,
   Subject,
@@ -30,6 +31,7 @@ import {
   filter,
   forkJoin,
   map,
+  take,
   takeUntil,
   tap,
 } from 'rxjs';
@@ -37,10 +39,12 @@ import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
 import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
 import { DatabaseSelectComponent } from '../../../components/database-select/database-select.component';
+import { RecordFormComponent } from '../../../components/record-form/record-form.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
+import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
 import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
 @Component({
   selector: 'mix-database-data',
@@ -65,6 +69,7 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     CustomHeaderComponent,
     TuiReorderModule,
     TippyDirective,
+    ReactiveFormsModule,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -75,13 +80,16 @@ export class DatabaseDataComponent
   extends ListPageKit<MixDynamicData>
   implements OnInit
 {
-  public dbSysName = '';
   public mixApi = inject(MixApiFacadeService);
   public activatedRoute = inject(ActivatedRoute);
   public modal = inject(ModalService);
   public store = inject(DatabaseDataStore);
+  public dialog = inject(DialogService);
+
+  public dbSysName = '';
   public activeCol = '';
   public isAllCheck = false;
+  public searchForm = new FormControl();
 
   public components: {
     [p: string]: any;
@@ -116,6 +124,7 @@ export class DatabaseDataComponent
       displayName: '#',
       columnType: 'action',
     },
+    cellRenderer: CustomActionCellComponent,
   };
   public readonly defaultColDef: ColDef = {
     sortable: true,
@@ -129,8 +138,10 @@ export class DatabaseDataComponent
   public columnNames: string[] = [];
   public displayColumns: string[] = [];
   public displayColumns$ = new Subject<string[]>();
+  public gridApi!: GridApi<MixDynamicData>;
 
-  onGridReady(params: GridReadyEvent) {
+  public onGridReady(params: GridReadyEvent) {
+    this.gridApi = params.api;
     this.rowData$ = this.store.vm$.pipe(
       filter((s) => s.status === 'Success'),
       tap((s) => {
@@ -157,12 +168,23 @@ export class DatabaseDataComponent
           ];
         }
       }),
-      map((s) => s.data)
+      map((s) => s.data),
+      takeUntil(this.destroy$)
     );
 
     this.displayColumns$
-      .pipe(distinctUntilChanged(), debounceTime(0))
+      .pipe(distinctUntilChanged(), debounceTime(0), takeUntil(this.destroy$))
       .subscribe((v) => this.reUpdateColumnDef());
+
+    this.searchForm.valueChanges
+      .pipe(takeUntil(this.destroy$), debounceTime(500))
+      .subscribe((v) => {
+        this.store.changeSearch(v);
+      });
+  }
+
+  public onSelectionChanged() {
+    this.selectedItems = this.gridApi.getSelectedRows();
   }
 
   public actions = [
@@ -189,7 +211,7 @@ export class DatabaseDataComponent
   ];
 
   public actionMaps = {
-    create: () => this.onCreateData(),
+    create: () => this.onInsertData(),
     delete: () => this.onDeleteData(),
     export: () => this.onExportData(),
   };
@@ -231,11 +253,16 @@ export class DatabaseDataComponent
           this.mixApi.databaseApi.deleteData(this.dbSysName, d.id!)
         );
 
-        forkJoin(requests).subscribe({
-          next: () => {
-            this.modal.success('Successfully delete your data').subscribe();
-          },
-        });
+        forkJoin(requests)
+          .pipe(toastObserverProcessing(this.toast))
+          .subscribe({
+            next: () => {
+              this.modal.success('Successfully delete your data').subscribe();
+              this.store.removeData(selectedData.map((x) => x.id!));
+              this.selectedItems = [];
+              this.gridApi.deselectAll();
+            },
+          });
       });
   }
 
@@ -272,6 +299,7 @@ export class DatabaseDataComponent
   public selectedTableChange(mixDb: MixDatabase) {
     if (mixDb.systemName == this.dbSysName) return;
 
+    this.searchForm.reset(null, { emitEvent: false, onlySelf: true });
     this.router.navigateByUrl(
       `${CMS_ROUTES.portal['database-data'].fullPath}/${mixDb.systemName}`
     );
@@ -297,5 +325,36 @@ export class DatabaseDataComponent
       `${CMS_ROUTES.portal['database-doc'].fullPath}/${db.id}`,
       { state: { db: db } }
     );
+  }
+
+  public onInsertData(): void {
+    this.store.state$.pipe(take(1)).subscribe((value) => {
+      if (!value.db) return;
+
+      const dialogRef = this.dialog.open(RecordFormComponent, {
+        data: { mixDatabase: value.db, data: undefined },
+      });
+
+      dialogRef.afterClosed$.subscribe((value) => {
+        if (value) this.store.addData(value);
+      });
+    });
+  }
+
+  public editData(dataId: number) {
+    this.store.state$.pipe(take(1)).subscribe((state) => {
+      if (!state.db) return;
+
+      const dataIndex = state.data.findIndex((x) => x.id === dataId);
+      if (dataIndex < 0) return;
+
+      const dialogRef = this.dialog.open(RecordFormComponent, {
+        data: { mixDatabase: state.db, data: state.data[dataIndex] },
+      });
+
+      dialogRef.afterClosed$.subscribe((value) => {
+        if (value) this.store.updateData(dataIndex, value);
+      });
+    });
   }
 }

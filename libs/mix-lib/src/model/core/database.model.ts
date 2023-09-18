@@ -120,6 +120,16 @@ export enum DataType {
   ArrayRadio = 'ArrayRadio',
 }
 
+export const STRING_DATA_TYPE = [
+  DataType.Text,
+  DataType.EmailAddress,
+  DataType.MultilineText,
+  DataType.PostalCode,
+  DataType.PhoneNumber,
+  DataType.Tag,
+  DataType.Integer,
+];
+
 export enum DataTypeUi {
   TextSelect = 'Choose',
 }
