@@ -8,11 +8,8 @@ import {
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
-import { TuiDestroyService } from '@taiga-ui/cdk';
-import {
-  TuiDataListModule,
-  TuiTextfieldControllerModule,
-} from '@taiga-ui/core';
+import { TuiDestroyService, tuiPure } from '@taiga-ui/cdk';
+import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
   TuiComboBoxModule,
   TuiDataListWrapperModule,
@@ -44,7 +41,6 @@ export interface SelectOption {
     CommonModule,
     ReactiveFormsModule,
     TuiComboBoxModule,
-    TuiDataListModule,
     TuiDataListWrapperModule,
     TuiStringifyContentPipeModule,
     TuiTextfieldControllerModule,
@@ -63,9 +59,12 @@ export class MixSelectComponent
   @Input() public labelKey = '';
   @Input() public override placeHolder = 'Type';
   @Input() size: 'm' | 's' | 'l' = 'm';
-  @Input() public stringify = (
-    item: Record<string, object | string | number>
-  ): string => `${this.labelKey ? item[this.labelKey] : item}`;
+
+  @tuiPure
+  @Input()
+  stringify(item: Record<string, object | string | number>) {
+    return `${this.labelKey ? item[this.labelKey] || '' : item}`;
+  }
 
   @Input() selfControl = false;
   @Input() value = '';
