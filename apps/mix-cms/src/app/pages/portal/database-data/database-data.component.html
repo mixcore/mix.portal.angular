@@ -4,6 +4,7 @@
     <mix-database-select [isCreate]="false"
                          [prefix]="'Query'"
                          [selectedItemId]="vm.db?.id"
+                         [selectedItemName]="dbSysName"
                          (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
   </div>
 

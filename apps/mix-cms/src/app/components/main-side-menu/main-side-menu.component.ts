@@ -11,11 +11,6 @@ import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
-import {
-  TuiDataListModule,
-  TuiDropdownModule,
-  TuiHostedDropdownModule,
-} from '@taiga-ui/core';
 
 export type MenuItem = {
   title: string;
@@ -32,9 +27,6 @@ export type MenuItem = {
     CommonModule,
     MixIconButtonComponent,
     RouterModule,
-    TuiHostedDropdownModule,
-    TuiDataListModule,
-    TuiDropdownModule,
     TranslocoModule,
     TuiActiveZoneModule,
   ],

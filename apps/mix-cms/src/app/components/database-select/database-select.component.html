@@ -23,7 +23,7 @@
     <ng-container *ngIf="vm.status ==='Success'">
       <ng-container *ngFor="let table of (searchText.value | filter:vm.data)">
         <div class="database-select__item"
-             [class.--active]="selectedItemId == table.id"
+             [class.--active]="selectedItemId == table.id || selectedItemName == table.systemName"
              (click)="selectDb(table)">
           <!-- <span class="mix-icon">database</span> -->
           <span>{{ table.displayName }}</span>

@@ -41,6 +41,7 @@ export class DatabaseSelectComponent {
   @Input() public prefix = '';
   @Input() public isCreate = false;
   @Input() public selectedItemId?: number;
+  @Input() public selectedItemName?: string;
   @Output() public selectedItemChange = new EventEmitter<MixDatabase>();
 
   public selectDb(mixDb: MixDatabase) {
