@@ -1,0 +1,18 @@
+{
+  "name": "@mixcore/ui/table",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mix-ui/src/data-table",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mix-ui/src/data-table/**/*.ts",
+          "libs/mix-ui/src/data-table/**/*.html"
+        ]
+      }
+    }
+  }
+}

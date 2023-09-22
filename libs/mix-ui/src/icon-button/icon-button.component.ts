@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  ViewEncapsulation,
+} from '@angular/core';
 import { TuiButtonModule } from '@taiga-ui/core';
 
 @Component({
@@ -9,6 +14,7 @@ import { TuiButtonModule } from '@taiga-ui/core';
   templateUrl: './icon-button.component.html',
   styleUrls: ['./icon-button.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixIconButtonComponent {
   @Input() name = '';

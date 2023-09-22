@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Directive, Injectable } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import { AbstractTuiValueTransformer, TuiDay } from '@taiga-ui/cdk';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
@@ -8,7 +9,6 @@ import {
   TuiInputDateModule,
   TuiInputDateTimeModule,
 } from '@taiga-ui/kit';
-import { BaseTextControl } from '../base/base-text.control';
 
 type From = TuiDay | null;
 type To = Date | null;

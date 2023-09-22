@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output, inject } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import {
   TuiTextfieldControllerModule,
@@ -8,7 +16,6 @@ import {
 } from '@taiga-ui/core';
 import { TuiInputNumberModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
-import { BaseTextControl } from '../base/base-text.control';
 
 @Component({
   selector: 'mix-input-number',

@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Injectable } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl, DateUtils } from '@mixcore/ui/base-control';
 import { AbstractTuiValueTransformer, TuiDay, TuiTime } from '@taiga-ui/cdk';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
@@ -8,8 +9,6 @@ import {
   TuiInputDateTimeModule,
   tuiInputDateOptionsProvider,
 } from '@taiga-ui/kit';
-import { BaseTextControl } from '../base/base-text.control';
-import { DateUtils } from '../base/date-utils';
 
 @Injectable()
 export class ExampleDateTimeTransformer extends AbstractTuiValueTransformer<

@@ -8,13 +8,13 @@ import {
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
+import { MixButtonComponent } from '@mixcore/ui/button';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/kit';
 import { QRCodeModule } from 'angularx-qrcode';
 import { takeUntil } from 'rxjs';
-import { BaseTextControl } from '../base/base-text.control';
-import { MixButtonComponent } from '../button';
 
 @Component({
   selector: 'mix-qr-code',

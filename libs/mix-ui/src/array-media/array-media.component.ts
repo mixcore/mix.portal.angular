@@ -17,6 +17,7 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MixButtonComponent } from '@mixcore/ui/button';
 import { HotToastService } from '@ngneat/hot-toast';
 import {
   TuiPreviewDialogService,
@@ -29,7 +30,6 @@ import {
   TuiInputFilesModule,
 } from '@taiga-ui/kit';
 import { Observable, Subject, forkJoin, takeUntil, tap } from 'rxjs';
-import { MixButtonComponent } from '../button';
 
 @Component({
   selector: 'mix-array-media',

@@ -5,9 +5,9 @@ import {
   NgControl,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import { FormlyModule } from '@ngx-formly/core';
 import { JsonEditorOptions, NgJsonEditorModule } from 'ang-jsoneditor';
-import { BaseTextControl } from '../base/base-text.control';
 
 @Component({
   selector: 'mix-json-editor',

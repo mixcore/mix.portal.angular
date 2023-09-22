@@ -1,13 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import {
   TuiInputColorModule,
   defaultEditorColors,
 } from '@taiga-ui/addon-editor';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/kit';
-import { BaseTextControl } from '../base/base-text.control';
 
 @Component({
   selector: 'mix-color-picker',

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import {
   bounceInOnEnterAnimation,
@@ -16,6 +16,7 @@ import {
     bounceInOnEnterAnimation({ duration: 300 }),
     bounceOutOnLeaveAnimation({ duration: 300 }),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixErrorAlertComponent {
   @Input() public error = '';

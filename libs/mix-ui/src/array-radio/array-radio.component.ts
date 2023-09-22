@@ -8,11 +8,11 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MixInputComponent } from '@mixcore/ui/input';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiRadioLabeledModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
-import { MixInputComponent } from '../input';
 
 @Component({
   selector: 'mix-array-radio',

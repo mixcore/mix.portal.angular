@@ -1,0 +1,18 @@
+{
+  "name": "@mixcore/ui/json",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mix-ui/src/json-editor",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mix-ui/src/json-editor/**/*.ts",
+          "libs/mix-ui/src/json-editor/**/*.html"
+        ]
+      }
+    }
+  }
+}

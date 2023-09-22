@@ -8,6 +8,7 @@ import {
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiDestroyService, tuiPure } from '@taiga-ui/cdk';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import {
@@ -16,7 +17,6 @@ import {
   TuiStringifyContentPipeModule,
 } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
-import { BaseTextControl } from '../base/base-text.control';
 
 export function buildSelectOption(
   items: object[],

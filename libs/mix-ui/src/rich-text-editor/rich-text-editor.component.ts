@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
+import { MixButtonComponent } from '@mixcore/ui/button';
 import {
   TUI_EDITOR_EXTENSIONS,
   TuiEditorModule,
   defaultEditorExtensions,
 } from '@taiga-ui/addon-editor';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { BaseTextControl } from '../base/base-text.control';
-import { MixButtonComponent } from '../button';
 
 @Component({
   selector: 'mix-rich-text-editor',

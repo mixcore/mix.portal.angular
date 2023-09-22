@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiTextAreaModule } from '@taiga-ui/kit';
-import { BaseTextControl } from '../base/base-text.control';
 
 @Component({
   selector: 'mix-text-area',

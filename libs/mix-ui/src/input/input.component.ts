@@ -8,11 +8,11 @@ import {
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiDestroyService, tuiControlValue } from '@taiga-ui/cdk';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/kit';
 import { Observable, map, takeUntil } from 'rxjs';
-import { BaseTextControl } from '../base/base-text.control';
 
 @Component({
   selector: 'mix-input',

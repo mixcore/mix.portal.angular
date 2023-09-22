@@ -15,6 +15,8 @@ import {
   NG_VALUE_ACCESSOR,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { MixButtonComponent } from '@mixcore/ui/button';
+import { MixInputComponent } from '@mixcore/ui/input';
 import { HotToastService } from '@ngneat/hot-toast';
 import {
   TuiPreviewDialogService,
@@ -27,8 +29,6 @@ import {
   TuiInputFilesModule,
 } from '@taiga-ui/kit';
 import { Observable, catchError, of, switchMap } from 'rxjs';
-import { MixButtonComponent } from '../button/button.component';
-import { MixInputComponent } from '../input/input.component';
 
 @Component({
   selector: 'mix-upload',

@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiToggleModule } from '@taiga-ui/kit';
-import { BaseTextControl } from '../base/base-text.control';
 
 @Component({
   selector: 'mix-toggle',

@@ -6,9 +6,9 @@ import {
   inject,
 } from '@angular/core';
 import { CompareOperator, DataType, MixFilter } from '@mixcore/lib/model';
+import { MixButtonComponent } from '@mixcore/ui/button';
 import { DialogService } from '@ngneat/dialog';
 import { TippyDirective } from '@ngneat/helipopper';
-import { MixButtonComponent } from '../button';
 
 export interface DynamicFilterValue {
   value: string | number | null | Date;
