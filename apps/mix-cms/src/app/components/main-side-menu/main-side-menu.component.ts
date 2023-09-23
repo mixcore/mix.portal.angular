@@ -10,7 +10,12 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
 import { TranslocoModule } from '@ngneat/transloco';
-import { TuiActiveZoneModule } from '@taiga-ui/cdk';
+import { tuiPure } from '@taiga-ui/cdk';
+import {
+  TuiDataListModule,
+  TuiDropdownModule,
+  TuiHostedDropdownModule,
+} from '@taiga-ui/core';
 
 export type MenuItem = {
   title: string;
@@ -28,7 +33,9 @@ export type MenuItem = {
     MixIconButtonComponent,
     RouterModule,
     TranslocoModule,
-    TuiActiveZoneModule,
+    TuiDataListModule,
+    TuiHostedDropdownModule,
+    TuiDropdownModule,
   ],
   templateUrl: './main-side-menu.component.html',
   styleUrls: ['./main-side-menu.component.scss'],
@@ -47,12 +54,18 @@ export class MainSideMenuComponent {
 
   constructor(public route: Router) {}
 
+  @tuiPure
+  public isMenuSelected(item: MenuItem, selectedMenu: MenuItem | undefined) {
+    return item.title === selectedMenu?.title;
+  }
+
   public onMenuSelect(menu: MenuItem) {
-    if (this.selectedMenus[menu.title]) {
-      this.selectedMenus[menu.title] = undefined;
-    } else {
-      this.selectedMenus[menu.title] = menu;
+    if (this.selectedMenu?.title === menu.title) {
+      this.selectedMenu = undefined;
+      return;
     }
+
+    this.selectedMenu = menu;
   }
 
   public toggleMenu(): void {
