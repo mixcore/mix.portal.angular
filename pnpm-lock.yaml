@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   '@angular/animations':
     specifier: 16.1.8
@@ -72,28 +76,28 @@ dependencies:
     version: 20.1.2(@angular/animations@16.1.8)(@angular/cdk@16.0.3)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser-dynamic@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
   '@taiga-ui/addon-editor':
     specifier: ^3.24.0
-    version: 3.31.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@taiga-ui/kit@3.42.1)(rxjs@7.8.1)
+    version: 3.31.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@taiga-ui/kit@3.39.1)(rxjs@7.8.1)
   '@taiga-ui/addon-mobile':
-    specifier: 3.42.1
-    version: 3.42.1(@angular/cdk@16.0.3)(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/kit@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+    specifier: 3.39.1
+    version: 3.39.1(@angular/cdk@16.0.3)(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/kit@3.39.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
   '@taiga-ui/addon-preview':
-    specifier: 3.42.1
-    version: 3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@taiga-ui/kit@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+    specifier: 3.39.1
+    version: 3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@taiga-ui/kit@3.39.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
   '@taiga-ui/addon-table':
-    specifier: 3.42.1
-    version: 3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/intersection-observer@3.1.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@taiga-ui/kit@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+    specifier: 3.39.1
+    version: 3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/intersection-observer@3.1.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@taiga-ui/kit@3.39.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
   '@taiga-ui/cdk':
-    specifier: 3.42.1
-    version: 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+    specifier: 3.39.1
+    version: 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
   '@taiga-ui/core':
-    specifier: 3.42.1
-    version: 3.42.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+    specifier: 3.39.1
+    version: 3.39.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
   '@taiga-ui/icons':
-    specifier: 3.42.1
-    version: 3.42.1(@taiga-ui/cdk@3.42.1)
+    specifier: 3.39.1
+    version: 3.39.1(@taiga-ui/cdk@3.39.1)
   '@taiga-ui/kit':
-    specifier: 3.42.1
-    version: 3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+    specifier: 3.39.1
+    version: 3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
   '@tinkoff/ng-dompurify':
     specifier: ^4.0.0
     version: 4.0.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)(@types/dompurify@3.0.2)(dompurify@3.0.5)
@@ -173,7 +177,7 @@ dependencies:
 devDependencies:
   '@angular-devkit/build-angular':
     specifier: 16.1.8
-    version: 16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(tailwindcss@3.3.3)(typescript@5.0.4)
+    version: 16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(typescript@5.0.4)
   '@angular-eslint/eslint-plugin':
     specifier: 16.1.0
     version: 16.1.0(eslint@8.15.0)(typescript@5.0.4)
@@ -228,9 +232,6 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: 5.58.0
     version: 5.58.0(eslint@8.15.0)(typescript@5.0.4)
-  autoprefixer:
-    specifier: ^10.4.15
-    version: 10.4.15(postcss@8.4.29)
   cypress:
     specifier: ^10.7.0
     version: 10.7.0
@@ -255,15 +256,9 @@ devDependencies:
   nx:
     specifier: 16.1.4
     version: 16.1.4
-  postcss:
-    specifier: ^8.4.29
-    version: 8.4.29
   prettier:
     specifier: ^2.6.2
     version: 2.6.2
-  tailwindcss:
-    specifier: ^3.3.3
-    version: 3.3.3(ts-node@10.9.1)
   ts-jest:
     specifier: 29.1.0
     version: 29.1.0(@babel/core@7.22.5)(esbuild@0.17.19)(jest@29.4.3)(typescript@5.0.4)
@@ -275,10 +270,6 @@ devDependencies:
     version: 5.0.4
 
 packages:
-
-  /@alloc/quick-lru@5.2.0:
-    resolution: {integrity: sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==}
-    engines: {node: '>=10'}
 
   /@ampproject/remapping@2.2.1:
     resolution: {integrity: sha512-lFMjJTrFL3j7L9yBxwYfCq2k6qqwHyzuUl/XBnif78PWTJYyL/dfowQHWE3sp6U6ZzqWiiIZnpTMO96zhkjwtg==}
@@ -296,7 +287,7 @@ packages:
     transitivePeerDependencies:
       - chokidar
 
-  /@angular-devkit/build-angular@16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(tailwindcss@3.3.3)(typescript@5.0.4):
+  /@angular-devkit/build-angular@16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(typescript@5.0.4):
     resolution: {integrity: sha512-iyElPBQdcJq2plw5YqSz4mzNUfSRXI3ISFTEwPtimzPOorsj/OxB3Z6kJ8fDUsBAJ5OKR7xL7VnQJJ3S+05RhQ==}
     engines: {node: ^16.14.0 || >=18.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     peerDependencies:
@@ -389,7 +380,6 @@ packages:
       semver: 7.5.3
       source-map-loader: 4.0.1(webpack@5.86.0)
       source-map-support: 0.5.21
-      tailwindcss: 3.3.3(ts-node@10.9.1)
       terser: 5.17.7
       text-table: 0.2.0
       tree-kill: 1.2.2
@@ -3720,6 +3710,19 @@ packages:
       - utf-8-validate
     dev: false
 
+  /@ng-web-apis/common@3.0.1(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-pk0ibndaku/uip6MNST3/SA+sUcQZoajV2y4Mg6frfJzLq3wnKMQH25voL7wgG+XTaWvsS2OPDddPRFLn6qM7g==}
+    peerDependencies:
+      '@angular/common': '>=12.0.0'
+      '@angular/core': '>=12.0.0'
+      rxjs: '>=6.4.0'
+    dependencies:
+      '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      rxjs: 7.8.1
+      tslib: 2.6.2
+    dev: false
+
   /@ng-web-apis/common@3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1):
     resolution: {integrity: sha512-PWMegIsuxfmya8AgSx4fQR5mt4ozaSflJARN6I4W6kGKxX/MnHGt86+djN3P6KVoWjI+bcQt2UlF1jlW9DgWiQ==}
     peerDependencies:
@@ -3730,6 +3733,17 @@ packages:
       '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       rxjs: 7.8.1
+      tslib: 2.6.2
+    dev: false
+
+  /@ng-web-apis/intersection-observer@3.1.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2):
+    resolution: {integrity: sha512-DjJK2LiZlfoS5IxeYCV8Qq+ebgEg5sAXRGWYyh/URDzKM6zZeYl+Wf09KVFW4NXgRUPcpBanhOL3DFAdMKEpaQ==}
+    peerDependencies:
+      '@angular/core': '>=12.0.0'
+      '@ng-web-apis/common': '>=2.0.0'
+    dependencies:
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      '@ng-web-apis/common': 3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
       tslib: 2.6.2
     dev: false
 
@@ -3744,6 +3758,17 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@ng-web-apis/mutation-observer@3.0.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.1):
+    resolution: {integrity: sha512-ChzNd/Q4R+wZEHBIqnffX9BsWlHgLxhA0BtJ5OLLnBeUQ/A1O+6v20qfrVmjMzgFqB8SpF+0c9j6SpWpsZHjWw==}
+    peerDependencies:
+      '@angular/core': '>=12.0.0'
+      '@ng-web-apis/common': '>=2.0.0'
+    dependencies:
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      '@ng-web-apis/common': 3.0.1(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
+      tslib: 2.6.2
+    dev: false
+
   /@ng-web-apis/mutation-observer@3.0.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2):
     resolution: {integrity: sha512-x1cq/Vznmz4aJ7STbZmA+4HCE+jxDiw2J359+iyiB+xyCVfZTECrJYP9g/hhzIRxyVPFznrPp61TDCRnLVyNWw==}
     peerDependencies:
@@ -3752,6 +3777,17 @@ packages:
     dependencies:
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       '@ng-web-apis/common': 3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
+      tslib: 2.6.2
+    dev: false
+
+  /@ng-web-apis/resize-observer@3.0.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.1):
+    resolution: {integrity: sha512-2rtkX3EeS0Qk6s1lzI5PaLYvDPuC4FT4WBS0yhmI6e8ipoJttNNB+sCLgd5aWarcMXMFWIcWqpmcJxzFFF73Fg==}
+    peerDependencies:
+      '@angular/core': '>=12.0.0'
+      '@ng-web-apis/common': '>=2.0.0'
+    dependencies:
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      '@ng-web-apis/common': 3.0.1(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
       tslib: 2.6.2
     dev: false
 
@@ -4177,7 +4213,7 @@ packages:
       '@nguniversal/builders':
         optional: true
     dependencies:
-      '@angular-devkit/build-angular': 16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(tailwindcss@3.3.3)(typescript@5.0.4)
+      '@angular-devkit/build-angular': 16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(typescript@5.0.4)
       '@angular-devkit/core': 16.1.8(chokidar@3.5.3)
       '@angular-devkit/schematics': 16.1.8
       '@nrwl/angular': 16.1.4(@angular-devkit/build-angular@16.1.8)(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@schematics/angular@16.1.8)(@types/node@16.11.7)(convert-source-map@1.9.0)(cypress@10.7.0)(eslint@8.15.0)(nx@16.1.4)(rxjs@7.8.1)(typescript@5.0.4)
@@ -4498,7 +4534,7 @@ packages:
       style-loader: 3.3.2(webpack@5.80.0)
       stylus: 0.55.0
       stylus-loader: 7.1.0(stylus@0.55.0)(webpack@5.80.0)
-      terser-webpack-plugin: 5.3.7(esbuild@0.17.19)(webpack@5.86.0)
+      terser-webpack-plugin: 5.3.7(webpack@5.80.0)
       ts-loader: 9.4.2(typescript@5.0.4)(webpack@5.80.0)
       ts-node: 10.9.1(@types/node@16.11.7)(typescript@5.0.4)
       tsconfig-paths: 4.2.0
@@ -4685,7 +4721,7 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@taiga-ui/addon-editor@3.31.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@taiga-ui/kit@3.42.1)(rxjs@7.8.1):
+  /@taiga-ui/addon-editor@3.31.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@taiga-ui/kit@3.39.1)(rxjs@7.8.1):
     resolution: {integrity: sha512-cVjdigCJS8CPo/NTw8I0KNCfKJiSN9egfmSgMvmOLC5vGAc0VL72kqPiH/QcZ2YkivbjwnfFoi+CuWc6LMOEtw==}
     peerDependencies:
       '@angular/common': '>=12.0.0'
@@ -4704,10 +4740,10 @@ packages:
       '@angular/forms': 16.1.8(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
       '@angular/platform-browser': 16.1.8(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)
       '@ng-web-apis/common': 3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/core': 3.42.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
-      '@taiga-ui/i18n': 3.42.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
-      '@taiga-ui/kit': 3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/core': 3.39.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/i18n': 3.45.0(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
+      '@taiga-ui/kit': 3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
       '@tiptap/core': 2.0.3(@tiptap/pm@2.0.3)
       '@tiptap/extension-blockquote': 2.0.3(@tiptap/core@2.0.3)
       '@tiptap/extension-bold': 2.0.3(@tiptap/core@2.0.3)
@@ -4764,16 +4800,16 @@ packages:
       tslib: 2.5.3
     dev: false
 
-  /@taiga-ui/addon-mobile@3.42.1(@angular/cdk@16.0.3)(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/kit@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-Crd13iKOGMPAecKgoNTAysucD6HBPxO4ZNZBVTRdpLy/v3q4LHbzQ3XQBm46iyYaUriiIz4khb3lc4v8EGaLgw==}
+  /@taiga-ui/addon-mobile@3.39.1(@angular/cdk@16.0.3)(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/kit@3.39.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-r5nPQhGoJJ1841lzIMw7Qc2a+dNKR4OOhEWvvzSAFyfUlkyog2+E3ZENVQHTSuctfpX5UUMu6RlnLVHsmlk12w==}
     peerDependencies:
       '@angular/cdk': '>=12.0.0'
       '@angular/common': '>=12.0.0'
       '@angular/core': '>=12.0.0'
       '@ng-web-apis/common': '>=3.0.0'
-      '@taiga-ui/cdk': '>=3.42.1'
-      '@taiga-ui/core': '>=3.42.1'
-      '@taiga-ui/kit': '>=3.42.1'
+      '@taiga-ui/cdk': '>=3.39.1'
+      '@taiga-ui/core': '>=3.39.1'
+      '@taiga-ui/kit': '>=3.39.1'
       '@tinkoff/ng-polymorpheus': '>=4.0.0'
       rxjs: '>=6.0.0'
     dependencies:
@@ -4781,66 +4817,66 @@ packages:
       '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       '@ng-web-apis/common': 3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/core': 3.42.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
-      '@taiga-ui/kit': 3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/core': 3.39.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/kit': 3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
       '@tinkoff/ng-polymorpheus': 4.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
       rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
 
-  /@taiga-ui/addon-preview@3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@taiga-ui/kit@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-8/BPUe45l+xOnziWhEGjjn61BP800nZuHLCKkk76nJT7qc4X7nxpf7np9/aVwyMUWOl5WJvWcxjLxSQN+/oeGw==}
+  /@taiga-ui/addon-preview@3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@taiga-ui/kit@3.39.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-7McCGywamrzV+OMIlt48xpbLj3+epL2TzeU7Fc9HbfHO2a1S+SkCoJEKlpq9kLZXhe4+qHq9jsbZHnDh30jEQg==}
     peerDependencies:
       '@angular/common': '>=12.0.0'
       '@angular/core': '>=12.0.0'
       '@ng-web-apis/mutation-observer': '>=3.0.0'
-      '@taiga-ui/cdk': '>=3.42.1'
-      '@taiga-ui/core': '>=3.42.1'
-      '@taiga-ui/i18n': '>=3.42.1'
-      '@taiga-ui/kit': '>=3.42.1'
+      '@taiga-ui/cdk': '>=3.39.1'
+      '@taiga-ui/core': '>=3.39.1'
+      '@taiga-ui/i18n': '>=3.39.1'
+      '@taiga-ui/kit': '>=3.39.1'
       '@tinkoff/ng-polymorpheus': '>=4.0.0'
       rxjs: '>=6.0.0'
     dependencies:
       '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       '@ng-web-apis/mutation-observer': 3.0.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/core': 3.42.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
-      '@taiga-ui/i18n': 3.42.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
-      '@taiga-ui/kit': 3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/core': 3.39.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/i18n': 3.45.0(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
+      '@taiga-ui/kit': 3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
       '@tinkoff/ng-polymorpheus': 4.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
       rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
 
-  /@taiga-ui/addon-table@3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/intersection-observer@3.1.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@taiga-ui/kit@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-yDWYqPx66zrzMQwGiSZacm6Qvm7EotI+1ApswzAxXVR8RzqrQ4awfTVDT3sQKK5x2ktrr9Hy2Ml+CtZhpTI1Ew==}
+  /@taiga-ui/addon-table@3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@ng-web-apis/intersection-observer@3.1.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@taiga-ui/kit@3.39.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-Q39I7HmeJN6wIvgQr+KOHOkpnhjRxWdCYvEc01LWMf659RUGZIW/vUI/Hc1a3RP+k2n1SAEm5mQM/J7J61BXtQ==}
     peerDependencies:
       '@angular/common': '>=12.0.0'
       '@angular/core': '>=12.0.0'
       '@ng-web-apis/intersection-observer': '>=3.0.0'
-      '@taiga-ui/cdk': '>=3.42.1'
-      '@taiga-ui/core': '>=3.42.1'
-      '@taiga-ui/i18n': '>=3.42.1'
-      '@taiga-ui/kit': '>=3.42.1'
+      '@taiga-ui/cdk': '>=3.39.1'
+      '@taiga-ui/core': '>=3.39.1'
+      '@taiga-ui/i18n': '>=3.39.1'
+      '@taiga-ui/kit': '>=3.39.1'
       '@tinkoff/ng-polymorpheus': '>=4.0.0'
       rxjs: '>=6.0.0'
     dependencies:
       '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       '@ng-web-apis/intersection-observer': 3.1.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/core': 3.42.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
-      '@taiga-ui/i18n': 3.42.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
-      '@taiga-ui/kit': 3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/core': 3.39.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/i18n': 3.45.0(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
+      '@taiga-ui/kit': 3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
       '@tinkoff/ng-polymorpheus': 4.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
       rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
 
-  /@taiga-ui/cdk@3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1):
-    resolution: {integrity: sha512-mxV7hQALDHEeCPd5U9b1BXd5kRquBOiBQC44nbOpgWfNGoffLaXAr5CKjeaHA/xuIZDF8ZYv5YaDkmPD5TAnRg==}
+  /@taiga-ui/cdk@3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-58DPLyB1bvFHcvn2f5TtXTML0acsXKzXRryyBwQcq3Y7m6DpzmLYWCtcqoYjKk2hN/MVn651GJ8oAqtMZxjmhQ==}
     peerDependencies:
       '@angular/animations': '>=12.0.0'
       '@angular/common': '>=12.0.0'
@@ -4852,13 +4888,13 @@ packages:
       '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       '@angular/forms': 16.1.8(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
-      '@ng-web-apis/common': 3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
-      '@ng-web-apis/mutation-observer': 3.0.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
-      '@ng-web-apis/resize-observer': 3.0.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
+      '@ng-web-apis/common': 3.0.1(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
+      '@ng-web-apis/mutation-observer': 3.0.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.1)
+      '@ng-web-apis/resize-observer': 3.0.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.1)
       '@tinkoff/ng-event-plugins': 3.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
       '@tinkoff/ng-polymorpheus': 4.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
       rxjs: 7.8.1
-      tslib: 2.6.2
+      tslib: 2.6.1
     optionalDependencies:
       ng-morph: 2.2.5(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)
       parse5: 6.0.1
@@ -4868,8 +4904,8 @@ packages:
       - '@angular/platform-browser'
     dev: false
 
-  /@taiga-ui/core@3.42.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-Ogh/ujd1yj2Ph/BHsfBanehGb9+8k92a/TehiwcggUN0ndlnOROYiLjDBwrokWSqM/sZalT9uBxVkiC6ZeI2gg==}
+  /@taiga-ui/core@3.39.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-ubFqZMpd6V/wo+i2RQ1nAs0QnnguNP08dHDu1Sdwgt+raTjJ6tIneBo8Ot9twQmomu5tGVm9id6JcF7NdCn3eQ==}
     peerDependencies:
       '@angular/animations': '>=12.0.0'
       '@angular/common': '>=12.0.0'
@@ -4879,8 +4915,8 @@ packages:
       '@angular/router': '>=12.0.0'
       '@ng-web-apis/common': '>=3.0.0'
       '@ng-web-apis/mutation-observer': '>=3.0.0'
-      '@taiga-ui/cdk': '>=3.42.1'
-      '@taiga-ui/i18n': '>=3.42.1'
+      '@taiga-ui/cdk': '>=3.39.1'
+      '@taiga-ui/i18n': '>=3.39.1'
       '@tinkoff/ng-event-plugins': '>=3.1.0'
       '@tinkoff/ng-polymorpheus': '>=4.0.0'
       rxjs: '>=6.0.0'
@@ -4893,16 +4929,16 @@ packages:
       '@angular/router': 16.1.8(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
       '@ng-web-apis/common': 3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
       '@ng-web-apis/mutation-observer': 3.0.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/i18n': 3.42.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/i18n': 3.45.0(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
       '@tinkoff/ng-event-plugins': 3.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
       '@tinkoff/ng-polymorpheus': 4.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
       rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
 
-  /@taiga-ui/i18n@3.42.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1):
-    resolution: {integrity: sha512-8NsKR/V6I9ws2WZXGHL942Cg/8KkVzEhVPzVmn6FkXts7em9Uk3OCRLGMlXWJPijvOGIBFZ33RR/THkGndCm2g==}
+  /@taiga-ui/i18n@3.45.0(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1):
+    resolution: {integrity: sha512-Dx8QvGaEu/i7M/F0QXa4fRygk5pL8ZXCnIyvRVWcGoJG9Bzfueb+1gsyBp/b7ogHK3FSgj88QsN1EBW1L0IiXQ==}
     peerDependencies:
       '@angular/core': '>=12.0.0'
       '@ng-web-apis/common': '>=3.0.0'
@@ -4914,17 +4950,17 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@taiga-ui/icons@3.42.1(@taiga-ui/cdk@3.42.1):
-    resolution: {integrity: sha512-q8EKveeza60TdSWEhhX6U2JX9X/u9X4LYsuPSFgUEwtaz5ytZBkZOL+BJ73Q/x13Ke1kuLHS5XW4mrwNZe76lw==}
+  /@taiga-ui/icons@3.39.1(@taiga-ui/cdk@3.39.1):
+    resolution: {integrity: sha512-qlCeehk2EANlBNZY6/Ah2aXmmuWE/vveC44w85APIwWelxC+1JUFiGYu3mWqmUjpWy6UPNql8COmLpmldRICmw==}
     peerDependencies:
-      '@taiga-ui/cdk': '>=3.42.1'
+      '@taiga-ui/cdk': '>=3.39.1'
     dependencies:
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
       tslib: 2.6.2
     dev: false
 
-  /@taiga-ui/kit@3.42.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/core@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
-    resolution: {integrity: sha512-a4fe9c4zFwgiS8mYBIrpO/i410Os4sVMg6vzhC3up/EI8oXjcjnA8OM3KqRw1ktOK7F2SxQsqf9fHpfA7z/JSQ==}
+  /@taiga-ui/kit@3.39.1(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@ng-web-apis/resize-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/core@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-VuXx74QWmAw/HPyw/yIt5+3kLAGhMDqwTARIPteLCnnmEdqT52tB6eulamVKBmEtRbq8TPa21JxKCyaQuNa5VQ==}
     peerDependencies:
       '@angular/common': '>=12.0.0'
       '@angular/core': '>=12.0.0'
@@ -4933,9 +4969,9 @@ packages:
       '@ng-web-apis/common': '>=3.0.0'
       '@ng-web-apis/mutation-observer': '>=3.0.0'
       '@ng-web-apis/resize-observer': '>=3.0.0'
-      '@taiga-ui/cdk': '>=3.42.1'
-      '@taiga-ui/core': '>=3.42.1'
-      '@taiga-ui/i18n': '>=3.42.1'
+      '@taiga-ui/cdk': '>=3.39.1'
+      '@taiga-ui/core': '>=3.39.1'
+      '@taiga-ui/i18n': '>=3.39.1'
       '@tinkoff/ng-polymorpheus': '>=4.0.0'
       rxjs: '>=6.0.0'
     dependencies:
@@ -4947,12 +4983,12 @@ packages:
       '@maskito/core': 1.4.0
       '@maskito/kit': 1.4.0(@maskito/core@1.4.0)
       '@ng-web-apis/common': 3.0.2(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
-      '@ng-web-apis/intersection-observer': 3.1.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
+      '@ng-web-apis/intersection-observer': 3.1.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
       '@ng-web-apis/mutation-observer': 3.0.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
       '@ng-web-apis/resize-observer': 3.0.2(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
-      '@taiga-ui/core': 3.42.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.42.1)(@taiga-ui/i18n@3.42.1)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
-      '@taiga-ui/i18n': 3.42.1(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/core': 3.39.1(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(@angular/router@16.1.8)(@ng-web-apis/common@3.0.2)(@ng-web-apis/mutation-observer@3.0.2)(@taiga-ui/cdk@3.39.1)(@taiga-ui/i18n@3.45.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.1.0)(rxjs@7.8.1)
+      '@taiga-ui/i18n': 3.45.0(@angular/core@16.1.8)(@ng-web-apis/common@3.0.2)(rxjs@7.8.1)
       '@tinkoff/ng-polymorpheus': 4.1.0(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
       rxjs: 7.8.1
       text-mask-core: 5.1.2
@@ -5380,6 +5416,7 @@ packages:
 
   /@ts-morph/common@0.9.2:
     resolution: {integrity: sha512-IPyg+c3Am0EBoa63W0f/AKeLrJhvzMzQ4BIvD1baxLopmiHOj1HFTXYxC6e8iTZ+UYtN+/WFM9UyGRnoA20b8g==}
+    requiresBuild: true
     dependencies:
       fast-glob: 3.2.12
       minimatch: 3.1.2
@@ -5547,6 +5584,7 @@ packages:
 
   /@types/minimatch@3.0.5:
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -6313,9 +6351,6 @@ packages:
     resolution: {integrity: sha512-bN798gFfQX+viw3R7yrGWRqnrN2oRkEkUjjl4JNn4E8GxxbjtG3FbrEIIY3l8/hrwUwIeCZvi4QuOTP4MErVug==}
     engines: {node: '>=12'}
 
-  /any-promise@1.3.0:
-    resolution: {integrity: sha512-7UvmKalWRt1wgjL1RrGxoSJW/0QZFIegpeGvZG9kjp8vrRu55XTHbwnqq2GpXm9uLbcuhxm3IqX9OB4MZR1b2A==}
-
   /anymatch@3.1.3:
     resolution: {integrity: sha512-KMReFUr0B4t+D+OBkjR3KYqvocp2XaSzO55UcB6mgQMd3KbcE+mWTyvVV7D/zsdEbNnV6acZUutkiHQXvTr1Rw==}
     engines: {node: '>= 8'}
@@ -6355,9 +6390,6 @@ packages:
   /arg@4.1.3:
     resolution: {integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==}
 
-  /arg@5.0.2:
-    resolution: {integrity: sha512-PYjyFOLKQ9y57JvQ6QLo8dAgNqswh8M1RMJYdQduT6xbWSgK36P/Z/v+p888pM69jMMfS8Xd8F6I1kQ/I9HUGg==}
-
   /argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
     dependencies:
@@ -6382,6 +6414,7 @@ packages:
   /array-differ@3.0.0:
     resolution: {integrity: sha512-THtfYS6KtME/yIAhKjZ2ul7XI96lQGHRputJQHO80LAWQnuGP4iCIN8vdMRboGbIEYBwU33q8Tch1os2+X0kMg==}
     engines: {node: '>=8'}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -6403,6 +6436,7 @@ packages:
   /arrify@2.0.1:
     resolution: {integrity: sha512-3duEwti880xqi4eAMN8AyR4a0ByT90zoYdLlevfrvU43vb0YZwZVfxOgxWrLXXXpyugL0hNZc9G6BiB5B3nUug==}
     engines: {node: '>=8'}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -6469,6 +6503,7 @@ packages:
       picocolors: 1.0.0
       postcss: 8.4.29
       postcss-value-parser: 4.2.0
+    dev: false
 
   /available-typed-arrays@1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
@@ -6896,10 +6931,6 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
-  /camelcase-css@2.0.1:
-    resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
-    engines: {node: '>= 6'}
-
   /camelcase@5.3.1:
     resolution: {integrity: sha512-L28STB170nwWS63UjtlEOE3dldQApaJXZkOI1uMFfzf3rRuPegHaHesyee+YxQ+W6SvRDQV6UrdOdRiR153wJg==}
     engines: {node: '>=6'}
@@ -7072,6 +7103,7 @@ packages:
 
   /code-block-writer@10.1.1:
     resolution: {integrity: sha512-67ueh2IRGst/51p0n6FvPrnRjAGHY5F8xdjkgrYE7DDzpJe6qA07RYQ9VcoUeo5ATOjSOiWpSL3SWBRRbempMw==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -7115,10 +7147,6 @@ packages:
   /commander@2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
-  /commander@4.1.1:
-    resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
-    engines: {node: '>= 6'}
-
   /commander@5.1.0:
     resolution: {integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==}
     engines: {node: '>= 6'}
@@ -7157,6 +7185,7 @@ packages:
 
   /concat-map@0.0.1:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    requiresBuild: true
 
   /config-chain@1.1.13:
     resolution: {integrity: sha512-qj+f8APARXHrM0hraqXYb2/bOVSV4PvJQlNZ/DVj0QrmNM2q2euizkeuVckQ57J+W0mRH6Hvi+k50M4Jul2VRQ==}
@@ -7833,9 +7862,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /didyoumean@1.2.2:
-    resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
-
   /diff-sequences@29.4.3:
     resolution: {integrity: sha512-ofrBgwpPhCD85kMKtE9RYFFq6OC1A89oW2vvgWZNCwxrUpRUILopY7lsYyMDSjc8g6U6aiO0Qubg6r4Wgt5ZnA==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -7853,9 +7879,6 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       path-type: 4.0.0
-
-  /dlv@1.1.3:
-    resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
 
   /dns-equal@1.0.0:
     resolution: {integrity: sha512-z+paD6YUQsk+AbGCEM4PrOXSss5gd66QfcVBFTKR/HpFL9jCqikS94HYwKww6fQyO7IxrIIyUu+g0Ka9tUS2Cg==}
@@ -8775,16 +8798,6 @@ packages:
 
   /glob@7.1.4:
     resolution: {integrity: sha512-hkLPepehmnKk41pUGm3sYxoFs/umurYfYJCerbXEyFIWcAzvpipAgVkBqqT9RBKMGjnq6kMuyYwha6csxbiM1A==}
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 3.1.2
-      once: 1.4.0
-      path-is-absolute: 1.0.1
-
-  /glob@7.1.6:
-    resolution: {integrity: sha512-LwaxwyZ72Lk7vZINtNNrywX0ZuLyStrdDtabefZKAY5ZGJhVtgdznluResxNmPitE0SAO+O26sWTHeKSI2wMBA==}
     dependencies:
       fs.realpath: 1.0.0
       inflight: 1.0.6
@@ -9806,7 +9819,7 @@ packages:
       jest: ^29.0.0
       typescript: '>=4.4'
     dependencies:
-      '@angular-devkit/build-angular': 16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(tailwindcss@3.3.3)(typescript@5.0.4)
+      '@angular-devkit/build-angular': 16.1.8(@angular/compiler-cli@16.1.8)(@angular/service-worker@16.1.8)(@types/node@16.11.7)(jest-environment-jsdom@29.4.3)(jest@29.4.3)(stylus@0.55.0)(typescript@5.0.4)
       '@angular/compiler-cli': 16.1.8(@angular/compiler@16.1.8)(typescript@5.0.4)
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       '@angular/platform-browser-dynamic': 16.1.8(@angular/common@16.1.8)(@angular/compiler@16.1.8)(@angular/core@16.1.8)(@angular/platform-browser@16.1.8)
@@ -10143,6 +10156,7 @@ packages:
 
   /jsonc-parser@3.0.0:
     resolution: {integrity: sha512-fQzRfAbIBnR0IQvftw9FJveWiHp72Fg20giDrHz6TdfB12UH/uue0D3hm57UB5KgAVuniLMCaS8P1IMj9NR7cA==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -10305,6 +10319,7 @@ packages:
   /lilconfig@2.1.0:
     resolution: {integrity: sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==}
     engines: {node: '>=10'}
+    dev: false
 
   /lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
@@ -10755,6 +10770,7 @@ packages:
   /multimatch@5.0.0:
     resolution: {integrity: sha512-ypMKuglUrZUD99Tk2bUQ+xNQj43lPEfAeX2o9cTteAmShXy2VHDJpuwu1o0xqoKCt9jLVAvwyFKdLTPXKAfJyA==}
     engines: {node: '>=10'}
+    requiresBuild: true
     dependencies:
       '@types/minimatch': 3.0.5
       array-differ: 3.0.0
@@ -10766,13 +10782,6 @@ packages:
 
   /mute-stream@0.0.8:
     resolution: {integrity: sha512-nnbWWOkoWyUsTjKrhgD0dcz22mdkSnpYqbEjIm2nhwhuxlSkpywJmBo8h0ZqJdkp73mb90SssHkN4rsRaBAfAA==}
-
-  /mz@2.7.0:
-    resolution: {integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==}
-    dependencies:
-      any-promise: 1.3.0
-      object-assign: 4.1.1
-      thenify-all: 1.6.0
 
   /nanoid@3.3.6:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
@@ -11142,10 +11151,7 @@ packages:
   /object-assign@4.1.1:
     resolution: {integrity: sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==}
     engines: {node: '>=0.10.0'}
-
-  /object-hash@3.0.0:
-    resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
-    engines: {node: '>= 6'}
+    dev: false
 
   /object-inspect@1.12.3:
     resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
@@ -11396,6 +11402,7 @@ packages:
 
   /path-browserify@1.0.1:
     resolution: {integrity: sha512-b7uo2UCUOYZcnF/3ID0lulOJi/bafxa1xPe7ZPsammBSpjSWQkjNxlt635YGS2MiR9GjvuXCtz2emr3jbsz98g==}
+    requiresBuild: true
     dev: false
     optional: true
 
@@ -11460,6 +11467,7 @@ packages:
   /pify@4.0.1:
     resolution: {integrity: sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==}
     engines: {node: '>=6'}
+    requiresBuild: true
     optional: true
 
   /pirates@4.0.5:
@@ -11578,43 +11586,6 @@ packages:
       read-cache: 1.0.0
       resolve: 1.22.2
     dev: false
-
-  /postcss-import@15.1.0(postcss@8.4.29):
-    resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      postcss: ^8.0.0
-    dependencies:
-      postcss: 8.4.29
-      postcss-value-parser: 4.2.0
-      read-cache: 1.0.0
-      resolve: 1.22.2
-
-  /postcss-js@4.0.1(postcss@8.4.29):
-    resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
-    engines: {node: ^12 || ^14 || >= 16}
-    peerDependencies:
-      postcss: ^8.4.21
-    dependencies:
-      camelcase-css: 2.0.1
-      postcss: 8.4.29
-
-  /postcss-load-config@4.0.1(postcss@8.4.29)(ts-node@10.9.1):
-    resolution: {integrity: sha512-vEJIc8RdiBRu3oRAI0ymerOn+7rPuMvRXslTvZUKZonDHFIczxztIyJ1urxM1x9JXEikvpWWTUUqal5j/8QgvA==}
-    engines: {node: '>= 14'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.1.0
-      postcss: 8.4.29
-      ts-node: 10.9.1(@types/node@16.11.7)(typescript@5.0.4)
-      yaml: 2.3.2
 
   /postcss-loader@6.2.1(postcss@8.4.29)(webpack@5.80.0):
     resolution: {integrity: sha512-WbbYpmAaKcux/P66bZ40bpWsBucjx/TTgVVzRZ9yUO8yQfVBlameJ0ZGVaPfH64hNSBh63a+ICP5nqOpBA0w+Q==}
@@ -11760,15 +11731,6 @@ packages:
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.29)
       postcss: 8.4.29
-
-  /postcss-nested@6.0.1(postcss@8.4.29):
-    resolution: {integrity: sha512-mEp4xPMi5bSWiMbsgoPfcP74lsWLHkQbZc3sY+jWYd65CUwXrUaTp0fmNpa01ZcETKlIgUdFN/MpS2xZtqL9dQ==}
-    engines: {node: '>=12.0'}
-    peerDependencies:
-      postcss: ^8.2.14
-    dependencies:
-      postcss: 8.4.29
-      postcss-selector-parser: 6.0.11
 
   /postcss-normalize-charset@5.1.0(postcss@8.4.29):
     resolution: {integrity: sha512-mSgUJ+pd/ldRGVx26p2wz9dNZ7ji6Pn8VWBajMXFf8jk7vUoSrZ2lt/wZR7DtlZYKesmZI680qjr2CeFF2fbUg==}
@@ -12205,6 +12167,7 @@ packages:
 
   /prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
+    requiresBuild: true
     optional: true
 
   /pseudomap@1.0.2:
@@ -12292,6 +12255,7 @@ packages:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
     dependencies:
       pify: 2.3.0
+    dev: false
 
   /read-package-json-fast@3.0.2:
     resolution: {integrity: sha512-0J+Msgym3vrLOUB3hzQCuZHII0xkNGCtz/HJH9xZshwv9DbDwkw1KaE3gx/e2J5rpEY5rtOy6cyhKOPrkP7FZw==}
@@ -13124,19 +13088,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /sucrase@3.34.0:
-    resolution: {integrity: sha512-70/LQEZ07TEcxiU2dz51FKaE6hCTWC6vr7FOk3Gr0U60C3shtAN+H+BFr9XlYe5xqf3RA8nrc+VIwzCfnxuXJw==}
-    engines: {node: '>=8'}
-    hasBin: true
-    dependencies:
-      '@jridgewell/gen-mapping': 0.3.2
-      commander: 4.1.1
-      glob: 7.1.6
-      lines-and-columns: 1.2.4
-      mz: 2.7.0
-      pirates: 4.0.5
-      ts-interface-checker: 0.1.13
-
   /supports-color@5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
     engines: {node: '>=4'}
@@ -13183,7 +13134,7 @@ packages:
   /taiga-ui@3.31.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1):
     resolution: {integrity: sha512-7QvCFTSQO0VJOq4AKTNXDuRWeIANJe/JQrB5QbSEd1US7IPWpQPZA4ewsePZCwk+4Y6ABt5fuq9G2Heij5VXhw==}
     dependencies:
-      '@taiga-ui/cdk': 3.42.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
+      '@taiga-ui/cdk': 3.39.1(@angular-devkit/core@16.1.8)(@angular-devkit/schematics@16.1.8)(@angular/animations@16.1.8)(@angular/common@16.1.8)(@angular/core@16.1.8)(@angular/forms@16.1.8)(@angular/platform-browser@16.1.8)(rxjs@7.8.1)
       tslib: 2.5.3
     transitivePeerDependencies:
       - '@angular-devkit/core'
@@ -13195,36 +13146,6 @@ packages:
       - '@angular/platform-browser'
       - rxjs
     dev: false
-
-  /tailwindcss@3.3.3(ts-node@10.9.1):
-    resolution: {integrity: sha512-A0KgSkef7eE4Mf+nKJ83i75TMyq8HqY3qmFIJSWy8bNt0v1lG7jUcpGpoTFxAwYcWOphcTBLPPJg+bDfhDf52w==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-    dependencies:
-      '@alloc/quick-lru': 5.2.0
-      arg: 5.0.2
-      chokidar: 3.5.3
-      didyoumean: 1.2.2
-      dlv: 1.1.3
-      fast-glob: 3.2.12
-      glob-parent: 6.0.2
-      is-glob: 4.0.3
-      jiti: 1.19.1
-      lilconfig: 2.1.0
-      micromatch: 4.0.5
-      normalize-path: 3.0.0
-      object-hash: 3.0.0
-      picocolors: 1.0.0
-      postcss: 8.4.29
-      postcss-import: 15.1.0(postcss@8.4.29)
-      postcss-js: 4.0.1(postcss@8.4.29)
-      postcss-load-config: 4.0.1(postcss@8.4.29)(ts-node@10.9.1)
-      postcss-nested: 6.0.1(postcss@8.4.29)
-      postcss-selector-parser: 6.0.11
-      resolve: 1.22.2
-      sucrase: 3.34.0
-    transitivePeerDependencies:
-      - ts-node
 
   /tapable@2.2.1:
     resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
@@ -13287,6 +13208,29 @@ packages:
       terser: 5.17.7
       webpack: 5.86.0(esbuild@0.17.19)
 
+  /terser-webpack-plugin@5.3.7(webpack@5.80.0):
+    resolution: {integrity: sha512-AfKwIktyP7Cu50xNjXF/6Qb5lBNzYaWpU6YfoX3uZicTx0zTy0stDDCsvjDapKsSDvOeWo5MEq4TmdBy2cNoHw==}
+    engines: {node: '>= 10.13.0'}
+    peerDependencies:
+      '@swc/core': '*'
+      esbuild: '*'
+      uglify-js: '*'
+      webpack: ^5.1.0
+    peerDependenciesMeta:
+      '@swc/core':
+        optional: true
+      esbuild:
+        optional: true
+      uglify-js:
+        optional: true
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.17
+      jest-worker: 27.5.1
+      schema-utils: 3.1.2
+      serialize-javascript: 6.0.1
+      terser: 5.17.7
+      webpack: 5.80.0
+
   /terser@5.17.7:
     resolution: {integrity: sha512-/bi0Zm2C6VAexlGgLlVxA0P2lru/sdLyfCVaRMfKVo9nWxbmz7f/sD8VPybPeSUJaJcwmCJis9pBIhcVcG1QcQ==}
     engines: {node: '>=10'}
@@ -13311,17 +13255,6 @@ packages:
 
   /text-table@0.2.0:
     resolution: {integrity: sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==}
-
-  /thenify-all@1.6.0:
-    resolution: {integrity: sha512-RNxQH/qI8/t3thXJDwcstUO4zeqo64+Uy/+sNVRBx4Xn2OX+OZ9oP+iJnNFqplFra2ZUVeKCSa2oVWi3T4uVmA==}
-    engines: {node: '>=0.8'}
-    dependencies:
-      thenify: 3.3.1
-
-  /thenify@3.3.1:
-    resolution: {integrity: sha512-RVZSIV5IG10Hk3enotrhvz0T9em6cyHBLkH/YAZuKqd8hRkKhSfCGIcP2KUY0EPxndzANBmNllzWPwak+bheSw==}
-    dependencies:
-      any-promise: 1.3.0
 
   /throttle-debounce@3.0.1:
     resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==}
@@ -13402,9 +13335,6 @@ packages:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
     hasBin: true
 
-  /ts-interface-checker@0.1.13:
-    resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
-
   /ts-invariant@0.10.3:
     resolution: {integrity: sha512-uivwYcQaxAucv1CzRp2n/QdYPo4ILf9VXgH19zEIjFx2EJufV16P0JtJVpYHy89DItG6Kwj2oIUjrcK5au+4tQ==}
     engines: {node: '>=8'}
@@ -13464,6 +13394,7 @@ packages:
 
   /ts-morph@10.0.2:
     resolution: {integrity: sha512-TVuIfEqtr9dW25K3Jajqpqx7t/zLRFxKu2rXQZSDjTm4MO4lfmuj1hn8WEryjeDDBFcNOCi+yOmYUYR4HucrAg==}
+    requiresBuild: true
     dependencies:
       '@ts-morph/common': 0.9.2
       code-block-writer: 10.1.1
@@ -14071,7 +14002,7 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.1.2
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.7(esbuild@0.17.19)(webpack@5.86.0)
+      terser-webpack-plugin: 5.3.7(webpack@5.80.0)
       watchpack: 2.4.0
       webpack-sources: 3.2.3
     transitivePeerDependencies:
@@ -14302,10 +14233,6 @@ packages:
   /yaml@1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
-
-  /yaml@2.3.2:
-    resolution: {integrity: sha512-N/lyzTPaJasoDmfV7YTrYCI0G/3ivm/9wdG0aHuheKowWQwGTsK0Eoiw6utmzAnI6pkJa0DUVygvp3spqqEKXg==}
-    engines: {node: '>= 14'}
 
   /yargs-parser@18.1.3:
     resolution: {integrity: sha512-o50j0JeToy/4K6OZcaQmW6lyXXKhq7csREXcDwk2omFPJEwUNOVtJKvmDr9EI1fAJZUyZcRF7kxGBWmRXudrCQ==}

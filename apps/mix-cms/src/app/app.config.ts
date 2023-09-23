@@ -11,7 +11,7 @@ import {
   isDevMode,
 } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideAnimations } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PreloadAllModules, RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
@@ -56,7 +56,6 @@ import { FormlyModule } from '@ngx-formly/core';
 import { TuiPreviewModule } from '@taiga-ui/addon-preview';
 import { TuiPortalModule } from '@taiga-ui/cdk';
 import {
-  TUI_ANIMATIONS_DURATION,
   TUI_SANITIZER,
   TuiAlertModule,
   TuiDialogModule,
@@ -64,7 +63,6 @@ import {
 } from '@taiga-ui/core';
 import { TuiPushModule } from '@taiga-ui/kit';
 import { NgDompurifySanitizer } from '@tinkoff/ng-dompurify';
-import { ApolloModule } from 'apollo-angular';
 import { MonacoEditorModule } from 'ngx-monaco-editor';
 import { BehaviorSubject } from 'rxjs';
 import { environment } from '../environments/environment';
@@ -97,6 +95,7 @@ export const appConfig: ApplicationConfig = {
     },
     importProvidersFrom(
       RouterModule.forRoot(ROUTES, { preloadingStrategy: PreloadAllModules }),
+      BrowserAnimationsModule,
       BrowserModule,
       TuiRootModule,
       MixModalModule,
@@ -105,7 +104,6 @@ export const appConfig: ApplicationConfig = {
       TuiPortalModule,
       TuiPushModule,
       HttpClientModule,
-      ApolloModule,
       MonacoEditorModule.forRoot(),
       HotToastModule.forRoot({
         position: 'top-center',
@@ -161,7 +159,6 @@ export const appConfig: ApplicationConfig = {
         registrationStrategy: 'registerWhenStable:20000',
       })
     ),
-    provideAnimations(),
     {
       provide: DOMAIN_URL,
       useValue: environment.domainUrl,
@@ -186,10 +183,6 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-    },
-    {
-      provide: TUI_ANIMATIONS_DURATION,
-      useValue: 0,
     },
     {
       provide: FULL_MENU,

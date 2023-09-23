@@ -5,17 +5,11 @@
       <router-outlet></router-outlet>
     </div>
   </div>
-  <!-- [@zoomOutLeftOnLeave] -->
+
   <mix-loading-screen *ngIf="!appAvailable"></mix-loading-screen>
 
-  <ng-container ngProjectAs="tuiOverContent">
-  </ng-container>
-  <ng-container ngProjectAs="tuiOverContent">
-  </ng-container>
-  <ng-container ngProjectAs="tuiOverDialogs">
-  </ng-container>
-  <ng-container ngProjectAs="tuiOverAlerts">
-  </ng-container>
-  <ng-container ngProjectAs="tuiOverPortals">
-  </ng-container>
+  <ng-container ngProjectAs="tuiOverContent"> </ng-container>
+  <ng-container ngProjectAs="tuiOverDialogs"> </ng-container>
+  <ng-container ngProjectAs="tuiOverAlerts"> </ng-container>
+  <ng-container ngProjectAs="tuiOverPortals"> </ng-container>
 </tui-root>

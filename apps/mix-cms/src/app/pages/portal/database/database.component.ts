@@ -11,7 +11,6 @@ import { ModalService } from '@mixcore/ui/modal';
 import { PortalSidebarService } from '@mixcore/ui/sidebar';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
-import { Apollo } from 'apollo-angular';
 import { forkJoin } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
@@ -34,7 +33,6 @@ import { DatabaseStore } from '../../../stores/database.store';
   styleUrls: ['./database.component.scss'],
 })
 export class DatabaseComponent {
-  public apollo = inject(Apollo);
   public store = inject(DatabaseStore);
   public router = inject(Router);
   public modal = inject(ModalService);
