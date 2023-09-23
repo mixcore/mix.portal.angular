@@ -60,6 +60,13 @@ export class MainSideMenuComponent {
   }
 
   public onMenuSelect(menu: MenuItem) {
+    if (!menu.children?.length) {
+      this.route.navigateByUrl(menu.url);
+      this.selectedMenu = menu;
+
+      return;
+    }
+
     if (this.selectedMenu?.title === menu.title) {
       this.selectedMenu = undefined;
       return;

@@ -18,12 +18,12 @@
                          tuiDropdownHover
                          tuiDropdownDirection="bottom">
       <!-- [routerLink]="'/' + item.url" -->
+      <!-- [routerLinkActive]="'--route-active'" -->
       <div class="side-menu__item"
            [ngClass]="{
           '--open': isMenuSelected(item, selectedMenu),
           '--active': isMenuSelected(item, selectedMenu)
         }"
-           [routerLinkActive]="'--route-active'"
            (click)="onMenuSelect(item)">
         <div class="side-menu__parent-container">
           <span *ngIf="item.icon"
