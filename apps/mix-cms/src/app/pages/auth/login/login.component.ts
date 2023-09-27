@@ -59,7 +59,7 @@ export class LoginComponent extends BaseComponent {
   public loginForm = this.formBuilder.group({
     userName: ['', Validators.required],
     password: ['', Validators.required],
-    rememberPassword: [true],
+    rememberMe: [true],
   });
 
   constructor() {
@@ -85,20 +85,11 @@ export class LoginComponent extends BaseComponent {
   }
 
   public initFromStorage() {
-    this.authService.globalSetting$
-      .pipe(filter(Boolean), take(1))
-      .subscribe((setting) => {
-        const value = localStorage.getItem(this.key);
-        if (!value) return;
+    const value = localStorage.getItem(this.key);
+    if (!value) return;
 
-        const info = JSON.parse(value) as LoginInfo;
-        this.loginForm.controls.userName.patchValue(info.userName);
-
-        if (info.password)
-          this.loginForm.controls.password.patchValue(
-            this.cryptoService.decryptAES(info.password, setting.apiEncryptKey)
-          );
-      });
+    const info = JSON.parse(value) as LoginInfo;
+    this.loginForm.controls.userName.patchValue(info.userName);
   }
 
   public submit(): void {
@@ -129,21 +120,14 @@ export class LoginComponent extends BaseComponent {
   }
 
   public handleLoginSuccess(): void {
-    let redirectUrl = this.authService.redirectUrl;
-
-    const globlaSetting = this.authService.globalSetting$.getValue();
-    if (globlaSetting) {
-      const value = {
+    localStorage.setItem(
+      this.key,
+      JSON.stringify({
         userName: this.loginForm.value.userName,
-        password: this.cryptoService.encryptAES(
-          this.loginForm.value.password ?? '',
-          globlaSetting.apiEncryptKey
-        ),
-      };
+      })
+    );
 
-      localStorage.setItem(this.key, JSON.stringify(value));
-    }
-
+    let redirectUrl = this.authService.redirectUrl;
     if (
       !redirectUrl ||
       redirectUrl === '/' ||

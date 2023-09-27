@@ -4,6 +4,7 @@ export const MixSwagger = {
     register: '/api/v2/rest/mix-account/user/register',
     getProfile: '/api/v2/rest/mix-account/user/my-profile',
     culture: '/api/v2/rest/mix-portal/culture',
+    renewToken: '/api/v2/rest/mix-account/user/renew-token',
   },
   global: {
     globalSetting: '/api/v2/rest/shared/get-global-settings',

@@ -68,12 +68,26 @@ export class AuthService extends BaseApiService {
   public portalMenu: MenuItem[] = [];
   public currentRoles: MixRole[] = [];
 
+  public get refreshToken(): string | null {
+    return localStorage.getItem(AuthService.REFRESH_TOKEN);
+  }
+
   public get accessToken(): string | null {
     return localStorage.getItem(AuthService.ACCESS_TOKEN);
   }
 
   public get tokenType(): string | null {
     return localStorage.getItem(AuthService.TOKEN_TYPE);
+  }
+
+  public handleTokenInfo(tokenInfo: TokenInfo) {
+    if (tokenInfo?.info) {
+      localStorage.setItem(AuthService.ACCESS_TOKEN, tokenInfo.accessToken);
+      localStorage.setItem(AuthService.REFRESH_TOKEN, tokenInfo.refreshToken);
+      localStorage.setItem(AuthService.TOKEN_TYPE, tokenInfo.tokenType);
+    }
+
+    this.isAuthorized$.next(true);
   }
 
   public login(
@@ -89,17 +103,19 @@ export class AuthService extends BaseApiService {
       message: encrypted,
     }).pipe(
       switchMap((tokenInfo) => {
-        if (tokenInfo?.info) {
-          localStorage.setItem(AuthService.ACCESS_TOKEN, tokenInfo.accessToken);
-          localStorage.setItem(
-            AuthService.REFRESH_TOKEN,
-            tokenInfo.refreshToken
-          );
-          localStorage.setItem(AuthService.TOKEN_TYPE, tokenInfo.tokenType);
-        }
+        this.handleTokenInfo(tokenInfo);
+        return of(tokenInfo);
+      })
+    );
+  }
 
-        this.isAuthorized$.next(true);
-
+  public renewToken() {
+    return this.post<any, TokenInfo>(MixSwagger.auth.renewToken, {
+      refreshToken: localStorage.getItem(AuthService.REFRESH_TOKEN),
+      accessToken: this.accessToken,
+    }).pipe(
+      switchMap((tokenInfo) => {
+        this.handleTokenInfo(tokenInfo);
         return of(tokenInfo);
       })
     );
