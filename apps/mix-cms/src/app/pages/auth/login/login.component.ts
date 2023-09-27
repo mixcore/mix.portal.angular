@@ -17,7 +17,7 @@ import { MixErrorAlertComponent } from '@mixcore/ui/error';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiRadioLabeledModule } from '@taiga-ui/kit';
-import { switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { CMS_ROUTES } from '../../../app.routes';
 
@@ -83,9 +83,10 @@ export class LoginComponent extends BaseComponent {
     if (FormHelper.validateForm(this.loginForm)) {
       this.clearError();
       this.loginForm.disable();
-      this.authService
-        .getGlobalSetting()
+      this.authService.globalSetting$
+
         .pipe(
+          filter(Boolean),
           switchMap((res: GlobalSettings) =>
             this.authService.login(
               this.loginForm.getRawValue() as unknown as LoginModel,

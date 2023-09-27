@@ -32,6 +32,7 @@
       "@mixcore/share/utils": ["libs/mix-share/src/utils/index.ts"],
       "@mixcore/ui/array-media": ["libs/mix-ui/src/array-media/index.ts"],
       "@mixcore/ui/array-radio": ["libs/mix-ui/src/array-radio/index.ts"],
+      "@mixcore/ui/base-control": ["libs/mix-ui/src/base/index.ts"],
       "@mixcore/ui/button": ["libs/mix-ui/src/button/index.ts"],
       "@mixcore/ui/code-editor": ["libs/mix-ui/src/code-editor/index.ts"],
       "@mixcore/ui/color-picker": ["libs/mix-ui/src/color-picker/index.ts"],
@@ -43,6 +44,7 @@
       "@mixcore/ui/error": ["libs/mix-ui/src/error-alert/index.ts"],
       "@mixcore/ui/filter": ["libs/mix-ui/src/dynamic-filter/index.ts"],
       "@mixcore/ui/icon-button": ["libs/mix-ui/src/icon-button/index.ts"],
+      "@mixcore/ui/inline-input": ["libs/mix-ui/src/inline-input/index.ts"],
       "@mixcore/ui/input": ["libs/mix-ui/src/input/index.ts"],
       "@mixcore/ui/input-number": ["libs/mix-ui/src/input-number/index.ts"],
       "@mixcore/ui/json": ["libs/mix-ui/src/json-editor/index.ts"],
@@ -54,8 +56,7 @@
       "@mixcore/ui/table": ["libs/mix-ui/src/data-table/index.ts"],
       "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],
       "@mixcore/ui/toggle": ["libs/mix-ui/src/toggle/index.ts"],
-      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"],
-      "@mixcore/ui/base-control": ["libs/mix-ui/src/base/index.ts"]
+      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

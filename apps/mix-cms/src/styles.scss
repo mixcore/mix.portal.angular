@@ -286,7 +286,10 @@ ngneat-dialog {
   .ngneat-dialog-backdrop {
     .ngneat-dialog-content {
       padding: 18px;
+      animation: dialog-open 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
+
+    animation: dialog-open-backdrop 0.1s !important;
   }
 }
 

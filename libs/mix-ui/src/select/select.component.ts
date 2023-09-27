@@ -55,15 +55,18 @@ export class MixSelectComponent
 {
   destroy$ = inject(TuiDestroyService);
 
-  @Input() public items: Record<string, object>[] = [];
+  @Input() public items: any = [];
   @Input() public labelKey = '';
   @Input() public override placeHolder = 'Type';
   @Input() size: 'm' | 's' | 'l' = 'm';
+  @Input() labelProcess?: (item: any) => string = undefined;
 
   @tuiPure
-  @Input()
-  stringify(item: Record<string, object | string | number>) {
-    return `${this.labelKey ? item[this.labelKey] || '' : item}`;
+  stringify(item: any) {
+    if (!this.labelProcess)
+      return `${this.labelKey ? item[this.labelKey] || '' : item}`;
+
+    return this.labelProcess(item);
   }
 
   @Input() selfControl = false;

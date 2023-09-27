@@ -1,0 +1,10 @@
+.inline-input {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+
+  &.--empty {
+    opacity: 0.6;
+  }
+}

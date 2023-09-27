@@ -157,7 +157,7 @@
         <div class="text-600 mt-2">Order By</div>
         <mix-select class="mt-1"
                     [items]="$any(orderByOptions)"
-                    [stringify]="$any(stringify)"
+                    [labelProcess]="$any(stringify)"
                     formControlName="orderBy"></mix-select>
 
         <div class="text-600 mt-2">Percentage Range</div>

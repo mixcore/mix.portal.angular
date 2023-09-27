@@ -21,7 +21,7 @@
   <div class="text-600 mt-2">Order By</div>
   <mix-select class="mt-1"
               [items]="$any(orderByOptions)"
-              [stringify]="$any(stringify)"
+              [labelProcess]="$any(stringify)"
               formControlName="orderBy"></mix-select>
   <span class="d-block mt-1 text-xs">*Hint: order by priority to manage order</span>
 </div>

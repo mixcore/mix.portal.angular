@@ -1,0 +1,19 @@
+<div class="inline-input"
+     [class.--empty]="!control.value">
+  <tui-input-inline *ngIf="editing; else text"
+                    [formControl]="control"
+                    (focusedChange)="onFocusedChange($event)"
+                    tuiAutoFocus
+                    (keydown.esc.prevent)="toggleEditTitle()"
+                    (keydown.enter.prevent)="toggleEditTitle()">
+    Type db name
+  </tui-input-inline>
+
+  <ng-template #text>
+    <span>{{ control.value || placeHolder }}</span>
+    <mix-button type="flat"
+                [iconBtn]="true"
+                [size]="'s'"
+                (click)="toggleEditTitle()"><span class="mix-icon">edit</span></mix-button>
+  </ng-template>
+</div>

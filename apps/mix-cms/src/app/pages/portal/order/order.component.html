@@ -154,7 +154,7 @@
         <div class="text-600 mt-2">Order Status</div>
         <mix-select class="mt-1"
                     [items]="$any(statusOptions)"
-                    [stringify]="$any(stringify)"
+                    [labelProcess]="$any(stringify)"
                     formControlName="status"></mix-select>
       </div>
     </div>

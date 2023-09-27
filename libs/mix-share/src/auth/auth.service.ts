@@ -61,6 +61,9 @@ export class AuthService extends BaseApiService {
   public cultures$ = new BehaviorSubject<Culture[]>([]);
   public currentCulture: Culture | undefined = undefined;
   public isAuthorized$ = new BehaviorSubject<boolean | undefined>(undefined);
+  public globalSetting$ = new BehaviorSubject<GlobalSettings | undefined>(
+    undefined
+  );
   public logout$ = new Subject<void>();
   public portalMenu: MenuItem[] = [];
   public currentRoles: MixRole[] = [];
@@ -225,6 +228,10 @@ export class AuthService extends BaseApiService {
         return of(this.portalMenu);
       })
     );
+  }
+
+  public initGlobalSettings() {
+    this.getGlobalSetting().subscribe((v) => this.globalSetting$.next(v));
   }
 
   public changeCulture(culture: Culture) {

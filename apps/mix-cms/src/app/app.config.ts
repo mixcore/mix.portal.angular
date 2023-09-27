@@ -56,6 +56,7 @@ import { FormlyModule } from '@ngx-formly/core';
 import { TuiPreviewModule } from '@taiga-ui/addon-preview';
 import { TuiPortalModule } from '@taiga-ui/cdk';
 import {
+  TUI_ANIMATIONS_DURATION,
   TUI_SANITIZER,
   TuiAlertModule,
   TuiDialogModule,
@@ -183,6 +184,10 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+    },
+    {
+      provide: TUI_ANIMATIONS_DURATION,
+      useValue: 100,
     },
     {
       provide: FULL_MENU,

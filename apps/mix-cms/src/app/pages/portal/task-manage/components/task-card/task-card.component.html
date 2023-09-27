@@ -1,0 +1,19 @@
+<div class="task-card-wrap"
+     (click)="onClick()">
+  <div class="task-card">
+    <div class="pb-3">
+      {{ task.title }}
+    </div>
+
+    <div class="d-flex">
+      <span class="text-uppercase text-secondary">
+        {{ task.type }}-{{ task.id }}
+      </span>
+
+      <span class="ms-auto">
+        <img alt="type"
+             [src]="TaskTypeIcon[task.type]">
+      </span>
+    </div>
+  </div>
+</div>

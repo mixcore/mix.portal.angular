@@ -59,6 +59,7 @@ export class AppComponent implements OnInit {
       }
     });
 
+    this.authService.initGlobalSettings();
     if (this.authService.checkAuthorize()) {
       forkJoin([
         this.authService.fetchUserData(),

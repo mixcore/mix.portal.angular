@@ -1,7 +1,6 @@
 <div class="rich-text-editor"
      [ngClass]="{ '--full-width': zoom }">
-  <tui-editor *ngIf="control"
-              [formControl]="control">
+  <tui-editor [formControl]="control">
     {{ placeHolder }}
   </tui-editor>
 
