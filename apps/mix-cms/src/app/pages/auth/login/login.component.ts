@@ -9,7 +9,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GlobalSettings, LoginModel } from '@mixcore/lib/auth';
-import { AuthService } from '@mixcore/share/auth';
+import { AuthService, CryptoService } from '@mixcore/share/auth';
 import { BaseComponent, DOMAIN_URL$, LoadingState } from '@mixcore/share/base';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -17,9 +17,14 @@ import { MixErrorAlertComponent } from '@mixcore/ui/error';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiRadioLabeledModule } from '@taiga-ui/kit';
-import { filter, switchMap } from 'rxjs';
+import { filter, switchMap, take } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { CMS_ROUTES } from '../../../app.routes';
+
+export interface LoginInfo {
+  userName: string;
+  password: string;
+}
 
 @Component({
   selector: 'mix-login',
@@ -43,7 +48,8 @@ export class LoginComponent extends BaseComponent {
   public authService = inject(AuthService);
   public router = inject(Router);
   public domainUrls$ = inject(DOMAIN_URL$);
-  public key = 'MixUserName';
+  public cryptoService = new CryptoService();
+  public key = 'MixLoginInfo';
 
   public appUrls = ['prod', 'stage'];
   public modeForm = new FormGroup({
@@ -75,8 +81,24 @@ export class LoginComponent extends BaseComponent {
       localStorage.setItem('domainUrl', this.domainUrls$.getValue());
     });
 
-    const userName = localStorage.getItem(this.key) ?? '';
-    this.loginForm.controls.userName.patchValue(userName);
+    this.initFromStorage();
+  }
+
+  public initFromStorage() {
+    this.authService.globalSetting$
+      .pipe(filter(Boolean), take(1))
+      .subscribe((setting) => {
+        const value = localStorage.getItem(this.key);
+        if (!value) return;
+
+        const info = JSON.parse(value) as LoginInfo;
+        this.loginForm.controls.userName.patchValue(info.userName);
+
+        if (info.password)
+          this.loginForm.controls.password.patchValue(
+            this.cryptoService.decryptAES(info.password, setting.apiEncryptKey)
+          );
+      });
   }
 
   public submit(): void {
@@ -84,9 +106,9 @@ export class LoginComponent extends BaseComponent {
       this.clearError();
       this.loginForm.disable();
       this.authService.globalSetting$
-
         .pipe(
           filter(Boolean),
+          take(1),
           switchMap((res: GlobalSettings) =>
             this.authService.login(
               this.loginForm.getRawValue() as unknown as LoginModel,
@@ -108,7 +130,19 @@ export class LoginComponent extends BaseComponent {
 
   public handleLoginSuccess(): void {
     let redirectUrl = this.authService.redirectUrl;
-    localStorage.setItem(this.key, this.loginForm.value.userName || '');
+
+    const globlaSetting = this.authService.globalSetting$.getValue();
+    if (globlaSetting) {
+      const value = {
+        userName: this.loginForm.value.userName,
+        password: this.cryptoService.encryptAES(
+          this.loginForm.value.password ?? '',
+          globlaSetting.apiEncryptKey
+        ),
+      };
+
+      localStorage.setItem(this.key, JSON.stringify(value));
+    }
 
     if (
       !redirectUrl ||

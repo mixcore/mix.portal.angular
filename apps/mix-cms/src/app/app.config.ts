@@ -86,7 +86,6 @@ export const domainUrlFactory = () => {
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    // { provide: RouteReuseStrategy, useClass: CustomAppReuseStrategy },
     {
       provide: NgZone,
       useValue: new NgZone({
