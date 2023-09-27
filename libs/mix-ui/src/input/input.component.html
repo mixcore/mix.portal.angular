@@ -4,7 +4,10 @@
            [tuiTextfieldLabelOutside]="!floatingLabel"
            [tuiTextfieldSize]="'m'">
   {{ placeHolder }}
-  <input [type]="type"
+  <input [autocomplete]="autocomplete"
+         [id]="id"
+         [name]="name"
+         [type]="type"
          tuiTextfield>
 </tui-input>
 

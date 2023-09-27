@@ -39,6 +39,9 @@ export class MixInputComponent
   @Input() floatingLabel = false;
   @Input() searchIcon = false;
   @Input() autoCompleteItems: string[] = [];
+  @Input() autocomplete = '';
+  @Input() name = '';
+  @Input() id = '';
   @Input() closable = true;
 
   @Input() selfControl = false;

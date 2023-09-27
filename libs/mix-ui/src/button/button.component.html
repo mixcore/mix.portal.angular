@@ -5,17 +5,18 @@
         [disabled]="loading || disabled"
         [showLoader]="loading"
         [size]="size"
+        [type]="nativeType"
         tuiButton>
   <ng-container *ngTemplateOutlet="content"> </ng-container>
 </button>
 
 <ng-container *ngIf="iconBtn">
   <button class="mix-button"
-          type="button"
           [appearance]="typeMaps[type]"
           [disabled]="loading || disabled"
           [showLoader]="loading"
           [size]="size"
+          [type]="nativeType"
           tuiIconButton>
     <ng-container *ngTemplateOutlet="content"> </ng-container>
   </button>

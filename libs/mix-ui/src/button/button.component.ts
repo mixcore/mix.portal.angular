@@ -33,6 +33,7 @@ export class MixButtonComponent {
     | 'secondary'
     | 'icon' = 'primary';
   @Input() public iconBtn = false;
+  @Input() public nativeType = 'button';
 
   constructor(elementRef: ElementRef, zone: NgZone) {
     zone.runOutsideAngular(() => {

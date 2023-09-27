@@ -181,9 +181,14 @@ export class EntityFormComponent implements OnInit {
 
     const words = this.form.value.displayName.split(' ');
     const camelCaseString = words
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .map(
+        (word, index) =>
+          (index === 0
+            ? word.charAt(0).toLocaleLowerCase()
+            : word.charAt(0).toUpperCase()) + word.slice(1)
+      )
       .join('');
-    const prefix = 'mixCol_';
+    const prefix = '';
 
     this.form.controls.systemName.patchValue(`${prefix}${camelCaseString}`, {
       emitEvent: false,

@@ -64,6 +64,7 @@ export class LoginComponent extends BaseComponent {
 
   constructor() {
     super();
+
     const current = this.domainUrls$.getValue();
     if (current === environment.domainUrl) {
       this.modeForm.controls.url.patchValue('prod');

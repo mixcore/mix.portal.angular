@@ -1,11 +1,12 @@
 <div *ngIf="loadingState$ | async as state"
-     class="login"
-     [formGroup]="loginForm">
+     class="login">
   <div class="login__logo">
     <img src="assets/images/mixcore-logo.svg">
   </div>
 
-  <form class="login__container">
+  <form class="login__container"
+        [formGroup]="loginForm"
+        (ngSubmit)="submit()">
     <div class="login__title">Sign In</div>
     <div class="login__des">Let manage your site together!</div>
 
@@ -26,15 +27,20 @@
     </div> -->
 
     <mix-input class="mt-8"
+               id="username"
+               name="username"
+               autocomplete="username"
                placeHolder="Username/Email"
                formControlName="userName"></mix-input>
 
     <mix-form-error formControlName="userName"></mix-form-error>
 
     <mix-input class="mt-3"
+               id="password"
+               name="password"
                type="password"
+               autocomplete="new-password"
                placeHolder="Password"
-               (keyup.enter)="submit()"
                formControlName="password"></mix-input>
 
     <mix-form-error formControlName="password"></mix-form-error>
@@ -44,7 +50,7 @@
 
     <mix-button class="mt-4 w-100"
                 [loading]="state === 'Loading'"
-                (click)="submit()">Login</mix-button>
+                [nativeType]="'submit'">Login</mix-button>
   </form>
 
   <div class="mt-4">
