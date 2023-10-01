@@ -96,7 +96,7 @@ export class AuthInterceptor implements HttpInterceptor {
       const token = this.authService.refreshToken;
 
       if (token) {
-        this.authService.renewToken().pipe(
+        return this.authService.renewToken().pipe(
           switchMap((token) => {
             this.isRefreshing = false;
             this.refreshTokenSubject.next(token.accessToken);

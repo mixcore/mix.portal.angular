@@ -57,7 +57,7 @@ export class LoginComponent extends BaseComponent {
   });
 
   public loginForm = this.formBuilder.group({
-    userName: ['', Validators.required],
+    username: ['', Validators.required],
     password: ['', Validators.required],
     rememberMe: [true],
   });
@@ -86,17 +86,15 @@ export class LoginComponent extends BaseComponent {
   }
 
   public initFromStorage() {
-    const value = localStorage.getItem(this.key);
-    if (!value) return;
-
-    const info = JSON.parse(value) as LoginInfo;
-    this.loginForm.controls.userName.patchValue(info.userName);
+    // const value = localStorage.getItem(this.key);
+    // if (!value) return;
+    // const info = JSON.parse(value) as LoginInfo;
+    // this.loginForm.controls.userName.patchValue(info.userName);
   }
 
   public submit(): void {
     if (FormHelper.validateForm(this.loginForm)) {
       this.clearError();
-      this.loginForm.disable();
       this.authService.globalSetting$
         .pipe(
           filter(Boolean),
@@ -124,7 +122,7 @@ export class LoginComponent extends BaseComponent {
     localStorage.setItem(
       this.key,
       JSON.stringify({
-        userName: this.loginForm.value.userName,
+        userName: this.loginForm.value.username,
       })
     );
 
@@ -137,7 +135,7 @@ export class LoginComponent extends BaseComponent {
       redirectUrl = CMS_ROUTES.portal.dashboard.fullPath;
     }
 
-    this.router.navigateByUrl(redirectUrl);
+    this.router.navigate([redirectUrl]);
     this.authService.clearRedirectUrl();
   }
 

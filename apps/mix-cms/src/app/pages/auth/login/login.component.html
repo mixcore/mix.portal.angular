@@ -5,6 +5,8 @@
   </div>
 
   <form class="login__container"
+        id="login"
+        name="login"
         [formGroup]="loginForm"
         (ngSubmit)="submit()">
     <div class="login__title">Sign In</div>
@@ -31,15 +33,15 @@
                name="username"
                autocomplete="username"
                placeHolder="Username/Email"
-               formControlName="userName"></mix-input>
+               formControlName="username"></mix-input>
 
-    <mix-form-error formControlName="userName"></mix-form-error>
+    <mix-form-error formControlName="username"></mix-form-error>
 
     <mix-input class="mt-3"
                id="password"
                name="password"
                type="password"
-               autocomplete="new-password"
+               autocomplete="current-password"
                placeHolder="Password"
                formControlName="password"></mix-input>
 
@@ -50,7 +52,8 @@
 
     <mix-button class="mt-4 w-100"
                 [loading]="state === 'Loading'"
-                [nativeType]="'submit'">Login</mix-button>
+                [nativeType]="'submit'"
+                [size]="'m'">Login</mix-button>
   </form>
 
   <div class="mt-4">

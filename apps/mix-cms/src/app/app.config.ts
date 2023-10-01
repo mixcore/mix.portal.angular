@@ -36,6 +36,7 @@ import { JsonEditorFormlyComponent } from '@mixcore/ui/json';
 import { MixModalModule } from '@mixcore/ui/modal';
 import { MixFormlyQRCodeComponent } from '@mixcore/ui/qr-code';
 import { MixFormlySelectComponent } from '@mixcore/ui/select';
+import { MixFormlyTextAreaComponent } from '@mixcore/ui/textarea';
 import { MixFormlyToggleComponent } from '@mixcore/ui/toggle';
 import { MixFormlyUploadComponent } from '@mixcore/ui/upload';
 import {
@@ -142,6 +143,11 @@ export const appConfig: ApplicationConfig = {
           { name: DataType.Boolean, component: MixFormlyToggleComponent },
           { name: DataType.Html, component: MixFormlyRichTextComponent },
           { name: DataType.Html, component: MixFormlyRichTextComponent },
+          {
+            name: DataType.MultilineText,
+            component: MixFormlyTextAreaComponent,
+          },
+
           {
             name: DataType.ArrayMedia,
             component: MixFormlyArrayMediaComponent,

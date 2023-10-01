@@ -76,18 +76,18 @@ export const APP_MENU = [
     children: [],
   },
   {
-    title: 'MixDbs',
+    title: 'Mix Dbs',
     url: CMS_ROUTES.portal.database.fullPath,
     icon: 'database',
     children: [
       {
         icon: 'format_list_numbered',
-        title: 'List',
+        title: 'Setting Database',
         url: CMS_ROUTES.portal.database.fullPath,
       },
       {
         icon: 'table_view',
-        title: 'Table Editor',
+        title: 'Query Data',
         url: CMS_ROUTES.portal['database-data'].fullPath,
       },
     ],
@@ -115,7 +115,7 @@ export const APP_MENU = [
     ],
   },
   {
-    title: 'Tasks',
+    title: 'Projects',
     url: CMS_ROUTES.portal['database-data'].fullPath + '/mixTask',
     icon: 'view_kanban',
     children: [

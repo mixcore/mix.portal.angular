@@ -333,6 +333,7 @@ export class DatabaseDataComponent
 
       const dialogRef = this.dialog.open(RecordFormComponent, {
         data: { mixDatabase: value.db, data: undefined },
+        width: 800,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
@@ -350,6 +351,7 @@ export class DatabaseDataComponent
 
       const dialogRef = this.dialog.open(RecordFormComponent, {
         data: { mixDatabase: state.db, data: state.data[dataIndex] },
+        width: 800,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {

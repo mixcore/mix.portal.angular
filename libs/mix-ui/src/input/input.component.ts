@@ -42,6 +42,7 @@ export class MixInputComponent
   @Input() autocomplete = '';
   @Input() name = '';
   @Input() id = '';
+  @Input() autofill = '';
   @Input() closable = true;
 
   @Input() selfControl = false;

@@ -1,8 +1,7 @@
-<div *ngIf="store.data$()"
+<div *ngIf="store.vm$ | async as vm"
      class="data-table-page">
   <div class="data-table-page__main-container">
-    <mix-sub-toolbar *ngIf="store.state() as state"
-                     [description]="'LISTING'"
+    <mix-sub-toolbar [description]="'LISTING'"
                      [title]="'All User'">
       <div class="toolbar-separator"></div>
       <mix-button (click)="showDialog(createUser)"
@@ -11,11 +10,10 @@
       <div class="toolbar-separator"></div>
     </mix-sub-toolbar>
 
-    <div *ngIf="store.state$ | async as state"
-         class="data-table-page__body">
-      <mix-data-table [dataset]="state.data"
-                      [loading]="state.status === 'Loading'"
-                      [pageInfo]="state.pageInfo"
+    <div class="data-table-page__body">
+      <mix-data-table [dataset]="vm.data"
+                      [loading]="vm.status === 'Loading'"
+                      [pageInfo]="vm.pageInfo"
                       [searchFieldOptions]="['userName']"
                       (pageChange)="store.changePage($event)"
                       (searchChange)="store.searchChange($event.searchText, 'userName')">
@@ -31,14 +29,16 @@
             <div class="text-600">
               <div class="d-flex align-items-center">
                 <div class="user-avatar">
-                  <img [src]="data.data?.userData?.avatar || 'assets/images/avatar-placeholder.svg'">
+                  <img [src]="
+                      data.data?.userData?.avatar ||
+                      'assets/images/avatar-placeholder.svg'
+                    ">
                 </div>
 
                 <div class="ms-3">
-                  <div> {{ getNameFromMail(data.userName || '')  }}</div>
+                  <div>{{ getNameFromMail(data.userName || '') }}</div>
                   <div class="text-s text-secondary">
                     {{ data?.data?.userData?.email }}
-
                   </div>
                 </div>
               </div>

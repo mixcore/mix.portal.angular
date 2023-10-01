@@ -15,7 +15,6 @@ import { AuthService } from '@mixcore/share/auth';
 import { ModalService } from '@mixcore/ui/modal';
 import { TuiRootModule } from '@taiga-ui/core';
 import { filter, forkJoin, switchMap } from 'rxjs';
-import { CMS_ROUTES } from './app.routes';
 import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @Component({
@@ -60,36 +59,36 @@ export class AppComponent implements OnInit {
     });
 
     this.authService.initGlobalSettings();
-    if (this.authService.checkAuthorize()) {
-      forkJoin([
-        this.authService.fetchUserData(),
-        this.authService.initCultures(),
-      ])
-        .pipe(
-          switchMap(() => this.authService.initRoles()),
-          switchMap(() => this.authService.initPortalsMenu())
-        )
-        .subscribe({
-          next: () => {
-            this.authService.isAuthorized$.next(true);
-            this.router
-              .navigateByUrl(
-                this.authService.redirectUrl || window.location.pathname
-              )
-              .then();
+    // if (this.authService.checkAuthorize()) {
+    forkJoin([
+      this.authService.fetchUserData(),
+      this.authService.initCultures(),
+    ])
+      .pipe(
+        switchMap(() => this.authService.initRoles()),
+        switchMap(() => this.authService.initPortalsMenu())
+      )
+      .subscribe({
+        next: () => {
+          this.authService.isAuthorized$.next(true);
+          this.router
+            .navigateByUrl(
+              this.authService.redirectUrl || window.location.pathname
+            )
+            .then();
 
-            this.authService.clearRedirectUrl();
-          },
-          error: () => this.enableApp(),
-          complete: () => this.enableApp(),
-        });
-    } else {
-      this.router
-        .navigateByUrl('/' + CMS_ROUTES.auth.login.fullPath)
-        .then(() => {
-          this.enableApp();
-        });
-    }
+          this.authService.clearRedirectUrl();
+        },
+        error: () => this.enableApp(),
+        complete: () => this.enableApp(),
+      });
+    // } else {
+    //   this.router
+    //     .navigateByUrl('/' + CMS_ROUTES.auth.login.fullPath)
+    //     .then(() => {
+    //       this.enableApp();
+    //     });
+    // }
   }
 
   public enableApp(): void {
