@@ -43,6 +43,5 @@ export class DiscountStore extends BaseCRUDStore<MixPost> {
         })
       );
 
-  //   public override mainUrl = '/' + CMS_ROUTES.portal.discount.fullPath;
   public override requestName = 'discount';
 }

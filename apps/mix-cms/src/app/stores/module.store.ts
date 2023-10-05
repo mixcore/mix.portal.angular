@@ -10,6 +10,5 @@ export class ModuleStore extends BaseCRUDStore<MixModule> {
       columns: 'image,title,createdDateTime,createdBy,status,priority',
     });
 
-  //   public override mainUrl = '/' + CMS_ROUTES.portal.module.fullPath;
   public override requestName = 'modules';
 }

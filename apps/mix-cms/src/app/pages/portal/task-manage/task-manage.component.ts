@@ -66,12 +66,6 @@ export class TaskManageComponent extends BaseComponent {
 
   constructor() {
     super();
-
-    this.loadTask();
-  }
-
-  loadTask() {
-    //
   }
 
   public addTask() {

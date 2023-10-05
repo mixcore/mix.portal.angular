@@ -18,18 +18,6 @@
     gap: 12px;
     position: relative;
     border-bottom: 1px dashed var(--border-color-default);
-
-    // &::after {
-    //   display: block;
-    //   content: '';
-    //   content: '';
-    //   height: 18px;
-    //   width: 1px;
-    //   border-left: 1px dashed var(--text-03);
-    //   position: absolute;
-    //   bottom: -6px;
-    //   left: 4px;
-    // }
   }
 
   &__item-title {

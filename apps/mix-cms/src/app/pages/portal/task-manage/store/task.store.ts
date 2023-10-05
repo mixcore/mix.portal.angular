@@ -23,12 +23,12 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
   };
 
   public getTaskByStatus = (status: TaskStatus) => {
-    return this.select((s) => s.data).pipe(
-      map((data) =>
-        data
+    return this.select((s) => s).pipe(
+      map((s) => {
+        return s.data
           .filter((x) => x.taskStatus === status)
-          .sort((a, b) => b.listPosition - a.listPosition)
-      )
+          .sort((a, b) => b.listPosition - a.listPosition);
+      })
     );
   };
 

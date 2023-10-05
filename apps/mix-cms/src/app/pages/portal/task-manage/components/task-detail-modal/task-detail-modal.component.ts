@@ -22,6 +22,7 @@ import { MixInlineInputComponent } from '@mixcore/ui/inline-input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
+import { UserSelectComponent } from '../../../../../components/user-select/user-select.component';
 import { TaskService } from '../../store/task.service';
 import { TaskStore } from '../../store/task.store';
 
@@ -36,6 +37,7 @@ import { TaskStore } from '../../store/task.store';
     MixButtonComponent,
     MixSelectComponent,
     MixUtcDatePipe,
+    UserSelectComponent
   ],
   templateUrl: './task-detail-modal.component.html',
   styleUrls: ['./task-detail-modal.component.scss'],
@@ -53,6 +55,7 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
     description: new FormControl('', Validators.required),
     taskStatus: new FormControl(TaskStatus.BACKLOG, Validators.required),
     taskPriority: new FormControl(TaskPriority.LOW, Validators.required),
+    reporter: new FormControl()
   });
 
   public statussLabel = (status: TaskStatus) => TaskStatusDisplay[status];

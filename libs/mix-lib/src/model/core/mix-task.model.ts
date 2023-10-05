@@ -43,6 +43,14 @@ export const TaskPriorityColors = {
   [TaskPriority.LOWEST]: '#57A55A',
 };
 
+export const TaskPriorityIcon = {
+  [TaskPriority.HIGHEST]: 'arrow_upward',
+  [TaskPriority.HIGH]: 'arrow_upward',
+  [TaskPriority.MEDIUM]: 'arrow_upward',
+  [TaskPriority.LOW]: 'arrow_downward',
+  [TaskPriority.LOWEST]: 'arrow_downward',
+};
+
 export const TaskTypeIcons = {
   [TaskType.BUG]: 'assets/images/tasks/bug.svg',
   [TaskType.TASK]: 'assets/images/tasks/task.svg',
@@ -62,7 +70,7 @@ export interface MixTaskNew {
   timeRemaining?: number;
   createdDateTime: string;
   lastModified: string;
-  reporterId?: string;
+  reporter?: string;
   userIds: string[];
   projectId?: string;
 }

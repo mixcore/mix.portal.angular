@@ -10,9 +10,19 @@
         {{ task.type }}-{{ task.id }}
       </span>
 
-      <span class="ms-auto">
+      <span *ngIf="userInfo"
+            class="ms-2">
+        <tui-avatar [autoColor]="true"
+                    [rounded]="true"
+                    [text]="userInfo.normalizedUserName || ''"
+                    size="xs"></tui-avatar>
+      </span>
+
+      <span class="ms-auto d-flex gap-2 align-items-center">
         <img alt="type"
              [src]="TaskTypeIcon[task.type]">
+
+        <mix-task-priority [priority]="task.taskPriority"></mix-task-priority>
       </span>
     </div>
   </div>
