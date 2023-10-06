@@ -6,6 +6,7 @@
   <div class="items"
        [cdkDropListData]="tasks"
        [id]="status"
+       (cdkDropListDropped)="drop($event)"
        cdkDropList>
     <mix-task-card *ngFor="let task of tasks"
                    [cdkDragData]="task"

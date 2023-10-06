@@ -1,4 +1,9 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  DragDropModule,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectorRef,
@@ -15,10 +20,13 @@ import {
   TaskStatus,
   TaskStatusDisplay,
 } from '@mixcore/lib/model';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable, combineLatest, forkJoin } from 'rxjs';
 import { TaskCardComponent } from '../task-card/task-card.component';
 import { TaskFilterStore } from '../../store/filter.store';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TaskStore } from '../../store/task.store';
+import { TaskService } from '../../store/task.service';
+import { HotToastService } from '@ngneat/hot-toast';
 
 @Component({
   selector: 'mix-task-dnd-list',
@@ -31,6 +39,9 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class TaskDndListComponent implements OnInit {
   public destroyRef = inject(DestroyRef);
   public cdr = inject(ChangeDetectorRef);
+  public taskStore = inject(TaskStore);
+  public taskService = inject(TaskService);
+  public toast = inject(HotToastService);
 
   public TaskStatusDisplay = TaskStatusDisplay;
 
@@ -58,5 +69,44 @@ export class TaskDndListComponent implements OnInit {
     }
 
     this.cdr.detectChanges();
+  }
+
+  public drop(event: CdkDragDrop<MixTaskNew[]>) {
+    const newIssue: MixTaskNew = { ...event.item.data };
+    const newIssues = [...event.container.data];
+
+    if (event.previousContainer === event.container) {
+      moveItemInArray(newIssues, event.previousIndex, event.currentIndex);
+      this.updateListPosition(newIssues);
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        newIssues,
+        event.previousIndex,
+        event.currentIndex
+      );
+
+      const newIssueIndex = newIssues.findIndex((x) => x.id === newIssue.id);
+      newIssues[newIssueIndex].taskStatus = event.container.id as TaskStatus;
+      this.updateListPosition(newIssues);
+    }
+  }
+
+  private updateListPosition(newList: MixTaskNew[]) {
+    const requests = newList.map((issue, idx) => {
+      const newIssueWithNewPosition = { ...issue, priority: idx + 1 };
+      this.taskStore.addTask(newIssueWithNewPosition, 'Update');
+      return this.taskService.saveTask(newIssueWithNewPosition);
+    });
+
+    forkJoin(requests)
+      .pipe(
+        this.toast.observe({
+          loading: 'Saving...',
+          success: 'Succesfully update your task',
+          error: 'Something error, please try again',
+        })
+      )
+      .subscribe();
   }
 }

@@ -73,4 +73,5 @@ export interface MixTaskNew {
   reporter?: string;
   userIds: string[];
   projectId?: string;
+  priority: number;
 }

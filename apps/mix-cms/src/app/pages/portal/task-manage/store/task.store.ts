@@ -27,7 +27,7 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
       map((s) => {
         return s.data
           .filter((x) => x.taskStatus === status)
-          .sort((a, b) => a.listPosition - b.listPosition);
+          .sort((a, b) => a.priority - b.priority);
       })
     );
   };
