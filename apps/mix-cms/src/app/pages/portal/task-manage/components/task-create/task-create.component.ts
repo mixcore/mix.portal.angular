@@ -22,6 +22,7 @@ import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TaskService } from '../../store/task.service';
 import { TaskStore } from '../../store/task.store';
+import { UserSelectComponent } from '../../../../../components/user-select/user-select.component';
 
 @Component({
   selector: 'mix-task-create',
@@ -33,6 +34,7 @@ import { TaskStore } from '../../store/task.store';
     ReactiveFormsModule,
     MixEditorComponent,
     MixButtonComponent,
+    UserSelectComponent,
   ],
   templateUrl: './task-create.component.html',
   styleUrls: ['./task-create.component.scss'],
@@ -62,6 +64,8 @@ export class TaskCreateComponent extends BaseComponent {
     type: new FormControl(TaskType.STORY, Validators.required),
     taskPriority: new FormControl(TaskPriority.LOW, Validators.required),
     taskStatus: new FormControl(TaskStatus.BACKLOG),
+    reporter: new FormControl(),
+    priority: new FormControl(999),
   });
 
   public createTask() {
