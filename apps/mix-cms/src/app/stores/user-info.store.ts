@@ -3,15 +3,13 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PaginationRequestModel, UserListVm } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ComponentStore } from '@ngrx/component-store';
-import { filter, map, switchMap, tap } from 'rxjs';
+import { delay, filter, map, switchMap, tap } from 'rxjs';
 import { BaseState, DEFAULT_DATA } from './base-crud.store';
 
 @Injectable({ providedIn: 'root' })
 export class UserInfoStore extends ComponentStore<BaseState<UserListVm>> {
   public mixApi = inject(MixApiFacadeService);
-  public vm$ = this.select((s) => s).pipe(
-    filter((s) => s.status === 'Success')
-  );
+  public vm$ = this.select((s) => s);
   public request$ = this.select((s) => s.request);
 
   public requestFn = (request: PaginationRequestModel) =>
@@ -28,7 +26,7 @@ export class UserInfoStore extends ComponentStore<BaseState<UserListVm>> {
 
   constructor() {
     super({
-      status: 'Pending',
+      status: 'Loading',
       request: {
         pageIndex: 0,
         pageSize: 50,

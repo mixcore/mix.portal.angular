@@ -14,6 +14,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TaskStore } from '../../store/task.store';
 import { tuiPure } from '@taiga-ui/cdk';
 import { TaskFilterStore } from '../../store/filter.store';
+import { TuiLinkModule } from '@taiga-ui/core';
+import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 
 @Component({
   selector: 'mix-task-filter',
@@ -25,6 +27,8 @@ import { TaskFilterStore } from '../../store/filter.store';
     MixButtonComponent,
     TuiAvatarModule,
     TuiFilterModule,
+    TuiLinkModule,
+    SkeletonLoadingComponent,
   ],
   templateUrl: './task-filter.component.html',
   styleUrls: ['./task-filter.component.scss'],

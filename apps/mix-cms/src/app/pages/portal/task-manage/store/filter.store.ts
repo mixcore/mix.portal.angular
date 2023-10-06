@@ -23,6 +23,10 @@ export class TaskFilterStore extends ComponentStore<TaskFilterState> {
     });
   }
 
+  public clearFilter() {
+    this.patchState({ userIds: [] });
+  }
+
   constructor() {
     super({
       userIds: [],

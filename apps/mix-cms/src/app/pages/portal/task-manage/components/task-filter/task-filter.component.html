@@ -1,9 +1,14 @@
 <div class="task-filter">
-  <mix-input [placeHolder]="'Search issue'"
+  <mix-input [placeHolder]="'Search items'"
              [searchIcon]="true"></mix-input>
 
   <div *ngIf="userStore.vm$ | async as vm"
        class="stacking-user ms-3">
+    <ng-container *ngIf="vm.status === 'Loading'">
+      <mix-skeleton-loading type="inline"
+                            style="width: 100px"></mix-skeleton-loading>
+    </ng-container>
+
     <ng-container *ngFor="let user of vm.data">
       <tui-avatar class="avatar"
                   [class.--active]="isUserActive(userIds, user.id)"
@@ -21,5 +26,14 @@
                   formControlName="filters"
                   size="s"></tui-filter>
     </form>
+  </div>
+
+  <div *ngIf="userIds?.length"
+       class="ms-2 d-flex align-items-center">
+    <div class="separator me-2"></div>
+    <a class="hoverable"
+       (click)="filterStore.clearFilter()">
+      Clear filter(s)
+    </a>
   </div>
 </div>

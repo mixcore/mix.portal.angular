@@ -29,4 +29,12 @@
       }
     }
   }
+
+  .separator {
+    content: '';
+    display: block;
+    height: 20px;
+    width: 1px;
+    background-color: var(--border-color-default);
+  }
 }
