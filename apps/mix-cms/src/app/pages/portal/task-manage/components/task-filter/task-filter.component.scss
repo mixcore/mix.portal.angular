@@ -23,6 +23,10 @@
         transform: translate(3px, -3px);
         transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
+
+      &.--active {
+        border: 2px solid var(--primary-color);
+      }
     }
   }
 }

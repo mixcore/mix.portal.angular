@@ -6,9 +6,11 @@
        class="stacking-user ms-3">
     <ng-container *ngFor="let user of vm.data">
       <tui-avatar class="avatar"
+                  [class.--active]="isUserActive(userIds, user.id)"
                   [autoColor]="true"
                   [rounded]="true"
                   [text]="user.normalizedUserName || ''"
+                  (click)="filterStore.toggleUserIds(user.id)"
                   size="s"></tui-avatar>
     </ng-container>
   </div>

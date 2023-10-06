@@ -1,10 +1,19 @@
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  inject,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { UserInfoStore } from '../../../../../stores/user-info.store';
 import { TuiAvatarModule, TuiFilterModule } from '@taiga-ui/kit';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TaskStore } from '../../store/task.store';
+import { tuiPure } from '@taiga-ui/cdk';
+import { TaskFilterStore } from '../../store/filter.store';
 
 @Component({
   selector: 'mix-task-filter',
@@ -19,12 +28,28 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
   ],
   templateUrl: './task-filter.component.html',
   styleUrls: ['./task-filter.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskFilterComponent {
+export class TaskFilterComponent implements OnInit {
   public userStore = inject(UserInfoStore);
+  public taskStore = inject(TaskStore);
+  public filterStore = inject(TaskFilterStore);
+  public destroyRef = inject(DestroyRef);
+  public userIds: string[] = [];
 
   public readonly filterItems = ['Only My Issues', 'Ignore Resolved'];
   public readonly filterForm = new FormGroup({
     filters: new FormControl([]),
   });
+
+  ngOnInit() {
+    this.filterStore.userIds$.subscribe(
+      (filter) => (this.userIds = filter.userIds)
+    );
+  }
+
+  @tuiPure
+  public isUserActive(userIds: string[], id: string) {
+    return userIds.includes(id);
+  }
 }
