@@ -76,6 +76,8 @@ export class TaskDndListComponent implements OnInit {
     const newIssues = [...event.container.data];
 
     if (event.previousContainer === event.container) {
+      if (event.previousIndex === event.currentIndex) return;
+
       moveItemInArray(newIssues, event.previousIndex, event.currentIndex);
       this.updateListPosition(newIssues);
     } else {
