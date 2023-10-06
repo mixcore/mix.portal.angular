@@ -137,17 +137,7 @@ a {
   --bs-gutter-y: 0;
 }
 
-[tuiWrapper][data-appearance='whiteblock-active'] {
-  background: var(--primary-color);
-  color: var(--button-text-color-primary);
-
-  &:hover:not(._no-hover) {
-    color: var(--tui-text-01) !important;
-  }
-}
-
 [tuiWrapper][data-appearance='textfield'] {
-  // box-shadow: unset !important;
   border-radius: var(--element-rounded) !important;
   background: var(--background-color-primary);
   color: var(--text-color-primary);
@@ -286,10 +276,10 @@ ngneat-dialog {
   .ngneat-dialog-backdrop {
     .ngneat-dialog-content {
       padding: 18px;
-      animation: dialog-open 0.1s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      animation: dialog-open 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
 
-    animation: dialog-open-backdrop 0.1s !important;
+    animation: dialog-open-backdrop 0.2s !important;
   }
 }
 

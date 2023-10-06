@@ -6,16 +6,16 @@
     </div>
 
     <div class="d-flex">
-      <span class="text-uppercase text-secondary">
-        {{ task.type }}-{{ task.id }}
-      </span>
-
       <span *ngIf="userInfo"
-            class="ms-2">
+            class="me-2">
         <tui-avatar [autoColor]="true"
                     [rounded]="true"
                     [text]="userInfo.normalizedUserName || ''"
                     size="xs"></tui-avatar>
+      </span>
+
+      <span class="text-uppercase text-secondary">
+        {{ task.type }}-{{ task.id }}
       </span>
 
       <span class="ms-auto d-flex gap-2 align-items-center">

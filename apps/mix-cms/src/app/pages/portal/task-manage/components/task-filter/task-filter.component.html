@@ -1,0 +1,23 @@
+<div class="task-filter">
+  <mix-input [placeHolder]="'Search issue'"
+             [searchIcon]="true"></mix-input>
+
+  <div *ngIf="userStore.vm$ | async as vm"
+       class="stacking-user ms-3">
+    <ng-container *ngFor="let user of vm.data">
+      <tui-avatar class="avatar"
+                  [autoColor]="true"
+                  [rounded]="true"
+                  [text]="user.normalizedUserName || ''"
+                  size="s"></tui-avatar>
+    </ng-container>
+  </div>
+
+  <div class="d-flex ms-3">
+    <form [formGroup]="filterForm">
+      <tui-filter [items]="filterItems"
+                  formControlName="filters"
+                  size="s"></tui-filter>
+    </form>
+  </div>
+</div>

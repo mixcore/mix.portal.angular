@@ -37,7 +37,7 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
       if (mode === 'Create') return { ...s, data: [task, ...s.data] };
 
       const taskIndex = s.data.findIndex((x) => x.id === task.id);
-      if (taskIndex > 0) s.data[taskIndex] = task;
+      if (taskIndex >= 0) s.data[taskIndex] = task;
 
       return { ...s };
     });

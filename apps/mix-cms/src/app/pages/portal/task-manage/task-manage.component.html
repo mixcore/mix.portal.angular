@@ -6,20 +6,11 @@
       <div class="toolbar-separator"></div>
       <mix-button (click)="addTask()"
                   size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
-        {{ 'Add' | transloco }}</mix-button>
+        {{ 'Create item' | transloco }}</mix-button>
     </mix-sub-toolbar>
 
-    <div class="task-manage__filter">
-      <mix-input [placeHolder]="'Search issue'"
-                 [searchIcon]="true"></mix-input>
-      <div class="d-flex ms-3">
-        <mix-button [type]="'flat'"
-                    size="m">Only My Issues</mix-button>
+    <mix-task-filter></mix-task-filter>
 
-        <mix-button [type]="'flat'"
-                    size="m">In Progress</mix-button>
-      </div>
-    </div>
     <div *ngIf="store.vm$ | async as vm"
          class="task-manage__main-view"
          cdkDropListGroup>

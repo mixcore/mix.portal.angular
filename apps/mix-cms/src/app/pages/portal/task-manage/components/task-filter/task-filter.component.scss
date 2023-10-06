@@ -1,0 +1,28 @@
+.task-filter {
+  display: flex;
+  padding: 16px 16px 0px 16px;
+  align-items: center;
+
+  mix-input {
+    width: 300px;
+  }
+
+  .stacking-user {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+
+    .avatar {
+      cursor: pointer;
+
+      &:not(:first-child) {
+        margin-right: -4px;
+      }
+
+      &:hover {
+        transform: translate(3px, -3px);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+  }
+}

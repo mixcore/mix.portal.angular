@@ -1,4 +1,5 @@
-<div class="task-list">
+<div *ngIf="listTasks | async as tasks"
+     class="task-list">
   <div class="title text-uppercase text-truncate">
     {{ TaskStatusDisplay[status] }} {{ tasks.length }}
   </div>

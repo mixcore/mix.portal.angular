@@ -25,6 +25,7 @@ import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-tool
 import { TaskCreateComponent } from './components/task-create/task-create.component';
 import { TaskDndListComponent } from './components/task-dnd-list/task-dnd-list.component';
 import { TaskStore } from './store/task.store';
+import { TaskFilterComponent } from './components/task-filter/task-filter.component';
 
 @Component({
   selector: 'mix-task-manage',
@@ -43,6 +44,7 @@ import { TaskStore } from './store/task.store';
     SkeletonLoadingComponent,
     TuiPaginationModule,
     TaskDndListComponent,
+    TaskFilterComponent,
     DragDropModule,
   ],
   templateUrl: './task-manage.component.html',

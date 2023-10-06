@@ -9,7 +9,9 @@ import { BaseState, DEFAULT_DATA } from './base-crud.store';
 @Injectable({ providedIn: 'root' })
 export class UserInfoStore extends ComponentStore<BaseState<UserListVm>> {
   public mixApi = inject(MixApiFacadeService);
-  public vm$ = this.select((s) => s);
+  public vm$ = this.select((s) => s).pipe(
+    filter((s) => s.status === 'Success')
+  );
   public request$ = this.select((s) => s.request);
 
   public requestFn = (request: PaginationRequestModel) =>
