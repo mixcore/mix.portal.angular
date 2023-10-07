@@ -24,6 +24,23 @@ export class UserInfoStore extends ComponentStore<BaseState<UserListVm>> {
     );
   };
 
+  public loadData(request: PaginationRequestModel) {
+    return this.requestFn(request).pipe(
+      tap((result) => {
+        this.patchState((s) => ({
+          ...s,
+          data: result.items,
+          pageInfo: result.pagingData,
+          status: 'Success',
+        }));
+      })
+    );
+  }
+
+  public reload() {
+    this.requestFn(this.get().request).subscribe();
+  }
+
   constructor() {
     super({
       status: 'Loading',
@@ -43,15 +60,7 @@ export class UserInfoStore extends ComponentStore<BaseState<UserListVm>> {
     this.request$
       .pipe(
         tap(() => this.patchState((s) => ({ ...s, status: 'Loading' }))),
-        switchMap((request) => this.requestFn(request)),
-        tap((result) => {
-          this.patchState((s) => ({
-            ...s,
-            data: result.items,
-            pageInfo: result.pagingData,
-            status: 'Success',
-          }));
-        }),
+        switchMap((request) => this.loadData(request)),
         takeUntilDestroyed()
       )
       .subscribe();

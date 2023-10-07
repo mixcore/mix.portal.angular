@@ -33,16 +33,15 @@ export interface TableContextMenu<T> {
   providers: [TuiDestroyService],
 })
 export class DataTableComponent<T> implements AfterContentInit {
+  @ViewChild('mainTable') mainTable!: ElementRef<HTMLElement>;
   @ContentChildren(TableColumnDirective)
   public columns!: QueryList<TableColumnDirective>;
-
-  // @ViewChild('viewport') mainTable!: CdkVirtualScrollViewport;
-  @ViewChild('mainTable') mainTable!: ElementRef<HTMLElement>;
 
   public cdr = inject(ChangeDetectorRef);
   public destroy$ = inject(TuiDestroyService);
   public zone = inject(NgZone);
 
+  @Output() public itemsSelectedChange: EventEmitter<T[]> = new EventEmitter();
   @Output() public dragDropChange: EventEmitter<{ item: T; toItem: T }> =
     new EventEmitter();
   @Output() public pageChange: EventEmitter<number> = new EventEmitter();
@@ -75,12 +74,6 @@ export class DataTableComponent<T> implements AfterContentInit {
         this.mainTable.nativeElement.scrollTop = 0;
       }, 100);
     }
-
-    // if (this.mainTable) {
-    //   setTimeout(() => {
-    //     this.mainTable.scrollToOffset(0, 'smooth');
-    //   }, 100);
-    // }
   }
   public get dataset() {
     return this._dataset;
@@ -111,8 +104,6 @@ export class DataTableComponent<T> implements AfterContentInit {
 
   private _dataset: T[] = [];
   private _searchFieldOptions: string[] = [];
-
-  @Output() public itemsSelectedChange: EventEmitter<T[]> = new EventEmitter();
 
   public ngAfterContentInit(): void {
     this.displayColumns = this.columns

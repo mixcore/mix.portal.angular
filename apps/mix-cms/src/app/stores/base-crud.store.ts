@@ -97,6 +97,7 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   );
 
   public reload() {
+    this.patchState((s) => ({ ...s, status: 'Loading' }));
     this.loadData(this.request$());
   }
 

@@ -44,6 +44,7 @@ export const MixSwagger = {
     register: '/api/v2/rest/mix-account/user/register',
     role: '/api/v2/rest/mix-account/role',
     permission: '/api/v2/rest/mix-services/permission',
+    delete: '/api/v2/rest/mix-account/user/remove-user',
   },
   ecommerce: {
     updateDeliveryCode: '/api/v2/ecommerce/update-delivery-code',

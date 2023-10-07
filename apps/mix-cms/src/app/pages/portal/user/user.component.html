@@ -4,17 +4,21 @@
     <mix-sub-toolbar [description]="'LISTING'"
                      [title]="'All User'">
       <div class="toolbar-separator"></div>
-      <mix-button (click)="showDialog(createUser)"
-                  size="m"><span class="material-symbols-outlined"> add </span>&nbsp; Add
-        User</mix-button>
-      <div class="toolbar-separator"></div>
+      <mix-button (click)="showDialog()"><span class="mix-icon"> add </span>&nbsp; Create user</mix-button>
+
+      <mix-button class="ms-2"
+                  type="danger"
+                  [disabled]="!selectedUsers.length"
+                  (click)="store.reload()"><span class="mix-icon"> delete </span>&nbsp; Delete(s)</mix-button>
     </mix-sub-toolbar>
 
     <div class="data-table-page__body">
-      <mix-data-table [dataset]="vm.data"
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="vm.data"
                       [loading]="vm.status === 'Loading'"
                       [pageInfo]="vm.pageInfo"
                       [searchFieldOptions]="['userName']"
+                      (itemsSelectedChange)="selectedUsers = $event"
                       (pageChange)="store.changePage($event)"
                       (searchChange)="store.searchChange($event.searchText, 'userName')">
         <div [columnType]="'CHECKBOX'"
@@ -38,7 +42,7 @@
                 <div class="ms-3">
                   <div>{{ getNameFromMail(data.userName || '') }}</div>
                   <div class="text-s text-secondary">
-                    {{ data?.data?.userData?.email }}
+                    {{ data?.email }}
                   </div>
                 </div>
               </div>
@@ -46,8 +50,8 @@
           </ng-template>
         </div>
 
-        <div [header]="'Phone Number'"
-             key="phoneNumber"
+        <div [header]="'User Id'"
+             key="id"
              mixTableColumn></div>
 
         <div [header]="'Created'"
@@ -60,54 +64,7 @@
             </div>
           </ng-template>
         </div>
-
-        <div [columnType]="'DRAG'"
-             [header]="'Action'"
-             key="drag"
-             mixTableColumn></div>
       </mix-data-table>
     </div>
   </div>
 </div>
-
-<ng-template #createUser
-             let-observer>
-  <div [formGroup]="registerForm">
-    <span class="text-xl text-bold">Create User Form</span>
-
-    <label class="content-label mt-4">User name - Email</label>
-    <mix-input formControlName="username"
-               placeHolder="Type email for login"></mix-input>
-    <mix-form-error formControlName="username"></mix-form-error>
-
-    <label class="content-label mt-2">Password:</label>
-    <mix-input type="password"
-               formControlName="password"
-               placeHolder="Type password"></mix-input>
-    <mix-form-error formControlName="password"></mix-form-error>
-
-    <label class="content-label mt-2">Confirm Password:</label>
-    <mix-input type="password"
-               formControlName="confirmPassword"
-               placeHolder="Confirm password"></mix-input>
-    <mix-form-error formControlName="confirmPassword"></mix-form-error>
-
-    <label class="content-label mt-2">First name</label>
-    <mix-input formControlName="firstName"
-               placeHolder="Type first name"></mix-input>
-    <mix-form-error formControlName="firstName"></mix-form-error>
-
-    <label class="content-label mt-2">Last name</label>
-    <mix-input formControlName="lastName"
-               placeHolder="Type last name"></mix-input>
-    <mix-form-error formControlName="lastName"></mix-form-error>
-
-    <mix-error-alert class="mt-3"
-                     [error]="serverError()"></mix-error-alert>
-
-    <div class="d-flex justify-content-end mt-3">
-      <mix-button [loading]="loadingState() === 'Loading'"
-                  (click)="createUserClick(observer)">Create</mix-button>
-    </div>
-  </div>
-</ng-template>

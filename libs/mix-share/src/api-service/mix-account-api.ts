@@ -11,27 +11,31 @@ import { Observable } from 'rxjs';
 import { BaseApiService, IHttpParamObject } from '../bases';
 
 export class MixAccountApi extends BaseApiService {
-  getUserList(
+  public getUserList(
     request: PaginationRequestModel
   ): Observable<PaginationResultModel<UserListVm>> {
     return this.get(MixSwagger.user.list, request as IHttpParamObject);
   }
 
-  getUserDetail(id: string): Observable<UserDetail> {
+  public getUserDetail(id: string): Observable<UserDetail> {
     return this.get(MixSwagger.user.detail + '/' + id);
   }
 
-  getRoleList(
+  public getRoleList(
     request: PaginationRequestModel
   ): Observable<PaginationResultModel<MixRole>> {
     return this.get(MixSwagger.user.role, request as IHttpParamObject);
   }
 
-  getRoleById(id: string): Observable<MixRole> {
+  public getRoleById(id: string): Observable<MixRole> {
     return this.get(`${MixSwagger.user.role}/${id}`);
   }
 
-  createUser(registerForm: MixRegister) {
+  public createUser(registerForm: MixRegister) {
     return this.post(MixSwagger.user.register, registerForm);
+  }
+
+  public removeUser(userId: string) {
+    return this.delete(MixSwagger.user.delete + '/' + userId);
   }
 }
