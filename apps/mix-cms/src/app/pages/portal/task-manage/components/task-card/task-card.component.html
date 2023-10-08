@@ -8,10 +8,8 @@
     <div class="d-flex">
       <span *ngIf="userInfo"
             class="me-2">
-        <tui-avatar [autoColor]="true"
-                    [rounded]="true"
-                    [text]="userInfo.userName || userInfo.email || ''"
-                    size="xs"></tui-avatar>
+        <mix-user-avatar [userInfo]="userInfo"
+                         size="xs"></mix-user-avatar>
       </span>
 
       <span class="text-uppercase text-secondary">

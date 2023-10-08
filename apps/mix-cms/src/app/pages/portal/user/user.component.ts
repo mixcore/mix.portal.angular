@@ -18,6 +18,7 @@ import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-tool
 import { UserStore } from '../../../stores/user.store';
 import { CreateUserDialogComponent } from './components/create-user-dialog/create-user-dialog.component';
 import { UserService } from './services/user.service';
+import { UserDetailDialogComponent } from './components/user-detail-dialog/user-detail-dialog.component';
 
 @Component({
   selector: 'mix-user',
@@ -51,20 +52,22 @@ export class UserComponent extends BaseComponent {
   public contextMenus: TableContextMenu<UserListVm>[] = [
     {
       label: 'Edit',
-      action: (item: UserListVm) => {
-        //
-      },
       icon: 'edit',
+      action: (item: UserListVm) => this.editUser(item),
     },
     {
       label: 'Delete',
-      action: (item: UserListVm) => this.userService.deleteUser(item.id),
       icon: 'delete',
+      action: (item: UserListVm) => this.userService.deleteUser(item.id),
     },
   ];
 
   public showDialog(): void {
     this.dialog.open(CreateUserDialogComponent);
+  }
+
+  public editUser(item: UserListVm): void {
+    this.dialog.open(UserDetailDialogComponent);
   }
 
   @tuiPure

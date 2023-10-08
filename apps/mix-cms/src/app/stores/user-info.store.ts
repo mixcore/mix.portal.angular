@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PaginationRequestModel, UserListVm } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { ComponentStore } from '@ngrx/component-store';
-import { delay, filter, map, switchMap, tap } from 'rxjs';
+import { filter, map, switchMap, tap } from 'rxjs';
 import { BaseState, DEFAULT_DATA } from './base-crud.store';
 
 @Injectable({ providedIn: 'root' })

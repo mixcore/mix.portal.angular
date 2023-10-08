@@ -13,8 +13,8 @@ import {
   UserListVm,
 } from '@mixcore/lib/model';
 import { DialogService } from '@ngneat/dialog';
-import { TuiAvatarModule } from '@taiga-ui/kit';
 import { take } from 'rxjs';
+import { UserAvatarComponent } from '../../../../../components/user-avatar/user-avatar.component';
 import { UserInfoStore } from '../../../../../stores/user-info.store';
 import { TaskDetailModalComponent } from '../task-detail-modal/task-detail-modal.component';
 import { TaskPriorityComponent } from '../task-priority/task-priority.component';
@@ -22,7 +22,7 @@ import { TaskPriorityComponent } from '../task-priority/task-priority.component'
 @Component({
   selector: 'mix-task-card',
   standalone: true,
-  imports: [CommonModule, TaskPriorityComponent, TuiAvatarModule],
+  imports: [CommonModule, TaskPriorityComponent, UserAvatarComponent],
   templateUrl: './task-card.component.html',
   styleUrls: ['./task-card.component.scss'],
 })

@@ -9,6 +9,7 @@
               tuiOption>
         <div class="d-flex align-items-center gap-2">
           <tui-avatar [autoColor]="true"
+                      [rounded]="true"
                       [text]="item.userName || item.email || ''"
                       size="xs"></tui-avatar>
 
@@ -24,6 +25,7 @@
   <div class="d-flex align-items-center gap-2">
     <ng-container *ngIf="userDataMap[item] as item">
       <tui-avatar [autoColor]="true"
+                  [rounded]="true"
                   [text]="item.userName || item.email || ''"
                   size="xs"></tui-avatar>
 

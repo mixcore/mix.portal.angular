@@ -10,13 +10,11 @@
     </ng-container>
 
     <ng-container *ngFor="let user of vm.data">
-      <tui-avatar class="avatar"
-                  [class.--active]="isUserActive(userIds, user.id)"
-                  [autoColor]="true"
-                  [rounded]="true"
-                  [text]="user.userName || user.email || ''"
-                  (click)="filterStore.toggleUserIds(user.id)"
-                  size="s"></tui-avatar>
+      <mix-user-avatar class="avatar"
+                       [class.--active]="isUserActive(userIds, user.id)"
+                       [userInfo]="user"
+                       (click)="filterStore.toggleUserIds(user.id)"
+                       size="s"></mix-user-avatar>
     </ng-container>
   </div>
 

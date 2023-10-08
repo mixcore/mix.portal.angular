@@ -14,10 +14,22 @@ ngneat-dialog {
   .ngneat-dialog-backdrop {
     .ngneat-dialog-content {
       padding: 18px;
-      animation: dialog-open 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      animation: unset !important;
+      box-shadow: unset !important;
     }
 
-    animation: dialog-open-backdrop 0.2s !important;
+    animation: unset !important;
+  }
+}
+
+@keyframes dialog-open-2 {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.7);
+  }
+  100% {
+    transform: none;
+    opacity: 1;
   }
 }
 

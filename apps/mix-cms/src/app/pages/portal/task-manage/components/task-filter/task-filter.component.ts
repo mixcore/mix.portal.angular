@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -5,17 +6,17 @@ import {
   OnInit,
   inject,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MixInputComponent } from '@mixcore/ui/input';
-import { MixButtonComponent } from '@mixcore/ui/button';
-import { UserInfoStore } from '../../../../../stores/user-info.store';
-import { TuiAvatarModule, TuiFilterModule } from '@taiga-ui/kit';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { TaskStore } from '../../store/task.store';
-import { tuiPure } from '@taiga-ui/cdk';
-import { TaskFilterStore } from '../../store/filter.store';
-import { TuiLinkModule } from '@taiga-ui/core';
+import { MixButtonComponent } from '@mixcore/ui/button';
+import { MixInputComponent } from '@mixcore/ui/input';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
+import { tuiPure } from '@taiga-ui/cdk';
+import { TuiLinkModule } from '@taiga-ui/core';
+import { TuiFilterModule } from '@taiga-ui/kit';
+import { UserAvatarComponent } from '../../../../../components/user-avatar/user-avatar.component';
+import { UserInfoStore } from '../../../../../stores/user-info.store';
+import { TaskFilterStore } from '../../store/filter.store';
+import { TaskStore } from '../../store/task.store';
 
 @Component({
   selector: 'mix-task-filter',
@@ -25,7 +26,7 @@ import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
     ReactiveFormsModule,
     MixInputComponent,
     MixButtonComponent,
-    TuiAvatarModule,
+    UserAvatarComponent,
     TuiFilterModule,
     TuiLinkModule,
     SkeletonLoadingComponent,
