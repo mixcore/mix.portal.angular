@@ -48,7 +48,6 @@
 
   &__child-item {
     padding: 10px 10px 10px 24px;
-    font-size: 12px;
     display: flex;
     align-items: center;
     background-color: var(--child-menu-active-color);
@@ -82,19 +81,19 @@
 
   &__item {
     width: 100%;
-    min-height: 48px;
+    min-height: 2rem;
     border-radius: var(--border-radius-default);
     margin-bottom: 4px;
     cursor: pointer;
     position: relative;
     justify-content: flex-start;
     display: flex;
-    padding: 14px 0px;
+    padding: 0.75rem 0px;
     flex-direction: column;
 
     &.--fixed {
       max-width: 56px;
-      height: 32px;
+      height: 2rem;
       margin: unset;
       min-height: unset;
       padding: 6px 0px !important;
