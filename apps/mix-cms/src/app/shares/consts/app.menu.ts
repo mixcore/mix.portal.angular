@@ -70,12 +70,6 @@ export const APP_MENU = [
     ],
   },
   {
-    title: 'Navs',
-    url: CMS_ROUTES.portal['database-data'].fullPath + '/sysNavigation',
-    icon: 'near_me',
-    children: [],
-  },
-  {
     title: 'Mix Dbs',
     url: CMS_ROUTES.portal.database.fullPath,
     icon: 'database',

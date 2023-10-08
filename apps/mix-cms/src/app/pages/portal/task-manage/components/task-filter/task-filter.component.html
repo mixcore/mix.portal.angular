@@ -14,7 +14,7 @@
                   [class.--active]="isUserActive(userIds, user.id)"
                   [autoColor]="true"
                   [rounded]="true"
-                  [text]="user.normalizedUserName || ''"
+                  [text]="user.userName || user.email || ''"
                   (click)="filterStore.toggleUserIds(user.id)"
                   size="s"></tui-avatar>
     </ng-container>
