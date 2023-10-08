@@ -12,3 +12,16 @@
     background-color: var(--background-color-secondary);
   }
 }
+
+.mix-widget {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color-primary);
+  border-radius: var(--border-radius-default);
+  border: 1px solid var(--border-color-default);
+  overflow: hidden;
+  padding: var(--default-widget-padding);
+  min-height: 100px;
+}

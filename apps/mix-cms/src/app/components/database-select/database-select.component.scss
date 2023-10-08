@@ -38,7 +38,7 @@
     cursor: pointer;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-size: 12px;
+    font-size: var(--text-size-xs);
 
     &.--active,
     &:hover {

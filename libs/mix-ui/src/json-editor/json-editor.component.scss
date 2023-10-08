@@ -6,3 +6,18 @@
 .mix-json-editor {
   height: 100%;
 }
+
+.jsoneditor {
+  border: thin solid var(--primary-color) !important;
+  border-radius: 5px !important;
+  min-height: 300px;
+}
+
+.jsoneditor-menu {
+  background-color: var(--primary-color) !important;
+  border-bottom: 1px solid var(--primary-color) !important;
+}
+
+div.jsoneditor-tree {
+  border-radius: var(--element-rounded) !important;
+}

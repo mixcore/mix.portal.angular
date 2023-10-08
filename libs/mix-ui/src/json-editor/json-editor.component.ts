@@ -1,5 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Optional, Self } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Inject,
+  Optional,
+  Self,
+  ViewEncapsulation,
+} from '@angular/core';
 import {
   ControlValueAccessor,
   NgControl,
@@ -20,6 +27,8 @@ import { JsonEditorOptions, NgJsonEditorModule } from 'ang-jsoneditor';
     CommonModule,
     NgJsonEditorModule,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class MixJsonEditorComponent
   extends BaseTextControl
