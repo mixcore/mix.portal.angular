@@ -111,6 +111,11 @@ export class AuthInterceptor implements HttpInterceptor {
             throw new Error(err);
           })
         );
+      } else {
+        this.authService.isAuthorized$.next(false);
+        this.route.navigateByUrl(this.url401);
+
+        throw new Error('Not authorized yet.');
       }
     }
 
