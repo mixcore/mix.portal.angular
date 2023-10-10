@@ -1,23 +1,30 @@
-<div class="user-navigation hoverable"
-     [tp]="userMenuTpl"
-     tpPlacement="bottom-end"
-     tpVariation="popper">
-  <tui-badge class="tui-space_right-2 tui-space_bottom-2"
-             status="success"
-             value="Active"></tui-badge>
+<div
+  class="user-navigation hoverable"
+  [tp]="userMenuTpl"
+  tpPlacement="bottom-end"
+  tpVariation="popper"
+>
+  <tui-badge
+    class="tui-space_right-2 tui-space_bottom-2"
+    status="success"
+    value="Active"
+  ></tui-badge>
 
-  <mix-user-avatar *ngIf="userInfo"
-                   class="ms-auto"
-                   [size]="'s'"
-                   [userInfo]="userInfo"></mix-user-avatar>
+  <mix-user-avatar
+    *ngIf="userInfo"
+    class="ms-auto"
+    [size]="'s'"
+    [userInfo]="userInfo"
+  ></mix-user-avatar>
 </div>
 
-<ng-template #userMenuTpl
-             let-hide>
+<ng-template #userMenuTpl let-hide>
   <div class="d-flex p-3 gap-3 align-items-center w-100 justify-content-start">
-    <mix-user-avatar *ngIf="userInfo"
-                     [size]="'l'"
-                     [userInfo]="userInfo"></mix-user-avatar>
+    <mix-user-avatar
+      *ngIf="userInfo"
+      [size]="'l'"
+      [userInfo]="userInfo"
+    ></mix-user-avatar>
 
     <div>
       <div class="text-bold text-l">
@@ -29,20 +36,19 @@
     </div>
   </div>
 
-  <div class="mix-menu-item"
-       (click)="hide()">
+  <div class="line-break"></div>
+
+  <div class="mix-menu-item" (click)="hide()">
     {{ 'Managed Account' }}
   </div>
 
-  <div class="mix-menu-item"
-       (click)="hide()">
+  <div class="mix-menu-item" (click)="hide()">
     {{ 'Settings' }}
   </div>
 
-  <div class="line-break bg-02"></div>
+  <div class="line-break"></div>
 
-  <div class="mix-menu-item"
-       (click)="logout(); hide()">
+  <div class="mix-menu-item" (click)="logout(); hide()">
     {{ 'Logout' }}
   </div>
 </ng-template>
