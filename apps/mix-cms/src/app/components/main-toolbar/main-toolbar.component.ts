@@ -56,12 +56,8 @@ export class MainToolbarComponent implements OnInit {
   public auth = inject(AuthService);
   public router = inject(Router);
   public activatedRoute = inject(ActivatedRoute);
-  public modal = inject(ModalService);
   public themeService = inject(ThemeService);
   public domainUrls$ = inject(DOMAIN_URL$);
-
-  public userMenuOpen = false;
-  public dropdownOpen = false;
   public breadcrumbs: BreadcrumbOption[] = [];
   public mode = 'Prod';
 
@@ -82,17 +78,6 @@ export class MainToolbarComponent implements OnInit {
 
   public changeCulture(culture: Culture): void {
     this.auth.changeCulture(culture);
-    this.dropdownOpen = false;
-  }
-
-  public logout(): void {
-    this.modal.warning('Do you want to logout ?').subscribe((ok) => {
-      if (!ok) return;
-
-      this.auth.logout(() => {
-        this.router.navigateByUrl(CMS_ROUTES.auth.login.fullPath);
-      });
-    });
   }
 
   private registerRouterChange(): void {
