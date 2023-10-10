@@ -26,6 +26,7 @@ import { environment } from '../../../environments/environment';
 import { CMS_ROUTES } from '../../app.routes';
 import { ThemeService } from '../../shares/services/theme.service';
 import { LocationControllerComponent } from '../location-controller/location-controller.component';
+import { UserNavigationComponent } from './user-navigation/user-navigation.component';
 
 interface BreadcrumbOption {
   label: string;
@@ -45,6 +46,7 @@ interface BreadcrumbOption {
     LocationControllerComponent,
     TippyDirective,
     MixButtonComponent,
+    UserNavigationComponent
   ],
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss'],

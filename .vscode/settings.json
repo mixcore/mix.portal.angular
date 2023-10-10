@@ -1,6 +1,6 @@
 {
   "editor.detectIndentation": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
   "editor.fontLigatures": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,

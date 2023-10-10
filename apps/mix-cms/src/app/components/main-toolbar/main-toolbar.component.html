@@ -38,7 +38,7 @@
          class="main-toolbar__culture ms-auto">
       <mix-button type="flat"
                   [iconBtn]="true"
-                  [size]="'s'"
+                  [size]="'m'"
                   [tp]="cultureTpl"
                   tpPlacement="bottom-end"
                   tpVariation="popper">
@@ -58,10 +58,10 @@
     </div>
   </ng-container>
 
-  <div class="main-toolbar__action">
-    <mix-button type="flat"
+  <mix-user-navigation class="ms-2"></mix-user-navigation>
+  <!-- <mix-button type="flat"
                 [iconBtn]="true"
-                [size]="'s'"
+                [size]="'m'"
                 [tp]="userMenuTpl"
                 tpPlacement="bottom-end"
                 tpVariation="popper">
@@ -78,6 +78,5 @@
            (click)="hide(); logout()">
         {{ 'Logout' }}
       </div>
-    </ng-template>
-  </div>
+    </ng-template> -->
 </div>

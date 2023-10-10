@@ -1,0 +1,22 @@
+<div class="user-navigation hoverable"
+     [tp]="userMenuTpl"
+     tpPlacement="bottom-end"
+     tpVariation="popper">
+  <mix-user-avatar *ngIf="userInfo"
+                   class="ms-auto"
+                   [size]="'s'"
+                   [userInfo]="userInfo"></mix-user-avatar>
+</div>
+
+<ng-template #userMenuTpl
+             let-hide>
+  <div class="mix-menu-item"
+       (click)="hide()">
+    {{ 'Account Information' }}
+  </div>
+
+  <div class="mix-menu-item"
+       (click)="hide()">
+    {{ 'Logout' }}
+  </div>
+</ng-template>

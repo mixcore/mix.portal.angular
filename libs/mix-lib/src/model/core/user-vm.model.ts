@@ -53,7 +53,7 @@ export class UserListVm {
   public accessFailedCount?: number;
   public data?: UserDetail;
 
-  constructor(data: UserListVm) {
+  constructor(data: Partial<UserListVm>) {
     Object.keys(data).forEach((key) => {
       (this as any)[key] = (data as any)[key];
     });

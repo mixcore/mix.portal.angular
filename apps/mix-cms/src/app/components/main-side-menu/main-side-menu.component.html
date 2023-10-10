@@ -17,8 +17,6 @@
                          [tuiDropdownShowDelay]="0"
                          tuiDropdownHover
                          tuiDropdownDirection="bottom">
-      <!-- [routerLink]="'/' + item.url" -->
-      <!-- [routerLinkActive]="'--route-active'" -->
       <div class="side-menu__item"
            [ngClass]="{
           '--open': isMenuSelected(item, selectedMenu),
@@ -87,5 +85,18 @@
         </tui-data-list>
       </ng-template>
     </tui-hosted-dropdown>
+
+    <div class="side-menu__item mt-auto">
+      <div class="side-menu__parent-container">
+        <span class="mix-icon side-menu__icon">
+          {{ settingMenu.icon }}
+        </span>
+
+        <span *ngIf="showDetail"
+              class="side-menu__item-title">
+          {{ settingMenu.title | transloco }}
+        </span>
+      </div>
+    </div>
   </div>
 </div>

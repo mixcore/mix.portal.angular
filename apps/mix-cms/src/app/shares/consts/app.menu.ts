@@ -119,20 +119,7 @@ export const APP_MENU = [
         icon: 'view_kanban',
       },
     ],
-  },
-  {
-    title: 'Settings',
-    url: CMS_ROUTES.portal.settings.fullPath,
-    icon: 'settings',
-    align: 'bottom',
-    children: [
-      {
-        title: 'Local Settings',
-        url: CMS_ROUTES.portal.settings.fullPath,
-        icon: 'settings',
-      },
-    ],
-  },
+  }
 ];
 
 export const APP_NOT_SUPPER_ADMIN_MENU = [
