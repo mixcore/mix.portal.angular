@@ -1,6 +1,6 @@
 {
   "editor.detectIndentation": false,
-  "editor.formatOnSave": false,
+  "editor.formatOnSave": true,
   "editor.fontLigatures": true,
   "editor.insertSpaces": true,
   "editor.tabSize": 2,
@@ -12,6 +12,10 @@
   "files.trimTrailingWhitespace": true,
   "files.exclude": {
     "**/.git": true
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.organizeImports": true
   },
   "files.watcherExclude": {
     "**/.git": true,
@@ -40,13 +44,13 @@
     "Transloco"
   ],
   "tslint.alwaysShowRuleFailuresAsWarnings": false,
-  "material-icon-theme.activeIconPack": "angular_ngrx",
-  "emeraldwalk.runonsave": {
-    "commands": [
-      {
-        "match": "\\.component.html$",
-        "cmd": "node ./tools/format-html-template.js --staged=true ${file}"
-      }
-    ]
-  }
+  "material-icon-theme.activeIconPack": "angular_ngrx"
+  // "emeraldwalk.runonsave": {
+  //   "commands": [
+  //     {
+  //       "match": "\\.component.html$",
+  //       "cmd": "node ./tools/format-html-template.js --staged=true ${file}"
+  //     }
+  //   ]
+  // }
 }

@@ -44,6 +44,9 @@ dependencies:
   '@microsoft/signalr':
     specifier: ^7.0.5
     version: 7.0.5
+  '@ngneat/cmdk':
+    specifier: ^1.0.1
+    version: 1.0.1(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
   '@ngneat/dialog':
     specifier: ^4.1.0
     version: 4.1.0(@angular/core@16.1.8)
@@ -521,6 +524,21 @@ packages:
     dependencies:
       '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
       tslib: 2.6.1
+
+  /@angular/cdk@15.2.9(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-koaM07N1AIQ5oHU27l0/FoQSSoYAwlAYwVZ4Di3bYrJsTBNCN2Xsby7wI8gZxdepMnV4Fe9si382BDBov+oO4Q==}
+    peerDependencies:
+      '@angular/common': ^15.0.0 || ^16.0.0
+      '@angular/core': ^15.0.0 || ^16.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      rxjs: 7.8.1
+      tslib: 2.6.2
+    optionalDependencies:
+      parse5: 7.1.2
+    dev: false
 
   /@angular/cdk@16.0.3(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1):
     resolution: {integrity: sha512-KQCKWWNiHuYmzAVSiEyVs1P+859uhlvnmUH2azoL3qUHUcvdyB+iYqv9rTVRJl4N8nOpOYrj4JP3zmvNZLsI1Q==}
@@ -3802,6 +3820,22 @@ packages:
       tslib: 2.6.2
     dev: false
 
+  /@ngneat/cmdk@1.0.1(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-Z4FlAQVEqUPijXq3lniXonCtZm9IKAeALPZuvHAxudAIDjXkhJYK7NztXL7oOPZxDNAt9qVjG4hNtkOGpJMeUQ==}
+    peerDependencies:
+      '@angular/common': ^15.1.0
+      '@angular/core': ^15.1.0
+    dependencies:
+      '@angular/cdk': 15.2.9(@angular/common@16.1.8)(@angular/core@16.1.8)(rxjs@7.8.1)
+      '@angular/common': 16.1.8(@angular/core@16.1.8)(rxjs@7.8.1)
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      '@ngneat/overview': 4.1.0(@angular/core@16.1.8)
+      '@ngneat/until-destroy': 9.2.3(@angular/core@16.1.8)(rxjs@7.8.1)
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - rxjs
+    dev: false
+
   /@ngneat/dialog@4.1.0(@angular/core@16.1.8):
     resolution: {integrity: sha512-hv3GhgdoVEcQIAzaVnNz/B3VOKTLnhMe2YHAssHJPzKZwZ6q2SoEUn4xThHDDmzDk99nwRCZUlW35KEpTrJtzg==}
     peerDependencies:
@@ -3845,6 +3879,15 @@ packages:
       tslib: 2.5.0
     dev: false
 
+  /@ngneat/overview@4.1.0(@angular/core@16.1.8):
+    resolution: {integrity: sha512-tfq2ZolbP5nSZg9/l37eSyC2tLq2MAwZd0fs6TzTGwaJEaZga9Z2tJ+Q2ZzFQZYE37WqpJ/G5qsOwMAMn/dzfg==}
+    peerDependencies:
+      '@angular/core': '>=14'
+    dependencies:
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      tslib: 2.6.2
+    dev: false
+
   /@ngneat/overview@5.0.0(@angular/core@16.1.8):
     resolution: {integrity: sha512-Ctw26lO7o36HHPzCIeYRK6MrpgpcMFynbH+I1SV+jTtyGxrOS7zWCAsng6jq3iBtVuk0hLf1PvgRaH/LxrDbzw==}
     peerDependencies:
@@ -3879,6 +3922,17 @@ packages:
       replace-in-file: 6.3.5
       rxjs: 7.8.1
       tslib: 2.5.0
+    dev: false
+
+  /@ngneat/until-destroy@9.2.3(@angular/core@16.1.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-ryX0vqDOdmYo53f7v5Ivbj1jcqOEX+vM1iiV9NYepWDha4VJp9lWrDFK9tRt2evAMzF/9u67JLzs4Xjcoh+Taw==}
+    peerDependencies:
+      '@angular/core': '>=13'
+      rxjs: ^6.4.0 || ^7.0.0
+    dependencies:
+      '@angular/core': 16.1.8(rxjs@7.8.1)(zone.js@0.11.4)
+      rxjs: 7.8.1
+      tslib: 2.6.2
     dev: false
 
   /@ngrx/component-store@16.0.0(@angular/core@16.1.8)(rxjs@7.8.1):

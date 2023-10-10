@@ -1,57 +1,63 @@
 <div class="side-menu d-flex">
-  <div class="side-menu__icon-bar"
-       [ngClass]="{ '--active': showDetail }">
-    <div class="side-menu__item --fixed"
-         (click)="showDetail = !showDetail">
+  <div class="side-menu__icon-bar" [ngClass]="{ '--active': showDetail }">
+    <div class="side-menu__item --fixed" (click)="showDetail = !showDetail">
       <div class="side-menu__parent-container">
         <span class="mix-icon side-menu__icon"> menu </span>
       </div>
     </div>
 
-    <tui-hosted-dropdown *ngFor="let item of menu"
-                         class="w-100"
-                         [canOpen]="!showDetail"
-                         [content]="dropdown"
-                         [sided]="true"
-                         [tuiDropdownHideDelay]="50"
-                         [tuiDropdownShowDelay]="0"
-                         tuiDropdownHover
-                         tuiDropdownDirection="bottom">
-      <div class="side-menu__item"
-           [ngClass]="{
+    <tui-hosted-dropdown
+      *ngFor="let item of menu"
+      class="w-100"
+      [canOpen]="!showDetail"
+      [content]="dropdown"
+      [sided]="true"
+      [tuiDropdownHideDelay]="50"
+      [tuiDropdownShowDelay]="0"
+      tuiDropdownHover
+      tuiDropdownDirection="bottom"
+    >
+      <div
+        class="side-menu__item"
+        [ngClass]="{
           '--open': isMenuSelected(item, selectedMenu),
           '--active': isMenuSelected(item, selectedMenu)
         }"
-           (click)="onMenuSelect(item)">
+        (click)="onMenuSelect(item)"
+      >
         <div class="side-menu__parent-container">
-          <span *ngIf="item.icon"
-                class="mix-icon side-menu__icon">
+          <span *ngIf="item.icon" class="mix-icon side-menu__icon">
             {{ item.icon }}
           </span>
 
-          <span *ngIf="showDetail"
-                class="side-menu__item-title">
+          <span *ngIf="showDetail" class="side-menu__item-title">
             {{ item.title | transloco }}
           </span>
         </div>
 
-        <span *ngIf="showDetail && item.children?.length"
-              class="side-menu__item-toggle mix-icon"
-              [ngClass]="{ '--active': isMenuSelected(item, selectedMenu) }"
-              (click)="$event.stopPropagation(); onMenuSelect(item)">
+        <span
+          *ngIf="showDetail && item.children?.length"
+          class="side-menu__item-toggle mix-icon"
+          [ngClass]="{ '--active': isMenuSelected(item, selectedMenu) }"
+          (click)="$event.stopPropagation(); onMenuSelect(item)"
+        >
           chevron_right
         </span>
 
-        <div *ngIf="
+        <div
+          *ngIf="
             showDetail &&
             item.children?.length &&
             isMenuSelected(item, selectedMenu)
           "
-             class="side-menu__child-container">
-          <div *ngFor="let child of item.children"
-               class="side-menu__child-item"
-               [routerLink]="'/' + child.url"
-               (click)="$event.stopPropagation()">
+          class="side-menu__child-container"
+        >
+          <div
+            *ngFor="let child of item.children"
+            class="side-menu__child-item"
+            [routerLink]="'/' + child.url"
+            (click)="$event.stopPropagation()"
+          >
             <span class="mix-icon">{{
               child.icon || 'fiber_manual_record'
             }}</span>
@@ -62,20 +68,20 @@
         </div>
       </div>
 
-      <ng-template #dropdown
-                   let-close="close">
+      <ng-template #dropdown let-close="close">
         <tui-data-list>
           <tui-opt-group>
-            <button *ngFor="let item of item.children"
-                    class="menu"
-                    [routerLink]="'/' + item.url"
-                    [routerLinkActive]="'--active'"
-                    [routerLinkActiveOptions]="{ exact: true }"
-                    (click)="onMenuSelect(item)"
-                    style="justify-content: flex-start"
-                    tuiOption>
-              <span *ngIf="item.icon"
-                    class="mix-icon me-2">
+            <button
+              *ngFor="let item of item.children"
+              class="menu"
+              [routerLink]="'/' + item.url"
+              [routerLinkActive]="'--active'"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="onMenuSelect(item)"
+              style="justify-content: flex-start"
+              tuiOption
+            >
+              <span *ngIf="item.icon" class="mix-icon me-2">
                 {{ item.icon }}
               </span>
 
@@ -86,14 +92,13 @@
       </ng-template>
     </tui-hosted-dropdown>
 
-    <div class="side-menu__item mt-auto">
+    <div class="side-menu__item mt-auto" (click)="showSetting()">
       <div class="side-menu__parent-container">
         <span class="mix-icon side-menu__icon">
           {{ settingMenu.icon }}
         </span>
 
-        <span *ngIf="showDetail"
-              class="side-menu__item-title">
+        <span *ngIf="showDetail" class="side-menu__item-title">
           {{ settingMenu.title | transloco }}
         </span>
       </div>

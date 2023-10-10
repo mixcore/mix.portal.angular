@@ -9,6 +9,7 @@ import {
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
+import { DialogService } from '@ngneat/dialog';
 import { TranslocoModule } from '@ngneat/transloco';
 import { tuiPure } from '@taiga-ui/cdk';
 import {
@@ -17,6 +18,7 @@ import {
   TuiHostedDropdownModule,
 } from '@taiga-ui/core';
 import { CMS_ROUTES } from '../../app.routes';
+import { SettingDialogComponent } from '../setting-dialog/setting-dialog.component';
 
 export type MenuItem = {
   title: string;
@@ -46,18 +48,19 @@ export type MenuItem = {
 export class MainSideMenuComponent {
   public activeRoute = inject(ActivatedRoute);
   public authService = inject(AuthService);
+  public dialogService = inject(DialogService);
 
   @Input() public showDetail = true;
   @Input() public menu: MenuItem[] = this.authService.portalMenu;
 
   public selectedMenu: MenuItem | undefined = undefined;
   public selectedMenus: Record<string, MenuItem | undefined> = {};
-  public settingMenu =  {
+  public settingMenu = {
     title: 'Settings',
     url: CMS_ROUTES.portal.settings.fullPath,
     icon: 'settings',
     align: 'bottom',
-  }
+  };
 
   constructor(public route: Router) {}
 
@@ -96,5 +99,12 @@ export class MainSideMenuComponent {
     }
 
     return name;
+  }
+
+  public showSetting() {
+    this.dialogService.open(SettingDialogComponent, {
+      width: 'fit-content',
+      id: 'setting-pannel',
+    });
   }
 }

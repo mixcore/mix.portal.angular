@@ -26,6 +26,7 @@
     "@angular/service-worker": "16.1.8",
     "@apollo/client": "^3.7.17",
     "@microsoft/signalr": "^7.0.5",
+    "@ngneat/cmdk": "^1.0.1",
     "@ngneat/dialog": "^4.1.0",
     "@ngneat/edit-in-place": "^1.6.1",
     "@ngneat/helipopper": "^7.1.1",
