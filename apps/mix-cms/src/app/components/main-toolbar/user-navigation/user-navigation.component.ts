@@ -8,11 +8,12 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ModalService } from '@mixcore/ui/modal';
 import { Router } from '@angular/router';
 import { CMS_ROUTES } from '../../../app.routes';
+import { TuiBadgeModule } from '@taiga-ui/kit';
 
 @Component({
   selector: 'mix-user-navigation',
   standalone: true,
-  imports: [CommonModule, TippyDirective, UserAvatarComponent],
+  imports: [CommonModule, TippyDirective, UserAvatarComponent, TuiBadgeModule],
   templateUrl: './user-navigation.component.html',
   styleUrls: ['./user-navigation.component.scss'],
 })
