@@ -42,7 +42,7 @@ export const PRODUCT_MENU = new InjectionToken<MenuItem[]>(
   'Available routes for no super admin'
 );
 
-@Injectable({ providedIn: 'root' })
+@Injectable({ providedIn: 'platform' })
 export class AuthService extends BaseApiService {
   public FULL_ROUTES = inject(FULL_MENU);
   public SCOPED_ROUTES = inject(PRODUCT_MENU);

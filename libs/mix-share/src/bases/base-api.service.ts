@@ -36,7 +36,6 @@ export interface IHttpOptions {
 
 @Injectable({ providedIn: 'root' })
 export class BaseApiService {
-  public domainUrl = inject(DOMAIN_URL);
   public domainUrl$ = inject(DOMAIN_URL$);
   public http = inject(HttpClient);
 

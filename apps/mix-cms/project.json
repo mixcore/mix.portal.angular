@@ -6,7 +6,7 @@
   "prefix": "mix",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@nx/angular:webpack-browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/mix-cms",
@@ -46,7 +46,10 @@
           "dompurify"
         ],
         "serviceWorker": true,
-        "ngswConfigPath": "apps/mix-cms/ngsw-config.json"
+        "ngswConfigPath": "apps/mix-cms/ngsw-config.json",
+        "customWebpackConfig": {
+          "path": "apps/mix-cms/webpack.config.js"
+        }
       },
       "configurations": {
         "production": {
@@ -68,7 +71,10 @@
               "with": "apps/mix-cms/src/environments/environment.prod.ts"
             }
           ],
-          "outputHashing": "all"
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/mix-cms/webpack.prod.config.js"
+          }
         },
         "stage": {
           "budgets": [

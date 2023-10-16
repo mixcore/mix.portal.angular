@@ -1,5 +1,10 @@
+import {
+  WebComponentWrapperOptions,
+  startsWith,
+} from '@angular-architects/module-federation-tools';
 import { Routes } from '@angular/router';
 import { CMS_ROUTES, breadcrumbName } from '../../app.routes';
+import { WebComponentStandaloneWrapperComponent } from '../../components/web-component-standalone-wrapper/web-component-standalone-wrapper.component';
 import { AppSettingsComponent } from './app-settings/app-settings.component';
 import { ConfigFormComponent } from './app-settings/config-form/config-form.component';
 
@@ -131,6 +136,16 @@ export const PortalRoutes: Routes = [
         data: breadcrumbName('Create Setting'),
       },
     ],
+  },
+  {
+    matcher: startsWith('kanban'),
+    component: WebComponentStandaloneWrapperComponent,
+    data: {
+      type: 'module',
+      remoteEntry: 'http://localhost:4201/remoteEntry.mjs',
+      exposedModule: './web-components',
+      elementName: 'mix-kanban',
+    } as WebComponentWrapperOptions,
   },
   {
     path: '',
