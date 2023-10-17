@@ -4,9 +4,9 @@ import {
   PaginationRequestModel,
   TaskStatus,
 } from '@mixcore/lib/model';
+import { BaseCRUDStore } from '@mixcore/share/base';
 import { map } from 'rxjs';
 import { MixSystemDbName } from '../../../../shares/consts/system-database-name';
-import { BaseCRUDStore } from '../../../../stores/base-crud.store';
 
 @Injectable({ providedIn: 'root' })
 export class TaskStore extends BaseCRUDStore<MixTaskNew> {
