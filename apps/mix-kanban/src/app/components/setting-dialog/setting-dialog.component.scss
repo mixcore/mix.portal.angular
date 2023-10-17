@@ -1,0 +1,34 @@
+@use 'node_modules/@ngneat/cmdk/styles/scss/globals';
+@use 'node_modules/@ngneat/cmdk/styles/scss/framer';
+
+ngneat-dialog#setting-pannel {
+  .ngneat-dialog-backdrop {
+    .ngneat-dialog-content {
+      transform: translate(0px, -230px);
+      padding: 0px !important;
+      border-radius: 16px !important;
+    }
+  }
+}
+
+.settings-container {
+  .search-input {
+    border: 1px solid var(--border-color-default) !important;
+    padding: 6px;
+    border-radius: var(--element-rounded);
+  }
+}
+
+.framer .cmdk-item[aria-selected='true'] {
+  background: var(--primary-color) !important;
+}
+
+.cmdk-group-content {
+  padding-right: 8px;
+}
+
+.cmdk-command {
+  max-width: 840px !important;
+  width: 840px !important;
+  padding: 12px !important;
+}

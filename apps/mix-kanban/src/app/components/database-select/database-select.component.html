@@ -1,0 +1,37 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<div *ngIf="store.vm$ | async as vm"
+     class="database-select">
+  <mix-button *ngIf="!isCreate"
+              class="database-select__add-btn"
+              [type]="'outline'"
+              (click)="createDb()">
+    <span class="mix-icon">add</span>&nbsp; New Table
+  </mix-button>
+
+  <mix-input class="database-select__search"
+             [formControl]="searchText"
+             [placeHolder]="'Type db name'"
+             [searchIcon]="true"></mix-input>
+
+  <div class="database-select__title">
+    {{ prefix }} Tables ({{ vm.data.length || '0' }})
+  </div>
+
+  <div class="database-select__list">
+    <ng-container *ngIf="vm.status === 'Loading'">
+      <mix-skeleton-loading [type]="'none'"></mix-skeleton-loading>
+    </ng-container>
+    <ng-container *ngIf="vm.status === 'Success'">
+      <ng-container *ngFor="let table of searchText.value | filter: vm.data">
+        <div class="database-select__item"
+             [class.--active]="
+            selectedItemId == table.id || selectedItemName == table.systemName
+          "
+             (click)="selectDb(table)">
+          <!-- <span class="mix-icon">database</span> -->
+          <span>{{ table.displayName }}</span>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

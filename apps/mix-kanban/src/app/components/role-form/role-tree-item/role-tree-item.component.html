@@ -1,0 +1,8 @@
+<div class="d-flex gap-3 align-items-center">
+  <tui-svg class="tui-space_right-2 tree-icon"
+           [ngClass]="{ '--disabled': !isExpandable }"
+           [src]="icon"
+           (click)="onClick()"></tui-svg>
+
+  <ng-container [ngTemplateOutlet]="context.template"></ng-container>
+</div>

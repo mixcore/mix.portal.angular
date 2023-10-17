@@ -1,0 +1,63 @@
+<div class="task-detail"
+     [formGroup]="taskForm">
+  <div class="d-flex gap-2 align-items-center">
+    <img [src]="TaskTypeIconDisplay[task.type]">
+    <span>{{ task.type }}-{{ task.id }}</span>
+  </div>
+
+  <div class="row mt-2">
+    <div class="col-12 col-md-8">
+      <mix-inline-input formControlName="title"></mix-inline-input>
+
+      <div class="mt-4 mb-2 text-500 text-l text-sub">Description</div>
+
+      <mix-rich-text-editor class="description"
+                            formControlName="description"></mix-rich-text-editor>
+
+      <div class="mt-4 mb-2 text-500 text-l text-sub">Comment(s)</div>
+    </div>
+
+    <div class="col-12 col-md-4">
+      <div class="mb-2 text-500 text-l text-sub">STATUS</div>
+
+      <mix-select [items]="statusItems"
+                  [labelProcess]="statussLabel"
+                  formControlName="taskStatus"></mix-select>
+
+      <div class="mt-4 mb-2 text-500 text-l text-sub">REPORTER</div>
+
+      <mix-user-select formControlName="reporter"></mix-user-select>
+
+      <div class="mt-4 mb-2 text-500 text-l text-sub">PRORITY</div>
+
+      <mix-select [items]="prorityItems"
+                  [labelProcess]="priorityLabel"
+                  formControlName="taskPriority"></mix-select>
+
+      <div class="mt-4 text-s text-sub">
+        <div>
+          Created at
+          {{ task.createdDateTime | mixDate | date: 'dd/MM/yyyy hh:mm' }}
+        </div>
+        <div>
+          Updated at
+          {{ task.lastModified | mixDate | date: 'dd/MM/yyyy hh:mm' || '--' }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="loadingState$ | async as state"
+       class="mt-3 gap-2 d-flex align-items-center justify-content-start">
+    <mix-button type="outline"
+                [disabled]="state === 'Loading'"
+                (click)="dialogRef.close()">Close</mix-button>
+
+    <mix-button class="ms-auto"
+                [loading]="state === 'Loading'"
+                (click)="saveTask(false)">Save</mix-button>
+
+    <mix-button [loading]="state === 'Loading'"
+                (click)="saveTask()">Save & Close</mix-button>
+  </div>
+</div>

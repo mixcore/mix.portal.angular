@@ -1,0 +1,27 @@
+.content-label {
+  cursor: default;
+  font-weight: 500;
+  margin-bottom: 4px !important;
+  font-size: var(--text-size-s);
+  display: block;
+}
+
+.content-sub-label {
+  opacity: 0.7;
+  font-size: var(--text-size-xs);
+  line-height: 5px;
+}
+
+.hoverable {
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.remove-padding {
+  fieldset {
+    padding: unset !important;
+  }
+}

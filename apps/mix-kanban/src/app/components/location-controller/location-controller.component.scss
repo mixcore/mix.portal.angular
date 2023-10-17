@@ -1,0 +1,17 @@
+.location-controller {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius-default);
+  // background-color: var(--background-color-primary);
+  padding: 4px;
+  // border: 1px solid var(--border-color-default);
+
+  button {
+    margin-right: var(--mix-space-01);
+  }
+}
+
+:host {
+  display: block;
+}

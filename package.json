@@ -6,6 +6,7 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js",
     "start": "nx serve",
+    "start:kanban": "nx serve mix-kanban",
     "build": "nx build",
     "build-stage": "nx build --configuration=stage",
     "build-live": "nx build --configuration=live",

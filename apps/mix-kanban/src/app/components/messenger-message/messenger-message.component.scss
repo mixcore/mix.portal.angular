@@ -1,0 +1,82 @@
+.messenger-message {
+  width: 100%;
+  margin-top: 8px;
+
+  &__outer {
+    display: flex;
+  }
+
+  &__inner {
+    flex: 1;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  &__actions {
+    width: 67px;
+    padding-right: 5px;
+    flex-shrink: 0;
+  }
+
+  &__spacer {
+    flex: 1;
+  }
+
+  &__bubble-container {
+    width: calc(100% - 67px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  &__bubble {
+    width: fit-content;
+    max-width: 100%;
+    margin-top: 3px;
+    overflow-wrap: break-word;
+    border-radius: 18px;
+    background-color: rgb(0, 132, 255);
+    color: #fff;
+    padding: 8px 12px;
+  }
+
+  &__sent-by {
+    font-size: 12px;
+  }
+
+  &__status {
+    width: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+
+    span {
+      font-size: 16px !important;
+    }
+  }
+
+  &__avatar {
+    padding-left: 6px;
+    padding-right: 8px;
+    display: flex;
+    align-items: flex-end;
+  }
+
+  &.--from-another {
+    .messenger-message {
+      &__inner {
+        flex-direction: row;
+      }
+
+      &__bubble-container {
+        align-items: flex-start;
+      }
+
+      &__bubble {
+        background-color: #e4e6eb;
+        color: #000;
+      }
+    }
+  }
+}

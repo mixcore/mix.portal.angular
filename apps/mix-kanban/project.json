@@ -1,0 +1,170 @@
+{
+  "name": "mix-kanban",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/mix-kanban/src",
+  "prefix": "mix",
+  "targets": {
+    "build": {
+      "executor": "@nx/angular:webpack-browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/mix-kanban",
+        "index": "apps/mix-kanban/src/index.html",
+        "main": "apps/mix-kanban/src/main.ts",
+        "polyfills": "apps/mix-kanban/src/polyfills.ts",
+        "tsConfig": "apps/mix-kanban/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          "apps/mix-kanban/src/favicon.ico",
+          "apps/mix-kanban/src/assets",
+          {
+            "glob": "**/*",
+            "input": "node_modules/@taiga-ui/icons/src",
+            "output": "assets/taiga-ui/icons"
+          },
+          {
+            "glob": "**/*",
+            "input": "node_modules/monaco-editor",
+            "output": "assets/monaco-editor"
+          },
+          "apps/mix-kanban/src/manifest.webmanifest"
+        ],
+        "styles": [
+          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+          "apps/mix-kanban/src/styles.scss"
+        ],
+        "scripts": [],
+        "allowedCommonJsDependencies": [
+          "text-mask-core",
+          "crypto-js",
+          "rfdc",
+          "jsoneditor",
+          "flat",
+          "qrcode",
+          "dompurify"
+        ],
+        "serviceWorker": true,
+        "ngswConfigPath": "apps/mix-kanban/ngsw-config.json",
+        "customWebpackConfig": {
+          "path": "apps/mix-kanban/webpack.config.js"
+        }
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "4mb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "3kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/mix-kanban/src/environments/environment.ts",
+              "with": "apps/mix-kanban/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all",
+          "customWebpackConfig": {
+            "path": "apps/mix-kanban/webpack.prod.config.js"
+          }
+        },
+        "stage": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "4mb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "3kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/mix-kanban/src/environments/environment.ts",
+              "with": "apps/mix-kanban/src/environments/environment.stage.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "live": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "4mb",
+              "maximumError": "4mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "3kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/mix-kanban/src/environments/environment.ts",
+              "with": "apps/mix-kanban/src/environments/environment.live.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "mix-kanban:build:production"
+        },
+        "development": {
+          "browserTarget": "mix-kanban:build:development",
+          "port": 4201
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "mix-kanban:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/mix-kanban/**/*.ts",
+          "apps/mix-kanban/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/mix-kanban"],
+      "options": {
+        "jestConfig": "apps/mix-kanban/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

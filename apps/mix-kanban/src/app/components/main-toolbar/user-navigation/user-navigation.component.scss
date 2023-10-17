@@ -1,0 +1,17 @@
+:host {
+  display: block;
+}
+
+.user-navigation {
+  width: auto;
+  border-radius: 50px;
+  border: 1px solid var(--tui-02);
+  background-color: var(--background-color-primary);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  gap: 4px;
+  padding-left: 4px;
+}

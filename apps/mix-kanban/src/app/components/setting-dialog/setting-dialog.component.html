@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="w-100 d-flex justify-content-center">
+    <div class="settings-container">
+      <div class="framer">
+        <cmdk-command class="cmdk-command">
+          <cmdk-list class="cmdk-list">
+            <div class="cmdk-framer-items">
+              <div class="cmdk-framer-left">
+                <cmdk-group class="cmdk-group" label="Settings">
+                  <button
+                    class="cmdk-item"
+                    cmdkItem
+                    (click)="selectedSetting = 'token'"
+                  >
+                    Settings Tokens
+                  </button>
+                  <button
+                    class="cmdk-item"
+                    cmdkItem
+                    (click)="selectedSetting = 'application'"
+                  >
+                    Settings Application
+                  </button>
+                  <button
+                    class="cmdk-item"
+                    cmdkItem
+                    (click)="selectedSetting = 'account'"
+                  >
+                    Settings Account
+                  </button>
+                </cmdk-group>
+              </div>
+              <hr class="cmdk-framer-separator" />
+              <div class="cmdk-framer-right">
+                <div class="w-100 h-100" *ngIf="selectedSetting === 'token'">
+                  <div class="text-bold">Token Setting</div>
+
+                  <label class="d-block mt-2">Token A</label>
+                  <mix-input></mix-input>
+
+                  <label class="d-block mt-2">Token B</label>
+                  <mix-input></mix-input>
+
+                  <label class="d-block mt-2">Token C</label>
+                  <mix-input></mix-input>
+                </div>
+
+                <div
+                  class="w-100 h-100"
+                  *ngIf="selectedSetting === 'application'"
+                >
+                  <div>Application Setting</div>
+                </div>
+
+                <div class="w-100 h-100" *ngIf="selectedSetting === 'account'">
+                  <div>Account Setting</div>
+                </div>
+              </div>
+            </div>
+          </cmdk-list>
+        </cmdk-command>
+      </div>
+    </div>
+  </div>
+</div>

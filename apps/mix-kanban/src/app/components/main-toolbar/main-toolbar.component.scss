@@ -1,0 +1,80 @@
+:host {
+  width: 100%;
+  display: flex;
+  padding: 0 var(--main-layout-gap);
+}
+
+.main-toolbar {
+  width: 100%;
+  display: flex;
+  border-radius: var(--border-radius-default);
+  align-items: center;
+  overflow: hidden;
+  height: 48px;
+
+  &__logo {
+    width: 125px;
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    margin-left: 14px;
+  }
+
+  &__breadcrumbs {
+    margin-left: 14px;
+  }
+
+  &__search {
+    margin-left: auto;
+    width: 300px;
+  }
+
+  &__theme-switch {
+    margin-left: 14px;
+  }
+
+  &__culture {
+    margin-left: 14px;
+  }
+
+  &__action {
+    margin-left: 14px;
+    --tui-link: black;
+  }
+
+  &__culture-icon {
+    margin-right: 8px;
+  }
+
+  &__tag {
+    padding: 4px 8px;
+    border-radius: 4px;
+    background-color: black;
+    color: #fff;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
+
+  &__tagProduction {
+    background-color: rgb(255, 0, 0);
+    animation: tagProductionAnimation 2s infinite;
+  }
+
+  @keyframes tagProductionAnimation {
+    0% {
+      background-color: red;
+    }
+    25% {
+      background-color: black;
+    }
+    50% {
+      background-color: red;
+    }
+    75% {
+      background-color: black;
+    }
+    100% {
+      background-color: red;
+    }
+  }
+}

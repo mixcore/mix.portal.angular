@@ -1,0 +1,52 @@
+<tui-badged-content [contentTop]="newMessageCount"
+                    [rounded]="true"
+                    colorTop="var(--tui-error-fill)">
+  <mix-button type="outline"
+              [iconBtn]="true"
+              [size]="'s'"
+              (click)="toggle(true)"><span class="material-symbols-outlined text-xl">
+      notifications_active
+    </span></mix-button>
+</tui-badged-content>
+
+<tui-push *tuiPush="open"
+          class="timeline-push"
+          [type]="'Hi ' + (auth.user$ | async)?.userName"
+          (close)="toggle(false)"
+          heading="System Notification">
+  <tui-svg src="tuiIconBellLarge"></tui-svg>
+
+  <div *ngFor="let event of events()"
+       class="timeline-push__item">
+    <div class="timeline-push__item-icon {{ event.type }}"></div>
+    <div class="timeline-push">
+      <div class="timeline-push__item-title">{{ event.title }}</div>
+      <div class="d-flex gap-2">
+        <div class="text-s text-sub">
+          {{ event.createdDateTime | mixDate | date: 'short' }}
+        </div>
+        <div class="text-s"
+             (click)="showPreview(event)">
+          <a tuiLink>View</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button type="button"
+          (click)="toggle(false)"
+          tuiButton>Ok</button>
+  <button type="button"
+          (click)="toggle(false)"
+          tuiLink>Close</button>
+</tui-push>
+
+
+<ng-template [(tuiDialog)]="openPreview"
+             [tuiDialogOptions]="{size: 'l'}"
+             let-observer>
+  <div>
+    <mix-json-editor [formControl]="eventForm"
+                     style="height: 500px; overflow: auto;"></mix-json-editor>
+  </div>
+</ng-template>

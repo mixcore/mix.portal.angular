@@ -1,0 +1,52 @@
+.timeline-push {
+  width: 28.5rem !important;
+
+  .t-content {
+    display: flex;
+    flex-direction: column;
+    -webkit-box-orient: unset !important;
+    -webkit-line-clamp: unset !important;
+    word-break: break-word;
+    overflow: auto !important;
+    max-height: 60vh !important;
+  }
+
+  &__item {
+    padding: 8px 0px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    border-bottom: 1px dashed var(--border-color-default);
+  }
+
+  &__item-title {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  &__item-icon {
+    content: '';
+    display: block;
+    min-width: 8px;
+    height: 8px;
+    border-radius: 50%;
+
+    &.Success {
+      background-color: var(--bs-success);
+    }
+
+    &.Error {
+      background-color: var(--bs-danger);
+    }
+
+    &.Info {
+      background-color: var(--bs-warning);
+    }
+  }
+}

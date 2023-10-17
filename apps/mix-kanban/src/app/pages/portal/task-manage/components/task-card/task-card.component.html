@@ -1,0 +1,27 @@
+<div class="task-card-wrap"
+     (click)="onClick()">
+  <div class="task-card">
+    <div class="pb-3">
+      {{ task.title }}
+    </div>
+
+    <div class="d-flex">
+      <span *ngIf="userInfo"
+            class="me-2">
+        <mix-user-avatar [userInfo]="userInfo"
+                         size="xs"></mix-user-avatar>
+      </span>
+
+      <span class="text-uppercase text-secondary">
+        {{ task.type }}-{{ task.id }}
+      </span>
+
+      <span class="ms-auto d-flex gap-2 align-items-center">
+        <img alt="type"
+             [src]="TaskTypeIcon[task.type]">
+
+        <mix-task-priority [priority]="task.taskPriority"></mix-task-priority>
+      </span>
+    </div>
+  </div>
+</div>

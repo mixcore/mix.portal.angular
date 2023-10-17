@@ -1,0 +1,24 @@
+.related-post-item {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color-default);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+
+  &__action {
+    margin-left: auto;
+  }
+
+  &__title {
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.related-post-container {
+  height: 660px;
+  display: flex;
+  flex-direction: column;
+}

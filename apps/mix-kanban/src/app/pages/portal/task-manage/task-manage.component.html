@@ -1,0 +1,24 @@
+<div *ngIf="loadingState() as loading"
+     class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'listing'"
+                     [title]="'Kanban Board' | transloco">
+      <div class="toolbar-separator"></div>
+      <mix-button (click)="addTask()"
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
+        {{ 'Create item' | transloco }}</mix-button>
+    </mix-sub-toolbar>
+
+    <mix-task-filter></mix-task-filter>
+
+    <div *ngIf="store.vm$ | async as vm"
+         class="task-manage__main-view"
+         cdkDropListGroup>
+      <mix-task-dnd-list *ngFor="let status of taskStatuses"
+                         class="task-dnd-list"
+                         [listTasks]="store.getTaskByStatus(status)"
+                         [status]="status">
+      </mix-task-dnd-list>
+    </div>
+  </div>
+</div>

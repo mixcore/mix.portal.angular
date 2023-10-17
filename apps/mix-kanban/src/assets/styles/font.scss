@@ -1,0 +1,81 @@
+.text-xxs {
+  font-size: var(--text-size-xxs);
+}
+
+.text-xs {
+  font-size: var(--text-size-xs);
+}
+
+.text-s {
+  font-size: var(--text-size-s);
+}
+
+.text-m {
+  font-size: var(--text-size-m);
+}
+
+.text-l {
+  font-size: var(--text-size-l);
+}
+
+.text-xl {
+  font-size: var(--text-size-xl);
+}
+
+.text-xxl {
+  font-size: var(--text-size-xxl);
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-100 {
+  font-weight: 100;
+}
+
+.text-300 {
+  font-weight: 300;
+}
+
+.text-500 {
+  font-weight: 500;
+}
+
+.text-600 {
+  font-weight: 600;
+}
+
+.text-secondary {
+  color: var(--text-03);
+}
+
+.text-sub {
+  color: var(--text-02);
+}
+
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+.text-danger {
+  color: var(--form-error);
+}
+
+.text-highlight {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background-color: var(--border-color-default);
+  width: fit-content;
+  font-weight: 500;
+}
+
+.cursor-grab {
+  cursor: grabbing;
+}
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

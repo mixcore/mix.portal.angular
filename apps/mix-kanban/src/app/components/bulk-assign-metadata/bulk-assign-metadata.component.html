@@ -1,0 +1,25 @@
+<div class="bulk-assign-metadata">
+  <div class="bulk-assign-metadata__header">
+    <div class="mb-2">
+      You're action on:
+      <strong><ng-container *ngFor="let post of posts; let first = first">{{ first ? ' ' : ',' }} {{ post.title }}</ng-container></strong>
+    </div>
+
+    <div class="text-l">Choose metadata to which you want to assign</div>
+  </div>
+
+  <tui-loader [overlay]="true"
+              [showLoader]="showLoading()">
+    <ng-container *ngFor="let metadataType of metadataAllowedType(); let first = first">
+      <div class="w-100 mb-4">
+        <div class="text-l text-bold">
+          {{ metadataType | titlecase }}
+        </div>
+
+        <mix-bulk-metadata class="d-block mt-2"
+                           [type]="metadataType"
+                           (selectedMetadataChange)="selectedMetadataChange($event)"></mix-bulk-metadata>
+      </div>
+    </ng-container>
+  </tui-loader>
+</div>

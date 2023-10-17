@@ -1,0 +1,14 @@
+.gateway-indicator {
+  width: 50px;
+  border-radius: 4px;
+  padding: 2px;
+  overflow: hidden;
+  border: 1px solid var(--border-color-default);
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+
+  img {
+    width: 100%;
+  }
+}
