@@ -18,13 +18,9 @@ import { AuthService } from '@mixcore/share/auth';
 import { DOMAIN_URL$ } from '@mixcore/share/base';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
-import { ModalService } from '@mixcore/ui/modal';
 import { TippyDirective } from '@ngneat/helipopper';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
 import { filter, startWith } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { CMS_ROUTES } from '../../app.routes';
-import { ThemeService } from '../../shares/services/theme.service';
 import { LocationControllerComponent } from '../location-controller/location-controller.component';
 import { UserNavigationComponent } from './user-navigation/user-navigation.component';
 
@@ -46,7 +42,7 @@ interface BreadcrumbOption {
     LocationControllerComponent,
     TippyDirective,
     MixButtonComponent,
-    UserNavigationComponent
+    UserNavigationComponent,
   ],
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss'],
@@ -56,7 +52,6 @@ export class MainToolbarComponent implements OnInit {
   public auth = inject(AuthService);
   public router = inject(Router);
   public activatedRoute = inject(ActivatedRoute);
-  public themeService = inject(ThemeService);
   public domainUrls$ = inject(DOMAIN_URL$);
   public breadcrumbs: BreadcrumbOption[] = [];
   public mode = 'Prod';
@@ -67,13 +62,6 @@ export class MainToolbarComponent implements OnInit {
 
   public ngOnInit(): void {
     this.registerRouterChange();
-
-    const current = this.domainUrls$.getValue();
-    if (current === environment.domainUrl) {
-      this.mode = 'Production';
-    } else {
-      this.mode = 'Staging';
-    }
   }
 
   public changeCulture(culture: Culture): void {

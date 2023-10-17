@@ -6,13 +6,12 @@ import { AuthService } from '@mixcore/share/auth';
 import { BaseComponent } from '@mixcore/share/base';
 import { CountUpDirective } from '@mixcore/share/pipe';
 import { map, startWith } from 'rxjs';
-import { GatewayIndicatorComponent } from '../../../components/gateway-indicator/gateway-indicator.component';
 
 @Component({
   selector: 'mix-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
-  imports: [CommonModule, CountUpDirective, GatewayIndicatorComponent],
+  imports: [CommonModule, CountUpDirective],
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent extends BaseComponent {

@@ -17,7 +17,6 @@ import {
   TuiDropdownModule,
   TuiHostedDropdownModule,
 } from '@taiga-ui/core';
-import { CMS_ROUTES } from '../../app.routes';
 import { SettingDialogComponent } from '../setting-dialog/setting-dialog.component';
 
 export type MenuItem = {
@@ -57,7 +56,6 @@ export class MainSideMenuComponent {
   public selectedMenus: Record<string, MenuItem | undefined> = {};
   public settingMenu = {
     title: 'Settings',
-    url: CMS_ROUTES.portal.settings.fullPath,
     icon: 'settings',
     align: 'bottom',
   };

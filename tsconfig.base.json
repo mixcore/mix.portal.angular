@@ -24,6 +24,7 @@
       "@mixcore/share/base": ["libs/mix-share/src/bases/index.ts"],
       "@mixcore/share/decorators": ["libs/mix-share/src/decorators/index.ts"],
       "@mixcore/share/directives": ["libs/mix-share/src/directives/index.ts"],
+      "@mixcore/share/components": ["libs/mix-share/src/components/index.ts"],
       "@mixcore/share/form": ["libs/mix-share/src/form/index.ts"],
       "@mixcore/share/helper": ["libs/mix-share/src/helpers/index.ts"],
       "@mixcore/share/pipe": ["libs/mix-share/src/pipes/index.ts"],

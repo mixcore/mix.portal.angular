@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TaskStatus } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { MixFormErrorComponent } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixEditorComponent } from '@mixcore/ui/editor';
@@ -21,11 +22,10 @@ import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TuiPaginationModule } from '@taiga-ui/kit';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { TaskCreateComponent } from './components/task-create/task-create.component';
 import { TaskDndListComponent } from './components/task-dnd-list/task-dnd-list.component';
-import { TaskStore } from './store/task.store';
 import { TaskFilterComponent } from './components/task-filter/task-filter.component';
+import { TaskStore } from './store/task.store';
 
 @Component({
   selector: 'mix-task-manage',

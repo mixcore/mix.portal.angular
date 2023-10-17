@@ -1,14 +1,13 @@
-import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TippyDirective } from '@ngneat/helipopper';
-import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
-import { AuthService } from '@mixcore/share/auth';
-import { UserListVm } from '@mixcore/lib/model';
+import { Component, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { ModalService } from '@mixcore/ui/modal';
 import { Router } from '@angular/router';
-import { CMS_ROUTES } from '../../../app.routes';
+import { UserListVm } from '@mixcore/lib/model';
+import { AuthService } from '@mixcore/share/auth';
+import { ModalService } from '@mixcore/ui/modal';
+import { TippyDirective } from '@ngneat/helipopper';
 import { TuiBadgeModule } from '@taiga-ui/kit';
+import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
 
 @Component({
   selector: 'mix-user-navigation',
@@ -19,8 +18,8 @@ import { TuiBadgeModule } from '@taiga-ui/kit';
 })
 export class UserNavigationComponent {
   public authService = inject(AuthService);
-  public modal = inject(ModalService)
-  public router = inject(Router);;
+  public modal = inject(ModalService);
+  public router = inject(Router);
   public userInfo?: UserListVm;
 
   constructor() {
@@ -28,7 +27,7 @@ export class UserNavigationComponent {
       this.userInfo = new UserListVm({
         userName: v?.userName,
         id: v?.id,
-        email: v?.email
+        email: v?.email,
       });
     });
   }
@@ -38,7 +37,7 @@ export class UserNavigationComponent {
       if (!ok) return;
 
       this.authService.logout(() => {
-        this.router.navigateByUrl(CMS_ROUTES.auth.login.fullPath);
+        this.router.navigateByUrl('auth/login');
       });
     });
   }
