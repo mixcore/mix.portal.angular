@@ -7,7 +7,7 @@ import {
 } from '@microsoft/signalr';
 import { SignalEvent, SignalEventType } from '@mixcore/lib/model';
 import { Observable, Subject, filter } from 'rxjs';
-import { AuthService } from '../auth';
+import { AuthService } from '../auth/auth.service';
 import { DOMAIN_URL, DOMAIN_URL$ } from '../bases/base-api.service';
 
 @Injectable({ providedIn: 'root' })

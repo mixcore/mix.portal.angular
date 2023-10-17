@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { CMS_ROUTES, breadcrumbName } from '../../app.routes';
-import { WebComponentStandaloneWrapperComponent } from '../../components/web-component-standalone-wrapper/web-component-standalone-wrapper.component';
 import { AppSettingsComponent } from './app-settings/app-settings.component';
 import { ConfigFormComponent } from './app-settings/config-form/config-form.component';
 
