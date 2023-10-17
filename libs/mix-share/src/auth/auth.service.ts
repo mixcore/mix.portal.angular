@@ -44,11 +44,6 @@ export const PRODUCT_MENU = new InjectionToken<MenuItem[]>(
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseApiService {
-  public FULL_ROUTES = inject(FULL_MENU);
-  public SCOPED_ROUTES = inject(PRODUCT_MENU);
-  public accountApi = new MixAccountApi();
-  public databaseApi = new MixDatabaseApi(MixSwagger.content.database);
-
   public static EXT_ACCESS_TOKEN = 'external_access_token';
   public static ACCESS_TOKEN = 'access_token';
   public static REFRESH_TOKEN = 'refresh_token';
@@ -56,6 +51,10 @@ export class AuthService extends BaseApiService {
   public static CULTURE = 'culture';
   public static SPECIFIC_CULTURE = 'specificCulture';
 
+  public FULL_ROUTES = inject(FULL_MENU);
+  public SCOPED_ROUTES = inject(PRODUCT_MENU);
+  public accountApi = new MixAccountApi();
+  public databaseApi = new MixDatabaseApi(MixSwagger.content.database);
   public user$ = new BehaviorSubject<User | null>(null);
   public cultures$ = new BehaviorSubject<Culture[]>([]);
   public currentCulture: Culture | undefined = undefined;
