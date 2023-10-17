@@ -1,0 +1,160 @@
+<!-- eslint-disable @angular-eslint/template/eqeqeq -->
+<div class="database-detail">
+  <div class="database-detail__tree">
+    <mix-database-select [isCreate]="mode == 'create'"
+                         [prefix]="'Setting'"
+                         [selectedItemId]="id"
+                         (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
+  </div>
+
+  <div class="data-detail-page__content-container flex-grow-1">
+    <tui-loader *ngIf="loadingState$ | async as state"
+                class="data-detail-page"
+                [formGroup]="form"
+                [overlay]="true"
+                [showLoader]="state === 'Loading'">
+      <div class="data-detail-page__toolbar">
+        <div class="data-detail-page__toolbar-top">
+          <span class="data-detail-page__input-title"
+                [class.--empty]="!form.controls.displayName.value">
+            <tui-input-inline *ngIf="editTitle; else text"
+                              (focusedChange)="onFocusedChange($event)"
+                              tuiAutoFocus
+                              (keydown.esc.prevent)="toggleEditTitle()"
+                              (keydown.enter.prevent)="toggleEditTitle()"
+                              formControlName="displayName">
+              Type db name
+            </tui-input-inline>
+
+            <ng-template #text>
+              <span>{{
+                form.controls.displayName.value || 'Type db name'
+              }}</span>
+              <mix-button type="flat"
+                          [iconBtn]="true"
+                          [size]="'s'"
+                          (click)="toggleEditTitle()"><span class="mix-icon">edit</span></mix-button>
+            </ng-template>
+          </span>
+
+          <mix-button *ngIf="mode === 'update' && data"
+                      class="ml-auto"
+                      type="secondary"
+                      [size]="'s'"
+                      (click)="goDatabaseData(data.systemName)">
+            View data source&nbsp;
+            <span class="mix-icon"> arrow_right_alt </span>
+          </mix-button>
+
+          <mix-button class="ms-2"
+                      [size]="'s'"
+                      (click)="submit()">
+            <span class="icon mix-icon"> save_as </span>
+            {{ mode === 'create' ? 'Create' : 'Save' }}
+          </mix-button>
+        </div>
+
+        <div class="data-detail-page__toolbar-separator"></div>
+
+        <div class="deta-detail-page__toolbar-bottom">
+          <nav [(activeItemIndex)]="activeTabIndex"
+               tuiTabs>
+            <button tuiTab>
+              <span class="mix-icon"> feed </span>&nbsp; General
+            </button>
+            <button tuiTab>
+              <span class="mix-icon"> settings </span>&nbsp; Columns Design
+            </button>
+          </nav>
+        </div>
+      </div>
+
+      <div class="data-detail-page__content">
+        <!-- Main Content -->
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 0">
+          <p class="content-label mt-3">Display Name</p>
+          <mix-input placeHolder="Your table friendly name"
+                     formControlName="displayName"></mix-input>
+
+          <mix-form-error class="mt-1"
+                          formControlName="displayName"></mix-form-error>
+
+          <p class="content-label mt-3">System Name</p>
+          <div class="d-flex gap-1">
+            <mix-button [iconBtn]="true"
+                        [type]="'outline'"
+                        (click)="updateSystemName(form.value.displayName || '')"
+                        size="m"><span class="mix-icon">refresh</span></mix-button>
+            <mix-input placeHolder="Unique system name"
+                       formControlName="systemName"></mix-input>
+          </div>
+
+          <mix-form-error class="mt-1"
+                          formControlName="systemName"></mix-form-error>
+
+          <p class="content-label mt-3">Short Description</p>
+          <mix-text-area placeHolder="Description"
+                         formControlName="description"></mix-text-area>
+
+          <div class="mt-3 notification --info">
+            Visit
+            <a href="https://docs.mixcore.org/"
+               target="_blank">Here</a> to get
+            more information how Mixcore Database work.
+          </div>
+        </div>
+
+        <!-- Content -->
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 1">
+          <div class="mt-1 notification --info">
+            Default system columns:
+            <span class="text-highlight">id</span>,
+            <span class="text-highlight">createdAt</span>,
+            <span class="text-highlight">createdBy</span>,
+            <span class="text-highlight">updatedAt</span>,
+            <span class="text-highlight">priority</span>
+          </div>
+
+          <div class="entity-table-header mt-3">
+            <div class="row">
+              <div class="col-4 name">
+                <div>Display name</div>
+              </div>
+
+              <div class="col-4">
+                <div>System name</div>
+              </div>
+
+              <div class="col-2">
+                <div>Data type</div>
+              </div>
+            </div>
+          </div>
+
+          <div (cdkDropListDropped)="drop($event)"
+               cdkDropList>
+            <mix-entity-form *ngFor="
+                let entity of data?.columns ?? [];
+                let i = index;
+                trackBy: identify
+              "
+                             [entity]="entity"
+                             (deleteEntity)="removeEntity($event, i)"
+                             (entityChange)="entityChange($event, i)"
+                             cdkDrag>
+              <span class="mix-icon cursor-grab"
+                    cdkDragHandle>drag_indicator</span>
+            </mix-entity-form>
+          </div>
+
+          <div class="entity-table-footer mt-3">
+            <mix-button (click)="addNewEntity()"
+                        size="s"><span class="mix-icon">add</span> Add new columns</mix-button>
+          </div>
+        </div>
+      </div>
+    </tui-loader>
+  </div>
+</div>

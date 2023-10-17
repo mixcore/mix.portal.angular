@@ -1,0 +1,130 @@
+.data-detail-page {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  --wallpaper-height: 300px;
+  background-color: var(--background-color-primary);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border: 1px solid var(--border-color-default);
+  overflow: hidden;
+
+  &__input-title {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+
+    &.--empty {
+      opacity: 0.6;
+    }
+  }
+
+  &__toolbar {
+    padding: 12px 18px 0px 18px;
+    height: fit-content;
+    background-color: var(--background-color-primary);
+    border-bottom: 1px solid var(--border-color-default);
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+  }
+
+  &__title {
+    font-size: var(--text-size-xl);
+    font-weight: 600;
+    margin-right: 24px;
+  }
+
+  &__description {
+    font-size: var(--text-size-xs);
+    margin-right: 24px;
+    line-height: 8px;
+    color: var(--text-03);
+  }
+
+  &__separator {
+    display: block;
+    width: 100%;
+    height: 1px;
+    content: '';
+    background-color: var(--border-color-default);
+  }
+
+  &__toolbar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &.--big {
+      height: 84px;
+    }
+
+    .page-title {
+      width: 400px;
+    }
+
+    .thumbnail {
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      border-radius: 50%;
+      cursor: pointer;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__toolbar-separator {
+    width: 100%;
+    height: 1px;
+    display: block;
+    content: '';
+    background-color: var(--border-color-default);
+    margin: 12px 0px 4px 0px;
+
+    &.--vertical {
+      width: 1px;
+      height: 25px;
+      margin: 0px 8px;
+    }
+  }
+
+  &__content-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
+    -webkit-box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
+    -moz-box-shadow: 8px 2px 12px -1px rgba(0, 0, 0, 0.14);
+  }
+
+  &__content {
+    padding: var(--default-widget-padding);
+    padding-bottom: 150px;
+    transition: all 0.1s ease-in;
+    flex-grow: 1;
+    overflow: auto;
+    height: 100%;
+  }
+
+  &__main-content {
+    width: 100%;
+  }
+
+  &__content-title {
+    font-weight: 600;
+    font-size: 18px;
+    text-transform: capitalize;
+  }
+
+  &__tab {
+    width: 200px;
+  }
+}

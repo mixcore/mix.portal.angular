@@ -1,0 +1,10 @@
+mix-custom-header {
+  display: block;
+  width: 100%;
+}
+
+.header-title {
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

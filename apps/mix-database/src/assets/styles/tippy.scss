@@ -1,0 +1,41 @@
+.tippy-variation-popper {
+  .tippy-content {
+    padding: 5px 0px !important;
+  }
+}
+
+.tippy-arrow {
+  display: none;
+}
+
+.tippy-box {
+  border-radius: var(--element-rounded) !important;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px !important;
+}
+
+.tippy-variation-tooltip.compress-image-preview {
+  .tippy-box {
+    background-color: unset !important;
+    border: 1px solid var(--border-color-default);
+    border-radius: 8px;
+  }
+}
+
+.mix-menu-item {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  font-size: var(--text-size-s);
+
+  &:hover {
+    background-color: var(--tui-base-02);
+  }
+}
+
+.line-break {
+  width: 100%;
+  height: 0.5px;
+  display: block;
+  content: '';
+  background-color: var(--border-color-default);
+}

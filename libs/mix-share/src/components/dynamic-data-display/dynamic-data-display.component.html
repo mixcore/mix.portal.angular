@@ -1,0 +1,26 @@
+<ng-container [ngSwitch]="mixColumn.dataType">
+  <ng-container *ngSwitchCase="'ArrayMedia'">
+    <mix-compress-image [src]="$any(mixData)[0] || 'assets/images/image_placeholder.jpg'">
+    </mix-compress-image>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'Upload'">
+    <mix-compress-image [src]="$any(mixData) || 'assets/images/image_placeholder.jpg'">
+    </mix-compress-image>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'Double'">
+    <div>{{ $any(mixData) | number }}</div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'Color'">
+    <div class="dynamic-data-display__color"
+         [style.--background]="mixData">
+      {{ mixData }}
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchDefault>
+    <div>{{ mixData ?? '--' }}</div>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,7 @@
+<div class="loading-screen">
+  <img class="loading-screen__logo"
+       src="assets/images/mixcore-logo.svg"
+       [@rubberBand]="bounce"
+       (@rubberBand.done)="bounce = !bounce">
+  <div>Loading...</div>
+</div>

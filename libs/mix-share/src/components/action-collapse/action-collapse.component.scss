@@ -1,0 +1,19 @@
+mix-action-collapse {
+  flex-grow: 1;
+  width: 100%;
+  padding-right: 8px;
+}
+
+.action-collapse {
+  &__item {
+    margin: 0px 4px;
+  }
+}
+
+.t-item:has(> .action-collapse__item.right) {
+  margin-left: auto;
+}
+
+span.t-item {
+  margin-left: auto;
+}

@@ -30,6 +30,12 @@ export const PortalRoutes: Routes = [
       import('./database/database.routes').then((m) => m.routes),
   },
   {
+    path: CMS_ROUTES.portal['database-data'].path,
+    data: breadcrumbName('Database'),
+    loadChildren: () =>
+      import('./database-data/database-data.routes').then((m) => m.routes),
+  },
+  {
     path: CMS_ROUTES.portal.page.path,
     data: breadcrumbName('Pages'),
     loadChildren: () => import('./page/page.routes').then((m) => m.routes),
@@ -38,12 +44,6 @@ export const PortalRoutes: Routes = [
     path: CMS_ROUTES.portal.module.path,
     data: breadcrumbName('Modules'),
     loadChildren: () => import('./module/module.routes').then((m) => m.routes),
-  },
-  {
-    path: CMS_ROUTES.portal['database-data'].path,
-    data: breadcrumbName('Database'),
-    loadChildren: () =>
-      import('./database-data/database-data.routes').then((m) => m.routes),
   },
   {
     path: CMS_ROUTES.portal.user.path,

@@ -1,0 +1,136 @@
+<div class="dynamic-db">
+  <mix-data-table class="dynamic-db__table mt-3"
+                  [contextMenus]="contextMenus"
+                  [dataset]="data()"
+                  [loading]="loadingState() === 'Loading'"
+                  [pageInfo]="pageInfo()"
+                  [searchFieldOptions]="searchFieldOptions"
+                  (dragDropChange)="onDragDropDataChange($event)"
+                  (itemsSelectedChange)="itemsSelectedChange.emit($event)"
+                  (pageChange)="onPageChange($event)"
+                  (searchChange)="onSearchChange($event.searchText, $event.searchField)">
+    <div [columnType]="'CHECKBOX'"
+         mixTableColumn></div>
+
+    <ng-container *ngFor="let column of columns() ?? []">
+      <div [header]="column.displayName"
+           [key]="column.systemName"
+           mixTableColumn>
+        <ng-template let-data
+                     mixColumnCell>
+          <mix-dynamic-data-display [mixColumn]="column"
+                                    [mixData]="data[column.systemName]"></mix-dynamic-data-display>
+        </ng-template>
+      </div>
+    </ng-container>
+
+    <div *ngIf="query().orderBy !== 'priority'"
+         [header]="'Created date'"
+         [key]="'createdDateTime'"
+         mixTableColumn>
+      <ng-template let-data
+                   mixColumnCell>
+        <div>{{ data.createdDateTime | date: 'short' | relativeTimeSpan }}</div>
+      </ng-template>
+    </div>
+
+    <div *ngIf="canReOrder"
+         [header]="'Order'"
+         [key]="'priority'"
+         mixTableColumn>
+      <ng-template let-data
+                   mixColumnCell>
+        <editable (save)="onSave(data.priority, 'priority', data)">
+          <ng-template viewMode>
+            {{ data.priority || 0 }}
+          </ng-template>
+
+          <ng-template editMode>
+            <mix-input-number type="number"
+                              [(value)]="data.priority"
+                              [selfControl]="true"
+                              [step]="1"
+                              editableOnEnter
+                              editableOnEscape></mix-input-number>
+          </ng-template>
+        </editable>
+      </ng-template>
+    </div>
+
+    <div *ngIf="!viewOnly"
+         [columnType]="'ACTION'"
+         [header]="''"
+         [key]="'ACTION'"
+         [sortable]="false"
+         mixTableColumn>
+      <ng-template let-data
+                   mixColumnCell>
+        <div *ngIf="db() as db"
+             class="d-flex">
+          <tui-hosted-dropdown [content]="dropdown">
+            <mix-button type="outline"
+                        [iconBtn]="true"
+                        [size]="'s'"><span class="material-symbols-outlined">
+                more_vert
+              </span>
+            </mix-button>
+
+            <ng-template #dropdown>
+              <tui-data-list>
+                <button [size]="'s'"
+                        (click)="editData(data)"
+                        tuiOption>
+                  <span><span class="material-symbols-outlined"> edit </span> Edit</span>
+                </button>
+
+                <button *ngIf="showUnlink"
+                        [size]="'s'"
+                        (click)="unLinkDbData(data)"
+                        tuiOption>
+                  <span><span class="material-symbols-outlined"> link_off </span> Un-link data</span>
+                </button>
+
+                <button [size]="'s'"
+                        (click)="deleteDbData(data)"
+                        tuiOption>
+                  <span><span class="material-symbols-outlined"> delete </span> Delete data</span>
+
+                </button>
+              </tui-data-list>
+            </ng-template>
+          </tui-hosted-dropdown>
+        </div>
+      </ng-template>
+    </div>
+  </mix-data-table>
+
+  <div *tuiSidebar="!!showSidebar(); direction: 'right'; autoWidth: true"
+       style="width: 60vw">
+    <div class="dynamic-db__edit {{ editContainerClass }}">
+      <div class="d-flex align-items-center edit-variant-header">
+        <mix-button [loading]="savingVariant()"
+                    (click)="saveData()">
+          <span class="material-symbols-outlined"> keyboard_backspace </span>
+          &nbsp; Save & Back
+        </mix-button>
+
+        <mix-button class="ms-2"
+                    type="outline"
+                    (click)="onBack(true)">Cancel</mix-button>
+        <span class="ms-3 text-xl fw-bold">Edit {{ db()?.displayName }} Variants</span>
+      </div>
+
+      <div class="w-100 mt-4">
+        <mix-skeleton-loading *ngIf="!forms"
+                              type="form"></mix-skeleton-loading>
+        <form *ngIf="forms"
+              [formGroup]="forms">
+          <formly-form *ngIf="fields.length"
+                       [fields]="fields"
+                       [form]="forms"
+                       [model]="model"></formly-form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

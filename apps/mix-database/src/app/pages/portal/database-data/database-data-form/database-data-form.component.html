@@ -1,0 +1,73 @@
+<tui-loader class="data-detail-page"
+            [overlay]="true"
+            [showLoader]="loadingState() === 'Loading'">
+  <mix-sub-toolbar [description]="mode === 'create' ? 'creating' : 'updating'"
+                   [title]="db?.displayName + ' data'">
+    <div class="toolbar-separator"></div>
+    <mix-button class="ms-auto"
+                type="outline"
+                (click)="goBack()"
+                size="s"><span class="material-symbols-outlined"> west </span>&nbsp; Back
+    </mix-button>
+    <mix-button class="ms-2"
+                (click)="saveData()"
+                size="s"><span class="material-symbols-outlined">
+        {{ mode === 'create' ? 'add' : 'save_as' }} </span>&nbsp; {{ mode === 'create' ? 'Create' : 'Save' }}
+    </mix-button>
+  </mix-sub-toolbar>
+
+  <div class="data-detail-page__content">
+    <div class="container">
+      <!-- Main Content -->
+      <ng-container *ngIf="activeTabIndex === 0">
+        <div class="data-detail-page__main-content">
+          <div class="text-l">Fill the following fields</div>
+
+          <div class="mt-3">
+            <form [formGroup]="form">
+              <formly-form *ngIf="fields.length"
+                           [fields]="fields"
+                           [form]="form"
+                           [model]="modelData"></formly-form>
+            </form>
+          </div>
+        </div>
+      </ng-container>
+
+      <div *ngIf="mode === 'create'"
+           class="col-12 col-md-12 mt-3">
+        <div class="database-data-form-widget">
+          <span>Please create data first to manage any linkable data.</span>
+        </div>
+      </div>
+
+      <ng-container *ngIf="mode === 'update'">
+        <ng-container *ngFor="let relation of relationshipDbs">
+          <div class="col-12 col-md-12 mt-3">
+            <div class="database-data-form-widget">
+              <div class="database-data-form-widget__header d-flex justify-content-between">
+                <div class="text-xl text-600">
+                  {{ relation.displayName | titlecase }}
+                </div>
+
+                <mix-button [size]="'s'"
+                            (click)="createChild(relation)">Create</mix-button>
+              </div>
+
+              <mix-dynamic-db-list class="mt-2"
+                                   [dbSysName]="relation.destinateDatabaseName"
+                                   [filterValue]="filterValue"
+                                   [parentId]="modelData.id"
+                                   [parentName]="relation.sourceDatabaseName"
+                                   [showUnlink]="true"
+                                   [type]="'output'"
+                                   (editDataChange)="
+                  onEditData($event, relation.destinateDatabaseName)
+                "></mix-dynamic-db-list>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</tui-loader>

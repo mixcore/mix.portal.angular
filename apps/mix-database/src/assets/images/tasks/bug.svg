@@ -1,0 +1,14 @@
+    <svg id="task"  width="18" height="18"
+         viewBox="0 0 16 16"
+         xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(1 1)"
+           fill="none"
+           fill-rule="evenodd">
+            <rect fill="#E5493A"
+                  width="14"
+                  height="14"
+                  rx="2" />
+            <path d="M10 7a3 3 0 11-6 0 3 3 0 016 0"
+                  fill="#FFF" />
+        </g>
+    </svg>

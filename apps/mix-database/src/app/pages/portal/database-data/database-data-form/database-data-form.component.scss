@@ -1,0 +1,21 @@
+.database-data-form,
+.database-data-form-widget {
+  background-color: var(--background-color-primary);
+  border-radius: var(--border-radius-default);
+  border: 1px solid var(--border-color-default);
+  overflow: hidden;
+}
+
+.database-data-form-widget {
+  &__header {
+    padding: var(--default-widget-padding);
+    padding-top: 12px;
+    padding-bottom: unset;
+  }
+}
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}

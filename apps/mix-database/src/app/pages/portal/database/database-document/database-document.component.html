@@ -1,0 +1,52 @@
+<div class="data-table-page">
+  <div class="data-table-page__sidebar">
+    <mix-database-select [isCreate]="false"
+                         [prefix]="'Document'"
+                         [selectedItemId]="db?.id"></mix-database-select>
+  </div>
+
+  <div class="data-table-page__main-container">
+    <div class="open-api-preview">
+      <div class="open-api-preview__menu">
+        <div class="title">
+          <span class="mix-icon">hub</span> {{ db?.displayName }}
+        </div>
+        <tui-accordion class="w-100"
+                       [closeOthers]="false">
+          <tui-accordion-item [open]="true">
+            Restful API
+            <ng-template tuiAccordionItemContent>
+              <div *ngFor="
+                  let item of dbDocumentKey | filterDocumentMenu: dbDocument
+                "
+                   class="menu-item">
+                <span class="open-api-type -{{ item.method }}">{{
+                  item.method
+                }}</span>
+                {{ item.title }}
+              </div>
+            </ng-template>
+          </tui-accordion-item>
+          <tui-accordion-item>
+            Web Hook
+            <ng-template tuiAccordionItemContent>
+              <div class="menu-item">Coming soon...</div>
+            </ng-template>
+          </tui-accordion-item>
+          <tui-accordion-item>
+            Incoming
+            <ng-template tuiAccordionItemContent>
+              <div class="menu-item">Coming soon...</div>
+            </ng-template>
+          </tui-accordion-item>
+        </tui-accordion>
+      </div>
+
+      <div class="open-api-preview__content">
+        <div class="open-api-preview__codezone">
+          <div class="text-l">Request samples</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
