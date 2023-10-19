@@ -7,6 +7,7 @@ export * from './compress-image/compress-image.component';
 export * from './database-select/database-select.component';
 export * from './dynamic-db-list/dynamic-db-list.component';
 export * from './entity-form/entity-form.component';
+export * from './loading-screen/loading-screen.component';
 export * from './main-toolbar/user-navigation/user-navigation.component';
 export * from './record-form/record-form.component';
 export * from './setting-dialog/setting-dialog.component';

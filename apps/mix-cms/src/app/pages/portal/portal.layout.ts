@@ -11,11 +11,13 @@ import {
   Router,
   RouterModule,
 } from '@angular/router';
+import {
+  MainSideMenuComponent,
+  MainToolbarComponent,
+} from '@mixcore/share/components';
 import { PortalSidebarComponent } from '@mixcore/ui/sidebar';
 import { TuiProgressModule } from '@taiga-ui/kit';
 import { MainExplorerComponent } from '../../components/main-explorer/main-explorer.component';
-import { MainSideMenuComponent } from '../../components/main-side-menu/main-side-menu.component';
-import { MainToolbarComponent } from '../../components/main-toolbar/main-toolbar.component';
 
 @Component({
   selector: 'mix-portal-layout',

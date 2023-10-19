@@ -12,10 +12,10 @@ import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { zoomOutLeftOnLeaveAnimation } from '@mixcore/share/animation';
 import { MixEaterEgg } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
+import { LoadingScreenComponent } from '@mixcore/share/components';
 import { ModalService } from '@mixcore/ui/modal';
 import { TuiRootModule } from '@taiga-ui/core';
 import { filter, forkJoin, switchMap } from 'rxjs';
-import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @Component({
   selector: 'mix-root',

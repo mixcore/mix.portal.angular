@@ -46,10 +46,7 @@
           "dompurify"
         ],
         "serviceWorker": true,
-        "ngswConfigPath": "apps/mix-cms/ngsw-config.json",
-        "customWebpackConfig": {
-          "path": "apps/mix-cms/webpack.config.js"
-        }
+        "ngswConfigPath": "apps/mix-cms/ngsw-config.json"
       },
       "configurations": {
         "production": {
@@ -71,10 +68,7 @@
               "with": "apps/mix-cms/src/environments/environment.prod.ts"
             }
           ],
-          "outputHashing": "all",
-          "customWebpackConfig": {
-            "path": "apps/mix-cms/webpack.prod.config.js"
-          }
+          "outputHashing": "all"
         },
         "stage": {
           "budgets": [
