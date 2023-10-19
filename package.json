@@ -8,10 +8,15 @@
     "start": "nx serve",
     "start:kanban": "nx serve mix-kanban",
     "start:database": "nx serve mix-database",
+    "start:shell": "nx serve shell",
+    "build:kanban": "nx build mix-kanban",
+    "build:database": "nx build mix-database",
+    "build:shell": "nx build shell",
     "build": "nx build",
     "build-stage": "nx build --configuration=stage",
     "build-live": "nx build --configuration=live",
-    "test": "nx test"
+    "test": "nx test",
+    "run:all": "node node_modules/@angular-architects/module-federation/src/server/mf-dev-server.js"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +35,7 @@
     "@angular/router": "16.1.8",
     "@angular/service-worker": "16.1.8",
     "@apollo/client": "^3.7.17",
-    "@microsoft/signalr": "^7.0.5",
+    "@microsoft/signalr": "7.0.12",
     "@ngneat/cmdk": "^1.0.1",
     "@ngneat/dialog": "^4.1.0",
     "@ngneat/edit-in-place": "^1.6.1",
@@ -110,6 +115,7 @@
     "jest": "29.4.3",
     "jest-environment-jsdom": "29.4.3",
     "jest-preset-angular": "13.1.1",
+    "ngx-build-plus": "^16.0.0",
     "nx": "16.1.4",
     "prettier": "^2.6.2",
     "ts-jest": "29.1.0",

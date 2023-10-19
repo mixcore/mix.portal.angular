@@ -15,7 +15,6 @@ export const APP_MENU = [
   },
   {
     title: 'Projects',
-    url: CMS_ROUTES.portal['database-data'].fullPath + '/mixTask',
     icon: 'view_kanban',
     children: [
       {
@@ -37,11 +36,6 @@ export const APP_NOT_SUPPER_ADMIN_MENU = [
         icon: 'analytics',
         title: 'Statistic',
         url: CMS_ROUTES.portal.dashboard.fullPath,
-      },
-      {
-        icon: 'breaking_news_alt_1',
-        title: 'News',
-        url: CMS_ROUTES.portal.news.fullPath,
       },
     ],
   },

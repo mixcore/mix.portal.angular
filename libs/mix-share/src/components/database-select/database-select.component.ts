@@ -13,7 +13,7 @@ import { MixDatabase } from '@mixcore/lib/model';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
-import { DatabaseStore } from '../../stores/database.store';
+import { DatabaseStore } from '../../stores';
 import { DatabaseFilterPipe } from './database-filter.pipe';
 
 @Component({

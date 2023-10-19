@@ -10,56 +10,144 @@
     "importHelpers": true,
     "target": "es2022",
     "module": "esnext",
-    "lib": ["es2022", "dom"],
+    "lib": [
+      "es2022",
+      "dom"
+    ],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@mixcore/lib/auth": ["libs/mix-lib/src/auth/index.ts"],
-      "@mixcore/lib/model": ["libs/mix-lib/src/model/index.ts"],
-      "@mixcore/lib/swagger": ["libs/mix-lib/src/swagger/index.ts"],
-      "@mixcore/share/animation": ["libs/mix-share/src/animations/index.ts"],
-      "@mixcore/share/api": ["libs/mix-share/src/api-service/index.ts"],
-      "@mixcore/share/auth": ["libs/mix-share/src/auth/index.ts"],
-      "@mixcore/share/base": ["libs/mix-share/src/bases/index.ts"],
-      "@mixcore/share/decorators": ["libs/mix-share/src/decorators/index.ts"],
-      "@mixcore/share/directives": ["libs/mix-share/src/directives/index.ts"],
-      "@mixcore/share/components": ["libs/mix-share/src/components/index.ts"],
-      "@mixcore/share/form": ["libs/mix-share/src/form/index.ts"],
-      "@mixcore/share/helper": ["libs/mix-share/src/helpers/index.ts"],
-      "@mixcore/share/pipe": ["libs/mix-share/src/pipes/index.ts"],
-      "@mixcore/share/services": ["libs/mix-share/src/services/index.ts"],
-      "@mixcore/share/signalR": ["libs/mix-share/src/signalR/index.ts"],
-      "@mixcore/share/utils": ["libs/mix-share/src/utils/index.ts"],
-      "@mixcore/share/stores": ["libs/mix-share/src/stores/index.ts"],
-      "@mixcore/ui/array-media": ["libs/mix-ui/src/array-media/index.ts"],
-      "@mixcore/ui/array-radio": ["libs/mix-ui/src/array-radio/index.ts"],
-      "@mixcore/ui/base-control": ["libs/mix-ui/src/base/index.ts"],
-      "@mixcore/ui/button": ["libs/mix-ui/src/button/index.ts"],
-      "@mixcore/ui/code-editor": ["libs/mix-ui/src/code-editor/index.ts"],
-      "@mixcore/ui/color-picker": ["libs/mix-ui/src/color-picker/index.ts"],
-      "@mixcore/ui/date-picker": ["libs/mix-ui/src/date-picker/index.ts"],
+      "@mixcore/lib/auth": [
+        "libs/mix-lib/src/auth/index.ts"
+      ],
+      "@mixcore/lib/model": [
+        "libs/mix-lib/src/model/index.ts"
+      ],
+      "@mixcore/lib/swagger": [
+        "libs/mix-lib/src/swagger/index.ts"
+      ],
+      "@mixcore/share/animation": [
+        "libs/mix-share/src/animations/index.ts"
+      ],
+      "@mixcore/share/api": [
+        "libs/mix-share/src/api-service/index.ts"
+      ],
+      "@mixcore/share/auth": [
+        "libs/mix-share/src/auth/index.ts"
+      ],
+      "@mixcore/share/base": [
+        "libs/mix-share/src/bases/index.ts"
+      ],
+      "@mixcore/share/components": [
+        "libs/mix-share/src/components/index.ts"
+      ],
+      "@mixcore/share/decorators": [
+        "libs/mix-share/src/decorators/index.ts"
+      ],
+      "@mixcore/share/directives": [
+        "libs/mix-share/src/directives/index.ts"
+      ],
+      "@mixcore/share/form": [
+        "libs/mix-share/src/form/index.ts"
+      ],
+      "@mixcore/share/helper": [
+        "libs/mix-share/src/helpers/index.ts"
+      ],
+      "@mixcore/share/pipe": [
+        "libs/mix-share/src/pipes/index.ts"
+      ],
+      "@mixcore/share/services": [
+        "libs/mix-share/src/services/index.ts"
+      ],
+      "@mixcore/share/signalR": [
+        "libs/mix-share/src/signalR/index.ts"
+      ],
+      "@mixcore/share/stores": [
+        "libs/mix-share/src/stores/index.ts"
+      ],
+      "@mixcore/share/utils": [
+        "libs/mix-share/src/utils/index.ts"
+      ],
+      "@mixcore/ui/array-media": [
+        "libs/mix-ui/src/array-media/index.ts"
+      ],
+      "@mixcore/ui/array-radio": [
+        "libs/mix-ui/src/array-radio/index.ts"
+      ],
+      "@mixcore/ui/base-control": [
+        "libs/mix-ui/src/base/index.ts"
+      ],
+      "@mixcore/ui/button": [
+        "libs/mix-ui/src/button/index.ts"
+      ],
+      "@mixcore/ui/code-editor": [
+        "libs/mix-ui/src/code-editor/index.ts"
+      ],
+      "@mixcore/ui/color-picker": [
+        "libs/mix-ui/src/color-picker/index.ts"
+      ],
+      "@mixcore/ui/date-picker": [
+        "libs/mix-ui/src/date-picker/index.ts"
+      ],
       "@mixcore/ui/date-time-picker": [
         "libs/mix-ui/src/date-time-picker/index.ts"
       ],
-      "@mixcore/ui/editor": ["libs/mix-ui/src/rich-text-editor/index.ts"],
-      "@mixcore/ui/error": ["libs/mix-ui/src/error-alert/index.ts"],
-      "@mixcore/ui/filter": ["libs/mix-ui/src/dynamic-filter/index.ts"],
-      "@mixcore/ui/icon-button": ["libs/mix-ui/src/icon-button/index.ts"],
-      "@mixcore/ui/inline-input": ["libs/mix-ui/src/inline-input/index.ts"],
-      "@mixcore/ui/input": ["libs/mix-ui/src/input/index.ts"],
-      "@mixcore/ui/input-number": ["libs/mix-ui/src/input-number/index.ts"],
-      "@mixcore/ui/json": ["libs/mix-ui/src/json-editor/index.ts"],
-      "@mixcore/ui/modal": ["libs/mix-ui/src/modal/index.ts"],
-      "@mixcore/ui/qr-code": ["libs/mix-ui/src/qr-code/index.ts"],
-      "@mixcore/ui/select": ["libs/mix-ui/src/select/index.ts"],
-      "@mixcore/ui/sidebar": ["libs/mix-ui/src/portal-sidebar/index.ts"],
-      "@mixcore/ui/skeleton": ["libs/mix-ui/src/skeleton-loading/index.ts"],
-      "@mixcore/ui/table": ["libs/mix-ui/src/data-table/index.ts"],
-      "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],
-      "@mixcore/ui/toggle": ["libs/mix-ui/src/toggle/index.ts"],
-      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"]
+      "@mixcore/ui/editor": [
+        "libs/mix-ui/src/rich-text-editor/index.ts"
+      ],
+      "@mixcore/ui/error": [
+        "libs/mix-ui/src/error-alert/index.ts"
+      ],
+      "@mixcore/ui/filter": [
+        "libs/mix-ui/src/dynamic-filter/index.ts"
+      ],
+      "@mixcore/ui/icon-button": [
+        "libs/mix-ui/src/icon-button/index.ts"
+      ],
+      "@mixcore/ui/inline-input": [
+        "libs/mix-ui/src/inline-input/index.ts"
+      ],
+      "@mixcore/ui/input": [
+        "libs/mix-ui/src/input/index.ts"
+      ],
+      "@mixcore/ui/input-number": [
+        "libs/mix-ui/src/input-number/index.ts"
+      ],
+      "@mixcore/ui/json": [
+        "libs/mix-ui/src/json-editor/index.ts"
+      ],
+      "@mixcore/ui/modal": [
+        "libs/mix-ui/src/modal/index.ts"
+      ],
+      "@mixcore/ui/qr-code": [
+        "libs/mix-ui/src/qr-code/index.ts"
+      ],
+      "@mixcore/ui/select": [
+        "libs/mix-ui/src/select/index.ts"
+      ],
+      "@mixcore/ui/sidebar": [
+        "libs/mix-ui/src/portal-sidebar/index.ts"
+      ],
+      "@mixcore/ui/skeleton": [
+        "libs/mix-ui/src/skeleton-loading/index.ts"
+      ],
+      "@mixcore/ui/table": [
+        "libs/mix-ui/src/data-table/index.ts"
+      ],
+      "@mixcore/ui/textarea": [
+        "libs/mix-ui/src/text-area/index.ts"
+      ],
+      "@mixcore/ui/toggle": [
+        "libs/mix-ui/src/toggle/index.ts"
+      ],
+      "@mixcore/ui/upload": [
+        "libs/mix-ui/src/upload/index.ts"
+      ]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": [
+    "node_modules",
+    "tmp"
+  ]
 }

@@ -1,14 +1,14 @@
 import { Inject, Injectable, inject } from '@angular/core';
-import * as signalR from '@microsoft/signalr';
 import {
   HubConnection,
   HubConnectionBuilder,
   IHttpConnectionOptions,
 } from '@microsoft/signalr';
+
 import { SignalEvent, SignalEventType } from '@mixcore/lib/model';
 import { Observable, Subject, filter } from 'rxjs';
-import { AuthService } from '../auth/auth.service';
-import { DOMAIN_URL, DOMAIN_URL$ } from '../bases/base-api.service';
+import { AuthService } from '../auth';
+import { DOMAIN_URL, DOMAIN_URL$ } from '../bases';
 
 @Injectable({ providedIn: 'root' })
 export abstract class BaseSignalService {
@@ -57,7 +57,7 @@ export abstract class BaseSignalService {
     const hubOptions: IHttpConnectionOptions = {
       accessTokenFactory: () => `${this.authService.accessToken}`,
       skipNegotiation: true,
-      transport: signalR.HttpTransportType.WebSockets,
+      transport: 1,
     };
 
     this._openConnection = true;

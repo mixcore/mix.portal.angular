@@ -61,8 +61,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "3kb",
-              "maximumError": "4kb"
+              "maximumWarning": "7kb",
+              "maximumError": "7kb"
             }
           ],
           "fileReplacements": [
@@ -137,7 +137,7 @@
         },
         "development": {
           "browserTarget": "mix-kanban:build:development",
-          "port": 4201
+          "port": 4200
         }
       },
       "defaultConfiguration": "development"

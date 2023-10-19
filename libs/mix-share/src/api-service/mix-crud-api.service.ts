@@ -3,7 +3,7 @@ import {
   PaginationResultModel,
 } from '@mixcore/lib/model';
 import { Observable } from 'rxjs';
-import { BaseApiService, IHttpParamObject } from '../bases';
+import { BaseApiService, IHttpParamObject } from '../bases/base-api.service';
 import { Utils } from '../utils';
 
 export class MixRestfulApi<

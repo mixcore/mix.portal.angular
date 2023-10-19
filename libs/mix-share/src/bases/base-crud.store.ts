@@ -20,7 +20,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
-import { CacheService } from '../services/cached.service';
+import { CacheService } from '../services/index';
 
 export interface BaseState<T> {
   data: T[];
