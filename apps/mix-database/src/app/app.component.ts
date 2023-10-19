@@ -1,4 +1,3 @@
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -7,15 +6,13 @@ import {
   NgZone,
   OnInit,
 } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { zoomOutLeftOnLeaveAnimation } from '@mixcore/share/animation';
 import { MixEaterEgg } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
 import { ModalService } from '@mixcore/ui/modal';
-import { TuiRootModule } from '@taiga-ui/core';
 import { filter, forkJoin, switchMap } from 'rxjs';
-import { LoadingScreenComponent } from './components/loading-screen/loading-screen.component';
 
 @Component({
   selector: 'mix-root',
@@ -23,8 +20,6 @@ import { LoadingScreenComponent } from './components/loading-screen/loading-scre
   styleUrls: ['./app.component.scss'],
   animations: [zoomOutLeftOnLeaveAnimation({ duration: 1000 })],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [CommonModule, RouterModule, LoadingScreenComponent, TuiRootModule],
 })
 export class AppComponent implements OnInit {
   public authService = inject(AuthService);
