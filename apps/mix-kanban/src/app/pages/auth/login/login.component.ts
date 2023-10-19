@@ -81,15 +81,6 @@ export class LoginComponent extends BaseComponent {
 
       localStorage.setItem('domainUrl', this.domainUrls$.getValue());
     });
-
-    this.initFromStorage();
-  }
-
-  public initFromStorage() {
-    // const value = localStorage.getItem(this.key);
-    // if (!value) return;
-    // const info = JSON.parse(value) as LoginInfo;
-    // this.loginForm.controls.userName.patchValue(info.userName);
   }
 
   public submit(): void {

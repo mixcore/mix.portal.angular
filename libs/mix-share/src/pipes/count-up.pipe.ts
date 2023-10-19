@@ -16,7 +16,6 @@ import {
 const easeOutQuad = (x: number): number => x * (2 - x);
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[countUp]',
   providers: [TuiDestroyService],
   standalone: true,
@@ -30,22 +29,14 @@ export class CountUpDirective implements OnInit {
     this.duration$,
   ]).pipe(
     switchMap(([count, duration]) => {
-      // get the time when animation is triggered
       const startTime = animationFrameScheduler.now();
 
       return interval(0, animationFrameScheduler).pipe(
-        // calculate elapsed time
         map(() => animationFrameScheduler.now() - startTime),
-        // calculate progress
         map((elapsedTime) => elapsedTime / duration),
-        // complete when progress is greater than 1
         takeWhile((progress) => progress <= 1),
-        // apply quadratic ease-out function
-        // for faster start and slower end of counting
         map(easeOutQuad),
-        // calculate current count
         map((progress) => Math.round(progress * count)),
-        // make sure that last emitted value is count
         endWith(count),
         distinctUntilChanged()
       );

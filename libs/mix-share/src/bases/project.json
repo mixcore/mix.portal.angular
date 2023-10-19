@@ -1,0 +1,18 @@
+{
+  "name": "@mixcore/share/base",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mix-share/src/bases",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mix-share/src/bases/**/*.ts",
+          "libs/mix-share/src/bases/**/*.html"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,5 @@
+<div class="application-list" *ngIf="store.vm$ | async as vm">
+  <div *ngFor="let app of vm.data" class="app-item hoverable">
+    {{ app.displayName }}
+  </div>
+</div>

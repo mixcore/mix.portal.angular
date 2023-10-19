@@ -12,6 +12,7 @@ export const MixSwagger = {
   },
   content: {
     pageContent: '/api/v2/rest/mix-portal/mix-page-content',
+    application: '/api/v2/rest/mix-portal/mix-application',
     postContent: '/api/v2/rest/mix-portal/mix-post-content',
     moduleContent: '/api/v2/rest/mix-portal/mix-module-content',
     moduleData: '/api/v2/rest/mix-portal/mix-module-data',

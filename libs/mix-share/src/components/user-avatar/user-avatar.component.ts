@@ -1,8 +1,8 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TuiAvatarModule } from '@taiga-ui/kit';
-import { TippyDirective } from '@ngneat/helipopper';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { UserListVm } from '@mixcore/lib/model';
+import { TippyDirective } from '@ngneat/helipopper';
+import { TuiAvatarModule } from '@taiga-ui/kit';
 
 @Component({
   selector: 'mix-user-avatar',
@@ -14,5 +14,5 @@ import { UserListVm } from '@mixcore/lib/model';
 })
 export class UserAvatarComponent {
   @Input() public userInfo!: UserListVm;
-  @Input() public size: 'l' | 's' | 'xs' = 'l';
+  @Input() public size: 'xl' | 'l' | 's' | 'xs' = 'l';
 }

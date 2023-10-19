@@ -1,3 +1,4 @@
+export * from './core/application.model';
 export * from './core/database.model';
 export * from './core/metadata.model';
 export * from './core/mix-task.model';

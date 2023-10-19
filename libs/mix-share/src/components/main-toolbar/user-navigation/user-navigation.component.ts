@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
+  inject,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { UserListVm } from '@mixcore/lib/model';
@@ -8,13 +13,22 @@ import { ModalService } from '@mixcore/ui/modal';
 import { TippyDirective } from '@ngneat/helipopper';
 import { TuiBadgeModule } from '@taiga-ui/kit';
 import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
+import { ApplicationListComponent } from '../application-list/application-list.component';
 
 @Component({
   selector: 'mix-user-navigation',
   standalone: true,
-  imports: [CommonModule, TippyDirective, UserAvatarComponent, TuiBadgeModule],
+  imports: [
+    CommonModule,
+    TippyDirective,
+    UserAvatarComponent,
+    TuiBadgeModule,
+    ApplicationListComponent,
+  ],
   templateUrl: './user-navigation.component.html',
   styleUrls: ['./user-navigation.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserNavigationComponent {
   public authService = inject(AuthService);

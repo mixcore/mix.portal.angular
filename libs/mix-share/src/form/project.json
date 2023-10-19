@@ -1,0 +1,18 @@
+{
+  "name": "@mixcore/share/form",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/mix-share/src/form",
+  "targets": {
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/mix-share/src/form/**/*.ts",
+          "libs/mix-share/src/form/**/*.html"
+        ]
+      }
+    }
+  }
+}

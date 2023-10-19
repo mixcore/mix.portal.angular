@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   GetTemplatesRequest,
+  MixApplication,
   MixModule,
   MixPage,
   MixPermission,
@@ -30,6 +31,13 @@ export class MixApiFacadeService {
   public pageApi = new MixRestfulApi<MixPage>(MixSwagger.content.pageContent, {
     requestSuccessMsg: 'Successfully save your page',
   });
+
+  public applicationApi = new MixRestfulApi<MixApplication>(
+    MixSwagger.content.application,
+    {
+      requestSuccessMsg: 'Successfully save your app',
+    }
+  );
 
   public moduleApi = new MixRestfulApi<MixModule>(
     MixSwagger.content.moduleContent,

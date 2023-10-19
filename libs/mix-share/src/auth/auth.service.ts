@@ -172,6 +172,8 @@ export class AuthService extends BaseApiService {
       );
     }
 
+    if (!request.length) return of([]);
+
     return forkJoin(request).pipe(
       switchMap((roles) => {
         this.currentRoles = roles ?? [];
@@ -214,18 +216,14 @@ export class AuthService extends BaseApiService {
   }
 
   public initPortalsMenu() {
-    if (this.currentRoles.some((x) => x.name === MixRoleConst.SuperAdmin)) {
+    if (
+      !this.currentRoles.length ||
+      this.currentRoles.some((x) => x.name === MixRoleConst.SuperAdmin)
+    ) {
       this.portalMenu = this.FULL_ROUTES;
       return of(this.FULL_ROUTES);
     }
 
-    // this.portalMenu = this.SCOPED_ROUTES;
-    // return of(this.SCOPED_ROUTES);
-
-    // const roleNames = this.currentRoles.map((x) => x.name);
-    // const roleNameSearch = roleNames.join(',');
-
-    // const requests = roleNames.map((name) => this.getPortalMenuByRole(name));
     return this.getPortalMenuByRole('Owner').pipe(
       switchMap((portalMenus: PortalMenu[]) => {
         const menuItems = portalMenus.map(

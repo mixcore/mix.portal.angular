@@ -1,0 +1,19 @@
+.application-list {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 8px;
+  margin: 16px 8px;
+  justify-content: start;
+
+  .app-item {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-color-default);
+    border-radius: 8px;
+    background-color: rgb(233, 238, 246);
+    cursor: pointer;
+  }
+}
