@@ -18,7 +18,6 @@ import {
   FormlyImportModule,
   ToastImportModule,
 } from '@mixcore/share/base';
-import { ERROR_MAP, errorMap } from '@mixcore/share/form';
 import { MixModalModule } from '@mixcore/ui/modal';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TuiPreviewModule } from '@taiga-ui/addon-preview';
@@ -72,10 +71,6 @@ export const domainUrlFactory = () => {
     {
       provide: DOMAIN_URL$,
       useFactory: domainUrlFactory,
-    },
-    {
-      provide: ERROR_MAP,
-      useValue: errorMap,
     },
     {
       provide: URL_401,
