@@ -19,7 +19,6 @@ import { TuiLoaderModule, TuiScrollbarModule } from '@taiga-ui/core';
 import { TuiFileLike, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { combineLatest, debounceTime, forkJoin, of, switchMap } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
-import { BasicMixFilterComponent } from '../../../../components/basic-mix-filter/basic-mix-filter.component';
 import { DynamicDbListComponent } from '../../../../components/dynamic-db-list/dynamic-db-list.component';
 import { MixSubToolbarComponent } from '../../../../components/sub-toolbar/sub-toolbar.component';
 import { FormlyMixModule } from '../../../../shares/kits/formly-mix.module';
@@ -39,7 +38,6 @@ import { FormlyMixModule } from '../../../../shares/kits/formly-mix.module';
     FormlyMixModule,
     MixSubToolbarComponent,
     DynamicDbListComponent,
-    BasicMixFilterComponent,
   ],
   templateUrl: './database-data-form.component.html',
   styleUrls: ['./database-data-form.component.scss'],

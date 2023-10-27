@@ -3,6 +3,7 @@ export * from './main-side-menu/main-side-menu.component';
 export * from './main-toolbar/main-toolbar.component';
 
 export * from './action-collapse/action-collapse.component';
+export * from './basic-mix-filter/basic-mix-filter.component';
 export * from './compress-image/compress-image.component';
 export * from './database-select/database-select.component';
 export * from './dynamic-db-list/dynamic-db-list.component';

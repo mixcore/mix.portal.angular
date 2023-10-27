@@ -36,6 +36,19 @@ export type CompareOperator =
   | 'NotContain'
   | 'InRange';
 
+export const CompareOperatorDisplay: Record<CompareOperator, string> = {
+  Like: 'Like',
+  InRange: 'In Range',
+  Equal: 'Equal',
+  NotEqual: 'Not Equal',
+  LessThanOrEqual: 'Less Than Or Equal',
+  LessThan: 'Less Than',
+  GreaterThan: 'Greater Than',
+  GreaterThanOrEqual: 'Greater Than Or Equal',
+  Contain: 'Contain',
+  NotContain: 'Not Contain',
+};
+
 export interface MixFilter {
   fieldName: string;
   value: string | number | null | Date;

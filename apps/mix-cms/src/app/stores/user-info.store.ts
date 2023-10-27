@@ -2,9 +2,9 @@ import { Injectable, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { PaginationRequestModel, UserListVm } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { BaseState, DEFAULT_DATA } from '@mixcore/share/base';
 import { ComponentStore } from '@ngrx/component-store';
 import { filter, map, switchMap, tap } from 'rxjs';
-import { BaseState, DEFAULT_DATA } from './base-crud.store';
 
 @Injectable({ providedIn: 'root' })
 export class UserInfoStore extends ComponentStore<BaseState<UserListVm>> {

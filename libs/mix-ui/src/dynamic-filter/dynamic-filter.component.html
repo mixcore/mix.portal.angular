@@ -1,48 +1,22 @@
-<mix-button type="outline"
-            (click)="open(modalTpl)"
-            size="s">
+<mix-button type="outline" (click)="open(modalTpl)" [size]="size">
   <span class="mix-icon">filter_alt</span>&nbsp;
   <span class="text-500">Filter(s)</span>
 </mix-button>
 
-<ng-template #modalTpl
-             let-ref>
+<ng-template #modalTpl let-ref>
   <div class="filter-dialog">
-    <h3 class="filter-dialog__title">Set filters</h3>
+    <h3 class="mb-3">Filter Record(s)</h3>
 
-    <div class="mt-3 mb-2 text-500">Default Filter</div>
-
-    <ng-container *ngFor="let filter of defaultMixFilters">
-      <div class="row mb-2"
-           style="--bs-gutter-x: 8px">
-        <div class="col-4">
-          <div class="filter-dialog__item">{{ filter.displayName }}</div>
-        </div>
-
-        <div class="col-4">
-          <div class="filter-dialog__item"
-               [tp]="tpl"
-               tpVariation="popper">{{ filter.compareOperator }}</div>
-
-          <ng-template #tpl
-                       let-hide>
-            <h6 (click)="hide()">Popover title</h6>
-            <p>And here's some amazing content. It's very engaging. Right?</p>
-          </ng-template>
-        </div>
-
-        <div class="col-4">
-          <div class="filter-dialog__item">{{ filter.displayName }}</div>
-        </div>
-      </div>
+    <ng-container *ngFor="let filter of filters">
+      <mix-filter-item [columns]="columns"></mix-filter-item>
     </ng-container>
 
-    <div class="mt-3 text-500">Advanced Filter</div>
-
-
     <div class="filter-dialog__footer">
-      <mix-button type="outline"
-                  (click)="ref.close()">Cancel</mix-button>
+      <mix-button type="outline" (click)="add()">Add condition</mix-button>
+
+      <mix-button class="ms-auto" type="outline" (click)="ref.close()"
+        >Cancel</mix-button
+      >
       <mix-button (click)="ref.close()">Apply</mix-button>
     </div>
   </div>

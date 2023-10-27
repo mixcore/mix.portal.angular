@@ -1,0 +1,15 @@
+<div class="filter-item" [formGroup]="form">
+  <mix-select
+    [items]="columns"
+    [labelProcess]="columnLabel"
+    formControlName="column"
+  ></mix-select>
+
+  <mix-select
+    [items]="operators"
+    [labelProcess]="operatorLabel"
+    formControlName="operator"
+  ></mix-select>
+
+  <mix-filter-input></mix-filter-input>
+</div>

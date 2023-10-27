@@ -4,8 +4,8 @@ import {
   MixPost,
   PaginationRequestModel,
 } from '@mixcore/lib/model';
+import { BaseCRUDStore } from '@mixcore/share/base';
 import { forkJoin, map, of, switchMap } from 'rxjs';
-import { BaseCRUDStore } from './base-crud.store';
 
 @Injectable({ providedIn: 'root' })
 export class DiscountStore extends BaseCRUDStore<MixPost> {

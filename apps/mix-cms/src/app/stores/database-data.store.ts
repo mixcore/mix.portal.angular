@@ -8,9 +8,9 @@ import {
   STRING_DATA_TYPE,
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { BaseState } from '@mixcore/share/base';
 import { ComponentStore } from '@ngrx/component-store';
 import { catchError, filter, forkJoin, of } from 'rxjs';
-import { BaseState } from './base-crud.store';
 
 export interface DatabaseDataState extends BaseState<MixDynamicData> {
   dbSysName?: string;
@@ -180,7 +180,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
 
       return {
         ...s,
-        data: current,
+        data: [...current],
       };
     });
   }

@@ -48,7 +48,6 @@ export interface MixRelationShip {
 export enum RelationShipType {
   OneToMany = 'OneToMany',
 }
-
 export class MixColumn {
   systemName!: string;
   displayName!: string;

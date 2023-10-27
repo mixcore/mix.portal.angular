@@ -9,9 +9,11 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { MixDatabase, MixDynamicData } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { BasicMixFilterComponent } from '@mixcore/share/components';
 import { DomHelper, toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { DynamicFilterComponent } from '@mixcore/ui/filter';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
@@ -37,7 +39,6 @@ import {
 } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
-import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
 import { DatabaseSelectComponent } from '../../../components/database-select/database-select.component';
 import { RecordFormComponent } from '../../../components/record-form/record-form.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
@@ -70,6 +71,7 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     TuiReorderModule,
     TippyDirective,
     ReactiveFormsModule,
+    DynamicFilterComponent,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -355,7 +357,10 @@ export class DatabaseDataComponent
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
-        if (value) this.store.updateData(dataIndex, value);
+        if (value) {
+          this.store.updateData(dataIndex, value);
+          this.gridApi.refreshCells();
+        }
       });
     });
   }

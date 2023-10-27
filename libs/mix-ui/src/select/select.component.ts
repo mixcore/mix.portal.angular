@@ -18,22 +18,6 @@ import {
 } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
 
-export function buildSelectOption(
-  items: object[],
-  label: string,
-  value: string | undefined = undefined
-): SelectOption[] {
-  return items.map((i: unknown) => ({
-    label: (i as any)[label],
-    value: value ? (i as any)[value] : i,
-  }));
-}
-
-export interface SelectOption {
-  value: object;
-  label: string;
-}
-
 @Component({
   selector: 'mix-select',
   standalone: true,

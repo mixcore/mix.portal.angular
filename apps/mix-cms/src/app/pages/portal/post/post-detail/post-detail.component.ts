@@ -26,6 +26,7 @@ import {
   PaginationRequestModel,
   RelationShipType,
 } from '@mixcore/lib/model';
+import { BasicMixFilterComponent } from '@mixcore/share/components';
 import { FormHelper } from '@mixcore/share/form';
 import { Utils } from '@mixcore/share/utils';
 import { MixArrayMediaComponent } from '@mixcore/ui/array-media';
@@ -59,7 +60,6 @@ import {
   TuiToggleModule,
 } from '@taiga-ui/kit';
 import { Observable, combineLatest, forkJoin, takeUntil } from 'rxjs';
-import { BasicMixFilterComponent } from '../../../../components/basic-mix-filter/basic-mix-filter.component';
 import { DynamicDbListComponent } from '../../../../components/dynamic-db-list/dynamic-db-list.component';
 import { MetadataAssociationComponent } from '../../../../components/metadata-association/metadata-association.component';
 import { RelatedPostComponent } from '../../../../components/related-post/related-post.component';

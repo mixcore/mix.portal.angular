@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MixRole, PaginationRequestModel } from '@mixcore/lib/model';
-import { BaseCRUDStore } from './base-crud.store';
+import { BaseCRUDStore } from '@mixcore/share/base';
 
 @Injectable({ providedIn: 'root' })
 export class RolesStore extends BaseCRUDStore<MixRole> {
