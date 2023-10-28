@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -14,6 +15,7 @@ import { TrackByProp } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { DialogService } from '@ngneat/dialog';
 import { TippyDirective } from '@ngneat/helipopper';
+import { TuiBadgeModule } from '@taiga-ui/kit';
 import { FilterItemComponent } from './filter-item/filter-item.component';
 
 export interface DynamicFilterValue {
@@ -29,6 +31,7 @@ export interface DynamicFilterValue {
     TippyDirective,
     FilterItemComponent,
     TrackByProp,
+    TuiBadgeModule,
   ],
   templateUrl: './dynamic-filter.component.html',
   styleUrls: ['./dynamic-filter.component.scss'],
@@ -36,11 +39,13 @@ export interface DynamicFilterValue {
 })
 export class DynamicFilterComponent {
   public dialog = inject(DialogService);
+  public cdr = inject(ChangeDetectorRef);
 
   @Input() public size: 's' | 'm' = 's';
   @Input() columns: MixColumn[] = [];
   @Input() public filters: MixFilter[] = [];
   @Output() public filtersChange = new EventEmitter<MixFilter[]>();
+  public validFilterCount = 0;
 
   public open(tpl: TemplateRef<any>) {
     this.dialog.open(tpl, { resizable: true, draggable: true });
@@ -52,10 +57,13 @@ export class DynamicFilterComponent {
       value: null,
       compareOperator: 'Like',
     });
+
+    this.cdr.detectChanges();
   }
 
   public onFilterValueChange(value: MixFilter, index: number) {
     this.filters[index] = value;
     this.filtersChange.emit(this.filters);
+    this.validFilterCount = this.filters.filter((x) => x.value).length;
   }
 }

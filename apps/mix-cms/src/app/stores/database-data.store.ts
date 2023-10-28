@@ -127,6 +127,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
       request: {
         pageIndex: 0,
         pageSize: 25,
+        queries: [],
       },
     }));
     this.loadData(this.get().request, dbName, true);

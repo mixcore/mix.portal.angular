@@ -1,11 +1,18 @@
 <mix-button type="outline" (click)="open(modalTpl)" [size]="size">
   <span class="mix-icon">filter_alt</span>&nbsp;
   <span class="text-500">Filter(s)</span>
+
+  <tui-badge
+    *ngIf="validFilterCount"
+    status="error"
+    class="ms-2"
+    [value]="validFilterCount"
+  ></tui-badge>
 </mix-button>
 
 <ng-template #modalTpl let-ref>
   <div class="filter-dialog">
-    <h3 class="mb-3">Filter Record(s)</h3>
+    <h4 class="mb-3">Filter Record(s)</h4>
 
     <ng-container
       *ngFor="let filter of filters; let i = index; trackByProp: 'fieldName'"

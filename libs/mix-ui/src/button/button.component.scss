@@ -16,3 +16,7 @@ mix-button {
     line-height: 1;
   }
 }
+
+[tuiButton][data-size='m'] {
+  --tui-padding: 1rem;
+}

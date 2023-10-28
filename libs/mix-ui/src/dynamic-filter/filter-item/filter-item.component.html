@@ -12,6 +12,7 @@
   ></mix-select>
 
   <mix-filter-input
+    [value]="filter.value"
     [dataType]="form.value.column!.dataType"
     (valueChange)="filterValueChange($event)"
   ></mix-filter-input>

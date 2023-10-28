@@ -61,6 +61,7 @@
           <mix-dynamic-filter
             [size]="'m'"
             [columns]="vm.columns"
+            [filters]="vm.request.queries || []"
             (filtersChange)="onFilterChange($event)"
           ></mix-dynamic-filter>
 

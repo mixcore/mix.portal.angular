@@ -27,6 +27,7 @@ export class FilterInputComponent {
   public inputType: 'Text' | 'DatePicker' | 'Number' = 'Text';
   public control = new FormControl();
 
+  @Input() public value: string | Date | number | null = null;
   @Input() public set dataType(v: DataType) {
     this._dataType = v;
 
@@ -49,7 +50,11 @@ export class FilterInputComponent {
 
   constructor() {
     this.control.valueChanges
-      .pipe(takeUntilDestroyed(), debounceTime(300))
+      .pipe(takeUntilDestroyed(), debounceTime(200))
       .subscribe((v) => this.valueChange.emit(v));
+  }
+
+  ngOnInit() {
+    this.control.patchValue(this.value, { emitEvent: false });
   }
 }
