@@ -1,10 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, inject } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  EventEmitter,
+  Input,
+  Output,
+  inject,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import {
   CompareOperator,
-  CompareOperatorDisplay,
   MixColumn,
+  MixFilter,
+  OperatorDisplay,
 } from '@mixcore/lib/model';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
@@ -24,46 +33,49 @@ import { FilterInputComponent } from '../filter-input/filter-input.component';
   styleUrls: ['./filter-item.component.scss'],
 })
 export class FilterItemComponent {
-  @Input() columns: MixColumn[] = [];
-  public columnLabel = (col: MixColumn) => (col ? col.displayName : '');
+  public destroyRef = inject(DestroyRef);
 
-  @Input() public operators = Object.keys(CompareOperatorDisplay);
-  public operatorLabel = (opr: CompareOperator) =>
-    opr ? CompareOperatorDisplay[opr] : '';
-
-  // public valueData = {};
-  // public fields: FormlyFieldConfig[] = [];
-  // public valueForm = inject(FormBuilder).group({
-  //   value: null,
-  // });
+  @Input() filter!: MixFilter;
+  @Input() public columns: MixColumn[] = [];
+  @Input() public operators = Object.keys(OperatorDisplay);
+  public columnLabel = (col: MixColumn) => col?.displayName ?? '';
+  public operatorLabel = (opr: CompareOperator) => OperatorDisplay?.[opr] ?? '';
   public form = inject(FormBuilder).group({
     column: <MixColumn>{},
-    operator: {},
+    operator: <string>{},
   });
 
-  constructor() {
-    // this.form.controls.column.valueChanges
-    //   .pipe(takeUntilDestroyed())
-    //   .subscribe((col: MixColumn | null) => {
-    //     if (!col) return;
-    //     this.valueData = Utils.initFormFieldDefaultValue(
-    //       col.dataType,
-    //       this.valueData
-    //     );
-    //     this.fields = [
-    //       {
-    //         key: 'value',
-    //         type: col.dataType,
-    //         props: {
-    //           label: 'Value',
-    //         },
-    //       },
-    //     ];
-    //   });
-  }
+  @Output() public filterChange = new EventEmitter();
 
   ngOnInit() {
-    this.form.controls.column.patchValue(this.columns[0]);
-    this.form.controls.operator.patchValue(this.operators[0]);
+    this.form.controls.column.patchValue(
+      this.columns.find((x) => x.systemName === this.filter.fieldName) ??
+        this.columns[0]
+    );
+
+    this.form.controls.operator.patchValue(
+      this.operators.find((x) => x === this.filter.compareOperator) ??
+        this.operators[0]
+    );
+
+    this.form.controls.column.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((v) => {
+        this.filter.fieldName = v!.systemName;
+        this.filter.value = '';
+        this.filterChange.emit(this.filter);
+      });
+
+    this.form.controls.operator.valueChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((v) => {
+        this.filter.compareOperator = v as CompareOperator;
+        this.filterChange.emit(this.filter);
+      });
+  }
+
+  public filterValueChange(value: string) {
+    this.filter.value = value;
+    this.filterChange.emit(this.filter);
   }
 }

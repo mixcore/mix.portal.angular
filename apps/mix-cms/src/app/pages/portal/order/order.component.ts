@@ -21,6 +21,11 @@ import {
   PaymentGateway,
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import {
+  CompressImageComponent,
+  MixStatusIndicatorComponent,
+  MixSubToolbarComponent,
+} from '@mixcore/share/components';
 import { ImageHandleDirective } from '@mixcore/share/directives';
 import {
   MixUtcDatePipe,
@@ -55,12 +60,9 @@ import {
 import { debounceTime, interval, takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { BulkAssignMetadataComponent } from '../../../components/bulk-assign-metadata/bulk-assign-metadata.component';
-import { CompressImageComponent } from '../../../components/compress-image/compress-image.component';
 import { GatewayIndicatorComponent } from '../../../components/gateway-indicator/gateway-indicator.component';
 import { OrderStatisticsComponent } from '../../../components/order-statistics/order-statistics.component';
 import { OrderStatusIndicatorComponent } from '../../../components/order-status-indicator/order-status-indicator.component';
-import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { OrderStore } from '../../../stores/order.store';
 

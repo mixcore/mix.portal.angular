@@ -25,6 +25,10 @@ import {
   PaginationRequestModel,
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import {
+  CompressImageComponent,
+  MixSubToolbarComponent,
+} from '@mixcore/share/components';
 import { ImageHandleDirective } from '@mixcore/share/directives';
 import { FormHelper } from '@mixcore/share/form';
 import { MixUtcDatePipe, RelativeTimeSpanPipe } from '@mixcore/share/pipe';
@@ -58,9 +62,7 @@ import {
 import { debounceTime, forkJoin, takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { BulkAssignMetadataComponent } from '../../../components/bulk-assign-metadata/bulk-assign-metadata.component';
-import { CompressImageComponent } from '../../../components/compress-image/compress-image.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { DiscountStore } from '../../../stores/discount.store';
 
 @Component({

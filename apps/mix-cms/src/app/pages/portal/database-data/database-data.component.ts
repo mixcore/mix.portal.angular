@@ -7,9 +7,16 @@ import {
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MixDatabase, MixDynamicData } from '@mixcore/lib/model';
+import { MixDatabase, MixDynamicData, MixFilter } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
-import { BasicMixFilterComponent } from '@mixcore/share/components';
+import {
+  ActionCollapseComponent,
+  BasicMixFilterComponent,
+  DatabaseSelectComponent,
+  MixStatusIndicatorComponent,
+  MixSubToolbarComponent,
+  RecordFormComponent,
+} from '@mixcore/share/components';
 import { DomHelper, toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -38,11 +45,7 @@ import {
   tap,
 } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
-import { ActionCollapseComponent } from '../../../components/action-collapse/action-collapse.component';
-import { DatabaseSelectComponent } from '../../../components/database-select/database-select.component';
-import { RecordFormComponent } from '../../../components/record-form/record-form.component';
-import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
+
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
 import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
@@ -342,6 +345,10 @@ export class DatabaseDataComponent
         if (value) this.store.addData(value);
       });
     });
+  }
+
+  public onFilterChange(value: MixFilter[]) {
+    this.store.changeFilters(value);
   }
 
   public editData(dataId: number) {

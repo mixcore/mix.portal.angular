@@ -36,7 +36,7 @@ export type CompareOperator =
   | 'NotContain'
   | 'InRange';
 
-export const CompareOperatorDisplay: Record<CompareOperator, string> = {
+export const OperatorDisplay: Record<CompareOperator, string> = {
   Like: 'Like',
   InRange: 'In Range',
   Equal: 'Equal',

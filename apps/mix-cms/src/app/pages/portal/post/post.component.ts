@@ -28,6 +28,7 @@ import { ImageHandleDirective } from '@mixcore/share/directives';
 import { FormHelper } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 
+import { CompressImageComponent } from '@mixcore/share/components';
 import {
   MixImgLoaderPipe,
   MixUtcDatePipe,
@@ -63,7 +64,6 @@ import {
 import { debounceTime, forkJoin, takeUntil, tap } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { BulkAssignMetadataComponent } from '../../../components/bulk-assign-metadata/bulk-assign-metadata.component';
-import { CompressImageComponent } from '../../../components/compress-image/compress-image.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { PostStore } from '../../../stores/post.store';

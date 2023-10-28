@@ -11,5 +11,8 @@
     formControlName="operator"
   ></mix-select>
 
-  <mix-filter-input></mix-filter-input>
+  <mix-filter-input
+    [dataType]="form.value.column!.dataType"
+    (valueChange)="filterValueChange($event)"
+  ></mix-filter-input>
 </div>

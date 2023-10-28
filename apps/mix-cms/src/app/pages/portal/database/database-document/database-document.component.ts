@@ -12,8 +12,8 @@ import {
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { MixDatabase } from '@mixcore/lib/model';
+import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { TuiAccordionModule } from '@taiga-ui/kit';
-import { DatabaseSelectComponent } from '../../../../components/database-select/database-select.component';
 import { mixDbDocumentJsonGenerator } from './database-document.generator';
 
 export interface DbDocument {

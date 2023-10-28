@@ -12,13 +12,15 @@ import { PageStore } from '../../../stores/page.store';
 import { Router } from '@angular/router';
 import { MixPage } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import {
+  CompressImageComponent,
+  MixStatusIndicatorComponent,
+} from '@mixcore/share/components';
 import { ImageHandleDirective } from '@mixcore/share/directives';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
 import { CMS_ROUTES } from '../../../app.routes';
-import { CompressImageComponent } from '../../../components/compress-image/compress-image.component';
-import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 @Component({
   selector: 'mix-page',
   standalone: true,

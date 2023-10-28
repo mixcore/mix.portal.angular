@@ -7,17 +7,22 @@
   <div class="filter-dialog">
     <h3 class="mb-3">Filter Record(s)</h3>
 
-    <ng-container *ngFor="let filter of filters">
-      <mix-filter-item [columns]="columns"></mix-filter-item>
+    <ng-container
+      *ngFor="let filter of filters; let i = index; trackByProp: 'fieldName'"
+    >
+      <mix-filter-item
+        [columns]="columns"
+        [filter]="filter"
+        (filterChange)="onFilterValueChange($event, i)"
+      ></mix-filter-item>
     </ng-container>
 
     <div class="filter-dialog__footer">
       <mix-button type="outline" (click)="add()">Add condition</mix-button>
 
       <mix-button class="ms-auto" type="outline" (click)="ref.close()"
-        >Cancel</mix-button
+        >Close</mix-button
       >
-      <mix-button (click)="ref.close()">Apply</mix-button>
     </div>
   </div>
 </ng-template>

@@ -1,1 +1,11 @@
-<p>filter-input works!</p>
+<mix-input *ngIf="inputType === 'Text'" [formControl]="control"></mix-input>
+
+<mix-date-picker
+  *ngIf="inputType === 'DatePicker'"
+  [formControl]="control"
+></mix-date-picker>
+
+<mix-input-number
+  *ngIf="inputType === 'Number'"
+  [formControl]="control"
+></mix-input-number>

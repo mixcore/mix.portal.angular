@@ -11,12 +11,12 @@ import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-tool
 import { Router } from '@angular/router';
 import { MixModule } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { CompressImageComponent } from '@mixcore/share/components';
 import { ImageHandleDirective } from '@mixcore/share/directives';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
 import { CMS_ROUTES } from '../../../app.routes';
-import { CompressImageComponent } from '../../../components/compress-image/compress-image.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { ModuleStore } from '../../../stores/module.store';
 

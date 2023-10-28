@@ -23,6 +23,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MixColumn, MixDatabase } from '@mixcore/lib/model';
+import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -41,7 +42,6 @@ import {
 } from '@taiga-ui/kit';
 import { debounceTime, takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
-import { DatabaseSelectComponent } from '../../../../components/database-select/database-select.component';
 import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
 import { DatabaseStore } from '../../../../stores/database.store';

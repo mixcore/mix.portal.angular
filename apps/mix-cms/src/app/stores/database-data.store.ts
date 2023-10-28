@@ -4,6 +4,7 @@ import {
   MixColumn,
   MixDatabase,
   MixDynamicData,
+  MixFilter,
   PaginationRequestModel,
   STRING_DATA_TYPE,
 } from '@mixcore/lib/model';
@@ -145,6 +146,24 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
     this.patchState((s) => ({
       ...s,
       status: 'Loading',
+      loadDataError: false,
+      request: request,
+    }));
+
+    this.loadData(request, state.dbSysName);
+  }
+
+  public changeFilters(filters: MixFilter[]) {
+    const state = this.get();
+    if (!state.dbSysName) return;
+
+    const request = {
+      ...state.request,
+      queries: filters,
+    } as PaginationRequestModel;
+
+    this.patchState((s) => ({
+      ...s,
       loadDataError: false,
       request: request,
     }));

@@ -35,6 +35,7 @@ import { TuiFileLike } from '@taiga-ui/kit';
 import { forkJoin, take } from 'rxjs';
 import { FormlyMixModule } from '../../shares/kits/formly-mix.module';
 
+import { CompressImageComponent } from '@mixcore/share/components';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixInputNumberComponent } from '@mixcore/ui/input-number';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
@@ -42,7 +43,6 @@ import { EditableModule } from '@ngneat/edit-in-place';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 import { TuiDataListModule, TuiHostedDropdownModule } from '@taiga-ui/core';
-import { CompressImageComponent } from '../compress-image/compress-image.component';
 import { DynamicDataDisplayComponent } from '../dynamic-data-display/dynamic-data-display.component';
 
 @Component({

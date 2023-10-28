@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { MixColumn, MixDynamicDataValue } from '@mixcore/lib/model';
-import { CompressImageComponent } from '../compress-image/compress-image.component';
+import { CompressImageComponent } from '@mixcore/share/components';
 
 @Component({
   selector: 'mix-dynamic-data-display',
