@@ -3,6 +3,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MixPermission } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { ImageHandleDirective } from '@mixcore/share/directives';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -12,7 +13,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { tap } from 'rxjs';
 import { PermissionFormComponent } from '../../../components/permission-form/permission-form.component';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { PermissionsStore } from '../../../stores/permission.store';
 
 @Component({

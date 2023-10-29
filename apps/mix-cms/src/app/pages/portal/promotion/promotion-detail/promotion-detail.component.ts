@@ -7,6 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MixDynamicData, MixPromotion } from '@mixcore/lib/model';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { FormHelper } from '@mixcore/share/form';
 import { MixUtcDatePipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -26,7 +27,6 @@ import {
 } from '@taiga-ui/core';
 import { TuiRadioBlockModule, TuiTabsModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
-import { MixSubToolbarComponent } from '../../../../components/sub-toolbar/sub-toolbar.component';
 import { MixSystemDbName } from '../../../../shares/consts/system-database-name';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
 

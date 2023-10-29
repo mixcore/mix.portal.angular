@@ -21,6 +21,7 @@ import {
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { FULL_MENU } from '@mixcore/share/auth';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -41,7 +42,6 @@ import {
 } from '@tinkoff/ng-polymorpheus';
 import { forkJoin, map, of, switchMap } from 'rxjs';
 import { DynamicDbListComponent } from '../dynamic-db-list/dynamic-db-list.component';
-import { MixSubToolbarComponent } from '../sub-toolbar/sub-toolbar.component';
 import { PortalMenuItemComponent } from './portal-menu-item/portal-menu-item.component';
 import { MixRoleTreeItemComponent } from './role-tree-item/role-tree-item.component';
 

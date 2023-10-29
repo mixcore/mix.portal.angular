@@ -12,6 +12,7 @@ import {
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent, LoadingState } from '@mixcore/share/base';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { Utils } from '@mixcore/share/utils';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { FormlyFieldConfig } from '@ngx-formly/core';
@@ -20,7 +21,6 @@ import { TuiFileLike, TuiTabsModule, TuiToggleModule } from '@taiga-ui/kit';
 import { combineLatest, debounceTime, forkJoin, of, switchMap } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
 import { DynamicDbListComponent } from '../../../../components/dynamic-db-list/dynamic-db-list.component';
-import { MixSubToolbarComponent } from '../../../../components/sub-toolbar/sub-toolbar.component';
 import { FormlyMixModule } from '../../../../shares/kits/formly-mix.module';
 
 @Component({

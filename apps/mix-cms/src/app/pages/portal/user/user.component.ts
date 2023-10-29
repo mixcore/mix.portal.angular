@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { UserListVm } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { ImageHandleDirective } from '@mixcore/share/directives';
 import { MixFormErrorComponent } from '@mixcore/share/form';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
@@ -14,11 +15,10 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { DialogService } from '@ngneat/dialog';
 import { tuiPure } from '@taiga-ui/cdk';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { UserStore } from '../../../stores/user.store';
 import { CreateUserDialogComponent } from './components/create-user-dialog/create-user-dialog.component';
-import { UserService } from './services/user.service';
 import { UserDetailDialogComponent } from './components/user-detail-dialog/user-detail-dialog.component';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'mix-user',

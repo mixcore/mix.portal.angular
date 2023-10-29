@@ -11,6 +11,7 @@ import {
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { ModalService } from '@mixcore/ui/modal';
@@ -18,7 +19,6 @@ import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
 import { CMS_ROUTES } from '../../../../app.routes';
 import { DynamicDataDisplayComponent } from '../../../../components/dynamic-data-display/dynamic-data-display.component';
-import { MixSubToolbarComponent } from '../../../../components/sub-toolbar/sub-toolbar.component';
 
 @Component({
   selector: 'mix-module-data',

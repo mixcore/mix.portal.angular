@@ -7,6 +7,7 @@ import {
   PaginationRequestModel,
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { MixUtcDatePipe } from '@mixcore/share/pipe';
 import { DateUtils, Utils } from '@mixcore/share/utils';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -18,7 +19,6 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { debounceTime, takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { MixSystemDbName } from '../../../shares/consts/system-database-name';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { PromotionStore } from '../../../stores/promotion.store';

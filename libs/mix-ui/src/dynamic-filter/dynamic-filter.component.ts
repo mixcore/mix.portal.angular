@@ -63,6 +63,9 @@ export class DynamicFilterComponent {
 
   public onFilterValueChange(value: MixFilter, index: number) {
     this.filters[index] = value;
+  }
+
+  public applyChange() {
     this.filtersChange.emit(this.filters);
     this.validFilterCount = this.filters.filter((x) => x.value).length;
   }

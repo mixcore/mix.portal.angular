@@ -13,6 +13,7 @@ import { zoomOutLeftOnLeaveAnimation } from '@mixcore/share/animation';
 import { MixEaterEgg } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
 import { LoadingScreenComponent } from '@mixcore/share/components';
+import { DomHelper } from '@mixcore/share/helper';
 import { ModalService } from '@mixcore/ui/modal';
 import { TuiRootModule } from '@taiga-ui/core';
 import { filter, forkJoin, switchMap } from 'rxjs';
@@ -73,7 +74,7 @@ export class AppComponent implements OnInit {
           this.authService.isAuthorized$.next(true);
           this.router
             .navigateByUrl(
-              this.authService.redirectUrl || window.location.pathname
+              this.authService.redirectUrl || DomHelper.getCurrentPathname()
             )
             .then();
 

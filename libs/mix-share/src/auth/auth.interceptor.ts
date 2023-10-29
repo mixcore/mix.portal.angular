@@ -8,6 +8,7 @@ import {
 } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { Router } from '@angular/router';
+import { DomHelper } from '@mixcore/share/helper';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslocoService } from '@ngneat/transloco';
 import {
@@ -67,12 +68,12 @@ export class AuthInterceptor implements HttpInterceptor {
           requestError instanceof HttpErrorResponse &&
           requestError.status === 401
         ) {
-          localStorage.setItem('redirectUrl', window.location.pathname);
+          localStorage.setItem('redirectUrl', DomHelper.getCurrentPathname());
           return this.handle401Error(clonedReq, next);
         }
 
         if (requestError.status === 0) {
-          localStorage.setItem('redirectUrl', window.location.pathname);
+          localStorage.setItem('redirectUrl', DomHelper.getCurrentPathname());
           this.route.navigateByUrl(this.urlError);
         }
 

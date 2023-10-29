@@ -3,6 +3,7 @@ import { Component, Inject, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { MixDatabase } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -14,7 +15,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { forkJoin } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 import { DatabaseStore } from '../../../stores/database.store';
 
 @Component({

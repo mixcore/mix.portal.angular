@@ -5,8 +5,8 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { MixButtonComponent } from '@mixcore/ui/button';
-import { MixSubToolbarComponent } from '../../../components/sub-toolbar/sub-toolbar.component';
 
 import { Router } from '@angular/router';
 import { MixModule } from '@mixcore/lib/model';

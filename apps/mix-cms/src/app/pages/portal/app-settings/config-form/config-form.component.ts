@@ -15,6 +15,7 @@ import {
   uploadFileFn,
 } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { Utils } from '@mixcore/share/utils';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -23,7 +24,6 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { combineLatest, debounceTime, startWith, tap } from 'rxjs';
-import { MixSubToolbarComponent } from '../../../../components/sub-toolbar/sub-toolbar.component';
 
 @Component({
   selector: 'mix-config-form',

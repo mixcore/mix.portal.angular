@@ -253,11 +253,11 @@ export class AuthService extends BaseApiService {
   }
 
   public clearRedirectUrl(): void {
-    localStorage.setItem('redirectUrl', '/');
+    localStorage.setItem('redirectUrl', '');
   }
 
   public get redirectUrl(): string | null {
-    return localStorage.getItem('redirectUrl') || '/';
+    return localStorage.getItem('redirectUrl');
   }
 
   public getPortalMenuByRole(roleName: string) {

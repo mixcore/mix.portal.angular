@@ -21,6 +21,7 @@ import {
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -33,7 +34,6 @@ import {
   TuiLinkModule,
 } from '@taiga-ui/core';
 import { of, switchMap } from 'rxjs';
-import { MixSubToolbarComponent } from '../sub-toolbar/sub-toolbar.component';
 
 @Component({
   selector: 'mix-permission-form',

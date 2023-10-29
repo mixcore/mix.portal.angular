@@ -15,6 +15,7 @@ import {
   MixFilter,
   OperatorDisplay,
 } from '@mixcore/lib/model';
+import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { FilterInputComponent } from '../filter-input/filter-input.component';
@@ -26,6 +27,7 @@ import { FilterInputComponent } from '../filter-input/filter-input.component';
     CommonModule,
     MixSelectComponent,
     MixInputComponent,
+    MixButtonComponent,
     ReactiveFormsModule,
     FilterInputComponent,
   ],

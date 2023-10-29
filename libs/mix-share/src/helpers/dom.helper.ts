@@ -23,4 +23,12 @@ export class DomHelper {
 
     return JSON.parse(jsonPayload);
   }
+
+  public static getCurrentPathname() {
+    const baseHref = new URL(document.baseURI).pathname;
+    const currentPath = window.location.pathname;
+    if (!baseHref || baseHref === '/') return currentPath;
+
+    return currentPath.replace(baseHref, '');
+  }
 }

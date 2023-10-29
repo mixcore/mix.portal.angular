@@ -3,12 +3,12 @@ import { Component } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MixDynamicData, MixModuleData } from '@mixcore/lib/model';
+import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { Utils } from '@mixcore/share/utils';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { TuiFileLike } from '@taiga-ui/kit';
-import { MixSubToolbarComponent } from '../../../../components/sub-toolbar/sub-toolbar.component';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
 
 @Component({
