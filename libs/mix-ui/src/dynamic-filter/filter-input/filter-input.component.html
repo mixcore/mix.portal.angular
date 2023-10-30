@@ -1,4 +1,8 @@
-<mix-input *ngIf="inputType === 'Text'" [formControl]="control"></mix-input>
+<mix-input
+  *ngIf="inputType === 'Text'"
+  [formControl]="control"
+  [placeHolder]="'Type value'"
+></mix-input>
 
 <mix-date-picker
   *ngIf="inputType === 'DatePicker'"

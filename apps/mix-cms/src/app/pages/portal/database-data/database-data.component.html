@@ -88,8 +88,12 @@
         <div class="mix-dbs-table__main-container">
           <div
             class="h-100 w-100"
-            [class.d-none]="vm.status !== 'Success' || vm.loadDataError"
+            [class.d-none]="vm.status === 'Loading' || vm.loadDataError"
           >
+            <div *ngIf="vm.status === 'SilentLoading'" class="mix-progress-bar">
+              <div class="mix-progress-bar-value"></div>
+            </div>
+
             <ag-grid-angular
               class="ag-theme-alpine"
               [animateRows]="true"

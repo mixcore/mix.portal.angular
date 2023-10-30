@@ -165,6 +165,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
 
     this.patchState((s) => ({
       ...s,
+      status: 'SilentLoading',
       loadDataError: false,
       request: request,
     }));

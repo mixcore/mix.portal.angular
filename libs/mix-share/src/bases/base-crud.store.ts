@@ -26,7 +26,7 @@ export interface BaseState<T> {
   data: T[];
   request: PaginationRequestModel;
   pageInfo: PaginationModel;
-  status: 'Loading' | 'Error' | 'Pending' | 'Success';
+  status: 'Loading' | 'Error' | 'Pending' | 'Success' | 'SilentLoading';
 }
 
 export const DEFAULT_DATA = {

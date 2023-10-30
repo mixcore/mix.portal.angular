@@ -21,11 +21,27 @@
         [columns]="columns"
         [filter]="filter"
         (filterChange)="onFilterValueChange($event, i)"
+        (deleteFilter)="deleteFilter(filter, i)"
       ></mix-filter-item>
     </ng-container>
 
+    <div class="d-flex align-items-center gap-2" *ngIf="filters.length >= 2">
+      *Meet
+
+      <mix-select
+        [formControl]="logicalOperateForm"
+        size="s"
+        class="filter-dialog__select"
+        [items]="logicalOperateItems"
+      ></mix-select>
+
+      of these conditions
+    </div>
+
     <div class="filter-dialog__footer">
-      <mix-button type="outline" (click)="add()">Add condition</mix-button>
+      <mix-button type="outline" (click)="add()">
+        <span class="mix-icon">add</span> Add condition</mix-button
+      >
 
       <mix-button class="ms-auto" type="outline" (click)="ref.close()"
         >Close</mix-button

@@ -1,6 +1,7 @@
 .filter-item {
   display: grid;
-  grid-template-columns: 120px 150px auto 50px;
+  grid-template-columns: 120px 150px auto min-content;
   grid-gap: 4px;
   margin-bottom: 6px;
+  align-items: center;
 }

@@ -17,5 +17,7 @@
     (valueChange)="filterValueChange($event)"
   ></mix-filter-input>
 
-  <mix-button>X</mix-button>
+  <mix-button [iconBtn]="true" type="icon" (click)="deleteFilter.emit()"
+    ><span class="mix-icon">close</span></mix-button
+  >
 </div>

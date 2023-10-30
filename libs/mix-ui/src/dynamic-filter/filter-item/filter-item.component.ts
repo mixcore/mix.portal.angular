@@ -48,6 +48,7 @@ export class FilterItemComponent {
   });
 
   @Output() public filterChange = new EventEmitter();
+  @Output() public deleteFilter = new EventEmitter();
 
   ngOnInit() {
     this.form.controls.column.patchValue(
