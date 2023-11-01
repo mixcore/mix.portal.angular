@@ -102,6 +102,7 @@
     "@nx/jest": "16.1.4",
     "@nx/js": "16.1.4",
     "@nx/web": "16.1.4",
+    "@nxrocks/nx-flutter": "^8.0.1",
     "@schematics/angular": "16.1.8",
     "@types/crypto-js": "^4.1.1",
     "@types/jest": "29.4.4",

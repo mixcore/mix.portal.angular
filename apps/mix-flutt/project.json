@@ -1,0 +1,86 @@
+{
+  "name": "mix-flutt",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/mix-flutt/src",
+  "projectType": "application",
+  "targets": {
+    "analyze": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter analyze",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "clean": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter clean",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "format": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "dart format apps/mix-flutt/*",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter test",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "doctor": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter doctor",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "assemble": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter assemble",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "attach": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter attach",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "drive": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter drive",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "gen-l10n": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter gen-l10n",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter install",
+        "cwd": "apps/mix-flutt"
+      }
+    },
+    "run": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "flutter run",
+        "cwd": "apps/mix-flutt"
+      }
+    }
+  },
+  "tags": []
+}
