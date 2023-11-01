@@ -66,7 +66,7 @@
     "crypto-js": "^4.1.1",
     "fs": "0.0.1-security",
     "glob": "^9.3.2",
-    "graphql": "^16.7.1",
+    "graphql": "^16.8.1",
     "js-beautify": "^1.14.7",
     "jsoneditor": "^9.10.2",
     "lru-cache": "^9.1.2",
