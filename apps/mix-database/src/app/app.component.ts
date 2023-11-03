@@ -11,6 +11,7 @@ import { SwUpdate, VersionReadyEvent } from '@angular/service-worker';
 import { zoomOutLeftOnLeaveAnimation } from '@mixcore/share/animation';
 import { MixEaterEgg } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
+import { DomHelper } from '@mixcore/share/helper';
 import { ModalService } from '@mixcore/ui/modal';
 import { filter, forkJoin, switchMap } from 'rxjs';
 
@@ -67,7 +68,7 @@ export class AppComponent implements OnInit {
           this.authService.isAuthorized$.next(true);
           this.router
             .navigateByUrl(
-              this.authService.redirectUrl || window.location.pathname
+              this.authService.redirectUrl || DomHelper.getCurrentPathname()
             )
             .then();
 
