@@ -32,6 +32,9 @@
       "@mixcore/share/signalR": ["libs/mix-share/src/signalR/index.ts"],
       "@mixcore/share/stores": ["libs/mix-share/src/stores/index.ts"],
       "@mixcore/share/utils": ["libs/mix-share/src/utils/index.ts"],
+      "@mixcore/module/task": [
+        "libs/mix-share/src/modules/task-manage/index.ts"
+      ],
       "@mixcore/ui/array-media": ["libs/mix-ui/src/array-media/index.ts"],
       "@mixcore/ui/array-radio": ["libs/mix-ui/src/array-radio/index.ts"],
       "@mixcore/ui/base-control": ["libs/mix-ui/src/base/index.ts"],

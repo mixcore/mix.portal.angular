@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../../libs/mix-share/src/stores/user-info.store.ts"],
   "compilerOptions": {
     "types": ["jest", "node"]
   }

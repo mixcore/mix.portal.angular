@@ -6,12 +6,11 @@ import {
 } from '@mixcore/lib/model';
 import { BaseCRUDStore } from '@mixcore/share/base';
 import { map } from 'rxjs';
-import { MixSystemDbName } from '../../../../shares/consts/system-database-name';
 
 @Injectable({ providedIn: 'root' })
 export class TaskStore extends BaseCRUDStore<MixTaskNew> {
   public override requestFn = (request: PaginationRequestModel) =>
-    this.mixApi.databaseApi.getDataByName<MixTaskNew>(MixSystemDbName.Task, {
+    this.mixApi.databaseApi.getDataByName<MixTaskNew>('mixDb_mixTask', {
       ...request,
     });
 

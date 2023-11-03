@@ -8,13 +8,13 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { UserAvatarComponent } from '@mixcore/share/components';
+import { UserInfoStore } from '@mixcore/share/stores';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { tuiPure } from '@taiga-ui/cdk';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiFilterModule } from '@taiga-ui/kit';
-import { UserInfoStore } from '../../../../../stores/user-info.store';
 import { TaskFilterStore } from '../../store/filter.store';
 import { TaskStore } from '../../store/task.store';
 

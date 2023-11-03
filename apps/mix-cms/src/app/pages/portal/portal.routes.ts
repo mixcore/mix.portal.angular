@@ -108,9 +108,7 @@ export const PortalRoutes: Routes = [
     path: CMS_ROUTES.portal.task.path,
     data: breadcrumbName('Task Management'),
     loadComponent: () =>
-      import('./task-manage/task-manage.component').then(
-        (m) => m.TaskManageComponent
-      ),
+      import('@mixcore/module/task').then((m) => m.TaskManageComponent),
   },
   {
     path: CMS_ROUTES.portal.settings.path,

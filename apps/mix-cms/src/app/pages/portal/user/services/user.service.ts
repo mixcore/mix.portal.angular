@@ -3,8 +3,8 @@ import { MixApiFacadeService } from '@mixcore/share/api';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { ModalService } from '@mixcore/ui/modal';
 import { HotToastService } from '@ngneat/hot-toast';
+import { UserInfoStore } from '../../../../../../../../libs/mix-share/src/stores/user-info.store';
 import { UserStore } from '../../../../stores/user.store';
-import { UserInfoStore } from '../../../../stores/user-info.store';
 
 @Injectable()
 export class UserService {

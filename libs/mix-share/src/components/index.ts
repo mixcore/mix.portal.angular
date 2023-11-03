@@ -15,3 +15,4 @@ export * from './setting-dialog/setting-dialog.component';
 export * from './status-indicator/mix-status-indicator.component';
 export * from './sub-toolbar/sub-toolbar.component';
 export * from './user-avatar/user-avatar.component';
+export * from './user-select/user-select.component';

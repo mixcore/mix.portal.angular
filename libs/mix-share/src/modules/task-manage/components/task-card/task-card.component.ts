@@ -13,9 +13,9 @@ import {
   UserListVm,
 } from '@mixcore/lib/model';
 import { UserAvatarComponent } from '@mixcore/share/components';
+import { UserInfoStore } from '@mixcore/share/stores';
 import { DialogService } from '@ngneat/dialog';
 import { take } from 'rxjs';
-import { UserInfoStore } from '../../../../../stores/user-info.store';
 import { TaskDetailModalComponent } from '../task-detail-modal/task-detail-modal.component';
 import { TaskPriorityComponent } from '../task-priority/task-priority.component';
 

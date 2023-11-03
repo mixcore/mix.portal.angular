@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { UserListVm } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { UserInfoStore } from '@mixcore/share/stores';
 import { tuiPure } from '@taiga-ui/cdk';
 import {
   TuiDataListModule,
@@ -16,7 +17,6 @@ import {
 } from '@taiga-ui/core';
 import { TuiAvatarModule, TuiSelectModule } from '@taiga-ui/kit';
 import { distinctUntilChanged, filter } from 'rxjs';
-import { UserInfoStore } from '../../stores/user-info.store';
 
 @Component({
   selector: 'mix-user-select',

@@ -21,7 +21,7 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { DialogRef, DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
-import { UserInfoStore } from '../../../../../stores/user-info.store';
+import { UserInfoStore } from '../../../../../../../../../libs/mix-share/src/stores/user-info.store';
 import { UserStore } from '../../../../../stores/user.store';
 
 @Component({

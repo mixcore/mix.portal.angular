@@ -13,6 +13,7 @@ import {
   TaskType,
 } from '@mixcore/lib/model';
 import { BaseComponent } from '@mixcore/share/base';
+import { UserSelectComponent } from '@mixcore/share/components';
 import { FormHelper } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixEditorComponent } from '@mixcore/ui/editor';
@@ -22,7 +23,6 @@ import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TaskService } from '../../store/task.service';
 import { TaskStore } from '../../store/task.store';
-import { UserSelectComponent } from '../../../../../components/user-select/user-select.component';
 
 @Component({
   selector: 'mix-task-create',

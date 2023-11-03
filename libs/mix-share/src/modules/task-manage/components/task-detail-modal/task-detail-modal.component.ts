@@ -14,6 +14,7 @@ import {
   TaskTypeIcons,
 } from '@mixcore/lib/model';
 import { BaseComponent } from '@mixcore/share/base';
+import { UserSelectComponent } from '@mixcore/share/components';
 import { FormHelper } from '@mixcore/share/form';
 import { MixUtcDatePipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -22,7 +23,6 @@ import { MixInlineInputComponent } from '@mixcore/ui/inline-input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
-import { UserSelectComponent } from '../../../../../components/user-select/user-select.component';
 import { TaskService } from '../../store/task.service';
 import { TaskStore } from '../../store/task.store';
 
