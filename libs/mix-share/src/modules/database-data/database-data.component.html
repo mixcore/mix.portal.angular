@@ -1,0 +1,146 @@
+<div *ngIf="store.vm$ | async as vm" class="data-table-page">
+  <div class="data-table-page__sidebar">
+    <mix-database-select
+      [isCreate]="false"
+      [prefix]="'Query'"
+      [selectedItemId]="vm.db?.id"
+      [selectedItemName]="dbSysName"
+      (selectedItemChange)="selectedTableChange($event)"
+    ></mix-database-select>
+  </div>
+
+  <div class="data-table-page__main-container">
+    <ng-container *ngIf="vm.status === 'Pending'">
+      <div
+        class="h-100 w-100 d-flex flex-column justify-content-center align-items-center"
+      >
+        <img
+          src="assets/images/empty-box.png"
+          alt="No data found"
+          width="150px"
+        />
+        <p class="mt-2">Please choose a Database to view result</p>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="vm.status !== 'Pending'">
+      <mix-sub-toolbar
+        [description]="'QUERY ON'"
+        [loading]="vm.status === 'Loading' && vm.db === undefined"
+        [title]="vm.db?.displayName || 'Db Data'"
+      >
+        <div class="toolbar-separator"></div>
+        <mix-action-collapse
+          [actionMaps]="actionMaps"
+          [actions]="actions"
+        ></mix-action-collapse>
+      </mix-sub-toolbar>
+
+      <div class="data-table-page__body d-flex flex-column">
+        <div class="mix-dbs-table__toolbar">
+          <mix-input
+            class="search"
+            [formControl]="searchForm"
+            [searchIcon]="true"
+            placeHolder="Search on string fields"
+          ></mix-input>
+
+          <mix-button
+            type="secondary"
+            [tp]="tpl"
+            tpPlacement="bottom"
+            tpVariation="popper"
+            tuiButton
+            size="m"
+          >
+            Columns ({{ displayColumns.length || 0 }}/{{
+              columnNames.length || 0
+            }})
+          </mix-button>
+
+          <mix-dynamic-filter
+            [size]="'m'"
+            [columns]="vm.columns"
+            [filters]="vm.request.queries || []"
+            (filtersChange)="onFilterChange($event)"
+          ></mix-dynamic-filter>
+
+          <ng-template #tpl let-hide>
+            <tui-reorder
+              [(enabled)]="displayColumns"
+              [(items)]="columnNames"
+              (enabledChange)="displayColumns$.next(displayColumns)"
+              style="width: 300px"
+            ></tui-reorder>
+          </ng-template>
+
+          <mix-button
+            *ngIf="vm.db"
+            class="ms-auto"
+            type="outline"
+            (click)="onPreviewData(vm.db)"
+            size="m"
+          >
+            <span class="mix-icon">code</span>&nbsp; API Document</mix-button
+          >
+        </div>
+
+        <div class="mix-dbs-table__main-container">
+          <div
+            class="h-100 w-100"
+            [class.d-none]="vm.status === 'Loading' || vm.loadDataError"
+          >
+            <div *ngIf="vm.status === 'SilentLoading'" class="mix-progress-bar">
+              <div class="mix-progress-bar-value"></div>
+            </div>
+
+            <ag-grid-angular
+              class="ag-theme-alpine"
+              [animateRows]="true"
+              [columnDefs]="columnDefs"
+              [components]="components"
+              [context]="context"
+              [defaultColDef]="defaultColDef"
+              [rowData]="rowData$ | async"
+              [rowDragManaged]="true"
+              [rowSelection]="'multiple'"
+              [suppressMoveWhenRowDragging]="true"
+              (gridReady)="onGridReady($event)"
+              (selectionChanged)="onSelectionChanged()"
+              style="width: 100%; height: 100%"
+            >
+            </ag-grid-angular>
+          </div>
+
+          <ng-container *ngIf="vm.status === 'Loading'">
+            <div class="p-3">
+              <mix-skeleton-loading type="table"></mix-skeleton-loading>
+            </div>
+          </ng-container>
+
+          <ng-container *ngIf="vm.loadDataError">
+            <div class="p-3">
+              <div class="notification --error">
+                Something error when try to load data, your table may not be
+                migrate to single table.
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div class="mix-dbs-table__footer">
+          <div class="d-flex gap-2">
+            Total items: <strong>{{ vm.pageInfo.total || '--' }}</strong> &nbsp;
+            Page size: <strong>{{ vm.pageInfo.pageSize || '0' }}</strong>
+          </div>
+
+          <tui-pagination
+            *ngIf="!!vm.pageInfo?.totalPage"
+            [index]="vm.pageInfo.pageIndex"
+            [length]="vm.pageInfo.totalPage ?? 0"
+          ></tui-pagination>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
