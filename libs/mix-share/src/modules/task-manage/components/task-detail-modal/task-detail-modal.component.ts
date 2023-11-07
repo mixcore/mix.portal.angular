@@ -91,10 +91,10 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
         .saveTask(value as MixTaskNew)
         .pipe(this.observerLoadingState())
         .subscribe({
-          next: (result) => {
+          next: () => {
             this.toast.success('Success update your task');
-            this.taskStore.addTask(result as unknown as MixTaskNew, 'Update');
-            if (close )this.dialogRef.close();
+            this.taskStore.addTask(value as unknown as MixTaskNew, 'Update');
+            if (close) this.dialogRef.close();
           },
           error: () => {
             this.toast.error('Something error, please try again');

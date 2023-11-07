@@ -14,19 +14,14 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
-import {
-  MixTask,
-  MixTaskNew,
-  TaskStatus,
-  TaskStatusDisplay,
-} from '@mixcore/lib/model';
-import { Observable, combineLatest, forkJoin } from 'rxjs';
-import { TaskCardComponent } from '../task-card/task-card.component';
-import { TaskFilterStore } from '../../store/filter.store';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { TaskStore } from '../../store/task.store';
-import { TaskService } from '../../store/task.service';
+import { MixTaskNew, TaskStatus } from '@mixcore/lib/model';
 import { HotToastService } from '@ngneat/hot-toast';
+import { Observable, combineLatest, forkJoin } from 'rxjs';
+import { TaskFilterStore } from '../../store/filter.store';
+import { TaskService } from '../../store/task.service';
+import { TaskStore } from '../../store/task.store';
+import { TaskCardComponent } from '../task-card/task-card.component';
 
 @Component({
   selector: 'mix-task-dnd-list',
@@ -43,8 +38,7 @@ export class TaskDndListComponent implements OnInit {
   public taskService = inject(TaskService);
   public toast = inject(HotToastService);
 
-  public TaskStatusDisplay = TaskStatusDisplay;
-
+  @Input() public parentTaskId?: number;
   @Input() public status!: TaskStatus;
   @Input() public listTasks!: Observable<MixTaskNew[]>;
   public tasks: MixTaskNew[] = [];
@@ -96,7 +90,12 @@ export class TaskDndListComponent implements OnInit {
 
   private updateListPosition(newList: MixTaskNew[]) {
     const requests = newList.map((issue, idx) => {
-      const newIssueWithNewPosition = { ...issue, priority: idx + 1 };
+      const newIssueWithNewPosition = {
+        ...issue,
+        priority: idx + 1,
+        parentTaskId: this.parentTaskId,
+      };
+
       this.taskStore.addTask(newIssueWithNewPosition, 'Update');
       return this.taskService.saveTask(newIssueWithNewPosition);
     });

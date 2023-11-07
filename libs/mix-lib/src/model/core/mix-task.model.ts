@@ -1,18 +1,3 @@
-export interface MixTask {
-  title: string;
-  id: number;
-  createdDateTime: Date;
-  description?: string;
-  taskStatus: 'New' | 'ReadyForTest' | 'InProgress' | 'Done';
-  assignee: string;
-}
-
-export enum TaskType {
-  STORY = 'Story',
-  TASK = 'Task',
-  BUG = 'Bug',
-}
-
 export enum TaskStatus {
   BACKLOG = 'Backlog',
   SELECTED = 'Selected',
@@ -22,9 +7,16 @@ export enum TaskStatus {
 
 export const TaskStatusDisplay = {
   [TaskStatus.BACKLOG]: 'Backlog',
-  [TaskStatus.SELECTED]: 'Selected for Development',
+  [TaskStatus.SELECTED]: 'Ready for Dev',
   [TaskStatus.IN_PROGRESS]: 'In progress',
   [TaskStatus.DONE]: 'Done',
+};
+
+export const TaskStatusColors = {
+  [TaskStatus.BACKLOG]: 'rgb(112, 114, 143)',
+  [TaskStatus.SELECTED]: 'rgb(228, 64, 87)',
+  [TaskStatus.IN_PROGRESS]: 'rgb(228, 124, 64)',
+  [TaskStatus.DONE]: 'rgb(168, 228, 64)',
 };
 
 export enum TaskPriority {
@@ -51,6 +43,13 @@ export const TaskPriorityIcon = {
   [TaskPriority.LOWEST]: 'arrow_downward',
 };
 
+export enum TaskType {
+  STORY = 'Story',
+  TASK = 'Task',
+  BUG = 'Bug',
+  SWIMLANE = 'Swimlane',
+}
+
 export const TaskTypeIcons = {
   [TaskType.BUG]: 'assets/images/tasks/bug.svg',
   [TaskType.TASK]: 'assets/images/tasks/task.svg',
@@ -74,4 +73,5 @@ export interface MixTaskNew {
   userIds: string[];
   projectId?: string;
   priority: number;
+  parentTaskId?: number;
 }

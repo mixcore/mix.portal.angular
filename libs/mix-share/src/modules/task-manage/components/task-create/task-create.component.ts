@@ -45,6 +45,7 @@ export class TaskCreateComponent extends BaseComponent {
   public taskStore = inject(TaskStore);
   public dialogRef = inject(DialogRef);
   public toast = inject(HotToastService);
+  public parentTask?: MixTaskNew;
 
   public typeLabel = (type: TaskType) => type;
   public typeItems = [TaskType.BUG, TaskType.STORY, TaskType.TASK];
@@ -66,7 +67,17 @@ export class TaskCreateComponent extends BaseComponent {
     taskStatus: new FormControl(TaskStatus.BACKLOG),
     reporter: new FormControl(),
     priority: new FormControl(999),
+    parentTaskId: new FormControl(),
   });
+
+  public ngOnInit() {
+    this.parentTask = this.dialogRef.data?.['parentTask'];
+    if (this.parentTask) {
+      this.taskForm.controls.parentTaskId.patchValue(this.parentTask.id);
+    } else {
+      this.taskForm.controls.type.patchValue(TaskType.SWIMLANE);
+    }
+  }
 
   public createTask() {
     if (FormHelper.validateForm(this.taskForm)) {

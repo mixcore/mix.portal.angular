@@ -1,0 +1,13 @@
+<div class="w-100 task-parent-card text-m" [class.--open]="open">
+  <mix-button [size]="'xs'" [type]="'icon'" (click)="expandClick.emit()"
+    ><span class="mix-icon expand-icon text-xxl">expand_more</span>
+  </mix-button>
+
+  <span>
+    {{ task.title }}
+  </span>
+
+  <mix-button class="ms-2" [size]="'xs'" [iconBtn]="true" (click)="addTask()">
+    <span class="mix-icon text-xxl">add</span>
+  </mix-button>
+</div>

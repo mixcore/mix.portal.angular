@@ -1,0 +1,14 @@
+.task-group {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+}
+
+.task-dnd-list {
+  display: block;
+  min-height: 160px;
+  min-width: var(--task-min-col-w);
+  width: var(--task-col-w);
+  background-color: var(--task-list-bg);
+  border-radius: 0.125rem;
+}

@@ -18,6 +18,9 @@
       "@mixcore/lib/auth": ["libs/mix-lib/src/auth/index.ts"],
       "@mixcore/lib/model": ["libs/mix-lib/src/model/index.ts"],
       "@mixcore/lib/swagger": ["libs/mix-lib/src/swagger/index.ts"],
+      "@mixcore/module/task": [
+        "libs/mix-share/src/modules/task-manage/index.ts"
+      ],
       "@mixcore/share/animation": ["libs/mix-share/src/animations/index.ts"],
       "@mixcore/share/api": ["libs/mix-share/src/api-service/index.ts"],
       "@mixcore/share/auth": ["libs/mix-share/src/auth/index.ts"],
@@ -32,9 +35,6 @@
       "@mixcore/share/signalR": ["libs/mix-share/src/signalR/index.ts"],
       "@mixcore/share/stores": ["libs/mix-share/src/stores/index.ts"],
       "@mixcore/share/utils": ["libs/mix-share/src/utils/index.ts"],
-      "@mixcore/module/task": [
-        "libs/mix-share/src/modules/task-manage/index.ts"
-      ],
       "@mixcore/ui/array-media": ["libs/mix-ui/src/array-media/index.ts"],
       "@mixcore/ui/array-radio": ["libs/mix-ui/src/array-radio/index.ts"],
       "@mixcore/ui/base-control": ["libs/mix-ui/src/base/index.ts"],

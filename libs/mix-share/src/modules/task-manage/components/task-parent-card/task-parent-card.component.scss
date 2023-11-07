@@ -1,0 +1,23 @@
+.task-parent-card {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 0.8rem 0.8rem 0.8rem 0rem;
+  border-bottom: solid 1px #eceff4;
+  transition: all 0.2s ease-in-out;
+
+  .expand-icon {
+    transition: all 0.2s ease-in-out;
+    transform: rotate(-90deg);
+  }
+
+  &.--open {
+    color: var(--blue-02, #008aa8);
+    border-bottom: unset;
+
+    .expand-icon {
+      transform: rotate(0deg);
+      color: var(--blue-02);
+    }
+  }
+}

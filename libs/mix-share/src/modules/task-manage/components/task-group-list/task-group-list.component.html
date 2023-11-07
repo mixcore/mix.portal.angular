@@ -1,0 +1,16 @@
+<mix-task-parent-card
+  [task]="parentTask"
+  [open]="open()"
+  (expandClick)="toggleExpand()"
+></mix-task-parent-card>
+
+<div class="task-group" cdkDropListGroup *ngIf="open()">
+  <mix-task-dnd-list
+    *ngFor="let status of taskStatuses"
+    class="task-dnd-list"
+    [listTasks]="store.getTaskByStatus(status, parentTask.id)"
+    [status]="status"
+    [parentTaskId]="parentTask.id"
+  >
+  </mix-task-dnd-list>
+</div>

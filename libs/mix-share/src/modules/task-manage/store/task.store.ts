@@ -21,11 +21,23 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
     Description: 'description',
   };
 
-  public getTaskByStatus = (status: TaskStatus) => {
+  public getTaskByStatus = (status: TaskStatus, parentTaskId: number) => {
     return this.select((s) => s).pipe(
       map((s) => {
         return s.data
-          .filter((x) => x.taskStatus === status)
+          .filter(
+            (x) => x.taskStatus === status && x.parentTaskId === parentTaskId
+          )
+          .sort((a, b) => a.priority - b.priority);
+      })
+    );
+  };
+
+  public getParentTasks = () => {
+    return this.select((s) => s).pipe(
+      map((s) => {
+        return s.data
+          .filter((x) => !x.parentTaskId)
           .sort((a, b) => a.priority - b.priority);
       })
     );
