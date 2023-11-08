@@ -5,11 +5,12 @@ import {
   TaskStatusColors,
   TaskStatusDisplay,
 } from '@mixcore/lib/model';
+import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
 
 @Component({
   selector: 'mix-task-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MixIconButtonComponent],
   templateUrl: './task-header.component.html',
   styleUrls: ['./task-header.component.scss'],
 })

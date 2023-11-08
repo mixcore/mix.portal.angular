@@ -13,4 +13,13 @@
     border-left: 6px solid var(--color);
     border-radius: 0.125rem;
   }
+
+  .add-btn {
+    background-color: var(--task-list-bg);
+    border-radius: 0.125rem;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

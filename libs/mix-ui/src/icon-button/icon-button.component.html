@@ -1,15 +1,13 @@
-<button class="mix-button"
-        type="button"
-        [appearance]="'icon'"
-        [disabled]="loading || disabled"
-        [showLoader]="loading"
-        [size]="size"
-        tuiButton>
-  <!-- <span class="material-symbols-outlined">
-    {{ name }}
-  </span> -->
-
-  <span class="material-symbols-outlined">
+<button
+  class="mix-button"
+  type="button"
+  [appearance]="'icon'"
+  [disabled]="loading || disabled"
+  [showLoader]="loading"
+  [size]="size"
+  tuiButton
+>
+  <span class="mix-icon">
     {{ name }}
   </span>
 </button>

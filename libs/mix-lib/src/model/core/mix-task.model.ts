@@ -54,6 +54,7 @@ export const TaskTypeIcons = {
   [TaskType.BUG]: 'assets/images/tasks/bug.svg',
   [TaskType.TASK]: 'assets/images/tasks/task.svg',
   [TaskType.STORY]: 'assets/images/tasks/story.svg',
+  [TaskType.SWIMLANE]: 'assets/images/tasks/story.svg',
 };
 
 export interface MixTaskNew {
