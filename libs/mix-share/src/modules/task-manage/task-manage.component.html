@@ -13,21 +13,21 @@
 
     <mix-task-filter></mix-task-filter>
 
-    <div class="task-manage__header">
-      <div
-        class="title text-uppercase text-truncate"
-        *ngFor="let status of taskStatuses"
-        [style.--color]="TaskStatusColors[status]"
-      >
-        {{ TaskStatusDisplay[status] }}
-      </div>
-    </div>
-
     <div
       *ngIf="store.vm$ | async as vm"
       class="task-manage__main-view"
       cdkDropListGroup
     >
+      <div class="task-manage__header">
+        <div
+          class="title text-uppercase text-truncate"
+          *ngFor="let status of taskStatuses"
+          [style.--color]="TaskStatusColors[status]"
+        >
+          {{ TaskStatusDisplay[status] }}
+        </div>
+      </div>
+
       <ng-container *ngIf="store.getParentTasks() | async as tasks">
         <mix-task-group-list
           *ngFor="let task of tasks; trackByProp: 'id'"

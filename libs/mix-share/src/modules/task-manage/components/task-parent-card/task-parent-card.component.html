@@ -3,7 +3,13 @@
     ><span class="mix-icon expand-icon text-xxl">expand_more</span>
   </mix-button>
 
-  <span>
+  <mix-user-avatar
+    *ngIf="userInfo() as info"
+    [userInfo]="info"
+    size="xs"
+  ></mix-user-avatar>
+
+  <span class="task-parent-card__title">
     {{ task.title }}
   </span>
 

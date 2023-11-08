@@ -8,8 +8,6 @@
     display: flex;
     width: 100%;
     gap: 12px;
-    padding: 0px 16px;
-    margin-top: 16px;
 
     .title {
       --color: #fff;
@@ -24,9 +22,9 @@
   }
 
   &__main-view {
-    width: 100%;
+    width: calc(100% - 28px);
     height: 100%;
-    padding: 0px 16px;
+    margin: 14px;
     display: flex;
     flex-direction: column;
     overflow: auto;

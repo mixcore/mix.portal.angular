@@ -11,6 +11,12 @@
     transform: rotate(-90deg);
   }
 
+  &__title {
+    max-width: 240px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   &.--open {
     color: var(--blue-02, #008aa8);
     border-bottom: unset;

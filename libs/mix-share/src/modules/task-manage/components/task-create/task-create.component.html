@@ -1,5 +1,5 @@
 <div class="task-create" [formGroup]="taskForm">
-  <div class="text-l">Create Task</div>
+  <div class="text-l">Add New {{ parentTask ? 'Task' : 'Swimlane' }}</div>
 
   <ng-container *ngIf="parentTask">
     <div class="mt-4 mb-1 text-sub text-500">Task Type</div>
