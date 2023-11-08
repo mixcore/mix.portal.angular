@@ -12,3 +12,10 @@
   background-color: var(--task-list-bg);
   border-radius: 0.125rem;
 }
+
+.task-dnd-skeleton {
+  min-height: 160px;
+  width: var(--task-col-collapse-w);
+  background-color: var(--task-list-bg);
+  border-radius: 0.125rem;
+}
