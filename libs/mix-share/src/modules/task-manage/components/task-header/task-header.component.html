@@ -1,0 +1,9 @@
+<div class="task-header">
+  <div
+    class="title text-uppercase text-truncate"
+    *ngFor="let status of taskStatuses"
+    [style.--color]="TaskStatusColors[status]"
+  >
+    {{ TaskStatusDisplay[status] }}
+  </div>
+</div>

@@ -18,15 +18,7 @@
       class="task-manage__main-view"
       cdkDropListGroup
     >
-      <div class="task-manage__header">
-        <div
-          class="title text-uppercase text-truncate"
-          *ngFor="let status of taskStatuses"
-          [style.--color]="TaskStatusColors[status]"
-        >
-          {{ TaskStatusDisplay[status] }}
-        </div>
-      </div>
+      <mix-task-header></mix-task-header>
 
       <ng-container *ngIf="store.getParentTasks() | async as tasks">
         <mix-task-group-list

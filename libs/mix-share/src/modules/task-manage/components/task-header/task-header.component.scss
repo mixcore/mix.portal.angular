@@ -1,0 +1,16 @@
+.task-header {
+  display: flex;
+  width: 100%;
+  gap: 12px;
+
+  .title {
+    --color: #fff;
+
+    padding: var(--task-col-padding);
+    min-width: var(--task-min-col-w);
+    width: var(--task-col-w);
+    background-color: var(--task-list-bg);
+    border-left: 6px solid var(--color);
+    border-radius: 0.125rem;
+  }
+}

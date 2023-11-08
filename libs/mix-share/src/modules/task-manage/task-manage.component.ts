@@ -31,6 +31,7 @@ import { TaskCreateComponent } from './components/task-create/task-create.compon
 import { TaskDndListComponent } from './components/task-dnd-list/task-dnd-list.component';
 import { TaskFilterComponent } from './components/task-filter/task-filter.component';
 import { TaskGroupListComponent } from './components/task-group-list/task-group-list.component';
+import { TaskHeaderComponent } from './components/task-header/task-header.component';
 import { TaskStore } from './store/task.store';
 
 @Component({
@@ -53,6 +54,7 @@ import { TaskStore } from './store/task.store';
     TaskDndListComponent,
     TaskFilterComponent,
     TaskGroupListComponent,
+    TaskHeaderComponent,
     TrackByProp,
   ],
   templateUrl: './task-manage.component.html',

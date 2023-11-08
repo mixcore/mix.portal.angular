@@ -4,25 +4,9 @@
   --task-list-bg: rgb(244 245 247);
   --task-col-padding: 8px 16px;
 
-  &__header {
-    display: flex;
-    width: 100%;
-    gap: 12px;
-
-    .title {
-      --color: #fff;
-
-      padding: var(--task-col-padding);
-      min-width: var(--task-min-col-w);
-      width: var(--task-col-w);
-      background-color: var(--task-list-bg);
-      border-left: 6px solid var(--color);
-      border-radius: 0.125rem;
-    }
-  }
-
   &__main-view {
-    width: calc(100% - 28px);
+    max-width: calc(100% - 28px);
+    width: fit-content;
     height: 100%;
     margin: 14px;
     display: flex;
