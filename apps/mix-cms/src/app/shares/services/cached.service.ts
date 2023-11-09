@@ -27,6 +27,7 @@ export class CacheService {
   }
 
   public set(url: string, data: any): void {
+    console.log(data);
     this.cache.set(url, data, {});
   }
 
