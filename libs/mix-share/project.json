@@ -7,7 +7,7 @@
   "targets": {
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/mix-share"],
+      "outputs": ["{workspaceRoot}/coverage/libs/mix-share"],
       "options": {
         "jestConfig": "libs/mix-share/jest.config.ts",
         "passWithNoTests": true

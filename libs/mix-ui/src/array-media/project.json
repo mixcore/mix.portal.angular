@@ -5,7 +5,7 @@
   "sourceRoot": "libs/mix-ui/src/array-media",
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
+      "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [

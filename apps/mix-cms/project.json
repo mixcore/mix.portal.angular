@@ -127,10 +127,10 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "mix-cms:build:production"
+          "buildTarget": "mix-cms:build:production"
         },
         "development": {
-          "browserTarget": "mix-cms:build:development"
+          "buildTarget": "mix-cms:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -138,7 +138,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "mix-cms:build"
+        "buildTarget": "mix-cms:build"
       }
     },
     "lint": {
@@ -149,7 +149,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/mix-cms"],
+      "outputs": ["{workspaceRoot}/coverage/apps/mix-cms"],
       "options": {
         "jestConfig": "apps/mix-cms/jest.config.ts",
         "passWithNoTests": true

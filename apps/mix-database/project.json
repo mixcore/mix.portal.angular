@@ -127,11 +127,11 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "mix-database:build:production"
+          "buildTarget": "mix-database:build:production"
         },
         "development": {
-          "browserTarget": "mix-database:build:development",
-          "port": 4200
+          "port": 4200,
+          "buildTarget": "mix-database:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -139,7 +139,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "mix-database:build"
+        "buildTarget": "mix-database:build"
       }
     },
     "lint": {
@@ -153,7 +153,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/mix-database"],
+      "outputs": ["{workspaceRoot}/coverage/apps/mix-database"],
       "options": {
         "jestConfig": "apps/mix-database/jest.config.ts",
         "passWithNoTests": true

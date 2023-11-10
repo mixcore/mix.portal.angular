@@ -127,11 +127,11 @@
       "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
-          "browserTarget": "mix-kanban:build:production"
+          "buildTarget": "mix-kanban:build:production"
         },
         "development": {
-          "browserTarget": "mix-kanban:build:development",
-          "port": 4200
+          "port": 4200,
+          "buildTarget": "mix-kanban:build:development"
         }
       },
       "defaultConfiguration": "development"
@@ -139,7 +139,7 @@
     "extract-i18n": {
       "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
-        "browserTarget": "mix-kanban:build"
+        "buildTarget": "mix-kanban:build"
       }
     },
     "lint": {
@@ -153,7 +153,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/mix-kanban"],
+      "outputs": ["{workspaceRoot}/coverage/apps/mix-kanban"],
       "options": {
         "jestConfig": "apps/mix-kanban/jest.config.ts",
         "passWithNoTests": true
