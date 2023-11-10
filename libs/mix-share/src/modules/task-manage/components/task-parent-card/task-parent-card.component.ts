@@ -39,12 +39,14 @@ export class TaskParentCardComponent {
     });
   }
 
-  public ngOnInit() {
-    if (!this.task.reporter) return;
+  public ngOnChanges() {
+    if (!this.task.reporter || this.userInfo()) return;
 
     this.userInfoStore
       .getUserById(this.task.reporter)
       .pipe(take(1))
-      .subscribe((info) => this.userInfo.set(info));
+      .subscribe((info) => {
+        this.userInfo.set(info);
+      });
   }
 }
