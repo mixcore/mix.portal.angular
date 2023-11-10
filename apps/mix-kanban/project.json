@@ -33,7 +33,8 @@
         "styles": [
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
           "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-          "apps/mix-kanban/src/styles.scss"
+          "libs/share-styles/src/index.scss",
+          "apps/mix-cms/src/styles.scss"
         ],
         "scripts": [],
         "allowedCommonJsDependencies": [

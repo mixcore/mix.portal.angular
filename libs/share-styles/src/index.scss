@@ -1,0 +1,30 @@
+@import 'node_modules/@ngneat/hot-toast/src/styles/styles.scss';
+@import '~jsoneditor/dist/jsoneditor.min.css';
+@import '~tippy.js/dist/tippy.css';
+@import '~tippy.js/themes/light.css';
+@import '~tippy.js/animations/scale.css';
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+@import '@taiga-ui/core/styles/taiga-ui-local.scss';
+
+@import './styles/reboot/index.scss';
+@import './styles/spacing.scss';
+@import './styles/variables.scss';
+@import './styles/overwrite-variables.scss';
+@import './styles/shares/page-list.scss';
+@import './styles/shares/page-detail.scss';
+@import './styles/material-symbol.scss';
+@import './styles/font.scss';
+@import './styles/progress-bar.scss';
+@import './styles/tippy.scss';
+@import './styles/notifications.scss';
+@import './styles/dialog.scss';
+@import './styles/dragndrop.scss';
+@import './styles/scrollbar.scss';
+@import './styles/ag-table.scss';
+@import './styles/ultilities.scss';
+@import './styles/ripple.scss';
+
+* {
+  box-sizing: border-box;
+}
