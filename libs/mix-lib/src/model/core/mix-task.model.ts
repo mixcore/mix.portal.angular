@@ -35,7 +35,7 @@ export const TaskPriorityColors = {
   [TaskPriority.LOWEST]: '#57A55A',
 };
 
-export const TaskPriorityIcon = {
+export const TaskPriorityIcon: { [key: string]: string } = {
   [TaskPriority.HIGHEST]: 'arrow_upward',
   [TaskPriority.HIGH]: 'arrow_upward',
   [TaskPriority.MEDIUM]: 'arrow_upward',
@@ -50,7 +50,7 @@ export enum TaskType {
   SWIMLANE = 'Swimlane',
 }
 
-export const TaskTypeIcons = {
+export const TaskTypeIcons: { [key: string]: string } = {
   [TaskType.BUG]: 'assets/images/tasks/bug.svg',
   [TaskType.TASK]: 'assets/images/tasks/task.svg',
   [TaskType.STORY]: 'assets/images/tasks/story.svg',

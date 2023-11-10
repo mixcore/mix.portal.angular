@@ -10,7 +10,10 @@ import {
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiDestroyService, tuiPure } from '@taiga-ui/cdk';
-import { TuiTextfieldControllerModule } from '@taiga-ui/core';
+import {
+  TuiDataListModule,
+  TuiTextfieldControllerModule,
+} from '@taiga-ui/core';
 import {
   TuiComboBoxModule,
   TuiDataListWrapperModule,
@@ -26,6 +29,7 @@ import { takeUntil } from 'rxjs';
     ReactiveFormsModule,
     TuiComboBoxModule,
     TuiDataListWrapperModule,
+    TuiDataListModule,
     TuiStringifyContentPipeModule,
     TuiTextfieldControllerModule,
   ],
@@ -42,8 +46,8 @@ export class MixSelectComponent
   @Input() public items: any = [];
   @Input() public labelKey = '';
   @Input() public override placeHolder = 'Type';
-  @Input() size: 'm' | 's' | 'l' = 'm';
-  @Input() labelProcess?: (item: any) => string = undefined;
+  @Input() public size: 'm' | 's' | 'l' = 'm';
+  @Input() public labelProcess?: (item: any) => string = undefined;
 
   @tuiPure
   stringify(item: any) {

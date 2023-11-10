@@ -1,9 +1,15 @@
-<tui-combo-box *ngIf="control"
-               [formControl]="control"
-               [stringify]="stringify"
-               [tuiTextfieldLabelOutside]="true"
-               [tuiTextfieldSize]="size">
-  <tui-data-list-wrapper *tuiDataList
-                         [itemContent]="stringify | tuiStringifyContent"
-                         [items]="items"></tui-data-list-wrapper>
+<tui-combo-box
+  *ngIf="control"
+  [formControl]="control"
+  [stringify]="stringify"
+  [tuiTextfieldLabelOutside]="true"
+  [tuiTextfieldSize]="size"
+>
+  <tui-data-list *tuiDataList>
+    <button *ngFor="let item of items" [value]="item" tuiOption>
+      <div class="d-flex align-items-center gap-2">
+        <span>{{ stringify(item) }}</span>
+      </div>
+    </button>
+  </tui-data-list>
 </tui-combo-box>

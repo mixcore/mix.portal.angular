@@ -1,33 +1,34 @@
-<div>
-  <tui-select [formControl]="control"
-              [tuiTextfieldLabelOutside]="true"
-              [valueContent]="cardContent">
-    Choose a users
-    <tui-data-list *tuiDataList>
-      <button *ngFor="let item of userData"
-              [value]="item.id"
-              tuiOption>
-        <div class="d-flex align-items-center gap-2">
-          <tui-avatar [autoColor]="true"
-                      [rounded]="true"
-                      [text]="item.userName || item.email || ''"
-                      size="xs"></tui-avatar>
+<tui-select
+  [formControl]="control"
+  [tuiTextfieldLabelOutside]="true"
+  [valueContent]="cardContent"
+>
+  Choose a users
+  <tui-data-list *tuiDataList>
+    <button *ngFor="let item of userData" [value]="item.id" tuiOption>
+      <div class="d-flex align-items-center gap-2">
+        <tui-avatar
+          [autoColor]="true"
+          [rounded]="true"
+          [text]="item.userName || item.email || ''"
+          size="xs"
+        ></tui-avatar>
 
-          <span class="card-name">{{ item.userName }}</span>
-        </div>
-      </button>
-    </tui-data-list>
-  </tui-select>
-</div>
+        <span class="card-name">{{ item.userName }}</span>
+      </div>
+    </button>
+  </tui-data-list>
+</tui-select>
 
-<ng-template #cardContent
-             let-item>
+<ng-template #cardContent let-item>
   <div class="d-flex align-items-center gap-2">
     <ng-container *ngIf="userDataMap[item] as item">
-      <tui-avatar [autoColor]="true"
-                  [rounded]="true"
-                  [text]="item.userName || item.email || ''"
-                  size="xs"></tui-avatar>
+      <tui-avatar
+        [autoColor]="true"
+        [rounded]="true"
+        [text]="item.userName || item.email || ''"
+        size="xs"
+      ></tui-avatar>
 
       <span class="card-name">{{ item.userName }}</span>
     </ng-container>

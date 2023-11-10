@@ -23,6 +23,8 @@ import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TaskService } from '../../store/task.service';
 import { TaskStore } from '../../store/task.store';
+import { TaskPrioritySelectComponent } from '../task-priority-select/task-priority-select.component';
+import { TaskTypeSelectComponent } from '../task-type-select/task-type-select.component';
 
 @Component({
   selector: 'mix-task-create',
@@ -35,6 +37,8 @@ import { TaskStore } from '../../store/task.store';
     MixEditorComponent,
     MixButtonComponent,
     UserSelectComponent,
+    TaskTypeSelectComponent,
+    TaskPrioritySelectComponent,
   ],
   templateUrl: './task-create.component.html',
   styleUrls: ['./task-create.component.scss'],
@@ -46,18 +50,6 @@ export class TaskCreateComponent extends BaseComponent {
   public dialogRef = inject(DialogRef);
   public toast = inject(HotToastService);
   public parentTask?: MixTaskNew;
-
-  public typeLabel = (type: TaskType) => type;
-  public typeItems = [TaskType.BUG, TaskType.STORY, TaskType.TASK];
-
-  public priorityLabel = (priority: TaskPriority) => priority;
-  public prorityItems = [
-    TaskPriority.LOWEST,
-    TaskPriority.LOW,
-    TaskPriority.MEDIUM,
-    TaskPriority.HIGH,
-    TaskPriority.HIGHEST,
-  ];
 
   public taskForm = new FormGroup({
     title: new FormControl('', Validators.required),
