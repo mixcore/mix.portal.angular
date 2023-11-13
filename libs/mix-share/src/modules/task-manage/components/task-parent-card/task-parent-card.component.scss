@@ -15,6 +15,8 @@
     max-width: 240px;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: var(--text-size-s);
   }
 
   &.--open {

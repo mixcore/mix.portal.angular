@@ -7,7 +7,7 @@ export enum TaskStatus {
 
 export const TaskStatusDisplay = {
   [TaskStatus.BACKLOG]: 'Backlog',
-  [TaskStatus.SELECTED]: 'Ready for Dev',
+  [TaskStatus.SELECTED]: 'Ready For Dev',
   [TaskStatus.IN_PROGRESS]: 'In progress',
   [TaskStatus.DONE]: 'Done',
 };
