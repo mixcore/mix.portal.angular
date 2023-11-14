@@ -10,8 +10,19 @@
     min-width: var(--task-min-col-w);
     width: var(--task-col-w);
     background-color: var(--task-list-bg);
-    border-left: 6px solid var(--color);
     border-radius: 0.125rem;
+    display: flex;
+    gap: 8px;
+    padding-left: 4px;
+
+    &::before {
+      display: block;
+      width: 6px;
+      height: 110%;
+      content: '';
+      background-color: var(--color);
+      border-radius: 1rem;
+    }
   }
 
   .add-btn {

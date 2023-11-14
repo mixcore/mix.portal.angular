@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, forwardRef, inject } from '@angular/core';
+import { Component, Input, forwardRef, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   ControlValueAccessor,
@@ -40,6 +40,8 @@ import { distinctUntilChanged, filter } from 'rxjs';
   ],
 })
 export class UserSelectComponent implements ControlValueAccessor {
+  @Input() public size: 'm' | 's' | 'l' = 'm';
+
   public mixApi = inject(MixApiFacadeService);
   public store = inject(UserInfoStore);
   public control = new FormControl();
