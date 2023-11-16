@@ -45,6 +45,7 @@ import { CMS_ROUTES } from '../../../../app.routes';
 import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
 import { DatabaseStore } from '../../../../stores/database.store';
+import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
 
 @Component({
   selector: 'mix-database-detail',
@@ -68,6 +69,7 @@ import { DatabaseStore } from '../../../../stores/database.store';
     TuiInputInlineModule,
     TuiAutoFocusModule,
     DatabaseSelectComponent,
+    DatabaseRelationshipComponent,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],

@@ -16,6 +16,7 @@ import { forkJoin } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { DatabaseStore } from '../../../stores/database.store';
+import { DatabaseRelationshipComponent } from './components/database-relationship/database-relationship.component';
 
 @Component({
   selector: 'mix-database',
@@ -28,6 +29,7 @@ import { DatabaseStore } from '../../../stores/database.store';
     MixStatusIndicatorComponent,
     RelativeTimeSpanPipe,
     DynamicFilterComponent,
+    DatabaseRelationshipComponent,
   ],
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.scss'],

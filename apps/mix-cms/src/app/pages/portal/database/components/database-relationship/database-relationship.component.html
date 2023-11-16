@@ -1,0 +1,16 @@
+<div class="card-list">
+  <div cdkDropList [cdkDropListData]="relationships">
+    <mix-database-relationship-record
+      *ngFor="let item of relationships"
+      cdkDrag
+      [cdkDragData]="item"
+    >
+    </mix-database-relationship-record>
+  </div>
+
+  <div class="mt-3">
+    <mix-button size="s" (click)="addNewRelation()">
+      <span class="mix-icon">add</span> Add new relation
+    </mix-button>
+  </div>
+</div>

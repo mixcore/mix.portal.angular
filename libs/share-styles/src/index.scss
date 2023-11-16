@@ -7,12 +7,14 @@
 @import 'ag-grid-community/styles/ag-theme-alpine.css';
 @import '@taiga-ui/core/styles/taiga-ui-local.scss';
 
+@import './styles/shares/page-list.scss';
+@import './styles/shares/page-detail.scss';
+@import './styles/shares/card.scss';
+
 @import './styles/reboot/index.scss';
 @import './styles/spacing.scss';
 @import './styles/variables.scss';
 @import './styles/overwrite-variables.scss';
-@import './styles/shares/page-list.scss';
-@import './styles/shares/page-detail.scss';
 @import './styles/material-symbol.scss';
 @import './styles/font.scss';
 @import './styles/progress-bar.scss';
@@ -27,4 +29,8 @@
 
 * {
   box-sizing: border-box;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

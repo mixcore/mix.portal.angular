@@ -1,63 +1,73 @@
-<div class="entity-form"
-     [class.--new]="entity.new"
-     [formGroup]="form">
-  <div class="row">
-    <div class="col-4 d-flex align-items-center gap-2">
-      <div>
-        <ng-content></ng-content>
-      </div>
-
-      <mix-input [size]="'s'"
-                 placeHolder="Display name"
-                 formControlName="displayName"></mix-input>
-    </div>
-
-    <div class="col-4">
-      <div class="d-flex gap-1">
-        <mix-button type="outline"
-                    [iconBtn]="true"
-                    (click)="updateSystemName(true)"
-                    size="m"><span class="mix-icon">refresh</span></mix-button>
-        <mix-input [closable]="false"
-                   [size]="'s'"
-                   placeHolder="Unique system name"
-                   formControlName="systemName"></mix-input>
-      </div>
-    </div>
-
-    <div class="col-2">
-      <mix-button class="w-100 data-type-select"
-                  type="outline"
-                  (click)="showDataTypeDialog($event, dataTypePicker)"
-                  size="m">
-        <div *ngIf="form.controls.dataType.value">
-          {{
-            $any(dataTypeDisplay)[form.controls.dataType.value]?.name ??
-              form.controls.dataType.value
-          }}
+<div class="card-01-wrap">
+  <div class="card-01" [class.--new]="entity.new" [formGroup]="form">
+    <div class="row">
+      <div class="col-4 d-flex align-items-center gap-2">
+        <div>
+          <ng-content></ng-content>
         </div>
 
-        <span class="mix-icon">chevron_right</span>
-      </mix-button>
+        <mix-input
+          [size]="'s'"
+          placeHolder="Display name"
+          formControlName="displayName"
+        ></mix-input>
+      </div>
+
+      <div class="col-4">
+        <div class="d-flex gap-1">
+          <mix-button
+            type="outline"
+            [iconBtn]="true"
+            (click)="updateSystemName(true)"
+            size="m"
+            ><span class="mix-icon">refresh</span></mix-button
+          >
+          <mix-input
+            [closable]="false"
+            [size]="'s'"
+            placeHolder="Unique system name"
+            formControlName="systemName"
+          ></mix-input>
+        </div>
+      </div>
+
+      <div class="col-2">
+        <mix-button
+          class="w-100 data-type-select"
+          type="outline"
+          (click)="showDataTypeDialog($event, dataTypePicker)"
+          size="m"
+        >
+          <div *ngIf="form.controls.dataType.value">
+            {{
+              $any(dataTypeDisplay)[form.controls.dataType.value]?.name ??
+                form.controls.dataType.value
+            }}
+          </div>
+
+          <span class="mix-icon">chevron_right</span>
+        </mix-button>
+      </div>
     </div>
-  </div>
 
-  <div class="entity-form__action">
-    <mix-button [iconBtn]="true"
-                (click)="showDialog(template)"
-                size="s"><span class="material-symbols-outlined"> settings </span></mix-button>
+    <div class="card-01__action">
+      <mix-button [iconBtn]="true" (click)="showDialog(template)" size="s"
+        ><span class="material-symbols-outlined"> settings </span></mix-button
+      >
 
-    <mix-button type="danger"
-                [iconBtn]="true"
-                (click)="deleteEntity.emit(entity)"
-                size="s"><span class="material-symbols-outlined"> delete </span></mix-button>
+      <mix-button
+        type="danger"
+        [iconBtn]="true"
+        (click)="deleteEntity.emit(entity)"
+        size="s"
+        ><span class="material-symbols-outlined"> delete </span></mix-button
+      >
+    </div>
   </div>
 </div>
 
-<ng-template #template
-             let-observer>
-  <nav [(activeItemIndex)]="activeTabIndex"
-       tuiTabs>
+<ng-template #template let-observer>
+  <nav [(activeItemIndex)]="activeTabIndex" tuiTabs>
     <button tuiTab>
       <span class="material-symbols-outlined"> feed </span>&nbsp; General
     </button>
@@ -67,39 +77,39 @@
     </button>
   </nav>
 
-  <div class="mt-8"
-       [formGroup]="configurationForm">
+  <div class="mt-8" [formGroup]="configurationForm">
     <ng-container *ngIf="activeTabIndex === 0">
-      <mix-toggle class="mt-2"
-                  formControlName="isEncrypt">
-        Encrypt this field</mix-toggle>
-      <mix-toggle class="mt-2"
-                  formControlName="isRequire">
-        Mark this field as required</mix-toggle>
+      <mix-toggle class="mt-2" formControlName="isEncrypt">
+        Encrypt this field</mix-toggle
+      >
+      <mix-toggle class="mt-2" formControlName="isRequire">
+        Mark this field as required</mix-toggle
+      >
     </ng-container>
   </div>
 </ng-template>
 
-<ng-template #dataTypePicker
-             let-ref>
+<ng-template #dataTypePicker let-ref>
   <div class="mix-dialog__header">Choose data type</div>
   <div class="data-type-picker-dialog-container">
     <ng-container *ngFor="let group of dataTypeGroups">
-      <div class="row mb-3"
-           [formGroup]="form">
+      <div class="row mb-3" [formGroup]="form">
         <div class="col-12">
           <div class="text-l mb-2 text-500">{{ group.label }}</div>
         </div>
-        <div *ngFor="let dataType of group.types"
-             class="col-12 col-md-6">
-          <tui-radio-block class="mb-2 data-type-card"
-                           [item]="dataType.value"
-                           formControlName="dataType"
-                           contentAlign="left"
-                           size="l">
+        <div *ngFor="let dataType of group.types" class="col-12 col-md-6">
+          <tui-radio-block
+            class="mb-2 data-type-card"
+            [item]="dataType.value"
+            formControlName="dataType"
+            contentAlign="left"
+            size="l"
+          >
             <div class="inner">
-              <span class="header"><span class="mix-icon">{{ dataType.icon }}</span>
-                {{ dataType.name }}</span>
+              <span class="header"
+                ><span class="mix-icon">{{ dataType.icon }}</span>
+                {{ dataType.name }}</span
+              >
 
               <div class="text-sub text-s mt-2">
                 {{

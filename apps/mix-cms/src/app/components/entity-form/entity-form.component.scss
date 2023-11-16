@@ -3,36 +3,6 @@ mix-entity-form {
   width: 100%;
 }
 
-.entity-form {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  border: 1px solid var(--border-color-default);
-  border-radius: var(--border-radius-default);
-  background-color: var(--background-color-primary);
-  position: relative;
-
-  &.--new {
-    border: 1px solid var(--success-color);
-  }
-
-  &__action {
-    position: absolute;
-    top: 50%;
-    right: 18px;
-    transform: translate(0, -50%);
-    display: flex;
-
-    mix-button {
-      margin-left: 8px;
-    }
-  }
-
-  &:hover {
-    background-color: var(--highlight-background-color);
-  }
-}
-
 .data-type-select {
   .t-content {
     justify-content: space-between;
