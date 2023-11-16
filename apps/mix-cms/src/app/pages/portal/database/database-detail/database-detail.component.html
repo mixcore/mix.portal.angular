@@ -132,64 +132,23 @@
         </div>
 
         <!-- Content -->
+        @defer(when activeTabIndex === 1) {
         <div
           class="data-detail-page__main-content"
           [class.d-none]="activeTabIndex !== 1"
         >
-          <div class="mt-1 notification --info">
-            Default system columns:
-            <span class="text-highlight">id</span>,
-            <span class="text-highlight">createdAt</span>,
-            <span class="text-highlight">createdBy</span>,
-            <span class="text-highlight">updatedAt</span>,
-            <span class="text-highlight">priority</span>
-          </div>
-
-          <div class="entity-table-header mt-3">
-            <div class="row">
-              <div class="col-4 name">
-                <div>Display name</div>
-              </div>
-
-              <div class="col-4">
-                <div>System name</div>
-              </div>
-
-              <div class="col-2">
-                <div>Data type</div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card-list">
-            <div (cdkDropListDropped)="drop($event)" cdkDropList>
-              <mix-entity-form
-                *ngFor="
-                  let entity of data?.columns ?? [];
-                  let i = index;
-                  trackBy: identify
-                "
-                [entity]="entity"
-                (deleteEntity)="removeEntity($event, i)"
-                (entityChange)="entityChange($event, i)"
-                cdkDrag
-              >
-                <span class="mix-icon cursor-grab" cdkDragHandle
-                  >drag_indicator</span
-                >
-              </mix-entity-form>
-            </div>
-          </div>
-
-          <div class="mt-3">
-            <mix-button (click)="addNewEntity()" size="s"
-              ><span class="mix-icon">add</span> Add new columns</mix-button
-            >
-          </div>
+          <mix-database-entity
+            [columns]="data?.columns ?? []"
+            (columnsChange)="onColumnsChange($event)"
+          ></mix-database-entity>
         </div>
-
+        }
+        <!-- / -->
         @defer(when activeTabIndex === 2) {
-        <div class="data-detail-page__main-content">
+        <div
+          class="data-detail-page__main-content"
+          [class.d-none]="activeTabIndex !== 2"
+        >
           <mix-database-relationship></mix-database-relationship>
         </div>
         }

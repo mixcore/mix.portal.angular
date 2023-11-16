@@ -1,8 +1,4 @@
-import {
-  CdkDragDrop,
-  DragDropModule,
-  moveItemInArray,
-} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -25,7 +21,6 @@ import { Router } from '@angular/router';
 import { MixColumn, MixDatabase } from '@mixcore/lib/model';
 import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
-import { toastObserverProcessing } from '@mixcore/share/helper';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixEditorComponent } from '@mixcore/ui/editor';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -45,6 +40,7 @@ import { CMS_ROUTES } from '../../../../app.routes';
 import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
 import { DatabaseStore } from '../../../../stores/database.store';
+import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
 import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
 
 @Component({
@@ -70,6 +66,7 @@ import { DatabaseRelationshipComponent } from '../components/database-relationsh
     TuiAutoFocusModule,
     DatabaseSelectComponent,
     DatabaseRelationshipComponent,
+    DatabaseEntityComponent,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
@@ -94,7 +91,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   });
 
   ngOnInit() {
-    // this.zone.runOutsideAngular(() => {
     this.activeRoute.params
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {
@@ -128,47 +124,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
 
         this.updateSystemName(value);
       });
-  }
-
-  public addNewEntity(): void {
-    if (!this.data) return;
-    if (!this.data?.columns?.length) {
-      this.data.columns = [new MixColumn({ new: true, priority: 0 })];
-    } else {
-      const priority =
-        Math.max(...this.data.columns.map((x) => x.priority || 0)) + 1;
-      this.data.columns.push(new MixColumn({ new: true, priority: priority }));
-    }
-  }
-
-  public removeEntity(entity: MixColumn, index: number) {
-    if (!this.data) return;
-
-    const toDeleteData = this.data.columns[index];
-    if (toDeleteData.id >= 0 && !toDeleteData.new) {
-      this.modal.asKForAction('Are you sure to remove this column?', () => {
-        this.mixApi.databaseApi
-          .deleteDbColumn(toDeleteData.id)
-          .pipe(toastObserverProcessing(this.toast))
-          .subscribe({
-            next: () => {
-              this.data?.columns.splice(index, 1);
-              this.cdr.detectChanges();
-            },
-          });
-      });
-    } else {
-      this.data.columns.splice(index, 1);
-    }
-  }
-
-  public entityChange(entity: MixColumn, index: number) {
-    if (!this.data) return;
-
-    this.data.columns[index] = {
-      ...this.data?.columns[index],
-      ...entity,
-    };
   }
 
   public submit(): void {
@@ -216,10 +171,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     );
   }
 
-  public identify(index: number, item: MixColumn) {
-    return item.id;
-  }
-
   public updateSystemName(value: string) {
     const words = value.split(' ');
     const camelCaseString = words
@@ -241,21 +192,10 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     if (!focused) this.editTitle = false;
   }
 
-  public drop(event: CdkDragDrop<MixColumn[]>) {
-    if (this.data?.columns) {
-      moveItemInArray(
-        this.data?.columns,
-        event.previousIndex,
-        event.currentIndex
-      );
+  public onColumnsChange(columns: MixColumn[]) {
+    if (!this.data) return;
 
-      this.data.columns = this.data.columns.map((x, index) => ({
-        ...x,
-        priority: index,
-      }));
-
-      this.cdr.detectChanges();
-    }
+    this.data.columns = columns;
   }
 
   async goDatabaseData(sysName: string) {
