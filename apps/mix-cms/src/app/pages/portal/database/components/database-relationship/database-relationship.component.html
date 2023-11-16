@@ -1,4 +1,20 @@
 <div class="card-list">
+  <div class="card-list__header mt-3 mb-1">
+    <div class="row">
+      <div class="col-4 name">
+        <div>Name</div>
+      </div>
+
+      <div class="col-4">
+        <div>Database</div>
+      </div>
+
+      <div class="col-2">
+        <div>Relation type</div>
+      </div>
+    </div>
+  </div>
+
   <div cdkDropList [cdkDropListData]="relationships">
     <mix-database-relationship-record
       *ngFor="let item of relationships"

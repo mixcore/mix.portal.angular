@@ -7,23 +7,23 @@
   <span class="text-highlight">priority</span>
 </div>
 
-<div class="entity-table-header mt-3">
-  <div class="row">
-    <div class="col-4 name">
-      <div>Display name</div>
-    </div>
+<div class="card-list">
+  <div class="card-list__header mt-3 mb-1">
+    <div class="row">
+      <div class="col-4 name">
+        <div>Display name</div>
+      </div>
 
-    <div class="col-4">
-      <div>System name</div>
-    </div>
+      <div class="col-4">
+        <div>System name</div>
+      </div>
 
-    <div class="col-2">
-      <div>Data type</div>
+      <div class="col-2">
+        <div>Data type</div>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="card-list">
   <div (cdkDropListDropped)="drop($event)" cdkDropList>
     @for(entity of columns; track entity.id; let i = $index ) {
     <mix-entity-form
