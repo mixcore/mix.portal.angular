@@ -1,19 +1,27 @@
-<div class="card-01-wrap" [class.--new]="value.new">
+<div class="card-01-wrap" [class.--new]="value.new" [formGroup]="form">
   <div class="card-01">
     <div class="row">
       <div class="col-4 d-flex align-items-center gap-2">
         <span class="mix-icon cursor-grab">drag_indicator</span>
 
-        <mix-input placeHolder="Display name"></mix-input>
+        <mix-input
+          placeHolder="Display name"
+          formControlName="displayName"
+        ></mix-input>
       </div>
 
       <div class="col-4">
         <mix-select
-          [labelKey]="'displayName'"
           class="w-100"
-          [items]="(databaseStore.vm$ | async)?.data"
+          [items]="allDatabaseIds"
+          [labelProcess]="labelProcess"
           placeHolder="Choose database"
+          formControlName="parentId"
         ></mix-select>
+      </div>
+
+      <div class="col-4 align-items-center d-flex">
+        <span class="text-500"> One to Many </span>
       </div>
     </div>
 

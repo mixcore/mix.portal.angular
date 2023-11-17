@@ -37,6 +37,7 @@ export class ModalService extends AbstractTuiDialogService<
       heading: title,
       borderShadowColor: this.modalShadowColor.info,
     };
+
     return this.open(message, options);
   }
 
@@ -46,6 +47,7 @@ export class ModalService extends AbstractTuiDialogService<
       heading: 'Confirmation',
       borderShadowColor: this.modalShadowColor.confirm,
     };
+
     return this.open(message, options);
   }
 
@@ -65,6 +67,7 @@ export class ModalService extends AbstractTuiDialogService<
       heading: 'Congratulation',
       borderShadowColor: this.modalShadowColor.success,
     };
+
     return this.open(message, options);
   }
 
@@ -74,6 +77,7 @@ export class ModalService extends AbstractTuiDialogService<
       heading: 'Error !',
       borderShadowColor: this.modalShadowColor.success,
     };
+
     return this.open(message, options);
   }
 
@@ -83,6 +87,7 @@ export class ModalService extends AbstractTuiDialogService<
       heading: 'Warning',
       borderShadowColor: this.modalShadowColor.warning,
     };
+
     return this.open(message, options);
   }
 

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -36,6 +37,7 @@ import { takeUntil } from 'rxjs';
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   providers: [TuiDestroyService],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixSelectComponent
   extends BaseTextControl
