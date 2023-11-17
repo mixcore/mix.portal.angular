@@ -1,10 +1,19 @@
-<div class="card-01-wrap">
+<div class="card-01-wrap" [class.--new]="value.new">
   <div class="card-01">
     <div class="row">
       <div class="col-4 d-flex align-items-center gap-2">
         <span class="mix-icon cursor-grab">drag_indicator</span>
 
-        <mix-input [size]="'s'" placeHolder="Display name"></mix-input>
+        <mix-input placeHolder="Display name"></mix-input>
+      </div>
+
+      <div class="col-4">
+        <mix-select
+          [labelKey]="'displayName'"
+          class="w-100"
+          [items]="(databaseStore.vm$ | async)?.data"
+          placeHolder="Choose database"
+        ></mix-select>
       </div>
     </div>
 

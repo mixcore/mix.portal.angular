@@ -1,5 +1,5 @@
-<div class="card-01-wrap">
-  <div class="card-01" [class.--new]="entity.new" [formGroup]="form">
+<div class="card-01-wrap" [class.--new]="entity.new">
+  <div class="card-01" [formGroup]="form">
     <div class="row">
       <div class="col-4 d-flex align-items-center gap-2">
         <div>
@@ -7,7 +7,6 @@
         </div>
 
         <mix-input
-          [size]="'s'"
           placeHolder="Display name"
           formControlName="displayName"
         ></mix-input>
@@ -24,7 +23,6 @@
           >
           <mix-input
             [closable]="false"
-            [size]="'s'"
             placeHolder="Unique system name"
             formControlName="systemName"
           ></mix-input>

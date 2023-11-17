@@ -20,6 +20,7 @@
       *ngFor="let item of relationships"
       cdkDrag
       [cdkDragData]="item"
+      [value]="item"
     >
     </mix-database-relationship-record>
   </div>

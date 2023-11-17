@@ -43,6 +43,7 @@ export interface MixRelationShip {
   priority: number;
   status: string;
   isDeleted: boolean;
+  new: boolean;
 }
 
 export enum RelationShipType {

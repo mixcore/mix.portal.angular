@@ -28,6 +28,6 @@ export class DatabaseRelationshipComponent {
   @Input() public relationships: Partial<MixRelationShip>[] = [];
 
   public addNewRelation() {
-    this.relationships.push({});
+    this.relationships.push({ new: true });
   }
 }
