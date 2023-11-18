@@ -5,6 +5,7 @@
   [tuiTextfieldLabelOutside]="true"
   [tuiTextfieldSize]="size"
 >
+  {{ placeHolder }}
   <tui-data-list *tuiDataList>
     <button *ngFor="let item of items" [value]="item" tuiOption>
       <div class="d-flex align-items-center gap-2">

@@ -37,6 +37,10 @@ export const DEFAULT_DATA = {
   },
 };
 
+export function SuccessFilter<T>(value: BaseState<T>): value is BaseState<T> {
+  return value.status === 'Success';
+}
+
 @Injectable()
 export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   public mixApi = inject(MixApiFacadeService);

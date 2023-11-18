@@ -19,6 +19,7 @@ export const MixSwagger = {
     postToPost: '/api/v2/rest/mix-portal/mix-post-post',
     template: '/api/v2/rest/mix-portal/mix-template',
     database: '/api/v2/rest/mix-portal/mix-database',
+    databaseRelation: '/api/v2/rest/mix-portal/mix-database-relationship',
     getDatabaseBySystemName: '/api/v2/rest/mix-portal/mix-database/get-by-name',
     mixDb: '/api/v2/rest/mix-portal/mix-db',
     mixDbColumn: '/api/v2/rest/mix-portal/mix-database-column',

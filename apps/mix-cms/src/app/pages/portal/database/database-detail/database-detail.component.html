@@ -77,6 +77,9 @@
             <button tuiTab>
               <span class="mix-icon"> share </span>&nbsp; Relationships
             </button>
+            <button tuiTab>
+              <span class="mix-icon"> key </span>&nbsp; Permissions
+            </button>
           </nav>
         </div>
       </div>
@@ -131,7 +134,7 @@
           </div>
         </div>
 
-        <!-- Content -->
+        <!-- Columns -->
         @defer(when activeTabIndex === 1) {
         <div
           class="data-detail-page__main-content"
@@ -142,14 +145,27 @@
             (columnsChange)="onColumnsChange($event)"
           ></mix-database-entity>
         </div>
+        } @loading (after 100ms; minimum 1s) {
+        <div class="mix-progress-bar">
+          <div class="mix-progress-bar-value"></div>
+        </div>
         }
-        <!-- / -->
+
+        <!-- Relationships -->
         @defer(when activeTabIndex === 2) {
         <div
           class="data-detail-page__main-content"
           [class.d-none]="activeTabIndex !== 2"
         >
-          <mix-database-relationship></mix-database-relationship>
+          <mix-database-relationship
+            [relationships]="data?.relationships ?? []"
+            (relationshipChanges)="onRelationshipChange($event)"
+            (deleteRelation)="onDeleteRelationship($event)"
+          ></mix-database-relationship>
+        </div>
+        } @loading (after 100ms; minimum 1s) {
+        <div class="mix-progress-bar">
+          <div class="mix-progress-bar-value"></div>
         </div>
         }
       </div>

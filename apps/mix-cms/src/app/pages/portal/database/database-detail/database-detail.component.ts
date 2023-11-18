@@ -18,9 +18,10 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MixColumn, MixDatabase } from '@mixcore/lib/model';
+import { MixColumn, MixDatabase, MixRelationShip } from '@mixcore/lib/model';
 import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
+import { toastObserverProcessing } from '@mixcore/share/helper';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixEditorComponent } from '@mixcore/ui/editor';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -196,6 +197,26 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     if (!this.data) return;
 
     this.data.columns = columns;
+  }
+
+  public onRelationshipChange(value: Partial<MixRelationShip>[]) {
+    if (this.data) this.data.relationships = value as MixRelationShip[];
+  }
+
+  public onDeleteRelationship(value: Partial<MixRelationShip>) {
+    this.modal.asKForAction('Are you sure to delete this referrence?', () => {
+      this.mixApi.databaseRelation
+        .deleteById(value.id as number)
+        .pipe(toastObserverProcessing(this.toast))
+        .subscribe({
+          next: () => {
+            this.data!.relationships = this.data!.relationships.filter(
+              (x) => x.id !== value.id
+            );
+            this.cdr.detectChanges();
+          },
+        });
+    });
   }
 
   async goDatabaseData(sysName: string) {

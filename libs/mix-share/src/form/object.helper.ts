@@ -17,4 +17,14 @@ export class ArrayUtil {
       {} as Record<T[K], T>
     );
   }
+
+  public static removeAtIndex(array: any[], index: number) {
+    if (index >= 0 && index < array.length) {
+      array.splice(index, 1);
+      return array;
+    } else {
+      console.error('Index is out of bounds.');
+      return array;
+    }
+  }
 }

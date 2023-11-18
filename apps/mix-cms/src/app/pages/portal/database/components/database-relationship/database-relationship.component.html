@@ -1,5 +1,5 @@
 <div class="mt-1 notification --info">
-  Currently we suppored relationship type:
+  We now support the following relationship types:
   <span class="text-highlight">One to Many</span>
 </div>
 
@@ -21,13 +21,17 @@
   </div>
 
   <div cdkDropList [cdkDropListData]="relationships">
+    @for (item of relationships; track item.childId; let i = $index) {
     <mix-database-relationship-record
-      *ngFor="let item of relationships"
       cdkDrag
       [cdkDragData]="item"
       [value]="item"
+      (valueChange)="onValueChane($event, i)"
+      (delete)="onDelete(item, i)"
     >
+      <span class="mix-icon cursor-grab" cdkDragHandle>drag_indicator</span>
     </mix-database-relationship-record>
+    }
   </div>
 
   <div class="mt-3">

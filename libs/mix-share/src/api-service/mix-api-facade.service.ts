@@ -14,6 +14,7 @@ import { MixDatabaseApi } from './database-api.service';
 import { MetadataService } from './metadata-api.service';
 import { MixAccountApi } from './mix-account-api';
 import { MixRestfulApi } from './mix-crud-api.service';
+import { MixDatabaseRelationApi } from './mix-database-relation-api.service';
 import { MixeCommerce } from './mix-ecommerce-api.service';
 import { MixModuleDataApi } from './mix-module-data-api.service';
 import { MixPostApi } from './mix-post-api.service';
@@ -24,14 +25,18 @@ import { UploadApiService } from './upload-api.service';
 @Injectable({ providedIn: 'root' })
 export class MixApiFacadeService {
   // REST API
+
+  // Post Api
   public postApi = new MixPostApi(MixSwagger.content.postContent, {
     requestSuccessMsg: 'Successfully save your post',
   });
 
+  // Page Api
   public pageApi = new MixRestfulApi<MixPage>(MixSwagger.content.pageContent, {
     requestSuccessMsg: 'Successfully save your page',
   });
 
+  // Application Api
   public applicationApi = new MixRestfulApi<MixApplication>(
     MixSwagger.content.application,
     {
@@ -39,6 +44,7 @@ export class MixApiFacadeService {
     }
   );
 
+  // Module Api
   public moduleApi = new MixRestfulApi<MixModule>(
     MixSwagger.content.moduleContent,
     {
@@ -46,10 +52,12 @@ export class MixApiFacadeService {
     }
   );
 
+  // Module Data Api
   public moduleDataApi = new MixModuleDataApi(MixSwagger.content.moduleData, {
     requestSuccessMsg: 'Successfully save your data',
   });
 
+  // Template Api
   public templateApi = new MixRestfulApi<MixTemplate, GetTemplatesRequest>(
     MixSwagger.content.template,
     {
@@ -57,8 +65,15 @@ export class MixApiFacadeService {
     }
   );
 
+  // Database Api
   public databaseApi = new MixDatabaseApi(MixSwagger.content.database);
 
+  // Datbase Relation Api
+  public databaseRelation = new MixDatabaseRelationApi(
+    MixSwagger.content.databaseRelation
+  );
+
+  // Appsetting Api
   public appSettingApi = new MixRestfulApi<MixSettings>(
     MixSwagger.settings.config,
     {
