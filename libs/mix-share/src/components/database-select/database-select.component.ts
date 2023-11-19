@@ -37,7 +37,7 @@ export class DatabaseSelectComponent {
 
   public searchText = new FormControl('');
 
-  @Input() public createUrl = `/create`;
+  @Input() public createUrl = `app/database/create`;
   @Input() public prefix = '';
   @Input() public isCreate = false;
   @Input() public selectedItemId?: number;

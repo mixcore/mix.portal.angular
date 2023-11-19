@@ -1,0 +1,38 @@
+<div class="w-100" *ngIf="form" [formGroup]="form">
+  <p class="content-label mt-3">Display Name</p>
+  <mix-input
+    placeHolder="Your table friendly name"
+    formControlName="displayName"
+  ></mix-input>
+
+  <mix-form-error class="mt-1" formControlName="displayName"></mix-form-error>
+
+  <p class="content-label mt-3">System Name</p>
+  <div class="d-flex gap-1">
+    <mix-button
+      [iconBtn]="true"
+      [type]="'outline'"
+      (click)="updateSystemName(form.value.displayName || '')"
+      size="m"
+      ><span class="mix-icon">refresh</span></mix-button
+    >
+    <mix-input
+      placeHolder="Unique system name"
+      formControlName="systemName"
+    ></mix-input>
+  </div>
+
+  <mix-form-error class="mt-1" formControlName="systemName"></mix-form-error>
+
+  <p class="content-label mt-3">Short Description</p>
+  <mix-text-area
+    placeHolder="Description"
+    formControlName="description"
+  ></mix-text-area>
+
+  <div class="mt-3 notification --info">
+    Visit
+    <a href="https://docs.mixcore.org/" target="_blank">Here</a> to get more
+    information how Mixcore Database work.
+  </div>
+</div>

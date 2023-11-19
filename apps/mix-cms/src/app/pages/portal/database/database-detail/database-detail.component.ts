@@ -1,4 +1,3 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -9,11 +8,9 @@ import {
   ViewChildren,
   inject,
 } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -23,25 +20,20 @@ import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { MixButtonComponent } from '@mixcore/ui/button';
-import { MixEditorComponent } from '@mixcore/ui/editor';
+import { MixInlineInputComponent } from '@mixcore/ui/inline-input';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixSelectComponent } from '@mixcore/ui/select';
-import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { HotToastService } from '@ngneat/hot-toast';
-import { TuiAutoFocusModule } from '@taiga-ui/cdk';
-import { TuiLoaderModule, TuiScrollbarModule } from '@taiga-ui/core';
-import {
-  TuiInputInlineModule,
-  TuiTabsModule,
-  TuiToggleModule,
-} from '@taiga-ui/kit';
-import { debounceTime, takeUntil } from 'rxjs';
+import { TuiLoaderModule } from '@taiga-ui/core';
+import { TuiTabsModule } from '@taiga-ui/kit';
+import { takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
 import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
 import { DatabaseStore } from '../../../../stores/database.store';
 import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
+import { DatabaseInfoComponent } from '../components/database-info/database-info.component';
 import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
 
 @Component({
@@ -52,22 +44,16 @@ import { DatabaseRelationshipComponent } from '../components/database-relationsh
     MixInputComponent,
     TuiTabsModule,
     MixButtonComponent,
-    MixTextAreaComponent,
-    MixEditorComponent,
-    FormsModule,
-    TuiScrollbarModule,
     TuiLoaderModule,
     ReactiveFormsModule,
     MixSelectComponent,
-    TuiToggleModule,
     EntityFormComponent,
     MixFormErrorComponent,
-    DragDropModule,
-    TuiInputInlineModule,
-    TuiAutoFocusModule,
     DatabaseSelectComponent,
     DatabaseRelationshipComponent,
     DatabaseEntityComponent,
+    DatabaseInfoComponent,
+    MixInlineInputComponent,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
@@ -117,14 +103,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
             this.cdr.detectChanges();
           });
       });
-
-    this.form.controls.displayName.valueChanges
-      .pipe(takeUntilDestroyed(this.destroyRef), debounceTime(600))
-      .subscribe((value) => {
-        if (!value || this.form.value.systemName) return;
-
-        this.updateSystemName(value);
-      });
   }
 
   public submit(): void {
@@ -142,7 +120,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       .save({
         ...this.data,
         ...(this.form.value as MixDatabase),
-        columns: this.data?.columns,
       })
       .pipe(
         this.toast.observe({
@@ -170,19 +147,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     this.router.navigateByUrl(
       `${CMS_ROUTES.portal.database.fullPath}/${ev.id}`
     );
-  }
-
-  public updateSystemName(value: string) {
-    const words = value.split(' ');
-    const camelCaseString = words
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join('');
-    const prefix = 'mixDb_';
-
-    this.form.controls.systemName.patchValue(`${prefix}${camelCaseString}`, {
-      emitEvent: false,
-    });
-    this.cdr.detectChanges();
   }
 
   public toggleEditTitle() {
