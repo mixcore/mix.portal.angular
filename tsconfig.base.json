@@ -52,6 +52,7 @@
       "@mixcore/ui/inline-input": ["libs/mix-ui/src/inline-input/index.ts"],
       "@mixcore/ui/input": ["libs/mix-ui/src/input/index.ts"],
       "@mixcore/ui/input-number": ["libs/mix-ui/src/input-number/index.ts"],
+      "@mixcore/ui/input-tag": ["libs/mix-ui/src/input-tag/index.ts"],
       "@mixcore/ui/json": ["libs/mix-ui/src/json-editor/index.ts"],
       "@mixcore/ui/modal": ["libs/mix-ui/src/modal/index.ts"],
       "@mixcore/ui/qr-code": ["libs/mix-ui/src/qr-code/index.ts"],

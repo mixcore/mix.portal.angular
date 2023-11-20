@@ -106,6 +106,20 @@
           <div class="mix-progress-bar-value"></div>
         </div>
         }
+
+        <!-- Permissions -->
+        @defer(when activeTabIndex === 3) {
+        <div
+          class="data-detail-page__main-content"
+          [class.d-none]="activeTabIndex !== 3"
+        >
+          <mix-database-permission></mix-database-permission>
+        </div>
+        } @loading (after 100ms; minimum 1s) {
+        <div class="mix-progress-bar">
+          <div class="mix-progress-bar-value"></div>
+        </div>
+        }
       </div>
     </tui-loader>
   </div>

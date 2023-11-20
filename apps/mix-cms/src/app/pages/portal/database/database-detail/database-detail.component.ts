@@ -34,6 +34,7 @@ import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.comp
 import { DatabaseStore } from '../../../../stores/database.store';
 import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
 import { DatabaseInfoComponent } from '../components/database-info/database-info.component';
+import { DatabasePermissionComponent } from '../components/database-permission/database-permission.component';
 import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
 
 @Component({
@@ -41,19 +42,20 @@ import { DatabaseRelationshipComponent } from '../components/database-relationsh
   standalone: true,
   imports: [
     CommonModule,
-    MixInputComponent,
-    TuiTabsModule,
-    MixButtonComponent,
-    TuiLoaderModule,
     ReactiveFormsModule,
+    TuiTabsModule,
+    TuiLoaderModule,
+    MixInputComponent,
+    MixButtonComponent,
     MixSelectComponent,
-    EntityFormComponent,
     MixFormErrorComponent,
+    MixInlineInputComponent,
     DatabaseSelectComponent,
+    EntityFormComponent,
     DatabaseRelationshipComponent,
     DatabaseEntityComponent,
     DatabaseInfoComponent,
-    MixInlineInputComponent,
+    DatabasePermissionComponent,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
