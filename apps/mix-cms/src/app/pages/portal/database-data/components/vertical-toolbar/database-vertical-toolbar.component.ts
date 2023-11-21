@@ -5,19 +5,26 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
+import { ComingSoomDirective } from '@mixcore/share/directives';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { TippyDirective } from '@ngneat/helipopper';
 
 @Component({
   selector: 'mix-vertical-toolbar',
   standalone: true,
-  imports: [CommonModule, MixButtonComponent, TippyDirective],
+  imports: [
+    CommonModule,
+    MixButtonComponent,
+    TippyDirective,
+    ComingSoomDirective,
+  ],
   templateUrl: './database-vertical-toolbar.component.html',
   styleUrl: './database-vertical-toolbar.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatabaseVerticalToolbarComponent {
   @Output() public rowHeightChange = new EventEmitter<number>();
+  @Output() public addNewDb = new EventEmitter();
 
   public sizeOptions = [
     {
@@ -36,7 +43,7 @@ export class DatabaseVerticalToolbarComponent {
     },
     {
       value: 3,
-      label: 'Big rpw height',
+      label: 'Big row height',
     },
   ];
 }

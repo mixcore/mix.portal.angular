@@ -2,6 +2,7 @@
   <div class="data-table-page__action-bar">
     <mix-vertical-toolbar
       (rowHeightChange)="rowHeightChange($event)"
+      (addNewDb)="onSetupDb(true)"
     ></mix-vertical-toolbar>
   </div>
 
@@ -24,7 +25,16 @@
         [description]="'QUERY ON'"
         [loading]="vm.status === 'Loading' && vm.db === undefined"
         [title]="vm.db?.displayName || 'Db Data'"
+        [titleTpl]="titleTpl"
       >
+        <ng-template #titleTpl
+          ><mix-database-inline-select
+            [selectedItemId]="vm.db?.id"
+            [selectedItemName]="dbSysName"
+            (selectedItemChange)="selectedTableChange($event)"
+          ></mix-database-inline-select
+        ></ng-template>
+
         <div class="toolbar-separator"></div>
         <mix-action-collapse
           [actionMaps]="actionMaps"

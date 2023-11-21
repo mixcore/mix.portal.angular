@@ -4,7 +4,7 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { DataType } from '@mixcore/lib/model';
+import { DataType, DataTypeColors } from '@mixcore/lib/model';
 import {
   TuiButtonModule,
   TuiDataListModule,
@@ -44,6 +44,7 @@ export class CustomHeaderComponent implements IHeaderAngularComp {
 
   readonly drinks = ['Cola', 'Tea', 'Coffee', 'Slurm'];
   readonly arrow = TUI_ARROW;
+  readonly dataTypeColors = DataTypeColors;
 
   public agInit(params: IHeaderParams & ICustomHeaderParams): void {
     this.params = params;

@@ -1,0 +1,11 @@
+.database-inline-select {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color-default);
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}

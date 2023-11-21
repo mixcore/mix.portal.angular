@@ -1,5 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  TemplateRef,
+  ViewEncapsulation,
+} from '@angular/core';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 
 @Component({
@@ -14,4 +19,5 @@ export class MixSubToolbarComponent {
   @Input() title = '';
   @Input() description = '';
   @Input() loading = false;
+  @Input() titleTpl?: TemplateRef<unknown>;
 }

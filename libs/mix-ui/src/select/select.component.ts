@@ -13,6 +13,7 @@ import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiDestroyService, tuiPure } from '@taiga-ui/cdk';
 import {
   TuiDataListModule,
+  TuiDropdownModule,
   TuiTextfieldControllerModule,
 } from '@taiga-ui/core';
 import {
@@ -33,6 +34,7 @@ import { takeUntil } from 'rxjs';
     TuiDataListModule,
     TuiStringifyContentPipeModule,
     TuiTextfieldControllerModule,
+    TuiDropdownModule,
   ],
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],

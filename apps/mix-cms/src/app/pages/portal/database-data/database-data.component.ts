@@ -49,6 +49,7 @@ import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
 import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
 import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
+import { DatabaseInlineSelectComponent } from './components/database-inline-select/database-inline-select.component';
 import { DatabaseVerticalToolbarComponent } from './components/vertical-toolbar/database-vertical-toolbar.component';
 @Component({
   selector: 'mix-database-data',
@@ -75,6 +76,7 @@ import { DatabaseVerticalToolbarComponent } from './components/vertical-toolbar/
     ReactiveFormsModule,
     DynamicFilterComponent,
     DatabaseVerticalToolbarComponent,
+    DatabaseInlineSelectComponent,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -250,7 +252,15 @@ export class DatabaseDataComponent
     });
   }
 
-  public onSetupDb() {
+  public onSetupDb(isCreate = false) {
+    if (isCreate) {
+      this.router.navigateByUrl(
+        `${CMS_ROUTES.portal.database.fullPath}/create`
+      );
+
+      return;
+    }
+
     this.store.vm$
       .pipe(take(1))
       .subscribe((vm) =>

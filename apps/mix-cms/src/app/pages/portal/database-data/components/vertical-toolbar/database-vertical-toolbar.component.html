@@ -1,8 +1,10 @@
-<div class="w-100 h-100 d-flex flex-column align-items-center pt-2">
+<div class="w-100 h-100 d-flex flex-column align-items-center pt-2 gap-2">
   <mix-button
+    title="Row height"
     [size]="'s'"
     [iconBtn]="true"
     type="outline"
+    tpPlacement="bottom-start"
     [tp]="sizeOtpTpl"
     tpVariation="popper"
   >
@@ -16,4 +18,34 @@
     </div>
     }
   </ng-template>
+
+  <mix-button
+    title="Share your table"
+    [size]="'s'"
+    [iconBtn]="true"
+    type="outline"
+    commingSoon="Share your database"
+  >
+    <span class="mix-icon">share</span>
+  </mix-button>
+
+  <mix-button
+    title="Database logs"
+    [size]="'s'"
+    [iconBtn]="true"
+    type="outline"
+    commingSoon="Show database logs"
+  >
+    <span class="mix-icon">history</span>
+  </mix-button>
+
+  <mix-button
+    title="Add new table"
+    [size]="'s'"
+    [iconBtn]="true"
+    (click)="addNewDb.emit()"
+    type="outline"
+  >
+    <span class="mix-icon">add</span>
+  </mix-button>
 </div>
