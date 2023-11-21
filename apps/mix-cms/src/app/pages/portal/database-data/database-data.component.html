@@ -1,12 +1,8 @@
 <div *ngIf="store.vm$ | async as vm" class="data-table-page">
-  <div class="data-table-page__sidebar">
-    <mix-database-select
-      [isCreate]="false"
-      [prefix]="'Query'"
-      [selectedItemId]="vm.db?.id"
-      [selectedItemName]="dbSysName"
-      (selectedItemChange)="selectedTableChange($event)"
-    ></mix-database-select>
+  <div class="data-table-page__action-bar">
+    <mix-vertical-toolbar
+      (rowHeightChange)="rowHeightChange($event)"
+    ></mix-vertical-toolbar>
   </div>
 
   <div class="data-table-page__main-container">

@@ -30,15 +30,24 @@
     }
   }
 
-  &__sidebar {
-    min-width: 255px;
-    max-width: 255px;
+  &__sidebar,
+  &__action-bar {
     height: calc(100% - 4px);
     background-color: var(--background-color-primary);
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     overflow: auto;
     margin-right: -4px;
+  }
+
+  &__sidebar {
+    min-width: 255px;
+    max-width: 255px;
+  }
+
+  &__action-bar {
+    min-width: 55px;
+    max-width: 55px;
   }
 
   &__sub-toolbar {

@@ -12,7 +12,6 @@ import { MixApiFacadeService } from '@mixcore/share/api';
 import {
   ActionCollapseComponent,
   BasicMixFilterComponent,
-  DatabaseSelectComponent,
   MixStatusIndicatorComponent,
   MixSubToolbarComponent,
   RecordFormComponent,
@@ -50,6 +49,7 @@ import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
 import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
 import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
+import { DatabaseVerticalToolbarComponent } from './components/vertical-toolbar/database-vertical-toolbar.component';
 @Component({
   selector: 'mix-database-data',
   standalone: true,
@@ -67,7 +67,6 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     FormsModule,
     MixInputComponent,
     TuiPaginationModule,
-    DatabaseSelectComponent,
     SkeletonLoadingComponent,
     AgGridModule,
     CustomHeaderComponent,
@@ -75,6 +74,7 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     TippyDirective,
     ReactiveFormsModule,
     DynamicFilterComponent,
+    DatabaseVerticalToolbarComponent,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -375,5 +375,13 @@ export class DatabaseDataComponent
         }
       });
     });
+  }
+
+  public rowHeightChange(value: number) {
+    this.gridApi.forEachNode((node) => {
+      node.setRowHeight(40 * value);
+    });
+
+    this.gridApi.onRowHeightChanged();
   }
 }

@@ -1,0 +1,19 @@
+<div class="w-100 h-100 d-flex flex-column align-items-center pt-2">
+  <mix-button
+    [size]="'s'"
+    [iconBtn]="true"
+    type="outline"
+    [tp]="sizeOtpTpl"
+    tpVariation="popper"
+  >
+    <span class="mix-icon">grid_view</span>
+  </mix-button>
+
+  <ng-template #sizeOtpTpl let-hide>
+    @for (option of sizeOptions; track option) {
+    <div class="mix-menu-item" (click)="rowHeightChange.emit(option.value)">
+      {{ option.label }}
+    </div>
+    }
+  </ng-template>
+</div>
