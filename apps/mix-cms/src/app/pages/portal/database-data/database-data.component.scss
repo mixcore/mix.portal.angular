@@ -3,17 +3,10 @@
   flex-direction: column;
   flex-grow: 1;
 
-  &__table {
-    border-spacing: 0 !important;
-    // table-layout: auto;
-
-    tr:hover td {
-      background: var(--highlight-background-color) !important;
-    }
-  }
-
   &__toolbar {
-    padding: 8px;
+    padding: var(--container-padding);
+    padding-top: 8px;
+    padding-bottom: 8px;
     border-bottom: 1px solid var(--border-color-default);
     display: flex;
     gap: 4px;

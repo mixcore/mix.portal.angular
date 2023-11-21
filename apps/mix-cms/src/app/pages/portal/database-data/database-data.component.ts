@@ -213,12 +213,19 @@ export class DatabaseDataComponent
       icon: 'system_update_alt',
       place: 'left',
     },
+    {
+      label: 'Setup Db',
+      key: 'setup',
+      icon: 'settings',
+      place: 'right',
+    },
   ];
 
   public actionMaps = {
     create: () => this.onInsertData(),
     delete: () => this.onDeleteData(),
     export: () => this.onExportData(),
+    setup: () => this.onSetupDb(),
   };
 
   constructor() {
@@ -241,6 +248,16 @@ export class DatabaseDataComponent
         this.store.changeDb(this.dbSysName);
       }
     });
+  }
+
+  public onSetupDb() {
+    this.store.vm$
+      .pipe(take(1))
+      .subscribe((vm) =>
+        this.router.navigateByUrl(
+          `${CMS_ROUTES.portal.database.fullPath}/${vm.db?.id || 'create'}`
+        )
+      );
   }
 
   public onDeleteData(): void {
@@ -282,18 +299,6 @@ export class DatabaseDataComponent
         toastObserverProcessing(this.toast)
       )
       .subscribe();
-  }
-
-  public async onEditData(data: MixDynamicData) {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/${data.id}`
-    );
-  }
-
-  public async onCreateData() {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/create`
-    );
   }
 
   public onHideColumn(displayName: string) {

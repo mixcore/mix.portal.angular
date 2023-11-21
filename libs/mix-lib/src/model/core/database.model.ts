@@ -12,6 +12,10 @@ export class MixDatabase {
   status!: string;
   isValid!: boolean;
   errors!: string[];
+  updatePermissions: string[] | undefined;
+  readPermissions: string[] | undefined;
+  createPermissions: string[] | undefined;
+  deletePermissions: string[] | undefined;
 
   constructor(value: MixDatabase) {
     this.systemName = value.systemName;
@@ -27,6 +31,18 @@ export class MixDatabase {
     this.status = value.status;
     this.isValid = value.isValid;
     this.errors = value.errors;
+    this.updatePermissions = value.updatePermissions
+      ? JSON.parse(value.updatePermissions.toString())
+      : [];
+    this.readPermissions = value.readPermissions
+      ? JSON.parse(value.readPermissions.toString())
+      : [];
+    this.deletePermissions = value.deletePermissions
+      ? JSON.parse(value.deletePermissions.toString())
+      : [];
+    this.createPermissions = value.createPermissions
+      ? JSON.parse(value.createPermissions.toString())
+      : [];
   }
 }
 
@@ -149,6 +165,40 @@ export type MixDynamicDataValue =
   | undefined
   | object
   | null;
+
+export const DataTypeColors: { [key in DataType]: string } = {
+  Custom: '#3498db',
+  DateTime: '#e74c3c',
+  Date: '#2ecc71',
+  Time: '#e67e22',
+  Duration: '#9b59b6',
+  PhoneNumber: '#1abc9c',
+  Double: '#f1c40f',
+  Text: '#3498db',
+  Html: '#e74c3c',
+  MultilineText: '#2ecc71',
+  EmailAddress: '#e67e22',
+  Password: '#9b59b6',
+  Url: '#1abc9c',
+  ImageUrl: '#f1c40f',
+  CreditCard: '#3498db',
+  PostalCode: '#e74c3c',
+  Upload: '#2ecc71',
+  Color: '#e67e22',
+  Boolean: '#9b59b6',
+  Icon: '#1abc9c',
+  VideoYoutube: '#f1c40f',
+  TuiEditor: '#3498db',
+  Integer: '#e74c3c',
+  Guid: '#2ecc71',
+  Reference: '#e67e22',
+  QRCode: '#9b59b6',
+  Tag: '#1abc9c',
+  Json: '#f1c40f',
+  Array: '#3498db',
+  ArrayMedia: '#e74c3c',
+  ArrayRadio: '#2ecc71',
+};
 
 export const DataTypeDisplay: Record<
   DataType,

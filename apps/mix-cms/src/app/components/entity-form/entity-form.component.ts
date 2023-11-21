@@ -18,13 +18,19 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { DataTypeDisplay, MixColumn } from '@mixcore/lib/model';
+import {
+  DataType,
+  DataTypeColors,
+  DataTypeDisplay,
+  MixColumn,
+} from '@mixcore/lib/model';
 import { FormHelper } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixToggleComponent } from '@mixcore/ui/toggle';
 import { DialogService } from '@ngneat/dialog';
+import { tuiPure } from '@taiga-ui/cdk';
 import { TuiRadioBlockModule, TuiTabsModule } from '@taiga-ui/kit';
 import { debounceTime } from 'rxjs';
 
@@ -55,9 +61,7 @@ export class EntityFormComponent implements OnInit {
   public activeTabIndex = 0;
   public destroyRef = inject(DestroyRef);
   public dialogSrv = inject(DialogService);
-
-  public dataTypeDisplay = DataTypeDisplay;
-  public dataTypeGroups = [
+  public readonly dataTypeGroups = [
     {
       label: 'Text',
       id: 'text',
@@ -110,6 +114,20 @@ export class EntityFormComponent implements OnInit {
       types: [DataTypeDisplay.Upload, DataTypeDisplay.Custom],
     },
   ];
+
+  @tuiPure
+  public getColor(form: Partial<{ dataType: string | null }>) {
+    if (!form.dataType) return '#fff';
+
+    return DataTypeColors[form.dataType as DataType];
+  }
+
+  @tuiPure
+  public getDisplay(form: Partial<{ dataType: string | null }>) {
+    if (!form.dataType) return 'Choose data type';
+
+    return DataTypeDisplay[form.dataType as DataType].name;
+  }
 
   public form = new FormGroup({
     systemName: new FormControl('', Validators.required),

@@ -171,4 +171,36 @@ export class MixDatabaseApi extends MixRestfulApi<MixDatabase> {
       }))
     );
   }
+
+  /**
+   * Before using a database that you have created for the first time, it must be migrated into a single table.
+   *
+   */
+  public migrateToSingleTable(dbSysName: string) {
+    return this.get(`${MixSwagger.content.database}/migrate/${dbSysName}`);
+  }
+
+  /**
+   * When you activate this button, the system will automatically backup your data in case you need it in the future.
+   *
+   */
+  public backupTable(dbSysName: string) {
+    return this.get(`${MixSwagger.content.database}/backup/${dbSysName}`);
+  }
+
+  /**
+   * Depending on when you last backed up the data, the system will restore it.
+   *
+   */
+  public restoreTable(dbSysName: string) {
+    return this.get(`${MixSwagger.content.database}/restore/${dbSysName}`);
+  }
+
+  /**
+   * When you wish to make changes to your database or add new columns, run this migration.
+   *
+   */
+  public updateDataTable(dbSysName: string) {
+    return this.get(`${MixSwagger.content.database}/update/${dbSysName}`);
+  }
 }

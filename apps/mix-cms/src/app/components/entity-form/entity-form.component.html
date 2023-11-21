@@ -1,4 +1,8 @@
-<div class="card-01-wrap" [class.--new]="entity.new">
+<div
+  class="card-01-wrap"
+  [class.--new]="entity.new"
+  [style.--color]="getColor(form.value)"
+>
   <div class="card-01" [formGroup]="form">
     <div class="row">
       <div class="col-4 d-flex align-items-center gap-2">
@@ -31,19 +35,15 @@
 
       <div class="col-2">
         <mix-button
-          class="w-100 data-type-select"
           type="outline"
           (click)="showDataTypeDialog($event, dataTypePicker)"
           size="m"
         >
-          <div *ngIf="form.controls.dataType.value">
-            {{
-              $any(dataTypeDisplay)[form.controls.dataType.value]?.name ??
-                form.controls.dataType.value
-            }}
+          <div *ngIf="getDisplay(form.value) as title">
+            {{ title }}
           </div>
 
-          <span class="mix-icon">chevron_right</span>
+          <span class="ms-1 mix-icon">edit</span>
         </mix-button>
       </div>
     </div>
@@ -89,12 +89,13 @@
 
 <ng-template #dataTypePicker let-ref>
   <div class="mix-dialog__header">Choose data type</div>
-  <div class="data-type-picker-dialog-container">
+  <div class="data-type-picker-dialog-container" [formGroup]="form">
     <ng-container *ngFor="let group of dataTypeGroups">
-      <div class="row mb-3" [formGroup]="form">
+      <div class="row mb-3">
         <div class="col-12">
           <div class="text-l mb-2 text-500">{{ group.label }}</div>
         </div>
+
         <div *ngFor="let dataType of group.types" class="col-12 col-md-6">
           <tui-radio-block
             class="mb-2 data-type-card"

@@ -1,23 +1,37 @@
-<div class="mt-1 mb-2 notification --info">
-  Type and press enter to input permission key(s):
-</div>
+<form [formGroup]="form">
+  <div class="mt-1 mb-2 notification --info">
+    Type and press enter to input permission key(s):
+  </div>
 
-<div class="mb-2">
-  <div class="mb-1 text-500">Read Permission(s)</div>
-  <mix-input-tag></mix-input-tag>
-</div>
+  <div class="mb-2">
+    <div class="mb-1 text-500">Read Permission(s)</div>
+    <mix-input-tag
+      [placeHolder]="'Type & Enter'"
+      formControlName="readPermissions"
+    ></mix-input-tag>
+  </div>
 
-<div class="mb-2">
-  <div class="mb-1 text-500">Create Permission(s)</div>
-  <mix-input-tag></mix-input-tag>
-</div>
+  <div class="mb-2">
+    <div class="mb-1 text-500">Create Permission(s)</div>
+    <mix-input-tag
+      [placeHolder]="'Type & Enter'"
+      formControlName="createPermissions"
+    ></mix-input-tag>
+  </div>
 
-<div class="mb-2">
-  <div class="mb-1 text-500">Update Permission(s)</div>
-  <mix-input-tag></mix-input-tag>
-</div>
+  <div class="mb-2">
+    <div class="mb-1 text-500">Update Permission(s)</div>
+    <mix-input-tag
+      [placeHolder]="'Type & Enter'"
+      formControlName="updatePermissions"
+    ></mix-input-tag>
+  </div>
 
-<div class="mb-2">
-  <div class="mb-1 text-500">Delete Permission(s)</div>
-  <mix-input-tag></mix-input-tag>
-</div>
+  <div class="mb-2">
+    <div class="mb-1 text-500">Delete Permission(s)</div>
+    <mix-input-tag
+      [placeHolder]="'Type & Enter'"
+      formControlName="deletePermissions"
+    ></mix-input-tag>
+  </div>
+</form>

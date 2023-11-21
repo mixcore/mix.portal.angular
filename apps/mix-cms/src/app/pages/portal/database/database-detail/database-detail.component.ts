@@ -34,6 +34,7 @@ import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.comp
 import { DatabaseStore } from '../../../../stores/database.store';
 import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
 import { DatabaseInfoComponent } from '../components/database-info/database-info.component';
+import { DatabaseMigrationComponent } from '../components/database-migration/database-migration.component';
 import { DatabasePermissionComponent } from '../components/database-permission/database-permission.component';
 import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
 
@@ -56,6 +57,7 @@ import { DatabaseRelationshipComponent } from '../components/database-relationsh
     DatabaseEntityComponent,
     DatabaseInfoComponent,
     DatabasePermissionComponent,
+    DatabaseMigrationComponent,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
@@ -77,6 +79,10 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     displayName: new FormControl('', Validators.required),
     systemName: new FormControl('', Validators.required),
     description: new FormControl(''),
+    updatePermissions: new FormControl<string[]>([]),
+    deletePermissions: new FormControl<string[]>([]),
+    createPermissions: new FormControl<string[]>([]),
+    readPermissions: new FormControl<string[]>([]),
   });
 
   ngOnInit() {
@@ -101,7 +107,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
           .pipe(takeUntil(this.destroy$), this.observerLoadingState())
           .subscribe((v) => {
             this.data = new MixDatabase(v);
-            this.form.patchValue(v, { emitEvent: false });
+            this.form.patchValue(this.data, { emitEvent: false });
             this.cdr.detectChanges();
           });
       });
@@ -118,10 +124,21 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       return;
     }
 
+    const formValue = this.form.value as MixDatabase;
     this.mixApi.databaseApi
       .save({
         ...this.data,
-        ...(this.form.value as MixDatabase),
+        ...formValue,
+        readPermissions: JSON.stringify(formValue.readPermissions || []) as any,
+        createPermissions: JSON.stringify(
+          formValue.createPermissions || []
+        ) as any,
+        updatePermissions: JSON.stringify(
+          formValue.updatePermissions || []
+        ) as any,
+        deletePermissions: JSON.stringify(
+          formValue.deletePermissions || []
+        ) as any,
       })
       .pipe(
         this.toast.observe({

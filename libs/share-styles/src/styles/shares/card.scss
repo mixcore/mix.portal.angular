@@ -26,14 +26,18 @@
 }
 
 .card-01-wrap {
-  border: 1px solid #ddd;
+  --color: #ddd;
+  --border-color: #ddd;
+
+  border: 1px solid var(--border-color);
   border-radius: var(--border-radius-default);
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   overflow: hidden;
   margin-bottom: 4px;
+  border-left: 3px solid var(--color);
 
   &.--new {
-    border: 1px solid var(--success-color);
+    --border-color: var(--success-color);
   }
 }
 

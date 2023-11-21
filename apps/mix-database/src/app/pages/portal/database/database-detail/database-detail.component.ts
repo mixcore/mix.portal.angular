@@ -95,7 +95,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   });
 
   ngOnInit() {
-    // this.zone.runOutsideAngular(() => {
     this.activeRoute.params
       .pipe(takeUntil(this.destroy$))
       .subscribe((params) => {

@@ -53,6 +53,9 @@
             <button tuiTab>
               <span class="mix-icon"> key </span>&nbsp; Permissions
             </button>
+            <button tuiTab>
+              <span class="mix-icon"> rule_settings </span>&nbsp; Migrations
+            </button>
           </nav>
         </div>
       </div>
@@ -113,7 +116,23 @@
           class="data-detail-page__main-content"
           [class.d-none]="activeTabIndex !== 3"
         >
-          <mix-database-permission></mix-database-permission>
+          <mix-database-permission [form]="form"></mix-database-permission>
+        </div>
+        } @loading (after 100ms; minimum 1s) {
+        <div class="mix-progress-bar">
+          <div class="mix-progress-bar-value"></div>
+        </div>
+        }
+
+        <!-- Migrations -->
+        @defer(when activeTabIndex === 4) {
+        <div
+          class="data-detail-page__main-content"
+          [class.d-none]="activeTabIndex !== 4"
+        >
+          <mix-database-migration
+            [dbSysName]="data?.systemName"
+          ></mix-database-migration>
         </div>
         } @loading (after 100ms; minimum 1s) {
         <div class="mix-progress-bar">
