@@ -4,13 +4,9 @@ import {
   Component,
   ViewEncapsulation,
 } from '@angular/core';
-import { DataType, DataTypeColors } from '@mixcore/lib/model';
-import {
-  TuiButtonModule,
-  TuiDataListModule,
-  TuiHostedDropdownModule,
-} from '@taiga-ui/core';
-import { TUI_ARROW } from '@taiga-ui/kit';
+import { DataType, DataTypeColors, DataTypeDisplay } from '@mixcore/lib/model';
+import { MixButtonComponent } from '@mixcore/ui/button';
+import { TippyDirective } from '@ngneat/helipopper';
 import { IHeaderAngularComp } from 'ag-grid-angular';
 import { IHeaderParams, SortDirection } from 'ag-grid-community';
 
@@ -23,12 +19,7 @@ export interface ICustomHeaderParams {
 @Component({
   selector: 'mix-custom-header',
   standalone: true,
-  imports: [
-    CommonModule,
-    TuiHostedDropdownModule,
-    TuiDataListModule,
-    TuiButtonModule,
-  ],
+  imports: [CommonModule, MixButtonComponent, TippyDirective],
   templateUrl: './custom-header.component.html',
   styleUrls: ['./custom-header.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -43,13 +34,24 @@ export class CustomHeaderComponent implements IHeaderAngularComp {
   public parentComp: any;
 
   readonly drinks = ['Cola', 'Tea', 'Coffee', 'Slurm'];
-  readonly arrow = TUI_ARROW;
   readonly dataTypeColors = DataTypeColors;
+  readonly dataTypeDisplay = DataTypeDisplay;
+
+  public icon = '';
+  public iconSize = '';
+  public text = '';
+  public color = '';
 
   public agInit(params: IHeaderParams & ICustomHeaderParams): void {
     this.params = params;
     this.isPinned = !!params.column.getPinned();
     this.parentComp = this.params.context.componentParent;
+
+    const dataType = this.params['dataType'];
+    this.icon = DataTypeDisplay[dataType]?.icon || 'Default';
+    this.iconSize = DataTypeDisplay[dataType]?.iconSize || '16px';
+    this.color = DataTypeColors[dataType] || '#000';
+    this.text = params['displayName'] || 'Default';
 
     params.column.addEventListener(
       'sortChanged',

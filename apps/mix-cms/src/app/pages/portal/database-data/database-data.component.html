@@ -16,7 +16,14 @@
           alt="No data found"
           width="150px"
         />
-        <p class="mt-2">Please choose a Database to view result</p>
+
+        <div class="mt-2">Please choose a Database to view result</div>
+        <mix-database-inline-select
+          class="mt-1"
+          [selectedItemId]="vm.db?.id"
+          [selectedItemName]="dbSysName"
+          (selectedItemChange)="selectedTableChange($event)"
+        ></mix-database-inline-select>
       </div>
     </ng-container>
 

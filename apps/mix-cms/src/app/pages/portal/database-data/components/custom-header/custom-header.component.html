@@ -1,64 +1,45 @@
 <div role="presentation">
   <div class="d-flex gap-2 align-items-center w-100">
-    <div
-      *ngIf="params['dataType']"
-      class="text-highlight text-white"
-      [style.--bg-color]="dataTypeColors[params['dataType']]"
-    >
-      {{ params['dataType'] }}
+    <div class="mix-icon" [style.color]="color" [style.font-size]="iconSize">
+      {{ icon }}
     </div>
 
-    <div *ngIf="params['displayName']" class="header-title">
-      {{ params['displayName'] }}
+    <div class="header-title">
+      {{ text }}
     </div>
 
     <ng-container *ngIf="params.columnType === 'value'">
-      <tui-hosted-dropdown
-        #dropdown
+      <mix-button
         class="ms-auto"
-        [content]="content"
-        [tuiDropdownMaxHeight]="500"
+        [size]="'xs'"
+        type="flat"
+        [tp]="content"
+        tpPlacement="bottom"
+        tpVariation="popper"
       >
-        <button
-          type="button"
-          [icon]="arrow"
-          [pseudoHover]="dropdown.open || null"
-          [size]="'xs'"
-          tuiIconButton
-          appearance="flat"
-        ></button>
-      </tui-hosted-dropdown>
+        <span class="mix-icon">expand_more</span>
+      </mix-button>
 
-      <ng-template #content>
-        <tui-data-list class="list" size="l">
-          <button (click)="pinColumn()" tuiOption>
-            <div class="d-flex align-items-center">
-              <span class="mix-icon">push_pin</span>&nbsp;
-              {{ isPinned ? 'Unpin Column' : 'Pin Column' }}
-            </div>
-          </button>
+      <ng-template #content let-hide>
+        <div class="mix-menu-item" (click)="pinColumn()">
+          <span class="mix-icon">push_pin</span>&nbsp;
+          {{ isPinned ? 'Unpin Column' : 'Pin Column' }}
+        </div>
 
-          <button
-            (click)="parentComp.onHideColumn(params['displayName'])"
-            tuiOption
-          >
-            <div class="d-flex align-items-center">
-              <span class="mix-icon">visibility_off</span>&nbsp; Hide Column
-            </div>
-          </button>
+        <div
+          class="mix-menu-item"
+          (click)="parentComp.onHideColumn(params['displayName'])"
+        >
+          <span class="mix-icon">visibility_off</span>&nbsp; Hide Column
+        </div>
 
-          <button (click)="onSortRequested('asc', $event)" tuiOption>
-            <div class="d-flex align-items-center">
-              <span class="mix-icon">reorder</span>&nbsp; Sort Ascending
-            </div>
-          </button>
+        <div class="mix-menu-item" (click)="onSortRequested('asc', $event)">
+          <span class="mix-icon">reorder</span>&nbsp; Sort Ascending
+        </div>
 
-          <button (click)="onSortRequested('desc', $event)" tuiOption>
-            <div class="d-flex align-items-center">
-              <span class="mix-icon">sort</span>&nbsp; Sort Descending
-            </div>
-          </button>
-        </tui-data-list>
+        <div class="mix-menu-item" (click)="onSortRequested('desc', $event)">
+          <span class="mix-icon">sort</span>&nbsp; Sort Descending
+        </div>
       </ng-template>
     </ng-container>
   </div>

@@ -200,10 +200,15 @@ export const DataTypeColors: { [key in DataType]: string } = {
   ArrayRadio: '#2ecc71',
 };
 
-export const DataTypeDisplay: Record<
-  DataType,
-  { name: string; value: DataType; description: string; icon?: string }
-> = {
+export type DataTypeConfig = {
+  name: string;
+  value: DataType;
+  description: string;
+  icon?: string;
+  iconSize?: string;
+};
+
+export const DataTypeDisplay: Record<DataType, DataTypeConfig> = {
   [DataType.Custom]: {
     icon: 'question_mark',
     name: 'Custom',
@@ -257,6 +262,7 @@ export const DataTypeDisplay: Record<
     name: 'Html',
     value: DataType.Html,
     description: '',
+    iconSize: '30px',
   },
   [DataType.MultilineText]: {
     icon: 'subtitles',

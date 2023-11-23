@@ -45,6 +45,7 @@ import {
 } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 
+import { SuccessFilter } from '@mixcore/share/base';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
 import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
@@ -98,9 +99,7 @@ export class DatabaseDataComponent
   public isAllCheck = false;
   public searchForm = new FormControl();
 
-  public components: {
-    [p: string]: any;
-  } = {
+  public components: Record<string, any> = {
     agColumnHeader: CustomHeaderComponent,
   };
   public rowData$!: Observable<MixDynamicData[]>;
@@ -150,7 +149,7 @@ export class DatabaseDataComponent
   public onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.rowData$ = this.store.vm$.pipe(
-      filter((s) => s.status === 'Success'),
+      filter(SuccessFilter),
       tap((s) => {
         if (s.db) {
           this.allColumnDefs = s.db.columns.map(
@@ -163,6 +162,7 @@ export class DatabaseDataComponent
                   dataType: x.dataType,
                   columnType: 'value',
                 },
+                editable: true,
               }
           );
           this.columnNames = s.db.columns.map((x) => x.displayName);
