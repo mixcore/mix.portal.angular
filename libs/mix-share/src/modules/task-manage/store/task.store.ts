@@ -5,14 +5,13 @@ import {
   TaskStatus,
 } from '@mixcore/lib/model';
 import { BaseCRUDStore } from '@mixcore/share/base';
+import * as R from 'remeda';
 import { map } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TaskStore extends BaseCRUDStore<MixTaskNew> {
   public override requestFn = (request: PaginationRequestModel) =>
-    this.mixApi.databaseApi.getDataByName<MixTaskNew>('mixDb_mixTask', {
-      ...request,
-    });
+    this.mixApi.databaseApi.getDataByName<MixTaskNew>('mixDb_mixTask', request);
 
   public override requestName = 'mixTask';
   public override searchColumns = ['Title', 'Description'];
@@ -44,13 +43,14 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
   };
 
   public addTask = (task: MixTaskNew, mode: 'Update' | 'Create' = 'Create') => {
-    this.patchState((s) => {
-      if (mode === 'Create') return { ...s, data: [task, ...s.data] };
+    const currentData = this.get().data;
+    if (mode === 'Create') {
+      currentData.unshift(task);
+    } else {
+      const taskIndex = currentData.findIndex((x) => x.id === task.id);
+      if (taskIndex >= 0) currentData[taskIndex] = task;
+    }
 
-      const taskIndex = s.data.findIndex((x) => x.id === task.id);
-      if (taskIndex >= 0) s.data[taskIndex] = task;
-
-      return { ...s };
-    });
+    this.patchState({ data: R.clone(currentData) });
   };
 }

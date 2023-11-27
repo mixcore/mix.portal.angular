@@ -18,7 +18,7 @@
       tuiDropdownDirection="bottom"
     >
       <div
-        class="side-menu__item ripple-gray"
+        class="side-menu__item"
         [ngClass]="{
           '--open': isMenuSelected(item, selectedMenu),
           '--active': isMenuSelected(item, selectedMenu)
@@ -54,7 +54,7 @@
         >
           <div
             *ngFor="let child of item.children"
-            class="side-menu__child-item"
+            class="side-menu__child-item ripple-gray"
             [routerLink]="'/' + child.url"
             (click)="$event.stopPropagation()"
           >

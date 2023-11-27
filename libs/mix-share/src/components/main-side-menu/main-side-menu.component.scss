@@ -58,7 +58,8 @@
     }
 
     &:hover {
-      color: var(--primary-color);
+      // color: var(--primary-color);
+      opacity: 0.8;
     }
 
     &:first-of-type {

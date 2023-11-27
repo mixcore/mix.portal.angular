@@ -103,6 +103,7 @@
     height: 36px;
     box-shadow: inset 0 -1px 0 var(--border-color-default);
     font-size: 14px;
+    width: fit-content;
   }
 
   tr:hover td:not(.mix-data-table__empty-data) {

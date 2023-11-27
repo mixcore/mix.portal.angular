@@ -6,10 +6,12 @@
   --ag-row-border-width: 1px;
   --ag-row-border-color: var(--border-color-default);
   --ag-odd-row-background-color: var(--background-color-primary);
+  --ag-header-background-color: var(--background-color-primary);
   --ag-background-color: var(--background-color-primary);
   --ag-cell-horizontal-border: 1px solid var(--border-color-default);
   --ag-header-height: 32px;
   --ag-row-height: 40px;
-  --ag-row-hover-color: rgba(233, 234, 237, 0.5);
+  --ag-row-hover-color: rgba(231, 238, 253, 1);
+  --ag-selected-row-background-color: rgba(231, 238, 253, 1);
   --ag-font-size: inherit !important;
 }

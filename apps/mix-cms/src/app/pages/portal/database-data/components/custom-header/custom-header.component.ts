@@ -48,7 +48,7 @@ export class CustomHeaderComponent implements IHeaderAngularComp {
     this.parentComp = this.params.context.componentParent;
 
     const dataType = this.params['dataType'];
-    this.icon = DataTypeDisplay[dataType]?.icon || 'Default';
+    this.icon = DataTypeDisplay[dataType]?.icon || '';
     this.iconSize = DataTypeDisplay[dataType]?.iconSize || '16px';
     this.color = DataTypeColors[dataType] || '#000';
     this.text = params['displayName'] || 'Default';

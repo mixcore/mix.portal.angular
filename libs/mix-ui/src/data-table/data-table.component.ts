@@ -16,6 +16,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { TuiDestroyService } from '@taiga-ui/cdk';
+import * as R from 'remeda';
 import { debounceTime, takeUntil } from 'rxjs';
 import { TableColumnDirective } from './directives/column.directive';
 
@@ -66,13 +67,15 @@ export class DataTableComponent<T> implements AfterContentInit {
   }
   @Input() public contextMenus: TableContextMenu<T>[] = [];
   @Input() public set dataset(v: T[]) {
-    this._dataset = v;
-    this.markAllUnchecked();
+    if (R.difference(v, this._dataset)) {
+      this._dataset = v;
+      this.markAllUnchecked();
 
-    if (this.mainTable?.nativeElement) {
-      setTimeout(() => {
-        this.mainTable.nativeElement.scrollTop = 0;
-      }, 100);
+      if (this.mainTable?.nativeElement) {
+        setTimeout(() => {
+          this.mainTable.nativeElement.scrollTop = 0;
+        }, 100);
+      }
     }
   }
   public get dataset() {
@@ -113,35 +116,18 @@ export class DataTableComponent<T> implements AfterContentInit {
     this.tableColumns = this.displayColumns.map(
       (c: TableColumnDirective) => c.key
     );
+
     this.tableColumns.push('MENU');
 
-    this.zone.runOutsideAngular(() => {
-      this.searchText.patchValue(this.searchTextValue, { emitEvent: false });
-
-      // this.columns.changes
-      //   .pipe(startWith([]), takeUntil(this.destroy$))
-      //   .subscribe(() => {
-      //     this.displayColumns = this.columns
-      //       .toArray()
-      //       .filter(
-      //         (x) => x.columnType !== 'CHECKBOX' && x.columnType !== 'ACTION'
-      //       );
-
-      //     this.tableColumns = this.displayColumns.map(
-      //       (c: TableColumnDirective) => c.key
-      //     );
-      //     this.tableColumns.push('MENU');
-      //   });
-
-      this.searchText.valueChanges
-        .pipe(debounceTime(500), takeUntil(this.destroy$))
-        .subscribe((v) => {
-          this.searchChange.next({
-            searchText: v,
-            searchField: this.searchField.getRawValue(),
-          });
+    this.searchText.patchValue(this.searchTextValue, { emitEvent: false });
+    this.searchText.valueChanges
+      .pipe(debounceTime(500), takeUntil(this.destroy$))
+      .subscribe((v) => {
+        this.searchChange.next({
+          searchText: v,
+          searchField: this.searchField.getRawValue(),
         });
-    });
+      });
   }
 
   public onPageChange(index: number): void {

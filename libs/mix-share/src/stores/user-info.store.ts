@@ -31,7 +31,7 @@ export class UserInfoStore extends BaseCRUDStore<UserListVm> {
 
     this.request$$
       .pipe(
-        tap(() => this.patchState((s) => ({ ...s, status: 'Loading' }))),
+        tap(() => this.patchState({ status: 'Loading' })),
         tap((request) => this.loadData(request)),
         takeUntilDestroyed()
       )

@@ -79,7 +79,7 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
         switchMap((request) => {
           this.cacheKey = buildCacheKey(request, this.requestName);
           if (!this.cacheService.has(this.cacheKey)) {
-            this.patchState((s) => ({ ...s, status: 'Loading' }));
+            this.patchState({ status: 'Loading' });
           }
 
           return of(request);
@@ -100,8 +100,13 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
       )
   );
 
+  public reUpdateCache() {
+    this.cacheService.delete(this.cacheKey);
+    this.cacheService.set(this.cacheKey, this.get());
+  }
+
   public reload() {
-    this.patchState((s) => ({ ...s, status: 'Loading' }));
+    this.patchState({ status: 'Loading' });
     this.loadData(this.request$());
   }
 
@@ -128,13 +133,10 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
   }
 
   public changePage(index: number) {
-    this.patchState((s) => ({
-      ...s,
-      request: {
-        ...s.request,
-        pageIndex: index,
-      },
-    }));
+    const request = this.get().request;
+    request.pageIndex = index;
+
+    this.patchState({ request: request });
   }
 
   public searchChange(
