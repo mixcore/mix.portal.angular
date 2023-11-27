@@ -264,9 +264,15 @@ const slideInLeft = () =>
           visibility: 'visible',
           transform: 'translate3d(-{{translate}}, 0, 0)',
           easing: 'ease',
+          opacity: 0,
           offset: 0,
         }),
-        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 }),
+        style({
+          transform: 'translate3d(0, 0, 0)',
+          opacity: AUTO_STYLE,
+          easing: 'ease',
+          offset: 1,
+        }),
       ])
     ),
   ]);
@@ -321,10 +327,16 @@ const slideInRight = () =>
         style({
           visibility: 'visible',
           transform: 'translate3d({{translate}}, 0, 0)',
-          easing: 'ease',
+          easing: 'ease-out',
+          opacity: 0,
           offset: 0,
         }),
-        style({ transform: 'translate3d(0, 0, 0)', easing: 'ease', offset: 1 }),
+        style({
+          transform: 'translate3d(0, 0, 0)',
+          opacity: AUTO_STYLE,
+          easing: 'ease-out',
+          offset: 1,
+        }),
       ])
     ),
   ]);
@@ -335,10 +347,7 @@ export function slideInRightAnimation(
   return trigger((options && options.anchor) || 'slideInLeft', [
     transition(
       '0 => 1',
-      [
-        style({ visibility: 'hidden' }),
-        ...useAnimationIncludingChildren(slideInLeft(), options),
-      ],
+      [...useAnimationIncludingChildren(slideInLeft(), options)],
       {
         params: {
           delay: (options && options.delay) || 0,
@@ -356,10 +365,7 @@ export function slideInRightOnEnterAnimation(
   return trigger((options && options.anchor) || 'slideInRightOnEnter', [
     transition(
       ':enter',
-      [
-        style({ visibility: 'hidden' }),
-        ...useAnimationIncludingChildren(slideInRight(), options),
-      ],
+      [...useAnimationIncludingChildren(slideInRight(), options)],
       {
         params: {
           delay: (options && options.delay) || 0,
@@ -503,9 +509,9 @@ const fadeInExpand = () =>
         style({
           height: AUTO_STYLE,
           opacity: AUTO_STYLE,
+          easing: 'ease-out',
           visibility: AUTO_STYLE,
           overflow: 'hidden',
-          easing: 'ease-out',
           offset: 1,
         }),
       ])

@@ -40,7 +40,12 @@
       [overlay]="true"
       [showLoader]="(loading && !dataset.length) || forceLoading"
     >
-      <table *ngIf="tableColumns.length" [columns]="tableColumns" tuiTable>
+      <table
+        [@slideInRightOnEnter]
+        *ngIf="displayColumns.length > 1"
+        [columns]="tableColumns"
+        tuiTable
+      >
         <thead>
           <tr tuiThGroup>
             <ng-container *ngFor="let col of displayColumns; let i = index">
@@ -56,7 +61,6 @@
                     *ngIf="i === 0"
                     class="form-check-input me-4"
                     type="checkbox"
-                    aria-label="Checkbox check all"
                     [ngModel]="isAllSelected"
                     (ngModelChange)="markAllChecked($event)"
                   />
@@ -82,20 +86,12 @@
           </tr>
         </thead>
 
-        <tbody
-          *ngIf="dataset"
-          [cdkDropListDisabled]="!enableDnd"
-          [data]="dataset"
-          (cdkDropListDropped)="drop($event)"
-          cdkDropList
-          tuiTbody
-        >
+        <tbody [data]="dataset" tuiTbody>
           <tr
             *ngFor="let item of dataset; trackBy: dataTrackBy"
             [ngClass]="{
               '--selected': !!currentSelectedItemDic[$any(item)[uniqueKey]]
             }"
-            cdkDrag
             tuiTr
           >
             <ng-container *ngFor="let col of displayColumns; let i = index">

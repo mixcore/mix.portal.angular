@@ -13,8 +13,10 @@ import {
   ViewChild,
   ViewEncapsulation,
   inject,
+  signal,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { slideInRightOnEnterAnimation } from '@mixcore/share/animation';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import * as R from 'remeda';
 import { debounceTime, takeUntil } from 'rxjs';
@@ -32,6 +34,7 @@ export interface TableContextMenu<T> {
   styleUrls: ['./data-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [TuiDestroyService],
+  animations: [slideInRightOnEnterAnimation({ duration: 300 })],
 })
 export class DataTableComponent<T> implements AfterContentInit {
   @ViewChild('mainTable') mainTable!: ElementRef<HTMLElement>;
@@ -70,6 +73,7 @@ export class DataTableComponent<T> implements AfterContentInit {
     if (R.difference(v, this._dataset)) {
       this._dataset = v;
       this.markAllUnchecked();
+      this.tableState.set('Ok');
 
       if (this.mainTable?.nativeElement) {
         setTimeout(() => {
@@ -104,6 +108,7 @@ export class DataTableComponent<T> implements AfterContentInit {
   public isAllSelected = false;
   public currentSelectedItem: T[] = [];
   public currentSelectedItemDic: Record<string, T | undefined> = {};
+  public tableState = signal<'Pending' | 'Ok'>('Pending');
 
   private _dataset: T[] = [];
   private _searchFieldOptions: string[] = [];
