@@ -77,19 +77,16 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
 
   public onSaveData() {
     const db = this.ref.data.mixDatabase;
+    const value = {
+      ...this.modelData,
+      ...this.form.getRawValue(),
+    };
+
     this.mixApi.databaseApi
-      .saveData(
-        db.systemName,
-        this.modelData.id ?? -1,
-        {
-          ...this.modelData,
-          ...this.form.getRawValue(),
-        },
-        db.displayName
-      )
+      .saveData(db.systemName, this.modelData.id ?? -1, value, db.displayName)
       .pipe(this.observerLoadingStateSignal())
       .subscribe((result) => {
-        this.ref.close(result);
+        this.ref.close(value);
       });
   }
 }

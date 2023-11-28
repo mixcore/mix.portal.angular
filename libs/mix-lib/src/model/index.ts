@@ -1,6 +1,7 @@
 export * from './core/application.model';
 export * from './core/database.model';
 export * from './core/metadata.model';
+export * from './core/mix-project.model';
 export * from './core/mix-task.model';
 export * from './core/module.model';
 export * from './core/order.model';

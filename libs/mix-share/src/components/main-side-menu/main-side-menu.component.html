@@ -6,8 +6,8 @@
       </div>
     </div>
 
+    @for(item of menu; track item) {
     <tui-hosted-dropdown
-      *ngFor="let item of menu"
       class="w-100"
       [canOpen]="!showDetail"
       [content]="dropdown"
@@ -91,6 +91,7 @@
         </tui-data-list>
       </ng-template>
     </tui-hosted-dropdown>
+    }
 
     <div class="side-menu__item mt-auto" (click)="showSetting()">
       <div class="side-menu__parent-container">

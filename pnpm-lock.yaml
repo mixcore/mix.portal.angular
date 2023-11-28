@@ -57,8 +57,8 @@ dependencies:
     specifier: ^1.0.1
     version: 1.0.1(@angular/common@17.0.2)(@angular/core@17.0.2)(rxjs@7.8.1)
   '@ngneat/dialog':
-    specifier: ^4.1.0
-    version: 4.1.1(@angular/core@17.0.2)
+    specifier: 5.0.0
+    version: 5.0.0(@angular/core@17.0.2)
   '@ngneat/edit-in-place':
     specifier: ^1.6.1
     version: 1.6.1(@angular/common@17.0.2)(@angular/core@17.0.2)
@@ -3789,10 +3789,10 @@ packages:
       - rxjs
     dev: false
 
-  /@ngneat/dialog@4.1.1(@angular/core@17.0.2):
-    resolution: {integrity: sha512-wYtkXGXparx8XEeJ5dLmN/+Q/6EMTHV9btXkWIeZFQbS/y3HYZZinMJ6+qqbCh7N0Y3yPAFLjJ1jXoIsZNeWww==}
+  /@ngneat/dialog@5.0.0(@angular/core@17.0.2):
+    resolution: {integrity: sha512-+qLGaLcNXQ5PVtlv4htqHsJ4JV9TZ+wy89rtYMsno/jZuB63usMITPEB7TgtEPgpbyDDcYVagA6eQqYMEgZPOA==}
     peerDependencies:
-      '@angular/core': '>=14.0.0'
+      '@angular/core': '>=17.0.0'
     dependencies:
       '@angular/core': 17.0.2(rxjs@7.8.1)(zone.js@0.14.2)
       tslib: 2.3.1

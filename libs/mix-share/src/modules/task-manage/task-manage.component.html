@@ -1,33 +1,32 @@
-<div *ngIf="loadingState() as loading" class="data-table-page task-manage">
+<div *ngIf="loadingState() as loading"
+     class="data-table-page task-manage">
   <div class="data-table-page__main-container">
-    <mix-sub-toolbar
-      [description]="'listing'"
-      [title]="'Kanban Board' | transloco"
-    >
+    <mix-sub-toolbar [description]="'Work on'"
+                     [titleTpl]="taskSelect">
+      <ng-template #taskSelect>
+        <mix-project-select></mix-project-select>
+      </ng-template>
+
       <div class="toolbar-separator"></div>
-      <mix-button (click)="addTask()" size="s"
-        ><span class="material-symbols-outlined"> add </span>&nbsp;
-        {{ 'New' | transloco }}</mix-button
-      >
+
+      <mix-button (click)="addTask()"
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
+        {{ 'New' | transloco }}</mix-button>
     </mix-sub-toolbar>
 
     <mix-task-filter></mix-task-filter>
 
-    <div
-      *ngIf="store.vm$ | async as vm"
-      class="task-manage__main-view"
-      cdkDropListGroup
-    >
+    <div *ngIf="store.vm$ | async as vm"
+         class="task-manage__main-view"
+         cdkDropListGroup>
       <mix-task-header></mix-task-header>
 
-      <ng-container *ngIf="store.getParentTasks() | async as tasks">
-        <mix-task-group-list
-          *ngFor="let task of tasks; trackByProp: 'id'"
-          [parentTask]="task"
-          [taskStatuses]="taskStatuses"
-        >
-        </mix-task-group-list>
-      </ng-container>
+      @if (store.getParentTasks() | async; as tasks) { @for (task of tasks;
+      track task.id) {
+      <mix-task-group-list [parentTask]="task"
+                           [taskStatuses]="taskStatuses">
+      </mix-task-group-list>
+      } }
     </div>
   </div>
 </div>

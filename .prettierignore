@@ -6,3 +6,5 @@
 .angular
 
 /.nx/cache
+
+ *.html

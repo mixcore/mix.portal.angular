@@ -10,6 +10,7 @@ import {
 } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseState } from '@mixcore/share/base';
+import { ObjectUtil } from '@mixcore/share/form';
 import { ComponentStore } from '@ngrx/component-store';
 import { catchError, filter, forkJoin, of } from 'rxjs';
 
@@ -30,6 +31,7 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
   public dbSysName$ = this.select((s) => s.dbSysName).pipe(filter(Boolean));
   public query$ = this.select((s) => s.request);
   public vm$ = this.select((s) => s);
+  public data$ = this.select((s) => s.data);
 
   constructor() {
     super({
@@ -188,28 +190,23 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
   }
 
   public addData(data: MixDynamicData) {
-    this.patchState((s) => ({
-      ...s,
-      data: [...s.data, data],
-    }));
+    const current = this.get().data;
+    current.push(data);
+
+    this.patchState({ data: ObjectUtil.clone(current) });
   }
 
   public updateData(dataIndex: number, data: MixDynamicData) {
-    this.patchState((s) => {
-      const current = s.data;
-      current[dataIndex] = data;
+    const current = this.get().data;
+    data[dataIndex] = data;
 
-      return {
-        ...s,
-        data: [...current],
-      };
-    });
+    this.patchState({ data: ObjectUtil.clone(current) });
   }
 
   public removeData(dataId: number[]) {
-    this.patchState((s) => ({
-      ...s,
-      data: s.data.filter((x) => !dataId.includes(x.id!)),
-    }));
+    let current = this.get().data;
+    current = current.filter((x) => !dataId.includes(x.id!));
+
+    this.patchState({ data: ObjectUtil.clone(current) });
   }
 }

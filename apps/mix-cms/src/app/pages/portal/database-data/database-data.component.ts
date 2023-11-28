@@ -36,7 +36,6 @@ import {
   Subject,
   debounceTime,
   distinctUntilChanged,
-  filter,
   forkJoin,
   map,
   take,
@@ -45,7 +44,6 @@ import {
 } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 
-import { SuccessFilter } from '@mixcore/share/base';
 import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
 import { DatabaseDataStore } from '../../../stores/database-data.store';
 import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
@@ -149,7 +147,6 @@ export class DatabaseDataComponent
   public onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.rowData$ = this.store.vm$.pipe(
-      filter(SuccessFilter),
       tap((s) => {
         if (s.db) {
           this.allColumnDefs = s.db.columns.map(
@@ -162,7 +159,6 @@ export class DatabaseDataComponent
                   dataType: x.dataType,
                   columnType: 'value',
                 },
-                editable: true,
               }
           );
           this.columnNames = s.db.columns.map((x) => x.displayName);
@@ -175,7 +171,9 @@ export class DatabaseDataComponent
           ];
         }
       }),
-      map((s) => s.data),
+      map((s) => {
+        return s.data;
+      }),
       takeUntil(this.destroy$)
     );
 
@@ -383,10 +381,7 @@ export class DatabaseDataComponent
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
-        if (value) {
-          this.store.updateData(dataIndex, value);
-          this.gridApi.refreshCells();
-        }
+        if (value) this.store.updateData(dataIndex, value);
       });
     });
   }

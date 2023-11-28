@@ -2,7 +2,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   ViewEncapsulation,
   inject,
@@ -13,7 +12,6 @@ import {
   TaskStatusColors,
   TaskStatusDisplay,
 } from '@mixcore/lib/model';
-import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
 import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { MixFormErrorComponent } from '@mixcore/share/form';
@@ -24,9 +22,9 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { DialogService } from '@ngneat/dialog';
-import { HotToastService } from '@ngneat/hot-toast';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TuiPaginationModule } from '@taiga-ui/kit';
+import { ProjectSelectComponent } from './components/project-select/project-select.component';
 import { TaskCreateComponent } from './components/task-create/task-create.component';
 import { TaskDndListComponent } from './components/task-dnd-list/task-dnd-list.component';
 import { TaskFilterComponent } from './components/task-filter/task-filter.component';
@@ -55,6 +53,7 @@ import { TaskStore } from './store/task.store';
     TaskFilterComponent,
     TaskGroupListComponent,
     TaskHeaderComponent,
+    ProjectSelectComponent,
     TrackByProp,
   ],
   templateUrl: './task-manage.component.html',
@@ -63,9 +62,6 @@ import { TaskStore } from './store/task.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskManageComponent extends BaseComponent {
-  public mixApi = inject(MixApiFacadeService);
-  public cdr = inject(ChangeDetectorRef);
-  public toast = inject(HotToastService);
   public dialog = inject(DialogService);
   public store = inject(TaskStore);
 

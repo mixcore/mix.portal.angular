@@ -1,3 +1,5 @@
+import * as R from 'remeda';
+
 export type RecordableKeys<T> = {
   // for each key in T
   [K in keyof T]: T[K] extends string | number | symbol // is the value a valid object key?
@@ -26,5 +28,11 @@ export class ArrayUtil {
       console.error('Index is out of bounds.');
       return array;
     }
+  }
+}
+
+export class ObjectUtil {
+  public static clone<T>(object: T) {
+    return R.clone(object);
   }
 }

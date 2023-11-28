@@ -7,6 +7,7 @@ import {
   inject,
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { fadeInExpandOnEnterAnimation } from '@mixcore/share/animation';
 import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
 import { DialogService } from '@ngneat/dialog';
@@ -43,6 +44,7 @@ export type MenuItem = {
   styleUrls: ['./main-side-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
+  animations: [fadeInExpandOnEnterAnimation({ duration: 350 })],
 })
 export class MainSideMenuComponent {
   public activeRoute = inject(ActivatedRoute);
