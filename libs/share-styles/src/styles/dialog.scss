@@ -14,11 +14,29 @@ ngneat-dialog {
   .ngneat-dialog-backdrop {
     .ngneat-dialog-content {
       padding: 18px;
-      animation: unset !important;
+      // animation: unset !important;
       box-shadow: unset !important;
     }
 
-    animation: unset !important;
+    // animation: unset !important;
+  }
+}
+
+.mix-dialog {
+  &__header {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  &__content {
+    margin: 24px 0px;
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
   }
 }
 
@@ -30,24 +48,5 @@ ngneat-dialog {
   100% {
     transform: none;
     opacity: 1;
-  }
-}
-
-.mix-dialog {
-  &__header {
-    font-size: 18px;
-    margin-bottom: 4px;
-  }
-
-  &__content {
-    margin: 24px 0px;
-  }
-
-  &__footer {
-    margin-top: 4px;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    justify-content: flex-end;
   }
 }

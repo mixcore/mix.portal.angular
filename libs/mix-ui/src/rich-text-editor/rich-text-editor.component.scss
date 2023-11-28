@@ -14,11 +14,12 @@ tui-editor {
 
   &.--full-width {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
+    width: 50vw;
+    height: calc(100vh - 8px);
+    top: 4px;
+    right: 4px;
     z-index: 50;
+    animation: fullwidth-open 0.1s cubic-bezier(0, 0, 0.2, 1);
   }
 
   &__button {
@@ -26,5 +27,16 @@ tui-editor {
     right: 14px;
     bottom: 14px;
     background-color: #fff;
+  }
+}
+
+@keyframes fullwidth-open {
+  0% {
+    opacity: 0.2;
+    transform: translateX(50%);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

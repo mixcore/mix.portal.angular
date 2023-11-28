@@ -1,0 +1,12 @@
+.formly-control-item {
+  display: flex;
+  gap: 8px;
+}
+
+formly-field {
+  display: block;
+
+  &:not(:last-of-type) {
+    margin-bottom: 1rem;
+  }
+}

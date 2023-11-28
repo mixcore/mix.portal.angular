@@ -1,15 +1,16 @@
-<div class="rich-text-editor"
-     [ngClass]="{ '--full-width': zoom }">
+<div class="rich-text-editor" [ngClass]="{ '--full-width': zoom }">
   <tui-editor [formControl]="control">
     {{ placeHolder }}
   </tui-editor>
 
-  <mix-button class="rich-text-editor__button"
-              type="outline"
-              [iconBtn]="true"
-              (click)="zoom = !zoom">
-    <span class="material-symbols-outlined">
-      {{ zoom ? 'pinch_zoom_in' : 'pinch_zoom_out' }}
+  <mix-button
+    class="rich-text-editor__button"
+    type="outline"
+    [iconBtn]="true"
+    (click)="zoom = !zoom"
+  >
+    <span class="mix-icon text-xl">
+      {{ zoom ? 'zoom_in' : 'zoom_out' }}
     </span>
   </mix-button>
 </div>

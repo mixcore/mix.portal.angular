@@ -29,8 +29,12 @@ import { TuiFileLike } from '@taiga-ui/kit';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RecordFormComponent extends BaseComponent implements OnInit {
-  mixApi = inject(MixApiFacadeService);
-  ref: DialogRef<
+  public static windowClass = 'mix-record-form-dialog';
+  public static minWidth = '800px';
+  public static maxWidth = '95vw';
+
+  public mixApi = inject(MixApiFacadeService);
+  public ref: DialogRef<
     {
       mixDatabase: MixDatabase;
       data: MixDynamicData | undefined;
@@ -83,7 +87,7 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
         },
         db.displayName
       )
-      .pipe(this.observerLoadingState())
+      .pipe(this.observerLoadingStateSignal())
       .subscribe((result) => {
         this.ref.close(result);
       });
