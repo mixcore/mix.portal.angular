@@ -1,6 +1,8 @@
 <div class="project-select"
      [tp]="dbSelect"
-     tpVariation="popper">
+     [tpOffset]="[-10, 5]"
+     tpVariation="popper"
+     tpPlacement="bottom-start">
   <div class="text-xl text-600">
     {{
       getSelectedProjectName(project(), selectedItemId)?.projectName ||

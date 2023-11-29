@@ -9,7 +9,7 @@
 }
 
 .tippy-box {
-  border-radius: var(--element-rounded) !important;
+  border-radius: 4px !important;
   box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3) !important;
 }
 
@@ -17,7 +17,7 @@
   .tippy-box {
     background-color: unset !important;
     border: 1px solid var(--border-color-default);
-    border-radius: 8px;
+    border-radius: 4px;
   }
 }
 

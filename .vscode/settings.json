@@ -32,25 +32,13 @@
   },
   "typescript.preferences.quoteStyle": "single",
   "workbench.iconTheme": "vscode-icons",
-  "cSpell.words": [
-    "bravo",
-    "ecommerce",
-    "formly",
-    "Kanban",
-    "mixcore",
-    "mixdb",
-    "specificulture",
-    "Tabler",
-    "Transloco"
-  ],
-  "tslint.alwaysShowRuleFailuresAsWarnings": false,
-  "material-icon-theme.activeIconPack": "angular_ngrx"
-  // "emeraldwalk.runonsave": {
-  //   "commands": [
-  //     {
-  //       "match": "\\.component.html$",
-  //       "cmd": "node ./tools/format-html-template.js --staged=true ${file}"
-  //     }
-  //   ]
-  // }
+  "material-icon-theme.activeIconPack": "angular_ngrx",
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.component.html$",
+        "cmd": "node ./tools/format-html-template.js --staged=true ${file}"
+      }
+    ]
+  }
 }
