@@ -1,10 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 import {
+  MixFilter,
   MixTaskNew,
   PaginationRequestModel,
   TaskStatus,
 } from '@mixcore/lib/model';
 import { BaseCRUDStore } from '@mixcore/share/base';
+import { ObjectUtil } from '@mixcore/share/form';
 import * as R from 'remeda';
 import { combineLatest, map, switchMap, tap } from 'rxjs';
 import { TaskManageStore } from './task-ui.store';
@@ -17,7 +19,18 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
     this.request$$,
     this.taskUiStore.selectedProjectId$,
   ]).pipe(
-    tap(([request, projectId]) => this.loadData(request)),
+    tap(([request, projectId]) => {
+      request['projectId'] = projectId;
+      request.queries = <MixFilter[]>[
+        {
+          value: projectId,
+          fieldName: 'projectId',
+          compareOperator: 'Equal',
+        },
+      ];
+
+      this.loadData(request);
+    }),
     switchMap(() => this.select((s) => s))
   );
 
@@ -65,4 +78,7 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
     Title: 'title',
     Description: 'description',
   };
+  public override buildCacheKey(request: PaginationRequestModel): string {
+    return `${this.requestName}-${ObjectUtil.objectToQueryString(request)}`;
+  }
 }

@@ -19,8 +19,15 @@
     <div *ngIf="store.vm$ | async as vm"
          class="task-manage__main-view"
          cdkDropListGroup>
+      <!-- Header -->
       <mix-task-header></mix-task-header>
 
+      <!-- Loading View -->
+      @if (vm.status === 'Loading') {
+      <mix-skeleton-loading [type]="'inline'"></mix-skeleton-loading>
+      }
+
+      <!-- Main View -->
       @if (store.getParentTasks() | async; as tasks) { @for (task of tasks;
       track task.id) {
       <mix-task-group-list [parentTask]="task"

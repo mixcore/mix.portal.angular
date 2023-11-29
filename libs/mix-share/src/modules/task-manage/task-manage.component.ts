@@ -56,6 +56,7 @@ import { TaskStore } from './store/task.store';
     TaskHeaderComponent,
     ProjectSelectComponent,
     TrackByProp,
+    SkeletonLoadingComponent,
   ],
   templateUrl: './task-manage.component.html',
   styleUrls: ['./task-manage.component.scss'],

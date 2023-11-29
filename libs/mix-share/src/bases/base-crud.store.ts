@@ -77,7 +77,7 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
     (request$: Observable<PaginationRequestModel>) =>
       request$.pipe(
         switchMap((request) => {
-          this.cacheKey = buildCacheKey(request, this.requestName);
+          this.cacheKey = this.buildCacheKey(request);
           if (!this.cacheService.has(this.cacheKey)) {
             this.patchState({ status: 'Loading' });
           }
@@ -130,6 +130,10 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
     }
 
     return this.cachePool$.asObservable();
+  }
+
+  public buildCacheKey(request: PaginationRequestModel) {
+    return buildCacheKey(request, this.requestName);
   }
 
   public changePage(index: number) {

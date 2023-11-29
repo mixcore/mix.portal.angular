@@ -1,4 +1,4 @@
-import * as R from 'remeda';
+import { clone } from 'remeda';
 
 export type RecordableKeys<T> = {
   // for each key in T
@@ -33,6 +33,30 @@ export class ArrayUtil {
 
 export class ObjectUtil {
   public static clone<T>(object: T) {
-    return R.clone(object);
+    return clone(object);
+  }
+
+  public static objectToQueryString(
+    obj: Record<string, any>,
+    parentKey = ''
+  ): string {
+    const keyValuePairs = [];
+
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        const value = obj[key];
+        const fullKey = parentKey ? `${parentKey}[${key}]` : key;
+
+        if (typeof value === 'object' && value !== null) {
+          keyValuePairs.push(ObjectUtil.objectToQueryString(value, fullKey));
+        } else {
+          keyValuePairs.push(
+            encodeURIComponent(fullKey) + '=' + encodeURIComponent(value)
+          );
+        }
+      }
+    }
+
+    return keyValuePairs.join('&');
   }
 }

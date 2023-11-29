@@ -21,6 +21,7 @@ export interface PaginationRequestModel extends MixGraphQLModel {
   metadataQueries?: MixFilter[];
   loadNestedData?: boolean;
   mixDatabaseName?: string;
+  [key: string]: any;
 }
 
 export type SearchMethod = 'Like' | 'In' | 'InRange' | 'Equal';

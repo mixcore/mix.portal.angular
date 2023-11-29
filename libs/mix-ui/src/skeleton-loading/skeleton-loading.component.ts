@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'mix-skeleton-loading',
@@ -7,6 +7,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./skeleton-loading.component.scss'],
   standalone: true,
   imports: [NgIf],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SkeletonLoadingComponent {
   @Input() public type: 'table' | 'card' | 'none' | 'form' | 'inline' = 'none';
