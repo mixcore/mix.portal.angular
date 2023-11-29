@@ -4,7 +4,7 @@
     <mix-sub-toolbar [description]="'Work on'"
                      [titleTpl]="taskSelect">
       <ng-template #taskSelect>
-        <mix-project-select></mix-project-select>
+        <mix-project-select (selectedItemChange)="taskManage.changeSelected($event)"></mix-project-select>
       </ng-template>
 
       <div class="toolbar-separator"></div>

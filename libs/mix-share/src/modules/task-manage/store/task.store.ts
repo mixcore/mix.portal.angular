@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   MixTaskNew,
   PaginationRequestModel,
@@ -6,19 +6,20 @@ import {
 } from '@mixcore/lib/model';
 import { BaseCRUDStore } from '@mixcore/share/base';
 import * as R from 'remeda';
-import { map } from 'rxjs';
+import { combineLatest, map, switchMap, tap } from 'rxjs';
+import { TaskManageStore } from './task-ui.store';
 
 @Injectable({ providedIn: 'root' })
 export class TaskStore extends BaseCRUDStore<MixTaskNew> {
-  public override requestFn = (request: PaginationRequestModel) =>
-    this.mixApi.databaseApi.getDataByName<MixTaskNew>('mixDb_mixTask', request);
+  public taskUiStore = inject(TaskManageStore);
 
-  public override requestName = 'mixTask';
-  public override searchColumns = ['Title', 'Description'];
-  public override searchColumnsDict: { [key: string]: string } = {
-    Title: 'title',
-    Description: 'description',
-  };
+  public override vm$ = combineLatest([
+    this.request$$,
+    this.taskUiStore.selectedProjectId$,
+  ]).pipe(
+    tap(([request, projectId]) => this.loadData(request)),
+    switchMap(() => this.select((s) => s))
+  );
 
   public getTaskByStatus = (status: TaskStatus, parentTaskId: number) => {
     return this.select((s) => s).pipe(
@@ -52,5 +53,16 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
     }
 
     this.patchState({ data: R.clone(currentData) });
+  };
+
+  // Static overide
+  public override requestFn = (request: PaginationRequestModel) =>
+    this.mixApi.databaseApi.getDataByName<MixTaskNew>('mixDb_mixTask', request);
+
+  public override requestName = 'mixTask';
+  public override searchColumns = ['Title', 'Description'];
+  public override searchColumnsDict: { [key: string]: string } = {
+    Title: 'title',
+    Description: 'description',
   };
 }

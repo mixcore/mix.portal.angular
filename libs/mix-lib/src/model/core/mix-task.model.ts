@@ -72,7 +72,7 @@ export interface MixTaskNew {
   lastModified: string;
   reporter?: string;
   userIds: string[];
-  projectId?: string;
+  projectId?: number;
   priority: number;
   parentTaskId?: number;
 }

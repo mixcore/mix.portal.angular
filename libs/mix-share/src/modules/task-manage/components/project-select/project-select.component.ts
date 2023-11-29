@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   EventEmitter,
   Input,
   Output,
@@ -27,13 +28,14 @@ import { ProjectStore } from '../../store/project.store';
 export class ProjectSelectComponent {
   public store = inject(ProjectStore);
   public project = signal<MixProject[]>([]);
+  public destroy$ = inject(DestroyRef);
 
   @Input() public selectedItemId?: number;
   @Input() public selectedItemName?: string;
   @Output() public selectedItemChange = new EventEmitter<MixProject>();
 
-  constructor() {
-    this.store.vm$.pipe(takeUntilDestroyed()).subscribe((vm) => {
+  ngOnInit() {
+    this.store.vm$.pipe(takeUntilDestroyed(this.destroy$)).subscribe((vm) => {
       this.project.set(vm.data);
 
       if (vm.data.length && !this.selectedItemId) {

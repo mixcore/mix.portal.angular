@@ -21,6 +21,8 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
+import { take } from 'rxjs';
+import { TaskManageStore } from '../../store/task-ui.store';
 import { TaskService } from '../../store/task.service';
 import { TaskStore } from '../../store/task.store';
 import { TaskPrioritySelectComponent } from '../task-priority-select/task-priority-select.component';
@@ -47,6 +49,7 @@ import { TaskTypeSelectComponent } from '../task-type-select/task-type-select.co
 export class TaskCreateComponent extends BaseComponent {
   public taskService = inject(TaskService);
   public taskStore = inject(TaskStore);
+  public taskUiStore = inject(TaskManageStore);
   public dialogRef = inject(DialogRef);
   public toast = inject(HotToastService);
   public parentTask?: MixTaskNew;
@@ -60,6 +63,7 @@ export class TaskCreateComponent extends BaseComponent {
     reporter: new FormControl(),
     priority: new FormControl(999),
     parentTaskId: new FormControl(),
+    projectId: new FormControl(),
   });
 
   public ngOnInit() {
@@ -69,6 +73,10 @@ export class TaskCreateComponent extends BaseComponent {
     } else {
       this.taskForm.controls.type.patchValue(TaskType.SWIMLANE);
     }
+
+    this.taskUiStore.selectedProjectId$.pipe(take(1)).subscribe((id) => {
+      this.taskForm.controls.projectId.patchValue(id);
+    });
   }
 
   public createTask() {

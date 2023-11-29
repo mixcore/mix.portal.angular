@@ -30,6 +30,7 @@ import { TaskDndListComponent } from './components/task-dnd-list/task-dnd-list.c
 import { TaskFilterComponent } from './components/task-filter/task-filter.component';
 import { TaskGroupListComponent } from './components/task-group-list/task-group-list.component';
 import { TaskHeaderComponent } from './components/task-header/task-header.component';
+import { TaskManageStore } from './store/task-ui.store';
 import { TaskStore } from './store/task.store';
 
 @Component({
@@ -64,6 +65,7 @@ import { TaskStore } from './store/task.store';
 export class TaskManageComponent extends BaseComponent {
   public dialog = inject(DialogService);
   public store = inject(TaskStore);
+  public taskManage = inject(TaskManageStore);
 
   public TaskStatusDisplay = TaskStatusDisplay;
   public TaskStatusColors = TaskStatusColors;
