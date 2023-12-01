@@ -1,16 +1,25 @@
-<div class="rich-text-editor" [ngClass]="{ '--full-width': zoom }">
-  <tui-editor [formControl]="control">
+<div *ngIf="mode() === 'Edit'"
+     class="rich-text-editor"
+     [ngClass]="{ '--full-width': zoom,   }">
+  <tui-editor [formControl]="control"
+              tuiAutoFocus
+              [style.minHeight.px]="zoom ? undefined : 400"
+              [style.maxHeight.px]="zoom ? undefined : 400">
     {{ placeHolder }}
   </tui-editor>
 
-  <mix-button
-    class="rich-text-editor__button"
-    type="outline"
-    [iconBtn]="true"
-    (click)="zoom = !zoom"
-  >
+  <mix-button class="rich-text-editor__button"
+              type="outline"
+              [iconBtn]="true"
+              (click)="zoom = !zoom">
     <span class="mix-icon text-xl">
       {{ zoom ? 'zoom_in' : 'zoom_out' }}
     </span>
   </mix-button>
+</div>
+
+<div *ngIf="mode() === 'View'"
+     class="rich-text-editor-preview"
+     (click)="mode.set('Edit')">
+  <tui-editor-socket [content]="control.value"></tui-editor-socket>
 </div>

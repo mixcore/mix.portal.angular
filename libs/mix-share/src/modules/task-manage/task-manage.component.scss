@@ -24,3 +24,10 @@
     }
   }
 }
+
+.task-detail-modal {
+  .ngneat-dialog-backdrop.ngneat-dialog-backdrop-visible {
+    align-items: flex-start;
+    padding: 48px;
+  }
+}

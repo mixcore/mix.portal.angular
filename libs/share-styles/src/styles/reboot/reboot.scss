@@ -3,18 +3,18 @@ body {
   --bs-gutter-x: 0px !important;
   margin: 0 !important;
   padding: 0 !important;
-  height: 100%;
 }
 
 body {
   font-feature-settings: 'calt' 0;
-  height: 100%;
   margin: 0 !important;
   padding: 0 !important;
   font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif !important;
   color: var(--text-color-primary) !important;
   font-size: var(--text-size-s) !important;
+  height: 100vh;
+  width: 100vw;
 }
 
 p {
@@ -61,6 +61,6 @@ a {
 }
 
 tui-root {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
 }

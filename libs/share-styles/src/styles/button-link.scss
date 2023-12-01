@@ -1,0 +1,43 @@
+.button-link {
+  background-color: var(--ds-background-neutral, #091e420f);
+  border: none;
+  border-radius: 3px;
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--ds-text, #172b4d);
+  cursor: pointer;
+  display: flex;
+  font-weight: 500;
+  height: 32px;
+  max-width: 300px;
+  overflow: hidden;
+  padding: 6px 12px;
+  position: relative;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  transition-duration: 85ms;
+  transition-property: background-color, border-color, box-shadow;
+  transition-timing-function: ease;
+  -webkit-user-select: none;
+  user-select: none;
+  white-space: nowrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.button-link:hover {
+  background-color: var(--ds-background-neutral-hovered, #091e4224);
+  text-decoration: none;
+}
+
+.button-link:active,
+.button-link:hover {
+  border: none;
+  box-shadow: none;
+  color: var(--ds-text, #172b4d);
+}
+
+.button-link:active {
+  background-color: var(--ds-background-neutral-pressed, #091e424f);
+  outline: 0;
+}

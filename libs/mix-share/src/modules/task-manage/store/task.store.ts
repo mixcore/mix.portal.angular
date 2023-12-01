@@ -46,6 +46,12 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
     );
   };
 
+  public getTaskById = (id: number) => {
+    return this.select((s) => s).pipe(
+      map((x) => x.data.find((t) => t.id === id))
+    );
+  };
+
   public getParentTasks = () => {
     return this.select((s) => s).pipe(
       map((s) => {
@@ -66,9 +72,9 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
     }
 
     this.patchState({ data: R.clone(currentData) });
+    this.reUpdateCache();
   };
 
-  // Static overide
   public override requestFn = (request: PaginationRequestModel) =>
     this.mixApi.databaseApi.getDataByName<MixTaskNew>('mixDb_mixTask', request);
 

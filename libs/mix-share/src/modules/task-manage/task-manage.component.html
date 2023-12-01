@@ -28,8 +28,9 @@
       }
 
       <!-- Main View -->
-      @if (store.getParentTasks() | async; as tasks) { @for (task of tasks;
-      track task.id) {
+      @if (store.getParentTasks() | async; as tasks) {
+      <!-- Loop task -->
+      @for (task of tasks; track task.id) {
       <mix-task-group-list [parentTask]="task"
                            [taskStatuses]="taskStatuses">
       </mix-task-group-list>

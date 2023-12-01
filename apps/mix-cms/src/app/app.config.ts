@@ -220,6 +220,7 @@ export const appConfig: ApplicationConfig = {
         tooltip: tooltipVariation,
         popper: popperVariation,
       },
+      appendTo: document.body,
     }),
     {
       provide: TUI_SANITIZER,

@@ -102,7 +102,10 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
 
   public reUpdateCache() {
     this.cacheService.delete(this.cacheKey);
-    this.cacheService.set(this.cacheKey, this.get());
+    this.cacheService.set(this.cacheKey, {
+      items: this.get().data,
+      pagingData: this.get().pageInfo,
+    });
   }
 
   public reload() {
