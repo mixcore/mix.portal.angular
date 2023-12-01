@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -15,7 +15,7 @@ import {
 } from '@mixcore/lib/model';
 import { BaseComponent } from '@mixcore/share/base';
 import { UserSelectComponent } from '@mixcore/share/components';
-import { FormHelper } from '@mixcore/share/form';
+import { FormHelper, ObjectUtil } from '@mixcore/share/form';
 import { MixUtcDatePipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixDatePickerComponent } from '@mixcore/ui/date-picker';
@@ -25,10 +25,12 @@ import { MixSelectComponent } from '@mixcore/ui/select';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
-import { debounceTime, delay, filter, take } from 'rxjs';
+import { delay, filter, take, takeUntil } from 'rxjs';
 import { TaskService } from '../../store/task.service';
 import { TaskStore } from '../../store/task.store';
 import { StartEndDateComponent } from '../start-end-date/start-end-date.component';
+import { StoryPointSelectComponent } from '../story-point-select/story-point-select.component';
+import { TaskPrioritySelectComponent } from '../task-priority-select/task-priority-select.component';
 
 @Component({
   selector: 'mix-task-detail-modal',
@@ -45,6 +47,8 @@ import { StartEndDateComponent } from '../start-end-date/start-end-date.componen
     StartEndDateComponent,
     UserSelectComponent,
     SkeletonLoadingComponent,
+    TaskPrioritySelectComponent,
+    StoryPointSelectComponent,
   ],
   templateUrl: './task-detail-modal.component.html',
   styleUrls: ['./task-detail-modal.component.scss'],
@@ -61,13 +65,16 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
   public TaskTypeIconDisplay = TaskTypeIcons;
   public taskForm = new FormGroup({
     title: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
+    description: new FormControl(''),
     taskStatus: new FormControl(TaskStatus.BACKLOG, Validators.required),
     taskPriority: new FormControl(TaskPriority.LOW, Validators.required),
+    taskPoint: new FormControl(1),
     reporter: new FormControl(),
     startDate: new FormControl(),
     endDate: new FormControl(),
   });
+  public originalValue: object = {};
+  public disableSave = signal(true);
 
   public statussLabel = (status: TaskStatus) => TaskStatusDisplay[status];
   public statusItems = [
@@ -77,35 +84,29 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
     TaskStatus.DONE,
   ];
 
-  public priorityLabel = (priority: TaskPriority) => priority;
-  public prorityItems = [
-    TaskPriority.LOWEST,
-    TaskPriority.LOW,
-    TaskPriority.MEDIUM,
-    TaskPriority.HIGH,
-    TaskPriority.HIGHEST,
-  ];
-
   ngOnInit() {
     this.taskStore
       .getTaskById(this.dialogRef.data.task.id)
       .pipe(
         filter(Boolean),
         take(1),
-        delay(500),
+        delay(300),
         this.observerLoadingStateSignal()
       )
       .subscribe((task) => {
         this.task = task;
         this.taskForm.patchValue(this.task);
-        this.initAutoSave();
+        this.originalValue = ObjectUtil.clone(this.taskForm.getRawValue());
+        this.initValueChanged();
       });
   }
 
-  public initAutoSave() {
-    this.taskForm.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
-      this.saveTask();
-    });
+  public initValueChanged() {
+    this.taskForm.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value) => {
+        this.disableSave.set(!ObjectUtil.diff(value, this.originalValue));
+      });
   }
 
   public saveTask(close = true) {
@@ -115,15 +116,18 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
         ...this.taskForm.value,
       };
 
-      this.taskService.saveTask(value as MixTaskNew).subscribe({
-        next: () => {
-          this.taskStore.addTask(value as unknown as MixTaskNew, 'Update');
-          // if (close) this.dialogRef.close();
-        },
-        error: () => {
-          this.toast.error('Something error, please try again');
-        },
-      });
+      this.taskService
+        .saveTask(value as MixTaskNew)
+        .pipe(this.observerLoadingState())
+        .subscribe({
+          next: () => {
+            this.taskStore.addTask(value as unknown as MixTaskNew, 'Update');
+            if (close) this.dialogRef.close();
+          },
+          error: () => {
+            this.toast.error('Something error, please try again');
+          },
+        });
     }
   }
 }

@@ -1,4 +1,3 @@
-import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -14,7 +13,6 @@ import {
 } from '@mixcore/lib/model';
 import { BaseComponent } from '@mixcore/share/base';
 import { MixSubToolbarComponent } from '@mixcore/share/components';
-import { MixFormErrorComponent } from '@mixcore/share/form';
 import { TrackByProp } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixEditorComponent } from '@mixcore/ui/editor';
@@ -23,7 +21,6 @@ import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { DialogService } from '@ngneat/dialog';
 import { TranslocoModule } from '@ngneat/transloco';
-import { TuiPaginationModule } from '@taiga-ui/kit';
 import { ProjectSelectComponent } from './components/project-select/project-select.component';
 import { TaskCreateComponent } from './components/task-create/task-create.component';
 import { TaskDndListComponent } from './components/task-dnd-list/task-dnd-list.component';
@@ -42,13 +39,10 @@ import { TaskStore } from './store/task.store';
     ReactiveFormsModule,
     ReactiveFormsModule,
     SkeletonLoadingComponent,
-    TuiPaginationModule,
-    DragDropModule,
     MixSubToolbarComponent,
     MixButtonComponent,
     MixInputComponent,
     MixTextAreaComponent,
-    MixFormErrorComponent,
     MixEditorComponent,
     TaskDndListComponent,
     TaskFilterComponent,
@@ -56,7 +50,6 @@ import { TaskStore } from './store/task.store';
     TaskHeaderComponent,
     ProjectSelectComponent,
     TrackByProp,
-    SkeletonLoadingComponent,
   ],
   templateUrl: './task-manage.component.html',
   styleUrls: ['./task-manage.component.scss'],

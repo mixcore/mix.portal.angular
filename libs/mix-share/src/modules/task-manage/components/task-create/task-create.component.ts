@@ -56,7 +56,7 @@ export class TaskCreateComponent extends BaseComponent {
 
   public taskForm = new FormGroup({
     title: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
+    description: new FormControl(''),
     type: new FormControl(TaskType.STORY, Validators.required),
     taskPriority: new FormControl(TaskPriority.LOW, Validators.required),
     taskStatus: new FormControl(TaskStatus.BACKLOG),
@@ -83,7 +83,7 @@ export class TaskCreateComponent extends BaseComponent {
     if (FormHelper.validateForm(this.taskForm)) {
       this.taskService
         .saveTask(this.taskForm.value as MixTaskNew)
-        .pipe(this.observerLoadingState())
+        .pipe(this.observerLoadingStateSignal())
         .subscribe({
           next: (result) => {
             this.toast.success('Success add your new task');

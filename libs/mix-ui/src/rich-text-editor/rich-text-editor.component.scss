@@ -34,53 +34,12 @@ tui-editor {
   cursor: pointer;
   padding: 0px;
   max-height: 350px;
+  min-height: 100px;
   overflow: auto;
 
   &:hover {
     background-color: var(--ds-background-neutral-hovered);
     border: 1px solid var(--ds-background-neutral-hovered);
-  }
-
-  &::-webkit-scrollbar-track {
-    border-radius: 5px !important;
-    background-color: rgba(252, 252, 252, 0.85) !important;
-  }
-
-  &::-webkit-scrollbar {
-    width: 12px !important;
-    height: 12px !important;
-    background-color: transparent !important;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 5px !important;
-    height: 12px !important;
-    width: 12px !important;
-    background: #bac4cd !important;
-    background-clip: padding-box !important;
-    border: 3px solid transparent !important;
-  }
-
-  &::-webkit-scrollbar-button:single-button {
-    display: block !important;
-    background-repeat: no-repeat !important;
-    background-position: center !important;
-  }
-
-  &::-webkit-scrollbar-button:single-button:vertical:decrement {
-    background-image: url('/assets/icons/caret-up-arrow.svg') !important;
-  }
-
-  &::-webkit-scrollbar-button:single-button:vertical:increment {
-    background-image: url('/assets/icons/caret-down-arrow.svg') !important;
-  }
-
-  &::-webkit-scrollbar-button:single-button:horizontal:decrement {
-    background-image: url('/assets/icons/caret-left-arrow.svg') !important;
-  }
-
-  &::-webkit-scrollbar-button:single-button:horizontal:increment {
-    background-image: url('/assets/icons/caret-right-arrow.svg') !important;
   }
 }
 

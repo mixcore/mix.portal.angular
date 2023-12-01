@@ -20,6 +20,10 @@ ngneat-dialog {
 
     // animation: unset !important;
   }
+
+  .ngneat-close-dialog {
+    z-index: 1;
+  }
 }
 
 .mix-dialog {

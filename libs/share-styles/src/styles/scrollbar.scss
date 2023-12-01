@@ -1,34 +1,43 @@
-// * {
-//   ::-webkit-scrollbar {
-//     height: 12px;
-//     width: 12px;
-//     overflow: visible;
-//   }
+* {
+  ::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background-color: rgba(252, 252, 252, 0.85);
+  }
 
-//   ::-webkit-scrollbar-button {
-//     height: 0;
-//     width: 0;
-//   }
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+  }
 
-//   ::-webkit-scrollbar-corner {
-//     background: transparent;
-//   }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    height: 12px;
+    width: 12px;
+    background: #bac4cd;
+    background-clip: padding-box;
+    border: 3px solid transparent;
+  }
 
-//   ::-webkit-scrollbar-thumb {
-//     background-color: var(--background-color-scrollbar);
-//   }
+  ::-webkit-scrollbar-button:single-button {
+    display: block;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 
-//   ::-webkit-scrollbar-thumb,
-//   ::-webkit-scrollbar-track {
-//     background-clip: padding-box;
-//     border: 3px solid transparent;
-//     border-radius: 100px;
-//   }
+  ::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url('/assets/icons/caret-up-arrow.svg');
+  }
 
-//   ::-webkit-scrollbar-thumb,
-//   ::-webkit-scrollbar-track {
-//     background-clip: padding-box;
-//     border: 3px solid transparent;
-//     border-radius: 100px;
-//   }
-// }
+  ::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url('/assets/icons/caret-down-arrow.svg');
+  }
+
+  ::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background-image: url('/assets/icons/caret-left-arrow.svg');
+  }
+
+  ::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background-image: url('/assets/icons/caret-right-arrow.svg');
+  }
+}

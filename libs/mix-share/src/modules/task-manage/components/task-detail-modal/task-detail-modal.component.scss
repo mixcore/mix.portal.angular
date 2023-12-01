@@ -1,6 +1,49 @@
 .task-detail {
+  position: relative;
+
   .description {
     max-height: 500px;
     overflow: auto;
+  }
+
+  &__title {
+    --color: green;
+
+    border-left: 7px solid var(--color);
+    padding: 12px;
+    padding-top: 8px;
+
+    .item {
+      width: 200px;
+    }
+  }
+
+  &__main-core {
+    width: 100%;
+    background-color: rgb(248, 248, 248);
+    border-width: 1px 0;
+    border-style: solid;
+    border-color: rgba(234, 234, 234, 1);
+    border-color: rgb(234, 234, 234);
+    padding: 8px 14px;
+
+    .label {
+      width: 60px;
+    }
+
+    .item {
+      width: 160px;
+    }
+  }
+
+  &__body,
+  &__loading {
+    padding: 8px 14px;
+  }
+
+  &__body {
+    .label {
+      border-bottom: 1px solid var(--border-color-default);
+    }
   }
 }

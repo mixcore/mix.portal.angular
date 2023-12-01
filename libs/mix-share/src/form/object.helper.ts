@@ -36,6 +36,10 @@ export class ObjectUtil {
     return clone(object);
   }
 
+  public static diff(object: object, toCompareObj: object) {
+    return JSON.stringify(object) !== JSON.stringify(toCompareObj);
+  }
+
   public static objectToQueryString(
     obj: Record<string, any>,
     parentKey = ''

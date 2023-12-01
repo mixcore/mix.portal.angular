@@ -42,6 +42,8 @@ export class MixEditorComponent
 {
   @ViewChild(TuiEditorComponent, { static: false }) editor!: TuiEditorComponent;
   @Input() override placeHolder = 'Type a text';
+  @Input() viewModePlaceHolder =
+    '<span style="color: #959ba4">Click to edit</span>';
   @Input() heightPx = 100;
   public mode = signal<'Edit' | 'View'>('View');
   public zoom = false;

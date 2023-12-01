@@ -1,0 +1,22 @@
+<tui-select [formControl]="control"
+            [tuiTextfieldLabelOutside]="true"
+            [tuiTextfieldSize]="size"
+            [valueContent]="cardContent">
+  <tui-data-list *tuiDataList>
+    <button *ngFor="let item of storyPointItems"
+            [value]="item"
+            tuiOption>
+      <ng-container *ngTemplateOutlet="cardContent; context: { $implicit: item }"></ng-container>
+    </button>
+  </tui-data-list>
+</tui-select>
+
+<ng-template #cardContent
+             let-item>
+  <div class="d-flex align-items-center gap-2">
+    <span> {{ item }}</span>
+    @if (infoDict[item]; as info) {
+    <span class="ms-auto {{ info.class }}">{{ info.text }}</span>
+    }
+  </div>
+</ng-template>
