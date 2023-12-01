@@ -30,7 +30,6 @@
   &__item {
     display: flex;
     align-items: center;
-    font-weight: 500;
     gap: 0.5rem;
     padding: 0.5rem;
     border-radius: 4px;
@@ -43,8 +42,8 @@
     &.--active,
     &:hover {
       opacity: 1;
-      background: var(--blue-500);
-      color: var(--white-0);
+      background-color: var(--tui-base-03);
+      font-weight: 500;
     }
 
     &:hover {
