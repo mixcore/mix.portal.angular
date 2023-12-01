@@ -25,8 +25,7 @@
       <!-- Loading View -->
       @if (vm.status === 'Loading') {
       <mix-skeleton-loading [type]="'inline'"></mix-skeleton-loading>
-      }
-
+      } @else {
       <!-- Main View -->
       @if (store.getParentTasks() | async; as tasks) {
       <!-- Loop task -->
@@ -34,7 +33,7 @@
       <mix-task-group-list [parentTask]="task"
                            [taskStatuses]="taskStatuses">
       </mix-task-group-list>
-      } }
+      } } }
     </div>
   </div>
 </div>
