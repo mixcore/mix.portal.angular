@@ -13,7 +13,6 @@ import { MixEditorComponent } from './rich-text-editor.component';
       [description]="field.type?.toString()"
     >
       <mix-rich-text-editor
-        style="height: 300px"
         [formControl]="formControl"
         [formlyAttributes]="field"
       ></mix-rich-text-editor>

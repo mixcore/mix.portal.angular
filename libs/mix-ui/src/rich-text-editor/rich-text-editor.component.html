@@ -1,6 +1,6 @@
 <div *ngIf="mode() === 'Edit'"
      class="rich-text-editor"
-     [ngClass]="{ '--full-width': zoom,   }">
+     [ngClass]="{ '--full-width': zoom }">
   <tui-editor [formControl]="control"
               tuiAutoFocus
               [style.minHeight.px]="zoom ? undefined : 400"
