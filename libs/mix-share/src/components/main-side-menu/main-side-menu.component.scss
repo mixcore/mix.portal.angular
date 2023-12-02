@@ -25,6 +25,9 @@
   }
 
   &__icon {
+    --icon-color: #000;
+
+    color: var(--icon-color);
     font-size: 20px;
   }
 

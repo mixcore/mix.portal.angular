@@ -3,6 +3,7 @@ export type MenuItem = {
   url: string;
   path?: string;
   icon?: string;
+  iconColor?: string;
   children?: MenuItem[];
   align?: 'top' | 'bottom';
 };

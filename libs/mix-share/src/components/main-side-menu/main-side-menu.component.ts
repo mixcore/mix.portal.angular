@@ -7,6 +7,7 @@ import {
   inject,
 } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { MenuItem } from '@mixcore/lib/model';
 import { fadeInExpandOnEnterAnimation } from '@mixcore/share/animation';
 import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
@@ -19,14 +20,6 @@ import {
   TuiHostedDropdownModule,
 } from '@taiga-ui/core';
 import { SettingDialogComponent } from '../setting-dialog/setting-dialog.component';
-
-export type MenuItem = {
-  title: string;
-  url: string;
-  icon?: string;
-  children?: MenuItem[];
-  align?: 'top' | 'bottom';
-};
 
 @Component({
   selector: 'mix-main-side-menu',

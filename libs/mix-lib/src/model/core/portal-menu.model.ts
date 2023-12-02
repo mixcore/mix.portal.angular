@@ -8,5 +8,6 @@ export interface PortalMenu {
   status: MixContentStatus;
   role: string;
   portalMenuId?: number;
+  iconColor?: string;
   childMenu?: PortalMenu[];
 }

@@ -215,11 +215,15 @@ export class AuthService extends BaseApiService {
     );
   }
 
-  public initPortalsMenu() {
-    if (
+  public isSupperAdmin() {
+    return (
       !this.currentRoles.length ||
       this.currentRoles.some((x) => x.name === MixRoleConst.SuperAdmin)
-    ) {
+    );
+  }
+
+  public initPortalsMenu() {
+    if (this.isSupperAdmin()) {
       this.portalMenu = this.FULL_ROUTES;
       return of(this.FULL_ROUTES);
     }

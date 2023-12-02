@@ -1,10 +1,12 @@
+import { MenuItem } from '@mixcore/lib/model';
 import { CMS_ROUTES } from '../../app.routes';
 
-export const APP_MENU = [
+export const APP_MENU = <MenuItem[]>[
   {
     title: 'Dashboard',
     url: CMS_ROUTES.portal.dashboard.fullPath,
     icon: 'dashboard',
+    iconColor: '#00ACC1',
     children: [
       {
         icon: 'analytics',
@@ -22,6 +24,7 @@ export const APP_MENU = [
     title: 'Posts',
     url: CMS_ROUTES.portal.post.fullPath,
     icon: 'post_add',
+    iconColor: '#EC652C',
     children: [
       {
         icon: 'format_list_numbered',
@@ -49,6 +52,7 @@ export const APP_MENU = [
     title: 'Pages',
     url: CMS_ROUTES.portal.page.fullPath,
     icon: 'lab_profile',
+    iconColor: '#2190E4',
     children: [
       {
         icon: 'format_list_numbered',
@@ -61,6 +65,7 @@ export const APP_MENU = [
     title: 'Modules',
     url: CMS_ROUTES.portal.module.fullPath,
     icon: 'view_module',
+    iconColor: '#63D8FF',
     children: [
       {
         icon: 'format_list_numbered',
@@ -73,6 +78,7 @@ export const APP_MENU = [
     title: 'Mix Dbs',
     url: CMS_ROUTES.portal.database.fullPath,
     icon: 'database',
+    iconColor: '#BB56CF',
     children: [
       {
         icon: 'format_list_numbered',
@@ -111,6 +117,7 @@ export const APP_MENU = [
   {
     title: 'Projects',
     url: CMS_ROUTES.portal['database-data'].fullPath + '/mixTask',
+    iconColor: '#3EAF12',
     icon: 'view_kanban',
     children: [
       {
@@ -119,7 +126,7 @@ export const APP_MENU = [
         icon: 'view_kanban',
       },
     ],
-  }
+  },
 ];
 
 export const APP_NOT_SUPPER_ADMIN_MENU = [
