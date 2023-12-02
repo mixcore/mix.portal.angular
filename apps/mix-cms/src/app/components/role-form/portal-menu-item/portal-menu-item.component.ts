@@ -23,7 +23,7 @@ import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixInputNumberComponent } from '@mixcore/ui/input-number';
 import { ModalService } from '@mixcore/ui/modal';
-import { EditableModule } from '@ngneat/edit-in-place';
+import { EditModeDirective, EditableComponent } from '@ngneat/edit-in-place';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TuiDialogContext, TuiDialogService } from '@taiga-ui/core';
 import { PolymorpheusContent } from '@tinkoff/ng-polymorpheus';
@@ -39,9 +39,11 @@ import { map, switchMap } from 'rxjs';
     CommonModule,
     MixInputComponent,
     MixButtonComponent,
-    EditableModule,
+    EditableComponent,
+    EditModeDirective,
+    EditModeDirective,
     ReactiveFormsModule,
-    MixInputNumberComponent
+    MixInputNumberComponent,
   ],
 })
 export class PortalMenuItemComponent implements OnInit {
@@ -61,7 +63,7 @@ export class PortalMenuItemComponent implements OnInit {
     title: new FormControl('', Validators.required),
     path: new FormControl('', Validators.required),
     icon: new FormControl('', Validators.required),
-    priority: new FormControl()
+    priority: new FormControl(),
   });
 
   public addMenuForm = new FormGroup({

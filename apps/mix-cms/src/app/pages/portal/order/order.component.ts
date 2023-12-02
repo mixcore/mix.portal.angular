@@ -39,7 +39,7 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixDataTableModule } from '@mixcore/ui/table';
-import { EditableModule } from '@ngneat/edit-in-place';
+import { EditModeDirective, EditableComponent } from '@ngneat/edit-in-place';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import {
@@ -94,7 +94,9 @@ import { OrderStore } from '../../../stores/order.store';
     BulkAssignMetadataComponent,
     TuiDialogModule,
     MixInputComponent,
-    EditableModule,
+    EditableComponent,
+    EditModeDirective,
+    EditModeDirective,
     GatewayIndicatorComponent,
     TuiInputRangeModule,
     OrderStatusIndicatorComponent,

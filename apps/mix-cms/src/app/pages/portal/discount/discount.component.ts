@@ -41,7 +41,7 @@ import { MixInputNumberComponent } from '@mixcore/ui/input-number';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
-import { EditableModule } from '@ngneat/edit-in-place';
+import { EditModeDirective, EditableComponent } from '@ngneat/edit-in-place';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TranslocoModule } from '@ngneat/transloco';
 import { TuiDestroyService } from '@taiga-ui/cdk';
@@ -93,7 +93,9 @@ import { DiscountStore } from '../../../stores/discount.store';
     BulkAssignMetadataComponent,
     TuiDialogModule,
     MixInputComponent,
-    EditableModule,
+    EditableComponent,
+    EditModeDirective,
+    EditModeDirective,
     MixDatePickerComponent,
     MixDateTimePickerComponent,
     MixInputNumberComponent,

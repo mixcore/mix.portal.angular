@@ -37,7 +37,7 @@ import { forkJoin, take } from 'rxjs';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixInputNumberComponent } from '@mixcore/ui/input-number';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
-import { EditableModule } from '@ngneat/edit-in-place';
+import { EditModeDirective, EditableComponent } from '@ngneat/edit-in-place';
 import { TuiSidebarModule } from '@taiga-ui/addon-mobile';
 import { TuiActiveZoneModule } from '@taiga-ui/cdk';
 import { TuiDataListModule, TuiHostedDropdownModule } from '@taiga-ui/core';
@@ -59,7 +59,9 @@ import { DynamicDataDisplayComponent } from '../dynamic-data-display/dynamic-dat
     SkeletonLoadingComponent,
     CompressImageComponent,
     DynamicDataDisplayComponent,
-    EditableModule,
+    EditableComponent,
+    EditModeDirective,
+    EditModeDirective,
     MixInputComponent,
     MixInputNumberComponent,
     TuiHostedDropdownModule,

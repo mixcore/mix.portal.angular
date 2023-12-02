@@ -27,7 +27,7 @@ import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixDataTableModule } from '@mixcore/ui/table';
-import { EditableModule } from '@ngneat/edit-in-place';
+import { EditModeDirective, EditableComponent } from '@ngneat/edit-in-place';
 import { HotToastService } from '@ngneat/hot-toast';
 import { EMPTY_ARRAY, TuiHandler } from '@taiga-ui/cdk';
 import {
@@ -60,8 +60,10 @@ import { MixRoleTreeItemComponent } from './role-tree-item/role-tree-item.compon
     MixFormErrorComponent,
     TuiTreeModule,
     MixRoleTreeItemComponent,
-    EditableModule,
     PortalMenuItemComponent,
+    EditableComponent,
+    EditModeDirective,
+    EditModeDirective,
   ],
   templateUrl: './role-form.component.html',
   styleUrls: ['./role-form.component.scss'],

@@ -38,7 +38,7 @@
     "@microsoft/signalr": "7.0.12",
     "@ngneat/cmdk": "^1.0.1",
     "@ngneat/dialog": "5.0.0",
-    "@ngneat/edit-in-place": "^1.6.1",
+    "@ngneat/edit-in-place": "1.9.0",
     "@ngneat/helipopper": "9.0.0",
     "@ngneat/hot-toast": "^5.0.1",
     "@ngneat/overview": "^5.0.0",
