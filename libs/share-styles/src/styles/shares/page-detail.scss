@@ -9,6 +9,11 @@
   border: 1px solid var(--border-color-default);
   overflow: hidden;
 
+  fieldset {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__input-title {
     display: flex;
     align-items: center;
