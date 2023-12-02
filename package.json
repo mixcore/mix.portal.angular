@@ -92,7 +92,7 @@
     "@angular/cli": "~17.0.0",
     "@angular/compiler-cli": "17.0.2",
     "@angular/language-service": "17.0.2",
-    "@nrwl/cli": "14.8.6",
+    "@nrwl/cli": "15.9.3",
     "@nrwl/cypress": "17.1.1",
     "@nrwl/eslint-plugin-nx": "17.1.1",
     "@nrwl/jest": "17.1.1",
