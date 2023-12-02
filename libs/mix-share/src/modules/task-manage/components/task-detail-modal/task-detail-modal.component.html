@@ -2,7 +2,8 @@
 <div class="task-detail"
      [formGroup]="taskForm">
   <!-- Title -->
-  <div class="task-detail__title">
+  <div class="task-detail__title"
+       [style.--color]="TaskStatusColors[task.taskStatus]">
     <div class="d-flex align-item-center gap-1">
       <img [src]="TaskTypeIconDisplay[task.type]">
       <span>{{ task.type }}-{{ task.id }}</span>

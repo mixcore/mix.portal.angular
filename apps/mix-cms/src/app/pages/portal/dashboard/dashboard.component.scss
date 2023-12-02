@@ -2,10 +2,9 @@
   height: 100%;
   padding: var(--container-padding);
   background-color: var(--background-color-primary);
-  // border-radius: var(--border-radius-default);
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
-  border: 1px solid var(--border-color-default);
+  border: 1px solid var(--tui-base-04);
   overflow: hidden;
 }
 

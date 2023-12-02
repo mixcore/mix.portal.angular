@@ -10,6 +10,7 @@ import {
   MixTaskNew,
   TaskPriority,
   TaskStatus,
+  TaskStatusColors,
   TaskStatusDisplay,
   TaskTypeIcons,
 } from '@mixcore/lib/model';
@@ -76,6 +77,7 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
   public originalValue: object = {};
   public disableSave = signal(true);
 
+  public TaskStatusColors = TaskStatusColors;
   public statussLabel = (status: TaskStatus) => TaskStatusDisplay[status];
   public statusItems = [
     TaskStatus.BACKLOG,
