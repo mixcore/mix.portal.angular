@@ -77,7 +77,7 @@ export class DatabaseComponent {
 
   async goDatabaseData(sysName: string) {
     await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${sysName}`
+      `${CMS_ROUTES.portal.databaseQuery.fullPath}/${sysName}`
     );
   }
 

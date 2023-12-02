@@ -31,6 +31,9 @@ import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { CMS_ROUTES } from 'apps/mix-cms/src/app/app.routes';
+import { ListPageKit } from 'apps/mix-cms/src/app/shares/kits/list-page-kit.component';
+import { DatabaseDataStore } from 'apps/mix-cms/src/app/stores/database-data.store';
 import {
   Observable,
   Subject,
@@ -42,14 +45,11 @@ import {
   takeUntil,
   tap,
 } from 'rxjs';
-import { CMS_ROUTES } from '../../../app.routes';
+import { CustomActionCellComponent } from '../components/custom-action-cell/custom-action-cell.component';
+import { CustomHeaderComponent } from '../components/custom-header/custom-header.component';
+import { DatabaseInlineSelectComponent } from '../components/database-inline-select/database-inline-select.component';
+import { DatabaseVerticalToolbarComponent } from '../components/vertical-toolbar/database-vertical-toolbar.component';
 
-import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
-import { DatabaseDataStore } from '../../../stores/database-data.store';
-import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
-import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
-import { DatabaseInlineSelectComponent } from './components/database-inline-select/database-inline-select.component';
-import { DatabaseVerticalToolbarComponent } from './components/vertical-toolbar/database-vertical-toolbar.component';
 @Component({
   selector: 'mix-database-data',
   standalone: true,
@@ -319,7 +319,7 @@ export class DatabaseDataComponent
 
     this.searchForm.reset(null, { emitEvent: false, onlySelf: true });
     this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${mixDb.systemName}`
+      `${CMS_ROUTES.portal.databaseQuery.fullPath}/${mixDb.systemName}`
     );
   }
 

@@ -88,7 +88,7 @@ export const APP_MENU = <MenuItem[]>[
       {
         icon: 'table_view',
         title: 'Query Data',
-        url: CMS_ROUTES.portal['database-data'].fullPath,
+        url: CMS_ROUTES.portal.databaseQuery.fullPath,
       },
     ],
   },

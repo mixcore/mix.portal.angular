@@ -30,12 +30,6 @@ export const PortalRoutes: Routes = [
       import('./database/database.routes').then((m) => m.routes),
   },
   {
-    path: CMS_ROUTES.portal['database-data'].path,
-    data: breadcrumbName('Database'),
-    loadChildren: () =>
-      import('./database-data/database-data.routes').then((m) => m.routes),
-  },
-  {
     path: CMS_ROUTES.portal.page.path,
     data: breadcrumbName('Pages'),
     loadChildren: () => import('./page/page.routes').then((m) => m.routes),

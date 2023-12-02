@@ -8,10 +8,17 @@ export const routes: Routes = [
       import('./database.component').then((m) => m.DatabaseComponent),
   },
   {
-    path: 'open-api/:id',
+    path: 'query/:databaseSysName',
     loadComponent: () =>
-      import('./database-document/database-document.component').then(
-        (m) => m.DatabaseDocumentComponent
+      import('./database-data/database-data.component').then(
+        (m) => m.DatabaseDataComponent
+      ),
+  },
+  {
+    path: 'query',
+    loadComponent: () =>
+      import('./database-data/database-data.component').then(
+        (m) => m.DatabaseDataComponent
       ),
   },
   {
@@ -29,5 +36,12 @@ export const routes: Routes = [
         (m) => m.DatabaseDetailComponent
       ),
     data: breadcrumbName('Create'),
+  },
+  {
+    path: 'open-api/:id',
+    loadComponent: () =>
+      import('./database-document/database-document.component').then(
+        (m) => m.DatabaseDocumentComponent
+      ),
   },
 ];

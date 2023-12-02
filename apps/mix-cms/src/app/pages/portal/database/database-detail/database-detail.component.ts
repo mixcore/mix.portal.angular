@@ -204,7 +204,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
 
   async goDatabaseData(sysName: string) {
     await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${sysName}`
+      `${CMS_ROUTES.portal.databaseQuery.fullPath}/${sysName}`
     );
   }
 }
