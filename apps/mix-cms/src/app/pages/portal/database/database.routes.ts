@@ -22,6 +22,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'contexts',
+    loadComponent: () =>
+      import('./database-context/database-context.component').then(
+        (m) => m.DatabaseContextComponent
+      ),
+  },
+  {
     path: ':id',
     loadComponent: () =>
       import('./database-detail/database-detail.component').then(

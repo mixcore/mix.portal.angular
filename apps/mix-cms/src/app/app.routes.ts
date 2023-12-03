@@ -57,6 +57,10 @@ export const CMS_ROUTES = {
       path: 'database/query',
       fullPath: 'app/database/query',
     },
+    databaseContext: {
+      path: 'database/contexts',
+      fullPath: 'app/database/contexts',
+    },
     'database-doc': {
       path: 'open-api',
       fullPath: 'app/database/open-api',

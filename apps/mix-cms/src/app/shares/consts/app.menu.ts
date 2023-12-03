@@ -81,8 +81,13 @@ export const APP_MENU = <MenuItem[]>[
     iconColor: '#BB56CF',
     children: [
       {
+        icon: 'content_copy',
+        title: 'Contexts',
+        url: CMS_ROUTES.portal.databaseContext.fullPath,
+      },
+      {
         icon: 'format_list_numbered',
-        title: 'Setting Database',
+        title: 'Databases',
         url: CMS_ROUTES.portal.database.fullPath,
       },
       {

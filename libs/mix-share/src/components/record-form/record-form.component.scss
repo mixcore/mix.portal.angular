@@ -1,0 +1,19 @@
+.mix-record-form-dialog {
+  .ngneat-dialog-content {
+    padding: 0px !important;
+  }
+
+  .mix-dialog {
+    &__header {
+      padding: 18px;
+    }
+
+    &__footer {
+      padding: 18px;
+    }
+
+    &__content {
+      padding: 18px;
+    }
+  }
+}

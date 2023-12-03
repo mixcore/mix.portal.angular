@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   OnInit,
+  ViewEncapsulation,
   inject,
 } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +28,7 @@ import { TuiFileLike } from '@taiga-ui/kit';
   templateUrl: './record-form.component.html',
   styleUrls: ['./record-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class RecordFormComponent extends BaseComponent implements OnInit {
   public static windowClass = 'mix-record-form-dialog';
