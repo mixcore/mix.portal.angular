@@ -1,51 +1,49 @@
-<mix-button type="outline" (click)="open(modalTpl)" [size]="size">
+<mix-button type="outline"
+            [size]="size"
+            (click)="open(modalTpl)">
   <span class="mix-icon">filter_alt</span>&nbsp;
   <span class="text-500">Filter(s)</span>
 
-  <tui-badge
-    *ngIf="validFilterCount"
-    status="error"
-    class="ms-2"
-    [value]="validFilterCount"
-  ></tui-badge>
+  <tui-badge *ngIf="validFilterCount"
+             class="ms-2"
+             [value]="validFilterCount"
+             status="error"></tui-badge>
 </mix-button>
 
-<ng-template #modalTpl let-ref>
-  <div class="filter-dialog">
-    <h4 class="mb-3">Filter Record(s)</h4>
+<ng-template #modalTpl
+             let-ref>
+  <div class="mix-dialog --default-padding">
+    <h4 class="mix-dialog__header">Filter Record(s)</h4>
 
-    <ng-container
-      *ngFor="let filter of filters; let i = index; trackByProp: 'fieldName'"
-    >
-      <mix-filter-item
-        [columns]="columns"
-        [filter]="filter"
-        (filterChange)="onFilterValueChange($event, i)"
-        (deleteFilter)="deleteFilter(filter, i)"
-      ></mix-filter-item>
-    </ng-container>
+    <div class="mix-dialog__content">
+      <ng-container *ngFor="let filter of filters; let i = index; trackByProp: 'fieldName'">
+        <mix-filter-item [columns]="columns"
+                         [filter]="filter"
+                         (deleteFilter)="deleteFilter(filter, i)"
+                         (filterChange)="onFilterValueChange($event, i)"></mix-filter-item>
+      </ng-container>
 
-    <div class="d-flex align-items-center gap-2" *ngIf="filters.length >= 2">
-      *Meet
+      <div *ngIf="filters.length >= 2"
+           class="d-flex align-items-center gap-2">
+        *Meet
 
-      <mix-select
-        [formControl]="logicalOperateForm"
-        size="s"
-        class="filter-dialog__select"
-        [items]="logicalOperateItems"
-      ></mix-select>
+        <mix-select class="filter-dialog__select"
+                    [formControl]="logicalOperateForm"
+                    [items]="logicalOperateItems"
+                    size="s"></mix-select>
 
-      of these conditions
+        of these conditions
+      </div>
     </div>
 
-    <div class="filter-dialog__footer">
-      <mix-button type="outline" (click)="add()">
-        <span class="mix-icon">add</span> Add condition</mix-button
-      >
+    <div class="mix-dialog__footer">
+      <mix-button type="outline"
+                  (click)="add()">
+        <span class="mix-icon">add</span> Add condition</mix-button>
 
-      <mix-button class="ms-auto" type="outline" (click)="ref.close()"
-        >Close</mix-button
-      >
+      <mix-button class="ms-auto"
+                  type="outline"
+                  (click)="ref.close()">Close</mix-button>
 
       <mix-button (click)="applyChange(); ref.close()">Apply</mix-button>
     </div>

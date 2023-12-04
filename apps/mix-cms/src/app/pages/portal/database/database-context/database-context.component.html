@@ -11,8 +11,23 @@
                   size="s">
         <span class="material-symbols-outlined"> delete </span>&nbsp;
         Remove(s)</mix-button>
-
-      <mix-dynamic-filter class="d-block ms-auto"></mix-dynamic-filter>
     </mix-sub-toolbar>
+
+    <div class="data-table-page__body">
+      @if (store.vm$ |async; as vm) {
+      <div class="p-3 d-flex gap-3 flex-wrap">
+        @for (item of vm.data; track item.id) {
+        <div class="context-card {{ ProviderIconMap[item.databaseProvider] }}"
+             tuiCard
+             tuiSurface>
+          <h4 tuiTitle>
+            {{ item.displayName }}
+          </h4>
+          <span tuiSubtitle>{{ item.databaseProvider }}</span>
+        </div>
+        }
+      </div>
+      }
+    </div>
   </div>
 </div>

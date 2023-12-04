@@ -402,7 +402,7 @@ export enum DatabaseProvider {
   SQLSERVER = 'SQLSERVER',
   MySQL = 'MySQL',
   PostgreSQL = 'PostgreSQL',
-  SQLLITE = 'SQLLITe',
+  SQLLITE = 'SQLLITE',
 }
 
 export const DatabaseProviderDisplay: Record<DatabaseProvider, string> = {

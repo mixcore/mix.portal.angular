@@ -1,5 +1,7 @@
 export * from './core/application.model';
+export * from './core/base-audited-entity.model';
 export * from './core/database.model';
+export * from './core/db-context.model';
 export * from './core/metadata.model';
 export * from './core/mix-project.model';
 export * from './core/mix-task.model';

@@ -1,0 +1,33 @@
+.context-card {
+  padding: 1rem;
+  background: var(--tui-base-02);
+  height: 8rem;
+  min-width: 200px;
+  width: fit-content;
+  cursor: pointer;
+
+  &:hover:after {
+    transform: scale(1.1);
+  }
+
+  &:after {
+    background-position: bottom right;
+    background-repeat: no-repeat;
+  }
+
+  &.sqlserver:after {
+    background: url('/assets/icons/microsoft.svg') bottom right no-repeat;
+  }
+
+  &.postgres:after {
+    background: url('/assets/icons/postgres.svg') bottom right no-repeat;
+  }
+
+  &.mysql:after {
+    background: url('/assets/icons/mysql.svg') bottom right no-repeat;
+  }
+
+  &.sqllite:after {
+    background: url('/assets/icons/sqllite.svg') bottom right no-repeat;
+  }
+}

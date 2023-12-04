@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {
   GetTemplatesRequest,
   MixApplication,
+  MixDbContext,
   MixModule,
   MixPage,
   MixPermission,
@@ -74,7 +75,7 @@ export class MixApiFacadeService {
   );
 
   // Database Context
-  public databaseContext = new MixRestfulApi<MixSettings>(
+  public databaseContext = new MixRestfulApi<MixDbContext>(
     MixSwagger.content.databaseContext
   );
 

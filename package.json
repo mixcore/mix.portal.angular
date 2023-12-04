@@ -53,6 +53,7 @@
     "@taiga-ui/addon-table": "3.55.0",
     "@taiga-ui/cdk": "3.55.0",
     "@taiga-ui/core": "3.55.0",
+    "@taiga-ui/experimental": "^3.57.0",
     "@taiga-ui/icons": "3.55.0",
     "@taiga-ui/kit": "3.55.0",
     "@tinkoff/ng-dompurify": "^4.0.0",
