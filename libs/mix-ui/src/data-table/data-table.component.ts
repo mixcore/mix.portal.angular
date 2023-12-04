@@ -16,7 +16,7 @@ import {
   signal,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { slideInRightOnEnterAnimation } from '@mixcore/share/animation';
+import { fadeInRightOnEnterAnimation } from '@mixcore/share/animation';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import * as R from 'remeda';
 import { debounceTime, takeUntil } from 'rxjs';
@@ -34,7 +34,9 @@ export interface TableContextMenu<T> {
   styleUrls: ['./data-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [TuiDestroyService],
-  animations: [slideInRightOnEnterAnimation({ duration: 300 })],
+  animations: [
+    fadeInRightOnEnterAnimation({ duration: 200, translate: '100px' }),
+  ],
 })
 export class DataTableComponent<T> implements AfterContentInit {
   @ViewChild('mainTable') mainTable!: ElementRef<HTMLElement>;
