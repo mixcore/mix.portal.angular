@@ -2,31 +2,25 @@
   <div class="mix-data-table__filter d-flex">
     <div class="row w-100">
       <div class="col-12 d-flex">
-        <tui-input
-          class="search-input"
-          [formControl]="searchText"
-          [tuiTextfieldCleaner]="true"
-          [tuiTextfieldLabelOutside]="true"
-          [tuiTextfieldSize]="'m'"
-          tuiTextfieldIconLeft="tuiIconSearchLarge"
-        >
+        <tui-input class="search-input"
+                   [formControl]="searchText"
+                   [tuiTextfieldCleaner]="true"
+                   [tuiTextfieldLabelOutside]="true"
+                   [tuiTextfieldSize]="'m'"
+                   tuiTextfieldIconLeft="tuiIconSearchLarge">
           {{ searchPlaceholder }}
         </tui-input>
 
-        <tui-multi-select
-          class="ms-2 select"
-          [expandable]="false"
-          [formControl]="searchField"
-          [tuiTextfieldLabelOutside]="true"
-          [tuiTextfieldSize]="'m'"
-        >
-          <input tuiTextfield />
+        <tui-multi-select class="ms-2 select"
+                          [expandable]="false"
+                          [formControl]="searchField"
+                          [tuiTextfieldLabelOutside]="true"
+                          [tuiTextfieldSize]="'m'">
+          <input tuiTextfield>
 
-          <tui-data-list-wrapper
-            *tuiDataList
-            [items]="searchFieldOptions"
-            tuiMultiSelectGroup
-          ></tui-data-list-wrapper>
+          <tui-data-list-wrapper *tuiDataList
+                                 [items]="searchFieldOptions"
+                                 tuiMultiSelectGroup></tui-data-list-wrapper>
         </tui-multi-select>
       </div>
 
@@ -34,42 +28,33 @@
     </div>
   </div>
 
-  <div #mainTable class="mix-data-table__main-table">
-    <tui-loader
-      class="h-100"
-      [overlay]="true"
-      [showLoader]="(loading && !dataset.length) || forceLoading"
-    >
-      <table
-        [@slideInRightOnEnter]
-        *ngIf="displayColumns.length > 1"
-        [columns]="tableColumns"
-        tuiTable
-      >
+  <div #mainTable
+       class="mix-data-table__main-table">
+    <tui-loader class="h-100"
+                [overlay]="true"
+                [showLoader]="(loading && !dataset.length) || forceLoading">
+      <table *ngIf="displayColumns.length > 1"
+             [columns]="tableColumns"
+             [@slideInRightOnEnter]
+             tuiTable>
         <thead>
           <tr tuiThGroup>
             <ng-container *ngFor="let col of displayColumns; let i = index">
-              <th
-                *tuiHead="col.key"
-                [resizable]="true"
-                [sorter]="null"
-                [sticky]="true"
-                tuiTh
-              >
+              <th *tuiHead="col.key"
+                  [resizable]="true"
+                  [sorter]="null"
+                  [sticky]="true"
+                  tuiTh>
                 <div class="d-flex align-items-center">
-                  <input
-                    *ngIf="i === 0"
-                    class="form-check-input me-4"
-                    type="checkbox"
-                    [ngModel]="isAllSelected"
-                    (ngModelChange)="markAllChecked($event)"
-                  />
+                  <input *ngIf="i === 0"
+                         class="form-check-input me-4"
+                         type="checkbox"
+                         [ngModel]="isAllSelected"
+                         (ngModelChange)="markAllChecked($event)">
 
                   <div class="flex-grow-1">
                     <ng-container *ngIf="col.tplHeader">
-                      <ng-container
-                        *ngTemplateOutlet="col.tplHeader.template"
-                      ></ng-container>
+                      <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
                     </ng-container>
 
                     <ng-container *ngIf="!col.tplHeader && col.showHeader">
@@ -82,42 +67,38 @@
               </th>
             </ng-container>
 
-            <th *tuiHead="'MENU'" [sorter]="null" [sticky]="true" tuiTh></th>
+            <th *tuiHead="'MENU'"
+                [sorter]="null"
+                [sticky]="true"
+                tuiTh></th>
           </tr>
         </thead>
 
-        <tbody [data]="dataset" tuiTbody>
-          <tr
-            *ngFor="let item of dataset; trackBy: dataTrackBy"
-            [ngClass]="{
+        <tbody [data]="dataset"
+               tuiTbody>
+          <tr *ngFor="let item of dataset; trackBy: dataTrackBy"
+              [ngClass]="{
               '--selected': !!currentSelectedItemDic[$any(item)[uniqueKey]]
             }"
-            tuiTr
-          >
+              tuiTr>
             <ng-container *ngFor="let col of displayColumns; let i = index">
-              <td
-                *tuiCell="col.key"
-                class="mix-data-table__td"
-                [ngStyle]="{ width: col.width, 'min-width': col.minWidth }"
-                tuiTd
-              >
+              <td *tuiCell="col.key"
+                  class="mix-data-table__td"
+                  [ngStyle]="{ width: col.width, 'min-width': col.minWidth }"
+                  tuiTd>
                 <div class="d-flex h-100 align-items-center">
-                  <input
-                    *ngIf="i === 0"
-                    class="form-check-input me-4"
-                    type="checkbox"
-                    [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
-                    (ngModelChange)="onItemSelected($event, item)"
-                  />
+                  <input *ngIf="i === 0"
+                         class="form-check-input me-4"
+                         type="checkbox"
+                         [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
+                         (ngModelChange)="onItemSelected($event, item)">
 
                   <div class="flex-grow-1">
                     <ng-container *ngIf="col.tplCell">
-                      <ng-container
-                        *ngTemplateOutlet="
+                      <ng-container *ngTemplateOutlet="
                           col.tplCell.template;
                           context: { $implicit: item }
-                        "
-                      ></ng-container>
+                        "></ng-container>
                     </ng-container>
 
                     <ng-container *ngIf="!col.tplCell">
@@ -128,26 +109,25 @@
               </td>
             </ng-container>
 
-            <td *tuiCell="'MENU'" class="mix-data-table__td" tuiTd>
-              <mix-button
-                type="outline"
-                [iconBtn]="true"
-                [tp]="tpl"
-                tpPlacement="bottom-end"
-                tpVariation="popper"
-                size="s"
-              >
-                <span class="mix-icon"> more_horiz </span></mix-button
-              >
+            <td *tuiCell="'MENU'"
+                class="mix-data-table__td"
+                tuiTd>
+              <mix-button type="outline"
+                          [iconBtn]="true"
+                          [tp]="tpl"
+                          tpPlacement="bottom-end"
+                          tpVariation="popper"
+                          size="s">
+                <span class="mix-icon"> more_horiz </span></mix-button>
 
-              <ng-template #tpl let-hide>
-                <div class="py-1" role="none">
-                  <div
-                    *ngFor="let v of contextMenus"
-                    class="mix-menu-item"
-                    (click)="hide(); v.action(item)"
-                    tabindex="-1"
-                  >
+              <ng-template #tpl
+                           let-hide>
+                <div class="py-1"
+                     role="none">
+                  <div *ngFor="let v of contextMenus"
+                       class="mix-menu-item"
+                       (click)="hide(); v.action(item)"
+                       tabindex="-1">
                     <div class="d-flex align-items-center gap-3">
                       <span class="mix-icon"> {{ v.icon }}</span>
                       <div>
@@ -163,13 +143,12 @@
 
         <tbody *ngIf="dataset && !dataset.length">
           <tr class="mix-data-table__paging">
-            <td class="mix-data-table__empty-data" [colSpan]="columns.length">
+            <td class="mix-data-table__empty-data"
+                [colSpan]="columns.length">
               <div class="mix-data-table__empty-content">
-                <img
-                  src="assets/images/empty-box.png"
-                  alt="No data found"
-                  width="150px"
-                />
+                <img src="assets/images/empty-box.png"
+                     alt="No data found"
+                     width="150px">
                 <p class="mt-2">No data found</p>
               </div>
             </td>
@@ -179,21 +158,26 @@
     </tui-loader>
   </div>
 
-  <div *ngIf="loading && !!dataset.length" class="mix-progress-bar">
-    <div class="mix-progress-bar-value"></div>
-  </div>
-
   <div class="mix-data-table__footer">
-    <div class="mix-data-table__page-info">
-      Total items: <strong>{{ pageInfo.total || '--' }}</strong> &nbsp; Page
-      size: <strong>{{ pageInfo.pageSize || '0' }}</strong>
+    <div class="d-flex align-items-center gap-2">
+      <div>
+        Total items: <strong>{{ pageInfo.total || '--' }}</strong>
+      </div>
+      <div>
+        Page size: <strong>{{ pageInfo.pageSize || '0' }}</strong>
+      </div>
+
+      <div *ngIf="loading && !!dataset.length"
+           class="d-flex align-items-center">
+        <tui-loader [showLoader]="true"
+                    [size]="'s'"></tui-loader>
+        <div>Refreshing data</div>
+      </div>
     </div>
 
-    <tui-pagination
-      *ngIf="!!pageInfo?.totalPage"
-      [index]="pageInfo.pageIndex"
-      [length]="pageInfo.totalPage ?? 0"
-      (indexChange)="onPageChange($event)"
-    ></tui-pagination>
+    <tui-pagination *ngIf="!!pageInfo?.totalPage"
+                    [index]="pageInfo.pageIndex"
+                    [length]="pageInfo.totalPage ?? 0"
+                    (indexChange)="onPageChange($event)"></tui-pagination>
   </div>
 </div>
