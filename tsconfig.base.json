@@ -62,7 +62,8 @@
       "@mixcore/ui/table": ["libs/mix-ui/src/data-table/index.ts"],
       "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],
       "@mixcore/ui/toggle": ["libs/mix-ui/src/toggle/index.ts"],
-      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"]
+      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"],
+      "@mixcore/ui/empty-content": ["libs/mix-ui/src/empty-content/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

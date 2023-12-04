@@ -10,7 +10,7 @@ export class DatabaseContextStore extends BaseCRUDStore<MixDbContext> {
     this.mixApi.databaseContext.gets({ ...request, columns: '', pageSize: 50 });
 
   public override vm$ = this.select((s) => s);
-  public override requestName = 'database-context';
+  public override requestName = 'databaseContext';
   public override searchColumns = ['Name', 'Description'];
   public override searchColumnsDict: { [key: string]: string } = {
     Name: 'displayName',

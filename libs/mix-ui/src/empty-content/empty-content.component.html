@@ -1,0 +1,18 @@
+<tui-block-status>
+  <img src="./assets/icons/empty-content.svg"
+       alt="survived"
+       tuiSlot="top">
+
+  <h4>{{ title }}</h4>
+
+  <span class="text">
+    {{ description }}
+  </span>
+
+  <mix-button class="mt-3"
+              type="secondary"
+              [size]="'l'"
+              (click)="actionClick.emit()">
+    Create
+  </mix-button>
+</tui-block-status>

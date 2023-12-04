@@ -21,7 +21,7 @@ import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { DialogRef } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
-import { debounceTime, delay, tap } from 'rxjs';
+import { debounceTime, tap } from 'rxjs';
 
 @Component({
   selector: 'mix-db-context-form',
@@ -58,7 +58,7 @@ export class DbContextFormComponent extends BaseComponent {
 
   public displayName$ = this.form.controls.displayName.valueChanges.pipe(
     takeUntilDestroyed(),
-    debounceTime(300),
+    debounceTime(600),
     tap(() => this.updateSystemName())
   );
 
@@ -71,7 +71,7 @@ export class DbContextFormComponent extends BaseComponent {
       this.form.disable();
       this.mixApi.databaseContext
         .save(this.form.value as MixDbContext)
-        .pipe(delay(5000), this.observerLoadingStateSignal())
+        .pipe(this.observerLoadingStateSignal())
         .subscribe({
           next: () => {
             this.toast.success('Successfully create your db context');

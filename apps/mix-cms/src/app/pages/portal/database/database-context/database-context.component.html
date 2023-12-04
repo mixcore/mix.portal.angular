@@ -1,33 +1,82 @@
 <div class="data-table-page">
   <div class="data-table-page__main-container">
     <mix-sub-toolbar [description]="'LISTING'"
-                     [title]="'All Context'">
+                     [title]="'All Db Context'">
       <div class="toolbar-separator"></div>
       <mix-button (click)="addContext()"
                   size="s"><span class="material-symbols-outlined"> add </span>&nbsp; New
         Context</mix-button>
       <div class="toolbar-separator"></div>
-      <mix-button type="danger"
-                  size="s">
-        <span class="material-symbols-outlined"> delete </span>&nbsp;
-        Remove(s)</mix-button>
     </mix-sub-toolbar>
 
     <div class="data-table-page__body">
-      @if (store.vm$ |async; as vm) {
-      <div class="p-3 d-flex gap-3 flex-wrap">
-        @for (item of vm.data; track item.id) {
-        <div class="context-card {{ ProviderIconMap[item.databaseProvider] }}"
-             tuiCard
-             tuiSurface>
-          <h4 tuiTitle>
-            {{ item.displayName }}
-          </h4>
-          <span tuiSubtitle>{{ item.databaseProvider }}</span>
-        </div>
-        }
+      @if (store.vm$ |async; as vm) { @if (vm.status === 'Loading') {
+      <div class="p-3">
+        <mix-skeleton-loading type="table"></mix-skeleton-loading>
       </div>
-      }
+      } @else if (!vm.data.length) {
+      <div class="p-3">
+        <mix-empty-content (actionClick)="addContext()"></mix-empty-content>
+      </div>
+      } @else {
+      <div class="p-3 mb-2">
+        <div class="text-sub text-500 mb-1">Choose provider:</div>
+        <tui-filter [content]="content"
+                    [formControl]="filterForm"
+                    [items]="filterItems"></tui-filter>
+        <ng-template #content
+                     let-item>
+          {{ ProviderLabel[item] }}
+        </ng-template>
+      </div>
+
+      <div class="p-3">
+        <div class="text-sub text-500 mb-1 d-flex gap-2 align-items-center">
+          <div>Available contexts:</div>
+          <tui-loader *ngIf="vm.status === 'SilentLoading'"
+                      [showLoader]="true"
+                      [size]="'s'"></tui-loader>
+        </div>
+        <div class="d-flex gap-3 flex-wrap">
+          @for (item of combineFilter(vm.data, filterForm.value); track item.id)
+          {
+          <div class="context-card {{ ProviderIconMap[item.databaseProvider] }}"
+               tuiCard
+               tuiSurface>
+            <h4 tuiTitle>
+              {{ item.displayName }}
+            </h4>
+            <span tuiSubtitle>{{ item.databaseProvider }}</span>
+
+            <mix-button class="context-card__action"
+                        type="icon"
+                        [iconBtn]="true"
+                        [tp]="dbSelect"
+                        [tpOffset]="[-10, 5]"
+                        (click)="selected = item"
+                        tpVariation="popper"
+                        tpPlacement="bottom-start"><span class="mix-icon">more_horiz</span></mix-button>
+          </div>
+          }
+        </div>
+      </div>
+      } }
     </div>
   </div>
 </div>
+
+<ng-template #dbSelect
+             let-hide>
+  <!-- <div class="mix-menu-item">
+    <div class="d-flex align-items-center gap-2">
+      <span class="mix-icon">edit</span> <span>Edit</span>
+    </div>
+  </div> -->
+  <div class="mix-menu-item"
+       (click)="hide(); onDelete()">
+    <div class="d-flex align-items-center gap-2">
+      <span class="mix-icon">delete</span>
+      <span class="text-danger">Remove</span>
+    </div>
+  </div>
+</ng-template>

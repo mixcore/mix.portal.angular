@@ -1,10 +1,11 @@
 .context-card {
-  padding: 1rem;
+  padding: 1rem 4rem 1rem 1rem;
   background: var(--tui-base-02);
   height: 8rem;
   min-width: 200px;
   width: fit-content;
   cursor: pointer;
+  position: relative;
 
   &:hover:after {
     transform: scale(1.1);
@@ -17,17 +18,27 @@
 
   &.sqlserver:after {
     background: url('/assets/icons/microsoft.svg') bottom right no-repeat;
+    background-size: 50px;
   }
 
   &.postgres:after {
     background: url('/assets/icons/postgres.svg') bottom right no-repeat;
+    background-size: 50px;
   }
 
   &.mysql:after {
     background: url('/assets/icons/mysql.svg') bottom right no-repeat;
+    background-size: 100px;
   }
 
-  &.sqllite:after {
+  &.sqlite:after {
     background: url('/assets/icons/sqllite.svg') bottom right no-repeat;
+    background-size: 50px;
+  }
+
+  &__action {
+    position: absolute;
+    top: 2px;
+    right: 2px;
   }
 }

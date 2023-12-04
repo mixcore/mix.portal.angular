@@ -113,6 +113,9 @@ dependencies:
   '@taiga-ui/kit':
     specifier: 3.55.0
     version: 3.55.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/router@17.0.2)(@ng-web-apis/common@3.0.6)(@ng-web-apis/mutation-observer@3.0.6)(@ng-web-apis/resize-observer@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@taiga-ui/i18n@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
+  '@taiga-ui/layout':
+    specifier: ^3.57.0
+    version: 3.57.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
   '@tinkoff/ng-dompurify':
     specifier: ^4.0.0
     version: 4.0.0(@angular/core@17.0.2)(@angular/platform-browser@17.0.2)(@types/dompurify@3.0.5)(dompurify@3.0.6)
@@ -5408,6 +5411,25 @@ packages:
       '@tinkoff/ng-polymorpheus': 4.2.0(@angular/core@17.0.2)(@angular/platform-browser@17.0.2)
       rxjs: 7.8.1
       text-mask-core: 5.1.2
+      tslib: 2.6.2
+    dev: false
+
+  /@taiga-ui/layout@3.57.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1):
+    resolution: {integrity: sha512-BG5mK7cb6e3GOOq67bGiyg/2ppsfn0576jlcSTJWQ6zWxl4KaL5ya0GWeSSR5zuGZEUHH01wq16wJqJy+bEuLw==}
+    peerDependencies:
+      '@angular/common': '>=12.0.0'
+      '@angular/core': '>=12.0.0'
+      '@taiga-ui/cdk': '>=3.57.0'
+      '@taiga-ui/core': '>=3.57.0'
+      '@tinkoff/ng-polymorpheus': 4.3.0
+      rxjs: '>=6.0.0'
+    dependencies:
+      '@angular/common': 17.0.2(@angular/core@17.0.2)(rxjs@7.8.1)
+      '@angular/core': 17.0.2(rxjs@7.8.1)(zone.js@0.14.2)
+      '@taiga-ui/cdk': 3.55.0(@angular-devkit/core@17.0.0)(@angular-devkit/schematics@17.0.0)(@angular/animations@17.0.2)(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/platform-browser@17.0.2)(rxjs@7.8.1)
+      '@taiga-ui/core': 3.55.0(@angular/animations@17.0.2)(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/platform-browser@17.0.2)(@angular/router@17.0.2)(@ng-web-apis/common@3.0.6)(@ng-web-apis/mutation-observer@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/i18n@3.55.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
+      '@tinkoff/ng-polymorpheus': 4.2.0(@angular/core@17.0.2)(@angular/platform-browser@17.0.2)
+      rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
 
