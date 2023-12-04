@@ -55,7 +55,7 @@ import { TaskPrioritySelectComponent } from '../task-priority-select/task-priori
   styleUrls: ['./task-detail-modal.component.scss'],
 })
 export class TaskDetailModalComponent extends BaseComponent implements OnInit {
-  public static windowClass = 'task-detail-modal';
+  public static windowClass = 'top-align-modal';
 
   public taskService = inject(TaskService);
   public taskStore = inject(TaskStore);

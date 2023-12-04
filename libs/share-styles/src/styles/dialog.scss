@@ -14,11 +14,8 @@ ngneat-dialog {
   .ngneat-dialog-backdrop {
     .ngneat-dialog-content {
       padding: 18px;
-      // animation: unset !important;
       box-shadow: unset !important;
     }
-
-    // animation: unset !important;
   }
 
   .ngneat-close-dialog {
@@ -33,7 +30,7 @@ ngneat-dialog {
   }
 
   &__content {
-    margin: 24px 0px;
+    margin: 6px 0px;
     overflow: auto;
     max-height: 70vh;
   }
@@ -42,7 +39,7 @@ ngneat-dialog {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: 4px;
+    gap: 6px;
   }
 }
 
@@ -54,5 +51,36 @@ ngneat-dialog {
   100% {
     transform: none;
     opacity: 1;
+  }
+}
+
+.top-align-modal {
+  .ngneat-dialog-backdrop.ngneat-dialog-backdrop-visible {
+    align-items: flex-start;
+    padding: 48px;
+  }
+
+  .ngneat-dialog-content {
+    padding: 0px !important;
+  }
+}
+
+.ngneat-dialog-content {
+  padding: 0px !important;
+}
+
+.mix-dialog.--default-padding {
+  .mix-dialog {
+    &__header {
+      padding: 18px 18px 9px 18px;
+    }
+
+    &__footer {
+      padding: 9px 18px 9px 18px;
+    }
+
+    &__content {
+      padding: 9px 18px 18px 18px;
+    }
   }
 }

@@ -397,3 +397,17 @@ export const DataTypeDisplay: Record<DataType, DataTypeConfig> = {
     description: '',
   },
 };
+
+export enum DatabaseProvider {
+  SQLSERVER = 'SQLSERVER',
+  MySQL = 'MySQL',
+  PostgreSQL = 'PostgreSQL',
+  SQLLITE = 'SQLLITe',
+}
+
+export const DatabaseProviderDisplay: Record<DatabaseProvider, string> = {
+  [DatabaseProvider.SQLSERVER]: 'Microsoft Sql Server',
+  [DatabaseProvider.MySQL]: 'My SQL',
+  [DatabaseProvider.PostgreSQL]: 'Postgres Sql',
+  [DatabaseProvider.SQLLITE]: 'Sql Lite',
+};

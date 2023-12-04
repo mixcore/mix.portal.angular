@@ -1,4 +1,4 @@
-<div class="mix-dialog">
+<div class="mix-dialog --default-padding">
   <div class="mix-dialog__header">
     {{ mode === 'create' ? 'Create' : 'Update' }} record from
     {{ ref.data.mixDatabase.displayName }}
@@ -6,25 +6,23 @@
 
   <div class="mix-dialog__content">
     <form [formGroup]="form">
-      <formly-form
-        *ngIf="fields.length"
-        [fields]="fields"
-        [form]="form"
-        [model]="modelData"
-      ></formly-form>
+      <formly-form *ngIf="fields.length"
+                   [fields]="fields"
+                   [form]="form"
+                   [model]="modelData"></formly-form>
     </form>
   </div>
 
   <div class="mix-dialog__footer">
-    <mix-button type="outline" (click)="ref.close()" size="m">
+    <mix-button type="outline"
+                (click)="ref.close()"
+                size="m">
       Cancel
     </mix-button>
 
-    <mix-button
-      [loading]="loadingState() === 'Loading'"
-      (click)="onSaveData()"
-      size="m"
-    >
+    <mix-button [loading]="loadingState() === 'Loading'"
+                (click)="onSaveData()"
+                size="m">
       Save
     </mix-button>
   </div>

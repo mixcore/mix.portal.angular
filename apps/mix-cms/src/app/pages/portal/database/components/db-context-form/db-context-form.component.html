@@ -1,1 +1,32 @@
-<p>db-context-form works!</p>
+<div class="mix-dialog --default-padding"
+     [formGroup]="form">
+  <div class="mix-dialog__header">Create Database Context</div>
+
+  <div class="mix-dialog__content">
+    <div class="text-sub mb-1 text-500">Name</div>
+    <mix-input formControlName="displayName"></mix-input>
+
+    <div class="text-sub mt-3 mb-1 text-500">System Name</div>
+    <mix-input formControlName="systemName"></mix-input>
+
+    <div class="text-sub mt-3 mb-1 text-500">Schema</div>
+    <mix-input formControlName="schema"></mix-input>
+
+    <div class="text-sub mt-3 mb-1 text-500">Database Provider</div>
+    <mix-select [items]="dbProviders"
+                [labelProcess]="dbProviderLabel"
+                formControlName="databaseProvider"></mix-select>
+
+    <div class="text-sub mt-3 mb-1 text-500">Connection String</div>
+    <mix-text-area formControlName="connectionString"></mix-text-area>
+  </div>
+
+  <div class="mix-dialog__footer">
+    <mix-button type="secondary"
+                [disabled]="loadingState() === 'Loading'">Cancel</mix-button>
+    <mix-button *ngIf="loadingState() as state"
+                [disabled]="state === 'Loading'"
+                [loading]="state === 'Loading'"
+                (click)="onSubmit()">Save</mix-button>
+  </div>
+</div>

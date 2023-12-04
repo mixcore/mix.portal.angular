@@ -3,8 +3,9 @@
     <mix-sub-toolbar [description]="'LISTING'"
                      [title]="'All Context'">
       <div class="toolbar-separator"></div>
-      <mix-button size="s"><span class="material-symbols-outlined"> add </span>&nbsp; New
-        MixDb</mix-button>
+      <mix-button (click)="addContext()"
+                  size="s"><span class="material-symbols-outlined"> add </span>&nbsp; New
+        Context</mix-button>
       <div class="toolbar-separator"></div>
       <mix-button type="danger"
                   size="s">

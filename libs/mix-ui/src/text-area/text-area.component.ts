@@ -1,21 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiTextAreaModule } from '@taiga-ui/kit';
+import { TuiTextareaModule } from '@taiga-ui/kit';
 
 @Component({
   selector: 'mix-text-area',
   standalone: true,
   imports: [
     CommonModule,
-    TuiTextAreaModule,
+    TuiTextareaModule,
     ReactiveFormsModule,
     TuiTextfieldControllerModule,
   ],
   templateUrl: './text-area.component.html',
   styleUrls: ['./text-area.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixTextAreaComponent
   extends BaseTextControl

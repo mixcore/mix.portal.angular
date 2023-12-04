@@ -73,6 +73,11 @@ export class MixApiFacadeService {
     MixSwagger.content.databaseRelation
   );
 
+  // Database Context
+  public databaseContext = new MixRestfulApi<MixSettings>(
+    MixSwagger.content.databaseContext
+  );
+
   // Appsetting Api
   public appSettingApi = new MixRestfulApi<MixSettings>(
     MixSwagger.settings.config,

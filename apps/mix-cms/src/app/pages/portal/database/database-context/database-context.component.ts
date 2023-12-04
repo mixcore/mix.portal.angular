@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import {
   MixStatusIndicatorComponent,
   MixSubToolbarComponent,
@@ -8,6 +8,8 @@ import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { DynamicFilterComponent } from '@mixcore/ui/filter';
 import { MixDataTableModule } from '@mixcore/ui/table';
+import { DialogService } from '@ngneat/dialog';
+import { DbContextFormComponent } from '../components/db-context-form/db-context-form.component';
 
 @Component({
   selector: 'mix-database-context',
@@ -25,4 +27,12 @@ import { MixDataTableModule } from '@mixcore/ui/table';
   styleUrl: './database-context.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DatabaseContextComponent {}
+export class DatabaseContextComponent {
+  public dialog = inject(DialogService);
+
+  public addContext() {
+    this.dialog.open(DbContextFormComponent, {
+      windowClass: 'top-align-modal',
+    });
+  }
+}
