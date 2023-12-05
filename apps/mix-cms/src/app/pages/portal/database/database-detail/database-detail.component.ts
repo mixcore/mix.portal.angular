@@ -119,9 +119,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
           .subscribe((v) => {
             this.data = new MixDatabase(v);
             this.form.patchValue(this.data, { emitEvent: false });
-            this.updateDbContext(
-              this.data.mixDatabaseContextId ?? DbContextFixId.MasterDb
-            );
             this.cdr.detectChanges();
           });
       });

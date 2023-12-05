@@ -1,3 +1,5 @@
+import { DbContextFixId } from './db-context.model';
+
 export class MixDatabase {
   systemName!: string;
   type!: string;
@@ -32,7 +34,8 @@ export class MixDatabase {
     this.status = value.status;
     this.isValid = value.isValid;
     this.errors = value.errors;
-    this.mixDatabaseContextId = value.mixDatabaseContextId;
+    this.mixDatabaseContextId =
+      value.mixDatabaseContextId ?? DbContextFixId.MasterDb;
 
     this.updatePermissions = value.updatePermissions
       ? JSON.parse(value.updatePermissions.toString())
