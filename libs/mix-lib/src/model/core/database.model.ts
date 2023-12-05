@@ -16,6 +16,7 @@ export class MixDatabase {
   readPermissions: string[] | undefined;
   createPermissions: string[] | undefined;
   deletePermissions: string[] | undefined;
+  mixDatabaseContextId: number | undefined;
 
   constructor(value: MixDatabase) {
     this.systemName = value.systemName;
@@ -31,6 +32,8 @@ export class MixDatabase {
     this.status = value.status;
     this.isValid = value.isValid;
     this.errors = value.errors;
+    this.mixDatabaseContextId = value.mixDatabaseContextId;
+
     this.updatePermissions = value.updatePermissions
       ? JSON.parse(value.updatePermissions.toString())
       : [];

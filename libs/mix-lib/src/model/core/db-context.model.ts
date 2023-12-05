@@ -6,3 +6,8 @@ export interface MixDbContext extends BaseAuditedEntity {
   connectionString: string;
   schema: string;
 }
+
+export const DbContextFixId = {
+  All: -2,
+  MasterDb: -1,
+};

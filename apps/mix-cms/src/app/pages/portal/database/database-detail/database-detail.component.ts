@@ -15,7 +15,12 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { MixColumn, MixDatabase, MixRelationShip } from '@mixcore/lib/model';
+import {
+  DbContextFixId,
+  MixColumn,
+  MixDatabase,
+  MixRelationShip,
+} from '@mixcore/lib/model';
 import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
@@ -37,6 +42,7 @@ import { DatabaseInfoComponent } from '../components/database-info/database-info
 import { DatabaseMigrationComponent } from '../components/database-migration/database-migration.component';
 import { DatabasePermissionComponent } from '../components/database-permission/database-permission.component';
 import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
+import { DbContextSelectComponent } from '../components/db-context-select/db-context-select.component';
 
 @Component({
   selector: 'mix-database-detail',
@@ -58,6 +64,7 @@ import { DatabaseRelationshipComponent } from '../components/database-relationsh
     DatabaseInfoComponent,
     DatabasePermissionComponent,
     DatabaseMigrationComponent,
+    DbContextSelectComponent,
   ],
   templateUrl: './database-detail.component.html',
   styleUrls: ['./database-detail.component.scss'],
@@ -73,7 +80,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   public modal = inject(ModalService);
   public zone = inject(NgZone);
 
-  public editTitle = false;
   public data: MixDatabase | undefined = undefined;
   public form = new FormGroup({
     displayName: new FormControl('', Validators.required),
@@ -83,6 +89,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     deletePermissions: new FormControl<string[]>([]),
     createPermissions: new FormControl<string[]>([]),
     readPermissions: new FormControl<string[]>([]),
+    mixDatabaseContextId: new FormControl(),
   });
 
   ngOnInit() {
@@ -98,6 +105,10 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
           this.data = {
             columns: [],
           } as any;
+
+          const contextId =
+            this.activeRoute.snapshot.queryParams['mixDatabaseContextId'];
+          this.updateDbContext(contextId ? parseInt(contextId) : undefined);
           return;
         }
 
@@ -108,9 +119,16 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
           .subscribe((v) => {
             this.data = new MixDatabase(v);
             this.form.patchValue(this.data, { emitEvent: false });
+            this.updateDbContext(
+              this.data.mixDatabaseContextId ?? DbContextFixId.MasterDb
+            );
             this.cdr.detectChanges();
           });
       });
+  }
+
+  public updateDbContext(id: number | undefined) {
+    this.form.controls.mixDatabaseContextId.patchValue(id);
   }
 
   public submit(): void {
@@ -129,6 +147,10 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       .save({
         ...this.data,
         ...formValue,
+        mixDatabaseContextId:
+          formValue.mixDatabaseContextId === DbContextFixId.MasterDb
+            ? undefined
+            : formValue.mixDatabaseContextId,
         readPermissions: JSON.stringify(formValue.readPermissions || []) as any,
         createPermissions: JSON.stringify(
           formValue.createPermissions || []
@@ -166,14 +188,6 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     this.router.navigateByUrl(
       `${CMS_ROUTES.portal.database.fullPath}/${ev.id}`
     );
-  }
-
-  public toggleEditTitle() {
-    this.editTitle = !this.editTitle;
-  }
-
-  public onFocusedChange(focused: boolean): void {
-    if (!focused) this.editTitle = false;
   }
 
   public onColumnsChange(columns: MixColumn[]) {

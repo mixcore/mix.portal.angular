@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Inject, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { MixDatabase } from '@mixcore/lib/model';
+import { DbContextFixId, MixDatabase } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { toastObserverProcessing } from '@mixcore/share/helper';
@@ -17,6 +17,7 @@ import { CMS_ROUTES } from '../../../app.routes';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
 import { DatabaseStore } from '../../../stores/database.store';
 import { DatabaseRelationshipComponent } from './components/database-relationship/database-relationship.component';
+import { DbContextSelectComponent } from './components/db-context-select/db-context-select.component';
 
 @Component({
   selector: 'mix-database',
@@ -30,6 +31,7 @@ import { DatabaseRelationshipComponent } from './components/database-relationshi
     RelativeTimeSpanPipe,
     DynamicFilterComponent,
     DatabaseRelationshipComponent,
+    DbContextSelectComponent,
   ],
   templateUrl: './database.component.html',
   styleUrls: ['./database.component.scss'],
@@ -41,6 +43,7 @@ export class DatabaseComponent {
   public mixApi = inject(MixApiFacadeService);
   public toast = inject(HotToastService);
 
+  public selectedDbContextId?: number;
   public selectedTable: MixDatabase[] = [];
   public contextMenus: TableContextMenu<MixDatabase>[] = [
     {
@@ -82,9 +85,16 @@ export class DatabaseComponent {
   }
 
   async createDatabase() {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal.database.fullPath}/create`
-    );
+    let route = `${CMS_ROUTES.portal.database.fullPath}/create`;
+
+    if (this.selectedDbContextId !== undefined) {
+      const whiteList = [DbContextFixId.All, DbContextFixId.MasterDb];
+      if (!whiteList.includes(this.selectedDbContextId)) {
+        route = `${route}?mixDatabaseContextId=${this.selectedDbContextId}`;
+      }
+    }
+
+    await this.router.navigateByUrl(route);
   }
 
   public onDeleteTable() {

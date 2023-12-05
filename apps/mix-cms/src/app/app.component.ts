@@ -83,13 +83,6 @@ export class AppComponent implements OnInit {
         error: () => this.enableApp(),
         complete: () => this.enableApp(),
       });
-    // } else {
-    //   this.router
-    //     .navigateByUrl('/' + CMS_ROUTES.auth.login.fullPath)
-    //     .then(() => {
-    //       this.enableApp();
-    //     });
-    // }
   }
 
   public enableApp(): void {

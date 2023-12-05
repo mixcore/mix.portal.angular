@@ -26,7 +26,7 @@ export class DomHelper {
 
   public static getCurrentPathname() {
     const baseHref = new URL(document.baseURI).pathname;
-    const currentPath = window.location.pathname;
+    const currentPath = window.location.pathname + window.location.search;
     if (!baseHref || baseHref === '/') return currentPath;
 
     return currentPath.replace(baseHref, '');

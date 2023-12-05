@@ -1,37 +1,41 @@
 <div class="database-detail">
   <div class="database-detail__tree">
-    <mix-database-select
-      [isCreate]="mode == 'create'"
-      [prefix]="'Setting'"
-      [selectedItemId]="id"
-      (selectedItemChange)="selectedTableChange($event)"
-    ></mix-database-select>
+    <mix-database-select [isCreate]="mode == 'create'"
+                         [prefix]="'Setting'"
+                         [selectedItemId]="id"
+                         (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
   </div>
 
   <div class="data-detail-page__content-container flex-grow-1">
-    <tui-loader
-      *ngIf="loadingState$ | async as state"
-      class="data-detail-page"
-      [formGroup]="form"
-      [overlay]="true"
-      [showLoader]="state === 'Loading'"
-    >
+    <tui-loader *ngIf="loadingState$ | async as state"
+                class="data-detail-page"
+                [formGroup]="form"
+                [overlay]="true"
+                [showLoader]="state === 'Loading'">
       <div class="data-detail-page__toolbar">
         <div class="data-detail-page__toolbar-top">
-          <mix-inline-input formControlName="displayName"></mix-inline-input>
+          <div class="d-flex align-items-center gap-1">
+            <mix-inline-input [placeHolder]="'Type your db name'"
+                              formControlName="displayName"></mix-inline-input>
+            <div class="text-s text-sub">inside</div>
+            <mix-db-context-select class="ms-2"
+                                   [ignoreItemAll]="true"
+                                   [selectedItemId]="form.value.mixDatabaseContextId"
+                                   (selectedItemChange)="updateDbContext($event.id)"></mix-db-context-select>
+          </div>
 
-          <mix-button
-            *ngIf="mode === 'update' && data"
-            class="ml-auto"
-            type="secondary"
-            [size]="'s'"
-            (click)="goDatabaseData(data.systemName)"
-          >
+          <mix-button *ngIf="mode === 'update' && data"
+                      class="ml-auto"
+                      type="secondary"
+                      [size]="'s'"
+                      (click)="goDatabaseData(data.systemName)">
             View data source&nbsp;
             <span class="mix-icon"> arrow_right_alt </span>
           </mix-button>
 
-          <mix-button class="ms-2" [size]="'s'" (click)="submit()">
+          <mix-button class="ms-2"
+                      [size]="'s'"
+                      (click)="submit()">
             <span class="icon mix-icon"> save_as </span>
             {{ mode === 'create' ? 'Create' : 'Save' }}
           </mix-button>
@@ -40,7 +44,8 @@
         <div class="data-detail-page__toolbar-separator"></div>
 
         <div class="deta-detail-page__toolbar-bottom">
-          <nav [(activeItemIndex)]="activeTabIndex" tuiTabs>
+          <nav [(activeItemIndex)]="activeTabIndex"
+               tuiTabs>
             <button tuiTab>
               <span class="mix-icon"> feed </span>&nbsp; General
             </button>
@@ -63,10 +68,8 @@
       <div class="data-detail-page__content">
         <!-- Main Content -->
         @defer(when activeTabIndex === 0) {
-        <div
-          class="data-detail-page__main-content"
-          [class.d-none]="activeTabIndex !== 0"
-        >
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 0">
           <mix-database-info [form]="form"></mix-database-info>
         </div>
         } @loading (after 100ms; minimum 1s) {
@@ -77,14 +80,10 @@
 
         <!-- Columns -->
         @defer(when activeTabIndex === 1) {
-        <div
-          class="data-detail-page__main-content"
-          [class.d-none]="activeTabIndex !== 1"
-        >
-          <mix-database-entity
-            [columns]="data?.columns ?? []"
-            (columnsChange)="onColumnsChange($event)"
-          ></mix-database-entity>
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 1">
+          <mix-database-entity [columns]="data?.columns ?? []"
+                               (columnsChange)="onColumnsChange($event)"></mix-database-entity>
         </div>
         } @loading (after 100ms; minimum 1s) {
         <div class="mix-progress-bar">
@@ -94,15 +93,11 @@
 
         <!-- Relationships -->
         @defer(when activeTabIndex === 2) {
-        <div
-          class="data-detail-page__main-content"
-          [class.d-none]="activeTabIndex !== 2"
-        >
-          <mix-database-relationship
-            [relationships]="data?.relationships ?? []"
-            (relationshipChanges)="onRelationshipChange($event)"
-            (deleteRelation)="onDeleteRelationship($event)"
-          ></mix-database-relationship>
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 2">
+          <mix-database-relationship [relationships]="data?.relationships ?? []"
+                                     (deleteRelation)="onDeleteRelationship($event)"
+                                     (relationshipChanges)="onRelationshipChange($event)"></mix-database-relationship>
         </div>
         } @loading (after 100ms; minimum 1s) {
         <div class="mix-progress-bar">
@@ -112,10 +107,8 @@
 
         <!-- Permissions -->
         @defer(when activeTabIndex === 3) {
-        <div
-          class="data-detail-page__main-content"
-          [class.d-none]="activeTabIndex !== 3"
-        >
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 3">
           <mix-database-permission [form]="form"></mix-database-permission>
         </div>
         } @loading (after 100ms; minimum 1s) {
@@ -126,13 +119,9 @@
 
         <!-- Migrations -->
         @defer(when activeTabIndex === 4) {
-        <div
-          class="data-detail-page__main-content"
-          [class.d-none]="activeTabIndex !== 4"
-        >
-          <mix-database-migration
-            [dbSysName]="data?.systemName"
-          ></mix-database-migration>
+        <div class="data-detail-page__main-content"
+             [class.d-none]="activeTabIndex !== 4">
+          <mix-database-migration [dbSysName]="data?.systemName"></mix-database-migration>
         </div>
         } @loading (after 100ms; minimum 1s) {
         <div class="mix-progress-bar">

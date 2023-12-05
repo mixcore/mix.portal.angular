@@ -1,0 +1,29 @@
+<div class="db-context-select"
+     [tp]="contextSelect"
+     [tpOffset]="[-10, 5]"
+     tpVariation="popper"
+     tpPlacement="bottom-start">
+  <div class="text-xl text-600">
+    {{
+      getSelected(contexts(), selectedItemId)?.displayName || 'Choose context'
+    }}
+  </div>
+  <span class="mix-icon text-600 text-xxl">arrow_drop_down</span>
+</div>
+
+<ng-template #contextSelect
+             let-hide>
+  <div class="popup-container">
+    @for (item of contexts(); track item) {
+    <div class="mix-menu-item d-flex justify-content-between gap-5"
+         (click)="selectItem(item); hide()">
+      @if (getItemVm(item); as item) {
+      <div class="text-500">{{ item.displayName }}</div>
+      <div class="text-sub text-s">
+        {{ item.subInfo }}
+      </div>
+      }
+    </div>
+    }
+  </div>
+</ng-template>
