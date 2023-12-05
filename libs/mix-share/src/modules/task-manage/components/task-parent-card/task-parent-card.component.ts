@@ -33,6 +33,7 @@ export class TaskParentCardComponent {
   public addTask() {
     this.dialog.open(TaskCreateComponent, {
       width: 800,
+      windowClass: 'top-align-modal',
       data: {
         parentTask: this.task,
       },

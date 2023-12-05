@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -50,6 +51,7 @@ import { TaskStore } from './store/task.store';
     TaskHeaderComponent,
     ProjectSelectComponent,
     TrackByProp,
+    DragDropModule,
   ],
   templateUrl: './task-manage.component.html',
   styleUrls: ['./task-manage.component.scss'],
@@ -75,6 +77,9 @@ export class TaskManageComponent extends BaseComponent {
   }
 
   public addTask() {
-    this.dialog.open(TaskCreateComponent, { width: 800 });
+    this.dialog.open(TaskCreateComponent, {
+      width: 800,
+      windowClass: 'top-align-modal',
+    });
   }
 }

@@ -1,32 +1,36 @@
-<div class="task-create"
+<div class="task-create mix-dialog --default-padding"
      [formGroup]="taskForm">
-  <div class="text-l">Add New {{ parentTask ? 'Task' : 'Swimlane' }}</div>
-
-  @if(parentTask) {
-  <div class="row mt-4 mb-1">
-    <div class="col-6">
-      <div class="mb-1 text-sub text-500">Task Type</div>
-      <task-type-select formControlName="type"></task-type-select>
-    </div>
-
-    <div class="col-6">
-      <div class="mb-1 text-sub text-500">Task Priority</div>
-      <task-priority-select formControlName="taskPriority"></task-priority-select>
-    </div>
+  <div class="mix-dialog__header">
+    Add New {{ parentTask ? 'Task' : 'Swimlane' }}
   </div>
-  }
 
-  <div class="mt-3 mb-1 text-sub text-500">Short Summary</div>
-  <mix-input formControlName="title"
-             placeHolder="Quick description about your task"></mix-input>
+  <div class="mix-dialog__content">
+    @if(parentTask) {
+    <div class="row mb-1">
+      <div class="col-6">
+        <div class="mb-1 text-sub text-500">Task Type</div>
+        <task-type-select formControlName="type"></task-type-select>
+      </div>
 
-  <div class="mt-3 mb-1 text-sub text-500">Reporter</div>
-  <mix-user-select formControlName="reporter"></mix-user-select>
+      <div class="col-6">
+        <div class="mb-1 text-sub text-500">Task Priority</div>
+        <task-priority-select formControlName="taskPriority"></task-priority-select>
+      </div>
+    </div>
+    }
 
-  <div class="mt-3 mb-1 text-sub text-500">Description</div>
-  <mix-rich-text-editor formControlName="description"></mix-rich-text-editor>
+    <div class="mb-1 text-sub text-500">Short Summary</div>
+    <mix-input formControlName="title"
+               placeHolder="Quick description about your task"></mix-input>
 
-  <div class="mt-4 d-flex justify-content-end align-items-center gap-2">
+    <div class="mt-3 mb-1 text-sub text-500">Reporter</div>
+    <mix-user-select formControlName="reporter"></mix-user-select>
+
+    <div class="mt-3 mb-1 text-sub text-500">Description</div>
+    <mix-rich-text-editor formControlName="description"></mix-rich-text-editor>
+  </div>
+
+  <div class="mix-dialog__footer">
     <mix-button [loading]="loadingState() === 'Loading'"
                 (click)="createTask()">Create</mix-button>
     <mix-button type="outline"

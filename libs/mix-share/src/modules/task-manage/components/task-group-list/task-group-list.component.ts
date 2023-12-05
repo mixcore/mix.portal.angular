@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { Component, Input, inject, signal } from '@angular/core';
 import { MixTaskNew, TaskStatus, TaskStatusDisplay } from '@mixcore/lib/model';
@@ -8,7 +9,12 @@ import { TaskParentCardComponent } from '../task-parent-card/task-parent-card.co
 @Component({
   selector: 'mix-task-group-list',
   standalone: true,
-  imports: [CommonModule, TaskDndListComponent, TaskParentCardComponent],
+  imports: [
+    CommonModule,
+    TaskDndListComponent,
+    TaskParentCardComponent,
+    DragDropModule,
+  ],
   templateUrl: './task-group-list.component.html',
   styleUrls: ['./task-group-list.component.scss'],
 })
