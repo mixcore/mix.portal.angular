@@ -6,16 +6,17 @@ import { MixApiFacadeService } from '@mixcore/share/api';
 import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
+import { DatabaseStore } from '@mixcore/share/stores';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { DynamicFilterComponent } from '@mixcore/ui/filter';
 import { ModalService } from '@mixcore/ui/modal';
 import { PortalSidebarService } from '@mixcore/ui/sidebar';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
+import { tuiPure } from '@taiga-ui/cdk';
 import { forkJoin } from 'rxjs';
 import { CMS_ROUTES } from '../../../app.routes';
 import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
-import { DatabaseStore } from '../../../stores/database.store';
 import { DatabaseRelationshipComponent } from './components/database-relationship/database-relationship.component';
 import { DbContextSelectComponent } from './components/db-context-select/db-context-select.component';
 
@@ -68,6 +69,39 @@ export class DatabaseComponent {
       },
     },
   ];
+
+  public searchFields: string[] = [];
+  public searchTexts: string = '';
+
+  @tuiPure
+  public filterDbs(
+    dbs: MixDatabase[],
+    selectedDbContextId: number | undefined,
+    searchTexts?: string
+  ) {
+    let output = dbs;
+    if (
+      selectedDbContextId === undefined ||
+      selectedDbContextId === DbContextFixId.All
+    ) {
+      output = dbs;
+    } else if (selectedDbContextId === DbContextFixId.MasterDb) {
+      output = dbs.filter((db) => db.mixDatabaseContextId === undefined);
+    } else {
+      output = dbs.filter(
+        (db) => db.mixDatabaseContextId === selectedDbContextId
+      );
+    }
+
+    if (!searchTexts) {
+      return output;
+    } else {
+      const search = searchTexts.trim().toLowerCase();
+      return (output = output.filter((d) =>
+        d.displayName.trim().toLowerCase().includes(search)
+      ));
+    }
+  }
 
   constructor(
     @Inject(PortalSidebarService)

@@ -7,9 +7,10 @@ import { tap } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class DatabaseStore extends BaseCRUDStore<MixDatabase> {
   public override requestFn = (request: PaginationRequestModel) =>
-    this.mixApi.databaseApi.gets({ ...request, columns: '', pageSize: 50 });
+    this.mixApi.databaseApi.gets({ ...request, columns: '', pageSize: 100 });
 
   public override vm$ = this.select((s) => s);
+
   public override requestName = 'database';
   public override searchColumns = ['Name', 'Description'];
   public override searchColumnsDict: { [key: string]: string } = {

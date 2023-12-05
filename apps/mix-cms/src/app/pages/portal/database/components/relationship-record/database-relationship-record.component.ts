@@ -13,10 +13,10 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MixDatabase, MixRelationShip } from '@mixcore/lib/model';
 import { SuccessFilter } from '@mixcore/share/base';
 import { ArrayUtil } from '@mixcore/share/form';
+import { DatabaseStore } from '@mixcore/share/stores';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
-import { DatabaseStore } from 'apps/mix-cms/src/app/stores/database.store';
 import { debounceTime, filter, take } from 'rxjs';
 
 @Component({

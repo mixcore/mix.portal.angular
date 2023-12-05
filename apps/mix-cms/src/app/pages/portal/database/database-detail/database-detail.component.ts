@@ -24,6 +24,7 @@ import {
 import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
+import { DatabaseStore } from '@mixcore/share/stores';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInlineInputComponent } from '@mixcore/ui/inline-input';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -36,7 +37,6 @@ import { takeUntil } from 'rxjs';
 import { CMS_ROUTES } from '../../../../app.routes';
 import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
 import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
-import { DatabaseStore } from '../../../../stores/database.store';
 import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
 import { DatabaseInfoComponent } from '../components/database-info/database-info.component';
 import { DatabaseMigrationComponent } from '../components/database-migration/database-migration.component';

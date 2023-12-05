@@ -26,15 +26,12 @@
     <div *ngIf="store.vm$ | async as state"
          class="data-table-page__body">
       <mix-data-table [contextMenus]="contextMenus"
-                      [dataset]="state.data"
+                      [dataset]="filterDbs(state.data, selectedDbContextId, searchTexts)"
                       [loading]="state.status === 'Loading'"
-                      [pageInfo]="state.pageInfo"
+                      [searchDebounceTime]="200"
                       [searchFieldOptions]="store.searchColumns"
                       (itemsSelectedChange)="selectedTable = $event || []"
-                      (pageChange)="store.changePage($event)"
-                      (searchChange)="
-          store.search($event.searchText, $any($event.searchField))
-        ">
+                      (searchChange)="searchTexts = $event.searchText">
         <div [header]="'Name'"
              key="displayName"
              mixTableColumn>

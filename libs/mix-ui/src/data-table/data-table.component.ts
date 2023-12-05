@@ -91,6 +91,7 @@ export class DataTableComponent<T> implements AfterContentInit {
   @Input() public loading = false;
   @Input() public forceLoading = false;
   @Input() public uniqueKey = 'id';
+  @Input() public searchDebounceTime = 500;
   @Input() public pageInfo: {
     pageIndex: number;
     page?: number;
@@ -128,7 +129,7 @@ export class DataTableComponent<T> implements AfterContentInit {
 
     this.searchText.patchValue(this.searchTextValue, { emitEvent: false });
     this.searchText.valueChanges
-      .pipe(debounceTime(500), takeUntil(this.destroy$))
+      .pipe(debounceTime(this.searchDebounceTime), takeUntil(this.destroy$))
       .subscribe((v) => {
         this.searchChange.next({
           searchText: v,
