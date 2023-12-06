@@ -4,7 +4,7 @@
                      [titleTpl]="titleTpl">
       <ng-template #titleTpl>
         <mix-db-context-select [selectedItemId]="selectedDbContextId"
-                               (selectedItemChange)="selectedDbContextId = $event.id"></mix-db-context-select>
+                               (selectedItemChange)="selectedDbChange($event.id)"></mix-db-context-select>
       </ng-template>
 
       <div class="toolbar-separator"></div>
@@ -23,10 +23,10 @@
       </mix-button>
     </mix-sub-toolbar>
 
-    <div *ngIf="store.vm$ | async as state"
+    <div *ngIf="masterStore.selectedContext() as state"
          class="data-table-page__body">
       <mix-data-table [contextMenus]="contextMenus"
-                      [dataset]="filterDbs(state.data, selectedDbContextId, searchTexts)"
+                      [dataset]="state.data"
                       [loading]="state.status === 'Loading'"
                       [searchDebounceTime]="200"
                       [searchFieldOptions]="store.searchColumns"

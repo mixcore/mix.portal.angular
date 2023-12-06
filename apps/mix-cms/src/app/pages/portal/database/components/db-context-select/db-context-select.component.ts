@@ -34,13 +34,6 @@ export class DbContextSelectComponent {
 
   public defaultContext = [
     {
-      displayName: 'All Context(s)',
-      databaseProvider: DatabaseProvider.MySQL,
-      connectionString: '',
-      schema: '',
-      id: DbContextFixId.All,
-    },
-    {
       displayName: 'Master Db',
       databaseProvider: DatabaseProvider.MySQL,
       connectionString: '',

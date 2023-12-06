@@ -1,36 +1,31 @@
 <div class="main-toolbar">
   <div class="main-toolbar__logo">
-    <img src="assets/images/mixcore-logo.svg" class="w-100" alt="logo" />
+    <img class="w-100"
+         src="assets/images/mixcore-logo.svg"
+         alt="logo">
   </div>
 
   <mix-location-controller></mix-location-controller>
 
   <ng-container *ngIf="auth.cultures$ | async as cultures">
-    <div *ngIf="cultures?.length" class="main-toolbar__culture ms-auto">
-      <mix-button
-        type="flat"
-        [iconBtn]="true"
-        [size]="'m'"
-        [tp]="cultureTpl"
-        tpPlacement="bottom-end"
-        tpVariation="popper"
-      >
-        <span
-          class="flag-icon {{ auth.currentCulture?.icon }}"
-          style="width: 16px; height: 10px"
-        ></span>
+    <div *ngIf="cultures?.length"
+         class="main-toolbar__culture ms-auto">
+      <mix-button type="flat"
+                  [iconBtn]="true"
+                  [size]="'s'"
+                  [tp]="cultureTpl"
+                  tpPlacement="bottom-end"
+                  tpVariation="popper">
+        <span class="flag-icon {{ auth.currentCulture?.icon }}"
+              style="width: 16px; height: 10px"></span>
       </mix-button>
 
-      <ng-template #cultureTpl let-hide>
-        <div
-          *ngFor="let culture of cultures"
-          class="mix-menu-item"
-          (click)="hide(); changeCulture(culture)"
-        >
-          <span
-            class="main-toolbar__culture-icon flag-icon {{ culture.icon }}"
-          ></span
-          >{{ culture.displayName }}
+      <ng-template #cultureTpl
+                   let-hide>
+        <div *ngFor="let culture of cultures"
+             class="mix-menu-item"
+             (click)="hide(); changeCulture(culture)">
+          <span class="main-toolbar__culture-icon flag-icon {{ culture.icon }}"></span>{{ culture.displayName }}
         </div>
       </ng-template>
     </div>
