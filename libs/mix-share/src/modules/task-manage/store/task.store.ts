@@ -1,4 +1,5 @@
 import { Injectable, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   MixFilter,
   MixTaskNew,
@@ -15,23 +16,22 @@ import { TaskManageStore } from './task-ui.store';
 export class TaskStore extends BaseCRUDStore<MixTaskNew> {
   public taskUiStore = inject(TaskManageStore);
 
-  public override vm$ = combineLatest([
-    this.request$$,
-    this.taskUiStore.selectedProjectId$,
-  ]).pipe(
-    tap(([request, projectId]) => {
-      request['projectId'] = projectId;
-      request.queries = <MixFilter[]>[
-        {
-          value: projectId,
-          fieldName: 'projectId',
-          compareOperator: 'Equal',
-        },
-      ];
+  public state$$ = toSignal(
+    combineLatest([this.request$$, this.taskUiStore.selectedProjectId$]).pipe(
+      tap(([request, projectId]) => {
+        request['projectId'] = projectId;
+        request.queries = <MixFilter[]>[
+          {
+            value: projectId,
+            fieldName: 'projectId',
+            compareOperator: 'Equal',
+          },
+        ];
 
-      this.loadData(request);
-    }),
-    switchMap(() => this.select((s) => s))
+        this.loadData(request);
+      }),
+      switchMap(() => this.select((s) => s))
+    )
   );
 
   public getTaskByStatus = (status: TaskStatus, parentTaskId: number) => {
