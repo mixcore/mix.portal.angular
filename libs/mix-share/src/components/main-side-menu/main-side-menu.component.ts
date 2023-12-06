@@ -97,7 +97,7 @@ export class MainSideMenuComponent {
   public showSetting() {
     this.dialogService.open(SettingDialogComponent, {
       width: 'fit-content',
-      id: 'setting-pannel',
+      id: 'top-align-modal',
     });
   }
 }

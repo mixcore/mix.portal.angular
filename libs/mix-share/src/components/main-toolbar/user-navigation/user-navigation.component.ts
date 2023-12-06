@@ -10,9 +10,11 @@ import { Router } from '@angular/router';
 import { UserListVm } from '@mixcore/lib/model';
 import { AuthService } from '@mixcore/share/auth';
 import { ModalService } from '@mixcore/ui/modal';
+import { DialogService } from '@ngneat/dialog';
 import { TippyDirective } from '@ngneat/helipopper';
 import { TuiBadgeModule } from '@taiga-ui/kit';
 import { UserAvatarComponent } from '../../user-avatar/user-avatar.component';
+import { UserProfileDialofComponent } from '../../user-profile-dialof/user-profile-dialof.component';
 import { ApplicationListComponent } from '../application-list/application-list.component';
 
 @Component({
@@ -35,6 +37,7 @@ export class UserNavigationComponent {
   public modal = inject(ModalService);
   public router = inject(Router);
   public userInfo?: UserListVm;
+  public dialog = inject(DialogService);
 
   constructor() {
     this.authService.user$.pipe(takeUntilDestroyed()).subscribe((v) => {
@@ -53,6 +56,14 @@ export class UserNavigationComponent {
       this.authService.logout(() => {
         this.router.navigateByUrl('auth/login');
       });
+    });
+  }
+
+  public userProfile(): void {
+    this.dialog.open(UserProfileDialofComponent, {
+      windowClass: UserProfileDialofComponent.windowClass,
+      width: '80vw',
+      height: '80vh',
     });
   }
 }
