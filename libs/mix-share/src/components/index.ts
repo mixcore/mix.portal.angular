@@ -1,6 +1,7 @@
 export * from './location-controller/location-controller.component';
 export * from './main-side-menu/main-side-menu.component';
 export * from './main-toolbar/main-toolbar.component';
+export * from './main-toolbar/toolbar.service';
 
 export * from './action-collapse/action-collapse.component';
 export * from './basic-mix-filter/basic-mix-filter.component';

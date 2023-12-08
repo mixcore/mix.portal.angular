@@ -2,13 +2,7 @@
      class="data-table-page board">
   <div class="data-table-page__main-container">
     <mix-sub-toolbar [description]="'Work on'"
-                     [titleTpl]="taskSelect">
-      <ng-template #taskSelect>
-        <mix-project-select (selectedItemChange)="taskManage.changeSelected($event)"></mix-project-select>
-      </ng-template>
-
-      <div class="toolbar-separator"></div>
-
+                     [title]="'Kanban Board'">
       <mix-button (click)="addTask()"
                   size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
         {{ 'New' | transloco }}</mix-button>

@@ -1,3 +1,4 @@
+import { PortalModule } from '@angular/cdk/portal';
 import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
@@ -22,6 +23,7 @@ import { TippyDirective } from '@ngneat/helipopper';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
 import { filter, startWith } from 'rxjs';
 import { LocationControllerComponent } from '../location-controller/location-controller.component';
+import { ToolbarService } from './toolbar.service';
 import { UserNavigationComponent } from './user-navigation/user-navigation.component';
 
 interface BreadcrumbOption {
@@ -43,6 +45,7 @@ interface BreadcrumbOption {
     TippyDirective,
     MixButtonComponent,
     UserNavigationComponent,
+    PortalModule,
   ],
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss'],
@@ -52,6 +55,7 @@ export class MainToolbarComponent implements OnInit {
   public auth = inject(AuthService);
   public router = inject(Router);
   public activatedRoute = inject(ActivatedRoute);
+  public toolbarService = inject(ToolbarService);
   public domainUrls$ = inject(DOMAIN_URL$);
   public breadcrumbs: BreadcrumbOption[] = [];
   public mode = 'Prod';

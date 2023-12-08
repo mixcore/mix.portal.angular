@@ -7,6 +7,11 @@
 
   <mix-location-controller></mix-location-controller>
 
+  <div *ngIf="toolbarService.templatePortal$ | async as portal"
+       class="main-toolbar__custom-portal">
+    <ng-template [cdkPortalOutlet]="portal"></ng-template>
+  </div>
+
   <ng-container *ngIf="auth.cultures$ | async as cultures">
     <div *ngIf="cultures?.length"
          class="main-toolbar__culture ms-auto">

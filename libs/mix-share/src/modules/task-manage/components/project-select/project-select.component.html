@@ -3,13 +3,13 @@
      [tpOffset]="[-10, 5]"
      tpVariation="popper"
      tpPlacement="bottom-start">
-  <div class="text-xl text-600">
+  <div class="{{ size === 's' ? 'text-s' : 'text-xl' }} text-600">
     {{
       getSelectedProjectName(project(), selectedItemId)?.projectName ||
         'Choose project'
     }}
   </div>
-  <span class="mix-icon text-600 text-xxl">arrow_drop_down</span>
+  <span class="mix-icon text-600 {{ size === 's' ? 'text-l' : 'text-xxl' }}">arrow_drop_down</span>
 </div>
 
 <ng-template #dbSelect

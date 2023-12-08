@@ -30,6 +30,7 @@ export class ProjectSelectComponent {
   public project = signal<MixProject[]>([]);
   public destroy$ = inject(DestroyRef);
 
+  @Input() public size: 's' | 'm' = 'm';
   @Input() public selectedItemId?: number;
   @Input() public selectedItemName?: string;
   @Output() public selectedItemChange = new EventEmitter<MixProject>();
