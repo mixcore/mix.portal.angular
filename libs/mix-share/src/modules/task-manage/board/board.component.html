@@ -1,5 +1,5 @@
 <div *ngIf="loadingState() as loading"
-     class="data-table-page task-manage">
+     class="data-table-page board">
   <div class="data-table-page__main-container">
     <mix-sub-toolbar [description]="'Work on'"
                      [titleTpl]="taskSelect">
@@ -17,7 +17,7 @@
     <mix-task-filter></mix-task-filter>
 
     <div *ngIf="store.state$$() as vm"
-         class="task-manage__main-view"
+         class="board__main-view"
          cdkDropListGroup>
       <!-- Header -->
       <mix-task-header></mix-task-header>

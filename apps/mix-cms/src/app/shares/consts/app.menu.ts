@@ -126,7 +126,12 @@ export const APP_MENU = <MenuItem[]>[
     icon: 'view_kanban',
     children: [
       {
-        title: 'Kanban',
+        title: 'Project',
+        url: CMS_ROUTES.portal.task.fullPath,
+        icon: 'view_kanban',
+      },
+      {
+        title: 'Board',
         url: CMS_ROUTES.portal.task.fullPath,
         icon: 'view_kanban',
       },

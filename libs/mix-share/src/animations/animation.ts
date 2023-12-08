@@ -1001,12 +1001,14 @@ const fadeInRight = () =>
           opacity: 0,
           transform: 'translate3d({{translate}}, 0, 0)',
           easing: 'ease',
+          width: 0,
           offset: 0,
         }),
         style({
           opacity: 1,
           transform: 'translate3d(0, 0, 0)',
           easing: 'ease',
+          width: '99%',
           offset: 1,
         }),
       ])

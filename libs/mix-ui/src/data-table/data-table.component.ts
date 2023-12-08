@@ -17,8 +17,8 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { fadeInRightOnEnterAnimation } from '@mixcore/share/animation';
+import { ObjectUtil } from '@mixcore/share/form';
 import { TuiDestroyService } from '@taiga-ui/cdk';
-import * as R from 'remeda';
 import { debounceTime, takeUntil } from 'rxjs';
 import { TableColumnDirective } from './directives/column.directive';
 
@@ -72,7 +72,7 @@ export class DataTableComponent<T> implements AfterContentInit {
   }
   @Input() public contextMenus: TableContextMenu<T>[] = [];
   @Input() public set dataset(v: T[]) {
-    if (R.difference(v, this._dataset)) {
+    if (ObjectUtil.diffArray(v, this._dataset)) {
       this._dataset = v;
       this.markAllUnchecked();
       this.tableState.set('Ok');

@@ -1,1 +1,1 @@
-export * from './task-manage.component';
+export * from './task-manange.route';

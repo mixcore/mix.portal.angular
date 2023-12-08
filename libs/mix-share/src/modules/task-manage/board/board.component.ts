@@ -22,14 +22,14 @@ import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
 import { MixTextAreaComponent } from '@mixcore/ui/textarea';
 import { DialogService } from '@ngneat/dialog';
 import { TranslocoModule } from '@ngneat/transloco';
-import { ProjectSelectComponent } from './components/project-select/project-select.component';
-import { TaskCreateComponent } from './components/task-create/task-create.component';
-import { TaskDndListComponent } from './components/task-dnd-list/task-dnd-list.component';
-import { TaskFilterComponent } from './components/task-filter/task-filter.component';
-import { TaskGroupListComponent } from './components/task-group-list/task-group-list.component';
-import { TaskHeaderComponent } from './components/task-header/task-header.component';
-import { TaskManageStore } from './store/task-ui.store';
-import { TaskStore } from './store/task.store';
+import { ProjectSelectComponent } from '../components/project-select/project-select.component';
+import { TaskCreateComponent } from '../components/task-create/task-create.component';
+import { TaskDndListComponent } from '../components/task-dnd-list/task-dnd-list.component';
+import { TaskFilterComponent } from '../components/task-filter/task-filter.component';
+import { TaskGroupListComponent } from '../components/task-group-list/task-group-list.component';
+import { TaskHeaderComponent } from '../components/task-header/task-header.component';
+import { TaskManageStore } from '../store/task-ui.store';
+import { TaskStore } from '../store/task.store';
 
 @Component({
   selector: 'mix-task-manage',
@@ -53,12 +53,12 @@ import { TaskStore } from './store/task.store';
     TrackByProp,
     DragDropModule,
   ],
-  templateUrl: './task-manage.component.html',
-  styleUrls: ['./task-manage.component.scss'],
+  templateUrl: './board.component.html',
+  styleUrls: ['./board.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TaskManageComponent extends BaseComponent {
+export class TaskBoardComponent extends BaseComponent {
   public dialog = inject(DialogService);
   public store = inject(TaskStore);
   public taskManage = inject(TaskManageStore);

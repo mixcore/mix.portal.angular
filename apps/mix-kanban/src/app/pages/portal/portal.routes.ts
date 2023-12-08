@@ -13,8 +13,8 @@ export const PortalRoutes: Routes = [
   {
     path: CMS_ROUTES.portal.task.path,
     data: breadcrumbName('Task Management'),
-    loadComponent: () =>
-      import('@mixcore/module/task').then((m) => m.TaskManageComponent),
+    loadChildren: () =>
+      import('@mixcore/module/task').then((m) => m.taskManagementRoutes),
   },
   {
     path: '',

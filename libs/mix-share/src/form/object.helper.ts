@@ -1,4 +1,4 @@
-import { clone } from 'remeda';
+import { clone, difference } from 'remeda';
 
 export type RecordableKeys<T> = {
   // for each key in T
@@ -38,6 +38,10 @@ export class ObjectUtil {
 
   public static diff(object: object, toCompareObj: object) {
     return JSON.stringify(object) !== JSON.stringify(toCompareObj);
+  }
+
+  public static diffArray<T>(v: T[], v2: T[]) {
+    return difference(v, v2);
   }
 
   public static objectToQueryString(
