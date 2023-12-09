@@ -1,7 +1,9 @@
 <div class="mix-modal"
      style="--modal-boxshadow: {{ context.borderShadowColor }}">
-  <h3 class="text-2xl"
-      [id]="context.id">{{ context.heading }}</h3>
+  <div class="mix-modal__header">
+    <h3 class="text-xl"
+        [id]="context.id">{{ context.heading }}</h3>
+  </div>
 
   <section class="mix-modal__content text-l">
     <ng-container *polymorpheusOutlet="$any(context.content) as text; context: context">
@@ -9,17 +11,17 @@
     </ng-container>
   </section>
 
-  <p class="mix-modal__buttons">
-    <mix-button [size]="'l'"
+  <div class="mix-modal__footer">
+    <mix-button class="w-100"
                 (click)="onClick(true)">
       {{ context.buttons[0] }}
     </mix-button>
 
     <mix-button *ngIf="context.buttons[1]"
+                class="w-100"
                 type="secondary"
-                [size]="'l'"
                 (click)="onClick(false)">
       {{ context.buttons[1] }}
     </mix-button>
-  </p>
+  </div>
 </div>

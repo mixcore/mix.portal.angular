@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
             ),
             switchMap(() =>
               this.modal.info(
-                'A new version of the application is available. Update now?'
+                'A new version of the application is available, click ok to perform update. We are sorry for the inconvenience.'
               )
             )
           )

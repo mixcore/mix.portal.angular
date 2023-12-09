@@ -50,7 +50,7 @@ export class UserNavigationComponent {
   }
 
   public logout(): void {
-    this.modal.warning('Do you want to logout ?').subscribe((ok) => {
+    this.modal.confirm('Do you want to logout ?').subscribe((ok) => {
       if (!ok) return;
 
       this.authService.logout(() => {
