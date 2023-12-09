@@ -31,9 +31,10 @@
   }
 
   &__workspace {
-    height: calc(100% - var(--main-layout-gap) - var(--main-layout-gap));
+    height: calc(100% - var(--main-layout-gap));
     flex-grow: 1;
     margin: var(--main-layout-gap);
+    margin-top: 0px;
     margin-right: unset;
     z-index: 1;
     overflow: auto;
@@ -44,6 +45,7 @@
     border-radius: 12px;
     margin: var(--main-layout-gap);
     margin-left: unset;
+    margin-top: unset;
   }
 
   &__main-workspace {

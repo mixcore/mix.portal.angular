@@ -1,4 +1,6 @@
 .mix-main-layout {
+  --work-space-height: calc(100% - var(--main-layout-gap));
+
   display: flex;
   height: 100%;
   background: rgb(255 255 255 / 25%);
@@ -10,7 +12,7 @@
   }
 
   &__side-menu {
-    height: 100%;
+    height: var(--work-space-height);
   }
 
   &__flex {
@@ -31,19 +33,21 @@
   }
 
   &__workspace {
-    height: calc(100% - var(--main-layout-gap) - var(--main-layout-gap));
+    height: var(--work-space-height);
     flex-grow: 1;
     margin: var(--main-layout-gap);
+    margin-top: 0px;
     margin-right: unset;
     z-index: 1;
     overflow: auto;
   }
 
   &__explorer {
-    height: calc(100% - 18px);
+    height: var(--work-space-height);
     border-radius: 12px;
     margin: var(--main-layout-gap);
     margin-left: unset;
+    margin-top: unset;
   }
 
   &__main-workspace {
