@@ -21,7 +21,6 @@ import {
   MixDatabase,
   MixRelationShip,
 } from '@mixcore/lib/model';
-import { DatabaseSelectComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { DatabaseStore } from '@mixcore/share/stores';
@@ -42,6 +41,7 @@ import { DatabaseInfoComponent } from '../components/database-info/database-info
 import { DatabaseMigrationComponent } from '../components/database-migration/database-migration.component';
 import { DatabasePermissionComponent } from '../components/database-permission/database-permission.component';
 import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
+import { DatabaseSelectComponent } from '../components/database-select/database-select.component';
 import { DbContextSelectComponent } from '../components/db-context-select/db-context-select.component';
 
 @Component({

@@ -31,7 +31,6 @@ export class DbContextSelectComponent {
   public store = inject(DatabaseContextStore);
   public contexts = signal<MixDbContext[]>([]);
   public destroy$ = inject(DestroyRef);
-
   public defaultContext = [
     {
       displayName: 'Master Db',
@@ -42,6 +41,12 @@ export class DbContextSelectComponent {
     },
   ];
 
+  @tuiPure
+  public getLabelSize(size: 's' | 'm') {
+    return size === 's' ? 'text-s' : 'text-xl';
+  }
+
+  @Input() public size: 's' | 'm' = 'm';
   @Input() public ignoreItemAll = false;
   @Input() public selectedItemId?: number;
   @Output() public selectedItemChange = new EventEmitter<MixDbContext>();

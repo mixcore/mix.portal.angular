@@ -1,12 +1,7 @@
 <div class="data-table-page">
   <div class="data-table-page__main-container">
-    <mix-sub-toolbar [description]="'CONTEXT'"
-                     [titleTpl]="titleTpl">
-      <ng-template #titleTpl>
-        <mix-db-context-select [selectedItemId]="selectedDbContextId"
-                               (selectedItemChange)="selectedDbChange($event.id)"></mix-db-context-select>
-      </ng-template>
-
+    <mix-sub-toolbar [description]="'LISTING'"
+                     [title]="'Database'">
       <div class="toolbar-separator"></div>
 
       <mix-button (click)="createDatabase()"
@@ -23,7 +18,7 @@
       </mix-button>
     </mix-sub-toolbar>
 
-    <div *ngIf="masterStore.selectedContext() as state"
+    <div *ngIf="masterStore.stateSignal() as state"
          class="data-table-page__body">
       <mix-data-table [contextMenus]="contextMenus"
                       [dataset]="state.data"

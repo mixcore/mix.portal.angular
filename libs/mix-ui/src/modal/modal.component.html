@@ -1,11 +1,11 @@
 <div class="mix-modal"
      style="--modal-boxshadow: {{ context.borderShadowColor }}">
   <div class="mix-modal__header">
-    <h3 class="text-xl"
+    <h3 class="text-l"
         [id]="context.id">{{ context.heading }}</h3>
   </div>
 
-  <section class="mix-modal__content text-l">
+  <section class="mix-modal__content text-m">
     <ng-container *polymorpheusOutlet="$any(context.content) as text; context: context">
       {{ text }}
     </ng-container>

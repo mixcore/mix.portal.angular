@@ -1,82 +1,41 @@
 import { Injectable, inject } from '@angular/core';
-import { DbContextFixId, MixDatabase } from '@mixcore/lib/model';
-import { MixApiFacadeService } from '@mixcore/share/api';
-import { BaseState } from '@mixcore/share/base';
-import { ComponentStore } from '@ngrx/component-store';
-import { map } from 'rxjs';
-
-export class MasterDbState {
-  public masterDbMap: Record<number, BaseState<MixDatabase> | undefined> = {};
-  public selectedContextId?: number;
-  public selectedContext?: BaseState<MixDatabase>;
-}
+import { toSignal } from '@angular/core/rxjs-interop';
+import {
+  DbContextFixId,
+  MixDatabase,
+  PaginationRequestModel,
+} from '@mixcore/lib/model';
+import { BaseCRUDStore } from '@mixcore/share/base';
+import { ObjectUtil } from '@mixcore/share/form';
+import { combineLatest, switchMap, tap } from 'rxjs';
+import { DbUiStore } from './db-ui.store';
 
 @Injectable({ providedIn: 'root' })
-export class MasterDbStore extends ComponentStore<MasterDbState> {
-  public mixApi = inject(MixApiFacadeService);
-  public vm$ = this.select((s) => s);
-  public selectedContext = this.selectSignal((s) => s.selectedContext);
+export class MasterDbStore extends BaseCRUDStore<MixDatabase> {
+  public override requestFn = (request: PaginationRequestModel) =>
+    this.mixApi.databaseApi.gets(request);
 
-  public selectedDbChange(dbContextId: number) {
-    this.loadData(dbContextId);
+  public override requestName = 'mixDatabase';
+  public override searchColumns = ['Name', 'Description'];
+  public override searchColumnsDict: { [key: string]: string } = {
+    Name: 'nitle',
+    Description: 'description',
+  };
+  public override buildCacheKey(request: PaginationRequestModel): string {
+    return `${this.requestName}-${ObjectUtil.objectToQueryString(request)}`;
   }
 
-  public getDbByContext(dbContextId: number) {
-    return this.select((s) => s.masterDbMap).pipe(
-      map((map) => map[dbContextId])
-    );
-  }
+  public uiStore = inject(DbUiStore);
 
-  public loadData(dbContextId: number) {
-    const request = {
-      pageIndex: 0,
-      pageSize: 50,
-      mixDatabaseContextId:
-        dbContextId === DbContextFixId.MasterDb ? undefined : dbContextId,
-    };
+  public stateSignal = toSignal(
+    combineLatest([this.request$$, this.uiStore.selectedContextId$]).pipe(
+      tap(([request, projectId]) => {
+        request['mixDatabaseContextId'] =
+          projectId === DbContextFixId.MasterDb ? undefined : projectId;
 
-    const current = this.get().masterDbMap;
-    if (!current[dbContextId]) {
-      current[dbContextId] = {
-        data: [],
-        status: 'Loading',
-        request: request,
-        pageInfo: { pageSize: 50, pageIndex: 0 },
-      };
-    } else {
-      current[dbContextId]!.status = 'SilentLoading';
-    }
-
-    this.patchState({
-      masterDbMap: current,
-      selectedContextId: dbContextId,
-      selectedContext: current[dbContextId],
-    });
-
-    this.mixApi.databaseApi.gets(request).subscribe({
-      next: (result) => {
-        const dbMap = this.get().masterDbMap;
-        dbMap[dbContextId] = {
-          status: 'Success',
-          data: result.items,
-          pageInfo: result.pagingData,
-          request: request,
-        };
-
-        this.patchState({
-          masterDbMap: dbMap,
-          selectedContext: current[dbContextId],
-        });
-      },
-      error: (err) => {
-        //
-      },
-    });
-  }
-
-  constructor() {
-    super({
-      masterDbMap: {},
-    });
-  }
+        this.loadData(request);
+      }),
+      switchMap(() => this.select((s) => s))
+    )
+  );
 }

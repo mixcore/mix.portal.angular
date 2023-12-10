@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+
+<ng-template #contextCtrl>
+  <tui-breadcrumbs>
+    <a *tuiItem tuiLink> {{ 'Context(s)' }} </a>
+    <a *tuiItem tuiLink>
+      <mix-db-context-select
+        [size]="'s'"
+        (selectedItemChange)="uiStore.changeSelected($event)"
+      ></mix-db-context-select
+    ></a>
+  </tui-breadcrumbs>
+</ng-template>

@@ -15,11 +15,11 @@ import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
 import { tuiPure } from '@taiga-ui/cdk';
 import { forkJoin } from 'rxjs';
-import { CMS_ROUTES } from '../../../app.routes';
-import { MixStatusIndicatorComponent } from '../../../components/status-indicator/mix-status-indicator.component';
-import { DatabaseRelationshipComponent } from './components/database-relationship/database-relationship.component';
-import { DbContextSelectComponent } from './components/db-context-select/db-context-select.component';
-import { MasterDbStore } from './store/master-db.store';
+import { CMS_ROUTES } from '../../../../app.routes';
+import { MixStatusIndicatorComponent } from '../../../../components/status-indicator/mix-status-indicator.component';
+import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
+import { DbContextSelectComponent } from '../components/db-context-select/db-context-select.component';
+import { MasterDbStore } from '../store/master-db.store';
 
 @Component({
   selector: 'mix-database',
@@ -155,6 +155,5 @@ export class DatabaseComponent {
 
   public selectedDbChange(id: number) {
     this.selectedDbContextId = id;
-    this.masterStore.selectedDbChange(id);
   }
 }
