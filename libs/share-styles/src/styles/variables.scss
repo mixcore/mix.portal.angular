@@ -71,6 +71,7 @@ html {
 
 html[mode='dark'] {
   &:root {
+    --primary-color: #7b83eb;
     --main-backdrop-color: rgb(1 1 1 / 55%);
     --menu-active-color: rgba(1, 1, 1, 45%);
     --child-menu-active-color: rgba(1, 1, 1, 65%);

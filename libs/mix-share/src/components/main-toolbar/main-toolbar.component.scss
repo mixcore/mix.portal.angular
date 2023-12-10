@@ -14,10 +14,15 @@
 
   &__logo {
     width: 125px;
+    height: 40px;
     display: flex;
     align-items: center;
     margin-right: 12px;
     margin-left: 14px;
+
+    background-color: var(--primary-color);
+    -webkit-mask: url('/assets/images/mixcore-logo.svg') no-repeat 50% 50%;
+    mask: url('/assets/images/mixcore-logo.svg') no-repeat 50% 50%;
   }
 
   &__breadcrumbs {
