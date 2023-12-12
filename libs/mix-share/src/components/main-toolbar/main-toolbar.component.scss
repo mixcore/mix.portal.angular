@@ -23,6 +23,8 @@
     background-color: var(--primary-color);
     -webkit-mask: url('/assets/images/mixcore-logo.svg') no-repeat 50% 50%;
     mask: url('/assets/images/mixcore-logo.svg') no-repeat 50% 50%;
+    -webkit-mask-size: 125px 40px;
+    mask-size: 125px 40px;
   }
 
   &__breadcrumbs {

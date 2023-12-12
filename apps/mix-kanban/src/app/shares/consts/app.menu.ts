@@ -18,7 +18,17 @@ export const APP_MENU = [
     icon: 'view_kanban',
     children: [
       {
-        title: 'Kanban',
+        title: 'Project',
+        url: CMS_ROUTES.portal.task.fullPath,
+        icon: 'view_kanban',
+      },
+      {
+        title: 'Board',
+        url: CMS_ROUTES.portal.task.fullPath,
+        icon: 'view_kanban',
+      },
+      {
+        title: 'Timeline',
         url: CMS_ROUTES.portal.task.fullPath,
         icon: 'view_kanban',
       },

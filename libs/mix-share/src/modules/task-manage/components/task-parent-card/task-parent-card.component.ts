@@ -14,6 +14,7 @@ import { MixButtonComponent } from '@mixcore/ui/button';
 import { DialogService } from '@ngneat/dialog';
 import { take } from 'rxjs';
 import { TaskCreateComponent } from '../task-create/task-create.component';
+import { TaskDetailModalComponent } from '../task-detail-modal/task-detail-modal.component';
 
 @Component({
   selector: 'mix-task-parent-card',
@@ -37,6 +38,15 @@ export class TaskParentCardComponent {
       data: {
         parentTask: this.task,
       },
+    });
+  }
+
+  public editTask() {
+    this.dialog.open(TaskDetailModalComponent, {
+      width: 1024,
+      data: { task: this.task },
+      minHeight: '50vh',
+      windowClass: TaskDetailModalComponent.windowClass,
     });
   }
 
