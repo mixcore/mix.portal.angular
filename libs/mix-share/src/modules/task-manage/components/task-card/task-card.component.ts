@@ -16,13 +16,19 @@ import { UserAvatarComponent } from '@mixcore/share/components';
 import { UserInfoStore } from '@mixcore/share/stores';
 import { DialogService } from '@ngneat/dialog';
 import { take } from 'rxjs';
+import { TaskDateDisplayComponent } from '../task-date-display/task-date-display.component';
 import { TaskDetailModalComponent } from '../task-detail-modal/task-detail-modal.component';
 import { TaskPriorityComponent } from '../task-priority/task-priority.component';
 
 @Component({
   selector: 'mix-task-card',
   standalone: true,
-  imports: [CommonModule, TaskPriorityComponent, UserAvatarComponent],
+  imports: [
+    CommonModule,
+    TaskPriorityComponent,
+    UserAvatarComponent,
+    TaskDateDisplayComponent,
+  ],
   templateUrl: './task-card.component.html',
   styleUrls: ['./task-card.component.scss'],
 })

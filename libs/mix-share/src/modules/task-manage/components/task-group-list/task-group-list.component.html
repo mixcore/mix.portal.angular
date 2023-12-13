@@ -1,17 +1,15 @@
-<mix-task-parent-card
-  [task]="parentTask"
-  [open]="open()"
-  (expandClick)="toggleExpand()"
-></mix-task-parent-card>
+<mix-task-parent-card [open]="open()"
+                      [task]="parentTask"
+                      (expandClick)="toggleExpand()"></mix-task-parent-card>
 
-<div class="task-group" cdkDropListGroup *ngIf="open()">
-  <mix-task-dnd-list
-    *ngFor="let status of taskStatuses"
-    class="task-dnd-list"
-    [listTasks]="store.getTaskByStatus(status, parentTask.id)"
-    [status]="status"
-    [parentTaskId]="parentTask.id"
-  >
+<div *ngIf="open()"
+     class="task-group"
+     cdkDropListGroup>
+  <mix-task-dnd-list *ngFor="let status of taskStatuses"
+                     class="task-dnd-list"
+                     [listTasks]="store.getTaskByStatus(status, parentTask.id)"
+                     [parentTaskId]="parentTask.id"
+                     [status]="status">
   </mix-task-dnd-list>
 
   <div class="task-dnd-skeleton"></div>

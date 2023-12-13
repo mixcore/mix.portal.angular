@@ -5,6 +5,10 @@
       {{ task.title }}
     </div>
 
+    <div class="pb-3">
+      <task-date-display [task]="task"></task-date-display>
+    </div>
+
     <div class="d-flex">
       <span *ngIf="userInfo"
             class="me-2">

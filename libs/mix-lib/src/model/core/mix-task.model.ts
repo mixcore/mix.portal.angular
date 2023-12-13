@@ -1,3 +1,5 @@
+import { processMixDate } from '../../helper/mix-date.helper';
+
 export enum TaskStatus {
   BACKLOG = 'Backlog',
   SELECTED = 'Selected',
@@ -57,24 +59,37 @@ export const TaskTypeIcons: { [key: string]: string } = {
   [TaskType.SWIMLANE]: 'assets/images/tasks/story.svg',
 };
 
-export interface MixTaskNew {
-  id: number;
-  title: string;
-  type: TaskType;
-  taskStatus: TaskStatus;
-  taskPriority: TaskPriority;
-  listPosition: number;
-  description?: string;
-  estimate?: number;
-  timeSpent?: number;
-  timeRemaining?: number;
-  createdDateTime: string;
-  lastModified: string;
+export class MixTaskNew {
+  id!: number;
+  title!: string;
+  type!: TaskType;
+  taskStatus!: TaskStatus;
+  taskPriority!: TaskPriority;
+  listPosition!: number;
+  description!: string;
+  estimate: number = 1;
+  timeSpent!: number;
+  timeRemaining!: number;
+  createdDateTime!: Date;
+  lastModified?: Date;
   reporter?: string;
-  userIds: string[];
+  userIds?: string[];
   projectId?: number;
-  priority: number;
+  priority!: number;
   parentTaskId?: number;
   fromDate?: Date;
   dueDate?: Date;
+
+  constructor(value: MixTaskNew) {
+    if (value) {
+      Object.keys(value).forEach((key) => {
+        (this as any)[key] = (value as any)[key];
+      });
+
+      this.createdDateTime = processMixDate(value.createdDateTime) as Date;
+      this.lastModified = processMixDate(value.lastModified) as Date;
+      this.fromDate = processMixDate(value.fromDate) as Date;
+      this.dueDate = processMixDate(value.dueDate) as Date;
+    }
+  }
 }

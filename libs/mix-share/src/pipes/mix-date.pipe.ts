@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'mixDate', standalone: true })
 export class MixUtcDatePipe implements PipeTransform {
-  public transform(utcDateString: string | null) {
+  public transform(utcDateString: string | null | Date) {
     if (
       utcDateString == null ||
       utcDateString == undefined ||

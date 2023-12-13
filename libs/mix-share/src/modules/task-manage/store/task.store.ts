@@ -76,7 +76,15 @@ export class TaskStore extends BaseCRUDStore<MixTaskNew> {
   };
 
   public override requestFn = (request: PaginationRequestModel) =>
-    this.mixApi.databaseApi.getDataByName<MixTaskNew>('mixDb_mixTask', request);
+    this.mixApi.databaseApi
+      .getDataByName<MixTaskNew>('mixDb_mixTask', request)
+      .pipe(
+        map((result) => {
+          result.items = result.items.map((i) => new MixTaskNew(i));
+
+          return result;
+        })
+      );
 
   public override requestName = 'mixTask';
   public override searchColumns = ['Title', 'Description'];

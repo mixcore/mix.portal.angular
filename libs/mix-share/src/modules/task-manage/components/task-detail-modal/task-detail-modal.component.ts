@@ -72,13 +72,14 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
     taskPoint: new FormControl(1),
     reporter: new FormControl(),
     startDate: new FormControl(),
-    endDate: new FormControl(),
+    fromDate: new FormControl(),
+    dueDate: new FormControl(),
   });
   public originalValue: object = {};
   public disableSave = signal(true);
 
   public TaskStatusColors = TaskStatusColors;
-  public statussLabel = (status: TaskStatus) => TaskStatusDisplay[status];
+  public statusLabel = (status: TaskStatus) => TaskStatusDisplay[status];
   public statusItems = [
     TaskStatus.BACKLOG,
     TaskStatus.SELECTED,
@@ -131,5 +132,18 @@ export class TaskDetailModalComponent extends BaseComponent implements OnInit {
           },
         });
     }
+  }
+
+  public onDateChange(value: { fromDate: Date; dueDate: Date | undefined }) {
+    this.task.fromDate = value.fromDate;
+    this.task.dueDate = value.dueDate;
+
+    this.taskForm.controls.fromDate.patchValue(value.fromDate, {
+      emitEvent: false,
+    });
+    this.taskForm.controls.dueDate.patchValue(value.dueDate, {
+      emitEvent: false,
+    });
+    this.taskForm.updateValueAndValidity();
   }
 }

@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
   ViewEncapsulation,
 } from '@angular/core';
 import { MixTaskNew } from '@mixcore/lib/model';
@@ -27,6 +29,10 @@ import { TuiCalendarModule } from '@taiga-ui/core';
 })
 export class StartEndDateComponent {
   @Input() public task!: MixTaskNew;
+  @Output() public taskDateChange = new EventEmitter<{
+    fromDate: Date;
+    dueDate: Date | undefined;
+  }>();
 
   public value: TuiDayRange | null = null;
 
@@ -35,13 +41,8 @@ export class StartEndDateComponent {
   public hoveredItem: TuiDay | null = null;
 
   ngOnInit() {
-    this.value = new TuiDayRange(
-      TuiDay.fromLocalNativeDate(new Date()),
-      TuiDay.fromLocalNativeDate(new Date())
-    );
-
     const taskFromDate = new Date(
-      this.task.fromDate ?? this.task.createdDateTime
+      this.task.fromDate ?? this.task.createdDateTime!
     );
     const taskDueDate = this.task.dueDate ? new Date(this.task.dueDate) : null;
     this.firstMonth = new TuiMonth(
@@ -51,38 +52,58 @@ export class StartEndDateComponent {
 
     if (!taskDueDate) {
       this.value = new TuiDayRange(
-        TuiDay.fromLocalNativeDate(taskFromDate),
-        TuiDay.fromLocalNativeDate(taskFromDate)
+        TuiDay.fromUtcNativeDate(taskFromDate),
+        TuiDay.fromUtcNativeDate(taskFromDate)
       );
 
       this.lastMonth = this.firstMonth.append({ month: 1 });
     } else {
       this.value = new TuiDayRange(
-        TuiDay.fromLocalNativeDate(taskFromDate),
-        TuiDay.fromLocalNativeDate(taskDueDate)
+        TuiDay.fromUtcNativeDate(taskFromDate),
+        TuiDay.fromUtcNativeDate(taskDueDate)
       );
-      this.lastMonth = new TuiMonth(
-        taskDueDate.getFullYear(),
-        taskDueDate.getMonth()
-      );
+
+      const endMonth = taskDueDate.getMonth();
+      const endYear = taskDueDate.getFullYear();
+
+      if (
+        endMonth === taskFromDate.getMonth() &&
+        endYear === taskFromDate.getFullYear()
+      ) {
+        this.lastMonth = this.firstMonth.append({ month: 1 });
+      } else {
+        this.lastMonth = new TuiMonth(
+          taskDueDate.getFullYear(),
+          taskDueDate.getMonth()
+        );
+      }
     }
   }
 
-  onMonthChangeFirst(month: TuiMonth): void {
+  public onMonthChangeFirst(month: TuiMonth): void {
     this.firstMonth = month;
     this.lastMonth = month.append({ month: 1 });
   }
 
-  onMonthChangeLast(month: TuiMonth): void {
+  public onMonthChangeLast(month: TuiMonth): void {
     this.firstMonth = month.append({ month: -1 });
     this.lastMonth = month;
   }
 
-  onDayClick(day: TuiDay): void {
+  public onDayClick(day: TuiDay): void {
     if (this.value === null || !this.value.isSingleDay) {
       this.value = new TuiDayRange(day, day);
     }
 
     this.value = TuiDayRange.sort(this.value.from, day);
+  }
+
+  public onSave() {
+    this.taskDateChange.emit({
+      fromDate: this.value!.from.toUtcNativeDate(),
+      dueDate: this.value!.isSingleDay
+        ? undefined
+        : this.value?.to.toUtcNativeDate(),
+    });
   }
 }
