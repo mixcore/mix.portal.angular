@@ -1,5 +1,6 @@
 <div class="button-link"
      [tp]="dateSelect"
+     [tpClassName]="'task-start-end-date'"
      [tpIsLazy]="true"
      [tpOffset]="[-10, 5]"
      tpVariation="popper"
@@ -10,12 +11,28 @@
 
 <ng-template #dateSelect>
   <div>
-    <tui-calendar [value]="value"></tui-calendar>
+    <div class="d-flex gap-1">
+      <tui-calendar [(hoveredItem)]="hoveredItem"
+                    [maxViewedMonth]="firstMonth"
+                    [month]="firstMonth"
+                    [showAdjacent]="false"
+                    [value]="value"
+                    (dayClick)="onDayClick($event)"
+                    (monthChange)="onMonthChangeFirst($event)"></tui-calendar>
 
-    <div class="w-100 ps-2 pe-2 mt-3">
+      <tui-calendar [(hoveredItem)]="hoveredItem"
+                    [minViewedMonth]="lastMonth"
+                    [month]="lastMonth"
+                    [showAdjacent]="false"
+                    [value]="value"
+                    (dayClick)="onDayClick($event)"
+                    (monthChange)="onMonthChangeLast($event)"></tui-calendar>
+    </div>
+
+    <div class="w-100 d-flex gap-1 ps-2 pe-2 mt-3">
       <mix-button class="w-100"
                   type="outline">Remove</mix-button>
-      <mix-button class="mt-2 w-100">Save</mix-button>
+      <mix-button class="w-100">Save</mix-button>
     </div>
   </div>
 </ng-template>

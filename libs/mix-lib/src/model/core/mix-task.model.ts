@@ -75,4 +75,6 @@ export interface MixTaskNew {
   projectId?: number;
   priority: number;
   parentTaskId?: number;
+  fromDate?: Date;
+  dueDate?: Date;
 }
