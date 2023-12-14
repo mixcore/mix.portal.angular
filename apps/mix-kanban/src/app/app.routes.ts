@@ -21,9 +21,21 @@ export const CMS_ROUTES = {
       path: 'dashboard',
       fullPath: 'app/dashboard',
     },
-    task: {
-      path: 'tasks',
-      fullPath: 'app/tasks',
+    workspace: {
+      path: 'workspace',
+      fullPath: 'app/workspace',
+    },
+    board: {
+      path: 'board',
+      fullPath: 'app/workspace/board',
+    },
+    project: {
+      path: 'project',
+      fullPath: 'app/workspace/project',
+    },
+    timeline: {
+      path: 'timeline',
+      fullPath: 'app/workspace/timeline',
     },
   },
 };

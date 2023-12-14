@@ -17,6 +17,13 @@ export const taskManagementRoutes: Routes = [
           import('./project/project.component').then((c) => c.ProjectComponent),
       },
       {
+        path: 'timeline',
+        loadComponent: () =>
+          import('./timeline/timeline.component').then(
+            (c) => c.TimelineComponent
+          ),
+      },
+      {
         path: '',
         redirectTo: 'board',
         pathMatch: 'full',

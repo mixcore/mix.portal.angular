@@ -1,0 +1,60 @@
+<div *ngIf="loadingState() as loading"
+     class="data-table-page board">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'View'"
+                     [title]="'Timeline'">
+      <mix-button size="s"><span class="material-symbols-outlined"> add </span>&nbsp;
+        {{ 'New' | transloco }}</mix-button>
+    </mix-sub-toolbar>
+
+    <div class="timeline__toolbar">
+      <form [formGroup]="modeForm">
+        <div class="group"
+             [collapsed]="true"
+             tuiGroup>
+          <tui-radio-block *ngFor="let option of modeOptions"
+                           [hideRadio]="true"
+                           [item]="option"
+                           contentAlign="right"
+                           formControlName="value"
+                           size="s">
+            {{ option | titlecase }}
+          </tui-radio-block>
+        </div>
+      </form>
+    </div>
+
+    <div class="timeline__main-view">
+      <ngx-gantt #gantt
+                 *ngIf="items"
+                 class="h-100 w-100"
+                 [draggable]="true"
+                 [groups]="groups"
+                 [items]="items"
+                 [multiple]="true"
+                 [selectable]="true"
+                 [viewType]="viewType">
+        <ngx-gantt-table>
+          <ngx-gantt-column name="Title"
+                            width="200px">
+            <ng-template #cell
+                         let-item="item"> {{ item.title }} </ng-template>
+          </ngx-gantt-column>
+
+          <ngx-gantt-column name="Info"
+                            width="300px">
+            <ng-template #cell
+                         let-item="item">
+              <div class="h-100 d-flex gap-1 align-items-center">
+                <img alt="type"
+                     [src]="TaskTypeIcon[item.task.type]">
+
+                <task-date-display [task]="item.task"></task-date-display>
+              </div>
+            </ng-template>
+          </ngx-gantt-column>
+        </ngx-gantt-table>
+      </ngx-gantt>
+    </div>
+  </div>
+</div>

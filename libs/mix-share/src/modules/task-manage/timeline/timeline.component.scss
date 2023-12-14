@@ -1,0 +1,18 @@
+@import 'node_modules/@worktile/gantt/styles/index.scss';
+
+.timeline {
+  &__toolbar {
+    padding: 12px;
+
+    .tui-group {
+      width: 325px;
+    }
+  }
+
+  &__main-view {
+    height: 100%;
+    width: 100%;
+    flex-grow: 1;
+    padding: 0px 12px;
+  }
+}

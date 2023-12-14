@@ -1,6 +1,11 @@
 .task-date-display {
   background-color: var(--success-color);
   color: var(--success-color-text);
-  padding: 4px;
+  padding: 4px 6px;
   width: fit-content;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  border-radius: 2px;
+  line-height: 1;
 }

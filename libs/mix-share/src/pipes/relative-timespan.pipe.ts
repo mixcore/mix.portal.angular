@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'relativeTimeSpan', standalone: true })
 export class RelativeTimeSpanPipe implements PipeTransform {
-  public transform(value: string | null) {
+  public transform(value: string | null | Date | undefined) {
     if (value == null || value === '' || value === 'N/A' || value !== value)
       return value;
 
@@ -24,7 +24,7 @@ export class RelativeTimeSpanPipe implements PipeTransform {
 
 @Pipe({ name: 'relativeTime', standalone: true })
 export class RelativeTimePipe implements PipeTransform {
-  public transform(value: string | null) {
+  public transform(value: string | null | Date | undefined) {
     if (value == null || value === '' || value === 'N/A' || value !== value)
       return value;
 

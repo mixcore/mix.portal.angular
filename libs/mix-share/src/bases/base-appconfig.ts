@@ -103,7 +103,6 @@ export const BaseAppProvider = [
       shouldCoalesceRunChangeDetection: true,
     }),
   },
-
   {
     provide: ERROR_MAP,
     useValue: errorMap,

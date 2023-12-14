@@ -11,8 +11,7 @@
     <mix-task-filter></mix-task-filter>
 
     <div *ngIf="store.state$$() as vm"
-         class="board__main-view"
-         cdkDropListGroup>
+         class="board__main-view">
       <!-- Header -->
       <mix-task-header></mix-task-header>
 
@@ -25,7 +24,8 @@
       <!-- Loop task -->
       @for (task of tasks; track task.id) {
       <mix-task-group-list [parentTask]="task"
-                           [taskStatuses]="taskStatuses">
+                           [taskStatuses]="taskStatuses"
+                           cdkDropListGroup>
       </mix-task-group-list>
       } } }
     </div>

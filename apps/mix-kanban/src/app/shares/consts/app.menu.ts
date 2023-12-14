@@ -14,22 +14,22 @@ export const APP_MENU = [
     ],
   },
   {
-    title: 'Projects',
+    title: 'Project',
     icon: 'view_kanban',
     children: [
       {
-        title: 'Project',
-        url: CMS_ROUTES.portal.task.fullPath,
+        title: 'Setting',
+        url: CMS_ROUTES.portal.project.fullPath,
         icon: 'view_kanban',
       },
       {
         title: 'Board',
-        url: CMS_ROUTES.portal.task.fullPath,
+        url: CMS_ROUTES.portal.board.fullPath,
         icon: 'view_kanban',
       },
       {
         title: 'Timeline',
-        url: CMS_ROUTES.portal.task.fullPath,
+        url: CMS_ROUTES.portal.timeline.fullPath,
         icon: 'view_kanban',
       },
     ],

@@ -102,12 +102,12 @@ export class PromotionDetailComponent extends DetailPageKit {
               if (this.promotionData.fromDate)
                 this.promotionData.fromDate = this.mixDatePipe.transform(
                   this.promotionData.fromDate
-                );
+                ) as string | null;
 
               if (this.promotionData.toDate)
                 this.promotionData.toDate = this.mixDatePipe.transform(
                   this.promotionData.toDate
-                );
+                ) as string | null;
 
               this.promotionForm.patchValue(this.promotionData as any);
 

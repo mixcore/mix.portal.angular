@@ -77,10 +77,12 @@
           <ng-template let-data
                        mixColumnCell>
             <div>
-              {{ data.createdDateTime | mixDate | date: 'dd/MM/yyyy, hh:mm a' }}
+              {{
+                data.createdDateTime | mixDate | date : 'dd/MM/yyyy, hh:mm a'
+              }}
             </div>
             <div class="text-sub text-s">
-              {{ data.createdDateTime | mixDate | relativeTime | titlecase }}
+              {{ data.createdDateTime | mixDate | relativeTime }}
             </div>
           </ng-template>
         </div>
@@ -93,7 +95,7 @@
             <div *ngIf="data.total"
                  class="text-600 d-flex gap-2">
               <div>
-                {{ data.total | currency: data.currency }}
+                {{ data.total | currency : data.currency }}
               </div>
             </div>
             <div *ngIf="!data.total"
