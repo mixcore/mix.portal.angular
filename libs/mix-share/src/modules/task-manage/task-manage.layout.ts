@@ -26,6 +26,14 @@ import { TaskManageStore } from './store/task-ui.store';
     TuiLinkModule,
     ProjectSelectComponent,
   ],
+  styles: `
+    .project-menu {
+      height: unset !important;
+      padding: 4px 12px !important;
+      background: var(--background-color-primary);
+      border: 1px solid var(--tui-base-04)
+    }
+  `,
 })
 export class TaskManageLayoutComponent {
   @ViewChild('projectTroller') public projectCtrl!: TemplateRef<unknown>;

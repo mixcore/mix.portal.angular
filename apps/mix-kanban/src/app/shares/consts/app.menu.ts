@@ -20,8 +20,9 @@ export const APP_MENU = [
     iconColor: '#2190E4',
     children: [
       {
-        title: 'Setting',
-        url: CMS_ROUTES.portal.project.fullPath,
+        title: 'Backlogs',
+        iconColor: '#BB56CF',
+        url: CMS_ROUTES.portal.board.fullPath,
         icon: 'view_kanban',
       },
       {
