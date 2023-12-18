@@ -10,6 +10,7 @@
 
     @for(item of menu; track item) {
     <tui-hosted-dropdown class="w-100"
+                         [class.mt-auto]="item.align === 'bottom'"
                          [canOpen]="!showDetail"
                          [content]="dropdown"
                          [sided]="true"
@@ -88,19 +89,5 @@
       </ng-template>
     </tui-hosted-dropdown>
     }
-
-    <div class="side-menu__item mt-auto"
-         (click)="showSetting()">
-      <div class="side-menu__parent-container">
-        <span class="mix-icon side-menu__icon">
-          {{ settingMenu.icon }}
-        </span>
-
-        <span *ngIf="showDetail"
-              class="side-menu__item-title">
-          {{ settingMenu.title | transloco }}
-        </span>
-      </div>
-    </div>
   </div>
 </div>

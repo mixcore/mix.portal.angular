@@ -38,6 +38,12 @@ export const APP_MENU = [
       },
     ],
   },
+  {
+    title: 'Project Setting',
+    url: CMS_ROUTES.portal.project.fullPath,
+    icon: 'settings',
+    align: 'bottom',
+  },
 ];
 
 export const APP_NOT_SUPPER_ADMIN_MENU = [

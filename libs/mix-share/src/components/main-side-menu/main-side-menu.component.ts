@@ -19,7 +19,6 @@ import {
   TuiDropdownModule,
   TuiHostedDropdownModule,
 } from '@taiga-ui/core';
-import { SettingDialogComponent } from '../setting-dialog/setting-dialog.component';
 
 @Component({
   selector: 'mix-main-side-menu',
@@ -94,10 +93,10 @@ export class MainSideMenuComponent {
     return name;
   }
 
-  public showSetting() {
-    this.dialogService.open(SettingDialogComponent, {
-      width: 'fit-content',
-      id: 'top-align-modal',
-    });
-  }
+  // public showSetting() {
+  //   this.dialogService.open(SettingDialogComponent, {
+  //     width: 'fit-content',
+  //     id: 'top-align-modal',
+  //   });
+  // }
 }
