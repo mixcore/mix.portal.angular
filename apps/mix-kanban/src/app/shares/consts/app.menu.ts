@@ -5,6 +5,7 @@ export const APP_MENU = [
     title: 'Dashboard',
     url: CMS_ROUTES.portal.dashboard.fullPath,
     icon: 'dashboard',
+    iconColor: '#EC652C',
     children: [
       {
         icon: 'analytics',
@@ -16,6 +17,7 @@ export const APP_MENU = [
   {
     title: 'Project',
     icon: 'view_kanban',
+    iconColor: '#2190E4',
     children: [
       {
         title: 'Setting',
@@ -24,13 +26,15 @@ export const APP_MENU = [
       },
       {
         title: 'Board',
+        iconColor: '#BB56CF',
         url: CMS_ROUTES.portal.board.fullPath,
         icon: 'view_kanban',
       },
       {
         title: 'Timeline',
+        iconColor: '#3EAF12',
         url: CMS_ROUTES.portal.timeline.fullPath,
-        icon: 'view_kanban',
+        icon: 'timeline',
       },
     ],
   },

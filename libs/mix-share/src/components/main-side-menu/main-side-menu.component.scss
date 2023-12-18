@@ -55,8 +55,10 @@
     align-items: center;
     background-color: var(--child-menu-active-color);
     margin: 0px 8px;
+    --icon-color: inherit;
 
     .mix-icon {
+      color: var(--icon-color);
       margin-right: 8px;
     }
 

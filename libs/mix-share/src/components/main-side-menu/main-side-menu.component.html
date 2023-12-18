@@ -51,6 +51,7 @@
              class="side-menu__child-container">
           <div *ngFor="let child of item.children"
                class="side-menu__child-item ripple-gray"
+               [style.--icon-color]="child.iconColor"
                [routerLink]="'/' + child.url"
                (click)="$event.stopPropagation()">
             <span class="mix-icon">{{

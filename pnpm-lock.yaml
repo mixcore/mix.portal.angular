@@ -1,9 +1,5 @@
 lockfileVersion: '6.0'
 
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
-
 dependencies:
   '@angular-architects/module-federation':
     specifier: ^16.0.4
@@ -149,9 +145,6 @@ dependencies:
   date-fns:
     specifier: ^2.30.0
     version: 2.30.0
-  frappe-gantt:
-    specifier: ^0.6.1
-    version: 0.6.1
   fs:
     specifier: 0.0.1-security
     version: 0.0.1-security
@@ -277,9 +270,6 @@ devDependencies:
   '@types/crypto-js':
     specifier: ^4.1.1
     version: 4.2.1
-  '@types/frappe-gantt':
-    specifier: ^0.6.4
-    version: 0.6.4
   '@types/jest':
     specifier: 29.4.4
     version: 29.4.4
@@ -509,7 +499,7 @@ packages:
       tslib: 2.6.2
       typescript: 5.2.2
       undici: 5.27.2
-      vite: 4.5.0(@types/node@16.11.7)(less@4.1.3)(stylus@0.59.0)
+      vite: 4.5.0(@types/node@16.11.7)(less@4.2.0)(sass@1.69.5)(stylus@0.59.0)(terser@5.24.0)
       webpack: 5.89.0(esbuild@0.19.5)
       webpack-dev-middleware: 6.1.1(webpack@5.89.0)
       webpack-dev-server: 4.15.1(webpack@5.89.0)
@@ -3722,7 +3712,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@maskito/angular@1.9.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/core@1.8.2)(rxjs@7.8.1):
+  /@maskito/angular@1.9.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/core@1.9.0)(rxjs@7.8.1):
     resolution: {integrity: sha512-Wa/9nM9Nv0oieVZ6yxQNXfDRA4obFDR15xO16o1GKF8i9W1IdQQn+tuMRjkmx6HhJDN9+x3k8OTJ1f80BIrhjA==}
     peerDependencies:
       '@angular/common': '>=12.0.0'
@@ -3734,13 +3724,17 @@ packages:
       '@angular/common': 17.0.2(@angular/core@17.0.2)(rxjs@7.8.1)
       '@angular/core': 17.0.2(rxjs@7.8.1)(zone.js@0.14.2)
       '@angular/forms': 17.0.2(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/platform-browser@17.0.2)(rxjs@7.8.1)
-      '@maskito/core': 1.8.2
+      '@maskito/core': 1.9.0
       rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
 
   /@maskito/core@1.8.2:
     resolution: {integrity: sha512-cS6FfWrJrnRCoXKeH6KJrAiLXtWp26VcHefpWFVT4Cofhr6y91tSz1FTdQF6bot13LUyJwfsc33ltlHWXQR4Bw==}
+    dev: false
+
+  /@maskito/core@1.9.0:
+    resolution: {integrity: sha512-WQIUrwkdIUg6PzAb4Apa0RjTPHB0EqZLc9/7kWCKVIixhkITRFXFg2BhiDVSRv0mIKVlAEJcOvvjHK5T3UaIig==}
     dev: false
 
   /@maskito/kit@1.8.2(@maskito/core@1.8.2):
@@ -3751,12 +3745,12 @@ packages:
       '@maskito/core': 1.8.2
     dev: false
 
-  /@maskito/kit@1.9.0(@maskito/core@1.8.2):
+  /@maskito/kit@1.9.0(@maskito/core@1.9.0):
     resolution: {integrity: sha512-LNNgOJ0tAfrPoPehvoP+ZyYF9giOYL02sOMKyDC3IcqDNA8BAU0PARmS7TNsVEBpvSuJhU6xVt40nxJaONgUdw==}
     peerDependencies:
       '@maskito/core': ^1.9.0
     dependencies:
-      '@maskito/core': 1.8.2
+      '@maskito/core': 1.9.0
     dev: false
 
   /@microsoft/signalr@7.0.12:
@@ -4364,7 +4358,7 @@ packages:
       rxjs: 7.8.1
       semver: 7.5.3
       tslib: 2.6.2
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
       webpack-merge: 5.10.0
     transitivePeerDependencies:
       - '@babel/traverse'
@@ -4836,11 +4830,11 @@ packages:
       style-loader: 3.3.3(webpack@5.89.0)
       stylus: 0.59.0
       stylus-loader: 7.1.3(stylus@0.59.0)(webpack@5.89.0)
-      terser-webpack-plugin: 5.3.9(webpack@5.89.0)
+      terser-webpack-plugin: 5.3.9(esbuild@0.19.5)(webpack@5.89.0)
       ts-loader: 9.5.0(typescript@5.2.2)(webpack@5.89.0)
       tsconfig-paths-webpack-plugin: 4.0.0
       tslib: 2.6.2
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
       webpack-dev-server: 4.15.1(webpack@5.89.0)
       webpack-node-externals: 3.0.0
       webpack-subresource-integrity: 5.1.0(webpack@5.89.0)
@@ -5098,7 +5092,7 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@taiga-ui/addon-commerce@3.57.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/angular@1.9.0)(@maskito/core@1.8.2)(@maskito/kit@1.9.0)(@ng-web-apis/common@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@taiga-ui/i18n@3.55.0)(@taiga-ui/kit@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1):
+  /@taiga-ui/addon-commerce@3.57.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/angular@1.9.0)(@maskito/core@1.9.0)(@maskito/kit@1.9.0)(@ng-web-apis/common@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@taiga-ui/i18n@3.55.0)(@taiga-ui/kit@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1):
     resolution: {integrity: sha512-9msjwr/8tzlmbcv6MDxZTYvW9+sbURAq2Olrs4zJhHvw69tA3XYt2MCrDYUSrej/oj5jE2GFjtyio7wqQviLzA==}
     peerDependencies:
       '@angular/common': '>=12.0.0'
@@ -5118,9 +5112,9 @@ packages:
       '@angular/common': 17.0.2(@angular/core@17.0.2)(rxjs@7.8.1)
       '@angular/core': 17.0.2(rxjs@7.8.1)(zone.js@0.14.2)
       '@angular/forms': 17.0.2(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/platform-browser@17.0.2)(rxjs@7.8.1)
-      '@maskito/angular': 1.9.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/core@1.8.2)(rxjs@7.8.1)
-      '@maskito/core': 1.8.2
-      '@maskito/kit': 1.9.0(@maskito/core@1.8.2)
+      '@maskito/angular': 1.9.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/core@1.9.0)(rxjs@7.8.1)
+      '@maskito/core': 1.9.0
+      '@maskito/kit': 1.9.0(@maskito/core@1.9.0)
       '@ng-web-apis/common': 3.0.6(@angular/common@17.0.2)(@angular/core@17.0.2)(rxjs@7.8.1)
       '@taiga-ui/cdk': 3.55.0(@angular-devkit/core@17.0.0)(@angular-devkit/schematics@17.0.0)(@angular/animations@17.0.2)(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/platform-browser@17.0.2)(rxjs@7.8.1)
       '@taiga-ui/core': 3.55.0(@angular/animations@17.0.2)(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/platform-browser@17.0.2)(@angular/router@17.0.2)(@ng-web-apis/common@3.0.6)(@ng-web-apis/mutation-observer@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/i18n@3.55.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
@@ -5362,7 +5356,7 @@ packages:
     dependencies:
       '@angular/common': 17.0.2(@angular/core@17.0.2)(rxjs@7.8.1)
       '@angular/core': 17.0.2(rxjs@7.8.1)(zone.js@0.14.2)
-      '@taiga-ui/addon-commerce': 3.57.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/angular@1.9.0)(@maskito/core@1.8.2)(@maskito/kit@1.9.0)(@ng-web-apis/common@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@taiga-ui/i18n@3.55.0)(@taiga-ui/kit@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
+      '@taiga-ui/addon-commerce': 3.57.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@maskito/angular@1.9.0)(@maskito/core@1.9.0)(@maskito/kit@1.9.0)(@ng-web-apis/common@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@taiga-ui/i18n@3.55.0)(@taiga-ui/kit@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
       '@taiga-ui/cdk': 3.55.0(@angular-devkit/core@17.0.0)(@angular-devkit/schematics@17.0.0)(@angular/animations@17.0.2)(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/platform-browser@17.0.2)(rxjs@7.8.1)
       '@taiga-ui/core': 3.55.0(@angular/animations@17.0.2)(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/platform-browser@17.0.2)(@angular/router@17.0.2)(@ng-web-apis/common@3.0.6)(@ng-web-apis/mutation-observer@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/i18n@3.55.0)(@tinkoff/ng-event-plugins@3.1.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
       '@taiga-ui/kit': 3.55.0(@angular/common@17.0.2)(@angular/core@17.0.2)(@angular/forms@17.0.2)(@angular/router@17.0.2)(@ng-web-apis/common@3.0.6)(@ng-web-apis/mutation-observer@3.0.6)(@ng-web-apis/resize-observer@3.0.6)(@taiga-ui/cdk@3.55.0)(@taiga-ui/core@3.55.0)(@taiga-ui/i18n@3.55.0)(@tinkoff/ng-polymorpheus@4.2.0)(rxjs@7.8.1)
@@ -5997,10 +5991,6 @@ packages:
       '@types/qs': 6.9.10
       '@types/serve-static': 1.15.5
 
-  /@types/frappe-gantt@0.6.4:
-    resolution: {integrity: sha512-HvF+ED1gwhyuN/pvJW5VdEL+JP95q3xyX3NMFcF6R0NJLukXVg/yz4znzSTd81mqzPABABa4Pj6YoQCUHiZa+A==}
-    dev: true
-
   /@types/graceful-fs@4.1.9:
     resolution: {integrity: sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==}
     dependencies:
@@ -6371,7 +6361,7 @@ packages:
     peerDependencies:
       vite: ^3.0.0 || ^4.0.0
     dependencies:
-      vite: 4.5.0(@types/node@16.11.7)(less@4.1.3)(stylus@0.59.0)
+      vite: 4.5.0(@types/node@16.11.7)(less@4.2.0)(sass@1.69.5)(stylus@0.59.0)(terser@5.24.0)
 
   /@webassemblyjs/ast@1.11.6:
     resolution: {integrity: sha512-IN1xI7PwOvLPgjcf180gC1bqn3q/QaOCwYUahIOhbYUu8KA/3tw2RT/T0Gidi1l7Hhj5D/INhJxiICObqpMu4Q==}
@@ -6951,7 +6941,7 @@ packages:
       '@babel/core': 7.23.3
       find-cache-dir: 4.0.0
       schema-utils: 4.2.0
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /babel-plugin-const-enum@1.2.0(@babel/core@7.23.3):
@@ -7720,7 +7710,7 @@ packages:
       normalize-path: 3.0.0
       schema-utils: 4.2.0
       serialize-javascript: 6.0.1
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /copy-webpack-plugin@11.0.0(webpack@5.89.0):
@@ -7905,7 +7895,7 @@ packages:
       postcss: 8.4.31
       schema-utils: 4.2.0
       serialize-javascript: 6.0.1
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /css-select@5.1.0:
@@ -9242,7 +9232,7 @@ packages:
       semver: 7.5.4
       tapable: 2.2.1
       typescript: 5.2.2
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /form-data@2.3.3:
@@ -9267,10 +9257,6 @@ packages:
 
   /fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
-
-  /frappe-gantt@0.6.1:
-    resolution: {integrity: sha512-1cSU9vLbwypjzaxnCfnEE03Xr3HlAV2S8dRtjxw62o+amkx1A8bBIFd2jp84mcDdTCM77Ij4LzZBslAKZB8oMg==}
-    dev: false
 
   /fresh@0.5.2:
     resolution: {integrity: sha512-zJ2mQYM18rEFOudeV4GShTGIQ7RbzA7ozbU9I/XBpm7kqgMywgmylMwXHxZJmkVoYkna9d2pVXVXPdYTP9ej8Q==}
@@ -10795,7 +10781,7 @@ packages:
     dependencies:
       klona: 2.0.6
       less: 4.1.3
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /less-loader@11.1.0(less@4.2.0)(webpack@5.89.0):
@@ -10827,6 +10813,7 @@ packages:
       source-map: 0.6.1
     transitivePeerDependencies:
       - supports-color
+    dev: false
 
   /less@4.2.0:
     resolution: {integrity: sha512-P3b3HJDBtSzsXUl0im2L7gTO5Ubg8mEN6G8qoTS77iXxXX4Hvu4Qj540PZDvQ8V6DmX6iXo98k7Md0Cm1PrLaA==}
@@ -11177,7 +11164,7 @@ packages:
       webpack: ^5.0.0
     dependencies:
       schema-utils: 4.2.0
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /mini-css-extract-plugin@2.7.6(webpack@5.89.0):
@@ -12269,7 +12256,7 @@ packages:
       klona: 2.0.6
       postcss: 8.4.31
       semver: 7.5.4
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /postcss-loader@7.3.3(postcss@8.4.31)(typescript@5.2.2)(webpack@5.89.0):
@@ -13174,7 +13161,7 @@ packages:
       klona: 2.0.6
       neo-async: 2.6.2
       sass: 1.69.5
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /sass-loader@13.3.2(sass@1.69.5)(webpack@5.89.0):
@@ -13554,7 +13541,7 @@ packages:
       abab: 2.0.6
       iconv-lite: 0.6.3
       source-map-js: 1.0.2
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /source-map-loader@4.0.1(webpack@5.89.0):
@@ -13762,7 +13749,7 @@ packages:
     peerDependencies:
       webpack: ^5.0.0
     dependencies:
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /stylehacks@6.0.0(postcss@8.4.31):
@@ -13786,7 +13773,7 @@ packages:
       fast-glob: 3.3.2
       normalize-path: 3.0.0
       stylus: 0.59.0
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /stylus@0.59.0:
@@ -13912,30 +13899,6 @@ packages:
       serialize-javascript: 6.0.1
       terser: 5.24.0
       webpack: 5.89.0(esbuild@0.19.5)
-
-  /terser-webpack-plugin@5.3.9(webpack@5.89.0):
-    resolution: {integrity: sha512-ZuXsqE07EcggTWQjXUj+Aot/OMcD0bMKGgF63f7UxYcu5/AJF53aIpK1YoP5xR9l6s/Hy2b+t1AM0bLNPRuhwA==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      '@swc/core': '*'
-      esbuild: '*'
-      uglify-js: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      esbuild:
-        optional: true
-      uglify-js:
-        optional: true
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.20
-      jest-worker: 27.5.1
-      schema-utils: 3.3.0
-      serialize-javascript: 6.0.1
-      terser: 5.24.0
-      webpack: 5.89.0
-    dev: false
 
   /terser@5.24.0:
     resolution: {integrity: sha512-ZpGR4Hy3+wBEzVEnHvstMvqpD/nABNelQn/z2r0fjVWGQsN3bpOLzQlqDxmb4CDZnXq5lpjnQ+mHQLAOpfM5iw==}
@@ -14107,7 +14070,7 @@ packages:
       semver: 7.5.4
       source-map: 0.7.4
       typescript: 5.2.2
-      webpack: 5.89.0
+      webpack: 5.89.0(esbuild@0.19.5)
     dev: false
 
   /ts-morph@20.0.0:
@@ -14411,7 +14374,7 @@ packages:
       core-util-is: 1.0.2
       extsprintf: 1.3.0
 
-  /vite@4.5.0(@types/node@16.11.7)(less@4.1.3)(stylus@0.59.0):
+  /vite@4.5.0(@types/node@16.11.7)(less@4.2.0)(sass@1.69.5)(stylus@0.59.0)(terser@5.24.0):
     resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -14441,10 +14404,12 @@ packages:
     dependencies:
       '@types/node': 16.11.7
       esbuild: 0.18.20
-      less: 4.1.3
+      less: 4.2.0
       postcss: 8.4.31
       rollup: 3.29.4
+      sass: 1.69.5
       stylus: 0.59.0
+      terser: 5.24.0
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -14596,46 +14561,6 @@ packages:
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.89.0(esbuild@0.19.5)
-
-  /webpack@5.89.0:
-    resolution: {integrity: sha512-qyfIC10pOr70V+jkmud8tMfajraGCZMBWJtrmuBymQKCrLTRejBI8STDp1MCyZu/QTdZSeacCQYpYNQVOzX5kw==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    peerDependencies:
-      webpack-cli: '*'
-    peerDependenciesMeta:
-      webpack-cli:
-        optional: true
-    dependencies:
-      '@types/eslint-scope': 3.7.7
-      '@types/estree': 1.0.5
-      '@webassemblyjs/ast': 1.11.6
-      '@webassemblyjs/wasm-edit': 1.11.6
-      '@webassemblyjs/wasm-parser': 1.11.6
-      acorn: 8.11.2
-      acorn-import-assertions: 1.9.0(acorn@8.11.2)
-      browserslist: 4.22.1
-      chrome-trace-event: 1.0.3
-      enhanced-resolve: 5.15.0
-      es-module-lexer: 1.4.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      json-parse-even-better-errors: 2.3.1
-      loader-runner: 4.3.0
-      mime-types: 2.1.35
-      neo-async: 2.6.2
-      schema-utils: 3.3.0
-      tapable: 2.2.1
-      terser-webpack-plugin: 5.3.9(webpack@5.89.0)
-      watchpack: 2.4.0
-      webpack-sources: 3.2.3
-    transitivePeerDependencies:
-      - '@swc/core'
-      - esbuild
-      - uglify-js
-    dev: false
 
   /webpack@5.89.0(esbuild@0.19.5):
     resolution: {integrity: sha512-qyfIC10pOr70V+jkmud8tMfajraGCZMBWJtrmuBymQKCrLTRejBI8STDp1MCyZu/QTdZSeacCQYpYNQVOzX5kw==}
@@ -14932,3 +14857,7 @@ packages:
     resolution: {integrity: sha512-X4U7J1isDhoOmHmFWiLhloWc2lzMkdnumtfQ1LXzf/IOZp5NQYuMUTaviVzG/q1ugMBIXzin2AqeVJUoSEkNyQ==}
     dependencies:
       tslib: 2.6.2
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
