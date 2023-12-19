@@ -6,11 +6,10 @@
 
 .sub-toolbar {
   width: 100%;
-  border-bottom: 1px solid var(--border-color-default);
   background-color: var(--background-color-primary);
   padding: var(--container-padding);
-  padding-top: var(--main-layout-gap);
-  padding-bottom: var(--main-layout-gap);
+  padding-top: 14px;
+  padding-bottom: unset;
   align-items: center;
   display: flex;
 
