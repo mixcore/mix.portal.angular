@@ -1,21 +1,24 @@
 <!-- eslint-disable @angular-eslint/template/eqeqeq -->
 <div *ngIf="state() as vm"
      class="database-select">
-  <mix-button *ngIf="!isCreate"
-              class="database-select__add-btn"
-              [type]="'outline'"
-              (click)="createDb()">
-    <span class="mix-icon">add</span>&nbsp; New Table
-  </mix-button>
+  <div class="database-select__top">
+    <mix-button *ngIf="!isCreate"
+                class="database-select__add-btn"
+                [type]="'outline'"
+                (click)="createDb()">
+      <span class="mix-icon">add</span>&nbsp; New Table
+    </mix-button>
 
-  <mix-input class="database-select__search"
-             [formControl]="searchText"
-             [placeHolder]="'Type db name'"
-             [searchIcon]="true"></mix-input>
+    <mix-input class="database-select__search"
+               [formControl]="searchText"
+               [placeHolder]="'Type db name'"
+               [searchIcon]="true"></mix-input>
 
-  <div class="database-select__title">
-    {{ prefix }} Tables ({{ vm.data.length || '0' }})
+    <div class="database-select__title">
+      {{ prefix }} Tables ({{ vm.data.length || '0' }})
+    </div>
   </div>
+
 
   <div class="database-select__list">
     <ng-container *ngIf="vm.status === 'Loading'">
