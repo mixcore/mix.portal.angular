@@ -71,48 +71,6 @@
           ],
           "outputHashing": "all"
         },
-        "stage": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "4mb",
-              "maximumError": "4mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "20kb",
-              "maximumError": "20kb"
-            }
-          ],
-          "fileReplacements": [
-            {
-              "replace": "apps/mix-database/src/environments/environment.ts",
-              "with": "apps/mix-database/src/environments/environment.stage.ts"
-            }
-          ],
-          "outputHashing": "all"
-        },
-        "live": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "4mb",
-              "maximumError": "4mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "20kb",
-              "maximumError": "20kb"
-            }
-          ],
-          "fileReplacements": [
-            {
-              "replace": "apps/mix-database/src/environments/environment.ts",
-              "with": "apps/mix-database/src/environments/environment.live.ts"
-            }
-          ],
-          "outputHashing": "all"
-        },
         "development": {
           "buildOptimizer": false,
           "optimization": false,

@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  domainUrl: 'https://dev.mixcore.org',
-  stageDomainUrl: 'https://dev.mixcore.org',
+  domainUrl: 'https://portal.uat.4ps.dev',
+  stageDomainUrl: 'https://portal.uat.4ps.dev/',
 };
