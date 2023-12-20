@@ -29,10 +29,10 @@ import { DbUiStore } from './store/db-ui.store';
   styles: `
   .database-menu {
     height: unset !important;
-    padding: 4px 12px !important;
+    padding: 4px 14px !important;
     background: var(--background-color-primary);
     border: 1px solid var(--tui-base-04);
-    border-radius: 6px;
+    border-radius: 8px;
   }
 `,
 })
