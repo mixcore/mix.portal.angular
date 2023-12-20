@@ -60,7 +60,7 @@ export class DbContextSelectComponent {
       }
       this.contexts.set([...this.defaultContext, ...vm.data]);
 
-      if (vm.data.length && !this.selectedItemId) {
+      if (!this.selectedItemId) {
         this.selectItem(this.contexts()[0]);
       }
     });
