@@ -35,7 +35,7 @@ import { TuiTabsModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
 // import { CMS_ROUTES } from '../../../../app.routes';
 import { EntityFormComponent } from '@mixcore/share/components';
-import { DetailPageKit } from 'apps/mix-cms/src/app/shares/kits/page-detail-base-kit.component';
+import { DetailPageKit } from '../../../kit/page-detail-base-kit.component';
 import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
 import { DatabaseInfoComponent } from '../components/database-info/database-info.component';
 import { DatabaseMigrationComponent } from '../components/database-migration/database-migration.component';

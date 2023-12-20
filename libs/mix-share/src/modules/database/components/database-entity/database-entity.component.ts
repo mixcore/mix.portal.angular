@@ -16,13 +16,13 @@ import {
 import { Router } from '@angular/router';
 import { MixColumn } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
+import { EntityFormComponent } from '@mixcore/share/components';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { DatabaseStore } from '@mixcore/share/stores';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { HotToastService } from '@ngneat/hot-toast';
-import { EntityFormComponent } from 'apps/mix-cms/src/app/components/entity-form/entity-form.component';
 
 @Component({
   selector: 'mix-database-entity',
