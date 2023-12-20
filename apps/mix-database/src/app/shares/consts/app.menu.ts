@@ -31,6 +31,12 @@ export const APP_MENU = [
     iconColor: '#00ACC1',
     url: CMS_ROUTES.portal.databaseQuery.fullPath,
   },
+  {
+    icon: 'database',
+    title: 'Visual Diagram',
+    iconColor: '#EC652C',
+    url: CMS_ROUTES.portal.database.fullPath,
+  },
 ];
 
 export const APP_NOT_SUPPER_ADMIN_MENU = [
