@@ -34,9 +34,7 @@ export interface TableContextMenu<T> {
   styleUrls: ['./data-table.component.scss'],
   encapsulation: ViewEncapsulation.None,
   providers: [TuiDestroyService],
-  animations: [
-    fadeInRightOnEnterAnimation({ duration: 200, translate: '100px' }),
-  ],
+  animations: [fadeInRightOnEnterAnimation({ duration: 1, translate: '0px' })],
 })
 export class DataTableComponent<T> implements AfterContentInit {
   @ViewChild('mainTable') mainTable!: ElementRef<HTMLElement>;

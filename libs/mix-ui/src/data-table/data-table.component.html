@@ -35,6 +35,7 @@
                 [showLoader]="(loading && !dataset.length) || forceLoading">
       <table *ngIf="displayColumns.length > 1"
              [columns]="tableColumns"
+             [@fadeInRightOnEnter]
              tuiTable>
         <thead>
           <tr tuiThGroup>
