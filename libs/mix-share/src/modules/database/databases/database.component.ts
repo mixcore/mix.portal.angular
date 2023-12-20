@@ -1,22 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DbContextFixId, MixDatabase } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
-import { MixSubToolbarComponent } from '@mixcore/share/components';
+import {
+  MixStatusIndicatorComponent,
+  MixSubToolbarComponent,
+} from '@mixcore/share/components';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { DatabaseStore } from '@mixcore/share/stores';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { DynamicFilterComponent } from '@mixcore/ui/filter';
 import { ModalService } from '@mixcore/ui/modal';
-import { PortalSidebarService } from '@mixcore/ui/sidebar';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { HotToastService } from '@ngneat/hot-toast';
 import { tuiPure } from '@taiga-ui/cdk';
 import { forkJoin } from 'rxjs';
-import { CMS_ROUTES } from '../../../../app.routes';
-import { MixStatusIndicatorComponent } from '../../../../components/status-indicator/mix-status-indicator.component';
 import { DatabaseRelationshipComponent } from '../components/database-relationship/database-relationship.component';
 import { DbContextSelectComponent } from '../components/db-context-select/db-context-select.component';
 import { MasterDbStore } from '../store/master-db.store';
@@ -45,6 +45,7 @@ export class DatabaseComponent {
   public mixApi = inject(MixApiFacadeService);
   public toast = inject(HotToastService);
   public masterStore = inject(MasterDbStore);
+  public activeRoute = inject(ActivatedRoute);
 
   public selectedDbContextId?: number;
   public selectedTable: MixDatabase[] = [];
@@ -74,6 +75,11 @@ export class DatabaseComponent {
 
   public searchFields: string[] = [];
   public searchTexts: string = '';
+  public get currentRouteSegments() {
+    return this.activeRoute.snapshot.pathFromRoot
+      .map((segment) => segment.url.map((urlSegment) => urlSegment.path))
+      .reduce((acc, segments) => acc.concat(segments), []);
+  }
 
   @tuiPure
   public filterDbs(
@@ -105,32 +111,16 @@ export class DatabaseComponent {
     }
   }
 
-  constructor(
-    @Inject(PortalSidebarService)
-    private readonly sidebar: PortalSidebarService
-  ) {}
-
-  async goDetail(id: number) {
-    this.router.navigateByUrl(`${CMS_ROUTES.portal.database.fullPath}/${id}`);
+  public goDetail(id: number) {
+    this.router.navigate([...this.currentRouteSegments, id]);
   }
 
-  async goDatabaseData(sysName: string) {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal.databaseQuery.fullPath}/${sysName}`
-    );
+  public goDatabaseData(sysName: string) {
+    this.router.navigate([...this.currentRouteSegments, 'query', sysName]);
   }
 
-  async createDatabase() {
-    let route = `${CMS_ROUTES.portal.database.fullPath}/create`;
-
-    if (this.selectedDbContextId !== undefined) {
-      const whiteList = [DbContextFixId.All, DbContextFixId.MasterDb];
-      if (!whiteList.includes(this.selectedDbContextId)) {
-        route = `${route}?mixDatabaseContextId=${this.selectedDbContextId}`;
-      }
-    }
-
-    await this.router.navigateByUrl(route);
+  public createDatabase() {
+    this.router.navigate([...this.currentRouteSegments, 'create']);
   }
 
   public onDeleteTable() {

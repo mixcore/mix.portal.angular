@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { breadcrumbName } from '../../../app.routes';
 import { DatabaseLayoutComponent } from './database.layout';
 
 export const routes: Routes = [
@@ -41,7 +40,6 @@ export const routes: Routes = [
           import('./database-detail/database-detail.component').then(
             (m) => m.DatabaseDetailComponent
           ),
-        data: breadcrumbName('Detail'),
       },
       {
         path: 'create',
@@ -49,7 +47,6 @@ export const routes: Routes = [
           import('./database-detail/database-detail.component').then(
             (m) => m.DatabaseDetailComponent
           ),
-        data: breadcrumbName('Create'),
       },
       {
         path: 'open-api/:id',

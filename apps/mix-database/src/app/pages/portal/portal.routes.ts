@@ -12,15 +12,9 @@ export const PortalRoutes: Routes = [
   },
   {
     path: CMS_ROUTES.portal.database.path,
-    data: breadcrumbName('Databases'),
+    data: breadcrumbName('Workspace'),
     loadChildren: () =>
-      import('./database/database.routes').then((m) => m.routes),
-  },
-  {
-    path: CMS_ROUTES.portal['database-data'].path,
-    data: breadcrumbName('Database'),
-    loadChildren: () =>
-      import('./database-data/database-data.routes').then((m) => m.routes),
+      import('@mixcore/module/database').then((m) => m.routes),
   },
   {
     path: '',

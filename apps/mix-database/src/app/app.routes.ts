@@ -25,69 +25,21 @@ export const CMS_ROUTES = {
       path: 'news',
       fullPath: 'app/news',
     },
-    task: {
-      path: 'tasks',
-      fullPath: 'app/tasks',
-    },
-    inbox: {
-      path: 'inbox',
-      fullPath: 'app/inbox',
-    },
-    logs: {
-      path: 'logs',
-      fullPath: 'app/logs',
-    },
-    post: {
-      path: 'post',
-      fullPath: 'app/post',
-    },
-    page: {
-      path: 'page',
-      fullPath: 'app/page',
-    },
-    module: {
-      path: 'module',
-      fullPath: 'app/module',
-    },
     database: {
-      path: 'database',
-      fullPath: 'app/database',
+      path: 'db',
+      fullPath: 'app/db',
     },
-    'database-doc': {
+    databaseDoc: {
       path: 'open-api',
-      fullPath: 'app/database/open-api',
+      fullPath: 'app/db/open-api',
     },
-    'database-data': {
-      path: 'db-data',
-      fullPath: 'app/db-data',
+    databaseQuery: {
+      path: 'query',
+      fullPath: 'app/db/query',
     },
-    settings: {
-      path: 'app-settings',
-      fullPath: 'app/app-settings',
-    },
-    user: {
-      path: 'user',
-      fullPath: 'app/user',
-    },
-    permission: {
-      path: 'permission',
-      fullPath: 'app/permission',
-    },
-    roles: {
-      path: 'roles',
-      fullPath: 'app/roles',
-    },
-    order: {
-      path: 'order',
-      fullPath: 'app/order',
-    },
-    discount: {
-      path: 'discount',
-      fullPath: 'app/discount',
-    },
-    promotion: {
-      path: 'promotion',
-      fullPath: 'app/promotion',
+    databaseContext: {
+      path: 'contexts',
+      fullPath: 'app/db/contexts',
     },
   },
 };

@@ -7,18 +7,23 @@ import {
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MixDatabase, MixDynamicData } from '@mixcore/lib/model';
+import { MixDatabase, MixDynamicData, MixFilter } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import {
   ActionCollapseComponent,
-  DatabaseSelectComponent,
+  BasicMixFilterComponent,
   MixStatusIndicatorComponent,
   MixSubToolbarComponent,
   RecordFormComponent,
 } from '@mixcore/share/components';
-import { DomHelper, toastObserverProcessing } from '@mixcore/share/helper';
+import {
+  DomHelper,
+  extractBaseSegment,
+  toastObserverProcessing,
+} from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { DynamicFilterComponent } from '@mixcore/ui/filter';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { SkeletonLoadingComponent } from '@mixcore/ui/skeleton';
@@ -30,24 +35,23 @@ import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { AgGridModule } from 'ag-grid-angular';
 import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
+import { ListPageKit } from 'apps/mix-cms/src/app/shares/kits/list-page-kit.component';
+import { DatabaseDataStore } from 'apps/mix-cms/src/app/stores/database-data.store';
 import {
   Observable,
   Subject,
   debounceTime,
   distinctUntilChanged,
-  filter,
   forkJoin,
   map,
   take,
   takeUntil,
   tap,
 } from 'rxjs';
-import { CMS_ROUTES } from '../../../app.routes';
-import { BasicMixFilterComponent } from '../../../components/basic-mix-filter/basic-mix-filter.component';
-import { ListPageKit } from '../../../shares/kits/list-page-kit.component';
-import { DatabaseDataStore } from '../../../stores/database-data.store';
-import { CustomActionCellComponent } from './components/custom-action-cell/custom-action-cell.component';
-import { CustomHeaderComponent } from './components/custom-header/custom-header.component';
+import { CustomActionCellComponent } from '../components/custom-action-cell/custom-action-cell.component';
+import { CustomHeaderComponent } from '../components/custom-header/custom-header.component';
+import { DatabaseInlineSelectComponent } from '../components/database-inline-select/database-inline-select.component';
+import { DatabaseVerticalToolbarComponent } from '../components/vertical-toolbar/database-vertical-toolbar.component';
 
 @Component({
   selector: 'mix-database-data',
@@ -66,14 +70,15 @@ import { CustomHeaderComponent } from './components/custom-header/custom-header.
     FormsModule,
     MixInputComponent,
     TuiPaginationModule,
-    DatabaseDataComponent,
     SkeletonLoadingComponent,
     AgGridModule,
     CustomHeaderComponent,
     TuiReorderModule,
     TippyDirective,
     ReactiveFormsModule,
-    DatabaseSelectComponent,
+    DynamicFilterComponent,
+    DatabaseVerticalToolbarComponent,
+    DatabaseInlineSelectComponent,
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
@@ -89,15 +94,14 @@ export class DatabaseDataComponent
   public modal = inject(ModalService);
   public store = inject(DatabaseDataStore);
   public dialog = inject(DialogService);
+  public activeRoute = inject(ActivatedRoute);
 
   public dbSysName = '';
   public activeCol = '';
   public isAllCheck = false;
   public searchForm = new FormControl();
 
-  public components: {
-    [p: string]: any;
-  } = {
+  public components: Record<string, any> = {
     agColumnHeader: CustomHeaderComponent,
   };
   public rowData$!: Observable<MixDynamicData[]>;
@@ -136,6 +140,13 @@ export class DatabaseDataComponent
     width: 250,
   };
 
+  public currentPath = 'query';
+  public get currentRouteSegments() {
+    return this.activeRoute.snapshot.pathFromRoot
+      .map((segment) => segment.url.map((urlSegment) => urlSegment.path))
+      .reduce((acc, segments) => acc.concat(segments), []);
+  }
+
   public context: any;
   public allColumnDefs: ColDef[] = [];
   public columnDefs: ColDef[] = [];
@@ -147,7 +158,6 @@ export class DatabaseDataComponent
   public onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
     this.rowData$ = this.store.vm$.pipe(
-      filter((s) => s.status === 'Success'),
       tap((s) => {
         if (s.db) {
           this.allColumnDefs = s.db.columns.map(
@@ -172,7 +182,9 @@ export class DatabaseDataComponent
           ];
         }
       }),
-      map((s) => s.data),
+      map((s) => {
+        return s.data;
+      }),
       takeUntil(this.destroy$)
     );
 
@@ -212,12 +224,19 @@ export class DatabaseDataComponent
       icon: 'system_update_alt',
       place: 'left',
     },
+    {
+      label: 'Setup Db',
+      key: 'setup',
+      icon: 'settings',
+      place: 'right',
+    },
   ];
 
   public actionMaps = {
     create: () => this.onInsertData(),
     delete: () => this.onDeleteData(),
     export: () => this.onExportData(),
+    setup: () => this.onSetupDb(),
   };
 
   constructor() {
@@ -240,6 +259,24 @@ export class DatabaseDataComponent
         this.store.changeDb(this.dbSysName);
       }
     });
+  }
+
+  public onSetupDb(isCreate = false) {
+    const baseSegment = extractBaseSegment(
+      this.currentPath,
+      this.activatedRoute
+    );
+
+    if (isCreate) {
+      this.router.navigate([...baseSegment, 'create']);
+      return;
+    }
+
+    this.store.vm$
+      .pipe(take(1))
+      .subscribe((vm) =>
+        this.router.navigate([...baseSegment, vm.db?.id ?? 'create'])
+      );
   }
 
   public onDeleteData(): void {
@@ -283,18 +320,6 @@ export class DatabaseDataComponent
       .subscribe();
   }
 
-  public async onEditData(data: MixDynamicData) {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/${data.id}`
-    );
-  }
-
-  public async onCreateData() {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${this.dbSysName}/create`
-    );
-  }
-
   public onHideColumn(displayName: string) {
     this.displayColumns = this.displayColumns.filter((d) => d !== displayName);
     this.reUpdateColumnDef();
@@ -302,11 +327,13 @@ export class DatabaseDataComponent
 
   public selectedTableChange(mixDb: MixDatabase) {
     if (mixDb.systemName == this.dbSysName) return;
-
     this.searchForm.reset(null, { emitEvent: false, onlySelf: true });
-    this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-data'].fullPath}/${mixDb.systemName}`
+
+    const baseSegment = extractBaseSegment(
+      this.currentPath,
+      this.activatedRoute
     );
+    this.router.navigate([...baseSegment, this.currentPath, mixDb.systemName]);
   }
 
   public reUpdateColumnDef() {
@@ -325,10 +352,12 @@ export class DatabaseDataComponent
   }
 
   public onPreviewData(db: MixDatabase): void {
-    this.router.navigateByUrl(
-      `${CMS_ROUTES.portal['database-doc'].fullPath}/${db.id}`,
-      { state: { db: db } }
+    const baseSegment = extractBaseSegment(
+      this.currentPath,
+      this.activatedRoute
     );
+
+    this.router.navigate([...baseSegment, db.id], { state: { db: db } });
   }
 
   public onInsertData(): void {
@@ -337,13 +366,19 @@ export class DatabaseDataComponent
 
       const dialogRef = this.dialog.open(RecordFormComponent, {
         data: { mixDatabase: value.db, data: undefined },
-        width: 800,
+        windowClass: RecordFormComponent.windowClass,
+        minWidth: RecordFormComponent.minWidth,
+        maxWidth: RecordFormComponent.maxWidth,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
         if (value) this.store.addData(value);
       });
     });
+  }
+
+  public onFilterChange(value: MixFilter[]) {
+    this.store.changeFilters(value);
   }
 
   public editData(dataId: number) {
@@ -355,12 +390,22 @@ export class DatabaseDataComponent
 
       const dialogRef = this.dialog.open(RecordFormComponent, {
         data: { mixDatabase: state.db, data: state.data[dataIndex] },
-        width: 800,
+        windowClass: RecordFormComponent.windowClass,
+        minWidth: RecordFormComponent.minWidth,
+        maxWidth: RecordFormComponent.maxWidth,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
         if (value) this.store.updateData(dataIndex, value);
       });
     });
+  }
+
+  public rowHeightChange(value: number) {
+    this.gridApi.forEachNode((node) => {
+      node.setRowHeight(40 * value);
+    });
+
+    this.gridApi.onRowHeightChanged();
   }
 }

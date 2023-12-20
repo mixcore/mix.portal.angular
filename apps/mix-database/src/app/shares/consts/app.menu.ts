@@ -14,21 +14,22 @@ export const APP_MENU = [
     ],
   },
   {
-    title: 'Mix Dbs',
+    icon: 'format_list_numbered',
+    title: 'Context',
+    url: CMS_ROUTES.portal.databaseContext.fullPath,
+    iconColor: '#BB56CF',
+  },
+  {
+    icon: 'settings',
+    title: 'Database Config',
+    iconColor: '#2190E4',
     url: CMS_ROUTES.portal.database.fullPath,
-    icon: 'database',
-    children: [
-      {
-        icon: 'format_list_numbered',
-        title: 'Setting Database',
-        url: CMS_ROUTES.portal.database.fullPath,
-      },
-      {
-        icon: 'table_view',
-        title: 'Query Data',
-        url: CMS_ROUTES.portal['database-data'].fullPath,
-      },
-    ],
+  },
+  {
+    icon: 'table_view',
+    title: 'Query Data',
+    iconColor: '#00ACC1',
+    url: CMS_ROUTES.portal.databaseQuery.fullPath,
   },
 ];
 

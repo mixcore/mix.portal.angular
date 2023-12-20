@@ -33,9 +33,9 @@ import { HotToastService } from '@ngneat/hot-toast';
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { TuiTabsModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
-import { CMS_ROUTES } from '../../../../app.routes';
-import { EntityFormComponent } from '../../../../components/entity-form/entity-form.component';
-import { DetailPageKit } from '../../../../shares/kits/page-detail-base-kit.component';
+// import { CMS_ROUTES } from '../../../../app.routes';
+import { EntityFormComponent } from '@mixcore/share/components';
+import { DetailPageKit } from 'apps/mix-cms/src/app/shares/kits/page-detail-base-kit.component';
 import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
 import { DatabaseInfoComponent } from '../components/database-info/database-info.component';
 import { DatabaseMigrationComponent } from '../components/database-migration/database-migration.component';
@@ -91,6 +91,14 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     readPermissions: new FormControl<string[]>([]),
     mixDatabaseContextId: new FormControl(),
   });
+
+  public get baseSegment() {
+    return (
+      this.activeRoute.parent?.snapshot.pathFromRoot
+        .map((segment) => segment.url.map((urlSegment) => urlSegment.path))
+        .reduce((acc, segments) => acc.concat(segments), []) ?? []
+    );
+  }
 
   ngOnInit() {
     this.activeRoute.params
@@ -168,9 +176,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
       )
       .subscribe({
         next: (value) => {
-          if (this.mode === 'create') {
-            this.mode = 'update';
-          }
+          if (this.mode === 'create') this.mode = 'update';
 
           this.databaseStore.reload();
           this.data = new MixDatabase(value);
@@ -181,10 +187,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
 
   public selectedTableChange(ev: MixDatabase) {
     if (ev.id == this.id) return;
-
-    this.router.navigateByUrl(
-      `${CMS_ROUTES.portal.database.fullPath}/${ev.id}`
-    );
+    this.router.navigate([...this.baseSegment, ev.id]);
   }
 
   public onColumnsChange(columns: MixColumn[]) {
@@ -213,9 +216,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
     });
   }
 
-  async goDatabaseData(sysName: string) {
-    await this.router.navigateByUrl(
-      `${CMS_ROUTES.portal.databaseQuery.fullPath}/${sysName}`
-    );
+  public goDatabaseData(sysName: string) {
+    this.router.navigate([...this.baseSegment, 'query', sysName]);
   }
 }

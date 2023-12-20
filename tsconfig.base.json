@@ -21,6 +21,9 @@
       "@mixcore/module/task": [
         "libs/mix-share/src/modules/task-manage/index.ts"
       ],
+      "@mixcore/module/database": [
+        "libs/mix-share/src/modules/database/index.ts"
+      ],
       "@mixcore/share/animation": ["libs/mix-share/src/animations/index.ts"],
       "@mixcore/share/api": ["libs/mix-share/src/api-service/index.ts"],
       "@mixcore/share/auth": ["libs/mix-share/src/auth/index.ts"],
