@@ -35,7 +35,7 @@
                 [showLoader]="(loading && !dataset.length) || forceLoading">
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 bg-gray-50 z-10 dark:bg-gray-700 dark:text-gray-400 sticky top-0">
             <tr>
               <ng-container *ngFor="let col of displayColumns; let i = index">
                 <th class="px-6 py-3">
@@ -61,7 +61,9 @@
                 </th>
               </ng-container>
 
-              <th class="px-6 py-3">Menu</th>
+              <th class="px-6 py-3">
+                <div class="flex items-center"></div>
+              </th>
             </tr>
           </thead>
           <tbody>
