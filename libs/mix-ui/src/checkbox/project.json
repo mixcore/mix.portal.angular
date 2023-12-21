@@ -1,16 +1,16 @@
 {
-  "name": "@mixcore/ui/checkbox",
+  "name": "@mixcore/ui/button",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/mix-ui/src/checkbox",
+  "sourceRoot": "libs/mix-ui/src/button",
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/mix-ui/src/checkbox/**/*.ts",
-          "libs/mix-ui/src/checkbox/**/*.html"
+          "libs/mix-ui/src/button/**/*.ts",
+          "libs/mix-ui/src/button/**/*.html"
         ]
       }
     }

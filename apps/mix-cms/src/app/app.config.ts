@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PreloadAllModules, RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { DataType, DataTypeUi } from '@mixcore/lib/model';
+import { AUTH_ROUTE } from '@mixcore/module/auth';
 import {
   AuthInterceptor,
   FULL_MENU,
@@ -184,6 +185,13 @@ export const appConfig: ApplicationConfig = {
     {
       provide: URL_ERROR,
       useValue: CMS_ROUTES.error.path,
+    },
+    {
+      provide: AUTH_ROUTE,
+      useValue: {
+        authRoute: CMS_ROUTES.portal.dashboard.fullPath,
+        notAuthRoute: CMS_ROUTES.auth.login.fullPath,
+      },
     },
     {
       provide: HTTP_INTERCEPTORS,

@@ -32,9 +32,11 @@
 
   &__container {
     width: 400px;
+    max-width: 98vw;
     padding: 24px;
     background-color: var(--background-color-primary);
     border-radius: 12px;
     border: 1px solid var(--border-color-default);
+    padding-bottom: 32px;
   }
 }

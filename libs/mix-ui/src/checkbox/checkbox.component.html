@@ -1,0 +1,10 @@
+<div class="flex items-center">
+  <input class="w-5 outline-none h-5 text-primary bg-gray-100 border-gray-300 rounded focus:ring-primary dark:focus:ring-primary dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+         type="checkbox"
+         [formControl]="control"
+         [id]="id"
+         value>
+  <label *ngIf="label"
+         class="ms-2 text-gray-900 dark:text-gray-300"
+         [for]="id">{{ label }}</label>
+</div>

@@ -9,10 +9,10 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { BaseTextControl } from '@mixcore/ui/base-control';
-import { TuiDestroyService, tuiControlValue } from '@taiga-ui/cdk';
+import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiTextfieldControllerModule } from '@taiga-ui/core';
 import { TuiInputModule } from '@taiga-ui/kit';
-import { Observable, map, takeUntil } from 'rxjs';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-input',
@@ -49,22 +49,7 @@ export class MixInputComponent
   @Input() value = '';
   @Output() valueChange = new EventEmitter<string>();
 
-  public autoCompleteItems$?: Observable<string[]>;
-
   ngOnInit() {
-    this.autoCompleteItems$ = tuiControlValue<string>(this.control).pipe(
-      takeUntil(this.destroy$),
-      map((value) => {
-        if (!this.autoCompleteItems.length) return [];
-
-        const filtered = this.autoCompleteItems.filter((item) =>
-          item.includes(value)
-        );
-
-        return filtered;
-      })
-    );
-
     if (this.selfControl) this.defaultControl.setValue(this.value);
     this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       this.valueChange.emit(v);

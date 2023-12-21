@@ -24,6 +24,7 @@
       "@mixcore/module/task": [
         "libs/mix-share/src/modules/task-manage/index.ts"
       ],
+      "@mixcore/module/auth": ["libs/mix-share/src/modules/auth/index.ts"],
       "@mixcore/share/animation": ["libs/mix-share/src/animations/index.ts"],
       "@mixcore/share/api": ["libs/mix-share/src/api-service/index.ts"],
       "@mixcore/share/auth": ["libs/mix-share/src/auth/index.ts"],
@@ -66,7 +67,8 @@
       "@mixcore/ui/table": ["libs/mix-ui/src/data-table/index.ts"],
       "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],
       "@mixcore/ui/toggle": ["libs/mix-ui/src/toggle/index.ts"],
-      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"]
+      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"],
+      "@mixcore/ui/checkbox": ["libs/mix-ui/src/checkbox/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

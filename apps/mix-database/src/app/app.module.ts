@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PreloadAllModules, RouterModule } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { AUTH_ROUTE } from '@mixcore/module/auth';
 import {
   AuthInterceptor,
   FULL_MENU,
@@ -87,6 +88,13 @@ export const domainUrlFactory = () => {
     {
       provide: PRODUCT_MENU,
       useValue: APP_NOT_SUPPER_ADMIN_MENU,
+    },
+    {
+      provide: AUTH_ROUTE,
+      useValue: {
+        authRoute: CMS_ROUTES.portal.dashboard.fullPath,
+        notAuthRoute: CMS_ROUTES.auth.login.fullPath,
+      },
     },
     {
       provide: HTTP_INTERCEPTORS,

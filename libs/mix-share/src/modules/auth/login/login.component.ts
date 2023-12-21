@@ -13,13 +13,12 @@ import { AuthService, CryptoService } from '@mixcore/share/auth';
 import { BaseComponent, DOMAIN_URL$, LoadingState } from '@mixcore/share/base';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { MixCheckboxComponent } from '@mixcore/ui/checkbox';
 import { MixErrorAlertComponent } from '@mixcore/ui/error';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiRadioLabeledModule } from '@taiga-ui/kit';
 import { filter, switchMap, take } from 'rxjs';
-import { environment } from '../../../../environments/environment';
-import { CMS_ROUTES } from '../../../app.routes';
 
 export interface LoginInfo {
   userName: string;
@@ -38,6 +37,7 @@ export interface LoginInfo {
     MixErrorAlertComponent,
     TuiRadioLabeledModule,
     TuiLinkModule,
+    MixCheckboxComponent,
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
@@ -61,27 +61,6 @@ export class LoginComponent extends BaseComponent {
     password: ['', Validators.required],
     rememberMe: [true],
   });
-
-  constructor() {
-    super();
-
-    const current = this.domainUrls$.getValue();
-    if (current === environment.domainUrl) {
-      this.modeForm.controls.url.patchValue('prod');
-    } else {
-      this.modeForm.controls.url.patchValue('stage');
-    }
-
-    this.modeForm.controls.url.valueChanges.subscribe((v) => {
-      if (v === 'stage') {
-        this.domainUrls$.next(environment.stageDomainUrl);
-      } else {
-        this.domainUrls$.next(environment.domainUrl);
-      }
-
-      localStorage.setItem('domainUrl', this.domainUrls$.getValue());
-    });
-  }
 
   public submit(): void {
     if (FormHelper.validateForm(this.loginForm)) {
@@ -118,13 +97,13 @@ export class LoginComponent extends BaseComponent {
     );
 
     let redirectUrl = this.authService.redirectUrl;
-    if (
-      !redirectUrl ||
-      redirectUrl === '/' ||
-      redirectUrl === '/' + CMS_ROUTES.auth.login.fullPath
-    ) {
-      redirectUrl = CMS_ROUTES.portal.dashboard.fullPath;
-    }
+    // if (
+    //   !redirectUrl ||
+    //   redirectUrl === '/' ||
+    //   redirectUrl === '/' + CMS_ROUTES.auth.login.fullPath
+    // ) {
+    //   redirectUrl = CMS_ROUTES.portal.dashboard.fullPath;
+    // }
 
     this.router.navigate([redirectUrl]);
     this.authService.clearRedirectUrl();
