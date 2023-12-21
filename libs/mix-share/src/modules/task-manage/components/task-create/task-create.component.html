@@ -6,13 +6,13 @@
 
   <div class="mix-dialog__content">
     @if(parentTask) {
-    <div class="row mb-1">
-      <div class="col-6">
+    <div class="grid grid-cols-12 gap-4 mb-1">
+      <div class="col-span-6">
         <div class="mb-1 text-sub text-500">Task Type</div>
         <task-type-select formControlName="type"></task-type-select>
       </div>
 
-      <div class="col-6">
+      <div class="col-span-6">
         <div class="mb-1 text-sub text-500">Task Priority</div>
         <task-priority-select formControlName="taskPriority"></task-priority-select>
       </div>

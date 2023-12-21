@@ -12,7 +12,7 @@
         <span class="material-symbols-outlined"> delete </span>&nbsp;
         {{ 'Remove discount' | transloco }}</mix-button>
 
-      <mix-button class="ms-auto"
+      <mix-button class="mr-auto"
                   [iconBtn]="true"
                   [type]="showFilter ? 'primary' : 'outline'"
                   (click)="showFilter = !showFilter">
@@ -22,7 +22,7 @@
     <div class="data-table-page__sub-toolbar">
       <span class="text-bold">Active Dates:</span>
 
-      <div class="d-flex gap-3 mt-1"
+      <div class="flex gap-3 mt-1"
            [formGroup]="discountRuleForm">
         <mix-date-time-picker formControlName="discountFromDate"
                               placeHolder="Discount from"></mix-date-time-picker>
@@ -100,7 +100,7 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <div class="d-flex gap-2">
+            <div class="flex gap-2">
               <div class>
                 {{
                   data?.kiotVietProduct?.discountFromDate !== null &&

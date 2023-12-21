@@ -9,14 +9,14 @@
              value="Active"></tui-badge>
 
   <mix-user-avatar *ngIf="userInfo"
-                   class="ms-auto"
+                   class="mr-auto"
                    [size]="'s'"
                    [userInfo]="userInfo"></mix-user-avatar>
 </div>
 
 <ng-template #userMenuTpl
              let-hide>
-  <div class="d-flex w-100 p-3 gap-3 pt-0 align-items-center justify-content-start">
+  <div class="flex w-full p-3 gap-3 pt-0 items-center justify-content-start">
     <mix-user-avatar *ngIf="userInfo"
                      [size]="'xl'"
                      [userInfo]="userInfo"></mix-user-avatar>

@@ -66,7 +66,7 @@
       <ng-template let-data
                    mixColumnCell>
         <div *ngIf="db() as db"
-             class="d-flex">
+             class="flex">
           <tui-hosted-dropdown [content]="dropdown">
             <mix-button type="outline"
                         [iconBtn]="true"
@@ -107,7 +107,7 @@
   <div *tuiSidebar="!!showSidebar(); direction: 'right'; autoWidth: true"
        style="width: 60vw">
     <div class="dynamic-db__edit {{ editContainerClass }}">
-      <div class="d-flex align-items-center edit-variant-header">
+      <div class="flex items-center edit-variant-header">
         <mix-button [loading]="savingVariant()"
                     (click)="saveData()">
           <span class="material-symbols-outlined"> keyboard_backspace </span>
@@ -120,7 +120,7 @@
         <span class="ms-3 text-xl fw-bold">Edit {{ db()?.displayName }} Variants</span>
       </div>
 
-      <div class="w-100 mt-4">
+      <div class="w-full mt-4">
         <mix-skeleton-loading *ngIf="!forms"
                               type="form"></mix-skeleton-loading>
         <form *ngIf="forms"

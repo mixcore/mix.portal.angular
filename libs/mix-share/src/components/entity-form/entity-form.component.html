@@ -3,8 +3,8 @@
      [style.--color]="getColor(form.value)">
   <div class="card-01"
        [formGroup]="form">
-    <div class="row">
-      <div class="col-4 d-flex align-items-center gap-2">
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-4 flex items-center gap-2">
         <div>
           <ng-content></ng-content>
         </div>
@@ -13,8 +13,8 @@
                    formControlName="displayName"></mix-input>
       </div>
 
-      <div class="col-4">
-        <div class="d-flex gap-1">
+      <div class="col-span-4">
+        <div class="flex gap-1">
           <mix-button type="outline"
                       [iconBtn]="true"
                       (click)="updateSystemName(true)"
@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <div class="col-2">
+      <div class="col-span-2">
         <mix-button type="outline"
                     (click)="showDataTypeDialog($event, dataTypePicker)"
                     size="m">
@@ -89,13 +89,13 @@
     <div class="mix-dialog__header">Choose data type</div>
     <div class="data-type-picker-dialog-container">
       <ng-container *ngFor="let group of dataTypeGroups">
-        <div class="row mb-3"
+        <div class="grid grid-cols-12 gap-4 mb-3"
              [formGroup]="form">
-          <div class="col-12">
+          <div class="col-span-12">
             <div class="text-l mb-2 text-500">{{ group.label }}</div>
           </div>
           <div *ngFor="let dataType of group.types"
-               class="col-12 col-md-6">
+               class="col-span-6">
             <tui-radio-block class="mb-2 data-type-card"
                              [item]="dataType.value"
                              formControlName="dataType"

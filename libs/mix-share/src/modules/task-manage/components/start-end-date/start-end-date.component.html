@@ -12,7 +12,7 @@
 <ng-template #dateSelect
              let-hide>
   <div>
-    <div class="d-flex gap-1">
+    <div class="flex gap-1">
       <tui-calendar [(hoveredItem)]="hoveredItem"
                     [maxViewedMonth]="firstMonth"
                     [month]="firstMonth"
@@ -30,11 +30,11 @@
                     (monthChange)="onMonthChangeLast($event)"></tui-calendar>
     </div>
 
-    <div class="w-100 d-flex gap-1 ps-2 pe-2 mt-3">
-      <mix-button class="w-100"
+    <div class="w-full flex gap-1 ps-2 pe-2 mt-3">
+      <mix-button class="w-full"
                   type="outline"
                   (click)="hide()">Cancel</mix-button>
-      <mix-button class="w-100"
+      <mix-button class="w-full"
                   (click)="onSave(); hide()">Save</mix-button>
     </div>
   </div>

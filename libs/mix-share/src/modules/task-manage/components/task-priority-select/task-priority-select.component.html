@@ -1,20 +1,19 @@
-<tui-select
-  [formControl]="control"
-  [tuiTextfieldLabelOutside]="true"
-  [tuiTextfieldSize]="size"
-  [valueContent]="cardContent"
->
+<tui-select [formControl]="control"
+            [tuiTextfieldLabelOutside]="true"
+            [tuiTextfieldSize]="size"
+            [valueContent]="cardContent">
   <tui-data-list *tuiDataList>
-    <button *ngFor="let item of prorityItems" [value]="item" tuiOption>
-      <ng-container
-        *ngTemplateOutlet="cardContent; context: { $implicit: item }"
-      ></ng-container>
+    <button *ngFor="let item of prorityItems"
+            [value]="item"
+            tuiOption>
+      <ng-container *ngTemplateOutlet="cardContent; context: { $implicit: item }"></ng-container>
     </button>
   </tui-data-list>
 </tui-select>
 
-<ng-template #cardContent let-item>
-  <div class="d-flex align-items-center gap-2">
+<ng-template #cardContent
+             let-item>
+  <div class="flex items-center gap-2">
     <mix-task-priority [priority]="item"></mix-task-priority>
     <span> {{ item }}</span>
   </div>

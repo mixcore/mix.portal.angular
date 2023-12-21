@@ -1,9 +1,9 @@
-<div class="mix-dialog h-100">
-  <div class="container-fluid h-100">
-    <div class="row h-100">
-      <div class="col-md-3 border-right"
+<div class="mix-dialog h-full">
+  <div class="container-fluid h-full">
+    <div class="grid grid-cols-12 gap-4 h-full">
+      <div class="col-span-3 border-right"
            style="background-color: #071a2b; color: #fff">
-        <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+        <div class="flex flex-col items-center text-center p-3 py-5">
           <img class="rounded-circle mt-5"
                src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"
                width="150px"
@@ -12,44 +12,44 @@
         </div>
       </div>
 
-      <div class="col-md-5 p-4 pb-2 border-right">
-        <div class="p-3 d-flex flex-column h-100">
-          <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="col-span-5 p-4 pb-2 border-right">
+        <div class="p-3 flex flex-col h-full">
+          <div class="flex justify-content-between items-center mb-3">
             <h4 class="text-right">Profile Settings</h4>
           </div>
-          <div class="row mt-2">
-            <div class="col-md-6">
+          <div class="grid grid-cols-12 gap-4 mt-2">
+            <div class="col-span-6">
               <label class="text-sub text-500 mb-1">Name</label>
               <mix-input placeHolder="first name"></mix-input>
             </div>
-            <div class="col-md-6">
+            <div class="col-span-6">
               <label class="text-sub text-500 mb-1">Surname</label>
               <mix-input placeHolder="sur name"></mix-input>
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-span-12 mt-3">
               <label class="text-sub text-500 mb-1">Mobile Number</label>
               <mix-input placeHolder="enter phone number"></mix-input>
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-span-12 mt-3">
               <label class="text-sub text-500 mb-1">Email ID</label>
               <mix-input placeHolder="enter email id"></mix-input>
             </div>
-            <div class="col-md-12 mt-3">
+            <div class="col-span-12 mt-3">
               <label class="text-sub text-500 mb-1">Education</label>
               <mix-input placeHolder="education"></mix-input>
             </div>
-            <div class="col-md-6 mt-3">
+            <div class="col-span-6 mt-3">
               <label class="text-sub text-500 mb-1">Country</label>
               <mix-input placeHolder="country"
                          value> </mix-input>
             </div>
-            <div class="col-md-6 mt-3">
+            <div class="col-span-6 mt-3">
               <label class="text-sub text-500 mb-1">State/Region</label>
               <mix-input placeHolder="state"
                          value> </mix-input>
             </div>
           </div>
-          <div class="mt-auto d-flex gap-2 justify-content-end">
+          <div class="mt-auto flex gap-2 justify-content-end">
             <mix-button type="outline"
                         (click)="dialogRef.close()">
               Cancel
@@ -59,14 +59,14 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 p-4">
+      <div class="col-span-5 p-4">
         <div class="p-3 pt-5">
-          <div class="col-md-12">
+          <div class="col-span-12">
             <label class="text-sub text-500 mb-1">Experience in Designing</label>
             <mix-input placeHolder="experience"> </mix-input>
           </div>
           <br>
-          <div class="col-md-12">
+          <div class="col-span-12">
             <label class="text-sub text-500 mb-1">Additional Details</label>
             <mix-input placeHolder="additional details"> </mix-input>
           </div>

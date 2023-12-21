@@ -1,38 +1,33 @@
-<div class="card-01-wrap" [class.--new]="value.new" [formGroup]="form">
+<div class="card-01-wrap"
+     [class.--new]="value.new"
+     [formGroup]="form">
   <div class="card-01">
-    <div class="row">
-      <div class="col-4 d-flex align-items-center gap-2">
+    <div class="grid-cols-12 grid gap-4">
+      <div class="col-span-4 flex items-center gap-2">
         <ng-content></ng-content>
 
-        <mix-input
-          placeHolder="Display name"
-          formControlName="displayName"
-        ></mix-input>
+        <mix-input placeHolder="Display name"
+                   formControlName="displayName"></mix-input>
       </div>
 
-      <div class="col-4">
-        <mix-select
-          class="w-100"
-          [items]="allDatabaseIds"
-          [labelProcess]="labelProcess"
-          placeHolder="Choose database"
-          formControlName="childId"
-        ></mix-select>
+      <div class="col-span-4">
+        <mix-select class="w-full"
+                    [items]="allDatabaseIds"
+                    [labelProcess]="labelProcess"
+                    placeHolder="Choose database"
+                    formControlName="childId"></mix-select>
       </div>
 
-      <div class="col-4 align-items-center d-flex">
+      <div class="col-span-4 items-center flex">
         <span class="text-500"> One to Many </span>
       </div>
     </div>
 
     <div class="card-01__action">
-      <mix-button
-        type="danger"
-        [iconBtn]="true"
-        size="s"
-        (click)="delete.emit()"
-        ><span class="mix-icon"> delete </span></mix-button
-      >
+      <mix-button type="danger"
+                  [iconBtn]="true"
+                  (click)="delete.emit()"
+                  size="s"><span class="mix-icon"> delete </span></mix-button>
     </div>
   </div>
 </div>

@@ -13,8 +13,8 @@
     <div class="login__des">Let manage your site together!</div>
 
     <!--
-    <div class="mt-8 d-flex">
-      <form class="d-flex w-100 justify-content-center align-items-center"
+    <div class="mt-8 flex">
+      <form class="flex w-full justify-center items-center"
             [formGroup]="modeForm">
         <tui-radio-labeled [item]="appUrls[0]"
                            formControlName="url">
@@ -50,7 +50,7 @@
     <mix-error-alert class="mt-3 mb-4"
                      [error]="error"></mix-error-alert>
 
-    <mix-button class="mt-4 w-100"
+    <mix-button class="mt-4 w-full"
                 [loading]="state === 'Loading'"
                 [nativeType]="'submit'"
                 [size]="'m'">Login</mix-button>

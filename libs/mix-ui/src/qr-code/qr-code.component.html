@@ -1,9 +1,9 @@
 <div class="qrcodeImage">
   <qrcode #qrcode
-          class="d-block w-full"
+          class="block w-full"
           [allowEmptyString]="true"
           [ariaLabel]="'QR Code image with the following content...'"
-          [cssClass]="'d-flex justify-content-center'"
+          [cssClass]="'flex justify-center'"
           [elementType]="'canvas'"
           [errorCorrectionLevel]="'M'"
           [imageHeight]="30"
@@ -13,9 +13,9 @@
           [scale]="1"
           [width]="250"></qrcode>
 
-  <div class="d-flex gap-1">
+  <div class="flex gap-1">
     <tui-input *ngIf="control"
-               class="flex-grow-1"
+               class="grow"
                [formControl]="control"
                [tuiTextfieldCleaner]="true"
                [tuiTextfieldIconLeft]="searchIcon ? 'tuiIconSearchLarge' : undefined"

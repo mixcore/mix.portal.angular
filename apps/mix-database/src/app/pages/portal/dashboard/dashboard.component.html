@@ -2,23 +2,22 @@
   <div class="tui-island__category mt-6">
     {{ currentDay }}, {{ currentDate }}
   </div>
-  <h1 class="bolt-header-title-l">
+  <h2 class="text-3xl">
     {{ helloPrefix }}, {{ userName$ | async | titlecase }}
-  </h1>
+  </h2>
 
   <div class="text-l mt-5">Congratulations, your database status:</div>
   <div class="chart__line mt-4">Status</div>
 
   <div class="dashboard-page__chart-tile mt-3">
-    <div class="row chart__container">
+    <div class="flex flex-wrap gap-4">
       <div class="col-auto">
-        <div class="number-chart" [style.--chart-color]="colorMap['success']">
-          <div class="d-flex gap-1 align-items-end">
-            <div
-              class="number-chart__number"
-              [countUp]="(success$ | async) || 0"
-              [duration]="1000"
-            ></div>
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['success']">
+          <div class="flex gap-1 items-end">
+            <div class="number-chart__number"
+                 [countUp]="(success$ | async) || 0"
+                 [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
 
@@ -28,13 +27,12 @@
       </div>
 
       <div class="col-auto">
-        <div class="number-chart" [style.--chart-color]="colorMap['paid']">
-          <div class="d-flex gap-1 align-items-end">
-            <div
-              class="number-chart__number"
-              [countUp]="(paid$ | async) || 0"
-              [duration]="1000"
-            ></div>
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['paid']">
+          <div class="flex gap-1 items-end">
+            <div class="number-chart__number"
+                 [countUp]="(paid$ | async) || 0"
+                 [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
 
@@ -44,13 +42,12 @@
       </div>
 
       <div class="col-auto">
-        <div class="number-chart" [style.--chart-color]="colorMap['wait']">
-          <div class="d-flex gap-1 align-items-end">
-            <div
-              class="number-chart__number"
-              [countUp]="(waitToPay$ | async) || 0"
-              [duration]="1000"
-            ></div>
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['wait']">
+          <div class="flex gap-1 items-end">
+            <div class="number-chart__number"
+                 [countUp]="(waitToPay$ | async) || 0"
+                 [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
 
@@ -60,13 +57,12 @@
       </div>
 
       <div class="col-auto">
-        <div class="number-chart" [style.--chart-color]="colorMap['shipping']">
-          <div class="d-flex gap-1 align-items-end">
-            <div
-              class="number-chart__number"
-              [countUp]="(shipping$ | async) || 0"
-              [duration]="1000"
-            ></div>
+        <div class="number-chart"
+             [style.--chart-color]="colorMap['shipping']">
+          <div class="flex gap-1 items-end">
+            <div class="number-chart__number"
+                 [countUp]="(shipping$ | async) || 0"
+                 [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
 

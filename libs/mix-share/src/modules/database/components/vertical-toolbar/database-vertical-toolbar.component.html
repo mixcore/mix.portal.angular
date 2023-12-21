@@ -1,51 +1,45 @@
-<div class="w-100 h-100 d-flex flex-column align-items-center pt-2 gap-2">
-  <mix-button
-    title="Row height"
-    [size]="'s'"
-    [iconBtn]="true"
-    type="outline"
-    tpPlacement="bottom-start"
-    [tp]="sizeOtpTpl"
-    tpVariation="popper"
-  >
+<div class="w-full h-full flex flex-col items-center pt-2 gap-2">
+  <mix-button type="outline"
+              title="Row height"
+              [iconBtn]="true"
+              [size]="'s'"
+              [tp]="sizeOtpTpl"
+              tpPlacement="bottom-start"
+              tpVariation="popper">
     <span class="mix-icon">grid_view</span>
   </mix-button>
 
-  <ng-template #sizeOtpTpl let-hide>
+  <ng-template #sizeOtpTpl
+               let-hide>
     @for (option of sizeOptions; track option) {
-    <div class="mix-menu-item" (click)="rowHeightChange.emit(option.value)">
+    <div class="mix-menu-item"
+         (click)="rowHeightChange.emit(option.value)">
       {{ option.label }}
     </div>
     }
   </ng-template>
 
-  <mix-button
-    title="Share your table"
-    [size]="'s'"
-    [iconBtn]="true"
-    type="outline"
-    commingSoon="Share your database"
-  >
+  <mix-button type="outline"
+              title="Share your table"
+              [iconBtn]="true"
+              [size]="'s'"
+              commingSoon="Share your database">
     <span class="mix-icon">share</span>
   </mix-button>
 
-  <mix-button
-    title="Database logs"
-    [size]="'s'"
-    [iconBtn]="true"
-    type="outline"
-    commingSoon="Show database logs"
-  >
+  <mix-button type="outline"
+              title="Database logs"
+              [iconBtn]="true"
+              [size]="'s'"
+              commingSoon="Show database logs">
     <span class="mix-icon">history</span>
   </mix-button>
 
-  <mix-button
-    title="Add new table"
-    [size]="'s'"
-    [iconBtn]="true"
-    (click)="addNewDb.emit()"
-    type="outline"
-  >
+  <mix-button type="outline"
+              title="Add new table"
+              [iconBtn]="true"
+              [size]="'s'"
+              (click)="addNewDb.emit()">
     <span class="mix-icon">add</span>
   </mix-button>
 </div>

@@ -10,32 +10,14 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { BaseTextControl } from '@mixcore/ui/base-control';
+import { TippyDirective } from '@ngneat/helipopper';
 import { TuiDestroyService, tuiPure } from '@taiga-ui/cdk';
-import {
-  TuiDataListModule,
-  TuiDropdownModule,
-  TuiTextfieldControllerModule,
-} from '@taiga-ui/core';
-import {
-  TuiComboBoxModule,
-  TuiDataListWrapperModule,
-  TuiStringifyContentPipeModule,
-} from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-select',
   standalone: true,
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    TuiComboBoxModule,
-    TuiDataListWrapperModule,
-    TuiDataListModule,
-    TuiStringifyContentPipeModule,
-    TuiTextfieldControllerModule,
-    TuiDropdownModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, TippyDirective],
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
   providers: [TuiDestroyService],
@@ -70,5 +52,9 @@ export class MixSelectComponent
     this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       this.valueChange.emit(v);
     });
+  }
+
+  public selectItem(item: any) {
+    this.control.patchValue(item);
   }
 }

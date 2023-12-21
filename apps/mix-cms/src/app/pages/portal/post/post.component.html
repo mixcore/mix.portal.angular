@@ -39,7 +39,7 @@
           <tui-data-list>
             <button [disabled]="!selectedPosts.length"
                     tuiOption>
-              <span class="d-flex align-items-center">
+              <span class="flex items-center">
                 <span class="material-symbols-outlined"> sync </span>&nbsp; Sync
                 data(s)
               </span>
@@ -47,7 +47,7 @@
             <button [disabled]="!selectedPosts.length"
                     (click)="showBulkAssignMetadata = true"
                     tuiOption>
-              <span class="d-flex align-items-center">
+              <span class="flex items-center">
                 <span class="material-symbols-outlined">
                   sync_saved_locally </span>&nbsp; Assign Metadata</span>
             </button>
@@ -55,7 +55,7 @@
             <button [disabled]="!selectedPosts.length"
                     (click)="bulkDeleteClick()"
                     tuiOption>
-              <span class="d-flex align-items-center">
+              <span class="flex items-center">
                 <span class="material-symbols-outlined"> delete </span>&nbsp;
                 Delete(s)
               </span>
@@ -103,7 +103,7 @@
         </div>
       </tui-hosted-dropdown> -->
 
-      <mix-button class="ms-auto"
+      <mix-button class="mr-auto"
                   [iconBtn]="true"
                   [size]="'s'"
                   [type]="showFilter ? 'primary' : 'outline'"
@@ -143,7 +143,7 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <div class="d-flex align-items-center">
+            <div class="flex items-center">
               <img alt="preview"
                    [src]="data.image | mixImg : 'XS'"
                    style="object-fit: cover; height: 40px"
@@ -235,7 +235,7 @@
                     [items]="$any(orderByOptions)"
                     [labelProcess]="$any(stringify)"
                     formControlName="orderBy"></mix-select>
-        <span class="d-block mt-1 text-xs">*Hint: order by priority to drag & drop data</span>
+        <span class="block mt-1 text-xs">*Hint: order by priority to drag & drop data</span>
       </div>
 
       <div class="data-table-page__filter-container">
@@ -288,7 +288,7 @@
       Product name, press enter to add multiple
     </tui-input-tag>
 
-    <div class="d-flex justify-content-end mt-3">
+    <div class="flex justify-content-end mt-3">
       <mix-button type="outline"
                   [size]="'s'"
                   (click)="showQuickAddPost = false">Cancel</mix-button>

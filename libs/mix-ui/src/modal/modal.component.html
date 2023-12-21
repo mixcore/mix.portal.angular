@@ -12,13 +12,13 @@
   </section>
 
   <div class="mix-modal__footer">
-    <mix-button class="w-100"
+    <mix-button class="w-full"
                 (click)="onClick(true)">
       {{ context.buttons[0] }}
     </mix-button>
 
     <mix-button *ngIf="context.buttons[1]"
-                class="w-100"
+                class="w-full"
                 type="secondary"
                 (click)="onClick(false)">
       {{ context.buttons[1] }}

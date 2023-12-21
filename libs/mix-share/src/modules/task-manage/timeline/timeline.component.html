@@ -27,7 +27,7 @@
     <div class="timeline__main-view">
       <ngx-gantt #gantt
                  *ngIf="items"
-                 class="h-100 w-100"
+                 class="h-full w-full"
                  [draggable]="true"
                  [groups]="groups"
                  [items]="items"
@@ -45,7 +45,7 @@
                             width="300px">
             <ng-template #cell
                          let-item="item">
-              <div class="h-100 d-flex gap-1 align-items-center">
+              <div class="h-full flex gap-1 items-center">
                 <img alt="type"
                      [src]="TaskTypeIcon[item.task.type]">
 

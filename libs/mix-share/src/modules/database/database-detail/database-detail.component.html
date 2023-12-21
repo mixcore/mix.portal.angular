@@ -6,7 +6,7 @@
                          (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
   </div>
 
-  <div class="data-detail-page__content-container flex-grow-1">
+  <div class="data-detail-page__content-container grow">
     <tui-loader *ngIf="loadingState$ | async as state"
                 class="data-detail-page"
                 [formGroup]="form"
@@ -14,7 +14,7 @@
                 [showLoader]="state === 'Loading'">
       <div class="data-detail-page__toolbar">
         <div class="data-detail-page__toolbar-top">
-          <div class="d-flex align-items-center gap-1">
+          <div class="flex items-center gap-1">
             <mix-inline-input [placeHolder]="'Type your db name'"
                               formControlName="displayName"></mix-inline-input>
             <div class="text-s text-sub">inside</div>
@@ -69,7 +69,7 @@
         <!-- Main Content -->
         @defer(when activeTabIndex === 0) {
         <div class="data-detail-page__main-content"
-             [class.d-none]="activeTabIndex !== 0">
+             [class.hidden]="activeTabIndex !== 0">
           <mix-database-info [form]="form"></mix-database-info>
         </div>
         } @loading (after 100ms; minimum 1s) {
@@ -81,7 +81,7 @@
         <!-- Columns -->
         @defer(when activeTabIndex === 1) {
         <div class="data-detail-page__main-content"
-             [class.d-none]="activeTabIndex !== 1">
+             [class.hidden]="activeTabIndex !== 1">
           <mix-database-entity [columns]="data?.columns ?? []"
                                (columnsChange)="onColumnsChange($event)"></mix-database-entity>
         </div>
@@ -94,7 +94,7 @@
         <!-- Relationships -->
         @defer(when activeTabIndex === 2) {
         <div class="data-detail-page__main-content"
-             [class.d-none]="activeTabIndex !== 2">
+             [class.hidden]="activeTabIndex !== 2">
           <mix-database-relationship [relationships]="data?.relationships ?? []"
                                      (deleteRelation)="onDeleteRelationship($event)"
                                      (relationshipChanges)="onRelationshipChange($event)"></mix-database-relationship>
@@ -108,7 +108,7 @@
         <!-- Permissions -->
         @defer(when activeTabIndex === 3) {
         <div class="data-detail-page__main-content"
-             [class.d-none]="activeTabIndex !== 3">
+             [class.hidden]="activeTabIndex !== 3">
           <mix-database-permission [form]="form"></mix-database-permission>
         </div>
         } @loading (after 100ms; minimum 1s) {
@@ -120,7 +120,7 @@
         <!-- Migrations -->
         @defer(when activeTabIndex === 4) {
         <div class="data-detail-page__main-content"
-             [class.d-none]="activeTabIndex !== 4">
+             [class.hidden]="activeTabIndex !== 4">
           <mix-database-migration [dbSysName]="data?.systemName"></mix-database-migration>
         </div>
         } @loading (after 100ms; minimum 1s) {

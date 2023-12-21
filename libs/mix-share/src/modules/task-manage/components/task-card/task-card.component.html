@@ -9,7 +9,7 @@
       <task-date-display [task]="task"></task-date-display>
     </div>
 
-    <div class="d-flex">
+    <div class="flex">
       <span *ngIf="userInfo"
             class="me-2">
         <mix-user-avatar [userInfo]="userInfo"
@@ -20,7 +20,7 @@
         {{ task.type }}-{{ task.id }}
       </span>
 
-      <span class="ms-auto d-flex gap-2 align-items-center">
+      <span class="mr-auto flex gap-2 items-center">
         <img alt="type"
              [src]="TaskTypeIcon[task.type]">
 

@@ -15,7 +15,7 @@
           </div>
         </div>
 
-        <mix-button class="ms-auto"
+        <mix-button class="mr-auto"
                     type="outline"
                     (click)="goBack()"
                     size="s"><span class="material-symbols-outlined"> west </span>&nbsp; Back
@@ -48,8 +48,8 @@
             # General Information
           </div>
 
-          <div class="row mt-3">
-            <div class="col-12 col-md-8">
+          <div class="grid grid-cols-12 gap-4 mt-3">
+            <div class="col-span-8">
               <div class="content-label">Name:</div>
               <mix-input placeHolder="Input promotion name"
                          formControlName="title"></mix-input>
@@ -64,15 +64,15 @@
               <mix-text-area placeHolder="Input promotion short description"
                              formControlName="description"></mix-text-area>
 
-              <div class="row mt-2">
-                <div class="col-6">
+              <div class="grid grid-cols-12 gap-4 mt-2">
+                <div class="col-span-6">
                   <div class="content-label">Total Used:</div>
                   <mix-input-number [step]="1"
                                     placeHolder="Input total use"
                                     formControlName="totalUsed"></mix-input-number>
                 </div>
 
-                <div class="col-6">
+                <div class="col-span-6">
                   <div class="content-label">Max ALlowed:</div>
                   <mix-input-number [step]="5"
                                     placeHolder="Input max allowed use times"
@@ -81,7 +81,7 @@
               </div>
             </div>
 
-            <div class="col-12 col-md-4">
+            <div class="col-span-12 col-span-5">
               <div class="content-label">Code:</div>
               <mix-qr-code formControlName="code"></mix-qr-code>
             </div>
@@ -90,28 +90,28 @@
           <div class="data-detail-page__content-title mt-5 text-primary">
             # Promotion Discount Rules
           </div>
-          <div class="row mt-3">
-            <div class="col-12 col-md-8">
-              <div class="d-flex w-100 align-items-center">
+          <div class="grid grid-cols-12 gap-4 mt-3">
+            <div class="col-span-8">
+              <div class="flex w-full items-center">
                 <div class="content-label">Allow Discount Product:</div>
-                <div class="ms-3 flex-grow-1">
+                <div class="ms-3 grow">
                   <mix-toggle formControlName="allowDiscountProduct"></mix-toggle>
                 </div>
               </div>
 
-              <div class="d-flex w-100 align-items-center mt-3">
+              <div class="flex w-full items-center mt-3">
                 <div class="content-label"
                      style="width: 100px">Currency:</div>
-                <div class="ms-3 flex-grow-1">
+                <div class="ms-3 grow">
                   <mix-select [items]="$any(currencyOptions)"
                               formControlName="currency"></mix-select>
                 </div>
               </div>
 
-              <div class="d-flex w-100 align-items-center mt-3">
+              <div class="flex w-full items-center mt-3">
                 <div class="content-label"
                      style="width: 100px">Type:</div>
-                <div class="group ms-3 flex-grow-1"
+                <div class="group ms-3 grow"
                      [collapsed]="true"
                      tuiGroup>
                   <tui-radio-block [hideRadio]="true"
@@ -151,14 +151,14 @@
               </tui-notification>
 
               <div *ngIf="promotionForm.value.promotionType === 'Coupon'"
-                   class="w-100 mt-3">
+                   class="w-full mt-3">
                 <div class="content-label">Discount Percent (%):</div>
                 <mix-input-number placeHolder="Input discount percentage"
                                   formControlName="discountPercent"></mix-input-number>
               </div>
 
               <div *ngIf="promotionForm.value.promotionType === 'Voucher'"
-                   class="w-100 mt-3">
+                   class="w-full mt-3">
                 <div class="content-label">Discount Value (currency):</div>
                 <mix-input-number placeHolder="Input discount value"
                                   formControlName="discountValue"></mix-input-number>
@@ -170,7 +170,7 @@
                 </div>
               </div>
 
-              <div class="w-100 mt-3">
+              <div class="w-full mt-3">
                 <div class="content-label">Min Bill (currency):</div>
                 <mix-input-number placeHolder="Input min acceptable bill value"
                                   formControlName="minTotalBill"></mix-input-number>
@@ -182,7 +182,7 @@
                 </div>
               </div>
 
-              <div class="w-100 mt-3">
+              <div class="w-full mt-3">
                 <div class="content-label">Max Bill (currency):</div>
                 <mix-input-number placeHolder="Input Max acceptable bill value"
                                   formControlName="maxTotalBill"></mix-input-number>
@@ -195,7 +195,7 @@
               </div>
 
               <div *ngIf="promotionForm.value.promotionType !== 'Voucher'"
-                   class="w-100 mt-3">
+                   class="w-full mt-3">
                 <div class="content-label">Max Discount Value (currency):</div>
                 <mix-input-number placeHolder="Input max bill value"
                                   formControlName="maxDiscountValue"></mix-input-number>
@@ -213,12 +213,12 @@
             # Promotion Accessibility
           </div>
 
-          <div class="row mt-3">
-            <div class="col-12 col-md-8">
-              <div class="d-flex w-100 align-items-center mt-3">
+          <div class="grid grid-cols-12 gap-4 mt-3">
+            <div class="col-span-12 col-md-8">
+              <div class="flex w-full items-center mt-3">
                 <div class="content-label"
                      style="width: 100px;">Strict Mode: </div>
-                <div class="group ms-3 flex-grow-1"
+                <div class="group ms-3 grow"
                      [collapsed]="true"
                      tuiGroup>
                   <tui-radio-block [hideRadio]="true"

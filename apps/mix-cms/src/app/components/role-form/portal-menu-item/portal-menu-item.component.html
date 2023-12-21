@@ -1,6 +1,6 @@
-<div class="portal-menu-item d-flex gap-3 align-items-center"
+<div class="portal-menu-item flex gap-3 items-center"
      [formGroup]="form">
-  <span class="d-flex align-items-center gap-2">
+  <span class="flex items-center gap-2">
     Title:
     <editable (save)="save()">
       <ng-template viewMode>
@@ -16,7 +16,7 @@
     </editable>
   </span>
 
-  <span class="d-flex align-items-center gap-2">
+  <span class="flex items-center gap-2">
     Path:
     <editable (save)="save()">
       <ng-template viewMode>
@@ -35,7 +35,7 @@
     </editable>
   </span>
 
-  <span class="d-flex align-items-center gap-2">
+  <span class="flex items-center gap-2">
     Icon:
     <editable (save)="save()">
       <ng-template viewMode>
@@ -53,7 +53,7 @@
     </editable>
   </span>
 
-  <span class="d-flex align-items-center gap-2">
+  <span class="flex items-center gap-2">
     Priority:
     <editable (save)="save()">
       <ng-template viewMode>
@@ -71,7 +71,7 @@
     </editable>
   </span>
 
-  <div class="d-flex gap-1 align-items-center ms-3">
+  <div class="flex gap-1 items-center ms-3">
     <mix-button type="danger"
                 [iconBtn]="true"
                 (click)="deleteMenu()"
@@ -111,7 +111,7 @@
                formControlName="icon"
                placeHolder="Icon"></mix-input>
 
-    <div class="d-flex justify-content-end mt-3">
+    <div class="flex justify-content-end mt-3">
       <mix-button type="outline"
                   (click)="observer.complete()">Cancel</mix-button>
 

@@ -5,37 +5,38 @@
 
 <div class="card-list">
   <div class="card-list__header mt-3 mb-1">
-    <div class="row">
-      <div class="col-4 name">
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-4 name">
         <div>Name</div>
       </div>
 
-      <div class="col-4">
+      <div class="col-span-4">
         <div>Database</div>
       </div>
 
-      <div class="col-2">
+      <div class="col-span-2">
         <div>Relation type</div>
       </div>
     </div>
   </div>
 
-  <div cdkDropList [cdkDropListData]="relationships">
+  <div [cdkDropListData]="relationships"
+       cdkDropList>
     @for (item of relationships; track item.childId; let i = $index) {
-    <mix-database-relationship-record
-      cdkDrag
-      [cdkDragData]="item"
-      [value]="item"
-      (valueChange)="onValueChane($event, i)"
-      (delete)="onDelete(item, i)"
-    >
-      <span class="mix-icon cursor-grab" cdkDragHandle>drag_indicator</span>
+    <mix-database-relationship-record [cdkDragData]="item"
+                                      [value]="item"
+                                      (delete)="onDelete(item, i)"
+                                      (valueChange)="onValueChane($event, i)"
+                                      cdkDrag>
+      <span class="mix-icon cursor-grab"
+            cdkDragHandle>drag_indicator</span>
     </mix-database-relationship-record>
     }
   </div>
 
   <div class="mt-3">
-    <mix-button size="s" (click)="addNewRelation()">
+    <mix-button (click)="addNewRelation()"
+                size="s">
       <span class="mix-icon">add</span> Add new relation
     </mix-button>
   </div>

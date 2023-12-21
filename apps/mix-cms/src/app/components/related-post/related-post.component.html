@@ -1,6 +1,6 @@
 <div class="container mt-3">
-  <div class="row">
-    <div class="col-5">
+  <div class="grid grid-cols-12 gap-2">
+    <div class="col-span-5">
       <div class="text-600">Available {{ 'Post' | transloco }}</div>
       <progress *ngIf="showLoadingPost()"
                 class="progress"
@@ -38,11 +38,11 @@
       </div>
     </div>
 
-    <div class="col-1 d-flex align-items-center justify-content-center">
+    <div class="col-span-1 flex items-center justify-center">
       <span class="material-symbols-outlined text-xxl"> swap_horiz </span>
     </div>
 
-    <div class="col-6">
+    <div class="col-span-6">
       <div class="text-600">Linked {{ 'Post' | transloco }}</div>
       <progress *ngIf="showLoadingRelatedPost()"
                 class="progress"

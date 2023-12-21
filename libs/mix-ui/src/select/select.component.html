@@ -1,18 +1,59 @@
-<tui-combo-box
-  *ngIf="control"
-  [formControl]="control"
-  [stringify]="stringify"
-  [tuiTextfieldLabelOutside]="true"
-  [tuiTextfieldSize]="size"
-  [tuiDropdownLimitWidth]="'auto'"
-  [tuiDropdownAlign]="'left'"
->
+<!-- <tui-combo-box *ngIf="control"
+               [formControl]="control"
+               [stringify]="stringify"
+               [tuiDropdownAlign]="'left'"
+               [tuiDropdownLimitWidth]="'auto'"
+               [tuiTextfieldLabelOutside]="true"
+               [tuiTextfieldSize]="size">
   {{ placeHolder }}
   <tui-data-list *tuiDataList>
-    <button *ngFor="let item of items" [value]="item" tuiOption>
-      <div class="d-flex align-items-center gap-2">
+    <button *ngFor="let item of items"
+            [value]="item"
+            tuiOption>
+      <div class="flex items-center gap-2">
         <span>{{ stringify(item) }}</span>
       </div>
     </button>
   </tui-data-list>
-</tui-combo-box>
+</tui-combo-box> -->
+
+<!-- <select class="outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        id="countries">
+</select> -->
+
+<button *ngIf="control"
+        class="block w-full bg-gray-50 p-2.5 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary focus:ring-1 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 relative"
+        type="button"
+        aria-expanded="true"
+        [tp]="selectTpl"
+        [tpOffset]="[0, 5]"
+        [tpUseHostWidth]="true"
+        tpVariation="popper"
+        tpPlacement="bottom-start">
+  <span class="flex items-center">
+    <span class="block truncate">{{ control.value ? stringify(control.value) : placeHolder }}</span>
+  </span>
+
+  <span class="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+    <svg class="h-5 w-5 text-gray-400"
+         aria-hidden="true"
+         viewBox="0 0 20 20"
+         fill="currentColor">
+      <path fill-rule="evenodd"
+            d="M10 3a.75.75 0 01.55.24l3.25 3.5a.75.75 0 11-1.1 1.02L10 4.852 7.3 7.76a.75.75 0 01-1.1-1.02l3.25-3.5A.75.75 0 0110 3zm-3.76 9.2a.75.75 0 011.06.04l2.7 2.908 2.7-2.908a.75.75 0 111.1 1.02l-3.25 3.5a.75.75 0 01-1.1 0l-3.25-3.5a.75.75 0 01.04-1.06z"
+            clip-rule="evenodd"></path>
+    </svg>
+  </span>
+</button>
+
+<ng-template #selectTpl
+             let-hide>
+  <div class="select-popup-container">
+    @for (item of items; track item) {
+    <div class="mix-menu-item flex justify-between gap-5"
+         (click)="selectItem(item); hide()">
+      <div class="text-500">{{ stringify(item) }}</div>
+    </div>
+    }
+  </div>
+</ng-template>

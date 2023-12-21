@@ -1,4 +1,4 @@
-<div class="w-100"
+<div class="w-full"
      [formGroup]="filterForm">
   <div class="text-600 mt-2">Status</div>
   <mix-select class="mt-1"
@@ -23,5 +23,5 @@
               [items]="$any(orderByOptions)"
               [labelProcess]="$any(stringify)"
               formControlName="orderBy"></mix-select>
-  <span class="d-block mt-1 text-xs">*Hint: order by priority to manage order</span>
+  <span class="block mt-1 text-xs">*Hint: order by priority to manage order</span>
 </div>

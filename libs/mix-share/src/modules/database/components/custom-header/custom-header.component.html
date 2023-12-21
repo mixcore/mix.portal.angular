@@ -1,6 +1,8 @@
 <div role="presentation">
-  <div class="d-flex gap-2 align-items-center w-100">
-    <div class="mix-icon" [style.color]="color" [style.font-size]="iconSize">
+  <div class="flex gap-2 items-center w-full">
+    <div class="mix-icon"
+         [style.color]="color"
+         [style.font-size]="iconSize">
       {{ icon }}
     </div>
 
@@ -9,62 +11,57 @@
     </div>
 
     <ng-container *ngIf="params.columnType === 'value'">
-      <mix-button
-        class="ms-auto"
-        [size]="'xs'"
-        type="flat"
-        [tp]="content"
-        tpPlacement="bottom"
-        tpVariation="popper"
-      >
+      <mix-button class="mr-auto"
+                  type="flat"
+                  [size]="'xs'"
+                  [tp]="content"
+                  tpPlacement="bottom"
+                  tpVariation="popper">
         <span class="mix-icon">expand_more</span>
       </mix-button>
 
-      <ng-template #content let-hide>
-        <div class="mix-menu-item" (click)="pinColumn()">
+      <ng-template #content
+                   let-hide>
+        <div class="mix-menu-item"
+             (click)="pinColumn()">
           <span class="mix-icon">push_pin</span>&nbsp;
           {{ isPinned ? 'Unpin Column' : 'Pin Column' }}
         </div>
 
-        <div
-          class="mix-menu-item"
-          (click)="parentComp.onHideColumn(params['displayName'])"
-        >
+        <div class="mix-menu-item"
+             (click)="parentComp.onHideColumn(params['displayName'])">
           <span class="mix-icon">visibility_off</span>&nbsp; Hide Column
         </div>
 
-        <div class="mix-menu-item" (click)="onSortRequested('asc', $event)">
+        <div class="mix-menu-item"
+             (click)="onSortRequested('asc', $event)">
           <span class="mix-icon">reorder</span>&nbsp; Sort Ascending
         </div>
 
-        <div class="mix-menu-item" (click)="onSortRequested('desc', $event)">
+        <div class="mix-menu-item"
+             (click)="onSortRequested('desc', $event)">
           <span class="mix-icon">sort</span>&nbsp; Sort Descending
         </div>
       </ng-template>
     </ng-container>
   </div>
 
-  <div class="ag-header-cell-label" role="presentation" ref="eLabel">
-    <span class="ag-header-cell-text" ref="eText"></span>
-    <span
-      class="ag-header-icon ag-header-label-icon ag-sort-order"
-      aria-hidden="true"
-      ref="eSortOrder"
-    ></span>
-    <span
-      class="ag-header-icon ag-header-label-icon ag-sort-ascending-icon"
-      aria-hidden="true"
-      ref="eSortAsc"
-    ></span>
-    <span
-      class="ag-header-icon ag-header-label-icon ag-sort-descending-icon"
-      aria-hidden="true"
-      ref="eSortDesc"
-    ></span>
-    <span
-      class="ag-header-icon ag-header-label-icon ag-sort-none-icon"
-      aria-hidden="true"
-      ref="eSortNone"
-    ></span>
+  <div class="ag-header-cell-label"
+       role="presentation"
+       ref="eLabel">
+    <span class="ag-header-cell-text"
+          ref="eText"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-order"
+          aria-hidden="true"
+          ref="eSortOrder"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-ascending-icon"
+          aria-hidden="true"
+          ref="eSortAsc"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-descending-icon"
+          aria-hidden="true"
+          ref="eSortDesc"></span>
+    <span class="ag-header-icon ag-header-label-icon ag-sort-none-icon"
+          aria-hidden="true"
+          ref="eSortNone"></span>
   </div>
 </div>

@@ -1,29 +1,29 @@
 <div class="data-table-page__filter-container">
   <div class="text-bold">Your Store This Month</div>
 
-  <div class="d-flex justify-content-between align-items-center mt-3">
+  <div class="flex justify-content-between items-center mt-3">
     <div class="text-500 text-success">Success:</div>
     <div class="text-600 text-success">{{ (totalSuccess$ | async) || 0 }}</div>
   </div>
-  <div class="d-flex justify-content-between align-items-center mt-2">
+  <div class="flex justify-content-between items-center mt-2">
     <div class="text-500">Wait to pay:</div>
     <div class="text-600">{{ (totalWaitToPay$ | async) || 0 }}</div>
   </div>
-  <!-- <div class="d-flex justify-content-between align-items-center mt-2">
+  <!-- <div class="flex justify-content-between items-center mt-2">
     <div class="text-500">In ship:</div>
     <div class="text-600">{{ (totalShipping$ | async) || 0 }}</div>
   </div> -->
 
-  <div class="d-flex justify-content-between align-items-center mt-2">
+  <div class="flex justify-content-between items-center mt-2">
     <div class="text-500 ">Paid:</div>
     <div class="text-600">{{ (totalPaid$ | async) || 0 }}</div>
   </div>
 
-  <div class="d-flex justify-content-between align-items-center mt-3">
+  <div class="flex justify-content-between items-center mt-3">
     <div class="text-500 ">Canceled:</div>
     <div class="text-600 ">{{ (totalCanceled$ | async) || 0 }}</div>
   </div>
-  <div class="d-flex justify-content-between align-items-center mt-2">
+  <div class="flex justify-content-between items-center mt-2">
     <div class="text-500 ">Failed:</div>
     <div class="text-600 ">{{ totalFail() }}</div>
   </div>

@@ -31,13 +31,13 @@
       </div>
 
       <div class="p-3">
-        <div class="text-sub text-500 mb-1 d-flex gap-2 align-items-center">
+        <div class="text-sub text-500 mb-1 flex gap-2 items-center">
           <div>Available contexts:</div>
           <tui-loader *ngIf="vm.status === 'SilentLoading'"
                       [showLoader]="true"
                       [size]="'s'"></tui-loader>
         </div>
-        <div class="d-flex gap-3 flex-wrap">
+        <div class="flex gap-3 flex-wrap">
           @for (item of combineFilter(vm.data, filterForm.value); track item.id)
           {
           <div class="context-card {{ ProviderIconMap[item.databaseProvider] }}"
@@ -68,13 +68,13 @@
 <ng-template #dbSelect
              let-hide>
   <!-- <div class="mix-menu-item">
-    <div class="d-flex align-items-center gap-2">
+    <div class="flex items-center gap-2">
       <span class="mix-icon">edit</span> <span>Edit</span>
     </div>
   </div> -->
   <div class="mix-menu-item"
        (click)="hide(); onDelete()">
-    <div class="d-flex align-items-center gap-2">
+    <div class="flex items-center gap-2">
       <span class="mix-icon">delete</span>
       <span class="text-danger">Remove</span>
     </div>

@@ -11,12 +11,12 @@
   <tui-loader [overlay]="true"
               [showLoader]="showLoading()">
     <ng-container *ngFor="let metadataType of metadataAllowedType(); let first = first">
-      <div class="w-100 mb-4">
+      <div class="w-full mb-4">
         <div class="text-l text-bold">
           {{ metadataType | titlecase }}
         </div>
 
-        <mix-bulk-metadata class="d-block mt-2"
+        <mix-bulk-metadata class="block mt-2"
                            [type]="metadataType"
                            (selectedMetadataChange)="selectedMetadataChange($event)"></mix-bulk-metadata>
       </div>

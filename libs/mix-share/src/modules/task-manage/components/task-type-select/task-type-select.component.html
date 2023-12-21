@@ -1,21 +1,21 @@
-<tui-select
-  [formControl]="control"
-  [tuiTextfieldLabelOutside]="true"
-  [tuiTextfieldSize]="size"
-  [valueContent]="cardContent"
->
+<tui-select [formControl]="control"
+            [tuiTextfieldLabelOutside]="true"
+            [tuiTextfieldSize]="size"
+            [valueContent]="cardContent">
   <tui-data-list *tuiDataList>
-    <button *ngFor="let item of typeItems" [value]="item" tuiOption>
-      <ng-container
-        *ngTemplateOutlet="cardContent; context: { $implicit: item }"
-      ></ng-container>
+    <button *ngFor="let item of typeItems"
+            [value]="item"
+            tuiOption>
+      <ng-container *ngTemplateOutlet="cardContent; context: { $implicit: item }"></ng-container>
     </button>
   </tui-data-list>
 </tui-select>
 
-<ng-template #cardContent let-item>
-  <div class="d-flex align-items-center gap-2">
-    <img alt="type" [src]="Icon[item]" />
+<ng-template #cardContent
+             let-item>
+  <div class="flex items-center gap-2">
+    <img alt="type"
+         [src]="Icon[item]">
     <span class="card-name">{{ item }}</span>
   </div>
 </ng-template>

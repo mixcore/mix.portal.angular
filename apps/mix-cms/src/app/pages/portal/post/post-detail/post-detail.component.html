@@ -13,8 +13,8 @@
                [src]="post?.image || 'assets/images/image_placeholder.jpg'">
         </div>
 
-        <div class="d-flex flex-column w-100 h-100 ms-3">
-          <div class="d-flex flex-grow-1">
+        <div class="flex flex-col w-full h-full ms-3">
+          <div class="flex grow">
             <span class="data-detail-page__input-title"
                   [class.--empty]="!form.controls.title.value">
               <tui-input-inline *ngIf="editTitle; else text"
@@ -43,7 +43,7 @@
 
           <div class="data-detail-page__toolbar-separator"></div>
 
-          <div class="d-flex flex-grow-1 justify-content-between">
+          <div class="flex grow justify-between">
             <a tuiLink>Choose thumbnail</a>
 
             <tui-hosted-dropdown [(open)]="openChooseStatus"
@@ -116,7 +116,7 @@
 
     <div class="data-detail-page__content">
       <!-- Main Content -->
-      <div [ngClass]="{ 'd-none': activeTabIndex !== 0 }">
+      <div [ngClass]="{ 'hidden': activeTabIndex !== 0 }">
         <div class="container">
           <div class="data-detail-page__main-content">
             <div class="data-detail-page__content-title">
@@ -128,8 +128,8 @@
                            formControlName="excerpt"
                            size="l"></mix-text-area>
 
-            <div class="row mt-3">
-              <div class="col-12 col-md-6">
+            <div class="grid grid-cols-12 gap-4 mt-3">
+              <div class="col-span-6">
                 <p class="content-label">Priority</p>
                 <mix-input type="number"
                            placeHolder="Select"
@@ -137,7 +137,7 @@
                            size="l"></mix-input>
               </div>
 
-              <div class="col-12 col-md-6">
+              <div class="col-span-6">
                 <p class="content-label">Source URL</p>
                 <mix-input placeHolder="Your page source URL"
                            formControlName="source"
@@ -183,15 +183,15 @@
 
             <div class="data-detail-page__content-title mt-8">Gallery</div>
 
-            <div class="row mt-3"
+            <div class="grid grid-cols-12 gap-4 mt-3"
                  [formGroup]="form">
-              <div class="col-md-6 col-12">
+              <div class="col-span-6">
                 <span class="content-label">Thumbnail Image</span>
                 <mix-upload [requestFn]="uploadFileFn"
                             formControlName="image"></mix-upload>
               </div>
 
-              <div class="col-md-6 col-12">
+              <div class="col-span-6">
                 <span class="content-label">Feature Image</span>
                 <mix-upload [requestFn]="uploadFileFn"></mix-upload>
               </div>
@@ -241,7 +241,7 @@
       </div>
 
       <!-- Related Post -->
-      <div [ngClass]="{ 'd-none': activeTabIndex !== 4 }">
+      <div [ngClass]="{ 'hidden': activeTabIndex !== 4 }">
         <div class="container">
           <div *ngIf="showRelatedPost && post"
                class="data-detail-page__main-content">
@@ -255,7 +255,7 @@
       </div>
 
       <!-- Metadata -->
-      <div [ngClass]="{ 'd-none': activeTabIndex !== 3 }">
+      <div [ngClass]="{ 'hidden': activeTabIndex !== 3 }">
         <div class="container">
           <div *ngIf="showMetadata"
                class="data-detail-page__main-content">
@@ -271,7 +271,7 @@
               </div>
 
               <mix-metadata-association *ngIf="post"
-                                        class="d-block mt-2"
+                                        class="block mt-2"
                                         [postId]="post.id"
                                         [type]="metadataType"></mix-metadata-association>
             </ng-container>
@@ -284,11 +284,11 @@
       </div>
 
       <!-- Variants -->
-      <div [ngClass]="{ 'd-none': activeTabIndex !== 2 }">
+      <div [ngClass]="{ 'hidden': activeTabIndex !== 2 }">
         <div class="container-fluid">
           <div *ngIf="showVariant"
-               class="row">
-            <div class="col-md-9">
+               class="grid grid-cols-12 gap-2">
+            <div class="col-span-9">
               <div class="data-detail-page__main-content">
                 <ng-container *ngIf="postVariantDb() as postVariantDb">
                   <mix-dynamic-db-list *ngIf="model"
@@ -305,7 +305,7 @@
               </div>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-span-3">
               <mix-basic-mix-filter [value]="filterValue()"
                                     (valueChange)="filterValue.set($event)"></mix-basic-mix-filter>
             </div>

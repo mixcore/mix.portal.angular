@@ -3,19 +3,19 @@
   <div class="data-table-page__main-container">
     <mix-sub-toolbar [description]="'listing'"
                      [title]="'All Order' | transloco">
-      <div class="d-flex gap-2 align-items-center filter-header">
+      <div class="flex gap-2 items-center filter-header">
         <div>From:</div>
         <mix-date-picker class="mt-1"
                          formControlName="fromDate"></mix-date-picker>
       </div>
 
-      <div class="d-flex ms-3 gap-2 align-items-center filter-header">
+      <div class="flex ms-3 gap-2 items-center filter-header">
         <div>To:</div>
         <mix-date-picker class="mt-1"
                          formControlName="toDate"></mix-date-picker>
       </div>
 
-      <mix-button class="ms-auto"
+      <mix-button class="mr-auto"
                   [iconBtn]="true"
                   [size]="'s'"
                   [type]="showFilter ? 'primary' : 'outline'"
@@ -93,7 +93,7 @@
           <ng-template let-data
                        mixColumnCell>
             <div *ngIf="data.total"
-                 class="text-600 d-flex gap-2">
+                 class="text-600 flex gap-2">
               <div>
                 {{ data.total | currency : data.currency }}
               </div>

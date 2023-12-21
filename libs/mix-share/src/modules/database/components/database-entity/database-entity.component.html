@@ -9,37 +9,36 @@
 
 <div class="card-list">
   <div class="card-list__header mt-3 mb-1">
-    <div class="row">
-      <div class="col-4 name">
+    <div class="grid grid-cols-12 gap-4">
+      <div class="col-span-4 name">
         <div>Display name</div>
       </div>
 
-      <div class="col-4">
+      <div class="col-span-4">
         <div>System name</div>
       </div>
 
-      <div class="col-2">
+      <div class="col-span-2-2">
         <div>Data type</div>
       </div>
     </div>
   </div>
 
-  <div (cdkDropListDropped)="drop($event)" cdkDropList>
+  <div (cdkDropListDropped)="drop($event)"
+       cdkDropList>
     @for(entity of columns; track entity.id; let i = $index ) {
-    <mix-entity-form
-      [entity]="entity"
-      (deleteEntity)="removeEntity($event, i)"
-      (entityChange)="entityChange($event, i)"
-      cdkDrag
-    >
-      <span class="mix-icon cursor-grab" cdkDragHandle>drag_indicator</span>
+    <mix-entity-form [entity]="entity"
+                     (deleteEntity)="removeEntity($event, i)"
+                     (entityChange)="entityChange($event, i)"
+                     cdkDrag>
+      <span class="mix-icon cursor-grab"
+            cdkDragHandle>drag_indicator</span>
     </mix-entity-form>
     }
   </div>
 </div>
 
 <div class="mt-3">
-  <mix-button (click)="addNewEntity()" size="s"
-    ><span class="mix-icon">add</span> Add new columns</mix-button
-  >
+  <mix-button (click)="addNewEntity()"
+              size="s"><span class="mix-icon">add</span> Add new columns</mix-button>
 </div>

@@ -1,7 +1,7 @@
 <div class="mix-data-table">
-  <div class="mix-data-table__filter d-flex">
-    <div class="row w-100">
-      <div class="col-12 d-flex">
+  <div class="mix-data-table__filter flex">
+    <div class="grid grid-cols-12 gap-4 w-full">
+      <div class="col-span-12 flex">
         <tui-input class="search-input"
                    [formControl]="searchText"
                    [tuiTextfieldCleaner]="true"
@@ -30,7 +30,7 @@
 
   <div #mainTable
        class="mix-data-table__main-table">
-    <tui-loader class="h-100"
+    <tui-loader class="h-full"
                 [overlay]="true"
                 [showLoader]="(loading && !dataset.length) || forceLoading">
       <table *ngIf="displayColumns.length > 1"
@@ -45,14 +45,14 @@
                   [sorter]="null"
                   [sticky]="true"
                   tuiTh>
-                <div class="d-flex align-items-center">
+                <div class="flex items-center">
                   <input *ngIf="i === 0"
                          class="form-check-input me-4"
                          type="checkbox"
                          [ngModel]="isAllSelected"
                          (ngModelChange)="markAllChecked($event)">
 
-                  <div class="flex-grow-1">
+                  <div class="grow">
                     <ng-container *ngIf="col.tplHeader">
                       <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
                     </ng-container>
@@ -86,14 +86,14 @@
                   class="mix-data-table__td"
                   [ngStyle]="{ width: col.width, 'min-width': col.minWidth }"
                   tuiTd>
-                <div class="d-flex h-100 align-items-center">
+                <div class="flex h-full items-center">
                   <input *ngIf="i === 0"
                          class="form-check-input me-4"
                          type="checkbox"
                          [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
                          (ngModelChange)="onItemSelected($event, item)">
 
-                  <div class="flex-grow-1">
+                  <div class="grow">
                     <ng-container *ngIf="col.tplCell">
                       <ng-container *ngTemplateOutlet="
                           col.tplCell.template;
@@ -128,7 +128,7 @@
                        class="mix-menu-item"
                        (click)="hide(); v.action(item)"
                        tabindex="-1">
-                    <div class="d-flex align-items-center gap-3">
+                    <div class="flex items-center gap-3">
                       <span class="mix-icon"> {{ v.icon }}</span>
                       <div>
                         {{ v.label }}
@@ -159,7 +159,7 @@
   </div>
 
   <div class="mix-data-table__footer">
-    <div class="d-flex align-items-center gap-2">
+    <div class="flex items-center gap-2">
       <div>
         Total items: <strong>{{ pageInfo.total || '--' }}</strong>
       </div>
@@ -168,7 +168,7 @@
       </div>
 
       <div *ngIf="loading && !!dataset.length"
-           class="d-flex align-items-center">
+           class="flex items-center">
         <tui-loader [showLoader]="true"
                     [size]="'s'"></tui-loader>
         <div>Refreshing data</div>

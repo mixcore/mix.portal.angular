@@ -34,7 +34,7 @@
           "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
           "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
           "libs/share-styles/src/index.scss",
-          "apps/mix-cms/src/styles.scss"
+          "apps/mix-database/src/styles.scss"
         ],
         "scripts": [],
         "allowedCommonJsDependencies": [

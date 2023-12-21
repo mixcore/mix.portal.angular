@@ -13,10 +13,10 @@
 
 <ng-template #cardContent
              let-item>
-  <div class="d-flex align-items-center gap-2">
+  <div class="flex items-center gap-2">
     <span> {{ item }}</span>
     @if (infoDict[item]; as info) {
-    <span class="ms-auto {{ info.class }}">{{ info.text }}</span>
+    <span class="mr-auto {{ info.class }}">{{ info.text }}</span>
     }
   </div>
 </ng-template>

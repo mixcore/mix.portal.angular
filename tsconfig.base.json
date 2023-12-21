@@ -18,11 +18,11 @@
       "@mixcore/lib/auth": ["libs/mix-lib/src/auth/index.ts"],
       "@mixcore/lib/model": ["libs/mix-lib/src/model/index.ts"],
       "@mixcore/lib/swagger": ["libs/mix-lib/src/swagger/index.ts"],
-      "@mixcore/module/task": [
-        "libs/mix-share/src/modules/task-manage/index.ts"
-      ],
       "@mixcore/module/database": [
         "libs/mix-share/src/modules/database/index.ts"
+      ],
+      "@mixcore/module/task": [
+        "libs/mix-share/src/modules/task-manage/index.ts"
       ],
       "@mixcore/share/animation": ["libs/mix-share/src/animations/index.ts"],
       "@mixcore/share/api": ["libs/mix-share/src/api-service/index.ts"],
@@ -49,6 +49,7 @@
         "libs/mix-ui/src/date-time-picker/index.ts"
       ],
       "@mixcore/ui/editor": ["libs/mix-ui/src/rich-text-editor/index.ts"],
+      "@mixcore/ui/empty-content": ["libs/mix-ui/src/empty-content/index.ts"],
       "@mixcore/ui/error": ["libs/mix-ui/src/error-alert/index.ts"],
       "@mixcore/ui/filter": ["libs/mix-ui/src/dynamic-filter/index.ts"],
       "@mixcore/ui/icon-button": ["libs/mix-ui/src/icon-button/index.ts"],
@@ -65,8 +66,7 @@
       "@mixcore/ui/table": ["libs/mix-ui/src/data-table/index.ts"],
       "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],
       "@mixcore/ui/toggle": ["libs/mix-ui/src/toggle/index.ts"],
-      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"],
-      "@mixcore/ui/empty-content": ["libs/mix-ui/src/empty-content/index.ts"]
+      "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

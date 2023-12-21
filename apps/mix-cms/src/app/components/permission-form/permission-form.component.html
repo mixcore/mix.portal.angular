@@ -9,31 +9,31 @@
                placeHolder="Permission name"
                size="l"></mix-input>
 
-    <mix-button class="ms-auto"
+    <mix-button class="mr-auto"
                 (click)="saveData()">Save</mix-button>
   </mix-sub-toolbar>
 
   <div class="permission-form__body">
-    <div class="row">
-      <div class="col-2">
+    <div class="grid grid-cols-12 gap-2">
+      <div class="col-span-2">
         <span class="content-label">Type</span>
       </div>
 
-      <div class="col-8">
+      <div class="col-span-8">
         <mix-input formControlName="type"
                    placeHolder="Type of your permission"></mix-input>
       </div>
 
-      <div class="col-12 mt-3"></div>
+      <div class="col-span-12 mt-3"></div>
 
-      <div class="col-2">
+      <div class="col-span-2">
         <span class="content-label">Available Portal Menu</span>
       </div>
 
-      <div class="col-8">
+      <div class="col-span-8">
         <ng-container *ngIf="result() as result">
           <div class="permission-form__main-table">
-            <div class="w-full d-flex justify-content-start mt-2">
+            <div class="w-full flex justify-content-start mt-2">
               <tui-hosted-dropdown [(open)]="showAddMenu"
                                    [content]="addNewMenuItem"
                                    [tuiDropdownMaxHeight]="700">
@@ -101,7 +101,7 @@
                formControlName="icon"
                placeHolder="Icon"></mix-input>
 
-    <div class="d-flex justify-content-end mt-3">
+    <div class="flex justify-content-end mt-3">
       <mix-button type="outline"
                   (click)="showAddMenu = false">Cancel</mix-button>
 

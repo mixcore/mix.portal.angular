@@ -24,7 +24,7 @@
       </ng-container>
 
       <div *ngIf="filters.length >= 2"
-           class="d-flex align-items-center gap-2">
+           class="flex items-center gap-2">
         *Meet
 
         <mix-select class="filter-dialog__select"
@@ -41,7 +41,7 @@
                   (click)="add()">
         <span class="mix-icon">add</span> Add condition</mix-button>
 
-      <mix-button class="ms-auto"
+      <mix-button class="mr-auto"
                   type="outline"
                   (click)="ref.close()">Close</mix-button>
 

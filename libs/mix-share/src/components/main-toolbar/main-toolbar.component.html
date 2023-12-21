@@ -1,6 +1,6 @@
 <div class="main-toolbar">
   <div class="main-toolbar__logo">
-    <!-- <img class="w-100"
+    <!-- <img class="w-full"
          src="assets/images/mixcore-logo.svg"
          alt="logo"> -->
   </div>
@@ -14,7 +14,7 @@
 
   <ng-container *ngIf="auth.cultures$ | async as cultures">
     <div *ngIf="cultures?.length"
-         class="main-toolbar__culture ms-auto">
+         class="main-toolbar__culture ml-auto">
       <mix-button type="flat"
                   [iconBtn]="true"
                   [size]="'s'"

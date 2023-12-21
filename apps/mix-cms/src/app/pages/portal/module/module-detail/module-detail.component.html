@@ -38,7 +38,7 @@
     <div class="data-detail-page__content">
       <div class="container">
         <!-- Main Content -->
-        <div [ngClass]="{ 'd-none': activeTabIndex !== 0 }">
+        <div [ngClass]="{ 'hidden': activeTabIndex !== 0 }">
           <div class="data-detail-page__main-content">
             <div class="data-detail-page__content-title">
               General Information
@@ -53,8 +53,8 @@
               Source Information
             </div>
 
-            <div class="row">
-              <div class="col-6">
+            <div class="grid grid-cols-12 gap-2">
+              <div class="col-span-6">
                 <p class="content-label mt-3">Page Size</p>
                 <mix-input type="number"
                            placeHolder="Limit page size"
@@ -62,7 +62,7 @@
                            size="l"></mix-input>
               </div>
 
-              <div class="col-6">
+              <div class="col-span-6">
                 <p class="content-label mt-3">Priority</p>
                 <mix-input type="number"
                            placeHolder="Select"
@@ -70,14 +70,14 @@
                            size="l"></mix-input>
               </div>
 
-              <div class="col-12 mt-3">
+              <div class="col-span-12 mt-3">
                 <p class="content-label">Source URL</p>
                 <mix-input placeHolder="Your page source URL"
                            formControlName="source"
                            size="l"></mix-input>
               </div>
 
-              <div class="col-12 mt-3">
+              <div class="col-span-12 mt-3">
                 <p class="content-label">CSS</p>
                 <mix-input placeHolder="Your page CSS class"
                            formControlName="cssClass"
@@ -88,7 +88,7 @@
         </div>
 
         <!-- Setting Content -->
-        <div [ngClass]="{ 'd-none': activeTabIndex !== 1 }">
+        <div [ngClass]="{ 'hidden': activeTabIndex !== 1 }">
           <div class="data-detail-page__main-content">
             <div class="data-detail-page__content-title">Module Types</div>
           </div>

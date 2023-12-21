@@ -1,16 +1,7 @@
-<tui-input
-  [formControl]="control"
-  [tuiTextfieldCleaner]="closable"
-  [tuiTextfieldIconLeft]="searchIcon ? 'tuiIconSearchLarge' : undefined"
-  [tuiTextfieldLabelOutside]="!floatingLabel"
-  [tuiTextfieldSize]="size"
->
-  {{ placeHolder }}
-  <input
-    [autocomplete]="autocomplete"
-    [id]="id"
-    [name]="name"
-    [type]="type"
-    tuiTextfield
-  />
-</tui-input>
+<input class="btn-primary"
+       [autocomplete]="autocomplete"
+       [formControl]="control"
+       [id]="id"
+       [name]="name"
+       [placeholder]="placeHolder"
+       [type]="type">

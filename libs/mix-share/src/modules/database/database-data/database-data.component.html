@@ -1,127 +1,99 @@
-<div *ngIf="store.vm$ | async as vm" class="data-table-page">
+<div *ngIf="store.vm$ | async as vm"
+     class="data-table-page">
   <div class="data-table-page__action-bar">
-    <mix-vertical-toolbar
-      (rowHeightChange)="rowHeightChange($event)"
-      (addNewDb)="onSetupDb(true)"
-    ></mix-vertical-toolbar>
+    <mix-vertical-toolbar (addNewDb)="onSetupDb(true)"
+                          (rowHeightChange)="rowHeightChange($event)"></mix-vertical-toolbar>
   </div>
 
   <div class="data-table-page__main-container">
     <ng-container *ngIf="vm.status === 'Pending'">
-      <div
-        class="h-100 w-100 d-flex flex-column justify-content-center align-items-center"
-      >
-        <img
-          src="assets/images/empty-box.png"
-          alt="No data found"
-          width="150px"
-        />
+      <div class="h-full w-full flex flex-col justify-center items-center">
+        <img src="assets/images/empty-box.png"
+             alt="No data found"
+             width="150px">
 
         <div class="mt-2">Please choose a Database to view result</div>
-        <mix-database-inline-select
-          class="mt-1"
-          [selectedItemId]="vm.db?.id"
-          [selectedItemName]="dbSysName"
-          (selectedItemChange)="selectedTableChange($event)"
-        ></mix-database-inline-select>
+        <mix-database-inline-select class="mt-1"
+                                    [selectedItemId]="vm.db?.id"
+                                    [selectedItemName]="dbSysName"
+                                    (selectedItemChange)="selectedTableChange($event)"></mix-database-inline-select>
       </div>
     </ng-container>
 
     <ng-container *ngIf="vm.status !== 'Pending'">
-      <mix-sub-toolbar
-        [description]="'QUERY ON'"
-        [loading]="vm.status === 'Loading' && vm.db === undefined"
-        [title]="vm.db?.displayName || 'Db Data'"
-        [titleTpl]="titleTpl"
-      >
-        <ng-template #titleTpl
-          ><mix-database-inline-select
-            [selectedItemId]="vm.db?.id"
-            [selectedItemName]="dbSysName"
-            (selectedItemChange)="selectedTableChange($event)"
-          ></mix-database-inline-select
-        ></ng-template>
+      <mix-sub-toolbar [description]="'QUERY ON'"
+                       [loading]="vm.status === 'Loading' && vm.db === undefined"
+                       [title]="vm.db?.displayName || 'Db Data'"
+                       [titleTpl]="titleTpl">
+        <ng-template #titleTpl><mix-database-inline-select [selectedItemId]="vm.db?.id"
+                                      [selectedItemName]="dbSysName"
+                                      (selectedItemChange)="selectedTableChange($event)"></mix-database-inline-select></ng-template>
 
         <div class="toolbar-separator"></div>
-        <mix-action-collapse
-          [actionMaps]="actionMaps"
-          [actions]="actions"
-        ></mix-action-collapse>
+        <mix-action-collapse [actionMaps]="actionMaps"
+                             [actions]="actions"></mix-action-collapse>
       </mix-sub-toolbar>
 
-      <div class="data-table-page__body d-flex flex-column">
+      <div class="data-table-page__body flex flex-col">
         <div class="mix-dbs-table__toolbar">
-          <mix-input
-            class="search"
-            [formControl]="searchForm"
-            [searchIcon]="true"
-            placeHolder="Search on string fields"
-          ></mix-input>
+          <mix-input class="search"
+                     [formControl]="searchForm"
+                     [searchIcon]="true"
+                     placeHolder="Search on string fields"></mix-input>
 
-          <mix-button
-            type="secondary"
-            [tp]="tpl"
-            tpPlacement="bottom"
-            tpVariation="popper"
-            tuiButton
-            size="m"
-          >
+          <mix-button type="secondary"
+                      [tp]="tpl"
+                      tpPlacement="bottom"
+                      tpVariation="popper"
+                      tuiButton
+                      size="m">
             Columns ({{ displayColumns.length || 0 }}/{{
               columnNames.length || 0
             }})
           </mix-button>
 
-          <mix-dynamic-filter
-            [size]="'m'"
-            [columns]="vm.columns"
-            [filters]="vm.request.queries || []"
-            (filtersChange)="onFilterChange($event)"
-          ></mix-dynamic-filter>
+          <mix-dynamic-filter [columns]="vm.columns"
+                              [filters]="vm.request.queries || []"
+                              [size]="'m'"
+                              (filtersChange)="onFilterChange($event)"></mix-dynamic-filter>
 
-          <ng-template #tpl let-hide>
-            <tui-reorder
-              [(enabled)]="displayColumns"
-              [(items)]="columnNames"
-              (enabledChange)="displayColumns$.next(displayColumns)"
-              style="width: 300px"
-            ></tui-reorder>
+          <ng-template #tpl
+                       let-hide>
+            <tui-reorder [(enabled)]="displayColumns"
+                         [(items)]="columnNames"
+                         (enabledChange)="displayColumns$.next(displayColumns)"
+                         style="width: 300px"></tui-reorder>
           </ng-template>
 
-          <mix-button
-            *ngIf="vm.db"
-            class="ms-auto"
-            type="outline"
-            (click)="onPreviewData(vm.db)"
-            size="m"
-          >
-            <span class="mix-icon">code</span>&nbsp; API Document</mix-button
-          >
+          <mix-button *ngIf="vm.db"
+                      class="mr-auto"
+                      type="outline"
+                      (click)="onPreviewData(vm.db)"
+                      size="m">
+            <span class="mix-icon">code</span>&nbsp; API Document</mix-button>
         </div>
 
         <div class="mix-dbs-table__main-container">
-          <div
-            class="h-100 w-100"
-            [class.d-none]="vm.status === 'Loading' || vm.loadDataError"
-          >
-            <div *ngIf="vm.status === 'SilentLoading'" class="mix-progress-bar">
+          <div class="h-full w-full"
+               [class.hidden]="vm.status === 'Loading' || vm.loadDataError">
+            <div *ngIf="vm.status === 'SilentLoading'"
+                 class="mix-progress-bar">
               <div class="mix-progress-bar-value"></div>
             </div>
 
-            <ag-grid-angular
-              class="ag-theme-alpine"
-              [animateRows]="true"
-              [columnDefs]="columnDefs"
-              [components]="components"
-              [context]="context"
-              [defaultColDef]="defaultColDef"
-              [rowData]="rowData$ | async"
-              [rowDragManaged]="true"
-              [rowSelection]="'multiple'"
-              [suppressMoveWhenRowDragging]="true"
-              (gridReady)="onGridReady($event)"
-              (selectionChanged)="onSelectionChanged()"
-              style="width: 100%; height: 100%"
-            >
+            <ag-grid-angular class="ag-theme-alpine"
+                             [animateRows]="true"
+                             [columnDefs]="columnDefs"
+                             [components]="components"
+                             [context]="context"
+                             [defaultColDef]="defaultColDef"
+                             [rowData]="rowData$ | async"
+                             [rowDragManaged]="true"
+                             [rowSelection]="'multiple'"
+                             [suppressMoveWhenRowDragging]="true"
+                             (gridReady)="onGridReady($event)"
+                             (selectionChanged)="onSelectionChanged()"
+                             style="width: 100%; height: 100%">
             </ag-grid-angular>
           </div>
 
@@ -142,16 +114,14 @@
         </div>
 
         <div class="mix-dbs-table__footer">
-          <div class="d-flex gap-2">
+          <div class="flex gap-2">
             Total items: <strong>{{ vm.pageInfo.total || '--' }}</strong> &nbsp;
             Page size: <strong>{{ vm.pageInfo.pageSize || '0' }}</strong>
           </div>
 
-          <tui-pagination
-            *ngIf="!!vm.pageInfo?.totalPage"
-            [index]="vm.pageInfo.pageIndex"
-            [length]="vm.pageInfo.totalPage ?? 0"
-          ></tui-pagination>
+          <tui-pagination *ngIf="!!vm.pageInfo?.totalPage"
+                          [index]="vm.pageInfo.pageIndex"
+                          [length]="vm.pageInfo.totalPage ?? 0"></tui-pagination>
         </div>
       </div>
     </ng-container>

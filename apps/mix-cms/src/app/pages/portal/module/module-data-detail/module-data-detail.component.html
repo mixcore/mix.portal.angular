@@ -5,7 +5,7 @@
     <mix-sub-toolbar [description]="mode === 'create' ? 'creating' : 'updating'"
                      [title]="'Data'">
       <div class="toolbar-separator"></div>
-      <mix-button class="ms-auto"
+      <mix-button class="mr-auto"
                   type="outline"
                   (click)="goBack()"
                   size="s"><span class="material-symbols-outlined"> west </span>&nbsp; Back
@@ -19,8 +19,8 @@
 
     <div class="data-detail-page__content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-12 col-md-8">
+        <div class="grid grid-cols-12 gap-2">
+          <div class="col-span-8">
             <div class="data-detail-page__main-content">
               <div class="text-l">Fill all of the following columns</div>
 

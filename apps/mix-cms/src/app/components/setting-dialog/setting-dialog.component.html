@@ -1,58 +1,53 @@
 <div class="container">
-  <div class="w-100 d-flex justify-content-center">
+  <div class="w-full flex justify-center">
     <div class="settings-container">
       <div class="framer">
         <cmdk-command class="cmdk-command">
           <cmdk-list class="cmdk-list">
             <div class="cmdk-framer-items">
               <div class="cmdk-framer-left">
-                <cmdk-group class="cmdk-group" label="Settings">
-                  <button
-                    class="cmdk-item"
-                    cmdkItem
-                    (click)="selectedSetting = 'token'"
-                  >
+                <cmdk-group class="cmdk-group"
+                            label="Settings">
+                  <button class="cmdk-item"
+                          (click)="selectedSetting = 'token'"
+                          cmdkItem>
                     Settings Tokens
                   </button>
-                  <button
-                    class="cmdk-item"
-                    cmdkItem
-                    (click)="selectedSetting = 'application'"
-                  >
+                  <button class="cmdk-item"
+                          (click)="selectedSetting = 'application'"
+                          cmdkItem>
                     Settings Application
                   </button>
-                  <button
-                    class="cmdk-item"
-                    cmdkItem
-                    (click)="selectedSetting = 'account'"
-                  >
+                  <button class="cmdk-item"
+                          (click)="selectedSetting = 'account'"
+                          cmdkItem>
                     Settings Account
                   </button>
                 </cmdk-group>
               </div>
-              <hr class="cmdk-framer-separator" />
+              <hr class="cmdk-framer-separator">
               <div class="cmdk-framer-right">
-                <div class="w-100 h-100" *ngIf="selectedSetting === 'token'">
+                <div *ngIf="selectedSetting === 'token'"
+                     class="w-full h-full">
                   <div class="text-bold">Token Setting</div>
 
-                  <label class="d-block mt-2">Token A</label>
+                  <label class="block mt-2">Token A</label>
                   <mix-input></mix-input>
 
-                  <label class="d-block mt-2">Token B</label>
+                  <label class="block mt-2">Token B</label>
                   <mix-input></mix-input>
 
-                  <label class="d-block mt-2">Token C</label>
+                  <label class="block mt-2">Token C</label>
                   <mix-input></mix-input>
                 </div>
 
-                <div
-                  class="w-100 h-100"
-                  *ngIf="selectedSetting === 'application'"
-                >
+                <div *ngIf="selectedSetting === 'application'"
+                     class="w-full h-full">
                   <div>Application Setting</div>
                 </div>
 
-                <div class="w-100 h-100" *ngIf="selectedSetting === 'account'">
+                <div *ngIf="selectedSetting === 'account'"
+                     class="w-full h-full">
                   <div>Account Setting</div>
                 </div>
               </div>

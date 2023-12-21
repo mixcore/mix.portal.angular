@@ -1,13 +1,13 @@
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-10">
+  <div class="grid grid-cols-12 gap-4 justify-center">
+    <div class="col-span-12 col-span-10">
       <tui-loader class="config-form"
                   [overlay]="true"
                   [showLoader]="loadingState() === 'Loading'">
         <mix-sub-toolbar [description]="mode === 'create' ? 'creating' : 'updating'"
                          [title]="'Configurations'">
           <div class="toolbar-separator"></div>
-          <mix-button class="ms-auto"
+          <mix-button class="mr-auto"
                       type="outline"
                       (click)="location.back()"
                       size="s"><span class="material-symbols-outlined"> west </span>&nbsp; Back
@@ -21,29 +21,29 @@
         <div class="data-detail-page__content">
           <div class="container"
                [formGroup]="form">
-            <div class="row">
-              <div class="col-12">
+            <div class="grid grid-cols-12 gap-2">
+              <div class="col-span-12">
                 <div class="mt-3">
                   <label class="content-label">Display name</label>
                   <mix-input formControlName="displayName"></mix-input>
                 </div>
               </div>
 
-              <div class="col-12">
+              <div class="col-span-12">
                 <div class="mt-3">
                   <label class="content-label">System name</label>
                   <mix-input formControlName="systemName"></mix-input>
                 </div>
               </div>
 
-              <div class="col-12">
+              <div class="col-span-12">
                 <div class="mt-3">
                   <label class="content-label">Description</label>
                   <mix-input formControlName="description"></mix-input>
                 </div>
               </div>
 
-              <div class="col-6">
+              <div class="col-span-6">
                 <div class="mt-3">
                   <label class="content-label">Category</label>
                   <mix-select [items]="$any(categoryOptions)"
@@ -51,7 +51,7 @@
                 </div>
               </div>
 
-              <div class="col-6">
+              <div class="col-span-6">
                 <div class="mt-3">
                   <label class="content-label">Type</label>
                   <mix-select [items]="$any(dataTypeOptions)"
@@ -59,7 +59,7 @@
                 </div>
               </div>
 
-              <div class="col-12">
+              <div class="col-span-12">
                 <div class="mt-5">
                   <form [formGroup]="valueForm">
                     <formly-form *ngIf="fields.length"

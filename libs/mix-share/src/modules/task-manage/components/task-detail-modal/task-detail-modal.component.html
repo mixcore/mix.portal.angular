@@ -4,23 +4,23 @@
   <!-- Title -->
   <div class="task-detail__title"
        [style.--color]="TaskStatusColors[task.taskStatus]">
-    <div class="d-flex align-item-center gap-1">
+    <div class="flex align-item-center gap-1">
       <img [src]="TaskTypeIconDisplay[task.type]">
       <span>{{ task.type }}-{{ task.id }}</span>
     </div>
 
     <mix-inline-input formControlName="title"></mix-inline-input>
 
-    <div class="w-100 mt-1 mb-1 d-flex align-items-end">
+    <div class="w-full mt-1 mb-1 flex items-end">
       <!-- Reporter -->
-      <div class="d-flex gap-2 align-items-center">
+      <div class="flex gap-2 items-center">
         <div class="mt-2 mb-1 text-500 text-s text-sub">Reporter</div>
         <mix-user-select class="item"
                          [size]="'s'"
                          formControlName="reporter"></mix-user-select>
       </div>
 
-      <mix-button class="ms-auto"
+      <mix-button class="ml-auto"
                   [disabled]="disableSave()"
                   [loading]="(loadingState$ | async) === 'Loading'"
                   (click)="saveTask()"><span class="mix-icon">save</span>&nbsp; Save & Close</mix-button>
@@ -28,10 +28,10 @@
   </div>
 
   <div class="task-detail__main-core">
-    <div class="row">
-      <div class="col-auto">
+    <div class="grid grid-cols-12 gap-2">
+      <div class="col-span-3">
         <!-- Status -->
-        <div class="d-flex gap-2 align-items-center">
+        <div class="flex gap-2 items-center">
           <div class="text-s text-sub label">Status:</div>
           <mix-select class="item"
                       [items]="statusItems"
@@ -41,7 +41,7 @@
         </div>
 
         <!-- Priority -->
-        <div class="d-flex gap-2 align-items-center mt-2">
+        <div class="flex gap-2 items-center mt-2">
           <div class="text-s text-sub label">Priority:</div>
           <task-priority-select class="item"
                                 [size]="'s'"
@@ -49,9 +49,9 @@
         </div>
       </div>
 
-      <div class="col-auto">
+      <div class="col-span-3">
         <!-- Story point -->
-        <div class="d-flex gap-2 align-items-center">
+        <div class="flex gap-2 items-center">
           <div class="text-s text-sub label">Effort:</div>
           <story-point-select class="item"
                               [size]="'s'"
@@ -59,7 +59,7 @@
         </div>
       </div>
 
-      <div class="col-auto ms-auto">
+      <div class="col-start-11 col-span-2">
         <div class="text-xs text-sub">
           <div>
             Updated at
@@ -75,8 +75,8 @@
   </div>
 
   <div class="task-detail__body">
-    <div class="row">
-      <div class="col-12 col-md-8">
+    <div class="grid grid-cols-12 gap-2">
+      <div class="col-span-8">
         <div class="mb-1 text-500 text-s text-sub label">Description</div>
         <mix-rich-text-editor class="description"
                               [placeHolder]="'Make your description even better.'"
@@ -87,9 +87,9 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-4">
+      <div class="col-span-4">
         <div class="mb-1 text-500 text-s text-sub label">Add to task</div>
-        <div class="d-flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2">
           <start-end-date [task]="task"
                           (taskDateChange)="onDateChange($event)"></start-end-date>
         </div>

@@ -2,7 +2,6 @@
   height: 100%;
   padding: var(--container-padding);
   background-color: var(--background-color-primary);
-  // border-radius: var(--border-radius-default);
   border-top-left-radius: 12px;
   border-bottom-left-radius: 12px;
   border: 1px solid var(--border-color-default);
@@ -10,11 +9,6 @@
 }
 
 .chart {
-  &__container {
-    --bs-gutter-x: 16px;
-    --bs-gutter-y: 16px;
-  }
-
   &__line {
     width: 100%;
     display: flex;
