@@ -34,12 +34,6 @@ export class DashboardComponent extends BaseComponent {
   public helloPrefix = 'Hi';
   public currentDay = this.weekday[new Date().getDay()];
   public currentDate = new Date().toLocaleDateString();
-  // --bs-success: #198754;
-  // --bs-info: #0dcaf0;
-  // --bs-warning: #ffc107;
-  // --bs-danger: #dc3545;
-  // --bs-light: #f8f9fa;
-  // --bs-dark: #212529;
 
   public colorMap = {
     success: 'var(--bs-teal)',
@@ -60,21 +54,5 @@ export class DashboardComponent extends BaseComponent {
 
   public waitToPay$ = this.mixApi.eCommerce
     .countStatus(OrderStatus.WaitingPay)
-    .pipe(startWith(0));
-
-  public shipping$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.SHIPPING)
-    .pipe(startWith(0));
-
-  public canceled$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.CANCELED)
-    .pipe(startWith(0));
-
-  public onePay$ = this.mixApi.eCommerce
-    .countGateWay(PaymentGateway.OnePay)
-    .pipe(startWith(0));
-
-  public paypal$ = this.mixApi.eCommerce
-    .countGateWay(PaymentGateway.Paypal)
     .pipe(startWith(0));
 }

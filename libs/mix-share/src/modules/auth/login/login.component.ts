@@ -19,6 +19,7 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiRadioLabeledModule } from '@taiga-ui/kit';
 import { filter, switchMap, take } from 'rxjs';
+import { AUTH_ROUTE } from '../guard/token';
 
 export interface LoginInfo {
   userName: string;
@@ -48,6 +49,7 @@ export class LoginComponent extends BaseComponent {
   public authService = inject(AuthService);
   public router = inject(Router);
   public domainUrls$ = inject(DOMAIN_URL$);
+  public authConfig = inject(AUTH_ROUTE);
   public cryptoService = new CryptoService();
   public key = 'MixLoginInfo';
 
@@ -97,13 +99,13 @@ export class LoginComponent extends BaseComponent {
     );
 
     let redirectUrl = this.authService.redirectUrl;
-    // if (
-    //   !redirectUrl ||
-    //   redirectUrl === '/' ||
-    //   redirectUrl === '/' + CMS_ROUTES.auth.login.fullPath
-    // ) {
-    //   redirectUrl = CMS_ROUTES.portal.dashboard.fullPath;
-    // }
+    if (
+      !redirectUrl ||
+      redirectUrl === '/' ||
+      redirectUrl === '/' + this.authConfig.notAuthRoute
+    ) {
+      redirectUrl = this.authConfig.authRoute;
+    }
 
     this.router.navigate([redirectUrl]);
     this.authService.clearRedirectUrl();

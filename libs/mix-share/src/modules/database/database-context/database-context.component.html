@@ -40,7 +40,7 @@
         <div class="flex gap-3 flex-wrap">
           @for (item of combineFilter(vm.data, filterForm.value); track item.id)
           {
-          <div class="context-card {{ ProviderIconMap[item.databaseProvider] }}"
+          <div class="context-card {{ ProviderIconMap[item.databaseProvider] }} shadow-md"
                tuiCard
                tuiSurface>
             <h4 tuiTitle>

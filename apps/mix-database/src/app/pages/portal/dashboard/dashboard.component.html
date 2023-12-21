@@ -12,7 +12,7 @@
   <div class="dashboard-page__chart-tile mt-3">
     <div class="flex flex-wrap gap-4">
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['success']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
@@ -22,12 +22,12 @@
           </div>
 
           <div class="number-chart__title">Database(s)</div>
-          <div class="number-chart__sub-title">Currently</div>
+          <div class="number-chart__sub-title">In system</div>
         </div>
       </div>
 
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['paid']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
@@ -36,13 +36,13 @@
             <div class="text-s text-sub">item(s)</div>
           </div>
 
-          <div class="number-chart__title">Done</div>
-          <div class="number-chart__sub-title">This month</div>
+          <div class="number-chart__title">Context(s)</div>
+          <div class="number-chart__sub-title">In system</div>
         </div>
       </div>
 
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['wait']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
@@ -51,22 +51,22 @@
             <div class="text-s text-sub">item(s)</div>
           </div>
 
-          <div class="number-chart__title">Bug(s)</div>
+          <div class="number-chart__title">Error queries</div>
           <div class="number-chart__sub-title">This month</div>
         </div>
       </div>
 
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['shipping']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(shipping$ | async) || 0"
+                 [countUp]="100"
                  [duration]="1000"></div>
-            <div class="text-s text-sub">item(s)</div>
+            <div class="text-s text-sub">%</div>
           </div>
 
-          <div class="number-chart__title">In Testing</div>
+          <div class="number-chart__title">Health</div>
           <div class="number-chart__sub-title">This month</div>
         </div>
       </div>

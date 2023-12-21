@@ -31,7 +31,6 @@ import { DbUiStore } from './store/db-ui.store';
     height: unset !important;
     padding: 4px 14px !important;
     background: var(--background-color-primary);
-    border: 1px solid var(--tui-base-04);
     border-radius: 8px;
   }
 `,
