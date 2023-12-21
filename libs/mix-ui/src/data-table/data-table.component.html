@@ -33,128 +33,100 @@
     <tui-loader class="h-full"
                 [overlay]="true"
                 [showLoader]="(loading && !dataset.length) || forceLoading">
-      <table *ngIf="displayColumns.length > 1"
-             [columns]="tableColumns"
-             [@fadeInRightOnEnter]
-             tuiTable>
-        <thead>
-          <tr tuiThGroup>
-            <ng-container *ngFor="let col of displayColumns; let i = index">
-              <th *tuiHead="col.key"
-                  [resizable]="true"
-                  [sorter]="null"
-                  [sticky]="true"
-                  tuiTh>
-                <div class="flex items-center">
-                  <input *ngIf="i === 0"
-                         class="form-check-input me-4"
-                         type="checkbox"
-                         [ngModel]="isAllSelected"
-                         (ngModelChange)="markAllChecked($event)">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <ng-container *ngFor="let col of displayColumns; let i = index">
+                <th class="px-6 py-3">
+                  <div class="flex items-center">
+                    <input *ngIf="i === 0"
+                           class="form-check-input me-4"
+                           type="checkbox"
+                           [ngModel]="isAllSelected"
+                           (ngModelChange)="markAllChecked($event)">
 
-                  <div class="grow">
-                    <ng-container *ngIf="col.tplHeader">
-                      <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
-                    </ng-container>
+                    <div class="grow">
+                      <ng-container *ngIf="col.tplHeader">
+                        <ng-container *ngTemplateOutlet="col.tplHeader.template"></ng-container>
+                      </ng-container>
 
-                    <ng-container *ngIf="!col.tplHeader && col.showHeader">
-                      <div>
-                        <div>{{ col.header }}</div>
-                      </div>
-                    </ng-container>
+                      <ng-container *ngIf="!col.tplHeader && col.showHeader">
+                        <div>
+                          <div>{{ col.header }}</div>
+                        </div>
+                      </ng-container>
+                    </div>
                   </div>
-                </div>
-              </th>
-            </ng-container>
+                </th>
+              </ng-container>
 
-            <th *tuiHead="'MENU'"
-                [sorter]="null"
-                [sticky]="true"
-                tuiTh></th>
-          </tr>
-        </thead>
+              <th class="px-6 py-3">Menu</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dataset; trackBy: dataTrackBy"
+                class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-60"
+                [ngClass]="{
+            '--selected': !!currentSelectedItemDic[$any(item)[uniqueKey]]
+          }">
+              <ng-container *ngFor="let col of displayColumns; let i = index">
+                <td class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    [ngStyle]="{ width: col.width, 'min-width': col.minWidth }">
+                  <div class="flex h-full items-center">
+                    <input *ngIf="i === 0"
+                           class="form-check-input me-4"
+                           type="checkbox"
+                           [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
+                           (ngModelChange)="onItemSelected($event, item)">
 
-        <tbody [data]="dataset"
-               tuiTbody>
-          <tr *ngFor="let item of dataset; trackBy: dataTrackBy"
-              [ngClass]="{
-              '--selected': !!currentSelectedItemDic[$any(item)[uniqueKey]]
-            }"
-              tuiTr>
-            <ng-container *ngFor="let col of displayColumns; let i = index">
-              <td *tuiCell="col.key"
-                  class="mix-data-table__td"
-                  [ngStyle]="{ width: col.width, 'min-width': col.minWidth }"
-                  tuiTd>
-                <div class="flex h-full items-center">
-                  <input *ngIf="i === 0"
-                         class="form-check-input me-4"
-                         type="checkbox"
-                         [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
-                         (ngModelChange)="onItemSelected($event, item)">
+                    <div class="grow">
+                      <ng-container *ngIf="col.tplCell">
+                        <ng-container *ngTemplateOutlet="
+                        col.tplCell.template;
+                        context: { $implicit: item }
+                      "></ng-container>
+                      </ng-container>
 
-                  <div class="grow">
-                    <ng-container *ngIf="col.tplCell">
-                      <ng-container *ngTemplateOutlet="
-                          col.tplCell.template;
-                          context: { $implicit: item }
-                        "></ng-container>
-                    </ng-container>
-
-                    <ng-container *ngIf="!col.tplCell">
-                      {{ $any(item)[col.key] ?? '--' }}
-                    </ng-container>
+                      <ng-container *ngIf="!col.tplCell">
+                        {{ $any(item)[col.key] ?? '--' }}
+                      </ng-container>
+                    </div>
                   </div>
-                </div>
-              </td>
-            </ng-container>
+                </td>
+              </ng-container>
 
-            <td *tuiCell="'MENU'"
-                class="mix-data-table__td"
-                tuiTd>
-              <mix-button type="outline"
-                          [iconBtn]="true"
-                          [tp]="tpl"
-                          tpPlacement="bottom-end"
-                          tpVariation="popper"
-                          size="s">
-                <span class="mix-icon"> more_horiz </span></mix-button>
+              <td class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                <mix-button type="outline"
+                            [iconBtn]="true"
+                            [tp]="tpl"
+                            tpPlacement="bottom-end"
+                            tpVariation="popper"
+                            size="s">
+                  <span class="mix-icon"> more_horiz </span></mix-button>
 
-              <ng-template #tpl
-                           let-hide>
-                <div class="py-1"
-                     role="none">
-                  <div *ngFor="let v of contextMenus"
-                       class="mix-menu-item"
-                       (click)="hide(); v.action(item)"
-                       tabindex="-1">
-                    <div class="flex items-center gap-3">
-                      <span class="mix-icon"> {{ v.icon }}</span>
-                      <div>
-                        {{ v.label }}
+                <ng-template #tpl
+                             let-hide>
+                  <div class="py-1"
+                       role="none">
+                    <div *ngFor="let v of contextMenus"
+                         class="mix-menu-item"
+                         (click)="hide(); v.action(item)"
+                         tabindex="-1">
+                      <div class="flex items-center gap-3">
+                        <span class="mix-icon"> {{ v.icon }}</span>
+                        <div>
+                          {{ v.label }}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </ng-template>
-            </td>
-          </tr>
-        </tbody>
-
-        <tbody *ngIf="dataset && !dataset.length">
-          <tr class="mix-data-table__paging">
-            <td class="mix-data-table__empty-data"
-                [colSpan]="columns.length">
-              <div class="mix-data-table__empty-content">
-                <img src="assets/images/empty-box.png"
-                     alt="No data found"
-                     width="150px">
-                <p class="mt-2">No data found</p>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+                </ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </tui-loader>
   </div>
 

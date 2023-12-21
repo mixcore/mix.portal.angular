@@ -87,12 +87,12 @@
              let-ref>
   <div class="mix-dialog --default-padding">
     <div class="mix-dialog__header">Choose data type</div>
-    <div class="data-type-picker-dialog-container">
+    <div class="mix-dialog__content">
       <ng-container *ngFor="let group of dataTypeGroups">
-        <div class="grid grid-cols-12 gap-4 mb-3"
+        <div class="grid grid-cols-12 gap-2 mb-1"
              [formGroup]="form">
           <div class="col-span-12">
-            <div class="text-l mb-2 text-500">{{ group.label }}</div>
+            <div class="text-l text-500">{{ group.label }}</div>
           </div>
           <div *ngFor="let dataType of group.types"
                class="col-span-6">

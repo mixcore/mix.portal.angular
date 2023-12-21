@@ -9,24 +9,18 @@ mix-entity-form {
   }
 }
 
-.data-type-picker-dialog-container {
+.data-type-card {
   width: 100%;
-  overflow: auto;
-  overflow-x: hidden;
 
-  .data-type-card {
-    width: 100%;
+  .inner {
+    margin: 1rem 0;
+    white-space: normal;
+  }
 
-    .inner {
-      margin: 1rem 0;
-      white-space: normal;
-    }
-
-    .header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      line-height: 1;
-    }
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    line-height: 1;
   }
 }
