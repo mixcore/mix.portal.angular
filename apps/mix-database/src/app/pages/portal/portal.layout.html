@@ -1,5 +1,5 @@
 <div class="mix-main-layout">
-  <div class="mix-main-layout__flex --column">
+  <div class="w-full h-full flex grow relative flex-col overflow-hidden">
     <div
       class="mix-main-layout__progress"
       [ngClass]="{'hidden': !showProgress()}"
@@ -14,7 +14,7 @@
     </div>
     <mix-main-toolbar></mix-main-toolbar>
 
-    <div class="mix-main-layout__flex --row">
+    <div class="w-full h-full flex grow relative overflow-hidden">
       <div class="mix-main-layout__side-menu">
         <mix-main-side-menu></mix-main-side-menu>
       </div>

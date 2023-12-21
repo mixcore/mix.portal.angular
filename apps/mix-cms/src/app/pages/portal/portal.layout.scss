@@ -1,9 +1,7 @@
 .mix-main-layout {
   --work-space-height: calc(100% - var(--main-layout-gap));
-
   display: flex;
   height: 100%;
-  background: rgb(255 255 255 / 25%);
 
   &__progress {
     top: 0;
@@ -15,39 +13,16 @@
     height: var(--work-space-height);
   }
 
-  &__flex {
-    flex-grow: 1;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-
-    &.--column {
-      flex-direction: column;
-    }
-
-    &.--row {
-      flex-direction: row;
-    }
-  }
-
   &__workspace {
-    height: var(--work-space-height);
+    height: 100%;
     flex-grow: 1;
-    margin: var(--main-layout-gap);
-    margin-top: 0px;
-    margin-right: unset;
+
     z-index: 1;
     overflow: auto;
   }
 
   &__explorer {
-    height: var(--work-space-height);
-    border-radius: 12px;
-    margin: var(--main-layout-gap);
-    margin-left: unset;
-    margin-top: unset;
+    height: 100%;
   }
 
   &__main-workspace {
