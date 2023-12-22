@@ -31,14 +31,16 @@
 
     <mix-form-error formControlName="password"></mix-form-error>
 
-    <mix-error-alert class="mt-2 mb-2"
-                     [error]="error"></mix-error-alert>
-
-    <div class="d-flex justify-between mb-5">
+    <div class="d-flex justify-between mt-3 mb-5">
       <mix-checkbox id="rememberMe"
                     [label]="'Remember me'"
                     formControlName="rememberMe"></mix-checkbox>
     </div>
+
+    <mix-error-alert *ngIf="error"
+                     class="mt-2 mb-2"
+                     [error]="error"></mix-error-alert>
+
 
     <mix-button class="mt-4 w-full"
                 [loading]="state === 'Loading'"

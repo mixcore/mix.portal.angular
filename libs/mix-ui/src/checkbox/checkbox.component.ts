@@ -42,7 +42,6 @@ export class MixCheckboxComponent
   private _checked!: boolean;
 
   ngOnInit() {
-    console.log(123);
     this.control.valueChanges
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((v) => this.checkedChange.emit(v));
