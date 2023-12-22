@@ -1,5 +1,5 @@
 {
-  "name": "@mixcore/share/auth",
+  "name": "@mixcore/module/auth",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
   "sourceRoot": "libs/mix-share/src/modules/auth",

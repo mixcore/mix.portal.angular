@@ -1,16 +1,16 @@
 {
-  "name": "@mixcore/share/database",
+  "name": "@mixcore/module/database",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "projectType": "library",
-  "sourceRoot": "libs/mix-share/src/database",
+  "sourceRoot": "libs/mix-share/src/modules/database",
   "targets": {
     "lint": {
       "executor": "@nx/eslint:lint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": [
-          "libs/mix-share/src/database/**/*.ts",
-          "libs/mix-share/src/database/**/*.html"
+          "libs/mix-share/src/modules/database/**/*.ts",
+          "libs/mix-share/src/modules/database/**/*.html"
         ]
       }
     }
