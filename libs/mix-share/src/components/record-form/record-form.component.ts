@@ -12,9 +12,11 @@ import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
 import { Utils } from '@mixcore/share/utils';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { MixDefaultSkeletonComponent } from '@mixcore/ui/skeleton';
 import { DialogRef } from '@ngneat/dialog';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { TuiFileLike } from '@taiga-ui/kit';
+import { delay, of } from 'rxjs';
 
 @Component({
   selector: 'mix-record-form',
@@ -24,6 +26,7 @@ import { TuiFileLike } from '@taiga-ui/kit';
     ReactiveFormsModule,
     FormlyModule,
     MixButtonComponent,
+    MixDefaultSkeletonComponent,
   ],
   templateUrl: './record-form.component.html',
   styleUrls: ['./record-form.component.scss'],
@@ -31,7 +34,7 @@ import { TuiFileLike } from '@taiga-ui/kit';
   encapsulation: ViewEncapsulation.None,
 })
 export class RecordFormComponent extends BaseComponent implements OnInit {
-  public static windowClass = 'mix-record-form-dialog';
+  public static windowClass = 'mix-record-form-dialog top-align-modal';
   public static minWidth = '800px';
   public static maxWidth = '95vw';
 
@@ -62,19 +65,23 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
   public mode: 'create' | 'update' = 'create';
 
   ngOnInit() {
-    const db = this.ref.data.mixDatabase;
-    const data = this.ref.data.data ?? {};
-    this.mode = data ? 'update' : 'create';
+    of(this.ref.data.mixDatabase)
+      .pipe(delay(300), this.observerLoadingStateSignal())
+      .subscribe(() => {
+        const db = this.ref.data.mixDatabase;
+        const data = this.ref.data.data ?? {};
+        this.mode = data ? 'update' : 'create';
 
-    const { model, fields } = Utils.BuildDynamicFormField(
-      db.columns,
-      data,
-      this.uploadFileFn,
-      this.deleteFileFn
-    );
+        const { model, fields } = Utils.BuildDynamicFormField(
+          db.columns,
+          data,
+          this.uploadFileFn,
+          this.deleteFileFn
+        );
 
-    this.fields = fields;
-    this.modelData = model;
+        this.fields = fields;
+        this.modelData = model;
+      });
   }
 
   public onSaveData() {

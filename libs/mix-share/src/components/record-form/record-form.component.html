@@ -1,4 +1,9 @@
 <div class="mix-dialog --default-padding">
+  @if (loadingState() === 'Loading') {
+  <div class="p-4">
+    <default-skeleton></default-skeleton>
+  </div>
+  } @else {
   <div class="mix-dialog__header">
     {{ mode === 'create' ? 'Create' : 'Update' }} record from
     {{ ref.data.mixDatabase.displayName }}
@@ -26,4 +31,7 @@
       Save
     </mix-button>
   </div>
+  }
+
+
 </div>
