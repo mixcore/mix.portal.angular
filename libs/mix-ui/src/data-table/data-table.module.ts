@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TippyDirective } from '@ngneat/helipopper';
-import { TuiTableModule } from '@taiga-ui/addon-table';
 import {
   TuiDataListModule,
   TuiLoaderModule,
@@ -16,6 +15,7 @@ import {
   TuiPaginationModule,
 } from '@taiga-ui/kit';
 import { MixButtonComponent } from '../button';
+import { MixCheckboxComponent } from '../checkbox';
 import { DataTableComponent } from './data-table.component';
 import { TableCellDirective } from './directives/cell.directive';
 import { TableColumnDirective } from './directives/column.directive';
@@ -29,7 +29,6 @@ import { TableHeaderDirective } from './directives/header.directive';
     TableColumnDirective,
   ],
   imports: [
-    TuiTableModule,
     CommonModule,
     TuiLoaderModule,
     TuiInputModule,
@@ -43,6 +42,7 @@ import { TableHeaderDirective } from './directives/header.directive';
     TuiDataListWrapperModule,
     TuiMultiSelectModule,
     TippyDirective,
+    MixCheckboxComponent,
   ],
   exports: [
     DataTableComponent,

@@ -1,4 +1,94 @@
 :host {
   display: inline-block;
+}
+
+.form-checkbox {
+  --tw-thumb: url("data:image/svg+xml;charset=utf-8,%3Csvg viewBox='0 0 16 16' fill='%23fff' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12.207 4.793a1 1 0 0 1 0 1.414l-5 5a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L6.5 9.086l4.293-4.293a1 1 0 0 1 1.414 0z'/%3E%3C/svg%3E");
+}
+
+.form-checkbox:before {
+  content: var(--tw-content);
+  transform-origin: bottom;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.form-checkbox {
+  border-width: 1px;
+  display: inline-block;
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  position: relative;
+}
+
+.form-checkbox:before {
+  --tw-scale-x: 0;
+  --tw-scale-y: 0;
+  height: 100%;
+  inset: 0;
+  position: absolute;
   width: 100%;
+}
+
+.form-checkbox:before,
+.form-checkbox:checked:before {
+  content: var(--tw-content);
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+    rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+    scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.form-checkbox:checked:before {
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+}
+
+.form-checkbox:hover {
+  --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color),
+    0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.form-checkbox.is-basic {
+  background-origin: border-box;
+}
+
+.form-checkbox.is-basic:before {
+  background-image: var(--tw-thumb);
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  content: var(--tw-content);
+}
+
+.form-checkbox,
+.form-checkbox:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.form-checkbox {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.form-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  overflow: hidden;
+  position: relative;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.form-checkbox,
+.form-checkbox:before {
+  transition-duration: 0.1s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }

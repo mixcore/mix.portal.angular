@@ -40,11 +40,10 @@
               <ng-container *ngFor="let col of displayColumns; let i = index">
                 <th class="px-6 py-3">
                   <div class="flex items-center">
-                    <input *ngIf="i === 0"
-                           class="form-check-input me-4"
-                           type="checkbox"
-                           [ngModel]="isAllSelected"
-                           (ngModelChange)="markAllChecked($event)">
+                    <mix-checkbox *ngIf="i === 0"
+                                  class="me-4"
+                                  [checked]="isAllSelected"
+                                  (checkedChange)="markAllChecked($event)"></mix-checkbox>
 
                     <div class="grow">
                       <ng-container *ngIf="col.tplHeader">
@@ -76,11 +75,10 @@
                 <td class="px-6 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                     [ngStyle]="{ width: col.width, 'min-width': col.minWidth }">
                   <div class="flex h-full items-center">
-                    <input *ngIf="i === 0"
-                           class="form-check-input me-4"
-                           type="checkbox"
-                           [ngModel]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
-                           (ngModelChange)="onItemSelected($event, item)">
+                    <mix-checkbox *ngIf="i === 0"
+                                  class="me-4"
+                                  [checked]="!!currentSelectedItemDic[$any(item)[uniqueKey]]"
+                                  (checkedChange)="onItemSelected($event, item)"></mix-checkbox>
 
                     <div class="grow">
                       <ng-container *ngIf="col.tplCell">
