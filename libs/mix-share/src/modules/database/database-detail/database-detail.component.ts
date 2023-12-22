@@ -21,6 +21,7 @@ import {
   MixDatabase,
   MixRelationShip,
 } from '@mixcore/lib/model';
+import { EntityFormComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { DatabaseStore } from '@mixcore/share/stores';
@@ -29,12 +30,11 @@ import { MixInlineInputComponent } from '@mixcore/ui/inline-input';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixSelectComponent } from '@mixcore/ui/select';
+import { MixDefaultSkeletonComponent } from '@mixcore/ui/skeleton';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { TuiTabsModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
-// import { CMS_ROUTES } from '../../../../app.routes';
-import { EntityFormComponent } from '@mixcore/share/components';
 import { DetailPageKit } from '../../../kit/page-detail-base-kit.component';
 import { DatabaseEntityComponent } from '../components/database-entity/database-entity.component';
 import { DatabaseInfoComponent } from '../components/database-info/database-info.component';
@@ -57,6 +57,7 @@ import { DbContextSelectComponent } from '../components/db-context-select/db-con
     MixSelectComponent,
     MixFormErrorComponent,
     MixInlineInputComponent,
+    MixDefaultSkeletonComponent,
     DatabaseSelectComponent,
     EntityFormComponent,
     DatabaseRelationshipComponent,

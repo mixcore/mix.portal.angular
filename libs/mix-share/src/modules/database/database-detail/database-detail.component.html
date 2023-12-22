@@ -73,9 +73,7 @@
           <mix-database-info [form]="form"></mix-database-info>
         </div>
         } @loading (after 100ms; minimum 1s) {
-        <div class="mix-progress-bar">
-          <div class="mix-progress-bar-value"></div>
-        </div>
+        <default-skeleton></default-skeleton>
         }
 
         <!-- Columns -->
@@ -86,9 +84,8 @@
                                (columnsChange)="onColumnsChange($event)"></mix-database-entity>
         </div>
         } @loading (after 100ms; minimum 1s) {
-        <div class="mix-progress-bar">
-          <div class="mix-progress-bar-value"></div>
-        </div>
+        <default-skeleton></default-skeleton>
+
         }
 
         <!-- Relationships -->
@@ -100,9 +97,8 @@
                                      (relationshipChanges)="onRelationshipChange($event)"></mix-database-relationship>
         </div>
         } @loading (after 100ms; minimum 1s) {
-        <div class="mix-progress-bar">
-          <div class="mix-progress-bar-value"></div>
-        </div>
+        <default-skeleton></default-skeleton>
+
         }
 
         <!-- Permissions -->
@@ -112,9 +108,8 @@
           <mix-database-permission [form]="form"></mix-database-permission>
         </div>
         } @loading (after 100ms; minimum 1s) {
-        <div class="mix-progress-bar">
-          <div class="mix-progress-bar-value"></div>
-        </div>
+        <default-skeleton></default-skeleton>
+
         }
 
         <!-- Migrations -->
@@ -124,9 +119,8 @@
           <mix-database-migration [dbSysName]="data?.systemName"></mix-database-migration>
         </div>
         } @loading (after 100ms; minimum 1s) {
-        <div class="mix-progress-bar">
-          <div class="mix-progress-bar-value"></div>
-        </div>
+        <default-skeleton></default-skeleton>
+
         }
       </div>
     </tui-loader>
