@@ -6,7 +6,7 @@
                          (selectedItemChange)="selectedTableChange($event)"></mix-database-select>
   </div>
 
-  <div class="data-detail-page__content-container grow drop-shadow-lg">
+  <div class="data-detail-page__content-container grow">
     <tui-loader *ngIf="loadingState$ | async as state"
                 class="data-detail-page"
                 [formGroup]="form"
