@@ -11,6 +11,7 @@ import {
   Router,
   RouterModule,
 } from '@angular/router';
+import { TuiProgressModule } from '@taiga-ui/kit';
 import { MainSideMenuComponent } from '../../components/main-side-menu/main-side-menu.component';
 import { MainToolbarComponent } from '../../components/main-toolbar/main-toolbar.component';
 
@@ -25,6 +26,7 @@ import { MainToolbarComponent } from '../../components/main-toolbar/main-toolbar
     RouterModule,
     MainToolbarComponent,
     MainSideMenuComponent,
+    TuiProgressModule,
   ],
 })
 export class MixLayoutComponent {

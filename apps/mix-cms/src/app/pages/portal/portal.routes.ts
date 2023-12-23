@@ -25,7 +25,7 @@ export const PortalRoutes: Routes = [
   },
   {
     path: CMS_ROUTES.portal.database.path,
-    data: breadcrumbName('Workspace'),
+    data: breadcrumbName('Databases'),
     loadChildren: () =>
       import('@mixcore/module/database').then((m) => m.routes),
   },
@@ -71,30 +71,6 @@ export const PortalRoutes: Routes = [
         path: '',
         loadComponent: () =>
           import('./roles/roles.component').then((m) => m.RolesComponent),
-      },
-    ],
-  },
-  {
-    path: CMS_ROUTES.portal.order.path,
-    data: breadcrumbName('Orders'),
-    loadChildren: () => import('./order/order.routes').then((m) => m.routes),
-  },
-  {
-    path: CMS_ROUTES.portal.promotion.path,
-    data: breadcrumbName('Promotions'),
-    loadChildren: () =>
-      import('./promotion/promotion.routes').then((m) => m.routes),
-  },
-  {
-    path: CMS_ROUTES.portal.discount.path,
-    data: breadcrumbName('Discount'),
-    children: [
-      {
-        path: '',
-        loadComponent: () =>
-          import('./discount/discount.component').then(
-            (m) => m.PostDiscountComponent
-          ),
       },
     ],
   },

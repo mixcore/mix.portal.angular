@@ -1,5 +1,13 @@
 <div class="w-screen h-screen main-layout"
      [class.--collapse]="!expand()">
+  <div class="main-layout__progress"
+       [ngClass]="{'hidden': !showProgress()}">
+    <progress class="progress"
+              tuiProgressBar
+              size="s"
+              max="100"
+              style="height: 3px"></progress>
+  </div>
   <aside id="sidebar">
     <mix-main-side-menu [showDetail]="expand()"
                         (expandChange)="onExpandChange()"></mix-main-side-menu>

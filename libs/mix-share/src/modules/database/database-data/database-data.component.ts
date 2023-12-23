@@ -357,7 +357,9 @@ export class DatabaseDataComponent
       this.activatedRoute
     );
 
-    this.router.navigate([...baseSegment, db.id], { state: { db: db } });
+    this.router.navigate([...baseSegment, 'open-api', db.id], {
+      state: { db: db },
+    });
   }
 
   public onInsertData(): void {

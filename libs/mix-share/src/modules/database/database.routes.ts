@@ -28,12 +28,25 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'open-api/:id',
+        loadComponent: () =>
+          import('./database-document/database-document.component').then(
+            (m) => m.DatabaseDocumentComponent
+          ),
+      },
+      {
+        path: 'open-api',
+        pathMatch: 'full',
+        redirectTo: 'open-api/41',
+      },
+      {
         path: 'contexts',
         loadComponent: () =>
           import('./database-context/database-context.component').then(
             (m) => m.DatabaseContextComponent
           ),
       },
+
       {
         path: ':id',
         loadComponent: () =>
@@ -46,13 +59,6 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./database-detail/database-detail.component').then(
             (m) => m.DatabaseDetailComponent
-          ),
-      },
-      {
-        path: 'open-api/:id',
-        loadComponent: () =>
-          import('./database-document/database-document.component').then(
-            (m) => m.DatabaseDocumentComponent
           ),
       },
     ],

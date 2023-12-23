@@ -1,9 +1,17 @@
 .main-layout {
+  position: relative;
   --sidebar-reserved-width: 320px;
   grid-template-columns: var(--sidebar-reserved-width) 1fr;
   grid-template-areas: 'sidebar canvas';
   display: grid;
   transition: all 0.3s;
+
+  &__progress {
+    top: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 4;
+  }
 
   &.--collapse {
     --sidebar-reserved-width: 64px;

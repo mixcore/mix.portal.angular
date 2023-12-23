@@ -31,21 +31,6 @@ export const APP_MENU = <MenuItem[]>[
         title: 'List',
         url: CMS_ROUTES.portal.post.fullPath,
       },
-      {
-        icon: 'format_list_numbered',
-        title: 'Discount',
-        url: CMS_ROUTES.portal.discount.fullPath,
-      },
-      {
-        icon: 'format_list_numbered',
-        title: 'Promotions',
-        url: CMS_ROUTES.portal.promotion.fullPath,
-      },
-      {
-        icon: 'inactive_order',
-        title: 'Orders',
-        url: CMS_ROUTES.portal.order.fullPath,
-      },
     ],
   },
   {
@@ -82,18 +67,32 @@ export const APP_MENU = <MenuItem[]>[
     children: [
       {
         icon: 'content_copy',
-        title: 'Contexts',
+        title: 'Context(s)',
+        iconColor: '#BB56CF',
         url: CMS_ROUTES.portal.databaseContext.fullPath,
       },
       {
         icon: 'format_list_numbered',
-        title: 'Databases',
+        title: 'Database Config',
+        iconColor: '#2190E4',
         url: CMS_ROUTES.portal.database.fullPath,
       },
       {
         icon: 'table_view',
         title: 'Query Data',
+        iconColor: '#00ACC1',
         url: CMS_ROUTES.portal.databaseQuery.fullPath,
+      },
+      {
+        icon: 'database',
+        title: 'Visualize Diagram',
+        iconColor: '#EC652C',
+        url: CMS_ROUTES.portal.databaseQuery.fullPath,
+      },
+      {
+        icon: 'description',
+        title: 'API Document',
+        url: CMS_ROUTES.portal['database-doc'].fullPath,
       },
     ],
   },
