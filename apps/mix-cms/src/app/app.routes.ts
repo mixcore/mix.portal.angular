@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { notLoginPageGuard } from '@mixcore/module/auth';
-import { MixPortalLayoutComponent } from './pages/portal/portal.layout';
+import { MixLayoutComponent } from '@mixcore/module/layout';
 
 export const breadcrumbName = (name: string) => ({ title: name });
 
@@ -127,7 +127,7 @@ export const ROUTES: Route[] = [
   },
   {
     path: CMS_ROUTES.portal.path,
-    component: MixPortalLayoutComponent,
+    component: MixLayoutComponent,
     data: breadcrumbName('Home'),
     canActivate: [notLoginPageGuard],
     loadChildren: () =>

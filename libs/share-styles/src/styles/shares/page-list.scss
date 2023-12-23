@@ -32,12 +32,9 @@
 
   &__sidebar,
   &__action-bar {
-    height: calc(100% - 4px);
     background-color: var(--background-color-primary);
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+    border-right: 1px solid var(--border-color-default);
     overflow: auto;
-    margin-right: -4px;
   }
 
   &__sidebar {
@@ -46,10 +43,7 @@
   }
 
   &__action-bar {
-    min-width: 55px;
-    max-width: 55px;
-    height: calc(100% - 8px);
-    margin-top: 4px;
+    width: 55px;
   }
 
   &__sub-toolbar {
@@ -80,8 +74,8 @@
     display: flex;
     flex-direction: column;
     background-color: var(--background-color-primary);
-    border-top-left-radius: 12px;
-    border-bottom-left-radius: 12px;
+    // border-top-left-radius: 12px;
+    // border-bottom-left-radius: 12px;
     // border: 1px solid var(--tui-base-04);
     overflow: hidden;
     flex-grow: 1;

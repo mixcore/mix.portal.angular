@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
+  Input,
   OnInit,
+  Output,
   inject,
 } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +26,7 @@ import { TippyDirective } from '@ngneat/helipopper';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
 import { filter, startWith } from 'rxjs';
 import { LocationControllerComponent } from '../location-controller/location-controller.component';
+import { CollapseBtnComponent } from '../main-side-menu/collapse-btn.component';
 import { ToolbarService } from './toolbar.service';
 import { UserNavigationComponent } from './user-navigation/user-navigation.component';
 
@@ -46,12 +50,16 @@ interface BreadcrumbOption {
     MixButtonComponent,
     UserNavigationComponent,
     PortalModule,
+    CollapseBtnComponent,
   ],
   templateUrl: './main-toolbar.component.html',
   styleUrls: ['./main-toolbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainToolbarComponent implements OnInit {
+  @Input() public showExpandBtn = false;
+  @Output() public expandChange = new EventEmitter();
+
   public auth = inject(AuthService);
   public router = inject(Router);
   public activatedRoute = inject(ActivatedRoute);

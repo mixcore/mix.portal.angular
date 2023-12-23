@@ -1,27 +1,52 @@
 :host {
   display: block;
   height: 100%;
+  width: 100%;
 }
 
 .side-menu {
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
 
-  &__icon-bar {
-    height: 100%;
+  &__expand-btn {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 14px;
+  }
+
+  &__logo {
+    width: 48px;
+    height: 40px;
+    display: flex;
+    background-color: var(--primary-color);
+    -webkit-mask: url('/assets/images/mixcore-logo-square.svg') no-repeat 50%
+      50%;
+    mask: url('/assets/images/mixcore-logo-square.svg') no-repeat 50% 50%;
+    -webkit-mask-size: 40px 40px;
+    mask-size: 40px 40px;
+
+    &.--active {
+      width: 125px;
+      height: 40px;
+      margin-right: 12px;
+      margin-left: 14px;
+
+      -webkit-mask: url('/assets/images/mixcore-logo.svg') no-repeat 50% 50%;
+      mask: url('/assets/images/mixcore-logo.svg') no-repeat 50% 50%;
+      -webkit-mask-size: 125px 40px;
+      mask-size: 125px 40px;
+    }
+  }
+
+  &__body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60px;
-    padding: 4px;
+    width: 100%;
     position: relative;
-    padding-left: 8px;
-    padding-top: 8px;
-
-    &.--active {
-      width: 12vw;
-      min-width: 180px;
-      align-items: flex-start;
-    }
   }
 
   &__icon {
@@ -34,6 +59,7 @@
   &__item-title {
     margin-left: 12px;
     font-weight: 500;
+    white-space: nowrap;
   }
 
   &__item-toggle {
@@ -64,7 +90,6 @@
     }
 
     &:hover {
-      // color: var(--primary-color);
       opacity: 0.8;
     }
 
@@ -97,14 +122,6 @@
     display: flex;
     padding: 0.75rem 0px;
     flex-direction: column;
-
-    &.--fixed {
-      max-width: 56px;
-      height: 2rem;
-      margin: unset;
-      min-height: unset;
-      padding: 6px 0px !important;
-    }
 
     &.--active,
     &:hover {

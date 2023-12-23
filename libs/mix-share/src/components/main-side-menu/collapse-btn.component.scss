@@ -1,0 +1,22 @@
+.collapse-btn {
+  cursor: pointer;
+
+  svg {
+    transform: scale(1.3);
+  }
+
+  .un-active {
+    display: none;
+  }
+
+  &:hover {
+    .active {
+      display: none;
+    }
+
+    .un-active {
+      display: block;
+      color: var(--primary-color);
+    }
+  }
+}

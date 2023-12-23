@@ -1,8 +1,7 @@
-<div class="main-toolbar">
-  <div class="main-toolbar__logo">
-    <!-- <img class="w-full"
-         src="assets/images/mixcore-logo.svg"
-         alt="logo"> -->
+<div class="main-toolbar shadow">
+  <div *ngIf="showExpandBtn"
+       class="main-toolbar__expand-btn">
+    <collapse-btn (click)="expandChange.emit()"></collapse-btn>
   </div>
 
   <mix-location-controller></mix-location-controller>

@@ -3,7 +3,7 @@
      [tpOffset]="[-10, 5]"
      tpVariation="popper"
      tpPlacement="bottom-start">
-  <div class="{{ getLabelSize(size) }} text-600">
+  <div class="{{ getLabelSize(size) }} text-600 text-gray-700 hover:text-primary">
     {{
       getSelected(contexts(), selectedItemId)?.displayName || 'Choose context'
     }}

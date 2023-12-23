@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
+  EventEmitter,
   Input,
+  Output,
   ViewEncapsulation,
   inject,
 } from '@angular/core';
@@ -19,6 +21,7 @@ import {
   TuiDropdownModule,
   TuiHostedDropdownModule,
 } from '@taiga-ui/core';
+import { CollapseBtnComponent } from './collapse-btn.component';
 
 @Component({
   selector: 'mix-main-side-menu',
@@ -31,6 +34,7 @@ import {
     TuiDataListModule,
     TuiHostedDropdownModule,
     TuiDropdownModule,
+    CollapseBtnComponent,
   ],
   templateUrl: './main-side-menu.component.html',
   styleUrls: ['./main-side-menu.component.scss'],
@@ -45,6 +49,7 @@ export class MainSideMenuComponent {
 
   @Input() public showDetail = true;
   @Input() public menu: MenuItem[] = this.authService.portalMenu;
+  @Output() public expandChange = new EventEmitter();
 
   public selectedMenu: MenuItem | undefined = undefined;
   public selectedMenus: Record<string, MenuItem | undefined> = {};

@@ -1,0 +1,16 @@
+<div class="w-screen h-screen main-layout"
+     [class.--collapse]="!expand()">
+  <aside id="sidebar">
+    <mix-main-side-menu [showDetail]="expand()"
+                        (expandChange)="onExpandChange()"></mix-main-side-menu>
+  </aside>
+
+  <main class="shadow flex flex-col h-full overflow-auto"
+        id="canvas">
+    <mix-main-toolbar [showExpandBtn]="!expand()"
+                      (expandChange)="onExpandChange()"></mix-main-toolbar>
+    <div class="grow overflow-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

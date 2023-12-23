@@ -1,0 +1,20 @@
+.main-layout {
+  --sidebar-reserved-width: 320px;
+  grid-template-columns: var(--sidebar-reserved-width) 1fr;
+  grid-template-areas: 'sidebar canvas';
+  display: grid;
+  transition: all 0.3s;
+
+  &.--collapse {
+    --sidebar-reserved-width: 64px;
+  }
+
+  #sidebar {
+    contain: strict;
+  }
+
+  .shadow {
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px 0px,
+      rgba(0, 0, 0, 0.06) -4px 4px 8px 0px;
+  }
+}

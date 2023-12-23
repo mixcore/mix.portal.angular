@@ -5,13 +5,10 @@
 
   &__tree {
     width: 255px;
-    height: calc(100% - 8px);
+    height: 100%;
     background-color: var(--background-color-primary);
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     overflow: auto;
-    margin-right: -4px;
-    margin-top: 4px;
-    // border: 1px solid var(--tui-base-04);
   }
 }

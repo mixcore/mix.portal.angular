@@ -3,7 +3,7 @@
      [tpOffset]="[-10, 5]"
      tpVariation="popper"
      tpPlacement="bottom-start">
-  <div class="{{ size === 's' ? 'text-s' : 'text-xl' }} text-600">
+  <div class="{{ size === 's' ? 'text-s' : 'text-xl' }} text-600 text-gray-700 hover:text-primary">
     {{
       getSelectedProjectName(project(), selectedItemId)?.projectName ||
         'Choose project'

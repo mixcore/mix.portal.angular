@@ -1,13 +1,18 @@
-<div class="side-menu flex">
-  <div class="side-menu__icon-bar"
-       [ngClass]="{ '--active': showDetail }">
-    <div class="side-menu__item --fixed"
-         (click)="showDetail = !showDetail">
-      <div class="side-menu__parent-container">
-        <span class="mix-icon side-menu__icon"> menu </span>
-      </div>
+<div class="side-menu">
+  <div class="side-menu__header p-2">
+    <div class="side-menu__logo"
+         [ngClass]="{ '--active': showDetail }">
     </div>
 
+    <collapse-btn *ngIf="showDetail"
+                  class="side-menu__expand-btn"
+                  (click)="expandChange.emit()"></collapse-btn>
+  </div>
+
+  <div class="devider h-px bg-slate-300 w-full mt-1 mb-1"></div>
+
+  <div class="side-menu__body p-2 grow"
+       [ngClass]="{ '--active': showDetail }">
     @for(item of menu; track item) {
     <tui-hosted-dropdown class="w-full"
                          [class.mt-auto]="item.align === 'bottom'"

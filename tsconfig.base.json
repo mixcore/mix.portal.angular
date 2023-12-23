@@ -21,6 +21,7 @@
       "@mixcore/module/database": [
         "libs/mix-share/src/modules/database/index.ts"
       ],
+      "@mixcore/module/layout": ["libs/mix-share/src/modules/layout/index.ts"],
       "@mixcore/module/task": [
         "libs/mix-share/src/modules/task-manage/index.ts"
       ],
