@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { OrderStatus, PaymentGateway } from '@mixcore/lib/model';
+import { PaymentGateway } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
 import { BaseComponent } from '@mixcore/share/base';
 import { CountUpDirective } from '@mixcore/share/pipe';
-import { map, startWith } from 'rxjs';
+import { map } from 'rxjs';
 import { GatewayIndicatorComponent } from '../../../components/gateway-indicator/gateway-indicator.component';
 
 @Component({
@@ -50,32 +50,4 @@ export class DashboardComponent extends BaseComponent {
     wait: '#f1f7b5',
     gateway: '#90f1ef',
   };
-
-  public success$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.SUCCESS)
-    .pipe(startWith(0));
-
-  public paid$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.PAID)
-    .pipe(startWith(0));
-
-  public waitToPay$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.WaitingPay)
-    .pipe(startWith(0));
-
-  public shipping$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.SHIPPING)
-    .pipe(startWith(0));
-
-  public canceled$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.CANCELED)
-    .pipe(startWith(0));
-
-  public onePay$ = this.mixApi.eCommerce
-    .countGateWay(PaymentGateway.OnePay)
-    .pipe(startWith(0));
-
-  public paypal$ = this.mixApi.eCommerce
-    .countGateWay(PaymentGateway.Paypal)
-    .pipe(startWith(0));
 }

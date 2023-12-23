@@ -2,126 +2,71 @@
   <div class="tui-island__category mt-6">
     {{ currentDay }}, {{ currentDate }}
   </div>
-  <h1 class="text-xl text-bold">
+  <h2 class="text-3xl">
     {{ helloPrefix }}, {{ userName$ | async | titlecase }}
-  </h1>
+  </h2>
 
-  <div class="text-l mt-3">Congratulations, your shop this month:</div>
+  <div class="text-l mt-5">Congratulations, your database status:</div>
   <div class="chart__line mt-4">Status</div>
 
   <div class="dashboard-page__chart-tile mt-3">
-    <div class="grid grid-cols-12 gap-4 chart__container">
+    <div class="flex flex-wrap gap-4">
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['success']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(success$ | async) || 0"
+                 [countUp]="0 || 0"
                  [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
 
-          <div class="number-chart__title">Success</div>
-          <div class="number-chart__sub-title">This month</div>
+          <div class="number-chart__title">Database(s)</div>
+          <div class="number-chart__sub-title">In system</div>
         </div>
       </div>
 
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['paid']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(paid$ | async) || 0"
+                 [countUp]="0 || 0"
                  [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
 
-          <div class="number-chart__title">Paid</div>
-          <div class="number-chart__sub-title">This month</div>
+          <div class="number-chart__title">Context(s)</div>
+          <div class="number-chart__sub-title">In system</div>
         </div>
       </div>
 
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['wait']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(waitToPay$ | async) || 0"
+                 [countUp]="0 || 0"
                  [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
 
-          <div class="number-chart__title">Wait To Pay</div>
+          <div class="number-chart__title">Error queries</div>
           <div class="number-chart__sub-title">This month</div>
         </div>
       </div>
 
       <div class="col-auto">
-        <div class="number-chart"
+        <div class="number-chart shadow-md"
              [style.--chart-color]="colorMap['shipping']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(shipping$ | async) || 0"
+                 [countUp]="100"
                  [duration]="1000"></div>
-            <div class="text-s text-sub">item(s)</div>
+            <div class="text-s text-sub">%</div>
           </div>
 
-          <div class="number-chart__title">On Shipping</div>
-          <div class="number-chart__sub-title">This month</div>
-        </div>
-      </div>
-
-      <div class="col-auto">
-        <div class="number-chart"
-             [style.--chart-color]="colorMap['error']">
-          <div class="flex gap-1 items-end">
-            <div class="number-chart__number"
-                 [countUp]="(canceled$ | async) || 0"
-                 [duration]="1000"></div>
-            <div class="text-s text-sub">item(s)</div>
-          </div>
-
-          <div class="number-chart__title">Canceled</div>
-          <div class="number-chart__sub-title">This month</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="chart__line mt-4">Gate Way</div>
-
-    <div class="grid grid-cols-12 gap-4 chart__container mt-2">
-      <div class="col-auto">
-        <div class="number-chart"
-             [style.--chart-color]="colorMap['gateway']">
-          <div class="flex gap-1 items-end">
-            <div class="number-chart__number"
-                 [countUp]="(onePay$ | async) || 0"
-                 [duration]="1000"></div>
-            <div class="text-s text-sub">item(s)</div>
-          </div>
-
-          <div class="number-chart__title flex gap-2 items-center">
-            <div>OnePay</div>
-            <mix-gateway-indicator [gateway]="OnePay"></mix-gateway-indicator>
-          </div>
-          <div class="number-chart__sub-title">This month</div>
-        </div>
-      </div>
-
-      <div class="col-auto">
-        <div class="number-chart"
-             [style.--chart-color]="colorMap['gateway']">
-          <div class="flex gap-1 items-end">
-            <div class="number-chart__number"
-                 [countUp]="(paypal$ | async) || 0"
-                 [duration]="1000"></div>
-            <div class="text-s text-sub">item(s)</div>
-          </div>
-
-          <div class="number-chart__title flex gap-2 items-center">
-            <div>PayPal</div>
-            <mix-gateway-indicator [gateway]="Paypal"></mix-gateway-indicator>
-          </div>
+          <div class="number-chart__title">Health</div>
           <div class="number-chart__sub-title">This month</div>
         </div>
       </div>
