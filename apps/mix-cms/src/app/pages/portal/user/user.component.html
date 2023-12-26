@@ -4,12 +4,12 @@
     <mix-sub-toolbar [description]="'LISTING'"
                      [title]="'All User'">
       <div class="toolbar-separator"></div>
-      <mix-button (click)="showDialog()"><span class="mix-icon"> add </span>&nbsp; Create user</mix-button>
+      <mix-button (click)="showDialog()"><span class="mix-icon"> add </span> Create user</mix-button>
 
       <mix-button class="ms-2"
                   type="danger"
                   [disabled]="!selectedUsers.length"
-                  (click)="store.reload()"><span class="mix-icon"> delete </span>&nbsp; Delete(s)</mix-button>
+                  (click)="store.reload()"><span class="mix-icon"> delete </span> Delete(s)</mix-button>
     </mix-sub-toolbar>
 
     <div class="data-table-page__body">

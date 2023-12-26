@@ -29,10 +29,10 @@ detail html:
              tuiTabs>
           <button tuiTab><span class="material-symbols-outlined">
               feed
-            </span>&nbsp; General</button>
+            </span> General</button>
           <button tuiTab><span class="material-symbols-outlined">
               content_paste
-            </span>&nbsp; Setting </button>
+            </span> Setting </button>
         </nav>
       </div>
     </div>

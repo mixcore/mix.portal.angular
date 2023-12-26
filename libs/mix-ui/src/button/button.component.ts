@@ -49,11 +49,15 @@ export class MixButtonComponent {
     });
   }
 
+  public get isIcon() {
+    return this.type === 'icon' || this.iconBtn;
+  }
+
   public typeMaps = {
     primary: 'primary',
     'secondary-danger': 'secondary-destructive',
-    danger: 'accent',
-    outline: 'outline',
+    danger: 'danger',
+    outline: 'secondary',
     flat: 'flat',
     secondary: 'secondary',
     icon: 'icon',

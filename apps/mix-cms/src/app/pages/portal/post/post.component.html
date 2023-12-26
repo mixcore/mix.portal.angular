@@ -5,7 +5,7 @@
       <tui-hosted-dropdown [(open)]="showQuickAddPost"
                            [content]="addNewMenuItem"
                            [tuiDropdownMaxHeight]="700">
-        <mix-button size="s"><span class="material-symbols-outlined"> add </span>&nbsp;{{
+        <mix-button size="s"><span class="material-symbols-outlined"> add </span>{{
             'Add' | transloco
           }}</mix-button>
       </tui-hosted-dropdown>
@@ -16,7 +16,7 @@
                   [disabled]="!selectedPosts.length"
                   (click)="bulkDeleteClick()"
                   size="s">
-        <span class="material-symbols-outlined"> delete </span>&nbsp;
+        <span class="material-symbols-outlined"> delete </span>
         {{ 'Delete(s)' | transloco }}</mix-button>
 
       <div class="toolbar-separator"></div>
@@ -40,7 +40,7 @@
             <button [disabled]="!selectedPosts.length"
                     tuiOption>
               <span class="flex items-center">
-                <span class="material-symbols-outlined"> sync </span>&nbsp; Sync
+                <span class="material-symbols-outlined"> sync </span> Sync
                 data(s)
               </span>
             </button>
@@ -49,14 +49,14 @@
                     tuiOption>
               <span class="flex items-center">
                 <span class="material-symbols-outlined">
-                  sync_saved_locally </span>&nbsp; Assign Metadata</span>
+                  sync_saved_locally </span> Assign Metadata</span>
             </button>
 
             <button [disabled]="!selectedPosts.length"
                     (click)="bulkDeleteClick()"
                     tuiOption>
               <span class="flex items-center">
-                <span class="material-symbols-outlined"> delete </span>&nbsp;
+                <span class="material-symbols-outlined"> delete </span>
                 Delete(s)
               </span>
             </button>

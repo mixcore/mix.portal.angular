@@ -1,4 +1,4 @@
-<button *ngIf="!iconBtn"
+<!-- <button *ngIf="!iconBtn"
         class="mix-button"
         type="button"
         [appearance]="typeMaps[type]"
@@ -21,6 +21,18 @@
     <ng-container *ngTemplateOutlet="content"> </ng-container>
   </button>
 </ng-container>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template> -->
+
+
+<button class="btn {{typeMaps[type]}} w-full flex items-center gap-2"
+        [class.--disabled]="loading || disabled"
+        [class.--icon-btn]="isIcon"
+        [type]="nativeType">
+  <ng-container *ngTemplateOutlet="content"> </ng-container>
+</button>
 
 <ng-template #content>
   <ng-content></ng-content>

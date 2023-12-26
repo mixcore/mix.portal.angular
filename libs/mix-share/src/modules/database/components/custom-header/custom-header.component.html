@@ -24,23 +24,23 @@
                    let-hide>
         <div class="mix-menu-item"
              (click)="pinColumn()">
-          <span class="mix-icon">push_pin</span>&nbsp;
+          <span class="mix-icon">push_pin</span>
           {{ isPinned ? 'Unpin Column' : 'Pin Column' }}
         </div>
 
         <div class="mix-menu-item"
              (click)="parentComp.onHideColumn(params['displayName'])">
-          <span class="mix-icon">visibility_off</span>&nbsp; Hide Column
+          <span class="mix-icon">visibility_off</span> Hide Column
         </div>
 
         <div class="mix-menu-item"
              (click)="onSortRequested('asc', $event)">
-          <span class="mix-icon">reorder</span>&nbsp; Sort Ascending
+          <span class="mix-icon">reorder</span> Sort Ascending
         </div>
 
         <div class="mix-menu-item"
              (click)="onSortRequested('desc', $event)">
-          <span class="mix-icon">sort</span>&nbsp; Sort Descending
+          <span class="mix-icon">sort</span> Sort Descending
         </div>
       </ng-template>
     </ng-container>
