@@ -22,6 +22,10 @@
     width: 400px !important;
     border-radius: 14px !important;
     padding: 8px 4px;
+
+    .tippy-content {
+      background-color: var(--background-color-primary);
+    }
   }
 
   .mix-menu-item {

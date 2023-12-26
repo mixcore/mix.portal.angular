@@ -1,6 +1,7 @@
 <div class="db-context-select"
      [tp]="contextSelect"
      [tpOffset]="[-10, 5]"
+     tpAnimation="scale"
      tpVariation="popper"
      tpPlacement="bottom-start">
   <div class="{{ getLabelSize(size) }} text-600 text-gray-700 hover:text-primary">
@@ -15,7 +16,7 @@
              let-hide>
   <div class="popup-container">
     @for (item of contexts(); track item) {
-    <div class="mix-menu-item flex justify-content-between gap-5"
+    <div class="mix-menu-item flex justify-between gap-5"
          (click)="selectItem(item); hide()">
       @if (getItemVm(item); as item) {
       <div class="text-500">{{ item.displayName }}</div>

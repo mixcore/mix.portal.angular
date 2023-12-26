@@ -21,7 +21,6 @@ import {
 } from '@mixcore/share/base';
 import { MixModalModule } from '@mixcore/ui/modal';
 import { TranslocoModule } from '@ngneat/transloco';
-import { TuiPreviewModule } from '@taiga-ui/addon-preview';
 import { TuiPortalModule } from '@taiga-ui/cdk';
 import { TuiAlertModule, TuiDialogModule, TuiRootModule } from '@taiga-ui/core';
 import { TuiPushModule } from '@taiga-ui/kit';
@@ -47,7 +46,6 @@ export const domainUrlFactory = () => {
     TuiRootModule,
     MixModalModule,
     TuiAlertModule,
-    TuiPreviewModule,
     TuiPortalModule,
     TuiPushModule,
     HttpClientModule,
@@ -55,7 +53,6 @@ export const domainUrlFactory = () => {
     TuiDialogModule,
     ToastImportModule,
     FormlyImportModule,
-    TuiPreviewModule,
     TranslocoModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),

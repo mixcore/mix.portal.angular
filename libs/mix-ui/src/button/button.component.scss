@@ -3,20 +3,6 @@ mix-button {
   width: fit-content;
 }
 
-.mix-button {
-  width: inherit;
-  line-height: 1;
-
-  .icon {
-    font-weight: 200;
-    margin-right: 6px;
-  }
-
-  .t-content {
-    line-height: 1;
-  }
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

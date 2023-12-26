@@ -127,7 +127,7 @@ export const BaseAppProvider = [
     defaultVariation: 'tooltip',
     variations: {
       tooltip: tooltipVariation,
-      popper: popperVariation,
+      popper: { ...popperVariation, animation: 'scale' },
     },
   }),
   {

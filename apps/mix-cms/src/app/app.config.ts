@@ -226,7 +226,7 @@ export const appConfig: ApplicationConfig = {
       defaultVariation: 'tooltip',
       variations: {
         tooltip: tooltipVariation,
-        popper: popperVariation,
+        popper: { ...popperVariation, animation: 'scale' },
       },
       appendTo: document.body,
     }),

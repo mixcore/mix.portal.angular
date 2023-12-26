@@ -1,6 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .tippy-variation-popper {
   .tippy-content {
     padding: 5px 0px !important;
+    background-color: #eaf0f3e6;
+
+    .popup-container {
+      max-height: 50vh;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+      }
+    }
   }
 }
 
@@ -9,8 +23,9 @@
 }
 
 .tippy-box {
-  border-radius: 8px !important;
-  box-shadow: 0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.3) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1), 0 14px 28px rgba(0, 0, 0, 0.14) !important;
 }
 
 .tippy-variation-tooltip.compress-image-preview {
@@ -22,6 +37,7 @@
 }
 
 .mix-menu-item {
+  @apply text-gray-900;
   cursor: pointer;
   padding: 0.5rem 1rem;
   font-size: var(--text-size-s);
@@ -40,4 +56,15 @@
   display: block;
   content: '';
   background-color: var(--border-color-default);
+}
+
+@keyframes popover-open {
+  0% {
+    opacity: 0.5;
+    transform: scale(0.7);
+  }
+  100% {
+    transform: none;
+    opacity: 1;
+  }
 }

@@ -17,7 +17,7 @@
                let-hide>
     <div class="popup-container">
       @for (item of vm.data; track item) {
-      <div class="mix-menu-item flex justify-content-between"
+      <div class="mix-menu-item flex justify-between"
            (click)="selectDb(item); hide()">
         <div class="text-500">{{ item.displayName }}</div>
         <div class="text-sub text-s">{{ item.columns.length }} cols</div>
