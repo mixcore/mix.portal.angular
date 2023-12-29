@@ -15,7 +15,10 @@ export class ComingSoomDirective {
       .pipe(takeUntilDestroyed())
       .subscribe(() => {
         this.modal
-          .info('This feature is under development.', this.commingSoon)
+          .info(
+            '😟 We are sorry for the inconvenience. This feature is still under development.',
+            'Coming soon'
+          )
           .subscribe();
       });
   }

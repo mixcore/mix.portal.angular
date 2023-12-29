@@ -43,12 +43,14 @@ export class AppComponent implements OnInit {
             ),
             switchMap(() =>
               this.modal.info(
-                'A new version of the application is available, click ok to perform update. We are sorry for the inconvenience.'
+                '😍 A new version of the application is available, click ok to perform update. We are sorry for the inconvenience.',
+                undefined,
+                false
               )
             )
           )
           .subscribe((ok) => {
-            if (ok) window.location.reload();
+            window.location.reload();
             this.cdr.detectChanges();
           });
       }

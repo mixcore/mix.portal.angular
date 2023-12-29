@@ -51,12 +51,17 @@ export class ModalService extends AbstractTuiDialogService<
     return this.open(message, options);
   }
 
-  public info(message: string, title: string = 'Note'): Observable<boolean> {
+  public info(
+    message: string,
+    title: string = 'Note',
+    closeable = true
+  ): Observable<boolean> {
     const options: ModalOption = {
       ...this.defaultOptions,
       heading: title,
       borderShadowColor: this.modalShadowColor.info,
       buttons: ['Ok', ''],
+      dismissible: closeable,
     };
     return this.open(message, options);
   }
@@ -109,4 +114,6 @@ export interface ModalOption {
   readonly heading: string;
   readonly buttons: readonly [string, string];
   readonly borderShadowColor?: string;
+  readonly closeable?: boolean;
+  readonly dismissible?: boolean;
 }
