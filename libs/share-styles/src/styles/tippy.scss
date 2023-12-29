@@ -9,6 +9,7 @@
 
     .popup-container {
       max-height: 50vh;
+      min-width: 300px;
       overflow: auto;
 
       &::-webkit-scrollbar {

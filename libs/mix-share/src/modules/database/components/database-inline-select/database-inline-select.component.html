@@ -1,4 +1,4 @@
-<ng-container *ngIf="store.vm$ | async as vm">
+<ng-container *ngIf="state() as vm">
   <div class="database-inline-select"
        [tp]="dbSelect"
        [tpOffset]="[-10, 5]"
