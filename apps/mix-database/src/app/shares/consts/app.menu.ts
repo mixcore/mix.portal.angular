@@ -36,11 +36,13 @@ export const APP_MENU = [
     title: 'Visualize Diagram',
     iconColor: '#EC652C',
     url: CMS_ROUTES.portal.database.fullPath,
+    isDevelopment: true,
   },
   {
     icon: 'description',
     title: 'API Document',
     url: CMS_ROUTES.portal.dashboard.fullPath,
+    isDevelopment: true,
   },
 ];
 

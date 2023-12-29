@@ -13,6 +13,7 @@ import { MenuItem } from '@mixcore/lib/model';
 import { fadeInExpandOnEnterAnimation } from '@mixcore/share/animation';
 import { AuthService } from '@mixcore/share/auth';
 import { MixIconButtonComponent } from '@mixcore/ui/icon-button';
+import { ModalService } from '@mixcore/ui/modal';
 import { DialogService } from '@ngneat/dialog';
 import { TranslocoModule } from '@ngneat/transloco';
 import { tuiPure } from '@taiga-ui/cdk';
@@ -46,6 +47,7 @@ export class MainSideMenuComponent {
   public activeRoute = inject(ActivatedRoute);
   public authService = inject(AuthService);
   public dialogService = inject(DialogService);
+  public modal = inject(ModalService);
 
   @Input() public showDetail = true;
   @Input() public menu: MenuItem[] = this.authService.portalMenu;
@@ -67,6 +69,11 @@ export class MainSideMenuComponent {
   }
 
   public onMenuSelect(menu: MenuItem) {
+    if (menu.isDevelopment) {
+      this.showDevelopment();
+      return;
+    }
+
     if (!menu.children?.length) {
       this.route.navigateByUrl(menu.url);
       this.selectedMenu = menu;
@@ -80,6 +87,15 @@ export class MainSideMenuComponent {
     }
 
     this.selectedMenu = menu;
+  }
+
+  public showDevelopment() {
+    this.modal
+      .info(
+        '😟 We are sorry for the inconvenience. This feature is still under development.',
+        'Coming soon'
+      )
+      .subscribe();
   }
 
   public toggleMenu(): void {

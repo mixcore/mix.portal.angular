@@ -7,16 +7,20 @@
 
   <div class="data-table-page__main-container">
     <ng-container *ngIf="vm.status === 'Pending'">
+      <mix-sub-toolbar [description]="'QUERY ON'"
+                       [title]="vm.db?.displayName || 'Db Data'"
+                       [titleTpl]="titleTpl">
+        <ng-template #titleTpl><mix-database-inline-select [selectedItemId]="vm.db?.id"
+                                      [selectedItemName]="dbSysName"
+                                      (selectedItemChange)="selectedTableChange($event)"></mix-database-inline-select></ng-template>
+      </mix-sub-toolbar>
+
       <div class="h-full w-full flex flex-col justify-center items-center">
         <img src="assets/images/empty-box.png"
              alt="No data found"
              width="150px">
 
-        <div class="mt-2">Please choose a Database to view result</div>
-        <mix-database-inline-select class="mt-1"
-                                    [selectedItemId]="vm.db?.id"
-                                    [selectedItemName]="dbSysName"
-                                    (selectedItemChange)="selectedTableChange($event)"></mix-database-inline-select>
+        <div class="mt-2 text-2xl">Please select a database, to access your wonderful data 🥰</div>
       </div>
     </ng-container>
 

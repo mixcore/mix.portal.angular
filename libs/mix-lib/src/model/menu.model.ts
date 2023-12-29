@@ -6,4 +6,5 @@ export type MenuItem = {
   iconColor?: string;
   children?: MenuItem[];
   align?: 'top' | 'bottom';
+  isDevelopment?: boolean;
 };
