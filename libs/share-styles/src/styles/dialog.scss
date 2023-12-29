@@ -15,6 +15,7 @@ ngneat-dialog {
     .ngneat-dialog-content {
       padding: 18px;
       box-shadow: unset !important;
+      --dialog-content-border-radius: 12px;
     }
   }
 
@@ -26,7 +27,9 @@ ngneat-dialog {
 .mix-dialog {
   &__header {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
+    background-color: #eaf0f3e6;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
 
   &__content {
@@ -40,6 +43,8 @@ ngneat-dialog {
     align-items: center;
     justify-content: flex-end;
     gap: 6px;
+    background-color: #eaf0f3e6;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
 }
 
@@ -73,7 +78,7 @@ ngneat-dialog {
 .mix-dialog.--default-padding {
   .mix-dialog {
     &__header {
-      padding: 18px 18px 9px 18px;
+      padding: 12px 18px 12px 18px;
     }
 
     &__footer {
