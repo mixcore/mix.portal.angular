@@ -34,8 +34,33 @@
                                       (selectedItemChange)="selectedTableChange($event)"></mix-database-inline-select></ng-template>
 
         <div class="toolbar-separator"></div>
-        <mix-action-collapse [actionMaps]="actionMaps"
-                             [actions]="actions"></mix-action-collapse>
+        <mix-button [type]="'primary'"
+                    (click)="onInsertData()">
+          <span class="mix-icon"> add </span>
+          Insert
+        </mix-button>
+
+        <mix-button class="ml-2"
+                    [type]="'danger'"
+                    (click)="onDeleteData()">
+          <span class="mix-icon"> delete </span>
+          Delete
+        </mix-button>
+
+        <mix-button class="ml-2"
+                    [type]="'outline'"
+                    (click)="onExportData()">
+          <span class="mix-icon"> system_update_alt </span>
+          Export
+        </mix-button>
+
+
+        <mix-button class="ml-auto"
+                    [type]="'outline'"
+                    (click)="onSetupDb()">
+          <span class="mix-icon"> settings </span>
+          Setup Db
+        </mix-button>
       </mix-sub-toolbar>
 
       <div class="data-table-page__body flex flex-col">

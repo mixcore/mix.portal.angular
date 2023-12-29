@@ -10,7 +10,6 @@ import { ActivatedRoute } from '@angular/router';
 import { MixDatabase, MixDynamicData, MixFilter } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import {
-  ActionCollapseComponent,
   BasicMixFilterComponent,
   MixStatusIndicatorComponent,
   MixSubToolbarComponent,
@@ -64,7 +63,6 @@ import { DatabaseDataStore } from '../store/database-data.store';
     MixStatusIndicatorComponent,
     RelativeTimeSpanPipe,
     BasicMixFilterComponent,
-    ActionCollapseComponent,
     TuiTableModule,
     TuiCheckboxModule,
     FormsModule,
@@ -202,42 +200,6 @@ export class DatabaseDataComponent
   public onSelectionChanged() {
     this.selectedItems = this.gridApi.getSelectedRows();
   }
-
-  public actions = [
-    {
-      label: 'Insert',
-      key: 'create',
-      icon: 'add',
-      place: 'left',
-      type: 'primary',
-    },
-    {
-      label: 'Delete',
-      key: 'delete',
-      icon: 'delete',
-      place: 'left',
-      type: 'danger',
-    },
-    {
-      label: 'Export',
-      key: 'export',
-      icon: 'system_update_alt',
-      place: 'left',
-    },
-    {
-      label: 'Setup Db',
-      key: 'setup',
-      icon: 'settings',
-      place: 'right',
-    },
-  ];
-
-  public actionMaps = {
-    create: () => this.onInsertData(),
-    delete: () => this.onDeleteData(),
-    export: () => this.onExportData(),
-    setup: () => this.onSetupDb(),
-  };
 
   constructor() {
     super({
