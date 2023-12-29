@@ -23,7 +23,7 @@ export interface DatabaseDataState extends BaseState<MixDynamicData> {
   loadDataError: boolean;
 }
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
   public mixApi = inject(MixApiFacadeService);
   public router = inject(Router);

@@ -80,7 +80,7 @@ import { DatabaseDataStore } from '../store/database-data.store';
   ],
   templateUrl: './database-data.component.html',
   styleUrls: ['./database-data.component.scss'],
-  providers: [TuiDestroyService, DatabaseDataStore],
+  providers: [TuiDestroyService],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DatabaseDataComponent
@@ -332,6 +332,12 @@ export class DatabaseDataComponent
         windowClass: RecordFormComponent.windowClass,
         minWidth: RecordFormComponent.minWidth,
         maxWidth: RecordFormComponent.maxWidth,
+        draggable: true,
+        enableClose: {
+          escape: true,
+          backdrop: false,
+        },
+        backdrop: false,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
@@ -356,6 +362,12 @@ export class DatabaseDataComponent
         windowClass: RecordFormComponent.windowClass,
         minWidth: RecordFormComponent.minWidth,
         maxWidth: RecordFormComponent.maxWidth,
+        draggable: true,
+        enableClose: {
+          escape: true,
+          backdrop: false,
+        },
+        backdrop: false,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {

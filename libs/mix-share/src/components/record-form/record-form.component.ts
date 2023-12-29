@@ -6,17 +6,19 @@ import {
   ViewEncapsulation,
   inject,
 } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MixDatabase, MixDynamicData } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
 import { Utils } from '@mixcore/share/utils';
 import { MixButtonComponent } from '@mixcore/ui/button';
+import { MixCheckboxComponent } from '@mixcore/ui/checkbox';
 import { MixDefaultSkeletonComponent } from '@mixcore/ui/skeleton';
 import { DialogRef } from '@ngneat/dialog';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { TuiFileLike } from '@taiga-ui/kit';
 import { delay, of } from 'rxjs';
+import { DatabaseDataStore } from '../../modules/database/store/database-data.store';
 
 @Component({
   selector: 'mix-record-form',
@@ -27,6 +29,7 @@ import { delay, of } from 'rxjs';
     FormlyModule,
     MixButtonComponent,
     MixDefaultSkeletonComponent,
+    MixCheckboxComponent,
   ],
   templateUrl: './record-form.component.html',
   styleUrls: ['./record-form.component.scss'],
@@ -39,6 +42,7 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
   public static maxWidth = '95vw';
 
   public mixApi = inject(MixApiFacadeService);
+  public store = inject(DatabaseDataStore);
   public ref: DialogRef<
     {
       mixDatabase: MixDatabase;
@@ -63,14 +67,15 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
   public fields: FormlyFieldConfig[] = [];
   public form = new FormGroup({});
   public mode: 'create' | 'update' = 'create';
+  public continueCreate = new FormControl(true);
 
   ngOnInit() {
     of(this.ref.data.mixDatabase)
-      .pipe(delay(300), this.observerLoadingStateSignal())
+      .pipe(delay(200), this.observerLoadingStateSignal())
       .subscribe(() => {
         const db = this.ref.data.mixDatabase;
+        this.mode = this.ref.data.data ? 'update' : 'create';
         const data = this.ref.data.data ?? {};
-        this.mode = data ? 'update' : 'create';
 
         const { model, fields } = Utils.BuildDynamicFormField(
           db.columns,
@@ -95,6 +100,12 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
       .saveData(db.systemName, this.modelData.id ?? -1, value, db.displayName)
       .pipe(this.observerLoadingState())
       .subscribe((result) => {
+        if (this.mode === 'create' && this.continueCreate.value) {
+          this.store.addData(result);
+          this.form.reset();
+          return;
+        }
+
         this.ref.close(result);
       });
   }

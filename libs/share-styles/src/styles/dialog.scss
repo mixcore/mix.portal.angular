@@ -14,13 +14,17 @@ ngneat-dialog {
   .ngneat-dialog-backdrop {
     .ngneat-dialog-content {
       padding: 18px;
-      box-shadow: unset !important;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1), 0 14px 28px rgba(0, 0, 0, 0.14) !important;
       --dialog-content-border-radius: 12px;
     }
   }
 
   .ngneat-close-dialog {
     z-index: 1;
+  }
+
+  .ngneat-drag-marker {
+    height: 50px;
   }
 }
 
@@ -60,7 +64,7 @@ ngneat-dialog {
 }
 
 .top-align-modal {
-  .ngneat-dialog-backdrop.ngneat-dialog-backdrop-visible {
+  .ngneat-dialog-backdrop.ngneat-dialog-backdrop {
     align-items: flex-start;
     padding: 48px;
   }
