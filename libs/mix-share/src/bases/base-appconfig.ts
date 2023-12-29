@@ -64,7 +64,11 @@ export const FormlyImportModule = FormlyModule.forRoot({
       component: MixFormlyDateTimePickerComponent,
     },
     { name: DataType.Integer, component: MixFormlyInputNumberComponent },
-    { name: DataType.Double, component: MixFormlyInputNumberComponent },
+    {
+      name: DataType.Double,
+      component: MixFormlyInputNumberComponent,
+      defaultOptions: { props: { type: 'double' } },
+    },
     { name: DataType.Color, component: MixFormlyColorPickerComponent },
     { name: DataTypeUi.TextSelect, component: MixFormlySelectComponent },
     { name: DataType.Upload, component: MixFormlyUploadComponent },

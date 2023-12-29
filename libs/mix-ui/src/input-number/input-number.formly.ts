@@ -8,13 +8,17 @@ import { MixInputNumberComponent } from './input-number.component';
 @Component({
   selector: 'mix-formly-input-number',
   template: `
-  <mix-formly-control-layout [title]="field.props.label" [description]="field.type?.toString()">
+    <mix-formly-control-layout
+      [title]="field.props.label"
+      [description]="field.type?.toString()"
+    >
       <mix-input-number
-      [placeHolder]="'Input ' + field.props.label"
-      [formControl]="formControl"
-      [formlyAttributes]="field"
-    />
-  </mix-formly-control-layout>
+        [type]="field.props.type ?? 'integer'"
+        [placeHolder]="'Input ' + field.props.label"
+        [formControl]="formControl"
+        [formlyAttributes]="field"
+      />
+    </mix-formly-control-layout>
   `,
   standalone: true,
   imports: [

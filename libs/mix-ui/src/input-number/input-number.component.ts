@@ -7,31 +7,22 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormsModule,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiDestroyService } from '@taiga-ui/cdk';
-import {
-  TuiTextfieldControllerModule,
-  tuiNumberFormatProvider,
-} from '@taiga-ui/core';
-import { TuiInputNumberModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-input-number',
   standalone: true,
-  imports: [
-    CommonModule,
-    TuiInputNumberModule,
-    TuiTextfieldControllerModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule],
   templateUrl: './input-number.component.html',
   styleUrls: ['./input-number.component.scss'],
-  providers: [
-    TuiDestroyService,
-    tuiNumberFormatProvider({ decimalSeparator: '.', thousandSeparator: ',' }),
-  ],
+  providers: [TuiDestroyService],
 })
 export class MixInputNumberComponent
   extends BaseTextControl
@@ -39,13 +30,13 @@ export class MixInputNumberComponent
 {
   destroy$ = inject(TuiDestroyService);
 
-  @Input() type = 'text';
+  @Input() type: 'integer' | 'double' | string = 'integer';
   @Input() override placeHolder = 'Type';
   @Input() size: 'm' | 's' | 'l' = 'm';
   @Input() floatingLabel = false;
   @Input() searchIcon = false;
   @Input() prefix = '';
-  @Input() step = 0;
+  @Input() step = 0.01;
 
   @Input() selfControl = false;
   @Input() value = '';
@@ -56,5 +47,9 @@ export class MixInputNumberComponent
     this.control.valueChanges.pipe(takeUntil(this.destroy$)).subscribe((v) => {
       this.valueChange.emit(v);
     });
+  }
+
+  onValueChange(value: number) {
+    this.control.patchValue(value);
   }
 }

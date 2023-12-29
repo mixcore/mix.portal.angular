@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  ViewEncapsulation,
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
@@ -26,6 +27,7 @@ import { takeUntil } from 'rxjs';
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   providers: [TuiDestroyService],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MixInputComponent
   extends BaseTextControl

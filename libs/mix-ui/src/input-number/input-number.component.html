@@ -1,4 +1,4 @@
-<tui-input-number *ngIf="control"
+<!-- <tui-input-number *ngIf="control"
                   [formControl]="control"
                   [step]="step"
                   [tuiTextfieldCleaner]="true"
@@ -7,4 +7,11 @@
                   [tuiTextfieldPostfix]="prefix"
                   [tuiTextfieldSize]="size">
   {{ placeHolder }}
-</tui-input-number>
+</tui-input-number> -->
+
+<input class="input-primary"
+       type="number"
+       [ngModel]="control.value"
+       [placeholder]="placeHolder"
+       (ngModelChange)="onValueChange($event)"
+       step="0.01">
