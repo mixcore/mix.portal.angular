@@ -57,6 +57,7 @@ export class DatabaseSelectComponent {
       { allowSignalWrites: true }
     );
   }
+
   ngOnInit() {
     this.store.stateSignal();
   }

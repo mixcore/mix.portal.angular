@@ -25,7 +25,7 @@
       Cancel
     </mix-button>
 
-    <mix-button [loading]="loadingState() === 'Loading'"
+    <mix-button [loading]="(loadingState$ | async) === 'Loading'"
                 (click)="onSaveData()"
                 size="m">
       Save

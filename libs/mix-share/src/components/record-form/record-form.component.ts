@@ -93,7 +93,7 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
 
     this.mixApi.databaseApi
       .saveData(db.systemName, this.modelData.id ?? -1, value, db.displayName)
-      .pipe(this.observerLoadingStateSignal())
+      .pipe(this.observerLoadingState())
       .subscribe((result) => {
         this.ref.close(value);
       });
