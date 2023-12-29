@@ -41,6 +41,7 @@
           @for (item of combineFilter(vm.data, filterForm.value); track item.id)
           {
           <div class="context-card {{ ProviderIconMap[item.databaseProvider] }} shadow-md"
+               (click)="gotoDb(item)"
                tuiCard
                tuiSurface>
             <h4 tuiTitle>
@@ -67,14 +68,17 @@
 
 <ng-template #dbSelect
              let-hide>
-  <!-- <div class="mix-menu-item">
-    <div class="flex items-center gap-2">
-      <span class="mix-icon">edit</span> <span>Edit</span>
+  <div class="mix-menu-item"
+       (click)="hide();">
+    <div class="flex items-center gap-3 px-1">
+      <span class="mix-icon">settings</span>
+      <span>Update</span>
     </div>
-  </div> -->
+  </div>
+
   <div class="mix-menu-item"
        (click)="hide(); onDelete()">
-    <div class="flex items-center gap-2">
+    <div class="flex items-center gap-3 px-1">
       <span class="mix-icon">delete</span>
       <span class="text-danger">Remove</span>
     </div>

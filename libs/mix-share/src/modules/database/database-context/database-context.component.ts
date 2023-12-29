@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   DatabaseProvider,
   DatabaseProviderDisplay,
@@ -11,7 +12,10 @@ import {
   MixStatusIndicatorComponent,
   MixSubToolbarComponent,
 } from '@mixcore/share/components';
-import { toastObserverProcessing } from '@mixcore/share/helper';
+import {
+  extractBaseSegment,
+  toastObserverProcessing,
+} from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixEmptyContentComponent } from '@mixcore/ui/empty-content';
@@ -28,6 +32,7 @@ import { TuiCardModule, TuiSurfaceModule } from '@taiga-ui/experimental';
 import { TuiFilterModule } from '@taiga-ui/kit';
 import { DbContextFormComponent } from '../components/db-context-form/db-context-form.component';
 import { DatabaseContextStore } from '../store/db-context.store';
+import { DbUiStore } from '../store/db-ui.store';
 
 @Component({
   selector: 'mix-database-context',
@@ -56,9 +61,12 @@ import { DatabaseContextStore } from '../store/db-context.store';
 export class DatabaseContextComponent {
   public dialog = inject(DialogService);
   public store = inject(DatabaseContextStore);
+  public uiStore = inject(DbUiStore);
   public modal = inject(ModalService);
   public mixApi = inject(MixApiFacadeService);
   public toast = inject(HotToastService);
+  public activatedRoute = inject(ActivatedRoute);
+  public router = inject(Router);
 
   public ProviderIconMap: Record<DatabaseProvider, string> = {
     [DatabaseProvider.SQLSERVER]: 'sqlserver',
@@ -71,6 +79,7 @@ export class DatabaseContextComponent {
   public filterItems = Object.values(DatabaseProvider);
   public ProviderLabel = DatabaseProviderDisplay as any;
   public selected?: MixDbContext;
+  public currentPath = 'contexts';
 
   @tuiPure
   public combineFilter(
@@ -89,6 +98,16 @@ export class DatabaseContextComponent {
     dialogRef.afterClosed$.subscribe((isReload) => {
       if (isReload) this.store.reload();
     });
+  }
+
+  public gotoDb(context: MixDbContext) {
+    const baseSegment = extractBaseSegment(
+      this.currentPath,
+      this.activatedRoute
+    );
+
+    this.uiStore.changeSelected(context);
+    this.router.navigate([...baseSegment]);
   }
 
   public onDelete() {

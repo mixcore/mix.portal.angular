@@ -29,7 +29,9 @@
 
   <div class="mix-dialog__footer">
     <mix-button type="secondary"
-                [disabled]="loadingState() === 'Loading'">Cancel</mix-button>
+                [disabled]="loadingState() === 'Loading'"
+                (click)="dialogRef.close(false)">Cancel</mix-button>
+
     <mix-button *ngIf="loadingState() as state"
                 [disabled]="state === 'Loading'"
                 [loading]="state === 'Loading'"
