@@ -95,7 +95,7 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
       .saveData(db.systemName, this.modelData.id ?? -1, value, db.displayName)
       .pipe(this.observerLoadingState())
       .subscribe((result) => {
-        this.ref.close(value);
+        this.ref.close(result);
       });
   }
 }

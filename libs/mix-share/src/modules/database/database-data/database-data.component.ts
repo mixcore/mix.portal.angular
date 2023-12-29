@@ -298,7 +298,6 @@ export class DatabaseDataComponent
           .pipe(toastObserverProcessing(this.toast))
           .subscribe({
             next: () => {
-              this.modal.success('Successfully delete your data').subscribe();
               this.store.removeData(selectedData.map((x) => x.id!));
               this.selectedItems = [];
               this.gridApi.deselectAll();

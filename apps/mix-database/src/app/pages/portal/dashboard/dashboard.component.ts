@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { OrderStatus, PaymentGateway } from '@mixcore/lib/model';
+import { PaymentGateway } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
 import { BaseComponent } from '@mixcore/share/base';
 import { CountUpDirective } from '@mixcore/share/pipe';
-import { map, startWith } from 'rxjs';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'mix-dashboard',
@@ -36,23 +36,11 @@ export class DashboardComponent extends BaseComponent {
   public currentDate = new Date().toLocaleDateString();
 
   public colorMap = {
-    success: 'var(--bs-teal)',
-    error: 'var(--bs-danger)',
-    paid: 'var(--bs-info)',
-    shipping: 'var(--bs-warning)',
+    success: '#5cb85c',
+    error: '#5cb85c',
+    paid: '#5cb85c',
+    shipping: '#5cb85c',
     wait: '#f1f7b5',
     gateway: '#90f1ef',
   };
-
-  public success$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.SUCCESS)
-    .pipe(startWith(0));
-
-  public paid$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.PAID)
-    .pipe(startWith(0));
-
-  public waitToPay$ = this.mixApi.eCommerce
-    .countStatus(OrderStatus.WaitingPay)
-    .pipe(startWith(0));
 }

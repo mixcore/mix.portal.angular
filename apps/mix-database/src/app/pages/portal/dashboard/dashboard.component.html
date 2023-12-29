@@ -16,7 +16,7 @@
              [style.--chart-color]="colorMap['success']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(success$ | async) || 0"
+                 [countUp]="0"
                  [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
@@ -31,7 +31,7 @@
              [style.--chart-color]="colorMap['paid']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(paid$ | async) || 0"
+                 [countUp]="0"
                  [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
@@ -46,7 +46,7 @@
              [style.--chart-color]="colorMap['wait']">
           <div class="flex gap-1 items-end">
             <div class="number-chart__number"
-                 [countUp]="(waitToPay$ | async) || 0"
+                 [countUp]="0"
                  [duration]="1000"></div>
             <div class="text-s text-sub">item(s)</div>
           </div>
