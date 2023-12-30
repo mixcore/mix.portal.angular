@@ -17,7 +17,7 @@ import { MixDefaultSkeletonComponent } from '@mixcore/ui/skeleton';
 import { DialogRef } from '@ngneat/dialog';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { TuiFileLike } from '@taiga-ui/kit';
-import { delay, of } from 'rxjs';
+import { delay, of, take } from 'rxjs';
 import { DatabaseDataStore } from '../../modules/database/store/database-data.store';
 
 @Component({
@@ -37,7 +37,8 @@ import { DatabaseDataStore } from '../../modules/database/store/database-data.st
   encapsulation: ViewEncapsulation.None,
 })
 export class RecordFormComponent extends BaseComponent implements OnInit {
-  public static windowClass = 'mix-record-form-dialog top-align-modal';
+  public static windowClass =
+    'mix-record-form-dialog top-align-modal interact-modal';
   public static minWidth = '800px';
   public static maxWidth = '95vw';
 
@@ -71,7 +72,7 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
 
   ngOnInit() {
     of(this.ref.data.mixDatabase)
-      .pipe(delay(200), this.observerLoadingStateSignal())
+      .pipe(delay(200), this.observerLoadingStateSignal(), take(1))
       .subscribe(() => {
         const db = this.ref.data.mixDatabase;
         this.mode = this.ref.data.data ? 'update' : 'create';

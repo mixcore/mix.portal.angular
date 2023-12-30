@@ -332,6 +332,7 @@ export class DatabaseDataComponent
         windowClass: RecordFormComponent.windowClass,
         minWidth: RecordFormComponent.minWidth,
         maxWidth: RecordFormComponent.maxWidth,
+        dragConstraint: 'bounce',
         draggable: true,
         enableClose: {
           escape: true,

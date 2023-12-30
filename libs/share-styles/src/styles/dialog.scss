@@ -63,8 +63,18 @@ ngneat-dialog {
   }
 }
 
+.interact-modal {
+  .ngneat-dialog-backdrop {
+    pointer-events: none;
+  }
+
+  .ngneat-dialog-content {
+    pointer-events: all;
+  }
+}
+
 .top-align-modal {
-  .ngneat-dialog-backdrop.ngneat-dialog-backdrop {
+  .ngneat-dialog-backdrop {
     align-items: flex-start;
     padding: 48px;
   }
