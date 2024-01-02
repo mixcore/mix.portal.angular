@@ -49,6 +49,10 @@ export const CMS_ROUTES = {
       path: 'users',
       fullPath: 'app/cam/users',
     },
+    roles: {
+      path: 'roles',
+      fullPath: 'app/cam/roles',
+    },
   },
 };
 

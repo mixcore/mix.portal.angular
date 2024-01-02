@@ -55,13 +55,12 @@ export class MainSideMenuComponent {
 
   public selectedMenu: MenuItem | undefined = undefined;
   public selectedMenus: Record<string, MenuItem | undefined> = {};
-  public settingMenu = {
-    title: 'Settings',
-    icon: 'settings',
-    align: 'bottom',
-  };
 
   constructor(public route: Router) {}
+
+  ngOnInit() {
+    this.selectedMenu = this.menu.find((x) => x.default);
+  }
 
   @tuiPure
   public isMenuSelected(item: MenuItem, selectedMenu: MenuItem | undefined) {
@@ -102,22 +101,4 @@ export class MainSideMenuComponent {
     this.showDetail = !this.showDetail;
     if (!this.showDetail) this.selectedMenus = {};
   }
-
-  public getShortName(name: string) {
-    if (name.length >= 10) {
-      return name
-        .split(' ')
-        .map((x) => x.charAt(0))
-        .join('');
-    }
-
-    return name;
-  }
-
-  // public showSetting() {
-  //   this.dialogService.open(SettingDialogComponent, {
-  //     width: 'fit-content',
-  //     id: 'top-align-modal',
-  //   });
-  // }
 }

@@ -7,6 +7,11 @@ export const ROUTES: Route[] = [
       import('./users/users.component').then((c) => c.UserComponent),
   },
   {
+    path: 'roles',
+    loadComponent: () =>
+      import('./roles/roles.component').then((c) => c.RolesComponent),
+  },
+  {
     path: '',
     redirectTo: 'users',
     pathMatch: 'full',

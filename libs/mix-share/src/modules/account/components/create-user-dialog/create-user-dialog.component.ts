@@ -22,7 +22,7 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { DialogRef, DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
-import { UserStore } from '../../../stores/user.store';
+import { UserStore } from '../../stores/user.store';
 
 @Component({
   selector: 'mix-create-user-dialog',

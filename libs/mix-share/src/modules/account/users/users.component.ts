@@ -15,9 +15,9 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { DialogService } from '@ngneat/dialog';
 import { tuiPure } from '@taiga-ui/cdk';
+import { CreateUserDialogComponent } from '../components/create-user-dialog/create-user-dialog.component';
+import { UserDetailDialogComponent } from '../components/user-detail-dialog/user-detail-dialog.component';
 import { UserStore } from '../stores/user.store';
-import { CreateUserDialogComponent } from './components/create-user-dialog/create-user-dialog.component';
-import { UserDetailDialogComponent } from './components/user-detail-dialog/user-detail-dialog.component';
 import { UserService } from './services/user.service';
 
 @Component({

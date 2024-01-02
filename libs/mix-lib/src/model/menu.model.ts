@@ -7,4 +7,5 @@ export type MenuItem = {
   children?: MenuItem[];
   align?: 'top' | 'bottom';
   isDevelopment?: boolean;
+  default?: boolean;
 };
