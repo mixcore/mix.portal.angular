@@ -4,6 +4,7 @@ import {
   Component,
   OnInit,
   inject,
+  signal,
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -39,8 +40,8 @@ import {
   Subject,
   debounceTime,
   distinctUntilChanged,
+  filter,
   forkJoin,
-  map,
   take,
   takeUntil,
   tap,
@@ -152,14 +153,19 @@ export class DatabaseDataComponent
   public displayColumns: string[] = [];
   public displayColumns$ = new Subject<string[]>();
   public gridApi!: GridApi<MixDynamicData>;
+  public data = signal<MixDynamicData[]>([]);
 
   public onGridReady(params: GridReadyEvent) {
     this.gridApi = params.api;
-    this.rowData$ = this.store.vm$.pipe(
-      tap((s) => {
+    this.store.vm$
+      .pipe(
+        filter((s) => !!s.db),
+        takeUntil(this.destroy$)
+      )
+      .subscribe((s) => {
         if (s.db) {
           this.allColumnDefs = s.db.columns.map(
-            (x, i) =>
+            (x) =>
               <ColDef>{
                 colId: x.systemName,
                 field: x.systemName,
@@ -178,13 +184,10 @@ export class DatabaseDataComponent
             ...this.allColumnDefs,
             this.actionColumnDef,
           ];
+
+          this.data.set(s.data);
         }
-      }),
-      map((s) => {
-        return s.data;
-      }),
-      takeUntil(this.destroy$)
-    );
+      });
 
     this.displayColumns$
       .pipe(distinctUntilChanged(), debounceTime(0), takeUntil(this.destroy$))
