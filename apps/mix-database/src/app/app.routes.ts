@@ -41,6 +41,14 @@ export const CMS_ROUTES = {
       path: 'contexts',
       fullPath: 'app/db/contexts',
     },
+    cam: {
+      path: 'cam',
+      fullPath: 'app/cam',
+    },
+    users: {
+      path: 'users',
+      fullPath: 'app/cam/users',
+    },
   },
 };
 

@@ -61,10 +61,7 @@ export class AppComponent implements OnInit {
       this.authService.fetchUserData(),
       this.authService.initCultures(),
     ])
-      .pipe(
-        switchMap(() => this.authService.initRoles()),
-        switchMap(() => this.authService.initPortalsMenu())
-      )
+      .pipe(switchMap(() => this.authService.initPortalsMenu()))
       .subscribe({
         next: () => {
           this.authService.isAuthorized$.next(true);

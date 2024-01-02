@@ -1,30 +1,36 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, Optional, Self } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  Inject,
+  Optional,
+  Self,
+  inject,
+  signal,
+} from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
   ControlValueAccessor,
   NgControl,
   ReactiveFormsModule,
 } from '@angular/forms';
-import {
-  bounceInOnEnterAnimation,
-  bounceOutOnLeaveAnimation,
-} from '../animations';
 import { ERROR_MAP, ErrorMap } from './error-map';
 
 @Component({
   selector: 'mix-form-error',
   template:
-    '<div style="color: var(--form-error); padding: 0 var(--form-error-padding)" [@bounceInOnEnter] [@bounceOutOnLeave] *ngIf="computedError"> {{ computedError }}</div>',
+    '<div style="color: var(--form-error); line-height: 2" *ngIf="errorMsg() as msg"> {{ msg }}</div>',
   styles: [],
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  animations: [
-    bounceInOnEnterAnimation({ duration: 300 }),
-    bounceOutOnLeaveAnimation({ duration: 300 }),
-  ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MixFormErrorComponent implements ControlValueAccessor {
+  public errorMsg = signal<string | null>(null);
+  public destroyRef = inject(DestroyRef);
+
   constructor(
     @Optional()
     @Self()
@@ -51,6 +57,14 @@ export class MixFormErrorComponent implements ControlValueAccessor {
 
   writeValue(): void {
     //
+  }
+
+  ngOnInit() {
+    this.control?.statusChanges
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((v) => {
+        this.errorMsg.set(this.computedError);
+      });
   }
 
   get computedError(): string | null {

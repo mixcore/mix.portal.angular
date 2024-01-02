@@ -1,6 +1,7 @@
+import { MenuItem } from '@mixcore/lib/model';
 import { CMS_ROUTES } from '../../app.routes';
 
-export const APP_MENU = [
+export const APP_MENU: MenuItem[] = [
   {
     title: 'Dashboard',
     url: CMS_ROUTES.portal.dashboard.fullPath,
@@ -14,35 +15,55 @@ export const APP_MENU = [
     ],
   },
   {
-    icon: 'format_list_numbered',
-    title: 'Context',
-    url: CMS_ROUTES.portal.databaseContext.fullPath,
-    iconColor: '#BB56CF',
-  },
-  {
-    icon: 'settings',
-    title: 'Database Config',
-    iconColor: '#2190E4',
-    url: CMS_ROUTES.portal.database.fullPath,
-  },
-  {
-    icon: 'table_view',
-    title: 'Query Data',
-    iconColor: '#00ACC1',
-    url: CMS_ROUTES.portal.databaseQuery.fullPath,
-  },
-  {
-    icon: 'database',
-    title: 'Visualize Diagram',
+    title: 'Database',
+    url: '',
     iconColor: '#EC652C',
-    url: CMS_ROUTES.portal.database.fullPath,
-    isDevelopment: true,
+    icon: 'database',
+    children: [
+      {
+        icon: 'format_list_numbered',
+        title: 'Context',
+        url: CMS_ROUTES.portal.databaseContext.fullPath,
+        iconColor: '#BB56CF',
+      },
+      {
+        icon: 'settings',
+        title: 'Database Config',
+        iconColor: '#2190E4',
+        url: CMS_ROUTES.portal.database.fullPath,
+      },
+      {
+        icon: 'table_view',
+        title: 'Query Data',
+        iconColor: '#00ACC1',
+        url: CMS_ROUTES.portal.databaseQuery.fullPath,
+      },
+      {
+        icon: 'database',
+        title: 'Visualize Diagram',
+        iconColor: '#EC652C',
+        url: CMS_ROUTES.portal.database.fullPath,
+        isDevelopment: true,
+      },
+      {
+        icon: 'description',
+        title: 'API Document',
+        url: CMS_ROUTES.portal.dashboard.fullPath,
+        isDevelopment: true,
+      },
+    ],
   },
   {
-    icon: 'description',
-    title: 'API Document',
-    url: CMS_ROUTES.portal.dashboard.fullPath,
-    isDevelopment: true,
+    title: 'Users',
+    url: '',
+    icon: 'group',
+    children: [
+      {
+        icon: 'description',
+        title: 'All Users',
+        url: CMS_ROUTES.portal.users.fullPath,
+      },
+    ],
   },
 ];
 

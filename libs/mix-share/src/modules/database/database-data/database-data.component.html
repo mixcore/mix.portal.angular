@@ -97,9 +97,15 @@
           <mix-button *ngIf="vm.db"
                       class="ms-auto"
                       type="outline"
-                      (click)="onPreviewData(vm.db)"
-                      size="m">
+                      (click)="onPreviewData(vm.db)">
             <span class="mix-icon">code</span> API Document</mix-button>
+
+
+          <mix-button class="ml-2"
+                      [type]="'outline'">
+            <span class="mix-icon"> system_update_alt </span>
+            Group By
+          </mix-button>
         </div>
 
         <div class="mix-dbs-table__main-container">

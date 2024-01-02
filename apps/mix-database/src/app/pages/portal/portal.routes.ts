@@ -16,6 +16,12 @@ export const PortalRoutes: Routes = [
     loadChildren: () =>
       import('@mixcore/module/database').then((m) => m.routes),
   },
+
+  {
+    path: CMS_ROUTES.portal.cam.path,
+    data: breadcrumbName('CAM'),
+    loadChildren: () => import('@mixcore/module/account').then((m) => m.ROUTES),
+  },
   {
     path: '',
     redirectTo: CMS_ROUTES.portal.dashboard.path,

@@ -1,0 +1,71 @@
+<div *ngIf="store.vm$ | async as vm"
+     class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar [description]="'LISTING'"
+                     [title]="'All Account User(s)
+                     '">
+      <div class="toolbar-separator"></div>
+      <mix-button (click)="showDialog()"><span class="mix-icon"> add </span> Create user</mix-button>
+
+      <mix-button class="ms-2"
+                  type="danger"
+                  [disabled]="!selectedUsers.length"
+                  (click)="store.reload()"><span class="mix-icon"> delete </span> Delete(s)</mix-button>
+    </mix-sub-toolbar>
+
+    <div class="data-table-page__body">
+      <mix-data-table [contextMenus]="contextMenus"
+                      [dataset]="vm.data"
+                      [loading]="vm.status === 'Loading'"
+                      [pageInfo]="vm.pageInfo"
+                      [searchFieldOptions]="store.searchColumns"
+                      (itemsSelectedChange)="selectedUsers = $event"
+                      (pageChange)="store.changePage($event)"
+                      (searchChange)="store.search($event.searchText, $event.searchField)">
+        <div [columnType]="'CHECKBOX'"
+             mixTableColumn></div>
+
+        <div [header]="'Name'"
+             [minWidth]="'150px'"
+             key="userName"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div class="text-600">
+              <div class="flex items-center">
+                <div class="user-avatar">
+                  <img [src]="
+                      data.data?.userData?.avatar ||
+                      'assets/images/avatar-placeholder.svg'
+                    ">
+                </div>
+
+                <div class="ms-3">
+                  <div>{{ getNameFromMail(data.userName || '') }}</div>
+                  <div class="text-s text-secondary">
+                    {{ data?.id }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </div>
+
+        <div [header]="'Email'"
+             key="email"
+             mixTableColumn></div>
+
+        <div [header]="'Created'"
+             key="createdDateTime"
+             mixTableColumn>
+          <ng-template let-data
+                       mixColumnCell>
+            <div>
+              {{ data.createdDateTime | date: 'short' | relativeTimeSpan }}
+            </div>
+          </ng-template>
+        </div>
+      </mix-data-table>
+    </div>
+  </div>
+</div>

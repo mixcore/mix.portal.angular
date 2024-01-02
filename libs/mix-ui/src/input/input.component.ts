@@ -11,19 +11,12 @@ import {
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { BaseTextControl } from '@mixcore/ui/base-control';
 import { TuiDestroyService } from '@taiga-ui/cdk';
-import { TuiTextfieldControllerModule } from '@taiga-ui/core';
-import { TuiInputModule } from '@taiga-ui/kit';
 import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'mix-input',
   standalone: true,
-  imports: [
-    CommonModule,
-    TuiInputModule,
-    TuiTextfieldControllerModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   providers: [TuiDestroyService],
