@@ -24,17 +24,16 @@
                                    (selectedItemChange)="updateDbContext($event.id)"></mix-db-context-select>
           </div>
 
+
           <mix-button *ngIf="mode === 'update' && data"
                       class="ml-auto"
                       type="secondary"
-                      [size]="'s'"
                       (click)="goDatabaseData(data.systemName)">
             View data source
             <span class="mix-icon"> arrow_right_alt </span>
           </mix-button>
 
           <mix-button class="ms-2"
-                      [size]="'s'"
                       (click)="submit()">
             <span class="icon mix-icon"> save_as </span>
             {{ mode === 'create' ? 'Create' : 'Save' }}

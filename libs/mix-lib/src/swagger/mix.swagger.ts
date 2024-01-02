@@ -1,10 +1,10 @@
 export const MixSwagger = {
   auth: {
-    signIn: '/api/v2/rest/auth/user/login',
-    register: '/api/v2/rest/auth/user/register',
-    getProfile: '/api/v2/rest/auth/user/my-profile',
+    signIn: '/api/v2/rest/mix-account/user/login',
+    register: '/api/v2/rest/mix-account/user/register',
+    getProfile: '/api/v2/rest/mix-account/user/my-profile',
     culture: '/api/v2/rest/mix-portal/culture',
-    renewToken: '/api/v2/rest/auth/user/renew-token',
+    renewToken: '/api/v2/rest/mix-account/user/renew-token',
   },
   global: {
     globalSetting: '/api/v2/rest/shared/get-global-settings',
@@ -42,12 +42,12 @@ export const MixSwagger = {
     config: '/api/v2/rest/mix-portal/configuration',
   },
   user: {
-    list: '/api/v2/rest/auth/user/list',
-    detail: '/api/v2/rest/auth/user/details',
-    register: '/api/v2/rest/auth/user/register',
-    role: '/api/v2/rest/auth/role',
+    list: '/api/v2/rest/mix-account/user/list',
+    detail: '/api/v2/rest/mix-account/user/details',
+    register: '/api/v2/rest/mix-account/user/register',
+    role: '/api/v2/rest/mix-account/role',
     permission: '/api/v2/rest/mix-services/permission',
-    delete: '/api/v2/rest/auth/user/remove-user',
+    delete: '/api/v2/rest/mix-account/user/remove-user',
   },
   ecommerce: {
     updateDeliveryCode: '/api/v2/ecommerce/update-delivery-code',

@@ -1,4 +1,4 @@
-import { clone, difference } from 'remeda';
+import { clone, difference, groupBy } from 'remeda';
 
 export type RecordableKeys<T> = {
   // for each key in T
@@ -28,6 +28,10 @@ export class ArrayUtil {
       console.error('Index is out of bounds.');
       return array;
     }
+  }
+
+  public static groupBy(array: any[], key: string) {
+    return groupBy(array, () => key);
   }
 }
 

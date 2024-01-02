@@ -21,6 +21,7 @@ import {
   MixDatabase,
   MixRelationShip,
 } from '@mixcore/lib/model';
+import { FormEditorComponent } from '@mixcore/module/form-editor';
 import { EntityFormComponent } from '@mixcore/share/components';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
@@ -31,6 +32,7 @@ import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
 import { MixSelectComponent } from '@mixcore/ui/select';
 import { MixDefaultSkeletonComponent } from '@mixcore/ui/skeleton';
+import { DialogService } from '@ngneat/dialog';
 import { HotToastService } from '@ngneat/hot-toast';
 import { TuiLoaderModule } from '@taiga-ui/core';
 import { TuiTabsModule } from '@taiga-ui/kit';
@@ -80,6 +82,7 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
   public databaseStore = inject(DatabaseStore);
   public modal = inject(ModalService);
   public zone = inject(NgZone);
+  public dialog = inject(DialogService);
 
   public data: MixDatabase | undefined = undefined;
   public form = new FormGroup({
@@ -219,5 +222,19 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
 
   public goDatabaseData(sysName: string) {
     this.router.navigate([...this.baseSegment, 'query', sysName]);
+  }
+
+  public testForm() {
+    this.dialog.open(FormEditorComponent, {
+      width: '100vw',
+      height: '100vh',
+      enableClose: {
+        backdrop: false,
+        escape: false,
+      },
+      data: {
+        columns: this.data?.columns,
+      },
+    });
   }
 }

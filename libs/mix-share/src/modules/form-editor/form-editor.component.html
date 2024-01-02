@@ -1,0 +1,41 @@
+<div class="p-4 w-full h-full">
+  <div class="grid grid-cols-12 gap-3 divide-x h-full">
+    <div class="col-span-3 toolbar">
+      <div class="text-2xl font-medium mb-2">Columns</div>
+      <div class="sidebar">
+        @for (type of dataTypes; track type) {
+        <div class="font-medium mb-1">{{ type }}</div>
+        <div class="flex gap-2 flex-wrap mb-3">
+          @for (col of columns[type]; track col.systemName) {
+          <div class="grid-stack-item"
+               gs-w="6"
+               gs-h="1">
+            <div class="grid-stack-item-content toolbar-item">
+              <div class="label">{{ col.displayName }}</div>
+              <mix-input class="input"></mix-input>
+              <div class="description">
+
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+        }
+
+      </div>
+    </div>
+
+    <div class="col-span-7 gridview">
+      <div class="text-2xl font-medium mb-2 px-3">Form View</div>
+      <gridstack [options]="gridOptions">
+        <gridstack-item *ngFor="let n of items; trackBy: identify"
+                        class="grid-item"
+                        [options]="n">
+          <div>Label {{ n.id }}</div>
+          <mix-input></mix-input>
+        </gridstack-item>
+      </gridstack>
+    </div>
+  </div>
+
+</div>

@@ -157,6 +157,9 @@ dependencies:
   graphql:
     specifier: ^16.7.1
     version: 16.8.1
+  gridstack:
+    specifier: ^10.0.1
+    version: 10.0.1
   html2canvas:
     specifier: ^1.4.1
     version: 1.4.1
@@ -10218,6 +10221,10 @@ packages:
   /graphql@16.8.1:
     resolution: {integrity: sha512-59LZHPdGZVh695Ud9lRzPBVTtlX9ZCV150Er2W43ro37wVof0ctenSaskPPjN7lVTIN8mSZt8PHUNKZuNQUuxw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
+    dev: false
+
+  /gridstack@10.0.1:
+    resolution: {integrity: sha512-0NeRtQ6LLENN+xdJnjneOhQw60I5NHJKgW1KWz/hau046KGlJUza0V2FcxvylzKNc8EXZbWc08tsw9T4ohs+Wg==}
     dev: false
 
   /handle-thing@2.0.1:

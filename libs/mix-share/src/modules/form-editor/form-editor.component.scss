@@ -1,0 +1,66 @@
+mix-form-editor {
+  width: 100%;
+  height: 100%;
+}
+
+@import 'gridstack/dist/gridstack.min.css';
+
+.grid-stack-item-content {
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding: 0px 12px;
+}
+
+.grid-stack-item > .ui-resizable-se {
+  transform: unset !important;
+  right: -2px !important;
+  bottom: 35% !important;
+  opacity: 0.6;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.grid-stack-placeholder {
+  .placeholder-content {
+    border-radius: 8px;
+    border: 1px dashed var(--primary-color);
+  }
+}
+
+.toolbar .toolbar-item {
+  .input {
+    display: none;
+  }
+
+  padding: 12px;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  cursor: pointer;
+}
+
+.gridview .toolbar-item {
+  .description {
+    display: none;
+  }
+}
+
+.grid-stack-item.ui-draggable-dragging {
+  width: 330px !important;
+
+  .description {
+    display: none;
+  }
+
+  .grid-stack-item-content {
+    padding: 12px;
+  }
+}
