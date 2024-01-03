@@ -8,7 +8,12 @@ import {
 } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { MixDatabase, MixDynamicData, MixFilter } from '@mixcore/lib/model';
+import {
+  DataTypeToAgCellEditor,
+  MixDatabase,
+  MixDynamicData,
+  MixFilter,
+} from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import {
   BasicMixFilterComponent,
@@ -181,6 +186,7 @@ export class DatabaseDataComponent
                   dataType: x.dataType,
                   columnType: 'value',
                 },
+                cellEditor: DataTypeToAgCellEditor(x.dataType),
               }
           );
           this.columnNames = s.db.columns.map((x) => x.displayName);

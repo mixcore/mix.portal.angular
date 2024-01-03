@@ -46,8 +46,16 @@
   align-items: center;
   gap: 6px;
 
+  .mix-icon {
+    @apply text-gray-900;
+  }
+
   &:hover {
     background-color: var(--tui-base-02);
+
+    .mix-icon {
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
   }
 }
 

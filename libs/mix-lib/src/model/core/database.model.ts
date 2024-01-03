@@ -421,3 +421,27 @@ export const DatabaseProviderDisplay: Record<
   [DatabaseProvider.PostgreSQL]: 'Postgres Sql',
   [DatabaseProvider.SQLITE]: 'Sql Lite',
 };
+
+export const DataTypeToAgCellEditor = (dataType: DataType) => {
+  switch (dataType) {
+    case DataType.Text:
+    case DataType.Icon:
+    case DataType.ImageUrl:
+    case DataType.VideoYoutube:
+    case DataType.Url:
+    case DataType.Password:
+      return 'agTextCellEditor';
+    case DataType.Integer:
+    case DataType.Double:
+    case DataType.Duration:
+      return 'agNumberCellEditor';
+    case DataType.Date:
+      return 'agDateCellEditor';
+    case DataType.DateTime:
+      return 'agDateCellEditor';
+    case DataType.MultilineText:
+      return 'agLargeTextCellEditor';
+    default:
+      return 'agTextCellEditor';
+  }
+};

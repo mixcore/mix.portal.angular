@@ -91,6 +91,10 @@
 
     &:hover {
       opacity: 0.8;
+
+      .mix-icon {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
     }
 
     &:first-of-type {
@@ -126,6 +130,12 @@
     &.--active,
     &:hover {
       background-color: var(--menu-active-color);
+
+      .side-menu__parent-container {
+        .mix-icon {
+          font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+      }
     }
 
     &.--route-active {
