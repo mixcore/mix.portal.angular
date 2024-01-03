@@ -14,6 +14,7 @@ import {
 } from '@angular/forms';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { BaseComponent } from '@mixcore/share/base';
+import { MixAutoFocus } from '@mixcore/share/directives';
 import { FormHelper, MixFormErrorComponent } from '@mixcore/share/form';
 import { UserInfoStore } from '@mixcore/share/stores';
 import { MixButtonComponent } from '@mixcore/ui/button';
@@ -35,6 +36,7 @@ import { UserStore } from '../../stores/user.store';
     MixButtonComponent,
     MixErrorAlertComponent,
     MixFormErrorComponent,
+    MixAutoFocus,
   ],
   templateUrl: './create-user-dialog.component.html',
   styleUrls: ['./create-user-dialog.component.scss'],

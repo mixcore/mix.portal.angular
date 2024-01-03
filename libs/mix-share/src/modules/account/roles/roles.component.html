@@ -48,6 +48,7 @@
     <div class="mix-dialog__content">
       <mix-input [formControl]="roleName"
                  [mixAutoFocus]="true"
+                 (keyup.enter)="createRoles()"
                  placeHolder="Type your role name"></mix-input>
     </div>
 
