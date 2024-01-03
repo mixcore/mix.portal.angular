@@ -34,7 +34,12 @@ import { TuiReorderModule, TuiTableModule } from '@taiga-ui/addon-table';
 import { TuiDestroyService } from '@taiga-ui/cdk';
 import { TuiCheckboxModule, TuiPaginationModule } from '@taiga-ui/kit';
 import { AgGridModule } from 'ag-grid-angular';
-import { ColDef, GridApi, GridReadyEvent } from 'ag-grid-community';
+import {
+  CellValueChangedEvent,
+  ColDef,
+  GridApi,
+  GridReadyEvent,
+} from 'ag-grid-community';
 import {
   Observable,
   Subject,
@@ -115,6 +120,7 @@ export class DatabaseDataComponent
     sortable: false,
     headerCheckboxSelection: true,
     checkboxSelection: true,
+    editable: true,
     headerComponentParams: {
       displayName: '',
       columnType: 'check',
@@ -136,6 +142,7 @@ export class DatabaseDataComponent
   public readonly defaultColDef: ColDef = {
     sortable: true,
     resizable: true,
+    editable: true,
     width: 250,
   };
 
@@ -197,6 +204,22 @@ export class DatabaseDataComponent
       .pipe(takeUntil(this.destroy$), debounceTime(500))
       .subscribe((v) => {
         this.store.changeSearch(v);
+      });
+  }
+
+  public cellValueChanged(event: CellValueChangedEvent) {
+    const data = event.data as MixDynamicData;
+    Object.keys(data).forEach((key) => {
+      if (data[key] === null) {
+        delete data[key];
+      }
+    });
+
+    this.mixApi.databaseApi
+      .saveData(this.dbSysName, data.id ?? -1, data)
+      .pipe(toastObserverProcessing(this.toast))
+      .subscribe((result) => {
+        this.store.updateData(event.rowIndex || 0, result as MixDynamicData);
       });
   }
 

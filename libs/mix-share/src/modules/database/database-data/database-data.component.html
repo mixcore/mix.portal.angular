@@ -126,6 +126,7 @@
                              [rowDragManaged]="true"
                              [rowSelection]="'multiple'"
                              [suppressMoveWhenRowDragging]="true"
+                             (cellValueChanged)="cellValueChanged($event)"
                              (gridReady)="onGridReady($event)"
                              (selectionChanged)="onSelectionChanged()"
                              style="width: 100%; height: 100%">
