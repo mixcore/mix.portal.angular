@@ -57,16 +57,18 @@ export const APP_MENU: MenuItem[] = [
   {
     title: 'Users',
     url: '',
+    iconColor: '#C8A2C8',
     icon: 'group',
     children: [
       {
-        icon: 'description',
+        icon: 'sort',
         title: 'All Users',
         url: CMS_ROUTES.portal.users.fullPath,
       },
       {
-        icon: 'description',
+        icon: 'verified_user',
         title: 'Roles',
+        iconColor: '#2190E4',
         url: CMS_ROUTES.portal.roles.fullPath,
       },
     ],

@@ -1,16 +1,18 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
+  ViewChild,
   ViewEncapsulation,
   inject,
 } from '@angular/core';
 import { ControlValueAccessor, ReactiveFormsModule } from '@angular/forms';
 import { BaseTextControl } from '@mixcore/ui/base-control';
-import { TuiDestroyService } from '@taiga-ui/cdk';
+import { TuiDestroyService, TuiFocusableElementAccessor } from '@taiga-ui/cdk';
 import { takeUntil } from 'rxjs';
 
 @Component({
@@ -24,8 +26,15 @@ import { takeUntil } from 'rxjs';
 })
 export class MixInputComponent
   extends BaseTextControl
-  implements ControlValueAccessor, OnInit
+  implements ControlValueAccessor, OnInit, TuiFocusableElementAccessor
 {
+  @Output()
+  readonly focusedChange = new EventEmitter<boolean>();
+  @ViewChild('input') public textField!: ElementRef<HTMLInputElement>;
+  focused: boolean = true;
+  get nativeFocusableElement() {
+    return this.textField.nativeElement;
+  }
   destroy$ = inject(TuiDestroyService);
 
   @Input() type = 'text';
@@ -43,6 +52,10 @@ export class MixInputComponent
   @Input() selfControl = false;
   @Input() value = '';
   @Output() valueChange = new EventEmitter<string>();
+
+  public focus() {
+    this.textField.nativeElement.focus({ preventScroll: true });
+  }
 
   ngOnInit() {
     if (this.selfControl) this.defaultControl.setValue(this.value);

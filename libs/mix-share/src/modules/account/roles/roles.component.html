@@ -4,7 +4,8 @@
                      [description]="'LISTING'"
                      [title]="'All Roles'">
       <div class="toolbar-separator"></div>
-      <mix-button size="s"><span class="material-symbols-outlined"> add </span> Add
+      <mix-button (click)="onCreate(createRoleForm)"
+                  size="s"><span class="material-symbols-outlined"> add </span> Add
         Role</mix-button>
       <div class="toolbar-separator"></div>
     </mix-sub-toolbar>
@@ -35,9 +36,30 @@
       </mix-data-table>
     </div>
   </div>
-
-  <div *ngIf="showDetail && selectedRole"
-       class="data-table-page__detail-container">
-    <mix-role-form [role]="selectedRole"></mix-role-form>
-  </div>
 </div>
+
+<ng-template #createRoleForm
+             let-hide>
+  <div class="mix-dialog --default-padding">
+    <div class="mix-dialog__header">
+      <span>Create new Roles</span>
+    </div>
+
+    <div class="mix-dialog__content">
+      <mix-input [formControl]="roleName"
+                 [mixAutoFocus]="true"
+                 placeHolder="Type your role name"></mix-input>
+    </div>
+
+    <div class="mix-dialog__footer">
+      <mix-button class="mr-auto"
+                  type="outline"
+                  [disabled]="loadingState() === 'Loading'"
+                  dialogClose>Cancel</mix-button>
+
+      <mix-button [disabled]="loadingState() === 'Loading'"
+                  [loading]="loadingState() === 'Loading'"
+                  (click)="createRoles()">Create</mix-button>
+    </div>
+  </div>
+</ng-template>

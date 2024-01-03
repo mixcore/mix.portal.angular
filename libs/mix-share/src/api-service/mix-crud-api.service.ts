@@ -54,7 +54,7 @@ export class MixRestfulApi<
     return this.get<T>(`${this.restUrl}/${id}`);
   }
 
-  public deleteById(id: number): Observable<T> {
+  public deleteById(id: number | string): Observable<T> {
     return this.delete<T>(`${this.restUrl}/${id}`);
   }
 

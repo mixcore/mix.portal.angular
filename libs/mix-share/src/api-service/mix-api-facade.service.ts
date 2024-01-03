@@ -6,6 +6,7 @@ import {
   MixModule,
   MixPage,
   MixPermission,
+  MixRole,
   MixSettings,
   MixTemplate,
 } from '@mixcore/lib/model';
@@ -68,6 +69,9 @@ export class MixApiFacadeService {
 
   // Database Api
   public databaseApi = new MixDatabaseApi(MixSwagger.content.database);
+
+  // Role Api
+  public roleApi = new MixRestfulApi<MixRole>(MixSwagger.user.role);
 
   // Datbase Relation Api
   public databaseRelation = new MixDatabaseRelationApi(
