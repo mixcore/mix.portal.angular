@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MixRole, PaginationRequestModel } from '@mixcore/lib/model';
 import { BaseCRUDStore } from '@mixcore/share/base';
+import { ObjectUtil } from '@mixcore/share/form';
 
 @Injectable({ providedIn: 'root' })
 export class RolesStore extends BaseCRUDStore<MixRole> {
@@ -12,4 +13,20 @@ export class RolesStore extends BaseCRUDStore<MixRole> {
   public override searchColumnsDict: { [key: string]: string } = {
     Name: 'name',
   };
+
+  public addRole(data: MixRole) {
+    const current = this.get().data;
+    current.unshift(data);
+
+    this.patchState({ data: ObjectUtil.clone(current) });
+    this.reUpdateCache();
+  }
+
+  public removeData(dataId: string) {
+    let current = this.get().data;
+    current = current.filter((x) => dataId !== x.id);
+
+    this.patchState({ data: ObjectUtil.clone(current) });
+    this.reUpdateCache();
+  }
 }

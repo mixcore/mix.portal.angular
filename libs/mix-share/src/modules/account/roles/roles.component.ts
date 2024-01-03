@@ -77,16 +77,21 @@ export class RolesComponent extends BaseComponent {
 
   public createRoles() {
     if (FormHelper.validateForm(this.roleName)) {
+      const value = {
+        name: this.roleName.value,
+        normalizedName: this.roleName.value.toUpperCase(),
+      };
+
       this.mixApi.roleApi
-        .save({
-          name: this.roleName.value,
-          normalizedName: this.roleName.value.toUpperCase(),
-        })
+        .save(value)
         .pipe(this.observerLoadingStateSignal())
         .subscribe({
-          next: () => {
+          next: (result) => {
             this.toast.success('Successfully add new Role');
-            this.store.reload();
+            this.store.addRole({
+              ...value,
+              id: result as unknown as string,
+            });
             this.dialog.closeAll();
           },
         });
@@ -100,7 +105,7 @@ export class RolesComponent extends BaseComponent {
         this.mixApi.roleApi
           .deleteById(role.id)
           .pipe(toastObserverProcessing(this.toast))
-          .subscribe(() => this.store.reload());
+          .subscribe(() => this.store.removeData(role.id));
       }
     );
   }
