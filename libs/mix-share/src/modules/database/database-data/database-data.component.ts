@@ -219,7 +219,7 @@ export class DatabaseDataComponent
       .saveData(this.dbSysName, data.id ?? -1, data)
       .pipe(toastObserverProcessing(this.toast))
       .subscribe((result) => {
-        this.store.updateData(event.rowIndex || 0, result as MixDynamicData);
+        this.store.updateAtIndex(event.rowIndex || 0, result as MixDynamicData);
       });
   }
 

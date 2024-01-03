@@ -203,6 +203,13 @@ export class DatabaseDataStore extends ComponentStore<DatabaseDataState> {
     this.patchState({ data: ObjectUtil.clone(current) });
   }
 
+  public updateAtIndex(dataIndex: number, data: MixDynamicData) {
+    const current = this.get().data;
+    data[dataIndex] = data;
+
+    this.patchState({ data: current });
+  }
+
   public removeData(dataId: number[]) {
     let current = this.get().data;
     current = current.filter((x) => !dataId.includes(x.id!));
