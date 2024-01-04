@@ -1,13 +1,7 @@
 import { CommonModule } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-  inject,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { BasePageComponent } from '@mixcore/share/base';
 import { ToolbarService } from '@mixcore/share/components';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
@@ -34,18 +28,7 @@ import { DbUiStore } from './store/db-ui.store';
   }
 `,
 })
-export class DatabaseLayoutComponent {
-  @ViewChild('contextCtrl') public projectCtrl!: TemplateRef<unknown>;
-
+export class DatabaseLayoutComponent extends BasePageComponent {
   public toolbarSrv = inject(ToolbarService);
-  public viewRef = inject(ViewContainerRef);
   public uiStore = inject(DbUiStore);
-
-  ngAfterViewInit() {
-    this.toolbarSrv.add(this.projectCtrl, this.viewRef);
-  }
-
-  ngOnDestroy() {
-    this.toolbarSrv.remove();
-  }
 }
