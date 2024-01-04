@@ -68,7 +68,7 @@ export class RecordFormComponent extends BaseComponent implements OnInit {
   public fields: FormlyFieldConfig[] = [];
   public form = new FormGroup({});
   public mode: 'create' | 'update' = 'create';
-  public continueCreate = new FormControl(true);
+  public continueCreate = new FormControl(false);
 
   ngOnInit() {
     of(this.ref.data.mixDatabase)

@@ -1,3 +1,16 @@
+<ng-template #breadcrumb>
+  <mix-breadcrumbs>
+    <div name="Home"
+         icon="home"
+         url="/"
+         mixBreadcrumbItem></div>
+
+    <div name="Roles"
+         mixBreadcrumbItem></div>
+  </mix-breadcrumbs>
+</ng-template>
+
+
 <div class="data-table-page">
   <div class="data-table-page__main-container">
     <mix-sub-toolbar *ngIf="store.state() as state"

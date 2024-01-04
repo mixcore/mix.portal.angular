@@ -3,18 +3,19 @@ import { Component, inject } from '@angular/core';
 import { PaymentGateway } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
 import { AuthService } from '@mixcore/share/auth';
-import { BaseComponent } from '@mixcore/share/base';
+import { BasePageComponent } from '@mixcore/share/base';
 import { CountUpDirective } from '@mixcore/share/pipe';
+import { MixBreadcrumbsModule } from '@mixcore/ui/breadcrumbs';
 import { map } from 'rxjs';
 
 @Component({
   selector: 'mix-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
-  imports: [CommonModule, CountUpDirective],
+  imports: [CommonModule, CountUpDirective, MixBreadcrumbsModule],
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent extends BaseComponent {
+export class DashboardComponent extends BasePageComponent {
   public mixApi = inject(MixApiFacadeService);
   public authService = inject(AuthService);
   public userName$ = this.authService.user$.pipe(map((x) => x?.userName));

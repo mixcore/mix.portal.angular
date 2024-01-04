@@ -4,11 +4,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserListVm } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
-import { BaseComponent } from '@mixcore/share/base';
+import { BasePageComponent } from '@mixcore/share/base';
 import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { ImageHandleDirective } from '@mixcore/share/directives';
 import { MixFormErrorComponent } from '@mixcore/share/form';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
+import { MixBreadcrumbsModule } from '@mixcore/ui/breadcrumbs';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixErrorAlertComponent } from '@mixcore/ui/error';
 import { MixInputComponent } from '@mixcore/ui/input';
@@ -35,13 +36,14 @@ import { UserService } from './services/user.service';
     MixFormErrorComponent,
     MixErrorAlertComponent,
     ReactiveFormsModule,
+    MixBreadcrumbsModule,
   ],
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [UserService],
 })
-export class UserComponent extends BaseComponent {
+export class UserComponent extends BasePageComponent {
   public store = inject(UserStore);
   public router = inject(Router);
   public mixApi = inject(MixApiFacadeService);

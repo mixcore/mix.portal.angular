@@ -4,12 +4,13 @@ import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MixRole } from '@mixcore/lib/model';
 import { MixApiFacadeService } from '@mixcore/share/api';
-import { BaseComponent } from '@mixcore/share/base';
+import { BasePageComponent } from '@mixcore/share/base';
 import { MixSubToolbarComponent } from '@mixcore/share/components';
 import { ImageHandleDirective, MixAutoFocus } from '@mixcore/share/directives';
 import { FormHelper } from '@mixcore/share/form';
 import { toastObserverProcessing } from '@mixcore/share/helper';
 import { RelativeTimeSpanPipe } from '@mixcore/share/pipe';
+import { MixBreadcrumbsModule } from '@mixcore/ui/breadcrumbs';
 import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixInputComponent } from '@mixcore/ui/input';
 import { ModalService } from '@mixcore/ui/modal';
@@ -35,11 +36,12 @@ import { RolesStore } from '../stores/roles.store';
     MixAutoFocus,
     DialogCloseDirective,
     ReactiveFormsModule,
+    MixBreadcrumbsModule,
   ],
   templateUrl: './roles.component.html',
   styleUrls: ['./roles.component.scss'],
 })
-export class RolesComponent extends BaseComponent {
+export class RolesComponent extends BasePageComponent {
   public store = inject(RolesStore);
   public router = inject(Router);
   public mixApi = inject(MixApiFacadeService);

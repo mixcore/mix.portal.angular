@@ -75,7 +75,8 @@
       "@mixcore/ui/textarea": ["libs/mix-ui/src/text-area/index.ts"],
       "@mixcore/ui/toggle": ["libs/mix-ui/src/toggle/index.ts"],
       "@mixcore/ui/upload": ["libs/mix-ui/src/upload/index.ts"],
-      "@mixcore/ui/checkbox": ["libs/mix-ui/src/checkbox/index.ts"]
+      "@mixcore/ui/checkbox": ["libs/mix-ui/src/checkbox/index.ts"],
+      "@mixcore/ui/breadcrumbs": ["libs/mix-ui/src/breadcrumbs/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
