@@ -37,17 +37,23 @@ export class MixDatabase {
     this.mixDatabaseContextId =
       value.mixDatabaseContextId ?? DbContextFixId.MasterDb;
 
-    this.updatePermissions = value.updatePermissions
-      ? JSON.parse(value.updatePermissions.toString())
-      : [];
-    this.readPermissions = value.readPermissions
-      ? JSON.parse(value.readPermissions.toString())
-      : [];
-    this.deletePermissions = value.deletePermissions
-      ? JSON.parse(value.deletePermissions.toString())
-      : [];
-    this.createPermissions = value.createPermissions
-      ? JSON.parse(value.createPermissions.toString())
+    this.updatePermissions = MixDatabase.parsePermission(
+      value.updatePermissions
+    );
+    this.readPermissions = MixDatabase.parsePermission(value.readPermissions);
+    this.deletePermissions = MixDatabase.parsePermission(
+      value.deletePermissions
+    );
+    this.createPermissions = MixDatabase.parsePermission(
+      value.createPermissions
+    );
+  }
+
+  public static parsePermission(value: string[] | object | undefined) {
+    return value instanceof Array
+      ? value
+      : value
+      ? JSON.parse((value as any).toString())
       : [];
   }
 }
