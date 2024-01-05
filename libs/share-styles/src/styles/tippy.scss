@@ -38,13 +38,10 @@
 }
 
 .mix-menu-item {
-  @apply text-gray-900;
+  @apply text-gray-900 font-medium p-2.5 text-sm flex items-center;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  font-size: var(--text-size-s);
-  display: flex;
-  align-items: center;
   gap: 6px;
+  min-width: 13.5rem;
 
   .mix-icon {
     @apply text-gray-600;
