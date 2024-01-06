@@ -49,6 +49,9 @@ export const MixSwagger = {
     permission: '/api/v2/rest/mix-services/permission',
     delete: '/api/v2/rest/auth/user/remove-user',
   },
+  events: {
+    scheduler: '/api/v2/scheduler/trigger',
+  },
   ecommerce: {
     updateDeliveryCode: '/api/v2/ecommerce/update-delivery-code',
   },

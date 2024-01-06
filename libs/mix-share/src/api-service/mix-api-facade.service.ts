@@ -7,6 +7,7 @@ import {
   MixPage,
   MixPermission,
   MixRole,
+  MixScheduler,
   MixSettings,
   MixTemplate,
 } from '@mixcore/lib/model';
@@ -81,6 +82,11 @@ export class MixApiFacadeService {
   // Database Context
   public databaseContext = new MixRestfulApi<MixDbContext>(
     MixSwagger.content.databaseContext
+  );
+
+  // Scheduler Context
+  public schedulerApi = new MixRestfulApi<MixScheduler>(
+    MixSwagger.events.scheduler
   );
 
   // Appsetting Api

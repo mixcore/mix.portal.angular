@@ -20,6 +20,7 @@ import {
   switchMap,
   tap,
 } from 'rxjs';
+import { ObjectUtil } from '../form/object.helper';
 import { CacheService } from '../services/index';
 
 export interface BaseState<T> {
@@ -217,6 +218,22 @@ export class BaseCRUDStore<T> extends ComponentStore<BaseState<T>> {
         searchMethod: 'Like',
       },
     }));
+  }
+
+  public addData(data: T) {
+    const current = this.get().data;
+    current.unshift(data);
+
+    this.patchState({ data: ObjectUtil.clone(current) });
+    this.reUpdateCache();
+  }
+
+  public removeData(dataId: number) {
+    let current = this.get().data;
+    current = current.filter((x) => dataId !== (x as any).id);
+
+    this.patchState({ data: ObjectUtil.clone(current) });
+    this.reUpdateCache();
   }
 
   constructor() {

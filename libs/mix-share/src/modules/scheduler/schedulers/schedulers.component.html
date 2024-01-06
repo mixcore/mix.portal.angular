@@ -1,0 +1,155 @@
+<ng-template #breadcrumb>
+  <mix-breadcrumbs>
+    <div name="Home"
+         icon="home"
+         url="/"
+         mixBreadcrumbItem></div>
+
+    <div name="Schedulers"
+         mixBreadcrumbItem></div>
+  </mix-breadcrumbs>
+</ng-template>
+
+
+<div class="data-table-page">
+  <div class="data-table-page__main-container">
+    <mix-sub-toolbar *ngIf="store.state() as state"
+                     [description]="'LISTING'"
+                     [title]="'All Jobs'">
+      <div class="toolbar-separator"></div>
+      <mix-button (click)="addJob()"
+                  size="s"><span class="material-symbols-outlined"> add </span> New
+        Jobs</mix-button>
+      <div class="toolbar-separator"></div>
+    </mix-sub-toolbar>
+
+    <div *ngIf="store.vm$ | async as state"
+         class="data-table-page__body">
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+              <th class="px-6 py-3"
+                  scope="col">
+                Jobs name
+              </th>
+              <th class="px-6 py-3"
+                  scope="col">
+                Color
+              </th>
+              <th class="px-6 py-3"
+                  scope="col">
+                Category
+              </th>
+              <th class="px-6 py-3"
+                  scope="col">
+                Price
+              </th>
+              <th class="px-6 py-3"
+                  scope="col">
+                Action
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+              <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  scope="row">
+                Apple MacBook Pro 17"
+              </th>
+              <td class="px-6 py-4">
+                Silver
+              </td>
+              <td class="px-6 py-4">
+                Laptop
+              </td>
+              <td class="px-6 py-4">
+                $2999
+              </td>
+              <td class="px-6 py-4">
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                   href="#">Edit</a>
+              </td>
+            </tr>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+              <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  scope="row">
+                Microsoft Surface Pro
+              </th>
+              <td class="px-6 py-4">
+                White
+              </td>
+              <td class="px-6 py-4">
+                Laptop PC
+              </td>
+              <td class="px-6 py-4">
+                $1999
+              </td>
+              <td class="px-6 py-4">
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                   href="#">Edit</a>
+              </td>
+            </tr>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+              <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  scope="row">
+                Magic Mouse 2
+              </th>
+              <td class="px-6 py-4">
+                Black
+              </td>
+              <td class="px-6 py-4">
+                Accessories
+              </td>
+              <td class="px-6 py-4">
+                $99
+              </td>
+              <td class="px-6 py-4">
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                   href="#">Edit</a>
+              </td>
+            </tr>
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+              <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  scope="row">
+                Google Pixel Phone
+              </th>
+              <td class="px-6 py-4">
+                Gray
+              </td>
+              <td class="px-6 py-4">
+                Phone
+              </td>
+              <td class="px-6 py-4">
+                $799
+              </td>
+              <td class="px-6 py-4">
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                   href="#">Edit</a>
+              </td>
+            </tr>
+            <tr>
+              <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  scope="row">
+                Apple Watch 5
+              </th>
+              <td class="px-6 py-4">
+                Red
+              </td>
+              <td class="px-6 py-4">
+                Wearables
+              </td>
+              <td class="px-6 py-4">
+                $999
+              </td>
+              <td class="px-6 py-4">
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                   href="#">Edit</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

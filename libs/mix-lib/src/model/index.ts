@@ -13,6 +13,7 @@ export * from './core/portal-menu.model';
 export * from './core/post.model';
 export * from './core/register.model';
 export * from './core/roles.model';
+export * from './core/schedulers.model';
 export * from './core/settings.model';
 export * from './core/template.model';
 export * from './core/user-vm.model';

@@ -21,12 +21,4 @@ export class RolesStore extends BaseCRUDStore<MixRole> {
     this.patchState({ data: ObjectUtil.clone(current) });
     this.reUpdateCache();
   }
-
-  public removeData(dataId: string) {
-    let current = this.get().data;
-    current = current.filter((x) => dataId !== x.id);
-
-    this.patchState({ data: ObjectUtil.clone(current) });
-    this.reUpdateCache();
-  }
 }

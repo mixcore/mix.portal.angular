@@ -31,6 +31,9 @@
       "@mixcore/module/account": [
         "libs/mix-share/src/modules/account/index.ts"
       ],
+      "@mixcore/module/scheduler": [
+        "libs/mix-share/src/modules/scheduler/index.ts"
+      ],
       "@mixcore/module/auth": ["libs/mix-share/src/modules/auth/index.ts"],
       "@mixcore/share/animation": ["libs/mix-share/src/animations/index.ts"],
       "@mixcore/share/api": ["libs/mix-share/src/api-service/index.ts"],

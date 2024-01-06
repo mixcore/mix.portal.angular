@@ -53,6 +53,14 @@ export const CMS_ROUTES = {
       path: 'roles',
       fullPath: 'app/cam/roles',
     },
+    events: {
+      path: 'events',
+      fullPath: 'app/events',
+    },
+    schedulers: {
+      path: 'schedulers',
+      fullPath: 'app/events/schedulers',
+    },
   },
 };
 

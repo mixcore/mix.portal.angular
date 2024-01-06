@@ -107,7 +107,7 @@ export class RolesComponent extends BasePageComponent {
         this.mixApi.roleApi
           .deleteById(role.id)
           .pipe(toastObserverProcessing(this.toast))
-          .subscribe(() => this.store.removeData(role.id));
+          .subscribe(() => this.store.removeData(role.id as unknown as number));
       }
     );
   }

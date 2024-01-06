@@ -73,6 +73,19 @@ export const APP_MENU: MenuItem[] = [
       },
     ],
   },
+  {
+    title: 'Events',
+    url: CMS_ROUTES.portal.events.fullPath,
+    iconColor: '#22d3ee',
+    icon: 'schedule_send',
+    children: [
+      {
+        icon: 'sort',
+        title: 'schedulers',
+        url: CMS_ROUTES.portal.schedulers.fullPath,
+      },
+    ],
+  },
 ];
 
 export const APP_NOT_SUPPER_ADMIN_MENU = [

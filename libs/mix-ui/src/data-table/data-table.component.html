@@ -149,9 +149,9 @@
       </div>
     </div>
 
-    <tui-pagination *ngIf="!!pageInfo?.totalPage"
+    <tui-pagination *ngIf="!!pageInfo.totalPage"
                     [index]="pageInfo.pageIndex"
-                    [length]="pageInfo.totalPage ?? 0"
+                    [length]="pageInfo.totalPage"
                     (indexChange)="onPageChange($event)"></tui-pagination>
   </div>
 </div>
