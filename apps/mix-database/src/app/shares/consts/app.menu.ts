@@ -81,7 +81,7 @@ export const APP_MENU: MenuItem[] = [
     children: [
       {
         icon: 'sort',
-        title: 'schedulers',
+        title: 'Schedulers',
         url: CMS_ROUTES.portal.schedulers.fullPath,
       },
     ],

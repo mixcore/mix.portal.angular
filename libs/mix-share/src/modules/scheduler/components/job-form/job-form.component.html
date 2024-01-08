@@ -1,16 +1,55 @@
-<div class="mix-dialog --default-padding">
+<div class="mix-dialog --default-padding"
+     [formGroup]="jobForm">
   <div class="mix-dialog__header">
-    New Job
+    Add New Job
   </div>
 
   <div class="mix-dialog__content">
-    asd
+    <div class="grid grid-cols-2 gap-3 w-full">
+      <div class="col-span-1">
+        <div class="mb-1 content-label">Job Name</div>
+        <mix-input formControlName="jobName"></mix-input>
+      </div>
+
+      <div class="col-span-1">
+        <div class="mb-1 content-label">Group</div>
+        <mix-input formControlName="groupName"></mix-input>
+      </div>
+
+      <div class="col-span-1">
+        <div class="mb-1 content-label">Repeat</div>
+        <mix-input-number formControlName="repeatCount"></mix-input-number>
+      </div>
+
+      <div class="col-span-1">
+        <div class="mb-1 content-label">Interval</div>
+        <mix-input-number formControlName="interval"></mix-input-number>
+      </div>
+
+      <div class="col-span-1">
+        <div class="mb-1 content-label">Start At</div>
+        <mix-date-time-picker formControlName="startAt"></mix-date-time-picker>
+      </div>
+
+      <div class="col-span-1">
+        <div class="mb-1 content-label">End At</div>
+        <mix-date-time-picker formControlName="endAt"></mix-date-time-picker>
+      </div>
+
+      <div class="col-span-2 mt-2">
+        <div class="mb-1 content-label">Setting Schedule</div>
+        <mix-input-cron [cron]="jobForm.value.cronExpression ?? ''"
+                        (cronChange)="jobForm.controls.cronExpression.patchValue($event)"></mix-input-cron>
+      </div>
+    </div>
   </div>
 
   <div class="mix-dialog__footer">
     <mix-button class="mr-auto"
-                type="outline">Close</mix-button>
-
-    <mix-button>Add</mix-button>
+                type="outline"
+                (click)="ref.close()">Close</mix-button>
+    <div class="flex items-center mr-2"><mix-toggle formControlName="isStartNow"></mix-toggle>Run now</div>
+    <mix-button [loading]="loadingState() === 'Loading'"
+                (click)="submit()">Create Job</mix-button>
   </div>
 </div>

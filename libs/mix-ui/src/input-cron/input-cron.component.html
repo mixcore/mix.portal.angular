@@ -1,0 +1,164 @@
+<form class="group"
+      [formGroup]="periodForm">
+  <div class="group"
+       [collapsed]="true"
+       tuiGroup>
+    <div *ngIf="_allowedPeriods.length > 1"
+         class="flex gap-1 flex-wrap">
+      <ng-container *ngFor="let key of _allowedPeriods">
+        <tui-radio-block [disabled]="!!disabled"
+                         [item]="key"
+                         contentAlign="right"
+                         formControlName="period"
+                         size="s">
+          {{ key }}
+        </tui-radio-block>
+      </ng-container>
+    </div>
+  </div>
+</form>
+
+<div class="selections mt-2 text-xl">
+  <div class="date-selection">
+    <span *ngIf="cronData.period === 'Custom'">
+      <mix-input [(value)]="cron"
+                 [placeHolder]="'* * * * *'"
+                 [selfControl]="true">
+      </mix-input>
+
+      <span class="text-gray-600">{{ cronData.description }}</span>
+    </span>
+
+    <span *ngIf="cronData.period === 'Hourly'">
+      At <input class="peer inline-input inline-block w-10 mr-1 ml-1"
+             type="number"
+             [(ngModel)]="cronData.minute"
+             (change)="cronDataChanged()"
+             (ngModelChange)="cronData.minute = +$event"
+             min="0"
+             max="59"
+             placeholder="Static">
+
+      minute past the hour
+    </span>
+
+    <span *ngIf="cronData.period === 'Secondly'">
+      Every
+
+      <input class="peer inline-input inline-block w-10 mr-1 ml-1"
+             type="number"
+             [ngModel]="cronData.secondInterval"
+             (change)="cronDataChanged()"
+             (ngModelChange)="cronData.secondInterval = +$event"
+             min="1"
+             max="59">
+
+      {{ cronData.secondInterval && cronData.secondInterval > 1 ? 'seconds' : 'second'}}
+    </span>
+
+    <span *ngIf="cronData.period === 'Minutely'"
+          class="every">
+      Every
+
+      <input class="peer inline-input inline-block w-10 mr-1 ml-1"
+             type="number"
+             [ngModel]="cronData.minuteInterval"
+             (change)="cronDataChanged()"
+             (ngModelChange)="cronData.minuteInterval = +$event"
+             min="1"
+             max="59">
+
+      {{ cronData.minuteInterval && cronData.minuteInterval > 1 ? 'minutes' : 'minute'}}
+    </span>
+
+    <span *ngIf="
+      cronData.period === 'Daily' ||
+      cronData.period === 'Weekly' ||
+      cronData.period === 'Monthly' ||
+      cronData.period === 'Yearly'
+    ">
+      At
+
+      <div class="relative inline-block w-24 mr-1 ml-1">
+        <input class="peer inline-input w-full"
+               [ngModel]="time"
+               [ngxTimepicker]="picker"
+               (ngModelChange)="onValueChange($event)"
+               placeholder="Static">
+      </div>
+      <ngx-material-timepicker #picker></ngx-material-timepicker>
+    </span>
+
+    <span *ngIf="cronData.period === 'Monthly' || cronData.period === 'Yearly'">
+      , on day
+      <input class="peer inline-input inline-block w-12 mr-1 ml-1"
+             type="number"
+             [(ngModel)]="cronData.day"
+             [max]="cronData.period === 'Yearly' ? (cronData.daysMax ? cronData.daysMax : 31)  : 31"
+             (change)="cronDataChanged()"
+             min="1">
+      of the month
+    </span>
+
+    <span *ngIf="cronData.period === 'Yearly'">
+      , only in
+      <input class="peer inline-input inline-block w-24 mr-1 ml-1"
+             [tp]="monthSelect"
+             [tpOffset]="[-10, 5]"
+             [value]="cronData.month"
+             (keydown)="$event.preventDefault()"
+             min="1"
+             tpVariation="popper"
+             tpPlacement="bottom-start">
+
+      <ng-template #monthSelect
+                   let-hide>
+        <div class="popup-container">
+          @for (item of months; track item) {
+          <div class="mix-menu-item flex justify-between"
+               (click)="cronData.month = item; cronDataChanged(); hide()">
+            <div class="text-500">{{item}}</div>
+          </div>
+          }
+        </div>
+      </ng-template>
+    </span>
+
+    <span *ngIf="cronData.period === 'Weekly'">
+      , only on
+
+      <input class="peer inline-input inline-block w-24 mr-1 ml-1"
+             [tp]="weekdaySelect"
+             [tpOffset]="[-10, 5]"
+             [value]="cronData.weekday"
+             (keydown)="$event.preventDefault()"
+             min="1"
+             tpVariation="popper"
+             tpPlacement="bottom-start">
+
+      <ng-template #weekdaySelect
+                   let-hide>
+        <div class="popup-container">
+          @for (item of dows; track item) {
+          <div class="mix-menu-item flex justify-between"
+               (click)="cronData.weekday = item; cronDataChanged(); hide()">
+            <div class="text-500">{{item}}</div>
+          </div>
+          }
+        </div>
+      </ng-template>
+    </span>
+  </div>
+
+
+  <p *ngIf="!cronData.valid && cronData.period !== 'Custom'"
+     class="invalid-expression">
+    {{ cronData.description }}
+  </p>
+
+  <p *ngIf="language !== 'en' && cronData.valid && cronData.period !== 'Custom'"
+     class="language-expression"
+     [ngClass]="{ 'hint-margin-top': cronData.period === 'Daily' }">
+    {{ cronData.description }}
+  </p>
+</div>

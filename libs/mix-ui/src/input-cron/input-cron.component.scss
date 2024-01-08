@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.timepicker-overlay {
+  z-index: 99999 !important;
+}
+
+.timepicker-backdrop-overlay {
+  z-index: 99999 !important;
+}
+
+@layer components {
+  .inline-input {
+    @apply h-full border-b border-primary bg-transparent pt-4 pb-1.5  outline outline-0 transition-all focus:outline-0 disabled:border-0;
+  }
+
+  .selections {
+    display: flex;
+    align-items: center;
+    background: beige;
+    padding: 12px 18px;
+    border-radius: 12px;
+    @apply bg-slate-100;
+  }
+}

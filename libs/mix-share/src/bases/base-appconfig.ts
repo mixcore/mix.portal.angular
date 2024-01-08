@@ -131,7 +131,7 @@ export const BaseAppProvider = [
     defaultVariation: 'tooltip',
     variations: {
       tooltip: tooltipVariation,
-      popper: { ...popperVariation, animation: 'scale' },
+      popper: { ...popperVariation, animation: 'scale', duration: 100 },
     },
   }),
   {

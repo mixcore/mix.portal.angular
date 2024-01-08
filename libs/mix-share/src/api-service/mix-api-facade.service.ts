@@ -7,7 +7,6 @@ import {
   MixPage,
   MixPermission,
   MixRole,
-  MixScheduler,
   MixSettings,
   MixTemplate,
 } from '@mixcore/lib/model';
@@ -23,6 +22,7 @@ import { MixModuleDataApi } from './mix-module-data-api.service';
 import { MixPostApi } from './mix-post-api.service';
 import { MixPostToPostApi } from './mix-post-post-api.service';
 import { MixSyncApi } from './mix-sync-api.service';
+import { MixSchedulerApi } from './scheduler-api.service';
 import { UploadApiService } from './upload-api.service';
 
 @Injectable({ providedIn: 'root' })
@@ -85,9 +85,7 @@ export class MixApiFacadeService {
   );
 
   // Scheduler Context
-  public schedulerApi = new MixRestfulApi<MixScheduler>(
-    MixSwagger.events.scheduler
-  );
+  public schedulerApi = new MixSchedulerApi(MixSwagger.events.scheduler);
 
   // Appsetting Api
   public appSettingApi = new MixRestfulApi<MixSettings>(
