@@ -60,7 +60,7 @@ export class MixInputCronComponent implements OnChanges, OnInit {
   allowedPeriods = NgxCronService.PERIODKEYS;
 
   @Input()
-  allowQuartz = false;
+  allowQuartz = true;
 
   @Input()
   language = 'en';

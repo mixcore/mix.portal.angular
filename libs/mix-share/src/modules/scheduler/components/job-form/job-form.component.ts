@@ -47,13 +47,13 @@ export class JobFormComponent extends BaseComponent {
     cronExpression: ['5 * * * *'],
     description: [''],
     groupName: [''],
-    interval: [7],
-    intervalType: [],
+    interval: [null],
+    intervalType: ['Minute'],
     isStartNow: [true],
     jobData: [],
-    jobName: [''],
+    jobName: ['Mix.Scheduler.Domain.Jobs.KeepPoolAliveJob'],
     name: [''],
-    repeatCount: [7],
+    repeatCount: [null],
     startAt: [null],
     endAt: [null],
   });
@@ -67,7 +67,7 @@ export class JobFormComponent extends BaseComponent {
           this.toast.success('Successfully create new job');
           this.ref.close({ data: result });
         },
-        error: (error) => {
+        error: () => {
           this.toast.error('Something error, please try again later');
         },
       });
