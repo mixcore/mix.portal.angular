@@ -17,7 +17,7 @@ import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { DialogService } from '@ngneat/dialog';
 import { tuiPure } from '@taiga-ui/cdk';
 import { CreateUserDialogComponent } from '../components/create-user-dialog/create-user-dialog.component';
-import { UserDetailDialogComponent } from '../components/user-detail-dialog/user-detail-dialog.component';
+import { UpdateUserDialogComponent } from '../components/update-user-dialog/update-user-dialog.component';
 import { UserStore } from '../stores/user.store';
 import { UserService } from './services/user.service';
 
@@ -70,7 +70,13 @@ export class UserComponent extends BasePageComponent {
   }
 
   public editUser(item: UserListVm): void {
-    this.dialog.open(UserDetailDialogComponent);
+    this.dialog.open(UpdateUserDialogComponent, {
+      width: '80vw',
+      height: '90vh',
+      maxWidth: 1440,
+      maxHeight: 840,
+      data: item,
+    });
   }
 
   @tuiPure

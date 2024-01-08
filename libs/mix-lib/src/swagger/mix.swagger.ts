@@ -48,6 +48,7 @@ export const MixSwagger = {
     role: '/api/v2/rest/auth/role',
     permission: '/api/v2/rest/mix-services/permission',
     delete: '/api/v2/rest/auth/user/remove-user',
+    toggleRole: '/api/v2/rest/auth/user/user-in-role',
   },
   events: {
     scheduler: '/api/v2/scheduler/trigger',

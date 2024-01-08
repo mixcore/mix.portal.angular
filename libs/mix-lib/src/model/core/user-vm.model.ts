@@ -1,3 +1,5 @@
+import { MixRole } from './roles.model';
+
 export interface UserDetail {
   id: string;
   userName: string;
@@ -52,6 +54,7 @@ export class UserListVm {
   public lockoutEnabled?: boolean;
   public accessFailedCount?: number;
   public data?: UserDetail;
+  public roles: MixRole[] = [];
 
   constructor(data: Partial<UserListVm>) {
     Object.keys(data).forEach((key) => {

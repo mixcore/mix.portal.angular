@@ -54,7 +54,7 @@
                         [iconBtn]="true"
                         [tp]="dbSelect"
                         [tpOffset]="[-10, 5]"
-                        (click)="selected = item"
+                        (click)="$event.stopPropagation()"
                         tpVariation="popper"
                         tpPlacement="bottom-start"><span class="mix-icon">more_horiz</span></mix-button>
           </div>

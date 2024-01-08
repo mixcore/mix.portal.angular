@@ -31,7 +31,8 @@
              mixTableColumn>
           <ng-template let-data
                        mixColumnCell>
-            <div class="text-600">
+            <div class="text-600 cursor-pointer"
+                 (click)="editUser(data)">
               <div class="flex items-center">
                 <div class="user-avatar">
                   <img [src]="

@@ -19,17 +19,19 @@
   </div>
 
   <div class="mix-dialog__footer">
-    <div *ngIf="mode === 'create'"
-         class="mr-auto">
-      <mix-checkbox [formControl]="continueCreate"
-                    label="Continues to create"></mix-checkbox>
-    </div>
-
-    <mix-button type="outline"
+    <mix-button class="mr-auto"
+                type="outline"
                 (click)="ref.close()"
                 size="m">
       Cancel
     </mix-button>
+
+    <div *ngIf="mode === 'create'"
+         class="mr-2">
+      <mix-checkbox [formControl]="continueCreate"
+                    label="Continues to create"></mix-checkbox>
+    </div>
+
 
     <mix-button [loading]="(loadingState$ | async) === 'Loading'"
                 (click)="onSaveData()"

@@ -15,6 +15,7 @@ import { MixButtonComponent } from '@mixcore/ui/button';
   imports: [CommonModule, MixButtonComponent],
   template: `
     <mix-button
+      style="width: fit-content; display: block"
       [loading]="loadingState() === 'Loading'"
       (click)="migrateSingleTable()"
       >Migrate to single table</mix-button

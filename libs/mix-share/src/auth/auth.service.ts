@@ -151,6 +151,20 @@ export class AuthService extends BaseApiService {
     return this.get<GlobalSettings>(MixSwagger.global.globalSetting);
   }
 
+  public toggleUserInRoles(
+    active: boolean,
+    roleId: string,
+    roleName: string,
+    userId: string
+  ) {
+    return this.post(MixSwagger.user.toggleRole, {
+      isUserInRole: active,
+      roleId,
+      roleName,
+      userId,
+    });
+  }
+
   public gelCultures(): Observable<PaginationResultModel<Culture>> {
     return this.get<PaginationResultModel<Culture>>(MixSwagger.auth.culture, {
       pageSize: 100,

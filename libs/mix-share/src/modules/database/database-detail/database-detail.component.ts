@@ -160,16 +160,10 @@ export class DatabaseDetailComponent extends DetailPageKit implements OnInit {
           formValue.mixDatabaseContextId === DbContextFixId.MasterDb
             ? undefined
             : formValue.mixDatabaseContextId,
-        readPermissions: JSON.stringify(formValue.readPermissions || []) as any,
-        createPermissions: JSON.stringify(
-          formValue.createPermissions || []
-        ) as any,
-        updatePermissions: JSON.stringify(
-          formValue.updatePermissions || []
-        ) as any,
-        deletePermissions: JSON.stringify(
-          formValue.deletePermissions || []
-        ) as any,
+        readPermissions: formValue.readPermissions || [],
+        createPermissions: formValue.createPermissions || [],
+        updatePermissions: formValue.updatePermissions || [],
+        deletePermissions: formValue.deletePermissions || [],
       })
       .pipe(
         this.toast.observe({
