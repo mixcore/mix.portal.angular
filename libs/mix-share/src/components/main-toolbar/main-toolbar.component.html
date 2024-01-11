@@ -1,10 +1,10 @@
-<div class="main-toolbar shadow">
+<div class="main-toolbar">
   <div *ngIf="showExpandBtn"
        class="main-toolbar__expand-btn">
     <collapse-btn (click)="expandChange.emit()"></collapse-btn>
   </div>
 
-  <mix-location-controller></mix-location-controller>
+  <mix-location-controller class="hidden md:block"></mix-location-controller>
 
   <div *ngIf="toolbarService.templatePortal$ | async as portal"
        class="main-toolbar__custom-portal">

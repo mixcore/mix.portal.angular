@@ -10,6 +10,7 @@
   height: 55px;
   background-color: var(--background-color-primary);
   z-index: 3;
+  border-bottom: 1px solid var(--border-color-default);
 
   &__expand-btn {
     margin: 0px 16px 0px 14px;

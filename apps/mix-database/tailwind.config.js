@@ -6,6 +6,8 @@ module.exports = {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html,scss}'),
     ...createGlobPatternsForDependencies(__dirname),
+    'libs/mix-share/**/!(*.stories|*.spec).{ts,html,scss}',
+    'libs/mix-ui/**/!(*.stories|*.spec).{ts,html,scss}',
   ],
   theme: {
     extend: {
