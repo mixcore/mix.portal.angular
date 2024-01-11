@@ -8,12 +8,13 @@
               max="100"
               style="height: 3px"></progress>
   </div>
+
   <aside id="sidebar">
     <mix-main-side-menu [showDetail]="expand()"
                         (expandChange)="onExpandChange()"></mix-main-side-menu>
   </aside>
 
-  <main class="shadow flex flex-col h-full overflow-auto rounded-tl-xl rounded-bl-xl"
+  <main class="shadow flex flex-col h-full overflow-auto rounded-none md:rounded-tl-xl md:rounded-bl-xl"
         id="canvas">
     <mix-main-toolbar [showExpandBtn]="!expand()"
                       (expandChange)="onExpandChange()"></mix-main-toolbar>

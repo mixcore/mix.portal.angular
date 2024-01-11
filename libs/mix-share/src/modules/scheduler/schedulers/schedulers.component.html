@@ -29,23 +29,23 @@
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th class="px-6 py-3"
+              <th class="px-6 py-3 whitespace-nowrap"
                   scope="col">
                 Job name
               </th>
-              <th class="px-6 py-3"
+              <th class="px-6 py-3 whitespace-nowrap"
                   scope="col">
                 Job Type
               </th>
-              <th class="px-6 py-3"
+              <th class="px-6 py-3 whitespace-nowrap"
                   scope="col">
                 Start At
               </th>
-              <th class="px-6 py-3"
+              <th class="px-6 py-3 whitespace-nowrap"
                   scope="col">
                 End At
               </th>
-              <th class="px-6 py-3"
+              <th class="px-6 py-3 whitespace-nowrap"
                   scope="col">
                 Action
               </th>
@@ -54,12 +54,14 @@
           <tbody>
             <tr *ngFor="let job of state.data"
                 class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-              <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white "
                   scope="row">
                 {{ job.name }}
               </th>
               <td class="px-6 py-4">
-                {{ job.jobName | formatJobName }}
+                <span class="whitespace-nowrap">
+                  {{ job.jobName | formatJobName }}
+                </span>
               </td>
               <td class="px-6 py-4">
               </td>

@@ -67,7 +67,7 @@
       <div class="data-detail-page__content">
         <!-- Main Content -->
         @defer(when activeTabIndex === 0) {
-        <div class="data-detail-page__main-content"
+        <div class="data-detail-page__main-content sm:container"
              [class.hidden]="activeTabIndex !== 0">
           <mix-database-info [form]="form"></mix-database-info>
         </div>
@@ -77,7 +77,7 @@
 
         <!-- Columns -->
         @defer(when activeTabIndex === 1) {
-        <div class="data-detail-page__main-content"
+        <div class="data-detail-page__main-content sm:container"
              [class.hidden]="activeTabIndex !== 1">
           <mix-database-entity [columns]="data?.columns ?? []"
                                (columnsChange)="onColumnsChange($event)"></mix-database-entity>
@@ -89,7 +89,7 @@
 
         <!-- Relationships -->
         @defer(when activeTabIndex === 2) {
-        <div class="data-detail-page__main-content"
+        <div class="data-detail-page__main-content sm:container"
              [class.hidden]="activeTabIndex !== 2">
           <mix-database-relationship [relationships]="data?.relationships ?? []"
                                      (deleteRelation)="onDeleteRelationship($event)"
@@ -102,7 +102,7 @@
 
         <!-- Permissions -->
         @defer(when activeTabIndex === 3) {
-        <div class="data-detail-page__main-content"
+        <div class="data-detail-page__main-content sm:container"
              [class.hidden]="activeTabIndex !== 3">
           <mix-database-permission [form]="form"></mix-database-permission>
         </div>
@@ -113,7 +113,7 @@
 
         <!-- Migrations -->
         @defer(when activeTabIndex === 4) {
-        <div class="data-detail-page__main-content"
+        <div class="data-detail-page__main-content sm:container"
              [class.hidden]="activeTabIndex !== 4">
           <mix-database-migration [dbSysName]="data?.systemName"></mix-database-migration>
         </div>

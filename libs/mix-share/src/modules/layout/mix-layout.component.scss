@@ -19,10 +19,33 @@
 
   #sidebar {
     contain: strict;
+    background-color: #eaf0f3;
   }
 
   .shadow {
     box-shadow: rgba(0, 0, 0, 0.12) 0px 0px 2px 0px,
       rgba(0, 0, 0, 0.06) -4px 4px 8px 0px;
+  }
+}
+
+@media only screen and (max-width: 890px) {
+  .main-layout {
+    display: flex;
+    --sidebar-reserved-width: 100vw;
+
+    &.--collapse {
+      --sidebar-reserved-width: 0px;
+    }
+
+    #sidebar {
+      width: var(--sidebar-reserved-width);
+      contain: strict;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      z-index: 5;
+      height: 100%;
+      transition: all 0.3s;
+    }
   }
 }
