@@ -370,7 +370,6 @@ export class DatabaseDataComponent
           escape: true,
           backdrop: false,
         },
-        backdrop: false,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
@@ -400,7 +399,6 @@ export class DatabaseDataComponent
           escape: true,
           backdrop: false,
         },
-        backdrop: false,
       });
 
       dialogRef.afterClosed$.subscribe((value) => {
