@@ -59,8 +59,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "20kb",
-              "maximumError": "20kb"
+              "maximumWarning": "30kb",
+              "maximumError": "30kb"
             }
           ],
           "fileReplacements": [
@@ -80,8 +80,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "20kb",
-              "maximumError": "20kb"
+              "maximumWarning": "30kb",
+              "maximumError": "30kb"
             }
           ],
           "fileReplacements": [
@@ -101,8 +101,8 @@
             },
             {
               "type": "anyComponentStyle",
-              "maximumWarning": "20kb",
-              "maximumError": "20kb"
+              "maximumWarning": "30kb",
+              "maximumError": "30kb"
             }
           ],
           "fileReplacements": [

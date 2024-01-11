@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { BasePageComponent } from '@mixcore/share/base';
 import { ToolbarService } from '@mixcore/share/components';
+import { MixBreadcrumbsModule } from '@mixcore/ui/breadcrumbs';
 import { TuiLinkModule } from '@taiga-ui/core';
 import { TuiBreadcrumbsModule } from '@taiga-ui/kit';
 import { DbContextSelectComponent } from './components/db-context-select/db-context-select.component';
@@ -19,6 +20,7 @@ import { DbUiStore } from './store/db-ui.store';
     TuiBreadcrumbsModule,
     TuiLinkModule,
     DbContextSelectComponent,
+    MixBreadcrumbsModule,
   ],
   styles: `
   .database-menu {

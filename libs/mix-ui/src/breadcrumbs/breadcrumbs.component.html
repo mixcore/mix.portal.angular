@@ -2,7 +2,8 @@
      aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
     @for (item of displayItems(); track item; let idx = $index, last = $last) {
-    <li class="hidden lg:inline-flex items-center">
+    <li class="items-center"
+        [ngClass]="{'hidden lg:inline-flex': !last, 'inline-flex': last}">
       <svg *ngIf="idx > 0"
            class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
            xmlns="http://www.w3.org/2000/svg"
@@ -28,7 +29,13 @@
           </path>
         </svg>
 
-        <div>{{ item.name}}</div>
+        <ng-container *ngIf="item.templateRef">
+          <ng-container *ngTemplateOutlet="item.templateRef"></ng-container>
+        </ng-container>
+        <ng-container *ngIf="!item.templateRef">
+          <div>{{ item.name}}</div>
+        </ng-container>
+
       </a>
     </li>
     }
