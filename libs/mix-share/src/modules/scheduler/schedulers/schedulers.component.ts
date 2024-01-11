@@ -8,6 +8,7 @@ import { MixButtonComponent } from '@mixcore/ui/button';
 import { MixDataTableModule, TableContextMenu } from '@mixcore/ui/table';
 import { DialogService } from '@ngneat/dialog';
 import { JobFormComponent } from '../components/job-form/job-form.component';
+import { FormatJobNamePipe } from '../helper';
 import { SchedulerStore } from '../stores/schedulers.store';
 
 @Component({
@@ -20,6 +21,7 @@ import { SchedulerStore } from '../stores/schedulers.store';
     MixButtonComponent,
     MixBreadcrumbsModule,
     JobFormComponent,
+    FormatJobNamePipe,
   ],
   templateUrl: './schedulers.component.html',
   styleUrl: './schedulers.component.scss',
@@ -45,6 +47,15 @@ export class SchedulersComponent extends BasePageComponent {
   public addJob() {
     this.dialog.open(JobFormComponent, {
       ...JobFormComponent.dialogOption,
+    });
+  }
+
+  public editJob(job: MixScheduler) {
+    this.dialog.open(JobFormComponent, {
+      ...JobFormComponent.dialogOption,
+      data: {
+        job: job,
+      },
     });
   }
 }

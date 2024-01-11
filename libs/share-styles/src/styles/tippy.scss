@@ -38,7 +38,7 @@
 }
 
 .mix-menu-item {
-  @apply text-gray-900 font-medium p-2.5 text-sm flex items-center;
+  @apply text-gray-900 font-medium p-2.5 px-6 text-sm flex items-center;
   cursor: pointer;
   gap: 6px;
   min-width: 13.5rem;

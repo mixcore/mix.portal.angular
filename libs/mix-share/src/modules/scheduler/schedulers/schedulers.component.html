@@ -59,13 +59,34 @@
                 {{ job.name }}
               </th>
               <td class="px-6 py-4">
-                {{ job.jobName }}
+                {{ job.jobName | formatJobName }}
               </td>
               <td class="px-6 py-4">
               </td>
               <td class="px-6 py-4">
               </td>
               <td class="px-6 py-4">
+                <div class="flex gap-2">
+                  <mix-button title="Run immediately"
+                              [iconBtn]="true">
+                    <span class="mix-icon">play_arrow</span>
+                  </mix-button>
+
+                  <mix-button title="Toggle Run/Pause"
+                              [iconBtn]="true">
+                    <span class="mix-icon">play_circle</span>
+                  </mix-button>
+
+                  <mix-button [iconBtn]="true"
+                              (click)="editJob(job)">
+                    <span class="mix-icon">edit</span>
+                  </mix-button>
+
+                  <mix-button type="danger"
+                              [iconBtn]="true">
+                    <span class="mix-icon">delete</span>
+                  </mix-button>
+                </div>
               </td>
             </tr>
           </tbody>

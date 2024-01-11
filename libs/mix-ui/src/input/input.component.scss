@@ -11,4 +11,17 @@ mix-input {
   .input-primary {
     @apply block w-full bg-gray-50 p-2.5 outline-none border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary focus:border-primary focus:ring-1;
   }
+
+  [tuiWrapper][data-appearance='textfield'] {
+    @apply bg-gray-50;
+    box-shadow: unset !important;
+  }
+
+  [tuiWrapper][data-appearance='textfield']:after {
+    @apply text-gray-300;
+  }
+
+  [tuiWrapper][data-appearance='textfield']._focused:after {
+    color: var(--primary-color) !important;
+  }
 }

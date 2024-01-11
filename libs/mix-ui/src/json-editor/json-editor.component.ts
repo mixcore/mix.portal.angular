@@ -47,5 +47,6 @@ export class MixJsonEditorComponent
     this.editorOptions.mode = 'tree';
     this.editorOptions.enableTransform = false;
     this.editorOptions.enableSort = false;
+    this.editorOptions.expandAll = true;
   }
 }
